@@ -18,6 +18,8 @@
         .section-pill.active { background: #4f46e5; color: white; border-color: #6366f1; }
         .fade-in { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .stagger-in { opacity: 0; transform: translateY(6px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .stagger-in.visible { opacity: 1; transform: translateY(0); }
         .ref-line { position: relative; padding-left: 1.5rem; }
         .ref-line::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #1e293b; }
         .ref-outgoing::before { background: #22c55e; }
@@ -36,6 +38,26 @@
         ::-webkit-scrollbar-track { background: #0a0f1e; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
         .queue-row:nth-child(even) { background: rgba(30, 41, 59, 0.3); }
+        /* Clickable section references */
+        .sec-link { cursor: pointer; transition: all 0.15s; border-bottom: 1px dashed transparent; }
+        .sec-link:hover { border-bottom-color: currentColor; filter: brightness(1.3); }
+        .sec-link.cached { text-decoration: none; }
+        .sec-link.cached::after { content: ' \2197'; font-size: 0.6em; opacity: 0.5; }
+        /* Search */
+        .search-input { background: #0f1629; border: 1px solid #1e293b; transition: border-color 0.2s, box-shadow 0.2s; }
+        .search-input:focus { border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); outline: none; }
+        .search-results { position: absolute; top: 100%; left: 0; right: 0; z-index: 40; max-height: 320px; overflow-y: auto; }
+        .search-result-item { cursor: pointer; transition: background 0.1s; }
+        .search-result-item:hover { background: #1e293b; }
+        /* Call simulation */
+        .call-line { opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .call-line.visible { opacity: 1; transform: translateY(0); }
+        .typing-indicator span { display: inline-block; width: 6px; height: 6px; background: #6366f1; border-radius: 50%; margin: 0 2px; animation: typingBounce 1.2s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+        .ring-pulse { animation: ringPulse 1.5s ease-in-out infinite; }
+        @keyframes ringPulse { 0%,100% { transform: rotate(0); } 10% { transform: rotate(15deg); } 20% { transform: rotate(-15deg); } 30% { transform: rotate(10deg); } 40% { transform: rotate(-10deg); } 50% { transform: rotate(0); } }
     </style>
 </head>
 <body class="min-h-screen">
@@ -57,7 +79,6 @@
             <pre class="text-left text-xs bg-slate-900 p-4 rounded-lg text-green-400 mb-4"><code>python scripts/cpa_demo.py --cache-warm
 cd scripts && python -m http.server 8080
 # Open http://localhost:8080/cpa_demo.html</code></pre>
-            <p class="text-slate-500 text-xs">Or open this file directly in Safari (file:// access is supported).</p>
         </div>
     </div>
 
@@ -83,6 +104,18 @@ cd scripts && python -m http.server 8080
                 </div>
             </div>
         </header>
+
+        <!-- Search Bar -->
+        <div class="px-6 py-3 border-b border-slate-800/50">
+            <div class="max-w-7xl mx-auto relative" id="search-container">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                    <input id="search-input" type="text" placeholder="Ask the tax code — try &quot;depreciation&quot;, &quot;Puerto Rico&quot;, &quot;rental property&quot;, or a section number..."
+                           class="search-input w-full pl-10 pr-4 py-2.5 rounded-lg text-sm text-slate-200 placeholder-slate-500">
+                </div>
+                <div id="search-results" class="search-results card mt-1 hidden"></div>
+            </div>
+        </div>
 
         <!-- Scenario Tabs -->
         <nav class="px-6 py-3 border-b border-slate-800/50">
@@ -111,7 +144,6 @@ cd scripts && python -m http.server 8080
 
                 <!-- SCENARIO 1: Client Classification -->
                 <div id="scenario-1" class="scenario-panel fade-in">
-                    <!-- Client Profile Card -->
                     <div class="card-accent glow-border p-6 mb-6">
                         <div class="flex items-start justify-between mb-4">
                             <div>
@@ -123,125 +155,85 @@ cd scripts && python -m http.server 8080
                             </span>
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div>
-                                <p class="text-xs text-slate-500 mb-1">Filing Status</p>
-                                <p class="text-sm font-medium">Married Filing Jointly</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-slate-500 mb-1">Entities</p>
-                                <p class="text-sm font-medium">Software LLC (PR)</p>
-                                <p class="text-sm font-medium">2 Rentals (Tampa, FL)</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-slate-500 mb-1">Software Income</p>
-                                <p class="text-sm font-medium text-green-400">$380,000</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-slate-500 mb-1">Other Income</p>
-                                <p class="text-sm font-medium">$48K rental + $22K investments</p>
-                            </div>
+                            <div><p class="text-xs text-slate-500 mb-1">Filing Status</p><p class="text-sm font-medium">Married Filing Jointly</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">Entities</p><p class="text-sm font-medium">Software LLC (PR)</p><p class="text-sm font-medium">2 Rentals (Tampa, FL)</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">Software Income</p><p class="text-sm font-medium text-green-400">$380,000</p></div>
+                            <div><p class="text-xs text-slate-500 mb-1">Other Income</p><p class="text-sm font-medium">$48K rental + $22K investments</p></div>
                         </div>
                     </div>
-
-                    <!-- Section Groups -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="s1-sections"></div>
-
-                    <!-- Cross-References -->
                     <div class="card p-5 mb-6" id="s1-crossrefs"></div>
-
-                    <!-- Filing Checklist -->
                     <div class="card p-5 mb-6">
-                        <h3 class="text-sm font-semibold text-slate-300 mb-3">
-                            <i class="fas fa-clipboard-check text-green-400 mr-2"></i>Filing Requirements Checklist
-                        </h3>
+                        <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fas fa-clipboard-check text-green-400 mr-2"></i>Filing Requirements Checklist</h3>
                         <div class="space-y-2" id="s1-checklist">
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Federal Form 1040 — report all worldwide income <span class="text-indigo-400">(§61)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule C — software LLC income, PR-sourced <span class="text-indigo-400">(§162, §199A)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule E — rental income from Tampa FL properties <span class="text-indigo-400">(§167, §168)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 4562 — depreciation on rental properties <span class="text-indigo-400">(§168, §179)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 1116 — foreign tax credit for PR taxes paid <span class="text-indigo-400">(§901, §904)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">PR Form 482 — Act 60 decree compliance</span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule SE — self-employment tax on LLC income <span class="text-indigo-400">(§1402)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 8995 — QBI deduction if eligible <span class="text-indigo-400">(§199A)</span></span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">§933 exclusion analysis — PR-sourced income for bona fide PR resident</span></div>
-                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Passive activity loss review — rental activity limitations <span class="text-indigo-400">(§469)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Federal Form 1040 — report all worldwide income <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('61')">(§61)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule C — software LLC income, PR-sourced <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('162')">(§162</span>, <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('199A')">§199A)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule E — rental income from Tampa FL properties <span class="text-indigo-400">(§167, </span><span class="text-indigo-400 sec-link cached" onclick="navigateToSection('168')">§168)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 4562 — depreciation on rental properties <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('168')">(§168</span>, <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('179')">§179)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 1116 — foreign tax credit for PR taxes paid <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('901')">(§901, §904)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">PR Form 482 — Act 60 decree compliance</span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule SE — self-employment tax on LLC income <span class="text-indigo-400">(§1402)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 8995 — QBI deduction if eligible <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('199A')">(§199A)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">§933 exclusion analysis — PR-sourced income <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('933')">(§933)</span></span></div>
+                            <div class="flex items-start gap-2 stagger-in"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Passive activity loss review — rental limitations <span class="text-indigo-400 sec-link cached" onclick="navigateToSection('469')">(§469)</span></span></div>
                         </div>
                     </div>
-
-                    <!-- Impact Statement -->
                     <div class="card p-5 bg-gradient-to-r from-indigo-950/50 to-transparent border-indigo-800/30" id="s1-impact"></div>
                 </div>
 
                 <!-- SCENARIO 2: Cross-Reference Discovery -->
                 <div id="scenario-2" class="scenario-panel hidden">
-                    <!-- Section Selector -->
                     <div class="card p-5 mb-6">
-                        <h3 class="text-sm font-semibold text-slate-300 mb-3">
-                            <i class="fas fa-search text-emerald-400 mr-2"></i>Select a Section
-                        </h3>
+                        <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fas fa-search text-emerald-400 mr-2"></i>Select a Section</h3>
                         <div class="flex flex-wrap gap-2" id="s2-pills"></div>
                     </div>
-
-                    <!-- Section Detail -->
                     <div id="s2-detail" class="fade-in"></div>
                 </div>
 
                 <!-- SCENARIO 3: Tax Season Automation -->
                 <div id="scenario-3" class="scenario-panel hidden">
+                    <!-- Call Controls -->
+                    <div class="flex items-center justify-between mb-4">
+                        <div></div>
+                        <button id="call-play-btn" onclick="playCallSimulation()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition flex items-center gap-2">
+                            <i class="fas fa-play text-xs"></i> Play Call Simulation
+                        </button>
+                    </div>
+
                     <!-- Voice AI Call -->
                     <div class="card p-6 mb-6">
                         <div class="flex items-center gap-2 mb-4">
-                            <div class="w-8 h-8 rounded-full bg-amber-900/30 flex items-center justify-center">
+                            <div id="call-icon" class="w-8 h-8 rounded-full bg-amber-900/30 flex items-center justify-center">
                                 <i class="fas fa-phone text-amber-400 text-xs"></i>
                             </div>
                             <div>
                                 <h3 class="text-sm font-semibold">Voice AI — Incoming Client Call</h3>
                                 <p class="text-xs text-slate-500">Simulated inbound call to Luis Lamba CPA</p>
                             </div>
-                        </div>
-                        <div class="bg-slate-900/50 rounded-lg p-5 space-y-4 text-sm">
-                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>Good morning, Luis Lamba CPA. How can I help you today?</span></div>
-                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>Hi, this is Maria Santos. I'm calling to schedule my tax appointment and ask about some documents I need.</span></div>
-                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>Hi Maria, I have your file pulled up. You're filing married jointly with Carlos, correct? I see you have a software LLC and two rental properties in Tampa.</span></div>
-                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>Yes, that's right. What documents do I need to bring?</span></div>
-                            <div class="flex gap-3">
-                                <span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span>
-                                <div>
-                                    <p>Based on your filing profile, here's what we need:</p>
-                                    <ol class="list-decimal list-inside mt-2 space-y-1 text-slate-300">
-                                        <li>W-2s for both you and Carlos</li>
-                                        <li>Schedule K-1 from the software LLC</li>
-                                        <li>Rental income statements for both Tampa properties</li>
-                                        <li>Property tax receipts (Hillsborough County)</li>
-                                        <li>PR Act 60 decree documentation</li>
-                                        <li>Foreign tax credit substantiation (PR taxes paid)</li>
-                                    </ol>
-                                    <p class="mt-2">I've just emailed you a checklist with upload links. Would you like to schedule for next Tuesday at 2pm?</p>
-                                </div>
+                            <div id="typing-indicator" class="typing-indicator ml-auto hidden">
+                                <span></span><span></span><span></span>
                             </div>
-                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>That works. Thank you!</span></div>
-                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>You're confirmed for Tuesday March 25 at 2:00 PM. I'll send a reminder 24 hours before. Have a great day, Maria.</span></div>
+                        </div>
+                        <div id="call-transcript" class="bg-slate-900/50 rounded-lg p-5 space-y-4 text-sm min-h-[200px]">
+                            <div class="call-line" data-speaker="ai"><span class="text-indigo-400 font-semibold shrink-0 w-8 inline-block">AI:</span> Good morning, Luis Lamba CPA. How can I help you today?</div>
+                            <div class="call-line" data-speaker="caller"><span class="text-green-400 font-semibold shrink-0 w-8 inline-block">Caller:</span> Hi, this is Maria Santos. I'm calling to schedule my tax appointment and ask about some documents I need.</div>
+                            <div class="call-line" data-speaker="ai"><span class="text-indigo-400 font-semibold shrink-0 w-8 inline-block">AI:</span> Hi Maria, I have your file pulled up. You're filing married jointly with Carlos, correct? I see you have a software LLC and two rental properties in Tampa.</div>
+                            <div class="call-line" data-speaker="caller"><span class="text-green-400 font-semibold shrink-0 w-8 inline-block">Caller:</span> Yes, that's right. What documents do I need to bring?</div>
+                            <div class="call-line" data-speaker="ai"><span class="text-indigo-400 font-semibold shrink-0 w-8 inline-block">AI:</span><div class="inline"> Based on your filing profile, here's what we need:<ol class="list-decimal list-inside mt-2 space-y-1 text-slate-300"><li>W-2s for both you and Carlos</li><li>Schedule K-1 from the software LLC</li><li>Rental income statements for both Tampa properties</li><li>Property tax receipts (Hillsborough County)</li><li>PR Act 60 decree documentation</li><li>Foreign tax credit substantiation (PR taxes paid)</li></ol><p class="mt-2">I've just emailed you a checklist with upload links. Would you like to schedule for next Tuesday at 2pm?</p></div></div>
+                            <div class="call-line" data-speaker="caller"><span class="text-green-400 font-semibold shrink-0 w-8 inline-block">Caller:</span> That works. Thank you!</div>
+                            <div class="call-line" data-speaker="ai"><span class="text-indigo-400 font-semibold shrink-0 w-8 inline-block">AI:</span> You're confirmed for Tuesday March 25 at 2:00 PM. I'll send a reminder 24 hours before. Have a great day, Maria.</div>
                         </div>
                     </div>
 
                     <!-- Document Collection -->
-                    <div class="card p-6 mb-6">
+                    <div class="card p-6 mb-6 call-section hidden" id="doc-collection">
                         <div class="flex items-center gap-2 mb-4">
-                            <div class="w-8 h-8 rounded-full bg-blue-900/30 flex items-center justify-center">
-                                <i class="fas fa-envelope text-blue-400 text-xs"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold">Automated Document Collection</h3>
-                                <p class="text-xs text-slate-500">Email sent to maria.santos@email.com</p>
-                            </div>
+                            <div class="w-8 h-8 rounded-full bg-blue-900/30 flex items-center justify-center"><i class="fas fa-envelope text-blue-400 text-xs"></i></div>
+                            <div><h3 class="text-sm font-semibold">Automated Document Collection</h3><p class="text-xs text-slate-500">Email sent to maria.santos@email.com</p></div>
                         </div>
                         <div class="bg-slate-900/50 rounded-lg p-5">
                             <p class="text-xs text-slate-500 mb-1">Subject: Your 2025 Tax Appointment — Documents Needed</p>
-                            <div class="text-sm mt-3">
-                                <p>Hi Maria,</p>
-                                <p class="mt-2">Your appointment with Luis Lamba CPA is confirmed for <strong>Tuesday, March 25 at 2:00 PM.</strong></p>
-                                <p class="mt-3 mb-2">Please upload the following documents before your appointment:</p>
-                            </div>
+                            <div class="text-sm mt-3"><p>Hi Maria,</p><p class="mt-2">Your appointment with Luis Lamba CPA is confirmed for <strong>Tuesday, March 25 at 2:00 PM.</strong></p><p class="mt-3 mb-2">Please upload the following documents before your appointment:</p></div>
                             <div class="space-y-2 mt-3">
                                 <div class="flex items-center gap-3 px-3 py-2 rounded bg-green-900/20 border border-green-800/30"><i class="fas fa-check-circle text-green-400 text-xs"></i><span class="text-sm">W-2 (Maria)</span><span class="ml-auto text-xs text-green-400">Uploaded</span></div>
                                 <div class="flex items-center gap-3 px-3 py-2 rounded bg-green-900/20 border border-green-800/30"><i class="fas fa-check-circle text-green-400 text-xs"></i><span class="text-sm">W-2 (Carlos)</span><span class="ml-auto text-xs text-green-400">Uploaded</span></div>
@@ -256,37 +248,23 @@ cd scripts && python -m http.server 8080
                     </div>
 
                     <!-- Staff Queue -->
-                    <div class="card p-6 mb-6">
+                    <div class="card p-6 mb-6 call-section hidden" id="staff-queue">
                         <div class="flex items-center gap-2 mb-4">
-                            <div class="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center">
-                                <i class="fas fa-table text-purple-400 text-xs"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold">Preparation Queue — Staff Dashboard</h3>
-                                <p class="text-xs text-slate-500">Tax Season Queue — Week of March 24</p>
-                            </div>
+                            <div class="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center"><i class="fas fa-table text-purple-400 text-xs"></i></div>
+                            <div><h3 class="text-sm font-semibold">Preparation Queue — Staff Dashboard</h3><p class="text-xs text-slate-500">Tax Season Queue — Week of March 24</p></div>
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm">
-                                <thead>
-                                    <tr class="text-xs text-slate-500 border-b border-slate-800">
-                                        <th class="text-left py-2 px-3">#</th>
-                                        <th class="text-left py-2 px-3">Client</th>
-                                        <th class="text-left py-2 px-3">Status</th>
-                                        <th class="text-left py-2 px-3">Docs</th>
-                                        <th class="text-left py-2 px-3">Complexity</th>
-                                        <th class="text-left py-2 px-3">Assigned</th>
-                                    </tr>
-                                </thead>
+                                <thead><tr class="text-xs text-slate-500 border-b border-slate-800"><th class="text-left py-2 px-3">#</th><th class="text-left py-2 px-3">Client</th><th class="text-left py-2 px-3">Status</th><th class="text-left py-2 px-3">Docs</th><th class="text-left py-2 px-3">Complexity</th><th class="text-left py-2 px-3">Assigned</th></tr></thead>
                                 <tbody>
                                     <tr class="queue-row"><td class="py-2 px-3 text-slate-500">1</td><td class="py-2 px-3 font-medium">Rivera, C & M</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">2/8</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
                                     <tr class="queue-row"><td class="py-2 px-3 text-slate-500">2</td><td class="py-2 px-3 font-medium">Thompson, J</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">5/5</td><td class="py-2 px-3">Low</td><td class="py-2 px-3">Ana</td></tr>
                                     <tr class="queue-row"><td class="py-2 px-3 text-slate-500">3</td><td class="py-2 px-3 font-medium">Patel Corp.</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">12/12</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
-                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">4</td><td class="py-2 px-3 font-medium">Garcia, R</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">0/4</td><td class="py-2 px-3">Low</td><td class="py-2 px-3 text-slate-500">—</td></tr>
-                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">5</td><td class="py-2 px-3 font-medium">BitCoin Traders</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">—</td><td class="py-2 px-3"><span class="text-red-300 font-semibold">Very High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">4</td><td class="py-2 px-3 font-medium">Garcia, R</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">0/4</td><td class="py-2 px-3">Low</td><td class="py-2 px-3 text-slate-500">&mdash;</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">5</td><td class="py-2 px-3 font-medium">BitCoin Traders</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">&mdash;</td><td class="py-2 px-3"><span class="text-red-300 font-semibold">Very High</span></td><td class="py-2 px-3">Luis</td></tr>
                                     <tr class="queue-row"><td class="py-2 px-3 text-slate-500">6</td><td class="py-2 px-3 font-medium">Mendez Family</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">6/6</td><td class="py-2 px-3">Med</td><td class="py-2 px-3">Ana</td></tr>
                                     <tr class="queue-row"><td class="py-2 px-3 text-slate-500">7</td><td class="py-2 px-3 font-medium">Coastal HVAC</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">3/9</td><td class="py-2 px-3">Med</td><td class="py-2 px-3">Carlos</td></tr>
-                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">8</td><td class="py-2 px-3 font-medium">Santos, M & C</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">—</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">8</td><td class="py-2 px-3 font-medium">Santos, M & C</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">&mdash;</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -301,7 +279,7 @@ cd scripts && python -m http.server 8080
                     </div>
 
                     <!-- Impact -->
-                    <div class="card p-5 bg-gradient-to-r from-amber-950/30 to-transparent border-amber-800/20">
+                    <div class="card p-5 bg-gradient-to-r from-amber-950/30 to-transparent border-amber-800/20 call-section hidden" id="call-impact">
                         <div class="space-y-2 text-sm">
                             <p><i class="fas fa-bolt text-amber-400 mr-2"></i>The AI answered the phone, pulled up the client file, listed the exact documents needed, emailed a checklist, and scheduled the appointment — <strong>zero staff involvement.</strong></p>
                             <p><i class="fas fa-calculator text-amber-400 mr-2"></i>Multiply that by <strong>800 clients in January.</strong></p>
@@ -317,6 +295,7 @@ cd scripts && python -m http.server 8080
 <script>
 // ─── Cache Data Processing ─────────────────────────────────────────
 let CACHE = null;
+let SEARCH_INDEX = [];
 const SECTIONS = ['1031','179','168','199A','469','933','937','901','162','61'];
 const SECTION_LABELS = {
     '1031': 'Like-Kind Exchanges', '179': 'Expensing Election',
@@ -329,12 +308,10 @@ const SECTION_LABELS = {
 function classifyEntry(key, entry) {
     const q = entry.query || '';
     const p = entry.params;
-    // Scenario 1 entries
     if (!p && q.includes('Puerto Rico')) return { scenario: 1, type: 'pr_sections' };
     if (!p && q.includes('rental')) return { scenario: 1, type: 'rental_sections' };
     if (!p && q.includes('self-employment')) return { scenario: 1, type: 'llc_sections' };
     if (p && p.sections) return { scenario: 1, type: 'cross_refs' };
-    // Scenario 2 entries
     if (p && p.sec) {
         if (q.includes('CONTAINS*')) return { scenario: 2, type: 'hierarchy', sec: p.sec };
         if (q.includes('mid:TaxSection')) return { scenario: 2, type: 'two_hop', sec: p.sec };
@@ -349,9 +326,8 @@ function processCache(raw) {
     const data = { s1: {}, s2: {} };
     for (const [key, entry] of Object.entries(raw.queries || {})) {
         const cls = classifyEntry(key, entry);
-        if (cls.scenario === 1) {
-            data.s1[cls.type] = entry.results;
-        } else if (cls.scenario === 2) {
+        if (cls.scenario === 1) data.s1[cls.type] = entry.results;
+        else if (cls.scenario === 2) {
             if (!data.s2[cls.sec]) data.s2[cls.sec] = {};
             data.s2[cls.sec][cls.type] = entry.results;
         }
@@ -359,9 +335,49 @@ function processCache(raw) {
     return data;
 }
 
+function buildSearchIndex(data) {
+    SEARCH_INDEX = [];
+    // Index all sections from scenario 2 detail
+    for (const sec of SECTIONS) {
+        const sd = data.s2[sec];
+        if (!sd) continue;
+        const detail = sd.detail?.[0] || {};
+        SEARCH_INDEX.push({ sec, title: detail.title || '', preview: detail.preview || '', type: 'section' });
+        // Index outgoing refs
+        for (const r of (sd.outgoing || [])) {
+            SEARCH_INDEX.push({ sec: r.sec, title: r.title || '', preview: '', type: 'ref', parent: sec });
+        }
+        // Index incoming refs
+        for (const r of (sd.incoming || [])) {
+            SEARCH_INDEX.push({ sec: r.sec, title: r.title || '', preview: '', type: 'ref', parent: sec });
+        }
+    }
+    // Index scenario 1 sections
+    for (const group of ['pr_sections', 'rental_sections', 'llc_sections']) {
+        for (const s of (data.s1[group] || [])) {
+            SEARCH_INDEX.push({ sec: s.sec, title: s.title || '', preview: '', type: 'classified' });
+        }
+    }
+    // Dedup by section number
+    const seen = new Set();
+    SEARCH_INDEX = SEARCH_INDEX.filter(item => {
+        const key = item.sec;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
 // ─── Rendering ─────────────────────────────────────────────────────
 
 function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function secLinkHtml(sec, color) {
+    const isCached = SECTIONS.includes(sec);
+    const cls = isCached ? 'sec-link cached' : 'sec-link';
+    const onclick = isCached ? ` onclick="navigateToSection('${sec}')"` : '';
+    return `<span class="${color} ${cls}"${onclick}>§${esc(sec)}</span>`;
+}
 
 function renderScenario1(data) {
     const groups = [
@@ -374,13 +390,11 @@ function renderScenario1(data) {
         const items = data.s1[g.key] || [];
         return `
         <div class="card p-5">
-            <h3 class="text-sm font-semibold text-slate-300 mb-3">
-                <i class="fas ${g.icon} text-${g.color}-400 mr-2"></i>${g.label}
-            </h3>
+            <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fas ${g.icon} text-${g.color}-400 mr-2"></i>${g.label}</h3>
             <div class="space-y-1.5">
                 ${items.map(s => `
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-${g.color}-400 font-mono text-xs font-bold shrink-0 w-12 text-right">§${esc(s.sec)}</span>
+                    <div class="flex items-baseline gap-2 stagger-in">
+                        ${secLinkHtml(s.sec, `text-${g.color}-400 font-mono text-xs font-bold shrink-0 w-12 text-right`)}
                         <span class="text-sm text-slate-300">${esc(s.title)}</span>
                     </div>
                 `).join('')}
@@ -389,44 +403,35 @@ function renderScenario1(data) {
         </div>`;
     }).join('');
 
-    // Cross-refs
     const refs = data.s1.cross_refs || [];
     const refsEl = document.getElementById('s1-crossrefs');
     if (refs.length) {
         refsEl.innerHTML = `
-            <h3 class="text-sm font-semibold text-slate-300 mb-3">
-                <i class="fas fa-arrows-alt-h text-purple-400 mr-2"></i>Cross-References Between Applicable Sections
-            </h3>
+            <h3 class="text-sm font-semibold text-slate-300 mb-3"><i class="fas fa-arrows-alt-h text-purple-400 mr-2"></i>Cross-References Between Applicable Sections</h3>
             <div class="flex flex-wrap gap-2">
                 ${refs.map(r => `
                     <span class="px-3 py-1.5 rounded-lg bg-purple-900/20 border border-purple-800/30 text-sm">
-                        <span class="text-purple-300">§${esc(r.from_sec)}</span>
+                        ${secLinkHtml(r.from_sec, 'text-purple-300')}
                         <i class="fas fa-arrow-right text-slate-600 mx-1 text-xs"></i>
-                        <span class="text-purple-300">§${esc(r.to_sec)}</span>
+                        ${secLinkHtml(r.to_sec, 'text-purple-300')}
                     </span>
                 `).join('')}
             </div>`;
-    } else {
-        refsEl.classList.add('hidden');
-    }
+    } else { refsEl.classList.add('hidden'); }
 
-    // Impact
     const total = (data.s1.pr_sections||[]).length + (data.s1.rental_sections||[]).length + (data.s1.llc_sections||[]).length;
     document.getElementById('s1-impact').innerHTML = `
         <div class="flex items-center gap-6">
-            <div>
-                <span class="text-3xl font-bold stat-number text-indigo-300">${total}</span>
-                <p class="text-xs text-slate-500">applicable sections</p>
-            </div>
-            <div>
-                <span class="text-3xl font-bold stat-number text-purple-300">${refs.length}</span>
-                <p class="text-xs text-slate-500">cross-references</p>
-            </div>
+            <div><span class="text-3xl font-bold stat-number text-indigo-300">${total}</span><p class="text-xs text-slate-500">applicable sections</p></div>
+            <div><span class="text-3xl font-bold stat-number text-purple-300">${refs.length}</span><p class="text-xs text-slate-500">cross-references</p></div>
             <div class="text-sm text-slate-400 ml-4">
                 <p>Your staff does this manually for <strong class="text-slate-200">500+ clients per year.</strong></p>
                 <p class="text-slate-500">The terminal does it in seconds — with statutory citations.</p>
             </div>
         </div>`;
+
+    // Stagger animation for scenario 1
+    setTimeout(() => staggerReveal('#scenario-1 .stagger-in'), 100);
 }
 
 function renderScenario2Pills(data) {
@@ -457,10 +462,8 @@ function renderSectionDetail(sec, sd) {
     const incoming = sd.incoming || [];
     const twoHop = sd.two_hop || [];
     const hierarchy = sd.hierarchy || [];
-
     const totalConnected = outgoing.length + incoming.length;
 
-    // Build hierarchy HTML
     let hierarchyHtml = '';
     if (hierarchy.length) {
         const levelOrder = ['subtitle','chapter','subchapter','part','subpart'];
@@ -476,7 +479,7 @@ function renderSectionDetail(sec, sd) {
                     </div>
                 `).join('')}
                 <div class="hierarchy-node" style="margin-left: ${sorted.length * 1.25}rem">
-                    <span class="text-sm font-bold text-indigo-400">§${sec}</span>
+                    <span class="text-sm font-bold text-indigo-400">&sect;${sec}</span>
                 </div>
             </div>
         </div>`;
@@ -484,12 +487,11 @@ function renderSectionDetail(sec, sd) {
 
     document.getElementById('s2-detail').innerHTML = `
     <div class="fade-in">
-        <!-- Section Header -->
         <div class="card-accent glow-border p-6 mb-4">
             <div class="flex items-start justify-between">
                 <div>
-                    <h2 class="text-xl font-bold">§${esc(sec)} — ${esc(detail.title || 'Unknown')}</h2>
-                    <p class="text-slate-400 text-sm mt-1 max-w-3xl">${esc((detail.preview || '').substring(0, 200))}${(detail.preview||'').length > 200 ? '...' : ''}</p>
+                    <h2 class="text-xl font-bold">&sect;${esc(sec)} &mdash; ${esc(detail.title || 'Unknown')}</h2>
+                    <p class="text-slate-400 text-sm mt-1 max-w-3xl">${esc((detail.preview || '').substring(0, 250))}${(detail.preview||'').length > 250 ? '...' : ''}</p>
                 </div>
                 <div class="text-right shrink-0 ml-4">
                     <span class="text-3xl font-bold stat-number text-emerald-300">${detail.refs || 0}</span>
@@ -497,74 +499,57 @@ function renderSectionDetail(sec, sd) {
                 </div>
             </div>
         </div>
-
         ${hierarchyHtml}
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <!-- Outgoing -->
             <div class="card p-5">
                 <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
-                    <span class="inline-block w-2 h-2 rounded bg-green-400 mr-1.5"></span>
-                    §${sec} References (${outgoing.length})
+                    <span class="inline-block w-2 h-2 rounded bg-green-400 mr-1.5"></span>&sect;${sec} References (${outgoing.length})
                 </h4>
                 <div class="space-y-1.5 max-h-64 overflow-y-auto">
                     ${outgoing.length ? outgoing.map(r => `
                         <div class="ref-line ref-outgoing py-1">
-                            <span class="text-green-400 font-mono text-xs font-bold">§${esc(r.sec)}</span>
+                            ${secLinkHtml(r.sec, 'text-green-400 font-mono text-xs font-bold')}
                             <span class="text-sm text-slate-300 ml-2">${esc(r.title)}</span>
                         </div>
                     `).join('') : '<p class="text-slate-500 text-sm">None</p>'}
                 </div>
             </div>
-            <!-- Incoming -->
             <div class="card p-5">
                 <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
-                    <span class="inline-block w-2 h-2 rounded bg-blue-400 mr-1.5"></span>
-                    Referenced BY (${incoming.length})
+                    <span class="inline-block w-2 h-2 rounded bg-blue-400 mr-1.5"></span>Referenced BY (${incoming.length})
                 </h4>
                 <div class="space-y-1.5 max-h-64 overflow-y-auto">
                     ${incoming.length ? incoming.map(r => `
                         <div class="ref-line ref-incoming py-1">
-                            <span class="text-blue-400 font-mono text-xs font-bold">§${esc(r.sec)}</span>
+                            ${secLinkHtml(r.sec, 'text-blue-400 font-mono text-xs font-bold')}
                             <span class="text-sm text-slate-300 ml-2">${esc(r.title)}</span>
                         </div>
                     `).join('') : '<p class="text-slate-500 text-sm">None</p>'}
                 </div>
             </div>
         </div>
-
-        <!-- Two-hop -->
         ${twoHop.length ? `
         <div class="card p-5 mb-4">
             <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
-                <span class="inline-block w-2 h-2 rounded bg-purple-400 mr-1.5"></span>
-                2-Hop Connections (${twoHop.length})
+                <span class="inline-block w-2 h-2 rounded bg-purple-400 mr-1.5"></span>2-Hop Connections (${twoHop.length})
             </h4>
             <div class="space-y-1.5 max-h-48 overflow-y-auto">
                 ${twoHop.map(r => `
                     <div class="ref-line ref-twohop py-1">
-                        <span class="text-slate-400 font-mono text-xs">§${sec}</span>
+                        <span class="text-slate-400 font-mono text-xs">&sect;${sec}</span>
                         <i class="fas fa-arrow-right text-slate-600 mx-1" style="font-size:8px"></i>
-                        <span class="text-purple-300 font-mono text-xs font-bold">§${esc(r.via)}</span>
+                        ${secLinkHtml(r.via, 'text-purple-300 font-mono text-xs font-bold')}
                         <i class="fas fa-arrow-right text-slate-600 mx-1" style="font-size:8px"></i>
-                        <span class="text-purple-400 font-mono text-xs font-bold">§${esc(r.reaches)}</span>
+                        ${secLinkHtml(r.reaches, 'text-purple-400 font-mono text-xs font-bold')}
                         <span class="text-sm text-slate-400 ml-2">${esc(r.title)}</span>
                     </div>
                 `).join('')}
             </div>
         </div>` : ''}
-
-        <!-- Impact -->
         <div class="card p-5 bg-gradient-to-r from-emerald-950/30 to-transparent border-emerald-800/20">
             <div class="flex items-center gap-6">
-                <div>
-                    <span class="text-3xl font-bold stat-number text-emerald-300">${totalConnected}</span>
-                    <p class="text-xs text-slate-500">directly connected</p>
-                </div>
-                <div>
-                    <span class="text-3xl font-bold stat-number text-purple-300">${twoHop.length}</span>
-                    <p class="text-xs text-slate-500">at 2 hops</p>
-                </div>
+                <div><span class="text-3xl font-bold stat-number text-emerald-300">${totalConnected}</span><p class="text-xs text-slate-500">directly connected</p></div>
+                <div><span class="text-3xl font-bold stat-number text-purple-300">${twoHop.length}</span><p class="text-xs text-slate-500">at 2 hops</p></div>
                 <div class="text-sm text-slate-400 ml-4">
                     <p>Your staff Googles this and gets blog posts.</p>
                     <p class="text-slate-500">The terminal gives you the actual <strong class="text-slate-300">connected statutory authority.</strong></p>
@@ -572,6 +557,166 @@ function renderSectionDetail(sec, sd) {
             </div>
         </div>
     </div>`;
+}
+
+// ─── Feature 1: Clickable §References ──────────────────────────────
+
+function navigateToSection(sec) {
+    if (!SECTIONS.includes(sec) || !CACHE.s2[sec]) return;
+    // Switch to scenario 2
+    document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.classList.add('text-slate-400'); });
+    document.querySelectorAll('.scenario-panel').forEach(p => p.classList.add('hidden'));
+    const btn = document.querySelector('[data-scenario="2"]');
+    btn.classList.add('active'); btn.classList.remove('text-slate-400');
+    document.getElementById('scenario-2').classList.remove('hidden');
+    // Select the section
+    selectSection(sec);
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── Feature 2: Call Simulation ────────────────────────────────────
+
+let callPlaying = false;
+let callTimeouts = [];
+
+function playCallSimulation() {
+    if (callPlaying) return;
+    callPlaying = true;
+    // Reset state
+    callTimeouts.forEach(t => clearTimeout(t));
+    callTimeouts = [];
+    const lines = document.querySelectorAll('#call-transcript .call-line');
+    lines.forEach(l => l.classList.remove('visible'));
+    document.querySelectorAll('.call-section').forEach(s => s.classList.add('hidden'));
+    const btn = document.getElementById('call-play-btn');
+    btn.innerHTML = '<i class="fas fa-circle text-red-400 text-xs animate-pulse"></i> Call in progress...';
+    btn.classList.add('pointer-events-none', 'opacity-70');
+    const indicator = document.getElementById('typing-indicator');
+    const icon = document.getElementById('call-icon');
+
+    // Ring animation
+    icon.innerHTML = '<i class="fas fa-phone text-green-400 text-xs ring-pulse"></i>';
+
+    let delay = 800;
+    lines.forEach((line, i) => {
+        const speaker = line.dataset.speaker;
+        // Show typing indicator before AI lines
+        if (speaker === 'ai' && i > 0) {
+            callTimeouts.push(setTimeout(() => { indicator.classList.remove('hidden'); }, delay));
+            delay += 1200;
+            callTimeouts.push(setTimeout(() => { indicator.classList.add('hidden'); }, delay));
+        }
+        callTimeouts.push(setTimeout(() => {
+            line.classList.add('visible');
+            line.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, delay));
+        delay += speaker === 'ai' ? 2000 : 1500;
+    });
+
+    // After all lines, show remaining sections
+    callTimeouts.push(setTimeout(() => {
+        icon.innerHTML = '<i class="fas fa-phone text-amber-400 text-xs"></i>';
+        document.querySelectorAll('.call-section').forEach(s => {
+            s.classList.remove('hidden');
+            s.classList.add('fade-in');
+        });
+        btn.innerHTML = '<i class="fas fa-redo text-xs"></i> Replay Call';
+        btn.classList.remove('pointer-events-none', 'opacity-70');
+        callPlaying = false;
+    }, delay + 500));
+}
+
+// ─── Feature 3: Search ─────────────────────────────────────────────
+
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+let searchDebounce = null;
+
+searchInput.addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => performSearch(searchInput.value), 150);
+});
+
+searchInput.addEventListener('focus', () => {
+    if (searchInput.value.length >= 1) performSearch(searchInput.value);
+});
+
+document.addEventListener('click', (e) => {
+    if (!document.getElementById('search-container').contains(e.target)) {
+        searchResults.classList.add('hidden');
+    }
+});
+
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { searchResults.classList.add('hidden'); searchInput.blur(); }
+    if (e.key === 'Enter') {
+        const first = searchResults.querySelector('.search-result-item');
+        if (first) first.click();
+    }
+});
+
+function performSearch(query) {
+    query = query.trim().toLowerCase();
+    if (query.length < 1) { searchResults.classList.add('hidden'); return; }
+
+    // Search matches
+    let results = SEARCH_INDEX.filter(item => {
+        const secMatch = item.sec.toLowerCase() === query || ('§' + item.sec).toLowerCase() === query;
+        const titleMatch = item.title.toLowerCase().includes(query);
+        const previewMatch = item.preview.toLowerCase().includes(query);
+        return secMatch || titleMatch || previewMatch;
+    });
+
+    // Sort: exact section match first, then by whether it's a cached section
+    results.sort((a, b) => {
+        const aExact = a.sec.toLowerCase() === query ? -10 : 0;
+        const bExact = b.sec.toLowerCase() === query ? -10 : 0;
+        const aCached = SECTIONS.includes(a.sec) ? -5 : 0;
+        const bCached = SECTIONS.includes(b.sec) ? -5 : 0;
+        return (aExact + aCached) - (bExact + bCached);
+    });
+
+    results = results.slice(0, 12);
+
+    if (results.length === 0) {
+        searchResults.innerHTML = '<div class="p-4 text-sm text-slate-500">No matching sections found. Try a section number or keyword.</div>';
+        searchResults.classList.remove('hidden');
+        return;
+    }
+
+    searchResults.innerHTML = results.map(r => {
+        const isCached = SECTIONS.includes(r.sec);
+        const badge = isCached
+            ? '<span class="text-xs px-1.5 py-0.5 rounded bg-emerald-900/50 text-emerald-300 ml-2">Interactive</span>'
+            : '<span class="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-500 ml-2">Referenced</span>';
+        return `
+            <div class="search-result-item px-4 py-3 border-b border-slate-800/50" onclick="searchSelect('${esc(r.sec)}')">
+                <div class="flex items-center">
+                    <span class="text-indigo-400 font-mono text-sm font-bold mr-3">&sect;${esc(r.sec)}</span>
+                    <span class="text-sm text-slate-300 truncate">${esc(r.title)}</span>
+                    ${badge}
+                </div>
+            </div>`;
+    }).join('');
+    searchResults.classList.remove('hidden');
+}
+
+function searchSelect(sec) {
+    searchResults.classList.add('hidden');
+    searchInput.value = '';
+    if (SECTIONS.includes(sec)) {
+        navigateToSection(sec);
+    }
+}
+
+// ─── Stagger Animation ─────────────────────────────────────────────
+
+function staggerReveal(selector) {
+    const items = document.querySelectorAll(selector);
+    items.forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 60);
+    });
 }
 
 // ─── Tab Switching ─────────────────────────────────────────────────
@@ -595,6 +740,7 @@ const RAW_CACHE = {"cached_at":"2026-03-19T15:24:39.713651+00:00","queries":{"c8
 function init() {
     const raw = RAW_CACHE;
     CACHE = processCache(raw);
+    buildSearchIndex(CACHE);
     document.getElementById('loading').classList.add('hidden');
     document.getElementById('app').classList.remove('hidden');
     const cachedAt = raw.cached_at ? new Date(raw.cached_at).toLocaleDateString() : 'Unknown';
