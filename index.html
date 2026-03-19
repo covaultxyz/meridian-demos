@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian Terminal — Tax Law Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #0a0f1e; color: #e2e8f0; }
+        .card { background: #141b2d; border: 1px solid #1e293b; border-radius: 0.75rem; }
+        .card-accent { background: linear-gradient(135deg, #1a1f3a 0%, #141b2d 100%); border: 1px solid #2d3a5c; }
+        .glow-border { border: 1px solid #4f46e5; box-shadow: 0 0 15px rgba(79, 70, 229, 0.15); }
+        .section-pill { transition: all 0.2s; cursor: pointer; }
+        .section-pill:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3); }
+        .section-pill.active { background: #4f46e5; color: white; border-color: #6366f1; }
+        .fade-in { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .ref-line { position: relative; padding-left: 1.5rem; }
+        .ref-line::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #1e293b; }
+        .ref-outgoing::before { background: #22c55e; }
+        .ref-incoming::before { background: #3b82f6; }
+        .ref-twohop::before { background: #a855f7; }
+        .hierarchy-node { position: relative; padding-left: 1.25rem; }
+        .hierarchy-node::before { content: ''; position: absolute; left: 0.25rem; top: 0; bottom: 0; width: 1px; background: #334155; }
+        .hierarchy-node::after { content: ''; position: absolute; left: 0.25rem; top: 0.75rem; width: 0.75rem; height: 1px; background: #334155; }
+        .tab-btn { transition: all 0.2s; }
+        .tab-btn.active { background: linear-gradient(135deg, #312e81, #1e1b4b); border-color: #4f46e5; color: #a5b4fc; }
+        .scenario-badge { font-size: 0.65rem; letter-spacing: 0.05em; }
+        .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .stat-number { font-variant-numeric: tabular-nums; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0f1e; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .queue-row:nth-child(even) { background: rgba(30, 41, 59, 0.3); }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Loading State -->
+    <div id="loading" class="fixed inset-0 flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="mb-4"><i class="fas fa-atom text-4xl text-indigo-400 animate-spin"></i></div>
+            <p class="text-slate-400 text-sm">Loading tax law knowledge graph...</p>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="card p-8 max-w-md text-center">
+            <div class="mb-4"><i class="fas fa-exclamation-triangle text-4xl text-amber-400"></i></div>
+            <h2 class="text-lg font-bold mb-2">Cache Not Found</h2>
+            <p class="text-slate-400 text-sm mb-4">Run the cache warm first, then serve this page:</p>
+            <pre class="text-left text-xs bg-slate-900 p-4 rounded-lg text-green-400 mb-4"><code>python scripts/cpa_demo.py --cache-warm
+cd scripts && python -m http.server 8080
+# Open http://localhost:8080/cpa_demo.html</code></pre>
+            <p class="text-slate-500 text-xs">Or open this file directly in Safari (file:// access is supported).</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="hidden">
+        <!-- Header -->
+        <header class="border-b border-slate-800/50 px-6 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-600/20 flex items-center justify-center">
+                        <i class="fas fa-scale-balanced text-indigo-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold tracking-tight">Meridian Terminal</h1>
+                        <p class="text-xs text-slate-500">Tax Law Knowledge Graph &middot; 910 IRC Sections &middot; 4,300+ Cross-References</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-2 text-xs text-slate-500">
+                        <span class="pulse-dot"></span>
+                        <span id="cache-info">Cached</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Scenario Tabs -->
+        <nav class="px-6 py-3 border-b border-slate-800/50">
+            <div class="max-w-7xl mx-auto flex gap-3">
+                <button class="tab-btn active card px-4 py-2.5 flex items-center gap-2 text-sm" data-scenario="1">
+                    <i class="fas fa-user-tie text-indigo-400"></i>
+                    <span class="font-medium">Client Classification</span>
+                    <span class="scenario-badge bg-indigo-900/50 text-indigo-300 px-1.5 py-0.5 rounded">1</span>
+                </button>
+                <button class="tab-btn card px-4 py-2.5 flex items-center gap-2 text-sm text-slate-400" data-scenario="2">
+                    <i class="fas fa-project-diagram text-emerald-400"></i>
+                    <span class="font-medium">Cross-Reference Discovery</span>
+                    <span class="scenario-badge bg-emerald-900/50 text-emerald-300 px-1.5 py-0.5 rounded">2</span>
+                </button>
+                <button class="tab-btn card px-4 py-2.5 flex items-center gap-2 text-sm text-slate-400" data-scenario="3">
+                    <i class="fas fa-phone-volume text-amber-400"></i>
+                    <span class="font-medium">Tax Season Automation</span>
+                    <span class="scenario-badge bg-amber-900/50 text-amber-300 px-1.5 py-0.5 rounded">3</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <main class="px-6 py-6">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- SCENARIO 1: Client Classification -->
+                <div id="scenario-1" class="scenario-panel fade-in">
+                    <!-- Client Profile Card -->
+                    <div class="card-accent glow-border p-6 mb-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h2 class="text-xl font-bold">Carlos Rivera</h2>
+                                <p class="text-slate-400 text-sm mt-1">US Citizen &middot; San Juan, Puerto Rico &middot; Act 60 Decree Holder</p>
+                            </div>
+                            <span class="px-3 py-1 bg-amber-900/30 text-amber-300 text-xs font-medium rounded-full border border-amber-800/50">
+                                <i class="fas fa-flag mr-1"></i>High Complexity
+                            </span>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div>
+                                <p class="text-xs text-slate-500 mb-1">Filing Status</p>
+                                <p class="text-sm font-medium">Married Filing Jointly</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 mb-1">Entities</p>
+                                <p class="text-sm font-medium">Software LLC (PR)</p>
+                                <p class="text-sm font-medium">2 Rentals (Tampa, FL)</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 mb-1">Software Income</p>
+                                <p class="text-sm font-medium text-green-400">$380,000</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 mb-1">Other Income</p>
+                                <p class="text-sm font-medium">$48K rental + $22K investments</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Groups -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="s1-sections"></div>
+
+                    <!-- Cross-References -->
+                    <div class="card p-5 mb-6" id="s1-crossrefs"></div>
+
+                    <!-- Filing Checklist -->
+                    <div class="card p-5 mb-6">
+                        <h3 class="text-sm font-semibold text-slate-300 mb-3">
+                            <i class="fas fa-clipboard-check text-green-400 mr-2"></i>Filing Requirements Checklist
+                        </h3>
+                        <div class="space-y-2" id="s1-checklist">
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Federal Form 1040 — report all worldwide income <span class="text-indigo-400">(§61)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule C — software LLC income, PR-sourced <span class="text-indigo-400">(§162, §199A)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule E — rental income from Tampa FL properties <span class="text-indigo-400">(§167, §168)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 4562 — depreciation on rental properties <span class="text-indigo-400">(§168, §179)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 1116 — foreign tax credit for PR taxes paid <span class="text-indigo-400">(§901, §904)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">PR Form 482 — Act 60 decree compliance</span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Schedule SE — self-employment tax on LLC income <span class="text-indigo-400">(§1402)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Form 8995 — QBI deduction if eligible <span class="text-indigo-400">(§199A)</span></span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">§933 exclusion analysis — PR-sourced income for bona fide PR resident</span></div>
+                            <div class="flex items-start gap-2"><span class="text-green-400 mt-0.5"><i class="fas fa-check-circle text-xs"></i></span><span class="text-sm">Passive activity loss review — rental activity limitations <span class="text-indigo-400">(§469)</span></span></div>
+                        </div>
+                    </div>
+
+                    <!-- Impact Statement -->
+                    <div class="card p-5 bg-gradient-to-r from-indigo-950/50 to-transparent border-indigo-800/30" id="s1-impact"></div>
+                </div>
+
+                <!-- SCENARIO 2: Cross-Reference Discovery -->
+                <div id="scenario-2" class="scenario-panel hidden">
+                    <!-- Section Selector -->
+                    <div class="card p-5 mb-6">
+                        <h3 class="text-sm font-semibold text-slate-300 mb-3">
+                            <i class="fas fa-search text-emerald-400 mr-2"></i>Select a Section
+                        </h3>
+                        <div class="flex flex-wrap gap-2" id="s2-pills"></div>
+                    </div>
+
+                    <!-- Section Detail -->
+                    <div id="s2-detail" class="fade-in"></div>
+                </div>
+
+                <!-- SCENARIO 3: Tax Season Automation -->
+                <div id="scenario-3" class="scenario-panel hidden">
+                    <!-- Voice AI Call -->
+                    <div class="card p-6 mb-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-amber-900/30 flex items-center justify-center">
+                                <i class="fas fa-phone text-amber-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold">Voice AI — Incoming Client Call</h3>
+                                <p class="text-xs text-slate-500">Simulated inbound call to Luis Lamba CPA</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-5 space-y-4 text-sm">
+                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>Good morning, Luis Lamba CPA. How can I help you today?</span></div>
+                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>Hi, this is Maria Santos. I'm calling to schedule my tax appointment and ask about some documents I need.</span></div>
+                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>Hi Maria, I have your file pulled up. You're filing married jointly with Carlos, correct? I see you have a software LLC and two rental properties in Tampa.</span></div>
+                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>Yes, that's right. What documents do I need to bring?</span></div>
+                            <div class="flex gap-3">
+                                <span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span>
+                                <div>
+                                    <p>Based on your filing profile, here's what we need:</p>
+                                    <ol class="list-decimal list-inside mt-2 space-y-1 text-slate-300">
+                                        <li>W-2s for both you and Carlos</li>
+                                        <li>Schedule K-1 from the software LLC</li>
+                                        <li>Rental income statements for both Tampa properties</li>
+                                        <li>Property tax receipts (Hillsborough County)</li>
+                                        <li>PR Act 60 decree documentation</li>
+                                        <li>Foreign tax credit substantiation (PR taxes paid)</li>
+                                    </ol>
+                                    <p class="mt-2">I've just emailed you a checklist with upload links. Would you like to schedule for next Tuesday at 2pm?</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3"><span class="text-green-400 font-semibold shrink-0 w-8">Caller:</span><span>That works. Thank you!</span></div>
+                            <div class="flex gap-3"><span class="text-indigo-400 font-semibold shrink-0 w-8">AI:</span><span>You're confirmed for Tuesday March 25 at 2:00 PM. I'll send a reminder 24 hours before. Have a great day, Maria.</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Document Collection -->
+                    <div class="card p-6 mb-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-900/30 flex items-center justify-center">
+                                <i class="fas fa-envelope text-blue-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold">Automated Document Collection</h3>
+                                <p class="text-xs text-slate-500">Email sent to maria.santos@email.com</p>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 rounded-lg p-5">
+                            <p class="text-xs text-slate-500 mb-1">Subject: Your 2025 Tax Appointment — Documents Needed</p>
+                            <div class="text-sm mt-3">
+                                <p>Hi Maria,</p>
+                                <p class="mt-2">Your appointment with Luis Lamba CPA is confirmed for <strong>Tuesday, March 25 at 2:00 PM.</strong></p>
+                                <p class="mt-3 mb-2">Please upload the following documents before your appointment:</p>
+                            </div>
+                            <div class="space-y-2 mt-3">
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-green-900/20 border border-green-800/30"><i class="fas fa-check-circle text-green-400 text-xs"></i><span class="text-sm">W-2 (Maria)</span><span class="ml-auto text-xs text-green-400">Uploaded</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-green-900/20 border border-green-800/30"><i class="fas fa-check-circle text-green-400 text-xs"></i><span class="text-sm">W-2 (Carlos)</span><span class="ml-auto text-xs text-green-400">Uploaded</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">Schedule K-1 (Software LLC)</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">Rental income — Unit 1 (Tampa)</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">Rental income — Unit 2 (Tampa)</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">Property tax receipts</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">Act 60 decree documentation</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                                <div class="flex items-center gap-3 px-3 py-2 rounded bg-slate-800/50 border border-slate-700/50"><i class="far fa-circle text-slate-500 text-xs"></i><span class="text-sm">PR tax payments substantiation</span><span class="ml-auto text-xs text-slate-500">Pending</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staff Queue -->
+                    <div class="card p-6 mb-6">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 rounded-full bg-purple-900/30 flex items-center justify-center">
+                                <i class="fas fa-table text-purple-400 text-xs"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-semibold">Preparation Queue — Staff Dashboard</h3>
+                                <p class="text-xs text-slate-500">Tax Season Queue — Week of March 24</p>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="text-xs text-slate-500 border-b border-slate-800">
+                                        <th class="text-left py-2 px-3">#</th>
+                                        <th class="text-left py-2 px-3">Client</th>
+                                        <th class="text-left py-2 px-3">Status</th>
+                                        <th class="text-left py-2 px-3">Docs</th>
+                                        <th class="text-left py-2 px-3">Complexity</th>
+                                        <th class="text-left py-2 px-3">Assigned</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">1</td><td class="py-2 px-3 font-medium">Rivera, C & M</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">2/8</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">2</td><td class="py-2 px-3 font-medium">Thompson, J</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">5/5</td><td class="py-2 px-3">Low</td><td class="py-2 px-3">Ana</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">3</td><td class="py-2 px-3 font-medium">Patel Corp.</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">12/12</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">4</td><td class="py-2 px-3 font-medium">Garcia, R</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">0/4</td><td class="py-2 px-3">Low</td><td class="py-2 px-3 text-slate-500">—</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">5</td><td class="py-2 px-3 font-medium">BitCoin Traders</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">—</td><td class="py-2 px-3"><span class="text-red-300 font-semibold">Very High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">6</td><td class="py-2 px-3 font-medium">Mendez Family</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-green-900/30 text-green-300">Ready</span></td><td class="py-2 px-3">6/6</td><td class="py-2 px-3">Med</td><td class="py-2 px-3">Ana</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">7</td><td class="py-2 px-3 font-medium">Coastal HVAC</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-amber-900/30 text-amber-300">Waiting</span></td><td class="py-2 px-3">3/9</td><td class="py-2 px-3">Med</td><td class="py-2 px-3">Carlos</td></tr>
+                                    <tr class="queue-row"><td class="py-2 px-3 text-slate-500">8</td><td class="py-2 px-3 font-medium">Santos, M & C</td><td class="py-2 px-3"><span class="text-xs px-2 py-0.5 rounded bg-blue-900/30 text-blue-300">Scheduled</span></td><td class="py-2 px-3">—</td><td class="py-2 px-3"><span class="text-amber-300">High</span></td><td class="py-2 px-3">Luis</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex gap-6 mt-4 text-xs text-slate-500">
+                            <span><strong class="text-green-400">3</strong> Ready</span>
+                            <span><strong class="text-amber-400">3</strong> Waiting for docs</span>
+                            <span><strong class="text-blue-400">2</strong> Scheduled</span>
+                            <span>&middot;</span>
+                            <span>Auto-reminders sent: <strong class="text-slate-300">12</strong></span>
+                            <span>Docs collected without staff: <strong class="text-slate-300">23/44 (52%)</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Impact -->
+                    <div class="card p-5 bg-gradient-to-r from-amber-950/30 to-transparent border-amber-800/20">
+                        <div class="space-y-2 text-sm">
+                            <p><i class="fas fa-bolt text-amber-400 mr-2"></i>The AI answered the phone, pulled up the client file, listed the exact documents needed, emailed a checklist, and scheduled the appointment — <strong>zero staff involvement.</strong></p>
+                            <p><i class="fas fa-calculator text-amber-400 mr-2"></i>Multiply that by <strong>800 clients in January.</strong></p>
+                            <p class="text-slate-400 text-xs mt-3">That's the terminal.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+<script>
+// ─── Cache Data Processing ─────────────────────────────────────────
+let CACHE = null;
+const SECTIONS = ['1031','179','168','199A','469','933','937','901','162','61'];
+const SECTION_LABELS = {
+    '1031': 'Like-Kind Exchanges', '179': 'Expensing Election',
+    '168': 'Depreciation (ACRS)', '199A': 'QBI Deduction',
+    '469': 'Passive Activity', '933': 'PR Income Exclusion',
+    '937': 'PR Residence Rules', '901': 'Foreign Tax Credit',
+    '162': 'Business Expenses', '61': 'Gross Income'
+};
+
+function classifyEntry(key, entry) {
+    const q = entry.query || '';
+    const p = entry.params;
+    // Scenario 1 entries
+    if (!p && q.includes('Puerto Rico')) return { scenario: 1, type: 'pr_sections' };
+    if (!p && q.includes('rental')) return { scenario: 1, type: 'rental_sections' };
+    if (!p && q.includes('self-employment')) return { scenario: 1, type: 'llc_sections' };
+    if (p && p.sections) return { scenario: 1, type: 'cross_refs' };
+    // Scenario 2 entries
+    if (p && p.sec) {
+        if (q.includes('CONTAINS*')) return { scenario: 2, type: 'hierarchy', sec: p.sec };
+        if (q.includes('mid:TaxSection')) return { scenario: 2, type: 'two_hop', sec: p.sec };
+        if (q.includes('REFERENCES]->(ref') || q.includes('REFERENCES]->(ref:')) return { scenario: 2, type: 'outgoing', sec: p.sec };
+        if (q.includes('REFERENCES]-(ref') || q.includes('REFERENCES]-(ref:')) return { scenario: 2, type: 'incoming', sec: p.sec };
+        if (q.includes('RETURN s.title') || q.includes('ref_count')) return { scenario: 2, type: 'detail', sec: p.sec };
+    }
+    return { scenario: 0, type: 'unknown' };
+}
+
+function processCache(raw) {
+    const data = { s1: {}, s2: {} };
+    for (const [key, entry] of Object.entries(raw.queries || {})) {
+        const cls = classifyEntry(key, entry);
+        if (cls.scenario === 1) {
+            data.s1[cls.type] = entry.results;
+        } else if (cls.scenario === 2) {
+            if (!data.s2[cls.sec]) data.s2[cls.sec] = {};
+            data.s2[cls.sec][cls.type] = entry.results;
+        }
+    }
+    return data;
+}
+
+// ─── Rendering ─────────────────────────────────────────────────────
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function renderScenario1(data) {
+    const groups = [
+        { key: 'pr_sections', label: 'Puerto Rico & Possession Provisions', icon: 'fa-flag', color: 'indigo' },
+        { key: 'rental_sections', label: 'Rental Property Provisions', icon: 'fa-house', color: 'emerald' },
+        { key: 'llc_sections', label: 'Self-Employment & LLC', icon: 'fa-briefcase', color: 'amber' },
+    ];
+    const grid = document.getElementById('s1-sections');
+    grid.innerHTML = groups.map(g => {
+        const items = data.s1[g.key] || [];
+        return `
+        <div class="card p-5">
+            <h3 class="text-sm font-semibold text-slate-300 mb-3">
+                <i class="fas ${g.icon} text-${g.color}-400 mr-2"></i>${g.label}
+            </h3>
+            <div class="space-y-1.5">
+                ${items.map(s => `
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-${g.color}-400 font-mono text-xs font-bold shrink-0 w-12 text-right">§${esc(s.sec)}</span>
+                        <span class="text-sm text-slate-300">${esc(s.title)}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <p class="text-xs text-slate-500 mt-3">${items.length} sections identified</p>
+        </div>`;
+    }).join('');
+
+    // Cross-refs
+    const refs = data.s1.cross_refs || [];
+    const refsEl = document.getElementById('s1-crossrefs');
+    if (refs.length) {
+        refsEl.innerHTML = `
+            <h3 class="text-sm font-semibold text-slate-300 mb-3">
+                <i class="fas fa-arrows-alt-h text-purple-400 mr-2"></i>Cross-References Between Applicable Sections
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                ${refs.map(r => `
+                    <span class="px-3 py-1.5 rounded-lg bg-purple-900/20 border border-purple-800/30 text-sm">
+                        <span class="text-purple-300">§${esc(r.from_sec)}</span>
+                        <i class="fas fa-arrow-right text-slate-600 mx-1 text-xs"></i>
+                        <span class="text-purple-300">§${esc(r.to_sec)}</span>
+                    </span>
+                `).join('')}
+            </div>`;
+    } else {
+        refsEl.classList.add('hidden');
+    }
+
+    // Impact
+    const total = (data.s1.pr_sections||[]).length + (data.s1.rental_sections||[]).length + (data.s1.llc_sections||[]).length;
+    document.getElementById('s1-impact').innerHTML = `
+        <div class="flex items-center gap-6">
+            <div>
+                <span class="text-3xl font-bold stat-number text-indigo-300">${total}</span>
+                <p class="text-xs text-slate-500">applicable sections</p>
+            </div>
+            <div>
+                <span class="text-3xl font-bold stat-number text-purple-300">${refs.length}</span>
+                <p class="text-xs text-slate-500">cross-references</p>
+            </div>
+            <div class="text-sm text-slate-400 ml-4">
+                <p>Your staff does this manually for <strong class="text-slate-200">500+ clients per year.</strong></p>
+                <p class="text-slate-500">The terminal does it in seconds — with statutory citations.</p>
+            </div>
+        </div>`;
+}
+
+function renderScenario2Pills(data) {
+    const pillsEl = document.getElementById('s2-pills');
+    pillsEl.innerHTML = SECTIONS.map(sec => `
+        <button class="section-pill px-4 py-2 rounded-lg border border-slate-700 text-sm font-medium text-slate-300 bg-slate-800/50 ${sec === '1031' ? 'active' : ''}"
+                data-sec="${sec}" onclick="selectSection('${sec}')">
+            §${sec}
+            <span class="text-xs text-slate-500 ml-1">${SECTION_LABELS[sec] || ''}</span>
+        </button>
+    `).join('');
+    selectSection('1031');
+}
+
+function selectSection(sec) {
+    document.querySelectorAll('.section-pill').forEach(p => p.classList.toggle('active', p.dataset.sec === sec));
+    const sd = CACHE.s2[sec];
+    if (!sd) {
+        document.getElementById('s2-detail').innerHTML = '<div class="card p-6 text-slate-500 text-sm">No cached data for this section.</div>';
+        return;
+    }
+    renderSectionDetail(sec, sd);
+}
+
+function renderSectionDetail(sec, sd) {
+    const detail = sd.detail?.[0] || {};
+    const outgoing = sd.outgoing || [];
+    const incoming = sd.incoming || [];
+    const twoHop = sd.two_hop || [];
+    const hierarchy = sd.hierarchy || [];
+
+    const totalConnected = outgoing.length + incoming.length;
+
+    // Build hierarchy HTML
+    let hierarchyHtml = '';
+    if (hierarchy.length) {
+        const levelOrder = ['subtitle','chapter','subchapter','part','subpart'];
+        const sorted = [...hierarchy].sort((a,b) => levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level));
+        hierarchyHtml = `
+        <div class="card p-5 mb-4">
+            <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Location in IRC</h4>
+            <div class="space-y-1">
+                ${sorted.map((h, i) => `
+                    <div class="hierarchy-node" style="margin-left: ${i * 1.25}rem">
+                        <span class="text-xs text-slate-500">${esc(h.level)}</span>
+                        <span class="text-sm ml-2">${esc(h.title)}</span>
+                    </div>
+                `).join('')}
+                <div class="hierarchy-node" style="margin-left: ${sorted.length * 1.25}rem">
+                    <span class="text-sm font-bold text-indigo-400">§${sec}</span>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    document.getElementById('s2-detail').innerHTML = `
+    <div class="fade-in">
+        <!-- Section Header -->
+        <div class="card-accent glow-border p-6 mb-4">
+            <div class="flex items-start justify-between">
+                <div>
+                    <h2 class="text-xl font-bold">§${esc(sec)} — ${esc(detail.title || 'Unknown')}</h2>
+                    <p class="text-slate-400 text-sm mt-1 max-w-3xl">${esc((detail.preview || '').substring(0, 200))}${(detail.preview||'').length > 200 ? '...' : ''}</p>
+                </div>
+                <div class="text-right shrink-0 ml-4">
+                    <span class="text-3xl font-bold stat-number text-emerald-300">${detail.refs || 0}</span>
+                    <p class="text-xs text-slate-500">cross-references</p>
+                </div>
+            </div>
+        </div>
+
+        ${hierarchyHtml}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <!-- Outgoing -->
+            <div class="card p-5">
+                <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+                    <span class="inline-block w-2 h-2 rounded bg-green-400 mr-1.5"></span>
+                    §${sec} References (${outgoing.length})
+                </h4>
+                <div class="space-y-1.5 max-h-64 overflow-y-auto">
+                    ${outgoing.length ? outgoing.map(r => `
+                        <div class="ref-line ref-outgoing py-1">
+                            <span class="text-green-400 font-mono text-xs font-bold">§${esc(r.sec)}</span>
+                            <span class="text-sm text-slate-300 ml-2">${esc(r.title)}</span>
+                        </div>
+                    `).join('') : '<p class="text-slate-500 text-sm">None</p>'}
+                </div>
+            </div>
+            <!-- Incoming -->
+            <div class="card p-5">
+                <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+                    <span class="inline-block w-2 h-2 rounded bg-blue-400 mr-1.5"></span>
+                    Referenced BY (${incoming.length})
+                </h4>
+                <div class="space-y-1.5 max-h-64 overflow-y-auto">
+                    ${incoming.length ? incoming.map(r => `
+                        <div class="ref-line ref-incoming py-1">
+                            <span class="text-blue-400 font-mono text-xs font-bold">§${esc(r.sec)}</span>
+                            <span class="text-sm text-slate-300 ml-2">${esc(r.title)}</span>
+                        </div>
+                    `).join('') : '<p class="text-slate-500 text-sm">None</p>'}
+                </div>
+            </div>
+        </div>
+
+        <!-- Two-hop -->
+        ${twoHop.length ? `
+        <div class="card p-5 mb-4">
+            <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+                <span class="inline-block w-2 h-2 rounded bg-purple-400 mr-1.5"></span>
+                2-Hop Connections (${twoHop.length})
+            </h4>
+            <div class="space-y-1.5 max-h-48 overflow-y-auto">
+                ${twoHop.map(r => `
+                    <div class="ref-line ref-twohop py-1">
+                        <span class="text-slate-400 font-mono text-xs">§${sec}</span>
+                        <i class="fas fa-arrow-right text-slate-600 mx-1" style="font-size:8px"></i>
+                        <span class="text-purple-300 font-mono text-xs font-bold">§${esc(r.via)}</span>
+                        <i class="fas fa-arrow-right text-slate-600 mx-1" style="font-size:8px"></i>
+                        <span class="text-purple-400 font-mono text-xs font-bold">§${esc(r.reaches)}</span>
+                        <span class="text-sm text-slate-400 ml-2">${esc(r.title)}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>` : ''}
+
+        <!-- Impact -->
+        <div class="card p-5 bg-gradient-to-r from-emerald-950/30 to-transparent border-emerald-800/20">
+            <div class="flex items-center gap-6">
+                <div>
+                    <span class="text-3xl font-bold stat-number text-emerald-300">${totalConnected}</span>
+                    <p class="text-xs text-slate-500">directly connected</p>
+                </div>
+                <div>
+                    <span class="text-3xl font-bold stat-number text-purple-300">${twoHop.length}</span>
+                    <p class="text-xs text-slate-500">at 2 hops</p>
+                </div>
+                <div class="text-sm text-slate-400 ml-4">
+                    <p>Your staff Googles this and gets blog posts.</p>
+                    <p class="text-slate-500">The terminal gives you the actual <strong class="text-slate-300">connected statutory authority.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ─── Tab Switching ─────────────────────────────────────────────────
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.classList.add('text-slate-400'); });
+        document.querySelectorAll('.scenario-panel').forEach(p => p.classList.add('hidden'));
+        btn.classList.add('active');
+        btn.classList.remove('text-slate-400');
+        const panel = document.getElementById(`scenario-${btn.dataset.scenario}`);
+        panel.classList.remove('hidden');
+        panel.classList.add('fade-in');
+    });
+});
+
+// ─── Init ──────────────────────────────────────────────────────────
+
+const RAW_CACHE = {"cached_at":"2026-03-19T15:24:39.713651+00:00","queries":{"c861b3c76445539cf48967b5bafeaa3d":{"query":"MATCH (s:TaxSection)\n                WHERE s.level IS NULL\n                  AND (s.content_preview CONTAINS \"Puerto Rico\"\n                    OR s.content_preview CONTAINS \"possession\"\n              ","params":null,"results":[{"sec":"27","title":"Taxes of foreign countries and possessions of the United States"},{"sec":"103","title":"Interest on State and local bonds"},{"sec":"115","title":"Income of States, municipalities, etc."},{"sec":"126","title":"Certain cost-sharing payments"},{"sec":"153","title":"Cross references"},{"sec":"162","title":"Trade or business expenses"},{"sec":"164","title":"Taxes"},{"sec":"170","title":"Charitable, etc., contributions and gifts"},{"sec":"273","title":"Holders of life or terminable interest"},{"sec":"275","title":"Certain taxes"}]},"93bb04b0090fc37b5cba70a4ac010d9b":{"query":"MATCH (s:TaxSection)\n                WHERE s.level IS NULL\n                  AND (s.content_preview CONTAINS \"rental\"\n                    OR s.section_number IN [\"167\", \"168\", \"179\", \"199A\", \"469\", \"1","params":null,"results":[{"sec":"73","title":"Services of child"},{"sec":"107","title":"Rental value of parsonages"},{"sec":"142","title":"Exempt facility bond"},{"sec":"148","title":"Arbitrage"},{"sec":"150","title":"Definitions and special rules"},{"sec":"162","title":"Trade or business expenses"},{"sec":"163","title":"Interest"},{"sec":"167","title":"Depreciation"},{"sec":"168","title":"Accelerated cost recovery system"},{"sec":"179","title":"Election to expense certain depreciable business assets"}]},"f716694f3405959fa5d6b6b0a42209af":{"query":"MATCH (s:TaxSection)\n                WHERE s.level IS NULL\n                  AND (s.content_preview CONTAINS \"self-employment\"\n                    OR s.section_number IN [\"1\", \"11\", \"61\", \"162\", \"199A","params":null,"results":[{"sec":"1","title":"Tax imposed"},{"sec":"11","title":"Tax imposed"},{"sec":"61","title":"Gross income defined"},{"sec":"82","title":"Reimbursement of moving expenses"},{"sec":"162","title":"Trade or business expenses"},{"sec":"1016","title":"Adjustments to basis"},{"sec":"1341","title":"Computation of tax where taxpayer restores substantial amount held under claim of right"},{"sec":"1401","title":"Rate of tax"},{"sec":"1402","title":"Definitions"},{"sec":"1403","title":"Miscellaneous provisions"}]},"345443fe68508fb13ca5990e8918f22c":{"query":"MATCH (a:TaxSection)-[:REFERENCES]->(b:TaxSection)\n                WHERE a.section_number IN $sections AND b.section_number IN $sections\n                RETURN a.section_number AS from_sec, b.section_","params":{"sections":["168","179","199A","469","901","933"]},"results":[{"from_sec":"168","to_sec":"179"},{"from_sec":"179","to_sec":"168"}]},"74093005a2c920369d82a5a9928a0344":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"1031"},"results":[{"title":"Exchange of real property held for productive use or investment","refs":5,"preview":"\u00a7 1031. Exchange of real property held for productive use or investment (a) Nonrecognition of gain or loss from exchanges solely in kind (1) In general No gain or loss shall be recognized on the exchange of real property held for productive use in a trade or business or for investment if such real property is exchanged solely for real property of like kind which is to be held either for productive use in a trade or business or for investment. (2) Exception for real property held for sale This subsection shall not apply to any exchange of real property held primarily for sale. (3) Requirement that property be identified and that exchange be completed not more than 180 days after transfer of exchanged property For purposes of this subsection, any property received by the taxpayer shall be treated as property which is not like-kind property if\u2014 (A) such property is not identified as property to be received in the exchange on or before the day which is 45 days after the date on which the taxpayer transfers the property relinquished in the exchange, or (B) such property is received after the earlier of\u2014 (i) the day which is 180 days after the date on which the taxpayer transfers the property relinquished in the exchange, or (ii) the due date (determined with regard to extension) for the transferor\u2019s return of the tax imposed by this chapter for the taxable year in which the transfer of the relinquished property occurs. (b) Gain from exchanges not solely in kind If an exchange would be within the provisions of subsection (a), of section 1035(a), of section 1036(a), or of section 1037(a), if it were not for the fact that the property received in exchange consists not only of property permitted by such provisions to be received without the recognition of gain, but also of other property or money, then the gain, if any, to the recipient shall be recognized, but in an amount not in excess of the sum of such money and the fair market value of such other property. (c) Loss from"}]},"50488fcb2d67a038b84962a91d614dcf":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"1031"},"results":[{"sec":"48","title":"Energy credit"},{"sec":"165","title":"Losses"},{"sec":"351","title":"Transfer to corporation controlled by transferor"},{"sec":"401","title":"Qualified pension, profit-sharing, and stock bonus plans"},{"sec":"1037","title":"Certain exchanges of United States obligations"}]},"737239f0cb1be321fbaf859c00bb38a7":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"1031"},"results":[{"sec":"671","title":"Trust income, deductions, and credits attributable to grantors and others as substantial owners"},{"sec":"1037","title":"Certain exchanges of United States obligations"}]},"917df586edfc3a901cc45515cf300819":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"1031"},"results":[{"via":"1037","reaches":"2","title":"Definitions and special rules"},{"via":"1037","reaches":"1271","title":"Treatment of amounts received on retirement or sale or exchange of debt instruments"},{"via":"165","reaches":"1","title":"Tax imposed"},{"via":"165","reaches":"2","title":"Definitions and special rules"},{"via":"165","reaches":"31","title":"Tax withheld on wages"},{"via":"165","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"165","reaches":"103","title":"Interest on State and local bonds"},{"via":"165","reaches":"143","title":"Mortgage revenue bonds: qualified mortgage bond and qualified veterans\u2019 mortgage bond"},{"via":"165","reaches":"149","title":"Bonds must be registered to be tax exempt; other requirements"},{"via":"165","reaches":"243","title":"Dividends received by corporations"},{"via":"165","reaches":"451","title":"General rule for taxable year of inclusion"},{"via":"165","reaches":"597","title":"Treatment of transactions in which Federal financial assistance provided"},{"via":"165","reaches":"1271","title":"Treatment of amounts received on retirement or sale or exchange of debt instruments"},{"via":"351","reaches":"1","title":"Tax imposed"},{"via":"351","reaches":"26","title":"Limitation based on tax liability; definition of tax liability"}]},"3fecabdb157099f4cb692b2b277aaddc":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"1031"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Gain or Loss on Disposition of Property"},{"level":"part","title":"COMMON NONTAXABLE EXCHANGES"}]},"feca4fa458f1fe2e1db61176a895dea0":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"179"},"results":[{"title":"Election to expense certain depreciable business assets","refs":12,"preview":"\u00a7 179. Election to expense certain depreciable business assets (a) Treatment as expenses A taxpayer may elect to treat the cost of any section 179 property as an expense which is not chargeable to capital account. Any cost so treated shall be allowed as a deduction for the taxable year in which the section 179 property is placed in service. (b) Limitations (1) Dollar limitation The aggregate cost which may be taken into account under subsection (a) for any taxable year shall not exceed $2,500,000. (2) Reduction in limitation The limitation under paragraph (1) for any taxable year shall be reduced (but not below zero) by the amount by which the cost of section 179 property placed in service during such taxable year exceeds $4,000,000. (3) Limitation based on income from trade or business (A) In general The amount allowed as a deduction under subsection (a) for any taxable year (determined after the application of paragraphs (1) and (2)) shall not exceed the aggregate amount of taxable income of the taxpayer for such taxable year which is derived from the active conduct by the taxpayer of any trade or business during such taxable year. (B) Carryover of disallowed deduction The amount allowable as a deduction under subsection (a) for any taxable year shall be increased by the lesser of\u2014 (i) the aggregate amount disallowed under subparagraph (A) for all prior taxable years (to the extent not previously allowed as a deduction by reason of this subparagraph), or (ii) the excess (if any) of\u2014 (I) the limitation of paragraphs (1) and (2) (or if lesser, the aggregate amount of taxable income referred to in subparagraph (A)), over (II) the amount allowable as a deduction under subsection (a) for such taxable year without regard to this subparagraph. (C) Computation of taxable income For purposes of this paragraph, taxable income derived from the conduct of a trade or business shall be computed without regard to the deduction allowable under this section. (4) Married individual"}]},"633ef87436bbe3dd9c9c458b6993a208":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"179"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"23","title":"Adoption expenses"},{"sec":"38","title":"General business credit"},{"sec":"46","title":"Amount of credit"},{"sec":"48","title":"Energy credit"},{"sec":"49","title":"At-risk rules"},{"sec":"168","title":"Accelerated cost recovery system"},{"sec":"709","title":"Treatment of organization and syndication fees"},{"sec":"1245","title":"Gain from dispositions of certain depreciable property"},{"sec":"1361","title":"S corporation defined"},{"sec":"1561","title":"Limitation on accumulated earnings credit in the case of certain controlled corporations"},{"sec":"45K","title":"Credit for producing fuel from a nonconventional source"}]},"efa7829c02d052cd22baeb1593b79763":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"179"},"results":[{"sec":"56","title":"Adjustments in computing alternative minimum taxable income"},{"sec":"168","title":"Accelerated cost recovery system"}]},"f77945fa84fb08f86735f55e652b6046":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"179"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"c51cd6f6108963725e52981a6f9e38b7":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"179"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Computation of Taxable Income"},{"level":"part","title":"ITEMIZED DEDUCTIONS FOR INDIVIDUALS AND CORPORATIONS"}]},"966dbe81e2d94c9aac0ff8dc1824ee81":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"168"},"results":[{"title":"Accelerated cost recovery system","refs":40,"preview":"\u00a7 168. Accelerated cost recovery system (a) General rule Except as otherwise provided in this section, the depreciation deduction provided by section 167(a) for any tangible property shall be determined by using\u2014 (1) the applicable depreciation method, (2) the applicable recovery period, and (3) the applicable convention. (b) Applicable depreciation method For purposes of this section\u2014 (1) In general Except as provided in paragraphs (2) and (3), the applicable depreciation method is\u2014 (A) the 200 percent declining balance method, (B) switching to the straight line method for the 1st taxable year for which using the straight line method with respect to the adjusted basis as of the beginning of such year will yield a larger allowance. (2) 150 percent declining balance method in certain cases Paragraph (1) shall be applied by substituting \u201c150 percent\u201d for \u201c200 percent\u201d in the case of\u2014 (A) any 15-year or 20-year property not referred to in paragraph (3), (B) any property (other than property described in paragraph (3)) which is a qualified smart electric meter or qualified smart electric grid system, or (C) any property (other than property described in paragraph (3)) with respect to which the taxpayer elects under paragraph (5) to have the provisions of this paragraph apply. (3) Property to which straight line method applies The applicable depreciation method shall be the straight line method in the case of the following property: (A) Nonresidential real property. (B) Residential rental property. (C) Any railroad grading or tunnel bore. (D) Property with respect to which the taxpayer elects under paragraph (5) to have the provisions of this paragraph apply. (E) Property described in subsection (e)(3)(D)(ii). (F) Water utility property described in subsection (e)(5). (G) Qualified improvement property described in subsection (e)(6). (4) Salvage value treated as zero Salvage value shall be treated as zero. (5) Election An election under paragraph (2)(D) 1 1 See Reference"}]},"f7ff1dee1a0951f8119f6c34e82830ee":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"168"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"11","title":"Tax imposed"},{"sec":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"sec":"23","title":"Adoption expenses"},{"sec":"24","title":"Child tax credit"},{"sec":"25","title":"Interest on certain home mortgages"},{"sec":"26","title":"Limitation based on tax liability; definition of tax liability"},{"sec":"38","title":"General business credit"},{"sec":"42","title":"Low-income housing credit"},{"sec":"45","title":"Electricity produced from certain renewable resources, etc."},{"sec":"46","title":"Amount of credit"},{"sec":"47","title":"Rehabilitation credit"},{"sec":"48","title":"Energy credit"},{"sec":"49","title":"At-risk rules"},{"sec":"53","title":"Credit for prior year minimum tax liability"},{"sec":"55","title":"Alternative minimum tax imposed"},{"sec":"56","title":"Adjustments in computing alternative minimum taxable income"},{"sec":"103","title":"Interest on State and local bonds"},{"sec":"110","title":"Qualified lessee construction allowances for short-term leases"},{"sec":"141","title":"Private activity bond; qualified bond"},{"sec":"143","title":"Mortgage revenue bonds: qualified mortgage bond and qualified veterans\u2019 mortgage bond"},{"sec":"167","title":"Depreciation"},{"sec":"172","title":"Net operating loss deduction"},{"sec":"179","title":"Election to expense certain depreciable business assets"},{"sec":"181","title":"Treatment of certain qualified productions"},{"sec":"338","title":"Certain stock purchases treated as asset acquisitions"},{"sec":"401","title":"Qualified pension, profit-sharing, and stock bonus plans"},{"sec":"460","title":"Special rules for long-term contracts"},{"sec":"470","title":"Limitation on deductions allocable to property used by governments or other tax-exempt entities"},{"sec":"1221","title":"Capital asset defined"},{"sec":"1245","title":"Gain from dispositions of certain depreciable property"},{"sec":"1361","title":"S corporation defined"},{"sec":"44E","title":"Renumbered \u00a7\u202f40]"},{"sec":"45K","title":"Credit for producing fuel from a nonconventional source"},{"sec":"103A","title":"Repealed."}]},"d57a4d7783f853a55e8f09190cda291d":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"168"},"results":[{"sec":"40","title":"Alcohol, etc., used as fuel"},{"sec":"42","title":"Low-income housing credit"},{"sec":"45","title":"Electricity produced from certain renewable resources, etc."},{"sec":"46","title":"Amount of credit"},{"sec":"47","title":"Rehabilitation credit"},{"sec":"48","title":"Energy credit"},{"sec":"49","title":"At-risk rules"},{"sec":"56","title":"Adjustments in computing alternative minimum taxable income"},{"sec":"103","title":"Interest on State and local bonds"},{"sec":"141","title":"Private activity bond; qualified bond"},{"sec":"167","title":"Depreciation"},{"sec":"172","title":"Net operating loss deduction"},{"sec":"178","title":"Amortization of cost of acquiring a lease"},{"sec":"179","title":"Election to expense certain depreciable business assets"},{"sec":"181","title":"Treatment of certain qualified productions"},{"sec":"263","title":"Capital expenditures"},{"sec":"291","title":"Special rules relating to corporate preference items"},{"sec":"312","title":"Effect on earnings and profits"},{"sec":"381","title":"Carryovers in certain corporate acquisitions"},{"sec":"404","title":"Deduction for contributions of an employer to an employees\u2019 trust or annuity plan and compensation under a deferred-payment plan"},{"sec":"453","title":"Installment method"},{"sec":"460","title":"Special rules for long-term contracts"},{"sec":"465","title":"Deductions limited to amount at risk"},{"sec":"467","title":"Certain payments for the use of property or services"},{"sec":"514","title":"Unrelated debt-financed income"},{"sec":"642","title":"Special rules for credits and deductions"},{"sec":"708","title":"Continuation of partnership"},{"sec":"743","title":"Special rules where section 754 election or substantial built-in loss"},{"sec":"751","title":"Unrealized receivables and inventory items"},{"sec":"964","title":"Miscellaneous provisions"},{"sec":"1016","title":"Adjustments to basis"},{"sec":"1033","title":"Involuntary conversions"},{"sec":"1245","title":"Gain from dispositions of certain depreciable property"},{"sec":"1250","title":"Gain from dispositions of certain depreciable realty"},{"sec":"280F","title":"Limitation on depreciation for luxury automobiles; limitation where certain property used for personal purposes"},{"sec":"263A","title":"Capitalization and inclusion in inventory costs of certain expenses"}]},"de95ed4206fa3ec727978b60dd36b8a7":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"168"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"fe445109a9dd036788192518fcfa6ca7":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"168"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Computation of Taxable Income"},{"level":"part","title":"ITEMIZED DEDUCTIONS FOR INDIVIDUALS AND CORPORATIONS"}]},"4bfb3d44fb123d25076ce3e91ad07c08":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"199A"},"results":[{"title":"Qualified business income","refs":5,"preview":"\u00a7 199A. Qualified business income (a) Allowance of deduction In the case of a taxpayer other than a corporation, except as provided in subsection (i), there shall be allowed as a deduction for any taxable year an amount equal to the lesser of\u2014 (1) the combined qualified business income amount of the taxpayer, or (2) an amount equal to 20 percent of the excess (if any) of\u2014 (A) the taxable income of the taxpayer for the taxable year, over (B) the net capital gain (as defined in section 1(h)) of the taxpayer for such taxable year. (b) Combined qualified business income amount For purposes of this section\u2014 (1) In general The term \u201ccombined qualified business income amount\u201d means, with respect to any taxable year, an amount equal to\u2014 (A) the sum of the amounts determined under paragraph (2) for each qualified trade or business carried on by the taxpayer, plus (B) 20 percent of the aggregate amount of the qualified REIT dividends and qualified publicly traded partnership income of the taxpayer for the taxable year. (2) Determination of deductible amount for each trade or business The amount determined under this paragraph with respect to any qualified trade or business is the lesser of\u2014 (A) 20 percent of the taxpayer\u2019s qualified business income with respect to the qualified trade or business, or (B) the greater of\u2014 (i) 50 percent of the W\u20132 wages with respect to the qualified trade or business, or (ii) the sum of 25 percent of the W\u20132 wages with respect to the qualified trade or business, plus 2.5 percent of the unadjusted basis immediately after acquisition of all qualified property. (3) Modifications to limit based on taxable income (A) Exception from limit In the case of any taxpayer whose taxable income for the taxable year does not exceed the threshold amount, paragraph (2) shall be applied without regard to subparagraph (B). (B) Phase-in of limit for certain taxpayers (i) In general If\u2014 (I) the taxable income of a taxpayer for any taxable year exceeds the threshold "}]},"3eae35204afa9c68347366d3710d4b10":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"199A"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"62","title":"Adjusted gross income defined"},{"sec":"68","title":"Overall limitation on itemized deductions"},{"sec":"199","title":"Repealed."},{"sec":"45B","title":"Credit for portion of employer social security taxes paid with respect to employee cash tips"}]},"12d2709355b18f24708fa82b96f581f5":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"199A"},"results":[{"sec":"62","title":"Adjusted gross income defined"},{"sec":"68","title":"Overall limitation on itemized deductions"}]},"3000e168d145dc3032474f5ebfea4c8c":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"199A"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"d93def909bae3d2aa670b085e5d1a53c":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"199A"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Computation of Taxable Income"},{"level":"part","title":"ITEMIZED DEDUCTIONS FOR INDIVIDUALS AND CORPORATIONS"}]},"14126b309ad661ed3e9173d42675e755":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"469"},"results":[{"title":"Passive activity losses and credits limited","refs":15,"preview":"\u00a7 469. Passive activity losses and credits limited (a) Disallowance (1) In general If for any taxable year the taxpayer is described in paragraph (2), neither\u2014 (A) the passive activity loss, nor (B) the passive activity credit, for the taxable year shall be allowed. (2) Persons described The following are described in this paragraph: (A) any individual, estate, or trust, (B) any closely held C corporation, and (C) any personal service corporation. (b) Disallowed loss or credit carried to next year Except as otherwise provided in this section, any loss or credit from an activity which is disallowed under subsection (a) shall be treated as a deduction or credit allocable to such activity in the next taxable year. (c) Passive activity defined For purposes of this section\u2014 (1) In general The term \u201cpassive activity\u201d means any activity\u2014 (A) which involves the conduct of any trade or business, and (B) in which the taxpayer does not materially participate. (2) Passive activity includes any rental activity Except as provided in paragraph (7), the term \u201cpassive activity\u201d includes any rental activity. (3) Working interests in oil and gas property (A) In general The term \u201cpassive activity\u201d shall not include any working interest in any oil or gas property which the taxpayer holds directly or through an entity which does not limit the liability of the taxpayer with respect to such interest. (B) Income in subsequent years If any taxpayer has any loss for any taxable year from a working interest in any oil or gas property which is treated as a loss which is not from a passive activity, then any net income from such property (or any property the basis of which is determined in whole or in part by reference to the basis of such property) for any succeeding taxable year shall be treated as income of the taxpayer which is not from a passive activity. If the preceding sentence applies to the net income from any property for any taxable year, any credits allowable under subpart B (other "}]},"8dd0c2d15b9799cff62db91b0c472620":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"469"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"23","title":"Adoption expenses"},{"sec":"46","title":"Amount of credit"},{"sec":"49","title":"At-risk rules"},{"sec":"56","title":"Adjustments in computing alternative minimum taxable income"},{"sec":"58","title":"Denial of certain losses"},{"sec":"62","title":"Adjusted gross income defined"},{"sec":"74","title":"Prizes and awards"},{"sec":"86","title":"Social security and tier 1 railroad retirement benefits"},{"sec":"151","title":"Allowance of deductions for personal exemptions"},{"sec":"172","title":"Net operating loss deduction"},{"sec":"247","title":"Contributions to Alaska Native Settlement Trusts"},{"sec":"45K","title":"Credit for producing fuel from a nonconventional source"},{"sec":"25A","title":"American Opportunity and Lifetime Learning credits"}]},"088e2045f9a8424aeb13ae2efd0b5de0":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"469"},"results":[{"sec":"42","title":"Low-income housing credit"},{"sec":"58","title":"Denial of certain losses"},{"sec":"851","title":"Definition of regulated investment company"}]},"81a6b710dbc46b66972d96528dc5edb6":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"469"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"2d07e907646b366448f24d1e5c272fd8":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"469"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Accounting Periods and Methods of Accounting"},{"level":"part","title":"METHODS OF ACCOUNTING"},{"level":"subpart","title":"Taxable Year for Which Deductions Taken"}]},"6f19fb96c44eeb7bdce1399379fcfb18":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"933"},"results":[{"title":"Income from sources within Puerto Rico","refs":1,"preview":"\u00a7 933. Income from sources within Puerto Rico The following items shall not be included in gross income and shall be exempt from taxation under this subtitle: (1) Resident of Puerto Rico for entire taxable year In the case of an individual who is a bona fide resident of Puerto Rico during the entire taxable year, income derived from sources within Puerto Rico (except amounts received for services performed as an employee of the United States or any agency thereof); but such individual shall not be allowed as a deduction from his gross income any deductions (other than the deduction under section 151, relating to personal exemptions), or any credit, properly allocable to or chargeable against amounts excluded from gross income under this paragraph. (2) Taxable year of change of residence from Puerto Rico In the case of an individual citizen of the United States who has been a bona fide resident of Puerto Rico for a period of at least 2 years before the date on which he changes his residence from Puerto Rico, income derived from sources therein (except amounts received for services performed as an employee of the United States or any agency thereof) which is attributable to that part of such period of Puerto Rican residence before such date; but such individual shall not be allowed as a deduction from his gross income any deductions (other than the deduction for personal exemptions under section 151), or any credit, properly allocable to or chargeable against amounts excluded from gross income under this paragraph. ( Aug. 16, 1954, ch. 736 , 68A Stat. 293 ; Pub. L. 99\u2013514, title XII, \u00a7 1272(d)(3) , Oct. 22, 1986 , 100 Stat. 2594 .) Editorial Notes Amendments 1986\u2014 Pub. L. 99\u2013514 inserted \u201c, or any credit,\u201d in pars. (1) and (2). Statutory Notes and Related Subsidiaries Effective Date of 1986 Amendment Amendment by Pub. L. 99\u2013514 applicable to taxable years beginning after Dec. 31, 1986 , with certain exceptions and qualifications, see section 1277 of Pub. L. 99\u2013514 , s"}]},"cb967dfe430b84b92865354640ceae15":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"933"},"results":[{"sec":"931","title":"Income from sources within Guam, American Samoa, or the Northern Mariana Islands"}]},"d60de4b4bc29b8ed01e5480898daff01":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"933"},"results":[]},"2157b444de12f39a5258586d6df82d6b":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"933"},"results":[{"via":"931","reaches":"1","title":"Tax imposed"},{"via":"931","reaches":"2","title":"Definitions and special rules"},{"via":"931","reaches":"27","title":"Taxes of foreign countries and possessions of the United States"},{"via":"931","reaches":"165","title":"Losses"},{"via":"931","reaches":"932","title":"Coordination of United States and Virgin Islands income taxes"},{"via":"931","reaches":"937","title":"Residence and source rules involving possessions"},{"via":"931","reaches":"991","title":"Taxation of a domestic international sales corporation"},{"via":"931","reaches":"934A","title":"Repealed."}]},"49b15e03232c88c77108c5ebfbe0ace0":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"933"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Tax Based on Income From Sources Within or Without the United States"},{"level":"part","title":"INCOME FROM SOURCES WITHOUT THE UNITED STATES"},{"level":"subpart","title":"Possessions of the United States"}]},"d54774d40ae003e3f19c8f6ddf44e632":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"937"},"results":[{"title":"Residence and source rules involving possessions","refs":0,"preview":"\u00a7 937. Residence and source rules involving possessions (a) Bona fide resident For purposes of this subpart, section 865(g)(3), section 876, section 881(b), paragraphs (2) and (3) of section 901(b), section 957(c), section 3401(a)(8)(C), and section 7654(a), except as provided in regulations, the term \u201cbona fide resident\u201d means a person\u2014 (1) who is present for at least 183 days during the taxable year in Guam, American Samoa, the Northern Mariana Islands, Puerto Rico, or the Virgin Islands, as the case may be, and (2) who does not have a tax home (determined under the principles of section 911(d)(3) without regard to the second sentence thereof) outside such specified possession during the taxable year and does not have a closer connection (determined under the principles of section 7701(b)(3)(B)(ii)) to the United States or a foreign country than to such specified possession. For purposes of paragraph (1), the determination as to whether a person is present for any day shall be made under the principles of section 7701(b). (b) Source rules Except as provided in regulations, for purposes of this title\u2014 (1) except as provided in paragraph (2), rules similar to the rules for determining whether income is income from sources within the United States or is effectively connected with the conduct of a trade or business within the United States shall apply for purposes of determining whether income is from sources within a possession specified in subsection (a)(1) or effectively connected with the conduct of a trade or business within any such possession, and (2) any income treated as income from sources within the United States or as effectively connected with the conduct of a trade or business within the United States shall not be treated as income from sources within any such possession or as effectively connected with the conduct of a trade or business within any such possession. (c) Reporting requirement (1) In general If, for any taxable year, an individual takes the"}]},"e6343955644c5a86e5ca32d166c0dafd":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"937"},"results":[]},"8b38eb4ddfd4bf36e5ae25a1d7bc0ad5":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"937"},"results":[{"sec":"931","title":"Income from sources within Guam, American Samoa, or the Northern Mariana Islands"},{"sec":"932","title":"Coordination of United States and Virgin Islands income taxes"},{"sec":"934","title":"Limitation on reduction in income tax liability incurred to the Virgin Islands"},{"sec":"957","title":"Controlled foreign corporations; United States persons"}]},"55803a2da2a5ffa2d29f2dabd4cd2a2b":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"937"},"results":[]},"3dec36285a5c3d3e29347a00f66f8e90":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"937"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Tax Based on Income From Sources Within or Without the United States"},{"level":"part","title":"INCOME FROM SOURCES WITHOUT THE UNITED STATES"},{"level":"subpart","title":"Possessions of the United States"}]},"222461f421b05c6652b20f367018ca73":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"901"},"results":[{"title":"Taxes of foreign countries and of possessions of United States","refs":31,"preview":"\u00a7 901. Taxes of foreign countries and of possessions of United States (a) Allowance of credit If the taxpayer chooses to have the benefits of this subpart, the tax imposed by this chapter shall, subject to the limitation of section 904, be credited with the amounts provided in the applicable paragraph of subsection (b) plus, in the case of a corporation, the taxes deemed to have been paid under section 960. Such choice for any taxable year may be made or changed at any time before the expiration of the period prescribed for making a claim for credit or refund of the tax imposed by this chapter for such taxable year. The credit shall not be allowed against any tax treated as a tax not imposed by this chapter under section 26(b). (b) Amount allowed Subject to the limitation of section 904, the following amounts shall be allowed as the credit under subsection (a): (1) Citizens and domestic corporations In the case of a citizen of the United States and of a domestic corporation, the amount of any income, war profits, and excess profits taxes paid or accrued during the taxable year to any foreign country or to any possession of the United States; and (2) Resident of the United States or Puerto Rico In the case of a resident of the United States and in the case of an individual who is a bona fide resident of Puerto Rico during the entire taxable year, the amount of any such taxes paid or accrued during the taxable year to any possession of the United States; and (3) Alien resident of the United States or Puerto Rico In the case of an alien resident of the United States and in the case of an alien individual who is a bona fide resident of Puerto Rico during the entire taxable year, the amount of any such taxes paid or accrued during the taxable year to any foreign country; and (4) Nonresident alien individuals and foreign corporations In the case of any nonresident alien individual not described in section 876 and in the case of any foreign corporation, the amount determin"}]},"73242478fe37d8c0600127145224363f":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"901"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"2","title":"Definitions and special rules"},{"sec":"5","title":"Cross references relating to tax on individuals"},{"sec":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"sec":"23","title":"Adoption expenses"},{"sec":"25","title":"Interest on certain home mortgages"},{"sec":"26","title":"Limitation based on tax liability; definition of tax liability"},{"sec":"27","title":"Taxes of foreign countries and possessions of the United States"},{"sec":"31","title":"Tax withheld on wages"},{"sec":"48","title":"Energy credit"},{"sec":"55","title":"Alternative minimum tax imposed"},{"sec":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"sec":"78","title":"Gross up for deemed paid foreign tax credit"},{"sec":"164","title":"Taxes"},{"sec":"245","title":"Dividends received from certain foreign corporations"},{"sec":"318","title":"Constructive ownership of stock"},{"sec":"401","title":"Qualified pension, profit-sharing, and stock bonus plans"},{"sec":"402","title":"Taxability of beneficiary of employees\u2019 trust"},{"sec":"643","title":"Definitions applicable to subparts A, B, C, and\u2000D"},{"sec":"853","title":"Foreign tax credit allowed to shareholders"},{"sec":"874","title":"Allowance of deductions and credits"},{"sec":"902","title":"Repealed."},{"sec":"904","title":"Limitation on credit"},{"sec":"907","title":"Special rules in case of foreign oil and gas income"},{"sec":"951","title":"Amounts included in gross income of United States shareholders"},{"sec":"952","title":"Subpart F income defined"},{"sec":"957","title":"Controlled foreign corporations; United States persons"},{"sec":"991","title":"Taxation of a domestic international sales corporation"},{"sec":"1351","title":"Treatment of recoveries of foreign expropriation losses"}]},"d493c746b68e9d70a08cb88bd2d85157":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"901"},"results":[{"sec":"27","title":"Taxes of foreign countries and possessions of the United States"},{"sec":"853","title":"Foreign tax credit allowed to shareholders"},{"sec":"874","title":"Allowance of deductions and credits"},{"sec":"904","title":"Limitation on credit"},{"sec":"907","title":"Special rules in case of foreign oil and gas income"},{"sec":"952","title":"Subpart F income defined"}]},"bf7e1941171e369f254b98d1758b8988":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"901"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"5a3527397c5d048e4dee07c2ba637d43":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"901"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Tax Based on Income From Sources Within or Without the United States"},{"level":"part","title":"INCOME FROM SOURCES WITHOUT THE UNITED STATES"},{"level":"subpart","title":"Foreign Tax Credit"}]},"3649c2496c61042c9bf077dd59453126":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"162"},"results":[{"title":"Trade or business expenses","refs":24,"preview":"\u00a7 162. Trade or business expenses (a) In general There shall be allowed as a deduction all the ordinary and necessary expenses paid or incurred during the taxable year in carrying on any trade or business, including\u2014 (1) a reasonable allowance for salaries or other compensation for personal services actually rendered; (2) traveling expenses (including amounts expended for meals and lodging other than amounts which are lavish or extravagant under the circumstances) while away from home in the pursuit of a trade or business; and (3) rentals or other payments required to be made as a condition to the continued use or possession, for purposes of the trade or business, of property to which the taxpayer has not taken or is not taking title or in which he has no equity. For purposes of the preceding sentence, the place of residence of a Member of Congress (including any Delegate and Resident Commissioner) within the State, congressional district, or possession which he represents in Congress shall be considered his home, but amounts expended by such Members within each taxable year for living expenses shall not be deductible for income tax purposes. For purposes of paragraph (2), the taxpayer shall not be treated as being temporarily away from home during any period of employment if such period exceeds 1 year. The preceding sentence shall not apply to any Federal employee during any period for which such employee is certified by the Attorney General (or the designee thereof) as traveling on behalf of the United States in temporary duty status to investigate or prosecute, or provide support services for the investigation or prosecution of, a Federal crime. (b) Charitable contributions and gifts excepted No deduction shall be allowed under subsection (a) for any contribution or gift which would be allowable as a deduction under section 170 were it not for the percentage limitations, the dollar limitations, or the requirements as to the time of payment, set forth in such sect"}]},"6dc54db8fade7f8a539c9fd927dac5c7":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"162"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"2","title":"Definitions and special rules"},{"sec":"26","title":"Limitation based on tax liability; definition of tax liability"},{"sec":"32","title":"Earned income"},{"sec":"44","title":"Expenditures to provide access to disabled individuals"},{"sec":"62","title":"Adjusted gross income defined"},{"sec":"79","title":"Group-term life insurance purchased for employees"},{"sec":"104","title":"Compensation for injuries or sickness"},{"sec":"106","title":"Contributions by employer to accident and health plans"},{"sec":"170","title":"Charitable, etc., contributions and gifts"},{"sec":"172","title":"Net operating loss deduction"},{"sec":"213","title":"Medical, dental, etc., expenses"},{"sec":"274","title":"Disallowance of certain entertainment, etc., expenses"},{"sec":"401","title":"Qualified pension, profit-sharing, and stock bonus plans"},{"sec":"404","title":"Deduction for contributions of an employer to an employees\u2019 trust or annuity plan and compensation under a deferred-payment plan"},{"sec":"1001","title":"Determination of amount of and recognition of gain or loss"},{"sec":"1054","title":"Certain stock of Federal National Mortgage Association"},{"sec":"280A","title":"Disallowance of certain expenses in connection with business use of home, rental of vacation homes, etc."},{"sec":"36B","title":"Refundable credit for coverage under a qualified health plan"}]},"476364de4bcb378f0e6eb0d553d55841":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"162"},"results":[{"sec":"62","title":"Adjusted gross income defined"},{"sec":"104","title":"Compensation for injuries or sickness"},{"sec":"106","title":"Contributions by employer to accident and health plans"},{"sec":"170","title":"Charitable, etc., contributions and gifts"},{"sec":"172","title":"Net operating loss deduction"},{"sec":"213","title":"Medical, dental, etc., expenses"},{"sec":"274","title":"Disallowance of certain entertainment, etc., expenses"},{"sec":"404","title":"Deduction for contributions of an employer to an employees\u2019 trust or annuity plan and compensation under a deferred-payment plan"},{"sec":"414","title":"Definitions and special rules"},{"sec":"463","title":"Repealed."},{"sec":"952","title":"Subpart F income defined"},{"sec":"964","title":"Miscellaneous provisions"},{"sec":"995","title":"Taxation of DISC income to shareholders"},{"sec":"1054","title":"Certain stock of Federal National Mortgage Association"},{"sec":"280A","title":"Disallowance of certain expenses in connection with business use of home, rental of vacation homes, etc."}]},"d236730af1ffe0e50c236e63874aa081":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"162"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"f3d67e65eede0e79c46e02642859a41d":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"162"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Computation of Taxable Income"},{"level":"part","title":"ITEMIZED DEDUCTIONS FOR INDIVIDUALS AND CORPORATIONS"}]},"69ee655a6bc7a71a2e1b3c6a80a9baa4":{"query":"MATCH (s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                RETURN s.title AS title, s.ref_count AS refs, s.content_preview AS preview","params":{"sec":"61"},"results":[{"title":"Gross income defined","refs":4,"preview":"\u00a7 61. Gross income defined (a) General definition Except as otherwise provided in this subtitle, gross income means all income from whatever source derived, including (but not limited to) the following items: (1) Compensation for services, including fees, commissions, fringe benefits, and similar items; (2) Gross income derived from business; (3) Gains derived from dealings in property; (4) Interest; (5) Rents; (6) Royalties; (7) Dividends; (8) Annuities; (9) Income from life insurance and endowment contracts; (10) Pensions; (11) Income from discharge of indebtedness; (12) Distributive share of partnership gross income; (13) Income in respect of a decedent; and (14) Income from an interest in an estate or trust. (b) Cross references For items specifically included in gross income, see part II (sec. 71 and following). For items specifically excluded from gross income, see part III (sec. 101 and following). ( Aug. 16, 1954, ch. 736 , 68A Stat. 17 ; Pub. L. 98\u2013369, div. A, title V, \u00a7 531(c) , July 18, 1984 , 98 Stat. 884 ; Pub. L. 115\u201397, title I, \u00a7 11051(b)(1)(A) , Dec. 22, 2017 , 131 Stat. 2089 .) Editorial Notes Amendments 2017\u2014Subsec. (a)(8) to (15). Pub. L. 115\u201397 redesignated pars. (9) to (15) as (8) to (14), respectively, and struck out former par. (8) which read as follows: \u201cAlimony and separate maintenance payments;\u201d. 1984\u2014Subsec. (a)(1). Pub. L. 98\u2013369 inserted reference to fringe benefits. Statutory Notes and Related Subsidiaries Effective Date of 2017 Amendment Pub. L. 115\u201397, title I, \u00a7 11051(c) , Dec. 22, 2017 , 131 Stat. 2090 , provided that: \u201cThe amendments made by this section [amending this section and sections 62, 121, 152, 219, 220, 223, 382, 408, 3402, 6724, and 7701 of this title and repealing sections 71, 215, and 682 of this title] shall apply to\u2014 \u201c(1) any divorce or separation instrument (as defined in section 71(b)(2) of the Internal Revenue Code of 1986 as in effect before the date of the enactment of this Act [ Dec. 22, 2017 ]) executed afte"}]},"390799ae69f96cb2178da7a5c6f9a81d":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"61"},"results":[{"sec":"1","title":"Tax imposed"},{"sec":"132","title":"Certain fringe benefits"},{"sec":"167","title":"Depreciation"}]},"c62109a4392dda42cbd2ba139f7f3c70":{"query":"MATCH (s:TaxSection {section_number: $sec})<-[:REFERENCES]-(ref:TaxSection)\n                WHERE s.level IS NULL AND ref.level IS NULL\n                RETURN ref.section_number AS sec, ref.title AS t","params":{"sec":"61"},"results":[{"sec":"62","title":"Adjusted gross income defined"},{"sec":"71","title":"Repealed."},{"sec":"117","title":"Qualified scholarships"},{"sec":"121","title":"Exclusion of gain from sale of principal residence"},{"sec":"152","title":"Dependent defined"},{"sec":"167","title":"Depreciation"},{"sec":"215","title":"Repealed."},{"sec":"219","title":"Retirement savings"},{"sec":"220","title":"Archer MSAs"},{"sec":"223","title":"Health savings accounts"},{"sec":"382","title":"Limitation on net operating loss carryforwards and certain built-in losses following ownership change"},{"sec":"408","title":"Individual retirement accounts"},{"sec":"682","title":"Repealed."},{"sec":"1401","title":"Rate of tax"}]},"b37b66b2d58f24c8dbca8739848bd095":{"query":"MATCH (s:TaxSection {section_number: $sec})-[:REFERENCES]->(mid:TaxSection)-[:REFERENCES]->(far:TaxSection)\n                WHERE s.level IS NULL AND mid.level IS NULL AND far.level IS NULL AND far <>","params":{"sec":"61"},"results":[{"via":"1","reaches":"2","title":"Definitions and special rules"},{"via":"1","reaches":"3","title":"Tax tables for individuals"},{"via":"1","reaches":"21","title":"Expenses for household and dependent care services necessary for gainful employment"},{"via":"1","reaches":"23","title":"Adoption expenses"},{"via":"1","reaches":"32","title":"Earned income"},{"via":"1","reaches":"55","title":"Alternative minimum tax imposed"},{"via":"1","reaches":"56","title":"Adjustments in computing alternative minimum taxable income"},{"via":"1","reaches":"57","title":"Items of tax preference"},{"via":"1","reaches":"59","title":"Other definitions and special rules"},{"via":"1","reaches":"63","title":"Taxable income defined"},{"via":"1","reaches":"67","title":"2-percent floor on miscellaneous itemized deductions"},{"via":"1","reaches":"68","title":"Overall limitation on itemized deductions"},{"via":"1","reaches":"72","title":"Annuities; certain proceeds of endowment and life insurance contracts"},{"via":"1","reaches":"74","title":"Prizes and awards"},{"via":"1","reaches":"85","title":"Unemployment compensation"}]},"102fa33f39c147788d94e564312dee63":{"query":"MATCH path = (top)-[:CONTAINS*]->(s:TaxSection {section_number: $sec})\n                WHERE s.level IS NULL\n                UNWIND nodes(path) AS n\n                WITH DISTINCT n WHERE n.level IS NO","params":{"sec":"61"},"results":[{"level":"subtitle","title":"Income Taxes"},{"level":"chapter","title":"NORMAL TAXES AND SURTAXES"},{"level":"subchapter","title":"Computation of Taxable Income"},{"level":"part","title":"DEFINITION OF GROSS INCOME, ADJUSTED GROSS INCOME, TAXABLE INCOME, ETC."}]}}};
+
+function init() {
+    const raw = RAW_CACHE;
+    CACHE = processCache(raw);
+    document.getElementById('loading').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    const cachedAt = raw.cached_at ? new Date(raw.cached_at).toLocaleDateString() : 'Unknown';
+    const entryCount = Object.keys(raw.queries || {}).length;
+    document.getElementById('cache-info').textContent = entryCount + ' queries cached ' + cachedAt;
+    renderScenario1(CACHE);
+    renderScenario2Pills(CACHE);
+}
+
+init();
+</script>
+</body>
+</html>

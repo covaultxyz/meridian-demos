@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #0c1222; color: #e2e8f0; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 0.5rem; }
+        .card:hover { border-color: #475569; }
+        .stage-lead { background: #374151; color: #9ca3af; }
+        .stage-qualification { background: #1e3a5f; color: #60a5fa; }
+        .stage-discovery { background: #422006; color: #fbbf24; }
+        .stage-proposal { background: #3b0764; color: #c084fc; }
+        .stage-re-engagement { background: #431407; color: #fb923c; }
+        .status-done { background: #14532d; color: #4ade80; }
+        .status-in-progress { background: #422006; color: #fbbf24; }
+        .status-blocked { background: #450a0a; color: #f87171; }
+        .prob-bar { height: 6px; border-radius: 3px; background: #334155; overflow: hidden; }
+        .prob-fill { height: 100%; border-radius: 3px; transition: width 0.6s ease; }
+        .decision-pill { display: inline-block; padding: 2px 10px; border-radius: 9999px; font-size: 0.7rem; background: #334155; color: #94a3b8; margin: 2px; }
+        .decision-pill.selected { background: #312e81; color: #a5b4fc; border: 1px solid #6366f1; }
+        .pipeline-segment { height: 8px; transition: width 0.6s ease; }
+        .check-done { text-decoration: line-through; color: #64748b; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.3s ease forwards; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Auth Gate -->
+    <div id="auth-gate" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+        <div class="card p-8 w-80 text-center">
+            <div class="mb-6">
+                <i class="fas fa-chart-line text-indigo-400 text-3xl mb-3"></i>
+                <h2 class="text-xl font-bold text-slate-100">Sales Command Center</h2>
+                <p class="text-xs text-slate-500 mt-1">Enter password to continue</p>
+            </div>
+            <input id="auth-password" type="password" placeholder="Password"
+                   class="w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-lg text-sm focus:outline-none focus:border-indigo-500 mb-3"
+                   onkeydown="if(event.key==='Enter') authenticate()">
+            <button onclick="authenticate()"
+                    class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-medium transition">
+                <i class="fas fa-lock-open mr-1"></i>Unlock
+            </button>
+            <p id="auth-error" class="text-red-400 text-xs mt-3 hidden">Incorrect password</p>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-app" class="hidden">
+
+        <!-- Header -->
+        <header class="border-b border-slate-800 px-4 sm:px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <h1 class="text-base sm:text-lg font-bold">
+                    <i class="fas fa-chart-line text-indigo-400 mr-2"></i>Sales Command Center
+                </h1>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-slate-400">
+                <span id="last-updated"></span>
+                <button onclick="loadData()" class="hover:text-slate-200 transition" title="Refresh data">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="p-4 sm:p-6 max-w-[1440px] mx-auto space-y-6">
+
+            <!-- Panel 1: Pipeline Overview -->
+            <section id="pipeline-overview">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                    <div class="card p-4 text-center">
+                        <div id="stat-weighted" class="text-2xl sm:text-3xl font-bold text-indigo-300">--</div>
+                        <div class="text-xs text-slate-500 mt-1">Weighted Pipeline</div>
+                    </div>
+                    <div class="card p-4 text-center">
+                        <div id="stat-opps" class="text-2xl sm:text-3xl font-bold text-emerald-300">--</div>
+                        <div class="text-xs text-slate-500 mt-1">Opportunities</div>
+                    </div>
+                    <div class="card p-4 text-center">
+                        <div id="stat-annual" class="text-2xl sm:text-3xl font-bold text-amber-300">--</div>
+                        <div class="text-xs text-slate-500 mt-1">Total Annual Value</div>
+                    </div>
+                    <div class="card p-4 text-center">
+                        <div id="stat-avg-prob" class="text-2xl sm:text-3xl font-bold text-purple-300">--</div>
+                        <div class="text-xs text-slate-500 mt-1">Avg Probability</div>
+                    </div>
+                </div>
+                <!-- Pipeline Stage Bar -->
+                <div class="card p-4">
+                    <div class="text-xs text-slate-400 mb-2 font-semibold uppercase tracking-wide">Pipeline by Stage</div>
+                    <div id="pipeline-bar" class="flex rounded-lg overflow-hidden mb-3"></div>
+                    <div id="pipeline-legend" class="flex flex-wrap gap-3 text-xs"></div>
+                </div>
+            </section>
+
+            <!-- Panel 2: Opportunity Cards -->
+            <section>
+                <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                    <i class="fas fa-handshake mr-1"></i>Opportunities
+                </h2>
+                <div id="opp-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+            </section>
+
+            <!-- Panel 3 & 4: Revenue + Deliverables side by side on desktop -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Panel 3: Revenue Projections -->
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                        <i class="fas fa-chart-bar mr-1"></i>Revenue Projections (Monthly)
+                    </h2>
+                    <div class="card p-4 sm:p-6">
+                        <canvas id="revenue-chart" height="260"></canvas>
+                    </div>
+                </section>
+
+                <!-- Panel 4: Deliverables Grid -->
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                        <i class="fas fa-clipboard-list mr-1"></i>Deliverables
+                        <span id="deliverables-count" class="text-slate-500 font-normal"></span>
+                    </h2>
+                    <div class="card overflow-hidden" style="max-height: 400px; overflow-y: auto;">
+                        <table class="w-full text-xs">
+                            <thead class="sticky top-0 bg-slate-800">
+                                <tr class="text-slate-400 text-left">
+                                    <th class="px-3 py-2 font-medium">ID</th>
+                                    <th class="px-3 py-2 font-medium">Name</th>
+                                    <th class="px-3 py-2 font-medium">Status</th>
+                                    <th class="px-3 py-2 font-medium hidden sm:table-cell">File</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deliverables-body"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Panel 5 & 6: Actions + Decisions side by side -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Panel 5: Action Items -->
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                        <i class="fas fa-tasks mr-1"></i>Action Items
+                    </h2>
+                    <div id="action-list" class="space-y-2"></div>
+                </section>
+
+                <!-- Panel 6: Decisions Log -->
+                <section>
+                    <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
+                        <i class="fas fa-gavel mr-1"></i>Decisions
+                    </h2>
+                    <div id="decisions-list" class="space-y-3"></div>
+                </section>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-800 px-6 py-4 text-center text-xs text-slate-600">
+            Sales Command Center &middot; Data refreshed from pipeline tracker
+        </footer>
+    </div>
+
+    <script>
+    // --- Auth ---
+    const PASS_HASH = '5bd2a15e025404899c1a0018b3437a5913d572c1e1ecefb95ab4b0d8337c8d77';
+    const AUTH_KEY = 'sales-auth';
+
+    async function sha256(text) {
+        const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function authenticate() {
+        const pw = document.getElementById('auth-password').value;
+        if (!pw) return;
+        const hash = await sha256(pw);
+        if (hash === PASS_HASH) {
+            localStorage.setItem(AUTH_KEY, hash);
+            showApp();
+        } else {
+            document.getElementById('auth-error').classList.remove('hidden');
+            document.getElementById('auth-password').value = '';
+            document.getElementById('auth-password').focus();
+        }
+    }
+
+    function showApp() {
+        document.getElementById('auth-gate').classList.add('hidden');
+        document.getElementById('main-app').classList.remove('hidden');
+        loadData();
+    }
+
+    function checkStoredAuth() {
+        const stored = localStorage.getItem(AUTH_KEY);
+        if (stored === PASS_HASH) {
+            showApp();
+        }
+    }
+
+    // --- Data Loading ---
+    let DATA = null;
+    let revenueChart = null;
+
+    async function loadData() {
+        try {
+            const resp = await fetch('sales-data.json?t=' + Date.now());
+            DATA = await resp.json();
+            renderPipeline(DATA.pipeline, DATA.opportunities);
+            renderOpportunities(DATA.opportunities);
+            renderProjections(DATA.revenue_projections);
+            renderDeliverables(DATA.deliverables);
+            renderActions(DATA.action_items);
+            renderDecisions(DATA.decisions);
+            document.getElementById('last-updated').textContent = 'Updated: ' + DATA.last_updated;
+        } catch (e) {
+            console.error('Failed to load data:', e);
+        }
+    }
+
+    // --- Panel 1: Pipeline Overview ---
+    function renderPipeline(pipeline, opportunities) {
+        document.getElementById('stat-weighted').textContent = formatCurrency(pipeline.weighted_value);
+        document.getElementById('stat-opps').textContent = pipeline.total_opportunities;
+        document.getElementById('stat-annual').textContent = formatCurrency(pipeline.total_annual_value);
+
+        const avgProb = opportunities.reduce((s, o) => s + o.probability, 0) / opportunities.length;
+        document.getElementById('stat-avg-prob').textContent = Math.round(avgProb) + '%';
+
+        // Pipeline stage bar
+        const stageConfig = {
+            'Lead':           { color: '#374151', text: '#9ca3af' },
+            'Qualification':  { color: '#1e40af', text: '#60a5fa' },
+            'Discovery':      { color: '#92400e', text: '#fbbf24' },
+            'Proposal':       { color: '#6b21a8', text: '#c084fc' },
+            'Re-engagement':  { color: '#9a3412', text: '#fb923c' }
+        };
+
+        const stageCounts = {};
+        opportunities.forEach(o => {
+            stageCounts[o.stage] = (stageCounts[o.stage] || 0) + 1;
+        });
+
+        const total = opportunities.length;
+        const barEl = document.getElementById('pipeline-bar');
+        const legendEl = document.getElementById('pipeline-legend');
+
+        barEl.innerHTML = Object.entries(stageCounts).map(([stage, count]) => {
+            const pct = (count / total * 100).toFixed(1);
+            const cfg = stageConfig[stage] || { color: '#475569', text: '#94a3b8' };
+            return `<div class="pipeline-segment" style="width:${pct}%; background:${cfg.color}" title="${stage}: ${count}"></div>`;
+        }).join('');
+
+        legendEl.innerHTML = Object.entries(stageCounts).map(([stage, count]) => {
+            const cfg = stageConfig[stage] || { color: '#475569', text: '#94a3b8' };
+            return `<span class="flex items-center gap-1.5">
+                <span style="width:10px;height:10px;border-radius:2px;background:${cfg.color}" class="inline-block"></span>
+                <span style="color:${cfg.text}">${stage}</span>
+                <span class="text-slate-500">(${count})</span>
+            </span>`;
+        }).join('');
+    }
+
+    // --- Panel 2: Opportunity Cards ---
+    function renderOpportunities(opportunities) {
+        const stageClasses = {
+            'Lead': 'stage-lead',
+            'Qualification': 'stage-qualification',
+            'Discovery': 'stage-discovery',
+            'Proposal': 'stage-proposal',
+            'Re-engagement': 'stage-re-engagement'
+        };
+
+        const grid = document.getElementById('opp-grid');
+        grid.innerHTML = opportunities.sort((a, b) => b.probability - a.probability).map(o => {
+            const stageClass = stageClasses[o.stage] || 'stage-lead';
+            const probColor = o.probability >= 60 ? '#22c55e' : o.probability >= 40 ? '#eab308' : o.probability >= 20 ? '#f97316' : '#ef4444';
+            const activityColor = o.days_since_activity <= 3 ? 'text-emerald-400' : o.days_since_activity <= 7 ? 'text-amber-400' : 'text-red-400';
+
+            return `
+            <div class="card p-4 fade-in">
+                <div class="flex items-start justify-between mb-3">
+                    <div>
+                        <div class="text-sm font-semibold text-slate-100">${esc(o.contact)}</div>
+                        <div class="text-xs text-slate-500">${esc(o.company)}</div>
+                    </div>
+                    <span class="text-xs px-2 py-0.5 rounded-full font-medium ${stageClass}">${esc(o.stage)}</span>
+                </div>
+
+                <div class="flex items-center gap-2 mb-3">
+                    <div class="prob-bar flex-1">
+                        <div class="prob-fill" style="width:${o.probability}%; background:${probColor}"></div>
+                    </div>
+                    <span class="text-xs font-bold" style="color:${probColor}">${o.probability}%</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                    <div>
+                        <span class="text-slate-500">Monthly</span>
+                        <div class="font-semibold text-slate-200">${formatCurrency(o.monthly_revenue)}</div>
+                    </div>
+                    <div>
+                        <span class="text-slate-500">Annual</span>
+                        <div class="font-semibold text-slate-200">${formatCurrency(o.annual_revenue)}</div>
+                    </div>
+                </div>
+
+                <div class="text-xs mb-2">
+                    <span class="text-slate-500">Tier:</span>
+                    <span class="text-slate-300 ml-1">${esc(o.tier)}</span>
+                </div>
+
+                <div class="text-xs text-red-400 mb-2">
+                    <i class="fas fa-exclamation-triangle mr-1"></i>${esc(o.risk)}
+                </div>
+
+                <div class="text-xs mb-2">
+                    <span class="font-semibold text-indigo-300"><i class="fas fa-arrow-right mr-1"></i>${esc(o.next_action)}</span>
+                </div>
+
+                <div class="flex items-center justify-between text-xs">
+                    <span class="${activityColor}">
+                        <i class="fas fa-clock mr-1"></i>${o.days_since_activity}d since activity
+                    </span>
+                </div>
+
+                ${o.notes ? `<div class="text-xs text-slate-500 mt-2 pt-2 border-t border-slate-700">${esc(o.notes)}</div>` : ''}
+            </div>`;
+        }).join('');
+    }
+
+    // --- Panel 3: Revenue Projections Chart ---
+    function renderProjections(projections) {
+        const ctx = document.getElementById('revenue-chart').getContext('2d');
+
+        if (revenueChart) {
+            revenueChart.destroy();
+        }
+
+        revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['30 Days', '90 Days', '6 Months'],
+                datasets: [
+                    {
+                        label: 'Low',
+                        data: [projections['30d'].low, projections['90d'].low, projections['6mo'].low],
+                        backgroundColor: '#475569',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Mid',
+                        data: [projections['30d'].mid, projections['90d'].mid, projections['6mo'].mid],
+                        backgroundColor: '#6366f1',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'High',
+                        data: [projections['30d'].high, projections['90d'].high, projections['6mo'].high],
+                        backgroundColor: '#22c55e',
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#94a3b8',
+                            font: { family: 'Inter', size: 11 },
+                            boxWidth: 12,
+                            boxHeight: 12,
+                            borderRadius: 2,
+                            useBorderRadius: true,
+                            padding: 16
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': ' + formatCurrency(ctx.raw) + '/mo';
+                            }
+                        },
+                        backgroundColor: '#1e293b',
+                        titleColor: '#e2e8f0',
+                        bodyColor: '#94a3b8',
+                        borderColor: '#334155',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#64748b', font: { family: 'Inter', size: 11 } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#64748b',
+                            font: { family: 'Inter', size: 11 },
+                            callback: function(val) { return formatCurrency(val); }
+                        },
+                        grid: { color: '#1e293b' }
+                    }
+                }
+            }
+        });
+    }
+
+    // --- Panel 4: Deliverables ---
+    function renderDeliverables(deliverables) {
+        const done = deliverables.filter(d => d.status === 'done').length;
+        const total = deliverables.length;
+        document.getElementById('deliverables-count').textContent = `(${done}/${total} complete)`;
+
+        const tbody = document.getElementById('deliverables-body');
+        tbody.innerHTML = deliverables.map(d => {
+            const statusClass = d.status === 'done' ? 'status-done' : d.status === 'in-progress' ? 'status-in-progress' : 'status-blocked';
+            const statusLabel = d.status === 'done' ? 'Done' : d.status === 'in-progress' ? 'In Progress' : 'Blocked';
+            const fileName = d.file ? d.file.split('/').pop() : '';
+
+            return `
+            <tr class="border-t border-slate-700/50 hover:bg-slate-800/50 transition">
+                <td class="px-3 py-2 font-mono text-slate-400">${esc(d.id)}</td>
+                <td class="px-3 py-2 text-slate-200">${esc(d.name)}</td>
+                <td class="px-3 py-2">
+                    <span class="text-xs px-2 py-0.5 rounded-full ${statusClass}">${statusLabel}</span>
+                </td>
+                <td class="px-3 py-2 text-slate-500 hidden sm:table-cell font-mono truncate max-w-[200px]" title="${esc(d.file || '')}">${esc(fileName)}</td>
+            </tr>`;
+        }).join('');
+    }
+
+    // --- Panel 5: Action Items ---
+    function renderActions(actions) {
+        const list = document.getElementById('action-list');
+        const savedState = JSON.parse(localStorage.getItem('sales-actions') || '{}');
+
+        list.innerHTML = actions.map((a, i) => {
+            const isDone = savedState[i] || a.done;
+            const doneClass = isDone ? 'check-done' : '';
+            const dueColor = a.due === 'Today' ? 'text-red-400' : a.due?.includes('week') ? 'text-amber-400' : 'text-slate-500';
+
+            return `
+            <div class="card px-4 py-3 flex items-start gap-3 transition ${isDone ? 'opacity-60' : ''}">
+                <button onclick="toggleActionItem(${i})" class="mt-0.5 flex-shrink-0">
+                    <i class="${isDone ? 'fas fa-check-square text-emerald-500' : 'far fa-square text-slate-500 hover:text-indigo-400'} text-base transition"></i>
+                </button>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm ${doneClass}">${esc(a.text)}</div>
+                    <div class="text-xs mt-1 flex flex-wrap gap-3">
+                        <span class="text-indigo-300"><i class="fas fa-user mr-1"></i>${esc(a.owner)}</span>
+                        <span class="${dueColor}"><i class="fas fa-calendar mr-1"></i>${esc(a.due)}</span>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function toggleActionItem(index) {
+        const saved = JSON.parse(localStorage.getItem('sales-actions') || '{}');
+        saved[index] = !saved[index];
+        localStorage.setItem('sales-actions', JSON.stringify(saved));
+        if (DATA) renderActions(DATA.action_items);
+    }
+
+    // --- Panel 6: Decisions ---
+    function renderDecisions(decisions) {
+        const list = document.getElementById('decisions-list');
+        list.innerHTML = decisions.map(d => {
+            const isDecided = d.status === 'decided';
+            const statusClass = isDecided ? 'status-done' : 'status-in-progress';
+            const statusLabel = isDecided ? 'Decided' : 'Open';
+
+            const pills = d.options.map(opt => {
+                const isSelected = isDecided && d.decision && d.decision.includes(opt);
+                return `<span class="decision-pill ${isSelected ? 'selected' : ''}">${esc(opt)}</span>`;
+            }).join('');
+
+            return `
+            <div class="card p-4 transition">
+                <div class="flex items-start justify-between mb-2">
+                    <div class="text-sm font-semibold text-slate-200 flex-1">#${d.id} ${esc(d.text)}</div>
+                    <span class="text-xs px-2 py-0.5 rounded-full ${statusClass} ml-2 flex-shrink-0">${statusLabel}</span>
+                </div>
+                <div class="text-xs text-slate-500 mb-2">
+                    <i class="fas fa-calendar-alt mr-1"></i>Deadline: ${esc(d.deadline)}
+                </div>
+                <div class="flex flex-wrap gap-0.5">${pills}</div>
+                ${isDecided && d.decision ? `<div class="text-xs text-emerald-400 mt-2"><i class="fas fa-check-circle mr-1"></i>${esc(d.decision)}</div>` : ''}
+            </div>`;
+        }).join('');
+    }
+
+    // --- Helpers ---
+    function esc(s) {
+        if (!s) return '';
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+
+    function formatCurrency(n) {
+        if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+        if (n >= 1000) return '$' + (n / 1000).toFixed(0) + 'K';
+        return '$' + n;
+    }
+
+    // --- Init ---
+    checkStoredAuth();
+    </script>
+</body>
+</html>
