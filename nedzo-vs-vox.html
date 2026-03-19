@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitive Audit — Nedzo.ai vs. Agent Vox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .score-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden}
+        .score-bar-fill{height:100%;border-radius:3px}
+        .win-vox{color:#34d399;font-weight:600}
+        .win-nedzo{color:#f87171;font-weight:600}
+        .win-tie{color:#a1a1aa;font-weight:500}
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-blue/30 selection:text-white">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 top-0 nav-glass">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center">
+                        <i data-lucide="audio-waveform" class="w-4 h-4 text-brand-blue"></i>
+                    </div>
+                    <span class="text-white font-semibold text-lg">Agent Vox</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#baseline" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Nedzo Profile</a>
+                    <a href="#gaps-theirs" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Their Gaps</a>
+                    <a href="#gaps-ours" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Our Gaps</a>
+                    <a href="#advantages" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Our Moats</a>
+                    <a href="#matrix" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Head-to-Head</a>
+                    <a href="#strategy" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Strategy</a>
+                </div>
+                <span class="hidden md:flex badge bg-purple-500/10 text-purple-400 border border-purple-500/20"><i data-lucide="lock" class="w-3 h-3"></i> Internal</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <div class="glow-orb w-[600px] h-[600px] bg-brand-blue/10 top-[-200px] left-1/2 -translate-x-1/2"></div>
+        <div class="glow-orb w-[400px] h-[400px] bg-red-500/5 bottom-[-100px] left-[-100px]"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center pt-32 pb-20">
+            <div class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-8"><i data-lucide="swords" class="w-3 h-3"></i> Competitive Intelligence</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-gradient-white leading-[1.1] mb-4">Nedzo.ai <span class="text-gradient-blue">vs.</span> Agent Vox</h1>
+            <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-8">No-code agency reseller versus graph-memory voice intelligence. Simplicity versus compounding intelligence. Commodity versus moat.</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-zinc-500">
+                <span class="flex items-center gap-2"><i data-lucide="building-2" class="w-4 h-4"></i> Bootstrapped (~7 people) vs. Pre-Market</span>
+                <span class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4"></i> Agency-First vs. Intelligence-First</span>
+                <span class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> March 2026</span>
+            </div>
+            <!-- Verdict Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-16 max-w-3xl mx-auto">
+                <div class="glass-card p-6 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Features Won</p>
+                    <p class="text-4xl font-bold text-emerald-400">19</p>
+                    <p class="text-xs text-zinc-600 mt-1">Agent Vox</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Features Won</p>
+                    <p class="text-4xl font-bold text-red-400">8</p>
+                    <p class="text-xs text-zinc-600 mt-1">Nedzo.ai</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">The Gap That Matters</p>
+                    <p class="text-2xl font-bold text-brand-blue">GTM</p>
+                    <p class="text-xs text-zinc-600 mt-1">they ship pricing &mdash; we ship intelligence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- NEDZO BASELINE -->
+    <section id="baseline" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-4"><i data-lucide="building-2" class="w-3 h-3"></i> Competitor Profile</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Nedzo.ai at a Glance</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">A bootstrapped, no-code voice AI platform targeting the GHL agency ecosystem. &ldquo;Voice AI, Made Easy.&rdquo; Rebranded to &ldquo;AI Conversation OS&rdquo; with Nedzo 2.0.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4 mb-12 reveal">
+                <div class="glass-card p-6 text-center"><p class="text-3xl font-bold text-white">$99</p><p class="text-xs text-zinc-500 mt-2">Starting Price /mo</p></div>
+                <div class="glass-card p-6 text-center"><p class="text-3xl font-bold text-white">~7</p><p class="text-xs text-zinc-500 mt-2">Team Size</p></div>
+                <div class="glass-card p-6 text-center"><p class="text-3xl font-bold text-white">2024</p><p class="text-xs text-zinc-500 mt-2">Domain Registered</p></div>
+                <div class="glass-card p-6 text-center"><p class="text-3xl font-bold text-white">59</p><p class="text-xs text-zinc-500 mt-2">Trustpilot Reviews</p></div>
+            </div>
+            <!-- Pricing + Architecture side by side -->
+            <div class="grid md:grid-cols-2 gap-6 reveal">
+                <div class="glass-card p-8">
+                    <h3 class="text-white font-semibold text-lg mb-6 flex items-center gap-2"><i data-lucide="credit-card" class="w-5 h-5 text-red-400"></i> Pricing Tiers</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-white/[0.02]"><span class="text-zinc-400 text-sm">Business (1 agent, 400 min)</span><span class="text-white font-semibold">$99/mo</span></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-white/[0.02]"><span class="text-zinc-400 text-sm">Agency (10 agents, 1,200 min)</span><span class="text-white font-semibold">$299/mo</span></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-white/[0.02]"><span class="text-zinc-400 text-sm">Pro (unlimited agents, 2,500 min)</span><span class="text-white font-semibold">$499/mo</span></div>
+                        <div class="flex justify-between items-center p-3 rounded-lg bg-red-500/5 border border-red-500/10"><span class="text-red-400 text-sm font-medium">VIP &mdash; Full Whitelabel</span><span class="text-red-400 font-bold text-lg">$999/mo</span></div>
+                    </div>
+                    <p class="text-xs text-zinc-600 mt-4">Enterprise tier: custom pricing with SOC 2, HIPAA, GDPR claims (unverified). Annual saves ~17%.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <h3 class="text-white font-semibold text-lg mb-6 flex items-center gap-2"><i data-lucide="mic" class="w-5 h-5 text-red-400"></i> Platform Architecture</h3>
+                    <div class="space-y-3 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="eye-off" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i> Opaque tech stack &mdash; LLM, TTS, STT, telephony all undisclosed</div>
+                        <div class="flex items-start gap-2"><i data-lucide="layout-grid" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i> Visual flow designer with branching logic</div>
+                        <div class="flex items-start gap-2"><i data-lucide="audio-lines" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i> 50+ neural voices, 7 languages</div>
+                        <div class="flex items-start gap-2"><i data-lucide="phone" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i> Inbound + outbound + web widget</div>
+                        <div class="flex items-start gap-2"><i data-lucide="users" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i> Agency-first: rebilling, whitelabel, Skool community</div>
+                        <div class="flex items-start gap-2"><i data-lucide="database" class="w-4 h-4 text-zinc-600 mt-0.5 flex-shrink-0"></i> <span class="text-zinc-600">No knowledge graph. No cross-call memory. Stateless.</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- NEDZO'S WEAKNESSES -->
+    <section id="gaps-theirs" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-emerald-500/5 top-[-200px] right-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="target" class="w-3 h-3"></i> Structural Weaknesses</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Where Nedzo Falls Short</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Structural limitations that cannot be patched with features &mdash; they require fundamental architecture changes.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6 reveal">
+                <!-- Stateless Calls -->
+                <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15)"><i data-lucide="brain" class="w-5 h-5 text-emerald-400"></i></div>
+                            <h3 class="text-white font-semibold">Zero Cross-Call Memory</h3>
+                        </div>
+                        <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">Our Moat</span>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">Every Nedzo call starts from scratch. No memory of previous conversations, objections, buying signals, or relationship history. The 5th call with a prospect is identical to the 1st. Intelligence cannot compound.</p>
+                    <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Agent Vox: Solved</p><p class="text-xs text-zinc-500 mt-1">Neo4j knowledge graph stores every interaction as connected nodes. Call #5 automatically references objections from call #1.</p></div>
+                </div>
+                <!-- Opaque Stack -->
+                <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15)"><i data-lucide="eye-off" class="w-5 h-5 text-emerald-400"></i></div>
+                        <h3 class="text-white font-semibold">Opaque Tech Stack</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">Nedzo discloses nothing about their LLM, TTS, STT, or telephony providers. &ldquo;No 3rd party APIs required&rdquo; is marketing &mdash; they abstract vendors behind a black box. Technical buyers cannot evaluate quality, latency, or cost structure.</p>
+                    <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Agent Vox: Transparent</p><p class="text-xs text-zinc-500 mt-1">6 TTS providers, 5 STT providers, 5+ LLM options. User picks. Auto-failover between them. Full cost visibility.</p></div>
+                </div>
+                <!-- No API -->
+                <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15)"><i data-lucide="code" class="w-5 h-5 text-emerald-400"></i></div>
+                        <h3 class="text-white font-semibold">No Developer API</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">Zero public API documentation, no SDK, no developer portal. Integration limited to Zapier/Make webhooks and 4 native connectors (GHL, Calendly, Cal.com, Pipedrive). Technical teams cannot build custom integrations.</p>
+                    <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Agent Vox: Full API</p><p class="text-xs text-zinc-500 mt-1">120+ REST endpoints, OpenAPI auto-docs, full programmatic control over agents, calls, campaigns, analytics.</p></div>
+                </div>
+                <!-- No Analytics -->
+                <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15)"><i data-lucide="bar-chart-3" class="w-5 h-5 text-emerald-400"></i></div>
+                        <h3 class="text-white font-semibold">Basic Analytics Only</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">End-of-call summaries and basic reporting. No funnel visualization, no cohort analysis, no A/B testing, no per-component cost tracking, no agent comparison dashboards.</p>
+                    <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-bold uppercase tracking-wider">Agent Vox: Deep Analytics</p><p class="text-xs text-zinc-500 mt-1">Funnel visualization, cohort analysis, cost tracking, agent comparison, A/B test results, entity extraction.</p></div>
+                </div>
+                <!-- Limited Languages -->
+                <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.15)"><i data-lucide="globe" class="w-5 h-5 text-amber-400"></i></div>
+                        <h3 class="text-white font-semibold">Only 7 Languages</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">EN, ES, FR, DE, NL, NO, PT only. &ldquo;More coming soon.&rdquo; Competitors like GHL support 26+ languages. Missing: Chinese, Japanese, Korean, Arabic, Hindi, Italian, and dozens more.</p>
+                    <div class="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10"><p class="text-amber-400 text-xs font-bold uppercase tracking-wider">Agent Vox: Same Gap</p><p class="text-xs text-zinc-500 mt-1">English-focused today. Multi-lang is a closeable gap &mdash; our TTS/STT providers already support 20+ languages.</p></div>
+                </div>
+                <!-- Small Team Risk -->
+                <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(245,158,11,0.08);border-color:rgba(245,158,11,0.15)"><i data-lucide="shield-alert" class="w-5 h-5 text-amber-400"></i></div>
+                        <h3 class="text-white font-semibold">Enterprise Trust Gap</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">7 employees, bootstrapped, Delaware LLC registered 2024. Claims SOC 2/HIPAA/GDPR compliance but publishes no audit reports. 60% Scamdoc trust score. Domain privacy enabled. Low web traffic.</p>
+                    <div class="p-3 rounded-lg bg-brand-blue/5 border border-brand-blue/10"><p class="text-brand-blue text-xs font-bold uppercase tracking-wider">Opportunity</p><p class="text-xs text-zinc-500 mt-1">Enterprise buyers need verified compliance. Open-source + self-hosted deployment gives Agent Vox a trust advantage.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- WHAT NEDZO HAS THAT WE DON'T -->
+    <section id="gaps-ours" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-4"><i data-lucide="alert-triangle" class="w-3 h-3"></i> Honest Assessment</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">What Nedzo Has That We Don&rsquo;t</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Gaps we must acknowledge and prioritize. Categorized by severity.</p>
+            </div>
+            <!-- Critical -->
+            <div class="mb-8 reveal">
+                <h3 class="text-red-400 font-semibold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><i data-lucide="flame" class="w-4 h-4"></i> Critical &mdash; Must Close</h3>
+                <div class="glass-card p-2 md:p-4 overflow-x-auto">
+                    <table class="data-table">
+                        <thead><tr><th>Capability</th><th>Nedzo</th><th>Agent Vox</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-white text-sm font-medium">Published pricing + buy button</td><td class="text-sm">4 tiers, live checkout, annual discounts</td><td class="text-red-400 text-sm">No public pricing. Cannot purchase.</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Visual flow builder</td><td class="text-sm">Drag-and-drop with branching logic</td><td class="text-red-400 text-sm">None &mdash; code only</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Whitelabel platform</td><td class="text-sm">Full: custom logo, URL, branding ($999/mo)</td><td class="text-amber-400 text-sm">Architecture supports it, no UI</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Rebilling / sub-account billing</td><td class="text-sm">Built-in, Agency plan+</td><td class="text-red-400 text-sm">Not wired</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- High -->
+            <div class="mb-8 reveal">
+                <h3 class="text-amber-400 font-semibold text-sm uppercase tracking-wider mb-4 flex items-center gap-2"><i data-lucide="alert-circle" class="w-4 h-4"></i> High &mdash; Should Close</h3>
+                <div class="glass-card p-2 md:p-4 overflow-x-auto">
+                    <table class="data-table">
+                        <thead><tr><th>Capability</th><th>Nedzo</th><th>Agent Vox</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-white text-sm font-medium">AI Co-Pilot agent builder</td><td class="text-sm">Guided wizard &mdash; asks use case, generates prompts</td><td class="text-red-400 text-sm">Manual prompt engineering</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Web chat widget</td><td class="text-sm">Embeddable AI widget, all plans</td><td class="text-red-400 text-sm">None</td></tr>
+                            <tr><td class="text-white text-sm font-medium">IVR navigation</td><td class="text-sm">Agents navigate phone menus</td><td class="text-red-400 text-sm">None</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Community + Academy</td><td class="text-sm">Skool community, Nedzo Academy, weekly sessions</td><td class="text-red-400 text-sm">None</td></tr>
+                            <tr><td class="text-white text-sm font-medium">Affiliate program</td><td class="text-sm">20% recurring, 3 partner tiers</td><td class="text-red-400 text-sm">None</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Strategy callout -->
+            <div class="glass-card p-8 reveal" style="background:rgba(59,130,246,0.04);border-color:rgba(59,130,246,0.15)">
+                <div class="flex items-center gap-3 mb-3"><i data-lucide="lightbulb" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold">The Real Gap Isn&rsquo;t Features &mdash; It&rsquo;s Distribution</h3></div>
+                <p class="text-sm text-zinc-400">Nedzo&rsquo;s product is a commodity voice bot with nice packaging. Their actual advantage is <strong class="text-zinc-300">go-to-market infrastructure</strong>: published pricing, affiliate flywheel, GHL ecosystem alignment, Skool community, and a whitelabel play that turns agencies into resellers. Features that aren&rsquo;t priced, packaged, and purchasable don&rsquo;t count.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- WHAT WE HAVE THAT NEDZO DOESN'T -->
+    <section id="advantages" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-emerald-500/5 bottom-[-200px] right-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="shield-check" class="w-3 h-3"></i> Architectural Superiority</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">What We Have That Nedzo Doesn&rsquo;t</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Structural advantages that require Nedzo to rebuild from the ground up &mdash; not feature gaps they can bolt on.</p>
+            </div>
+
+            <div class="space-y-6 reveal">
+                <!-- Knowledge Graph -->
+                <div class="glass-card p-8 md:p-10" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-shrink-0"><div class="icon-box w-16 h-16 flex items-center justify-center" style="background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.15)"><i data-lucide="database" class="w-7 h-7 text-emerald-400"></i></div></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2"><span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]">Category-Defining</span><h3 class="text-white font-semibold text-xl">Graph Memory That Compounds</h3></div>
+                            <p class="text-sm text-zinc-400 mb-4">Neo4j knowledge graph stores every interaction as connected nodes &mdash; contacts, calls, entities, objections, buying signals, competitor mentions, relationship maps. Call #5 with a prospect automatically references what was learned in calls #1&ndash;4. Nedzo is stateless. Every call starts from zero.</p>
+                            <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                                <p class="text-emerald-400 text-sm font-medium mb-2">The Demo That Sells Itself:</p>
+                                <p class="text-xs text-zinc-500">&ldquo;Call the agent. Tell it you have a $5K competing quote and you&rsquo;re on a 90-day budget cycle. Hang up. Call back next week. Watch it remember everything and adjust the pitch.&rdquo; No competitor can do this.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Multi-Provider Resilience -->
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-shrink-0"><div class="icon-box w-16 h-16 flex items-center justify-center"><i data-lucide="layers" class="w-7 h-7 text-brand-blue"></i></div></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2"><span class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 text-[10px]">Major Advantage</span><h3 class="text-white font-semibold text-xl">Multi-Provider Resilience</h3></div>
+                            <p class="text-sm text-zinc-400 mb-4">Nedzo uses a single undisclosed vendor for each layer. If their TTS provider goes down, all calls drop. Agent Vox has automatic failover across every layer of the stack.</p>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="p-4 rounded-xl bg-brand-blue/5 border border-brand-blue/10 text-center"><p class="text-brand-blue text-xs font-bold uppercase tracking-wider">STT</p><p class="text-2xl font-bold text-white mt-1">5</p><p class="text-xs text-zinc-500 mt-1">providers with auto-failover</p></div>
+                                <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center"><p class="text-emerald-400 text-xs font-bold uppercase tracking-wider">TTS</p><p class="text-2xl font-bold text-white mt-1">6</p><p class="text-xs text-zinc-500 mt-1">providers with auto-failover</p></div>
+                                <div class="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10 text-center"><p class="text-purple-400 text-xs font-bold uppercase tracking-wider">LLM</p><p class="text-2xl font-bold text-white mt-1">5+</p><p class="text-xs text-zinc-500 mt-1">models with complexity routing</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Zero-Cost Floor -->
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <div class="flex-shrink-0"><div class="icon-box w-16 h-16 flex items-center justify-center"><i data-lucide="dollar-sign" class="w-7 h-7 text-brand-blue"></i></div></div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-2"><span class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 text-[10px]">Major Advantage</span><h3 class="text-white font-semibold text-xl">Zero-Cost Execution Floor</h3></div>
+                            <p class="text-sm text-zinc-400 mb-6">Full pipeline on local hardware: MLX Whisper (STT) + Edge-TTS (TTS) + Ollama (LLM) = $0.00/min. Only Twilio telephony remains. Nedzo&rsquo;s opaque pricing means agencies can&rsquo;t optimize &mdash; they pay whatever Nedzo charges.</p>
+                            <div class="grid md:grid-cols-3 gap-4">
+                                <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10 text-center"><p class="text-xs text-zinc-500 mb-1">Nedzo @ 2,500 min/mo</p><p class="text-2xl font-bold text-red-400">$499</p><p class="text-xs text-zinc-600 mt-1">$0.20/min effective</p></div>
+                                <div class="p-4 rounded-xl bg-brand-blue/5 border border-brand-blue/10 text-center"><p class="text-xs text-zinc-500 mb-1">Vox Cloud @ 2,500 min/mo</p><p class="text-2xl font-bold text-brand-blue">~$125</p><p class="text-xs text-zinc-600 mt-1">~$0.05/min effective</p></div>
+                                <div class="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-center"><p class="text-xs text-zinc-500 mb-1">Vox Local @ 2,500 min/mo</p><p class="text-2xl font-bold text-emerald-400">$0 + telco</p><p class="text-xs text-zinc-600 mt-1">~$0.02/min (Twilio only)</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Developer API + Entity Extraction + Open Architecture -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="code" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">Full REST API</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">120+ documented endpoints. OpenAPI auto-docs. Full programmatic control over every entity &mdash; agents, contacts, calls, campaigns, analytics, knowledge bases.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: zero public API docs. Webhooks + Zapier only.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="scan-search" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">Entity Extraction</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">Claude post-call extraction: companies, people, products, objections, buying signals &mdash; all stored as graph nodes with relationships.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: call summaries only. No structured entity data.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="server" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">Open Architecture</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">Full source. Deploy anywhere. Your data stays on your infrastructure. Complete data sovereignty. No vendor lock-in.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: SaaS-only, cloud-only, complete vendor lock-in.</p>
+                    </div>
+                </div>
+                <!-- A/B Testing + Analytics + Multi-Agent -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="split" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">A/B Testing</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">Weighted prompt variants with outcome tracking. Test talk tracks, greetings, objection handling. See which converts.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: no A/B testing capability.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="bar-chart-3" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">Deep Analytics</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">Funnel visualization, cohort analysis, per-component cost tracking, agent comparison dashboards, email reports.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: basic end-of-call summaries only.</p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><i data-lucide="bot" class="w-5 h-5 text-brand-blue"></i><h3 class="text-white font-semibold text-sm">Multi-Agent Intelligence</h3></div>
+                        <p class="text-xs text-zinc-400 mb-3">5 specialized daemons: Atlas (intelligence), Sandman (ops), Delphi (infra), Sensei (coherence), Forge (compute). Cross-domain analysis.</p>
+                        <p class="text-xs text-zinc-600">Nedzo: single-agent, no multi-agent analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- HEAD-TO-HEAD MATRIX -->
+    <section id="matrix" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-4"><i data-lucide="scale" class="w-3 h-3"></i> Feature Matrix</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Head-to-Head Comparison</h2>
+                <p class="text-zinc-400 mt-4 max-w-xl mx-auto">30 capabilities compared. Agent Vox wins 19, Nedzo wins 8, 3 ties.</p>
+            </div>
+            <div class="glass-card p-2 md:p-4 overflow-x-auto reveal">
+                <table class="data-table">
+                    <thead><tr><th style="width:28%">Feature</th><th style="width:26%">Nedzo.ai</th><th style="width:26%">Agent Vox</th><th style="width:12%">Winner</th></tr></thead>
+                    <tbody>
+                        <tr><td class="text-white text-sm">Cross-call memory</td><td class="text-sm">None (stateless)</td><td class="text-sm">Neo4j knowledge graph</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Inbound calls</td><td class="text-sm">Yes</td><td class="text-sm">Yes (Twilio WebSocket)</td><td class="win-tie text-sm">Tie</td></tr>
+                        <tr><td class="text-white text-sm">Outbound campaigns</td><td class="text-sm">Batch with scheduling</td><td class="text-sm">NATS worker + state machine</td><td class="win-tie text-sm">Tie</td></tr>
+                        <tr><td class="text-white text-sm">STT providers</td><td class="text-sm">1 (undisclosed)</td><td class="text-sm">5 (auto-failover)</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">TTS providers</td><td class="text-sm">1 (undisclosed)</td><td class="text-sm">6 (auto-failover)</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Voice selection</td><td class="text-sm">50+ neural voices</td><td class="text-sm">~130 across 6 providers</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Voice cloning</td><td class="text-sm">Not disclosed</td><td class="text-sm">Chatterbox (unlimited, free)</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">LLM routing</td><td class="text-sm">Single model (opaque)</td><td class="text-sm">3-tier complexity cascade</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Languages</td><td class="text-sm">7</td><td class="text-sm">1 (English focused)</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Visual flow builder</td><td class="text-sm">Drag-and-drop + branching</td><td class="text-sm">None</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">AI Co-Pilot builder</td><td class="text-sm">Guided agent wizard</td><td class="text-sm">None</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Web chat widget</td><td class="text-sm">Embeddable widget</td><td class="text-sm">None</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">IVR navigation</td><td class="text-sm">Yes</td><td class="text-sm">None</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Knowledge base (RAG)</td><td class="text-sm">File/URL/text upload</td><td class="text-sm">PDF/TXT/MD + per-turn retrieval</td><td class="win-tie text-sm">Tie</td></tr>
+                        <tr><td class="text-white text-sm">Entity extraction</td><td class="text-sm">Call summaries only</td><td class="text-sm">Graph-stored entities</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">A/B testing</td><td class="text-sm">None</td><td class="text-sm">Weighted variants + outcomes</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Analytics depth</td><td class="text-sm">Basic reporting</td><td class="text-sm">Funnel, cohorts, costs, comparison</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">CRM integrations</td><td class="text-sm">GHL, Calendly, Cal.com, Pipedrive</td><td class="text-sm">GHL, HubSpot, Salesforce (OAuth)</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">SMS two-way</td><td class="text-sm">Post-call notifications only</td><td class="text-sm">Full two-way via Twilio</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Email reports</td><td class="text-sm">None</td><td class="text-sm">Automated HTML via Postmark/SG</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Webhook dispatch</td><td class="text-sm">Basic webhooks</td><td class="text-sm">HMAC-SHA256 signed events</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">API access</td><td class="text-sm">No public API</td><td class="text-sm">120+ REST endpoints, OpenAPI</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Published pricing</td><td class="text-sm">4 tiers, live checkout</td><td class="text-sm">Not public</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Whitelabel</td><td class="text-sm">Full ($999/mo VIP)</td><td class="text-sm">Architecture only, no UI</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Rebilling</td><td class="text-sm">Built-in, Agency plan+</td><td class="text-sm">Not wired</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                        <tr><td class="text-white text-sm">Self-hosted / on-prem</td><td class="text-sm">No (SaaS only)</td><td class="text-sm">Yes (Docker, any infra)</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Local AI ($0/min)</td><td class="text-sm">No</td><td class="text-sm">Ollama + MLX + Edge-TTS</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Data ownership</td><td class="text-sm">Nedzo servers only</td><td class="text-sm">Self-hosted, full sovereignty</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Background audio</td><td class="text-sm">Office sounds</td><td class="text-sm">Office + caf&eacute; + call center</td><td class="win-vox text-sm">Vox</td></tr>
+                        <tr><td class="text-white text-sm">Community / Academy</td><td class="text-sm">Skool + Academy + weekly calls</td><td class="text-sm">None</td><td class="win-nedzo text-sm">Nedzo</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- STRATEGIC POSITIONING -->
+    <section id="strategy" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-brand-blue/8 top-[-200px] right-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-4"><i data-lucide="target" class="w-3 h-3"></i> Strategy</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Strategic Positioning</h2>
+            </div>
+            <!-- The Narrative -->
+            <div class="glass-card p-10 mb-8 reveal text-center" style="border-color:rgba(59,130,246,0.2)">
+                <p class="text-2xl md:text-3xl font-bold text-white leading-snug max-w-3xl mx-auto">&ldquo;Nedzo gives you 50 voices and a no-code builder.<br><span class="text-gradient-blue">Agent Vox gives you an AI that actually remembers who it&rsquo;s talking to.</span>&rdquo;</p>
+                <p class="text-sm text-zinc-500 mt-6">Nedzo sells convenience. Agent Vox sells compounding intelligence. One is a commodity. The other is a moat.</p>
+            </div>
+
+            <!-- Quadrant Map -->
+            <div class="glass-card p-8 mb-8 reveal">
+                <h3 class="text-white font-semibold text-lg mb-6 text-center">Market Positioning Map</h3>
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="grid grid-cols-2 gap-0 border border-white/10 rounded-xl overflow-hidden" style="min-height:320px">
+                        <!-- Top-left: Developer + Simple -->
+                        <div class="p-6 border-r border-b border-white/10 bg-white/[0.01]">
+                            <p class="text-[10px] uppercase tracking-wider text-zinc-600 mb-4">Developer &middot; Simple</p>
+                            <div class="space-y-2">
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-zinc-800 text-zinc-400">Vapi</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-zinc-800 text-zinc-400">Bland AI</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-zinc-800 text-zinc-400">Retell</span>
+                            </div>
+                        </div>
+                        <!-- Top-right: Developer + Intelligent -->
+                        <div class="p-6 border-b border-white/10 bg-brand-blue/[0.03]">
+                            <p class="text-[10px] uppercase tracking-wider text-zinc-600 mb-4">Developer &middot; Intelligent</p>
+                            <div class="space-y-2">
+                                <span class="inline-block px-3 py-1.5 rounded-full text-xs bg-brand-blue/20 text-brand-blue font-semibold border border-brand-blue/30">Agent Vox</span>
+                            </div>
+                        </div>
+                        <!-- Bottom-left: No-Code + Simple -->
+                        <div class="p-6 border-r border-white/10 bg-white/[0.01]">
+                            <p class="text-[10px] uppercase tracking-wider text-zinc-600 mb-4">No-Code &middot; Simple</p>
+                            <div class="space-y-2">
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-red-500/10 text-red-400 border border-red-500/20">Nedzo.ai</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-zinc-800 text-zinc-400">Synthflow</span>
+                                <span class="inline-block px-3 py-1 rounded-full text-xs bg-zinc-800 text-zinc-400">Callin.io</span>
+                            </div>
+                        </div>
+                        <!-- Bottom-right: No-Code + Intelligent -->
+                        <div class="p-6 bg-white/[0.01]">
+                            <p class="text-[10px] uppercase tracking-wider text-zinc-600 mb-4">No-Code &middot; Intelligent</p>
+                            <p class="text-xs text-zinc-600 italic mt-4">Empty quadrant &mdash; opportunity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12 reveal">
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4"><i data-lucide="key" class="w-5 h-5 text-emerald-400"></i><h3 class="text-white font-semibold">The Wedge</h3></div>
+                    <p class="text-sm text-zinc-400">Graph memory. Every demo starts with: <strong class="text-zinc-300">&ldquo;Call the agent. Mention your budget. Hang up. Call back. Watch it remember and adapt.&rdquo;</strong> Nedzo starts from zero every time. This is architectural &mdash; they cannot replicate it without rebuilding their data layer.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4"><i data-lucide="dollar-sign" class="w-5 h-5 text-emerald-400"></i><h3 class="text-white font-semibold">The Economics</h3></div>
+                    <p class="text-sm text-zinc-400">Agency on Nedzo Pro paying $499/mo for 2,500 min: <strong class="text-zinc-300">$0.20/min effective</strong>. Same agency on Agent Vox local: <strong class="text-emerald-400">$0.02/min</strong>. They charge clients $0.25/min either way &mdash; Vox delivers <strong class="text-emerald-400">10x more margin</strong>.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4"><i data-lucide="ban" class="w-5 h-5 text-red-400"></i><h3 class="text-white font-semibold">Where NOT to Compete</h3></div>
+                    <p class="text-sm text-zinc-400">Don&rsquo;t build Skool communities, affiliate programs, or academy courses until after pricing is live. Don&rsquo;t chase Nedzo&rsquo;s no-code simplicity &mdash; <strong class="text-zinc-300">add a visual builder but keep the intelligence depth</strong>. Own the top-right quadrant.</p>
+                </div>
+            </div>
+
+            <!-- Priority Roadmap -->
+            <div class="reveal">
+                <h3 class="text-white font-semibold text-lg mb-6 text-center">Priority Roadmap: Closing the Gaps</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">P0</span></div><div><h4 class="text-white font-semibold text-sm">Can&rsquo;t Sell Without</h4><p class="text-xs text-zinc-500">1&ndash;2 weeks</p></div></div>
+                        <ul class="space-y-2 text-xs text-zinc-400">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-red-400 mt-0.5"></i> Published pricing page</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-red-400 mt-0.5"></i> Live checkout / signup</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-red-400 mt-0.5"></i> Landing page with demo</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-red-400 mt-0.5"></i> GTM positioning launch</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center"><span class="text-brand-blue font-bold text-sm">P1</span></div><div><h4 class="text-white font-semibold text-sm">Agency Adoption</h4><p class="text-xs text-zinc-500">2&ndash;6 weeks</p></div></div>
+                        <ul class="space-y-2 text-xs text-zinc-400">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue mt-0.5"></i> Visual flow builder (v1)</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue mt-0.5"></i> Whitelabel UI + billing</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue mt-0.5"></i> Multi-language (ES, FR, DE)</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue mt-0.5"></i> AI agent builder wizard</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold text-sm">P2</span></div><div><h4 class="text-white font-semibold text-sm">Channel Expansion</h4><p class="text-xs text-zinc-500">6&ndash;12 weeks</p></div></div>
+                        <ul class="space-y-2 text-xs text-zinc-400">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400 mt-0.5"></i> Web chat widget</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400 mt-0.5"></i> IVR navigation</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400 mt-0.5"></i> Unified inbox</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400 mt-0.5"></i> Affiliate program</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">P3</span></div><div><h4 class="text-white font-semibold text-sm">Deepen the Moat</h4><p class="text-xs text-zinc-500">12+ weeks</p></div></div>
+                        <ul class="space-y-2 text-xs text-zinc-400">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400 mt-0.5"></i> Predictive close scoring</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400 mt-0.5"></i> Cross-contact intelligence</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400 mt-0.5"></i> Objection pattern analysis</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-3 h-3 text-purple-400 mt-0.5"></i> Buying cycle prediction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- THE BOTTOM LINE -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card p-10 md:p-16 text-center reveal" style="border-color:rgba(59,130,246,0.15)">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mb-6">The Bottom Line</h2>
+                <p class="text-lg text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-8">Nedzo is a <strong class="text-zinc-300">commodity voice bot with excellent packaging</strong> &mdash; published pricing, whitelabel, affiliate program, and GHL ecosystem alignment. Agent Vox is a <strong class="text-zinc-300">voice intelligence platform with an architecture Nedzo cannot replicate</strong>: persistent graph memory, multi-provider resilience, zero-cost execution, and multi-agent analysis. Nedzo is ahead on distribution. Vox is ahead on product depth. <strong class="text-white">The gap that matters most isn&rsquo;t a feature &mdash; it&rsquo;s the absence of a buy button.</strong></p>
+                <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                    <div class="p-6 rounded-xl bg-red-500/5 border border-red-500/10">
+                        <p class="text-red-400 text-xs font-bold uppercase tracking-wider mb-2">Nedzo.ai</p>
+                        <p class="text-white font-semibold">A voice bot wrapped in agency GTM</p>
+                        <p class="text-xs text-zinc-500 mt-2">Simple, packaged, purchasable, shallow</p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                        <p class="text-emerald-400 text-xs font-bold uppercase tracking-wider mb-2">Agent Vox</p>
+                        <p class="text-white font-semibold">A voice intelligence platform</p>
+                        <p class="text-xs text-zinc-500 mt-2">Deep, intelligent, compounding, unmatched</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-zinc-600 text-sm">Internal competitive intelligence document. Based on public Nedzo.ai documentation, Trustpilot reviews, help center articles, pricing pages, and Agent Vox codebase analysis.</p>
+            <div class="flex justify-center gap-8 mt-8 text-xs text-zinc-600">
+                <span>Meridian Technologies</span>
+                <span>&bull;</span>
+                <span>March 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
