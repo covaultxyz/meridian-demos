@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Shield — Production Readiness Plan</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-               max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
-        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
-        code { background: #f4f4f4; padding: 0.2rem 0.4rem; }
-    </style>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
@@ -21,37 +7,810 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif']},colors:{brand:{blue:'#3b82f6',dark:'#2563eb'}}}}}</script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } }
+                }
+            }
+        }
+    </script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}.glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}.glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-2px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}.nav-glass{background:rgba(0,0,0,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}.glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}.text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.text-gradient-emerald{background:linear-gradient(135deg,#34d399 0%,#10b981 50%,#059669 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.text-gradient-amber{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 50%,#d97706 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}.section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}.data-table{width:100%;border-collapse:separate;border-spacing:0}.data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}.data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}.data-table tbody tr:hover{background:rgba(255,255,255,0.02)}.phase-tab{padding:10px 20px;border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s;border:1px solid transparent;user-select:none}.phase-tab:hover{background:rgba(255,255,255,0.06)}.phase-tab.active{background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3);color:#60a5fa}.plan-section{display:none}.plan-section.active{display:block}.code-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;font-family:monospace;font-size:12px;line-height:1.7;overflow-x:auto;color:#a1a1aa;white-space:pre}.status-ready{color:#34d399;font-weight:600}.status-build{color:#fbbf24;font-weight:600}.mini-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px;transition:all .3s}.mini-card:hover{border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.05)}.flow-arrow{color:#3b82f6;font-size:20px;line-height:1}.kw-tag{display:inline-block;padding:3px 10px;margin:2px;border-radius:8px;font-size:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#a1a1aa}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-2px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .nav-glass{background:rgba(0,0,0,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-emerald{background:linear-gradient(135deg,#34d399 0%,#10b981 50%,#059669 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-amber{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 50%,#d97706 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .phase-tab{padding:10px 20px;border-radius:12px;font-size:13px;font-weight:500;cursor:pointer;transition:all .3s ease;border:1px solid transparent;user-select:none}
+        .phase-tab:hover{background:rgba(255,255,255,0.06)}
+        .phase-tab.active{background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3);color:#60a5fa}
+        .plan-section{display:none}
+        .plan-section.active{display:block}
+        .code-block{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;overflow-x:auto;color:#a1a1aa;white-space:pre}
+        .status-ready{color:#34d399;font-weight:600}
+        .status-build{color:#fbbf24;font-weight:600}
+        .status-plan{color:#60a5fa;font-weight:600}
+        .checklist-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:13px}
+        .checklist-item i{flex-shrink:0;margin-top:2px}
+        .mini-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px;transition:all .3s ease}
+        .mini-card:hover{border-color:rgba(255,255,255,0.12);background:rgba(255,255,255,0.05)}
+        .flow-arrow{color:#3b82f6;font-size:20px;line-height:1}
+        .kw-tag{display:inline-block;padding:3px 10px;margin:2px;border-radius:8px;font-size:11px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#a1a1aa}
     </style>
 </head>
 <body class="antialiased selection:bg-brand-blue/30 selection:text-white">
-    <nav class="fixed w-full z-50 top-0 nav-glass"><div class="max-w-7xl mx-auto px-6 lg:px-8"><div class="flex justify-between items-center h-20"><a href="#" class="flex items-center space-x-3"><div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i></div><span class="text-white font-semibold text-lg">Review Shield</span></a><div class="hidden md:flex items-center space-x-8"><a href="#current" class="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">Current State</a><a href="#architecture" class="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">Architecture</a><a href="#plans" class="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">Build Plans</a><a href="#revenue" class="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">Revenue</a><a href="#gtm" class="text-[13px] text-zinc-400 hover:text-white transition-colors font-medium">GTM</a></div><span class="hidden md:flex badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="rocket" class="w-3 h-3"></i> Production Plan</span></div></div></nav>
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden"><div class="glow-orb w-[600px] h-[600px] bg-emerald-500/8 top-[-200px] left-1/2 -translate-x-1/2"></div><div class="glow-orb w-[400px] h-[400px] bg-brand-blue/5 bottom-[-100px] left-[-100px]"></div><div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-32 pb-20"><div class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-8"><i data-lucide="shield-check" class="w-3 h-3"></i> Amazon Review Compliance</div><h1 class="text-5xl md:text-7xl font-bold text-gradient-white leading-[1.1] mb-3">Review Shield</h1><p class="text-lg text-zinc-500 mb-2">AI-Powered Amazon Review Compliance Platform</p><p class="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10">Automated detection, classification, and appeal of Amazon reviews that violate Community Guidelines. Powered by MERIDIAN infrastructure.</p><div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto"><div class="glass-card p-5 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Lifetime Revenue</p><p class="text-3xl font-bold text-emerald-400">$20.6K</p><p class="text-xs text-zinc-600 mt-1">135 removals</p></div><div class="glass-card p-5 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Gross Margin</p><p class="text-3xl font-bold text-emerald-400">96%</p><p class="text-xs text-zinc-600 mt-1">near-zero COGS</p></div><div class="glass-card p-5 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Active Clients</p><p class="text-3xl font-bold text-white">10</p><p class="text-xs text-zinc-600 mt-1">15+ churned</p></div><div class="glass-card p-5 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Build Plans</p><p class="text-3xl font-bold text-brand-blue">14</p><p class="text-xs text-zinc-600 mt-1">3,810 lines</p></div><div class="glass-card p-5 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Target MRR</p><p class="text-3xl font-bold text-amber-400">$26K</p><p class="text-xs text-zinc-600 mt-1">75 clients</p></div></div></div></section>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 top-0 nav-glass">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <span class="text-white font-semibold text-lg">Review Shield</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Overview</a>
+                    <a href="#current" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Current State</a>
+                    <a href="#architecture" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Architecture</a>
+                    <a href="#plans" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Build Plans</a>
+                    <a href="#revenue" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Revenue</a>
+                    <a href="#gtm" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Go-to-Market</a>
+                </div>
+                <span class="hidden md:flex badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><i data-lucide="rocket" class="w-3 h-3"></i> Production Plan</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="glow-orb w-[600px] h-[600px] bg-emerald-500/8 top-[-200px] left-1/2 -translate-x-1/2"></div>
+        <div class="glow-orb w-[400px] h-[400px] bg-brand-blue/5 bottom-[-100px] left-[-100px]"></div>
+        <div class="glow-orb w-[300px] h-[300px] bg-amber-500/5 bottom-[-100px] right-[-100px]"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-32 pb-20">
+            <div class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-8"><i data-lucide="shield-check" class="w-3 h-3"></i> Amazon Review Compliance</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-gradient-white leading-[1.1] mb-3">Review Shield</h1>
+            <p class="text-lg text-zinc-500 mb-2">AI-Powered Amazon Review Compliance Platform</p>
+            <p class="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-10">Automated detection, classification, and appeal of Amazon reviews that violate Community Guidelines. Powered by MERIDIAN infrastructure.</p>
+
+            <!-- Score Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+                <div class="glass-card p-5 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Lifetime Revenue</p>
+                    <p class="text-3xl font-bold text-emerald-400">$20.6K</p>
+                    <p class="text-xs text-zinc-600 mt-1">135 removals</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Gross Margin</p>
+                    <p class="text-3xl font-bold text-emerald-400">96%</p>
+                    <p class="text-xs text-zinc-600 mt-1">near-zero COGS</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Active Clients</p>
+                    <p class="text-3xl font-bold text-white">10</p>
+                    <p class="text-xs text-zinc-600 mt-1">15+ churned</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Build Plans</p>
+                    <p class="text-3xl font-bold text-brand-blue">14</p>
+                    <p class="text-xs text-zinc-600 mt-1">3,810 lines</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-1">Target MRR</p>
+                    <p class="text-3xl font-bold text-amber-400">$26K</p>
+                    <p class="text-xs text-zinc-600 mt-1">75 clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section id="current" class="py-24 relative"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4"><i data-lucide="search" class="w-3 h-3"></i> Business Audit</span><h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">What Exists Today</h2><p class="text-zinc-400 mt-4 max-w-2xl mx-auto">An existing Amazon review removal service with $20K+ lifetime revenue, run entirely by manual labor.</p></div><div class="glass-card p-2 md:p-6 overflow-x-auto mb-8 reveal"><h3 class="text-white font-semibold mb-4 px-4 pt-2">Client Portfolio</h3><table class="data-table"><thead><tr><th>Client</th><th>Products</th><th>Category</th><th>$/Review</th><th>Status</th></tr></thead><tbody><tr><td class="text-white text-sm font-medium">JRS Solutions</td><td class="text-sm">Magnesium oil sprays</td><td class="text-sm">Health</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Unybrands</td><td class="text-sm">pH Recharge water filters</td><td class="text-sm">Home</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">GLEOW</td><td class="text-sm">Face serums, self-tanners</td><td class="text-sm">Beauty</td><td class="text-sm">$225</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Riftbox / Wildhorn</td><td class="text-sm">Headphones, snorkel masks</td><td class="text-sm">Electronics</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Mighty Petz</td><td class="text-sm">Dog allergy relief chews</td><td class="text-sm">Pet</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Full Spectrum</td><td class="text-sm">Magnesium oil spray</td><td class="text-sm">Health</td><td class="text-sm">$175</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Zest Tea</td><td class="text-sm">Caffeine blends</td><td class="text-sm">Food</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Optimal Carnivore</td><td class="text-sm">Beef organ capsules</td><td class="text-sm">Supplements</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr><tr><td class="text-white text-sm font-medium">Solvstone</td><td class="text-sm">Bath mat</td><td class="text-sm">Home</td><td class="text-sm">$175</td><td class="status-build text-xs">New</td></tr><tr><td class="text-white text-sm font-medium">Diamond Hands LLC</td><td class="text-sm">Collagen masks</td><td class="text-sm">Beauty</td><td class="text-sm">$150</td><td class="status-build text-xs">New</td></tr></tbody></table></div><div class="grid md:grid-cols-3 gap-6 mb-8 reveal"><div class="glass-card p-8 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2023-2024</p><p class="text-4xl font-bold text-white">$7,350</p><p class="text-sm text-zinc-500 mt-2">48 removals</p></div><div class="glass-card p-8 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2025</p><p class="text-4xl font-bold text-emerald-400">$11,625</p><p class="text-sm text-zinc-500 mt-2">76 removals</p></div><div class="glass-card p-8 text-center"><p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2026 YTD</p><p class="text-4xl font-bold text-brand-blue">$1,650</p><p class="text-sm text-zinc-500 mt-2">11 removals</p></div></div><div class="glass-card p-8 reveal" style="background:rgba(245,158,11,0.04);border-color:rgba(245,158,11,0.15)"><div class="flex items-center gap-3 mb-4"><i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i><h3 class="text-white font-semibold">Every Step Is Manual</h3></div><div class="flex flex-wrap items-center gap-3 text-sm"><span class="mini-card px-4 py-2 text-amber-400">Read reviews</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">ChatGPT</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Generate letter</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Seller Central</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Wait 30-180d</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Check</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Excel</span><span class="flow-arrow">&rarr;</span><span class="mini-card px-4 py-2 text-amber-400">Invoice</span></div><p class="text-xs text-zinc-500 mt-4">Throughput: 6-8 reviews/month. Bottleneck: human labor.</p></div></div></section>
+
+    <!-- CURRENT STATE -->
+    <section id="current" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-4"><i data-lucide="search" class="w-3 h-3"></i> Business Audit</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">What Exists Today</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">An existing Amazon review removal service with $20K+ lifetime revenue, run entirely by manual labor. Every step is a bottleneck.</p>
+            </div>
+
+            <!-- Client Portfolio -->
+            <div class="glass-card p-2 md:p-6 overflow-x-auto mb-8 reveal">
+                <h3 class="text-white font-semibold mb-4 px-4 pt-2">Client Portfolio &mdash; 10 Active Brands</h3>
+                <table class="data-table">
+                    <thead><tr><th>Client</th><th>Products</th><th>Category</th><th>Price/Review</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td class="text-white text-sm font-medium">JRS Solutions</td><td class="text-sm">Magnesium oil sprays (8oz, 12oz, 64oz)</td><td class="text-sm">Health/Wellness</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active (longest)</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Unybrands</td><td class="text-sm">pH Recharge water filters</td><td class="text-sm">Home/Kitchen</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">GLEOW</td><td class="text-sm">Face serums, self-tanners, anti-aging</td><td class="text-sm">Beauty</td><td class="text-sm">$225</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Riftbox / Wildhorn</td><td class="text-sm">Headphones, snorkel masks</td><td class="text-sm">Electronics/Sport</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Mighty Petz</td><td class="text-sm">Dog allergy relief, UTI chews</td><td class="text-sm">Pet Supplements</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Full Spectrum</td><td class="text-sm">Magnesium oil spray (Estonia)</td><td class="text-sm">Health/Wellness</td><td class="text-sm">$175</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Zest Tea</td><td class="text-sm">Caffeine blends, colostrum gummies</td><td class="text-sm">Food/Supplements</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Optimal Carnivore</td><td class="text-sm">Beef organ capsules</td><td class="text-sm">Supplements</td><td class="text-sm">$150</td><td class="status-ready text-xs">Active</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Solvstone</td><td class="text-sm">Diatomaceous earth bath mat</td><td class="text-sm">Home</td><td class="text-sm">$175</td><td class="status-build text-xs">New (2025)</td></tr>
+                        <tr><td class="text-white text-sm font-medium">Diamond Hands LLC</td><td class="text-sm">Collagen masks, eye patches</td><td class="text-sm">Beauty</td><td class="text-sm">$150</td><td class="status-build text-xs">New (2025)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Revenue History -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8 reveal">
+                <div class="glass-card p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2023&ndash;2024</p>
+                    <p class="text-4xl font-bold text-white">$7,350</p>
+                    <p class="text-sm text-zinc-500 mt-2">48 reviews removed</p>
+                    <p class="text-xs text-zinc-600">Avg $153/removal</p>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2025</p>
+                    <p class="text-4xl font-bold text-emerald-400">$11,625</p>
+                    <p class="text-sm text-zinc-500 mt-2">76 reviews removed</p>
+                    <p class="text-xs text-zinc-600">58% YoY growth</p>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">2026 (Jan&ndash;Feb)</p>
+                    <p class="text-4xl font-bold text-brand-blue">$1,650</p>
+                    <p class="text-sm text-zinc-500 mt-2">11 reviews removed</p>
+                    <p class="text-xs text-zinc-600">$900/mo run rate</p>
+                </div>
+            </div>
+
+            <!-- Current Process Pain -->
+            <div class="glass-card p-8 reveal" style="background:rgba(245,158,11,0.04);border-color:rgba(245,158,11,0.15)">
+                <div class="flex items-center gap-3 mb-4"><i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i><h3 class="text-white font-semibold">Every Step Is Manual</h3></div>
+                <div class="flex flex-wrap items-center gap-3 text-sm">
+                    <span class="mini-card px-4 py-2 text-amber-400">Human reads reviews</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Copies into ChatGPT</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Bot generates letter</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Pastes into Seller Central</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Waits 30&ndash;180 days</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Checks if removed</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Updates Excel</span>
+                    <span class="flow-arrow">&rarr;</span>
+                    <span class="mini-card px-4 py-2 text-amber-400">Sends invoice</span>
+                </div>
+                <p class="text-xs text-zinc-500 mt-4">Throughput: 6&ndash;8 reviews/month. Bottleneck: human labor at every stage.</p>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section id="architecture" class="py-24 relative"><div class="glow-orb w-[500px] h-[500px] bg-brand-blue/5 top-[-200px] right-[-200px]"></div><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><span class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-4"><i data-lucide="cpu" class="w-3 h-3"></i> MERIDIAN</span><h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">The Automated Pipeline</h2><p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Six stages. 80% infrastructure already exists.</p></div><div class="grid md:grid-cols-6 gap-4 mb-12 reveal"><div class="glass-card p-6 text-center" style="border-color:rgba(59,130,246,0.2)"><div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="scan" class="w-5 h-5 text-blue-400"></i></div><p class="text-white font-semibold text-sm mb-1">Detect</p><p class="text-xs text-zinc-500">Helium 10</p></div><div class="glass-card p-6 text-center" style="border-color:rgba(168,85,247,0.2)"><div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="brain" class="w-5 h-5 text-purple-400"></i></div><p class="text-white font-semibold text-sm mb-1">Classify</p><p class="text-xs text-zinc-500">Claude AI</p></div><div class="glass-card p-6 text-center" style="border-color:rgba(16,185,129,0.2)"><div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i></div><p class="text-white font-semibold text-sm mb-1">Generate</p><p class="text-xs text-zinc-500">Appeal letter</p></div><div class="glass-card p-6 text-center" style="border-color:rgba(245,158,11,0.2)"><div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="send" class="w-5 h-5 text-amber-400"></i></div><p class="text-white font-semibold text-sm mb-1">Submit</p><p class="text-xs text-zinc-500">To Amazon</p></div><div class="glass-card p-6 text-center" style="border-color:rgba(59,130,246,0.2)"><div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="eye" class="w-5 h-5 text-blue-400"></i></div><p class="text-white font-semibold text-sm mb-1">Track</p><p class="text-xs text-zinc-500">Daily sentinel</p></div><div class="glass-card p-6 text-center" style="border-color:rgba(16,185,129,0.2)"><div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="receipt" class="w-5 h-5 text-emerald-400"></i></div><p class="text-white font-semibold text-sm mb-1">Invoice</p><p class="text-xs text-zinc-500">Auto-bill</p></div></div></div></section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-brand-blue/5 top-[-200px] right-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-4"><i data-lucide="cpu" class="w-3 h-3"></i> MERIDIAN Infrastructure</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">The Automated Pipeline</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Six stages, fully automatable. 80% of infrastructure already exists in MERIDIAN.</p>
+            </div>
+
+            <!-- Pipeline Stages -->
+            <div class="grid md:grid-cols-6 gap-4 mb-12 reveal">
+                <div class="glass-card p-6 text-center" style="border-color:rgba(59,130,246,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="scan" class="w-5 h-5 text-blue-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Detect</p>
+                    <p class="text-xs text-zinc-500">Helium 10 scan</p>
+                </div>
+                <div class="glass-card p-6 text-center" style="border-color:rgba(168,85,247,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="brain" class="w-5 h-5 text-purple-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Classify</p>
+                    <p class="text-xs text-zinc-500">Claude analysis</p>
+                </div>
+                <div class="glass-card p-6 text-center" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="file-text" class="w-5 h-5 text-emerald-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Generate</p>
+                    <p class="text-xs text-zinc-500">Appeal letter</p>
+                </div>
+                <div class="glass-card p-6 text-center" style="border-color:rgba(245,158,11,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="send" class="w-5 h-5 text-amber-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Submit</p>
+                    <p class="text-xs text-zinc-500">To Amazon</p>
+                </div>
+                <div class="glass-card p-6 text-center" style="border-color:rgba(59,130,246,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="eye" class="w-5 h-5 text-blue-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Track</p>
+                    <p class="text-xs text-zinc-500">Daily sentinel</p>
+                </div>
+                <div class="glass-card p-6 text-center" style="border-color:rgba(16,185,129,0.2)">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-3"><i data-lucide="receipt" class="w-5 h-5 text-emerald-400"></i></div>
+                    <p class="text-white font-semibold text-sm mb-1">Invoice</p>
+                    <p class="text-xs text-zinc-500">Auto-bill</p>
+                </div>
+            </div>
+
+            <!-- MERIDIAN Reuse -->
+            <div class="glass-card p-2 md:p-6 overflow-x-auto mb-8 reveal">
+                <h3 class="text-white font-semibold mb-4 px-4 pt-2">MERIDIAN Components Reused (80%)</h3>
+                <table class="data-table">
+                    <thead><tr><th>Component</th><th>Existing Asset</th><th>Use For</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td class="text-white text-sm">Work Queues</td><td class="text-sm">mesh/work_queue.py + JetStream</td><td class="text-sm">Review processing pipeline</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">LLM Calls</td><td class="text-sm">claude -p CLI pattern</td><td class="text-sm">Classification + appeal generation</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Graph Database</td><td class="text-sm">Neo4j MIG</td><td class="text-sm">Client/product/review tracking</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Telegram Bot</td><td class="text-sm">@OracleDelphiBot</td><td class="text-sm">Client interface + notifications</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Pulse System</td><td class="text-sm">workers/pulse_scheduler.py</td><td class="text-sm">Daily review scanning sentinel</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Dashboard</td><td class="text-sm">Render deploy pipeline</td><td class="text-sm">Client portal</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Auth</td><td class="text-sm">Gateway JWT</td><td class="text-sm">Client portal authentication</td><td class="status-ready text-xs">Ready</td></tr>
+                        <tr><td class="text-white text-sm">Deployment</td><td class="text-sm">parallel-deploy-all-nodes.sh</td><td class="text-sm">Zero-downtime deploy</td><td class="status-ready text-xs">Ready</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- JetStream Streams -->
+            <div class="grid md:grid-cols-5 gap-4 reveal">
+                <div class="mini-card text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Stream 1</p>
+                    <p class="text-sm text-white font-semibold">REVIEW_INTAKE</p>
+                    <p class="text-xs text-zinc-600 mt-1">New reviews detected</p>
+                </div>
+                <div class="mini-card text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Stream 2</p>
+                    <p class="text-sm text-white font-semibold">REVIEW_CLASSIFY</p>
+                    <p class="text-xs text-zinc-600 mt-1">Violations scored</p>
+                </div>
+                <div class="mini-card text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Stream 3</p>
+                    <p class="text-sm text-white font-semibold">REVIEW_APPEAL</p>
+                    <p class="text-xs text-zinc-600 mt-1">Letters for approval</p>
+                </div>
+                <div class="mini-card text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Stream 4</p>
+                    <p class="text-sm text-white font-semibold">REVIEW_OUTCOME</p>
+                    <p class="text-xs text-zinc-600 mt-1">Removal results</p>
+                </div>
+                <div class="mini-card text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Stream 5</p>
+                    <p class="text-sm text-white font-semibold">REVIEW_INVOICE</p>
+                    <p class="text-xs text-zinc-600 mt-1">Billing events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section id="plans" class="py-24 relative"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-12 reveal"><span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="hammer" class="w-3 h-3"></i> 14 Build Plans</span><h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Production Readiness</h2></div><div class="flex flex-wrap gap-2 mb-8 justify-center reveal"><button class="phase-tab active" onclick="showPhase('foundation')">Phase 1: Foundation</button><button class="phase-tab" onclick="showPhase('pipeline')">Phase 2: Core Pipeline</button><button class="phase-tab" onclick="showPhase('operations')">Phase 3: Operations</button><button class="phase-tab" onclick="showPhase('client')">Phase 4: Client-Facing</button><button class="phase-tab" onclick="showPhase('ship')">Phase 5: Ship It</button></div>
-    <div class="plan-section active" id="phase-foundation"><div class="grid md:grid-cols-3 gap-6 reveal"><div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">01</span></div><div><h3 class="text-white font-semibold text-sm">Neo4j Schema</h3><p class="text-xs text-zinc-600">2-3 days</p></div></div><p class="text-xs text-zinc-400 mb-4">5 node types, 6 relationships. Parse 50+ Excel files. ~500 reviews, ~135 appeals.</p><div class="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10"><p class="text-blue-400 text-xs font-semibold">CURSOR AGENT OFFLOADABLE</p></div></div><div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">02</span></div><div><h3 class="text-white font-semibold text-sm">Keyword Database</h3><p class="text-xs text-zinc-600">1 day</p></div></div><p class="text-xs text-zinc-400 mb-4">200+ keywords, 15 categories, regex for masked profanity. Pre-filter saves ~60% tokens.</p><div class="flex flex-wrap gap-1"><span class="kw-tag">hostile</span><span class="kw-tag">false_claims</span><span class="kw-tag">profanity</span><span class="kw-tag">shipping</span><span class="kw-tag">pricing</span><span class="kw-tag">+10</span></div></div><div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">03</span></div><div><h3 class="text-white font-semibold text-sm">JetStream Streams</h3><p class="text-xs text-zinc-600">0.5 day</p></div></div><p class="text-xs text-zinc-400 mb-4">5 streams, durable consumers, DLQ routing. 120s ack wait, 3 retries, 365d outcome retention.</p><div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">NO DEPENDENCIES</p></div></div></div></div>
-    <div class="plan-section" id="phase-pipeline"><div class="grid md:grid-cols-3 gap-6 reveal"><div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">04</span></div><div><h3 class="text-white font-semibold text-sm">Review Scanner</h3><p class="text-xs text-zinc-600">3-4 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Helium 10 integration (preferred) + Amazon scraper fallback. Daily pulse sentinel, dedup by review_id.</p><div class="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10"><p class="text-amber-400 text-xs font-semibold">DISCOVERY: H10 API access?</p></div></div><div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">05</span></div><div><h3 class="text-white font-semibold text-sm">Violation Classifier</h3><p class="text-xs text-zinc-600">3-4 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Claude CLI replaces ChatGPT keywords. Haiku bulk / Sonnet borderline. ~$0.50/day. 80%+ recall target.</p><div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">KEY DIFFERENTIATOR</p></div></div><div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">06</span></div><div><h3 class="text-white font-semibold text-sm">Appeal Generator</h3><p class="text-xs text-zinc-600">2-3 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Sonnet-powered letters. Strict format, hallucination guard, quality gate. Few-shot from 135 successes.</p><div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">135 HISTORICAL SUCCESSES</p></div></div></div></div>
-    <div class="plan-section" id="phase-operations"><div class="grid md:grid-cols-3 gap-6 reveal"><div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">07</span></div><div><h3 class="text-white font-semibold text-sm">Submission Pipeline</h3><p class="text-xs text-zinc-600">3-5 days</p></div></div><p class="text-xs text-zinc-400 mb-4">3 tiers: Telegram approval &rarr; email auto-send &rarr; Playwright browser automation.</p></div><div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">08</span></div><div><h3 class="text-white font-semibold text-sm">Outcome Tracker</h3><p class="text-xs text-zinc-600">1-2 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Daily sentinel. HTTP 404 detection. Auto-invoice trigger. >180d = expired. Rate-limited URL checks.</p></div><div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">09</span></div><div><h3 class="text-white font-semibold text-sm">Invoicing System</h3><p class="text-xs text-zinc-600">2-3 days</p></div></div><p class="text-xs text-zinc-400 mb-4">PDF generation, sequential numbering, email delivery, /paid /overdue /revenue Telegram commands.</p></div></div></div>
-    <div class="plan-section" id="phase-client"><div class="grid md:grid-cols-2 gap-6 reveal"><div class="glass-card p-8" style="border-color:rgba(16,185,129,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold text-sm">10</span></div><div><h3 class="text-white font-semibold text-sm">Client Onboarding</h3><p class="text-xs text-zinc-600">2-3 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Telegram: /register &rarr; /addproduct ASIN &rarr; monitoring begins. Under 10 minutes.</p><div class="code-block text-xs" style="padding:12px">Client: /addproduct B01N0KQ9QJ
-Bot: Found: "Magnesium Oil Spray 8oz"
-     Rating: 4.2 stars. Monitoring active.</div></div><div class="glass-card p-8" style="border-color:rgba(16,185,129,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold text-sm">11</span></div><div><h3 class="text-white font-semibold text-sm">Client Dashboard</h3><p class="text-xs text-zinc-600">4-5 days</p></div></div><p class="text-xs text-zinc-400 mb-4">Render React app. JWT auth, magic link login. Dashboard, products, appeals, invoices, analytics.</p><div class="grid grid-cols-2 gap-3"><div class="mini-card p-3 text-center"><p class="text-lg font-bold text-white">12</p><p class="text-[10px] text-zinc-500">Products</p></div><div class="mini-card p-3 text-center"><p class="text-lg font-bold text-emerald-400">3</p><p class="text-[10px] text-zinc-500">Pending</p></div></div></div></div></div>
-    <div class="plan-section" id="phase-ship"><div class="grid md:grid-cols-3 gap-6 reveal"><div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">12</span></div><div><h3 class="text-white font-semibold text-sm">Deployment Config</h3><p class="text-xs text-zinc-600">1-2 days</p></div></div><p class="text-xs text-zinc-400">Node assignment, systemd/launchd, env vars. Prime: workers. e3b5f73: Telegram. M1: H10 scraper.</p></div><div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">13</span></div><div><h3 class="text-white font-semibold text-sm">Testing Strategy</h3><p class="text-xs text-zinc-600">2-3 days</p></div></div><p class="text-xs text-zinc-400">3-layer: unit, integration, E2E. Historical calibration: 80%+ recall on 135 removals.</p></div><div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">14</span></div><div><h3 class="text-white font-semibold text-sm">Go-to-Market</h3><p class="text-xs text-zinc-600">1-2 days</p></div></div><p class="text-xs text-zinc-400">Pricing tiers, 5 channels, competitive positioning, compliance posture, launch sequence.</p></div></div></div>
-    <div class="glass-card p-8 mt-12 reveal"><h3 class="text-white font-semibold text-lg mb-6 text-center">Critical Path</h3><div class="grid md:grid-cols-4 gap-4"><div class="mini-card p-5 text-center" style="border-color:rgba(59,130,246,0.2)"><p class="text-xs text-zinc-500 uppercase mb-2">Week 1-2</p><p class="text-white font-semibold text-sm">Foundation</p><p class="text-[10px] text-blue-400 mt-2">Plans 01-03</p></div><div class="mini-card p-5 text-center" style="border-color:rgba(168,85,247,0.2)"><p class="text-xs text-zinc-500 uppercase mb-2">Week 2-4</p><p class="text-white font-semibold text-sm">Core Pipeline</p><p class="text-[10px] text-purple-400 mt-2">Plans 04-06</p></div><div class="mini-card p-5 text-center" style="border-color:rgba(245,158,11,0.2)"><p class="text-xs text-zinc-500 uppercase mb-2">Week 5-6</p><p class="text-white font-semibold text-sm">Operations</p><p class="text-[10px] text-amber-400 mt-2">Plans 07-09</p></div><div class="mini-card p-5 text-center" style="border-color:rgba(16,185,129,0.2)"><p class="text-xs text-zinc-500 uppercase mb-2">Week 7-8</p><p class="text-white font-semibold text-sm">Client + Ship</p><p class="text-[10px] text-emerald-400 mt-2">Plans 10-14</p></div></div></div></div></section>
+
+    <!-- BUILD PLANS -->
+    <section id="plans" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-emerald-500/5 top-[-200px] left-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="hammer" class="w-3 h-3"></i> 14 Build Plans</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Production Readiness Plans</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Each plan is a standalone build spec with schema, code patterns, acceptance criteria, and files to create.</p>
+            </div>
+
+            <!-- Phase Tabs -->
+            <div class="flex flex-wrap gap-2 mb-8 justify-center reveal" id="phaseTabs">
+                <button class="phase-tab active" onclick="showPhase('foundation')">Phase 1: Foundation</button>
+                <button class="phase-tab" onclick="showPhase('pipeline')">Phase 2: Core Pipeline</button>
+                <button class="phase-tab" onclick="showPhase('operations')">Phase 3: Operations</button>
+                <button class="phase-tab" onclick="showPhase('client')">Phase 4: Client-Facing</button>
+                <button class="phase-tab" onclick="showPhase('ship')">Phase 5: Ship It</button>
+            </div>
+
+            <!-- PHASE 1: FOUNDATION -->
+            <div class="plan-section active" id="phase-foundation">
+                <div class="grid md:grid-cols-3 gap-6 reveal">
+                    <!-- Plan 01 -->
+                    <div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">01</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Neo4j Schema &amp; Migration</h3><p class="text-xs text-zinc-600">2&ndash;3 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Define graph schema for the review removal business. 5 node types (ReviewClient, ReviewProduct, ProductReview, ReviewAppeal, ReviewInvoice) with 6 relationship types. Parse 50+ Excel files into Neo4j.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Nodes:</strong> ~10 clients, ~60 products, ~500 reviews, ~135 appeals</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Migration:</strong> brain/migrations/055_review_removal_schema.py</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Import:</strong> scripts/import_review_data.py (openpyxl &rarr; Cypher)</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10"><p class="text-blue-400 text-xs font-semibold">CURSOR AGENT OFFLOADABLE</p></div>
+                    </div>
+
+                    <!-- Plan 02 -->
+                    <div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">02</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Keyword Database</h3><p class="text-xs text-zinc-600">1 day</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Structure 200+ trigger keywords from the existing ChatGPT bot into machine-readable YAML. 15 violation categories with regex patterns for masked profanity.</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            <span class="kw-tag">hostile</span><span class="kw-tag">false_claims</span><span class="kw-tag">profanity</span><span class="kw-tag">shipping</span><span class="kw-tag">pricing</span><span class="kw-tag">fake</span><span class="kw-tag">competitor</span><span class="kw-tag">health_claims</span><span class="kw-tag">+7 more</span>
+                        </div>
+                        <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Pre-filter gate:</strong> Reviews with 0 keyword matches skip LLM classification (saves ~60% of tokens)</p>
+                    </div>
+
+                    <!-- Plan 03 -->
+                    <div class="glass-card p-8" style="border-color:rgba(59,130,246,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">03</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">JetStream Streams</h3><p class="text-xs text-zinc-600">0.5 day</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">5 JetStream streams with durable consumers, message schemas, and dead letter routing. Workqueue retention for processing stages, limits retention for outcome history.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Ack wait:</strong> 120s (Claude classification may be slow)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Max deliver:</strong> 3 retries before DLQ</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Outcome retention:</strong> 365 days (training data)</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">NO DEPENDENCIES</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 2: CORE PIPELINE -->
+            <div class="plan-section" id="phase-pipeline">
+                <div class="grid md:grid-cols-3 gap-6 reveal">
+                    <!-- Plan 04 -->
+                    <div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">04</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Review Scanner</h3><p class="text-xs text-zinc-600">3&ndash;4 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Automated detection of new 1&ndash;3 star reviews on monitored ASINs. Two paths: Helium 10 integration (preferred) and direct Amazon scraping (fallback).</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Cadence:</strong> Daily pulse sentinel</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Dedup:</strong> By Amazon review_id</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Rate limit:</strong> 1 request/2s to Amazon</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Files:</strong> integrations/helium10.py, integrations/amazon_reviews.py</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10"><p class="text-amber-400 text-xs font-semibold">DISCOVERY NEEDED: Helium 10 API access?</p></div>
+                    </div>
+
+                    <!-- Plan 05 -->
+                    <div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">05</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Violation Classifier</h3><p class="text-xs text-zinc-600">3&ndash;4 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Claude-powered review analysis replacing ChatGPT keyword matching. Two-stage: cheap keyword pre-filter, then full LLM classification with few-shot examples from historical successes.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Model:</strong> Haiku (bulk) / Sonnet (borderline)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Cost:</strong> ~$0.50/day for 100 reviews (Haiku)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Gate:</strong> strength &ge; moderate AND confidence &ge; 0.6</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Target:</strong> 80%+ recall, 70%+ precision</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">KEY DIFFERENTIATOR: Context vs keywords</p></div>
+                    </div>
+
+                    <!-- Plan 06 -->
+                    <div class="glass-card p-8" style="border-color:rgba(168,85,247,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold text-sm">06</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Appeal Generator</h3><p class="text-xs text-zinc-600">2&ndash;3 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Letter generation using Claude with strict format enforcement, hallucination guard (quotes must exist in review), and quality gate. 10 format rules, zero tolerance for deviation.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Model:</strong> Sonnet (prose quality matters)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Quality gate:</strong> Format + hallucination + length + ASIN check</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Retry:</strong> 2x with error feedback on gate failure</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Few-shot:</strong> Pull from MIG by violation category</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10"><p class="text-emerald-400 text-xs font-semibold">TRAINED ON 135 HISTORICAL SUCCESSES</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3: OPERATIONS -->
+            <div class="plan-section" id="phase-operations">
+                <div class="grid md:grid-cols-3 gap-6 reveal">
+                    <!-- Plan 07 -->
+                    <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">07</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Submission Pipeline</h3><p class="text-xs text-zinc-600">3&ndash;5 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Three tiers of implementation. Start with human-in-the-loop (Telegram approval), graduate to email, then full Seller Central automation.</p>
+                        <div class="space-y-3 mb-4">
+                            <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-emerald-500/10 flex items-center justify-center text-xs text-emerald-400 font-bold">1</div><p class="text-xs text-zinc-400"><strong class="text-zinc-300">Telegram approval</strong> &mdash; operator reviews + manually submits</p></div>
+                            <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-amber-500/10 flex items-center justify-center text-xs text-amber-400 font-bold">2</div><p class="text-xs text-zinc-400"><strong class="text-zinc-300">Email submission</strong> &mdash; auto-send to community-abuse@amazon.com</p></div>
+                            <div class="flex items-center gap-2"><div class="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center text-xs text-red-400 font-bold">3</div><p class="text-xs text-zinc-400"><strong class="text-zinc-300">Seller Central automation</strong> &mdash; Playwright browser scripting</p></div>
+                        </div>
+                    </div>
+
+                    <!-- Plan 08 -->
+                    <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">08</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Outcome Tracker</h3><p class="text-xs text-zinc-600">1&ndash;2 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Daily pulse sentinel that checks if appealed reviews have been removed from Amazon. URL existence check with rate limiting. Triggers invoice on successful removal.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Detection:</strong> HTTP 404 or "no longer available" text</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Expiry:</strong> >180 days pending &rarr; mark as rejected</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Rate limit:</strong> 2s between Amazon URL checks</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Analytics:</strong> Removal rate by category, avg days, trends</p>
+                        </div>
+                    </div>
+
+                    <!-- Plan 09 -->
+                    <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold text-sm">09</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Invoicing System</h3><p class="text-xs text-zinc-600">2&ndash;3 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Auto-generate PDF invoices on successful removal. Sequential numbering (RR-YYYY-NNNN), email delivery, payment tracking via Telegram commands.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Pricing:</strong> $150 standard / $175&ndash;$225 premium + custom overrides</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">PDF:</strong> ReportLab generation with branded template</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Commands:</strong> /paid, /overdue, /revenue via Telegram</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Future:</strong> Stripe webhook for auto-payment detection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 4: CLIENT-FACING -->
+            <div class="plan-section" id="phase-client">
+                <div class="grid md:grid-cols-2 gap-6 reveal">
+                    <!-- Plan 10 -->
+                    <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold text-sm">10</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Client Onboarding</h3><p class="text-xs text-zinc-600">2&ndash;3 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Telegram bot flow: /register &rarr; collect info &rarr; Seller Central access instructions &rarr; /addproduct &lt;ASIN&gt; &rarr; monitoring begins. Under 10 minutes from first contact to live monitoring.</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="code-block text-xs" style="padding:12px">Client: /addproduct B01N0KQ9QJ
+Bot: Found: "Magnesium Oil Spray - 8 Fl Oz"
+     Current rating: 4.2 stars (1,247 reviews)
+     Monitoring starts on next daily scan.</div>
+                        </div>
+                        <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Operator commands:</strong> /clients, /confirm_access, /deactivate, /reactivate</p>
+                    </div>
+
+                    <!-- Plan 11 -->
+                    <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold text-sm">11</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Client Dashboard</h3><p class="text-xs text-zinc-600">4&ndash;5 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Render-deployed React app with JWT auth. Dashboard, products, appeals, invoices, and analytics views. Magic link login (passwordless).</p>
+                        <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="mini-card p-3 text-center"><p class="text-lg font-bold text-white">12</p><p class="text-[10px] text-zinc-500">Products</p></div>
+                            <div class="mini-card p-3 text-center"><p class="text-lg font-bold text-emerald-400">3</p><p class="text-[10px] text-zinc-500">Pending</p></div>
+                            <div class="mini-card p-3 text-center"><p class="text-lg font-bold text-brand-blue">2</p><p class="text-[10px] text-zinc-500">Removed</p></div>
+                            <div class="mini-card p-3 text-center"><p class="text-lg font-bold text-amber-400">$450</p><p class="text-[10px] text-zinc-500">Revenue</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Pages:</strong> Dashboard, Products, Appeals, Invoices, Analytics</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 5: SHIP IT -->
+            <div class="plan-section" id="phase-ship">
+                <div class="grid md:grid-cols-3 gap-6 reveal">
+                    <!-- Plan 12 -->
+                    <div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">12</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Deployment Config</h3><p class="text-xs text-zinc-600">1&ndash;2 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Component-to-node assignment, systemd/launchd service files, environment variables, and deploy checklist.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Prime:</strong> Scanner, classifier, generator, tracker, invoicer</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">e3b5f73:</strong> Telegram bot (client-facing)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">M1 Mac:</strong> Helium 10 scraper (needs Playwright)</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Render:</strong> Dashboard frontend (static site)</p>
+                        </div>
+                    </div>
+
+                    <!-- Plan 13 -->
+                    <div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">13</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Testing Strategy</h3><p class="text-xs text-zinc-600">2&ndash;3 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">3-layer test plan: unit tests (keyword matcher, quality gate, pricing), integration tests (MIG + JetStream), E2E pipeline test, and historical calibration against 135 outcomes.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Calibration target:</strong> 80%+ recall on historical removals</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Quality gate tests:</strong> Hallucination, format, length, ASIN</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">CI:</strong> All unit tests, mocked Claude CLI for integration</p>
+                        </div>
+                    </div>
+
+                    <!-- Plan 14 -->
+                    <div class="glass-card p-8" style="border-color:rgba(239,68,68,0.15)">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center"><span class="text-red-400 font-bold text-sm">14</span></div>
+                            <div><h3 class="text-white font-semibold text-sm">Go-to-Market</h3><p class="text-xs text-zinc-600">1&ndash;2 days</p></div>
+                        </div>
+                        <p class="text-xs text-zinc-400 mb-4">Pricing tiers, 5 acquisition channels, competitive positioning, legal compliance posture, and launch sequence.</p>
+                        <div class="space-y-2 mb-4">
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Channels:</strong> Existing clients, seller communities, Helium 10 ecosystem, LinkedIn outreach, referrals</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Lead magnet:</strong> Free 5-ASIN review audit</p>
+                            <p class="text-xs text-zinc-500"><strong class="text-zinc-300">Target:</strong> Brands with 3.5&ndash;4.2 star ratings</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master Timeline -->
+            <div class="glass-card p-8 mt-12 reveal">
+                <h3 class="text-white font-semibold text-lg mb-6 text-center">Critical Path to Revenue</h3>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="mini-card p-5 text-center" style="border-color:rgba(59,130,246,0.2)">
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Week 1&ndash;2</p>
+                        <p class="text-white font-semibold text-sm mb-2">Foundation</p>
+                        <p class="text-xs text-zinc-500">Schema + keywords + streams</p>
+                        <p class="text-[10px] text-blue-400 mt-2">Plans 01, 02, 03</p>
+                    </div>
+                    <div class="mini-card p-5 text-center" style="border-color:rgba(168,85,247,0.2)">
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Week 2&ndash;4</p>
+                        <p class="text-white font-semibold text-sm mb-2">Core Pipeline</p>
+                        <p class="text-xs text-zinc-500">Scanner + classifier + generator</p>
+                        <p class="text-[10px] text-purple-400 mt-2">Plans 04, 05, 06</p>
+                    </div>
+                    <div class="mini-card p-5 text-center" style="border-color:rgba(245,158,11,0.2)">
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Week 5&ndash;6</p>
+                        <p class="text-white font-semibold text-sm mb-2">Operations</p>
+                        <p class="text-xs text-zinc-500">Submit + track + invoice</p>
+                        <p class="text-[10px] text-amber-400 mt-2">Plans 07, 08, 09</p>
+                    </div>
+                    <div class="mini-card p-5 text-center" style="border-color:rgba(16,185,129,0.2)">
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider mb-2">Week 7&ndash;8</p>
+                        <p class="text-white font-semibold text-sm mb-2">Client + Ship</p>
+                        <p class="text-xs text-zinc-500">Onboarding + dashboard + deploy</p>
+                        <p class="text-[10px] text-emerald-400 mt-2">Plans 10&ndash;14</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section id="revenue" class="py-24 relative"><div class="max-w-7xl mx-auto px-6"><div class="text-center mb-16 reveal"><span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="trending-up" class="w-3 h-3"></i> Revenue</span><h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">$900/mo &rarr; $26K+/mo</h2></div><div class="grid md:grid-cols-2 gap-8 mb-12 reveal"><div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)"><h3 class="text-amber-400 font-semibold mb-4">Manual</h3><div class="space-y-3"><div class="flex justify-between"><span class="text-xs text-zinc-400">Reviews/mo</span><span class="text-sm text-white">6-8</span></div><div class="flex justify-between"><span class="text-xs text-zinc-400">Revenue</span><span class="text-sm text-white">$900</span></div><div class="flex justify-between"><span class="text-xs text-zinc-400">Margin</span><span class="text-sm text-white">96%</span></div></div></div><div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)"><h3 class="text-emerald-400 font-semibold mb-4">Automated</h3><div class="space-y-3"><div class="flex justify-between"><span class="text-xs text-zinc-400">Reviews/mo</span><span class="text-sm text-emerald-400 font-semibold">100-500</span></div><div class="flex justify-between"><span class="text-xs text-zinc-400">Revenue</span><span class="text-sm text-emerald-400 font-semibold">$15K-$75K</span></div><div class="flex justify-between"><span class="text-xs text-zinc-400">Margin</span><span class="text-sm text-emerald-400 font-semibold">98%</span></div></div></div></div><div class="grid md:grid-cols-3 gap-6 reveal"><div class="glass-card p-8 text-center"><p class="text-xs text-zinc-500 uppercase mb-4">Per Removal</p><p class="text-4xl font-bold text-white">$150<span class="text-lg text-zinc-500">-225</span></p></div><div class="glass-card p-8 text-center" style="border-color:rgba(59,130,246,0.2)"><div class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-4">Recommended</div><p class="text-xs text-zinc-500 uppercase mb-4">Monitoring</p><p class="text-4xl font-bold text-brand-blue">$99<span class="text-lg text-zinc-500">/mo</span></p></div><div class="glass-card p-8 text-center"><p class="text-xs text-zinc-500 uppercase mb-4">Enterprise</p><p class="text-4xl font-bold text-white">$499<span class="text-lg text-zinc-500">/mo</span></p></div></div></div></section>
+
+    <!-- REVENUE MODEL -->
+    <section id="revenue" class="py-24 relative">
+        <div class="glow-orb w-[500px] h-[500px] bg-emerald-500/5 top-[-200px] right-[-200px]"></div>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4"><i data-lucide="trending-up" class="w-3 h-3"></i> Revenue Projections</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">From $900/mo to $26K+/mo</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Automation removes the labor bottleneck. Same service, 10&ndash;60x throughput.</p>
+            </div>
+
+            <!-- Before/After -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12 reveal">
+                <div class="glass-card p-8" style="border-color:rgba(245,158,11,0.15)">
+                    <h3 class="text-amber-400 font-semibold mb-4 flex items-center gap-2"><i data-lucide="hand" class="w-4 h-4"></i> Manual (Current)</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Reviews/month</span><span class="text-sm text-white">6&ndash;8</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Time per review</span><span class="text-sm text-white">20&ndash;30 min</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Monthly revenue</span><span class="text-sm text-white">$900</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Clients supported</span><span class="text-sm text-white">8&ndash;10</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Operating cost</span><span class="text-sm text-white">~$50</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Gross margin</span><span class="text-sm text-white">96%</span></div>
+                    </div>
+                </div>
+                <div class="glass-card p-8" style="border-color:rgba(16,185,129,0.2)">
+                    <h3 class="text-emerald-400 font-semibold mb-4 flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4"></i> Automated (MERIDIAN)</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Reviews/month</span><span class="text-sm text-emerald-400 font-semibold">100&ndash;500</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Time per review</span><span class="text-sm text-emerald-400 font-semibold">2 min (approval only)</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Monthly revenue</span><span class="text-sm text-emerald-400 font-semibold">$15,000&ndash;$75,000</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Clients supported</span><span class="text-sm text-emerald-400 font-semibold">50&ndash;200</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Operating cost</span><span class="text-sm text-emerald-400 font-semibold">~$200</span></div>
+                        <div class="flex justify-between"><span class="text-xs text-zinc-400">Gross margin</span><span class="text-sm text-emerald-400 font-semibold">98%</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Tiers -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8 reveal">
+                <div class="glass-card p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-4">Per Removal</p>
+                    <p class="text-4xl font-bold text-white mb-2">$150<span class="text-lg text-zinc-500">&ndash;225</span></p>
+                    <p class="text-xs text-zinc-400 mb-4">Pay only for results</p>
+                    <ul class="text-xs text-zinc-500 text-left space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Zero risk to client</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Proven model (current)</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Best for new clients</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 text-center" style="border-color:rgba(59,130,246,0.2)">
+                    <div class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-4">Recommended</div>
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-4">Monitoring Plan</p>
+                    <p class="text-4xl font-bold text-brand-blue mb-2">$99<span class="text-lg text-zinc-500">/mo</span></p>
+                    <p class="text-xs text-zinc-400 mb-4">Per brand, includes 2 removals</p>
+                    <ul class="text-xs text-zinc-500 text-left space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue"></i> Daily review scanning</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue"></i> 2 free removals/month</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue"></i> $100 each additional</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-brand-blue"></i> Recurring revenue</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-wider mb-4">Enterprise</p>
+                    <p class="text-4xl font-bold text-white mb-2">$499<span class="text-lg text-zinc-500">/mo</span></p>
+                    <p class="text-xs text-zinc-400 mb-4">Per brand, unlimited removals</p>
+                    <ul class="text-xs text-zinc-500 text-left space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Unlimited monitoring + removals</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Priority processing</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> Analytics dashboard</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-emerald-400"></i> 48h classification SLA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Projections -->
+            <div class="glass-card p-2 md:p-6 overflow-x-auto reveal">
+                <h3 class="text-white font-semibold mb-4 px-4 pt-2">Revenue Projections (Blended)</h3>
+                <table class="data-table">
+                    <thead><tr><th>Scenario</th><th>Clients</th><th>Avg Revenue/Client/Mo</th><th>Monthly Revenue</th><th>Annual Revenue</th></tr></thead>
+                    <tbody>
+                        <tr><td class="text-white text-sm">Conservative</td><td class="text-sm">25</td><td class="text-sm">$300</td><td class="text-sm text-white font-semibold">$7,500</td><td class="text-sm">$90,000</td></tr>
+                        <tr><td class="text-white text-sm">Moderate</td><td class="text-sm">75</td><td class="text-sm">$350</td><td class="text-sm text-emerald-400 font-semibold">$26,250</td><td class="text-sm">$315,000</td></tr>
+                        <tr><td class="text-white text-sm">Aggressive</td><td class="text-sm">200</td><td class="text-sm">$400</td><td class="text-sm text-brand-blue font-semibold">$80,000</td><td class="text-sm">$960,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section id="gtm" class="py-24"><div class="max-w-7xl mx-auto px-6"><div class="glass-card p-10 text-center reveal" style="border-color:rgba(16,185,129,0.2)"><h3 class="text-2xl md:text-3xl font-bold text-white mb-6">The Moat: <span class="text-gradient-emerald">Compounding Intelligence</span></h3><div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto text-left"><div><p class="text-emerald-400 font-semibold text-sm mb-2">Outcome Data</p><p class="text-xs text-zinc-400">135 outcomes = training data no competitor has. Flywheel.</p></div><div><p class="text-emerald-400 font-semibold text-sm mb-2">Real Infrastructure</p><p class="text-xs text-zinc-400">JetStream, Neo4j, Telegram, pulse sentinels. Not a wrapper.</p></div><div><p class="text-emerald-400 font-semibold text-sm mb-2">Contextual AI</p><p class="text-xs text-zinc-400">Claude understands context. Keywords can't distinguish complaint types.</p></div></div></div></div></section>
+
+    <!-- GO-TO-MARKET -->
+    <section id="gtm" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-4"><i data-lucide="megaphone" class="w-3 h-3"></i> Go-to-Market</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mt-4">Acquisition &amp; Competitive Position</h2>
+            </div>
+
+            <!-- Channels -->
+            <div class="grid md:grid-cols-5 gap-4 mb-12 reveal">
+                <div class="glass-card p-6">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-3"><i data-lucide="users" class="w-5 h-5 text-emerald-400"></i></div>
+                    <h4 class="text-white font-semibold text-sm mb-2">Existing Clients</h4>
+                    <p class="text-xs text-zinc-400">Upsell 10 active clients to monitoring plan. $500&ndash;700/mo recurring immediately.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-3"><i data-lucide="message-square" class="w-5 h-5 text-blue-400"></i></div>
+                    <h4 class="text-white font-semibold text-sm mb-2">Seller Communities</h4>
+                    <p class="text-xs text-zinc-400">Amazon forums, Reddit, Facebook groups. Lead magnet: free 5-ASIN review audit.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-3"><i data-lucide="bar-chart-3" class="w-5 h-5 text-purple-400"></i></div>
+                    <h4 class="text-white font-semibold text-sm mb-2">Helium 10 Ecosystem</h4>
+                    <p class="text-xs text-zinc-400">Partner listing, Prosper Show, 1M+ user base. "Use H10 for research, Review Shield for compliance."</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-3"><i data-lucide="linkedin" class="w-5 h-5 text-amber-400"></i></div>
+                    <h4 class="text-white font-semibold text-sm mb-2">LinkedIn Outreach</h4>
+                    <p class="text-xs text-zinc-400">Target brands with 3.5&ndash;4.2 stars. "We found 12 violations on your listing. Free audit."</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-3"><i data-lucide="share-2" class="w-5 h-5 text-red-400"></i></div>
+                    <h4 class="text-white font-semibold text-sm mb-2">Referral Program</h4>
+                    <p class="text-xs text-zinc-400">Client refers &rarr; 1 free removal credit. New client gets first removal free.</p>
+                </div>
+            </div>
+
+            <!-- The Moat -->
+            <div class="glass-card p-10 mb-8 reveal text-center" style="border-color:rgba(16,185,129,0.2)">
+                <h3 class="text-2xl md:text-3xl font-bold text-white leading-snug max-w-3xl mx-auto mb-6">The Moat Is <span class="text-gradient-emerald">Compounding Intelligence</span></h3>
+                <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto text-left">
+                    <div>
+                        <p class="text-emerald-400 font-semibold text-sm mb-2">Outcome Data</p>
+                        <p class="text-xs text-zinc-400">135 removal outcomes = training data no competitor has. Every removal makes the system smarter. This is a flywheel.</p>
+                    </div>
+                    <div>
+                        <p class="text-emerald-400 font-semibold text-sm mb-2">Real Infrastructure</p>
+                        <p class="text-xs text-zinc-400">JetStream work queues, Neo4j graph, Telegram bot, pulse sentinels, dashboard. Not a ChatGPT wrapper.</p>
+                    </div>
+                    <div>
+                        <p class="text-emerald-400 font-semibold text-sm mb-2">Contextual AI</p>
+                        <p class="text-xs text-zinc-400">Claude understands "doesn't work" as a shipping complaint vs health claim vs legitimate feedback. Keywords can't.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div class="section-divider max-w-7xl mx-auto"></div>
-    <section class="py-24"><div class="max-w-7xl mx-auto px-6"><div class="glass-card p-10 md:p-16 text-center reveal" style="border-color:rgba(16,185,129,0.15)"><h2 class="text-3xl md:text-4xl font-bold text-gradient-white mb-6">The Bottom Line</h2><p class="text-lg text-zinc-400 max-w-3xl mx-auto mb-8">The business exists. The clients exist. The revenue exists. What's missing is the machine.</p><p class="text-2xl md:text-3xl font-bold text-white mb-10">MERIDIAN <span class="text-gradient-emerald">is</span> the machine.</p><div class="grid md:grid-cols-6 gap-3 max-w-4xl mx-auto mb-10"><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Read</p></div><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Classify</p></div><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Write</p></div><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Submit</p></div><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Track</p></div><div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center"><p class="text-lg font-bold text-white">Bill</p></div></div><p class="text-sm text-zinc-500">Six verbs. 14 plans. 8 weeks to production.</p></div></div></section>
-    <footer class="py-16 border-t border-white/5"><div class="max-w-7xl mx-auto px-6 text-center"><p class="text-zinc-600 text-sm">Review Shield Production Plan &mdash; Meridian Technologies &mdash; Delphi &mdash; March 2026</p></div></footer>
-    <script>lucide.createIcons();const observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));function showPhase(p){document.querySelectorAll('.plan-section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.phase-tab').forEach(t=>t.classList.remove('active'));document.getElementById('phase-'+p).classList.add('active');event.target.classList.add('active');document.querySelectorAll('#phase-'+p+' .reveal').forEach(e=>{e.classList.remove('visible');observer.observe(e)})}</script>
-</body>
-</html>
+
+    <!-- BOTTOM LINE -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card p-10 md:p-16 text-center reveal" style="border-color:rgba(16,185,129,0.15)">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient-white mb-6">The Bottom Line</h2>
+                <p class="text-lg text-zinc-400 max-w-3xl mx-auto leading-relaxed mb-8">The business exists. The clients exist. The revenue exists. The processes are documented. What's missing is the machine.</p>
+                <p class="text-2xl md:text-3xl font-bold text-white mb-10">MERIDIAN <span class="text-gradient-emerald">is</span> the machine.</p>
+                <div class="grid md:grid-cols-6 gap-3 max-w-4xl mx-auto mb-10">
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Read</p>
+                        <p class="text-[10px] text-zinc-500">Scan reviews</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Classify</p>
+                        <p class="text-[10px] text-zinc-500">Find violations</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Write</p>
+                        <p class="text-[10px] text-zinc-500">Generate appeal</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Submit</p>
+                        <p class="text-[10px] text-zinc-500">File with Amazon</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Track</p>
+                        <p class="text-[10px] text-zinc-500">Monitor outcome</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-center">
+                        <p class="text-lg font-bold text-white">Bill</p>
+                        <p class="text-[10px] text-zinc-500">Auto-invoice</p>
+                    </div>
+                </div>
+                <p class="text-sm text-zinc-500">Six verbs. Fully automatable. 14 plans. 3,810 lines. 8 weeks to production.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-zinc-600 text-sm">Review Shield Production Readiness Plan. Based on 200+ files from 08 Seller Reviews Removal, Helium 10 platform audit, and MERIDIAN infrastructure assessment. Internal document.</p>
+            <div class="flex justify-center gap-8 mt-8 text-xs text-zinc-600">
+                <span>Meridian Technologies</span>
+                <span>&bull;</span>
+                <span>Delphi &mdash; Infrastructure Architect</span>
+                <span>&bull;</span>
+                <span>March 19, 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Phase tabs
+        function showPhase(phase) {
+            document.querySelectorAll('.plan-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('phase-' + phase).classList.add('active');
+            event.target.classList.add('active');
+
+            // Re-trigger reveal for newly visible elements
+            document.querySelectorAll('#phase-' + phase + ' .reveal').forEach(el => {
+                el.classList.remove('visible');
+                observer.observe(el);
+            });
+        }
+    </script>
 </body>
 </html>
