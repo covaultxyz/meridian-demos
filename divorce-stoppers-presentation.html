@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meridian × Divorce Stoppers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #d4d4d8; font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+        }
+        .glass-glow {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(24px);
+            border: 1px solid rgba(245,158,11,0.15); border-radius: 24px;
+            box-shadow: 0 0 60px rgba(245,158,11,0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .glow-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px); }
+        .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(245,158,11,0.2), transparent); }
+        .badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+            border-radius: 9999px; font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .counter { font-variant-numeric: tabular-nums; }
+        .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        .chat-bubble {
+            padding: 14px 18px; border-radius: 18px; font-size: 14px; max-width: 85%;
+            line-height: 1.5; animation: fadeUp 0.5s ease-out forwards; opacity: 0;
+        }
+        .chat-client { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.2); margin-left: auto; border-bottom-right-radius: 4px; }
+        .chat-ai { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.15); margin-right: auto; border-bottom-left-radius: 4px; }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        .chat-bubble:nth-child(1) { animation-delay: 0.3s; transform: translateY(10px); }
+        .chat-bubble:nth-child(2) { animation-delay: 0.8s; transform: translateY(10px); }
+        .chat-bubble:nth-child(3) { animation-delay: 1.3s; transform: translateY(10px); }
+        .chat-bubble:nth-child(4) { animation-delay: 1.8s; transform: translateY(10px); }
+        .chat-bubble:nth-child(5) { animation-delay: 2.3s; transform: translateY(10px); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: HERO -->
+    <!-- ============================================ -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+        <div class="glow-orb w-[500px] h-[500px] bg-amber-500/8 top-[-150px] left-1/2 -translate-x-1/2" style="position:absolute"></div>
+        <div class="glow-orb w-[300px] h-[300px] bg-blue-500/5 bottom-[-100px] right-[-50px]" style="position:absolute"></div>
+
+        <div class="relative z-10 max-w-3xl text-center">
+            <div class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-8 mx-auto">
+                Prepared for Denver Griffin
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-gradient leading-[1.08] mb-6">
+                Your AI Should<br>
+                <span class="text-gradient-gold">Remember Every Client</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-zinc-400 max-w-xl mx-auto leading-relaxed mb-12">
+                You built a coaching empire with AI. We make the AI actually know who it's talking to.
+            </p>
+
+            <a href="#problem" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-semibold text-sm hover:bg-amber-500/20 transition-all">
+                See What Changes <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: THE PROBLEM -->
+    <!-- ============================================ -->
+    <section id="problem" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">The Problem</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Every Session Starts From Zero</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">Your AI doesn't know who it's talking to. Every time a client reaches out, the conversation resets. No memory. No context. No continuity.</p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass p-8 text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="brain" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">No Memory</h3>
+                    <p class="text-sm text-zinc-500">Client messages Monday about his wife filing papers. Messages again Thursday. Your AI has no idea Monday happened.</p>
+                </div>
+                <div class="glass p-8 text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="shield-off" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">No Safety Net</h3>
+                    <p class="text-sm text-zinc-500">A man in crisis at 3AM gets a generic response. No detection. No escalation. No one knows he's hurting.</p>
+                </div>
+                <div class="glass p-8 text-center">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg mb-2">No Proof</h3>
+                    <p class="text-sm text-zinc-500">You know your coaching works. But you can't prove it with data. Every testimonial is a story. None of it is structured.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: THE DIFFERENCE — CHAT DEMO -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="glow-orb w-[400px] h-[400px] bg-amber-500/6 top-1/2 left-[-100px] -translate-y-1/2" style="position:absolute"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">The Difference</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">An AI That Actually Knows Your Client</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">This is what a conversation looks like when the AI carries context — not just for this session, but across every interaction.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- WITHOUT -->
+                <div>
+                    <p class="text-xs text-red-400 font-bold uppercase tracking-widest mb-4 text-center">Without Persistent Memory</p>
+                    <div class="glass p-6 space-y-4" style="min-height: 340px;">
+                        <div class="chat-bubble chat-client">
+                            <p class="text-zinc-300">I need help. My wife said she wants a divorce last week.</p>
+                        </div>
+                        <div class="chat-bubble chat-ai" style="border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.08);">
+                            <p class="text-zinc-400">I'm sorry to hear that. Can you tell me more about your situation? What's your name?</p>
+                        </div>
+                        <div class="chat-bubble chat-client">
+                            <p class="text-zinc-300">I already told you all this last Thursday...</p>
+                        </div>
+                        <div class="chat-bubble chat-ai" style="border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.08);">
+                            <p class="text-zinc-400">I apologize, I don't have any record of our previous conversation. Let's start from the beginning.</p>
+                        </div>
+                        <p class="text-xs text-red-400 text-center mt-4 italic">Client loses trust. Feels like a number.</p>
+                    </div>
+                </div>
+
+                <!-- WITH -->
+                <div>
+                    <p class="text-xs text-green-400 font-bold uppercase tracking-widest mb-4 text-center">With Persistent Memory</p>
+                    <div class="glass-glow p-6 space-y-4" style="min-height: 340px;">
+                        <div class="chat-bubble chat-client">
+                            <p class="text-zinc-300">Hey, I'm struggling today.</p>
+                        </div>
+                        <div class="chat-bubble chat-ai">
+                            <p class="text-zinc-300">Marcus, I hear you. You're on Day 5 of the Turn Around — that's typically when the pressure peaks. Last session you mentioned Sarah hadn't responded to your letter. Has anything shifted?</p>
+                        </div>
+                        <div class="chat-bubble chat-client">
+                            <p class="text-zinc-300">She texted me this morning. First time in 2 weeks.</p>
+                        </div>
+                        <div class="chat-bubble chat-ai">
+                            <p class="text-zinc-300">That's a signal, brother. Remember the assignment from Day 3 — don't pursue, don't pressure. Let her set the pace. You've been doing that and it's working. How did you respond?</p>
+                        </div>
+                        <p class="text-xs text-green-400 text-center mt-4 italic">Client feels known. AI coaches from context.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-6 mt-8 text-center">
+                <p class="text-sm text-zinc-400">The AI on the right knows Marcus's name, his wife's name, what day he's on in the program, his last assignment, and what happened in every previous session. <span class="text-white font-semibold">That's not a chatbot. That's a coach with perfect memory.</span></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: WHAT YOU GET -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">What You Get</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Four Systems, One Platform</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">Everything your business needs to scale coaching without losing the personal touch.</p>
+
+            <div class="space-y-6">
+                <div class="glass p-8 md:flex items-start gap-8">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0 mb-4 md:mb-0">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-amber-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">AI Coaching Agent</h3>
+                        <p class="text-sm text-zinc-400 mb-3">Your methodology, your voice, your framework — delivered 24/7 via WhatsApp. Remembers every client across every session. Knows their name, their situation, their week in the program, their last assignment. Escalates to you or your team when it detects a man in crisis.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/15">24/7 availability</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/15">Full client memory</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/15">Crisis detection</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:flex items-start gap-8">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0 mb-4 md:mb-0">
+                        <i data-lucide="users" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Lead Intelligence</h3>
+                        <p class="text-sm text-zinc-400 mb-3">Before your closer picks up the phone, they get a one-page brief: how urgent is this man's situation, what content he's watched, how ready he is to commit, and the best angle to close. Every lead scored, every call prepared.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/15">Lead scoring</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/15">Pre-call briefs</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/15">Funnel analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:flex items-start gap-8">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0 mb-4 md:mb-0">
+                        <i data-lucide="video" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Content Engine</h3>
+                        <p class="text-sm text-zinc-400 mb-3">Your 100+ videos become a knowledge base. From that, the system generates: short-form scripts, email sequences, social media captions — all in your voice. 10x your content output. You review and approve everything.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/15">10x content volume</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/15">Your voice</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/15">You approve everything</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:flex items-start gap-8">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 mb-4 md:mb-0">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Outcome Data</h3>
+                        <p class="text-sm text-zinc-400 mb-3">Track real outcomes at 7, 14, 30, 60, and 90 days. Which techniques actually work? Which client profiles respond best? After 6 months, you have structured proof that nobody else in the space possesses. That data becomes your marketing, your methodology refinement, and your moat.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/15">Real success metrics</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/15">Methodology refinement</span>
+                            <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/15">Marketing asset</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 5: THE REVENUE UNLOCK -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="glow-orb w-[500px] h-[500px] bg-amber-500/6 bottom-[-200px] right-[-100px]" style="position:absolute"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">The Revenue Unlock</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">A Tier Nobody Else Can Offer</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">Right now, your clients choose between your course content and personal time with you. There's nothing in between. That's a gap.</p>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="glass p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Current: Base Program</p>
+                    <p class="text-3xl font-bold text-white mb-2">$1-5K</p>
+                    <p class="text-sm text-zinc-500">Course content + community. No personalization. No memory.</p>
+                </div>
+
+                <div class="glass-glow p-8 text-center relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="badge bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px]">New Tier</span>
+                    </div>
+                    <p class="text-xs text-amber-400 uppercase tracking-widest mb-3">AI-Powered Intensive</p>
+                    <p class="text-4xl font-bold text-gradient-gold mb-2">$12-15K</p>
+                    <p class="text-sm text-zinc-400">Persistent AI coach that knows every client. Your methodology, 24/7. Limited human touchpoints.</p>
+                    <p class="text-xs text-amber-500 mt-3 font-semibold">Pure margin</p>
+                </div>
+
+                <div class="glass p-8 text-center">
+                    <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Current: 1-on-1 with You</p>
+                    <p class="text-3xl font-bold text-white mb-2">Premium</p>
+                    <p class="text-sm text-zinc-500">Your time. Your attention. High-ticket. Limited by hours in the day.</p>
+                </div>
+            </div>
+
+            <div class="glass p-8 text-center">
+                <p class="text-lg text-zinc-400 mb-2">The AI Intensive tier delivers <span class="text-white font-semibold">80% of the personal coaching experience</span> at a fraction of your time.</p>
+                <p class="text-sm text-zinc-500">Your competitors don't have this tier because they don't have the technology. You would be the first in the space to offer AI coaching with real memory.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 6: COMPETITIVE EDGE -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">The Competitive Edge</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">They Can't Follow You Here</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">Your biggest competitors sell human-only coaching. Their entire brand depends on it. If they deploy AI, they destroy their value proposition.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="glass p-8">
+                    <p class="text-xs text-red-400 font-bold uppercase tracking-widest mb-4">Their Position</p>
+                    <ul class="text-sm text-zinc-400 space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>
+                            <span>Brand built on "human-only" premium coaching</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>
+                            <span>$85K founder-access tier requires NO technology</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>
+                            <span>Deploying AI undercuts their entire pricing model</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0"></i>
+                            <span>Capped by hours in the day — linear growth</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-glow p-8">
+                    <p class="text-xs text-amber-400 font-bold uppercase tracking-widest mb-4">Your Position (with Meridian)</p>
+                    <ul class="text-sm text-zinc-300 space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                            <span>AI + human hybrid — best of both</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                            <span>New $12-15K tier at near-zero marginal cost</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                            <span>Outcome data nobody else has — proof, not promises</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                            <span>Exponential growth — AI scales with demand</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass p-6 text-center border-amber-500/15">
+                <p class="text-white font-semibold text-lg">They structurally cannot match this move.</p>
+                <p class="text-sm text-zinc-500 mt-1">The window is open now. First mover in AI-powered marriage coaching owns the category.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 7: SAFETY -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">Built for Sensitive Work</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Safety Is Not Optional</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">Your clients are men in crisis. The AI is designed for that reality.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
+                            <i data-lucide="heart-pulse" class="w-5 h-5 text-red-400"></i>
+                        </div>
+                        <h3 class="text-white font-bold">Crisis Detection</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400">Two-layer detection system screens every message for distress signals. If a man is in danger, coaching stops immediately. The system routes to the 988 Crisis Lifeline, notifies your team, and logs the interaction for follow-up.</p>
+                </div>
+
+                <div class="glass p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                            <i data-lucide="book-open" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                        <h3 class="text-white font-bold">Scripture Accuracy</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400">AI doesn't generate Bible verses from memory — it pulls from a verified scripture database. Every reference is checked. Your audience holds the Word to a high standard. So does our system.</p>
+                </div>
+
+                <div class="glass p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                            <i data-lucide="lock" class="w-5 h-5 text-green-400"></i>
+                        </div>
+                        <h3 class="text-white font-bold">Data Privacy</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400">Every client's data is encrypted and isolated. No client can see another client's information. No bulk exports. Your clients trust you with their most vulnerable moments — the system protects that trust.</p>
+                </div>
+
+                <div class="glass p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                            <i data-lucide="scale" class="w-5 h-5 text-amber-400"></i>
+                        </div>
+                        <h3 class="text-white font-bold">Compliance Ready</h3>
+                    </div>
+                    <p class="text-sm text-zinc-400">Bot disclosure built in (FTC + state law compliant). WhatsApp Business API compliant. Clear labeling: clients always know they're talking to AI, and can reach a human anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 8: HOW WE START -->
+    <!-- ============================================ -->
+    <section class="py-24 px-6 relative overflow-hidden">
+        <div class="glow-orb w-[400px] h-[400px] bg-amber-500/6 top-1/2 right-[-150px] -translate-y-1/2" style="position:absolute"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="divider mb-16"></div>
+
+            <p class="text-sm text-amber-400 font-semibold uppercase tracking-widest mb-4">How We Start</p>
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">See It Before You Commit</h2>
+            <p class="text-lg text-zinc-400 max-w-2xl mb-16">We don't ask you to buy a vision. We build a demo with your actual content and show you what it does.</p>
+
+            <div class="space-y-8">
+                <!-- Step 1 -->
+                <div class="md:flex items-start gap-6">
+                    <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 md:mb-0">
+                        <span class="text-2xl font-bold text-amber-400">1</span>
+                    </div>
+                    <div class="glass p-8 flex-1">
+                        <h3 class="text-xl font-bold text-white mb-2">We Build a Demo — Free</h3>
+                        <p class="text-sm text-zinc-400">We take 10 of your best videos, extract your coaching methodology into a knowledge base, and wire up a WhatsApp bot you can test yourself. You'll see your AI remember a client's situation across three separate conversations.</p>
+                        <p class="text-xs text-zinc-600 mt-3">Timeline: 2 weeks &bull; Your cost: $0</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="md:flex items-start gap-6">
+                    <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 md:mb-0">
+                        <span class="text-2xl font-bold text-amber-400">2</span>
+                    </div>
+                    <div class="glass p-8 flex-1">
+                        <h3 class="text-xl font-bold text-white mb-2">You Test It With Real Clients</h3>
+                        <p class="text-sm text-zinc-400">If the demo resonates, we build the production system and run a supervised pilot with 10-20 of your clients. You watch. You give feedback. We refine. No risk — your existing system stays in place.</p>
+                        <p class="text-xs text-zinc-600 mt-3">Timeline: 2 months &bull; Pilot runs alongside your current operation</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="md:flex items-start gap-6">
+                    <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4 md:mb-0">
+                        <span class="text-2xl font-bold text-amber-400">3</span>
+                    </div>
+                    <div class="glass p-8 flex-1">
+                        <h3 class="text-xl font-bold text-white mb-2">You Scale What Works</h3>
+                        <p class="text-sm text-zinc-400">Competitive intelligence. Content multiplication. Outcome analytics. We add each system as the previous one proves itself. You never commit to more than the next phase.</p>
+                        <p class="text-xs text-zinc-600 mt-3">Each phase gates the next &bull; You decide the pace</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 9: CTA -->
+    <!-- ============================================ -->
+    <section class="py-32 px-6 relative overflow-hidden">
+        <div class="glow-orb w-[600px] h-[600px] bg-amber-500/8 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="position:absolute"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-gradient mb-6">Let's Build the Demo</h2>
+            <p class="text-lg text-zinc-400 max-w-xl mx-auto mb-4">
+                We take your content. We build the AI. You test it yourself.
+            </p>
+            <p class="text-lg text-zinc-400 max-w-xl mx-auto mb-12">
+                No commitment until you've seen it work with your methodology.
+            </p>
+
+            <div class="glass-glow p-10 max-w-lg mx-auto mb-12">
+                <p class="text-xs text-amber-400 uppercase tracking-widest font-semibold mb-4">Next Step</p>
+                <p class="text-white text-lg font-semibold mb-2">Send us 10 of your best coaching videos.</p>
+                <p class="text-sm text-zinc-400 mb-6">We'll build a working prototype of your AI coaching agent with persistent memory. You'll be able to test it on WhatsApp within 2 weeks.</p>
+                <div class="flex items-center justify-center gap-2 text-sm text-zinc-500">
+                    <div class="pulse-dot"></div>
+                    <span>Ready when you are</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-zinc-600">
+                Prepared by Meridian &bull; Alex Mazzei &bull; March 2026
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <p class="text-xs text-zinc-700">Confidential — Prepared for Denver Griffin</p>
+            <p class="text-xs text-zinc-700">Meridian Intelligence Systems</p>
+        </div>
+    </footer>
+
+    <script>
+        // Init Lucide icons
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
