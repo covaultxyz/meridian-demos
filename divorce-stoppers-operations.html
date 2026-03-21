@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divorce Stoppers Operations Dashboard — Meridian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#3b82f6', dark: '#2563eb', glow: 'rgba(59,130,246,0.5)' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #a1a1aa; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* Glass cards */
+        .glass-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(59,130,246,0.25);
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(59,130,246,0.08);
+        }
+        .glass-card-static {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+        }
+        .glass-card-flat {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 256px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(30px);
+            border-right: 1px solid rgba(255,255,255,0.06);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 256px;
+            min-height: 100vh;
+        }
+
+        /* Page visibility */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Navigation links */
+        .nav-link {
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #71717a;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid transparent;
+            user-select: none;
+        }
+        .nav-link:hover { color: #d4d4d8; background: rgba(255,255,255,0.04); }
+        .nav-link.active {
+            color: #fff;
+            background: rgba(59,130,246,0.12);
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+        .nav-link .nav-icon { width: 16px; height: 16px; opacity: 0.5; }
+        .nav-link.active .nav-icon { opacity: 1; color: #3b82f6; }
+
+        /* Text gradients */
+        .text-gradient-white {
+            background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-blue {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Severity badges */
+        .severity-high { color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); }
+        .severity-medium { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+        .severity-positive { color: #22c55e; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); }
+        .severity-new { color: #22c55e; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); }
+        .severity-confirmed { color: #3b82f6; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); }
+        .severity-updated { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+
+        /* Data table */
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        .data-table thead th {
+            padding: 14px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #71717a;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .data-table tbody td {
+            padding: 16px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .data-table tbody tr { transition: background 0.2s ease; }
+        .data-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+        /* Glow orbs */
+        .glow-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); }
+
+        /* Checklist items */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .check-box {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 6px;
+            border: 2px solid rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        /* Pulse animation */
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        /* Phase block borders */
+        .phase-border-blue { border-left: 3px solid #3b82f6; }
+        .phase-border-purple { border-left: 3px solid #a855f7; }
+        .phase-border-amber { border-left: 3px solid #f59e0b; }
+        .phase-border-green { border-left: 3px solid #22c55e; }
+        .phase-border-red { border-left: 3px solid #ef4444; }
+
+        /* Flow diagram connector */
+        .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+            padding: 4px 0;
+        }
+
+        /* Quote block */
+        .quote-block {
+            border-left: 3px solid rgba(59,130,246,0.4);
+            padding-left: 20px;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #d4d4d8;
+        }
+
+        /* Mobile hamburger bar */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            z-index: 60;
+            align-items: center;
+            padding: 0 16px;
+            justify-content: space-between;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+                position: fixed;
+                inset: 0;
+                width: 100%;
+                z-index: 100;
+                background: rgba(0,0,0,0.95);
+            }
+            .sidebar.mobile-open {
+                display: flex;
+            }
+            .main-content {
+                margin-left: 0 !important;
+            }
+            .mobile-nav {
+                display: flex;
+            }
+            .main-content {
+                padding-top: 56px;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        /* Timeline connector line */
+        .timeline-line {
+            position: relative;
+        }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255,255,255,0.06);
+        }
+
+        /* Comparison columns */
+        .comparison-col {
+            flex: 1;
+            padding: 16px;
+            border-radius: 12px;
+        }
+        .comparison-pre {
+            background: rgba(239,68,68,0.05);
+            border: 1px solid rgba(239,68,68,0.1);
+        }
+        .comparison-post {
+            background: rgba(34,197,94,0.05);
+            border: 1px solid rgba(34,197,94,0.1);
+        }
+
+        /* Amber glow card */
+        .amber-glow {
+            box-shadow: 0 0 60px rgba(245,158,11,0.08), 0 0 120px rgba(245,158,11,0.04);
+            border-color: rgba(245,158,11,0.2);
+        }
+
+        /* Recommended badge */
+        .recommended-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            padding: 4px 16px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- MOBILE NAV BAR -->
+    <div class="mobile-nav">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                <i data-lucide="shield" class="w-4 h-4 text-blue-400"></i>
+            </div>
+            <span class="text-sm font-semibold text-white">Divorce Stoppers Ops</span>
+        </div>
+        <button onclick="toggleMobileNav()" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+            <i data-lucide="menu" class="w-5 h-5 text-zinc-400"></i>
+        </button>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+        <!-- Logo / Header -->
+        <div class="p-6 border-b border-white/5">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                        <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <div>
+                        <div class="text-sm font-bold text-white">Divorce Stoppers</div>
+                        <div class="text-[10px] font-medium text-zinc-500 uppercase tracking-wider">Operations</div>
+                    </div>
+                </div>
+                <!-- Mobile close button -->
+                <button onclick="toggleMobileNav()" class="md:hidden w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                    <i data-lucide="x" class="w-4 h-4 text-zinc-400"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="flex-1 p-4 space-y-1">
+            <!-- Status Group -->
+            <div class="px-3 pt-4 pb-2">
+                <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Status</span>
+            </div>
+            <div class="nav-link active" data-page="overview" onclick="showPage('overview')">
+                <i data-lucide="layout-dashboard" class="nav-icon"></i>
+                <span>Overview</span>
+            </div>
+
+            <!-- Operations Group -->
+            <div class="px-3 pt-6 pb-2">
+                <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Operations</span>
+            </div>
+            <div class="nav-link" data-page="intel" onclick="showPage('intel')">
+                <i data-lucide="radar" class="nav-icon"></i>
+                <span>Intel Corrections</span>
+            </div>
+            <div class="nav-link" data-page="sprint" onclick="showPage('sprint')">
+                <i data-lucide="calendar-clock" class="nav-icon"></i>
+                <span>Sprint Plan</span>
+            </div>
+            <div class="nav-link" data-page="data" onclick="showPage('data')">
+                <i data-lucide="clipboard-check" class="nav-icon"></i>
+                <span>Data Checklist</span>
+            </div>
+            <div class="nav-link" data-page="spec" onclick="showPage('spec')">
+                <i data-lucide="cpu" class="nav-icon"></i>
+                <span>Agent Spec</span>
+            </div>
+
+            <!-- Close Group -->
+            <div class="px-3 pt-6 pb-2">
+                <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">Close</span>
+            </div>
+            <div class="nav-link" data-page="demo" onclick="showPage('demo')">
+                <i data-lucide="presentation" class="nav-icon"></i>
+                <span>Demo Script</span>
+            </div>
+            <div class="nav-link" data-page="proposal" onclick="showPage('proposal')">
+                <i data-lucide="file-text" class="nav-icon"></i>
+                <span>Proposal</span>
+            </div>
+        </nav>
+
+        <!-- Bottom Status Card -->
+        <div class="p-4 border-t border-white/5">
+            <div class="glass-card-flat p-4">
+                <div class="flex items-center gap-3">
+                    <div class="pulse-dot"></div>
+                    <div>
+                        <div class="text-xs font-semibold text-white">Phase 0 Active</div>
+                        <div class="text-[10px] text-zinc-500">$2K Demo Sprint</div>
+                    </div>
+                </div>
+                <div class="mt-3 flex items-center gap-2">
+                    <div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                        <div class="h-full rounded-full bg-green-500/60" style="width: 7%"></div>
+                    </div>
+                    <span class="text-[10px] text-zinc-500">Day 1/14</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- ======================= PAGE 1: OVERVIEW ======================= -->
+        <div id="page-overview" class="page active">
+            <div class="relative">
+                <!-- Background glow -->
+                <div class="glow-orb" style="width: 600px; height: 600px; background: rgba(59,130,246,0.06); top: -200px; right: -200px;"></div>
+                <div class="glow-orb" style="width: 400px; height: 400px; background: rgba(34,197,94,0.04); bottom: -100px; left: -100px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Hero -->
+                    <div class="mb-12">
+                        <div class="badge mb-6" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60a5fa;">
+                            <i data-lucide="radio" class="w-3 h-3"></i>
+                            Post-Call Operations Briefing
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold text-gradient-white mb-4">Divorce Stoppers — Sprint Active</h1>
+                        <p class="text-lg text-zinc-400 max-w-2xl">March 21 call completed. $2K agreed. Two-week build begins.</p>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                        <!-- Stat: Retainer -->
+                        <div class="glass-card p-6 text-center">
+                            <div class="text-3xl font-bold text-white mb-1">$2K</div>
+                            <div class="text-sm font-semibold text-zinc-300 mb-1">Retainer</div>
+                            <div class="text-xs text-zinc-500">Agreed March 21</div>
+                        </div>
+                        <!-- Stat: Days -->
+                        <div class="glass-card p-6 text-center">
+                            <div class="text-3xl font-bold text-white mb-1">14</div>
+                            <div class="text-sm font-semibold text-zinc-300 mb-1">Days</div>
+                            <div class="text-xs text-zinc-500">Sprint Duration</div>
+                        </div>
+                        <!-- Stat: Employees -->
+                        <div class="glass-card p-6 text-center">
+                            <div class="text-3xl font-bold text-white mb-1">0</div>
+                            <div class="text-sm font-semibold text-zinc-300 mb-1">Employees</div>
+                            <div class="text-xs text-zinc-500">Denver is Solo</div>
+                        </div>
+                        <!-- Stat: Coaches -->
+                        <div class="glass-card p-6 text-center">
+                            <div class="text-3xl font-bold text-white mb-1">~450</div>
+                            <div class="text-sm font-semibold text-zinc-300 mb-1">Coaches</div>
+                            <div class="text-xs text-zinc-500">MPMC Pipeline</div>
+                        </div>
+                    </div>
+
+                    <!-- Context Cards -->
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- What Happened -->
+                        <div class="glass-card p-6" style="border-top: 2px solid #3b82f6;">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                    <i data-lucide="target" class="w-5 h-5 text-blue-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">What Happened</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">In-person at Bitler's house PR. Denver agreed to $2K/2-week text message coaching AI demo. Handshake deal, genuine enthusiasm. Wants to replace the broken AI coaching agent David built.</p>
+                        </div>
+
+                        <!-- What Changed -->
+                        <div class="glass-card p-6" style="border-top: 2px solid #f59e0b;">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);">
+                                    <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">What Changed</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Pre-research estimated $5-10M/yr. Reality: ~$100K/mo trough, zero employees, 60hr/week on sales calls. Financial picture is smaller but the scale opportunity through MPMC is real.</p>
+                        </div>
+
+                        <!-- What's Next -->
+                        <div class="glass-card p-6" style="border-top: 2px solid #22c55e;">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);">
+                                    <i data-lucide="rocket" class="w-5 h-5 text-green-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">What's Next</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Build text coaching agent MVP. Demo to Denver. If it works, Phase 1 begins. Scale opportunity: 400-500 coaches waiting in the MPMC pipeline for exactly this technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 2: INTEL CORRECTIONS ======================= -->
+        <div id="page-intel" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 500px; height: 500px; background: rgba(239,68,68,0.04); top: -150px; left: -150px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); color: #f87171;">
+                            <i data-lucide="radar" class="w-3 h-3"></i>
+                            Doc 14 — Lens
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Intelligence Corrections</h1>
+                        <p class="text-lg text-zinc-400">7 corrections to pre-call model</p>
+                    </div>
+
+                    <!-- Correction Cards -->
+                    <div class="space-y-6">
+
+                        <!-- 1. Financial State -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">1. Financial State</h3>
+                                <span class="badge severity-high text-xs">HIGH</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">$5-10M/yr estimate based on public-facing positioning, course pricing, and apparent market reach.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">Trough ~$100K/mo. Cannot afford $2,500. Agreed to $2K as a stretch. Cash flow is real but significantly smaller than projected.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-red-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> Pricing strategy must be performance-aligned, not premium retainer. The $5-10M model is aspirational, not current.</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. AI Maturity -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">2. AI Maturity</h3>
+                                <span class="badge severity-medium text-xs">MEDIUM</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Primitive GPT wrapper. Assumed minimal sophistication based on public tooling.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">Had working Claude agent with memory. Was "almost perfect" according to Denver. Broke during modification by David. More advanced than assumed.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-amber-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> David's architecture may be salvageable. Audit before rebuild. Denver has reference frame for "good" — our demo must exceed it.</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Team Topology -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">3. Team Topology</h3>
+                                <span class="badge severity-high text-xs">HIGH</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Assumed some team structure. Marketing person, tech lead, coaching staff.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">Zero. David fired. Sales person fired. One coach left: Marcel. Denver runs everything solo — 60hr/week on sales calls alone.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-red-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> No internal tech capacity. We are the entire technical team. Marcel is the only data access point besides Denver.</span>
+                            </div>
+                        </div>
+
+                        <!-- 4. MPMC Pipeline -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">4. MPMC Pipeline</h3>
+                                <span class="badge severity-new text-xs">NEW</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Not in pre-research. MPMC program not identified as a separate entity or growth vector.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">400-500 coach applications waiting. JV model with 60/40 split. Denver pitched the program before having the tech to deliver it. This is the real scale play.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-green-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> MPMC is the $5-10M/yr path. 100 coaches at $200K average = $20M addressable. Our Phase 2 play.</span>
+                            </div>
+                        </div>
+
+                        <!-- 5. Data Assets -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">5. Data Assets</h3>
+                                <span class="badge severity-positive text-xs">POSITIVE</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Couldn't confirm data availability. Assumed some content existed but volume and format were unknown.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">Records EVERYTHING. All coaching calls transcribed. Full program in Google Sheets. David's roadmap document exists. Video content library is extensive.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-green-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> Data richness exceeds expectations. Knowledge graph will have strong foundation. Voice fidelity achievable with this volume.</span>
+                            </div>
+                        </div>
+
+                        <!-- 6. Security -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">6. Security Posture</h3>
+                                <span class="badge severity-confirmed text-xs">CONFIRMED</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Assumed moderate security awareness based on industry norms.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">Wants own hardware/servers. Investigated servers in "weird countries." Wants 3-4 backup locations. Security-conscious beyond typical client. Aligns with our local-first architecture.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-blue-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> Local-first architecture is a selling point, not a compromise. Denver will appreciate on-device processing and data ownership.</span>
+                            </div>
+                        </div>
+
+                        <!-- 7. Funnel -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <h3 class="text-lg font-semibold text-white">7. Enrollment Funnel</h3>
+                                <span class="badge severity-updated text-xs">UPDATED</span>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-4 mb-4">
+                                <div class="comparison-col comparison-pre flex-1">
+                                    <div class="text-[10px] font-bold text-red-400 uppercase tracking-wider mb-2">Pre-Call</div>
+                                    <p class="text-sm text-zinc-300">Assumed smooth enrollment funnel. Standard webinar-to-call-to-close pipeline.</p>
+                                </div>
+                                <div class="comparison-col comparison-post flex-1">
+                                    <div class="text-[10px] font-bold text-green-400 uppercase tracking-wider mb-2">Corrected</div>
+                                    <p class="text-sm text-zinc-300">"I would not go through my own funnel." Denver's words. Wants: YouTube content to AI-powered enrollment to no sales calls. Current funnel is broken by his own admission.</p>
+                                </div>
+                            </div>
+                            <div class="text-xs text-zinc-500 flex items-center gap-2">
+                                <i data-lucide="alert-circle" class="w-3 h-3 text-amber-400"></i>
+                                <span><strong class="text-zinc-400">Impact:</strong> Funnel automation is Phase 1.5 upsell. Denver already wants it — we just need to deliver the text coach first to earn the trust.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 3: SPRINT PLAN ======================= -->
+        <div id="page-sprint" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 500px; height: 500px; background: rgba(59,130,246,0.04); top: -150px; right: -200px;"></div>
+                <div class="glow-orb" style="width: 400px; height: 400px; background: rgba(168,85,247,0.04); bottom: 0; left: -100px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); color: #c084fc;">
+                            <i data-lucide="calendar-clock" class="w-3 h-3"></i>
+                            Doc 15 — Prism
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Two-Week Sprint</h1>
+                        <p class="text-lg text-zinc-400">4 phases, one deliverable</p>
+                    </div>
+
+                    <!-- Phase Timeline -->
+                    <div class="space-y-6 mb-12">
+
+                        <!-- Phase A: Data Intake -->
+                        <div class="glass-card p-6 phase-border-blue">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                        <span class="text-sm font-bold text-blue-400">A</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Data Intake</h3>
+                                        <span class="text-xs text-zinc-500">Days 1-3</span>
+                                    </div>
+                                </div>
+                                <div class="badge" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60a5fa;">
+                                    6 Items
+                                </div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Receive program access from Marcel (text modules, curriculum login)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Obtain David's roadmap Google Doc and architecture notes</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Download 10 best coaching videos (Denver's top picks)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Download text message training modules</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Audit David's existing architecture (what broke, what worked)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Make salvage/build decision based on audit findings</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase B: Core Build -->
+                        <div class="glass-card p-6 phase-border-purple">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.25);">
+                                        <span class="text-sm font-bold text-purple-400">B</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Core Build</h3>
+                                        <span class="text-xs text-zinc-500">Days 3-8</span>
+                                    </div>
+                                </div>
+                                <div class="badge" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); color: #c084fc;">
+                                    7 Items
+                                </div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Build knowledge graph from training content (Neo4j)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Define coaching rules engine (Denver's 7 rules + voice patterns)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Build screenshot intake pipeline (Vision/OCR for text messages)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Build response engine (critique, rewrite, explain WHY)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Implement persistent memory (per-student conversation history)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Model selection and optimization (Claude Sonnet for demo, local path for prod)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">End-to-end conversation loop (screenshot in, coached response out)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase C: Testing -->
+                        <div class="glass-card p-6 phase-border-amber">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.25);">
+                                        <span class="text-sm font-bold text-amber-400">C</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Testing</h3>
+                                        <span class="text-xs text-zinc-500">Days 8-12</span>
+                                    </div>
+                                </div>
+                                <div class="badge" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #fbbf24;">
+                                    6 Items
+                                </div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Run 10 synthetic conversations (varied scenarios, difficulty levels)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Test edge cases (hostile wife, suicidal student, ambiguous screenshots)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Voice fidelity check (does it sound like Denver? Mike reviews)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Memory persistence test (multi-session student, context retention)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Speed test (response time under 5 seconds for demo)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Demo UI polish (clean interface, minimal clicks, mobile-friendly)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phase D: Demo Prep -->
+                        <div class="glass-card p-6 phase-border-green">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25);">
+                                        <span class="text-sm font-bold text-green-400">D</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Demo Prep</h3>
+                                        <span class="text-xs text-zinc-500">Days 12-14</span>
+                                    </div>
+                                </div>
+                                <div class="badge" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #4ade80;">
+                                    5 Items
+                                </div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Prepare 3 demo scenarios (easy win, hard case, memory recall)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Record backup demo video (insurance against live failure)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Side-by-side comparison with David's agent (if accessible)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Finalize demo script (opening, scenarios, discussion, close)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Draft Phase 1 proposal with pricing options</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Table -->
+                    <div class="glass-card-static p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2);">
+                                <i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Sprint Risks</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Risk</th>
+                                        <th>Mitigation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Data arrives late</td>
+                                        <td class="text-zinc-400">Mike follows up day 1. Marcel is primary contact. Escalate to Denver by day 2 if no response.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">David's system is actually good</td>
+                                        <td class="text-zinc-400">Audit first, build on it if salvageable. Don't rebuild what already works.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Local model quality insufficient</td>
+                                        <td class="text-zinc-400">Claude API for demo. Local fine-tuned model is production goal, not demo requirement.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Voice hard to replicate</td>
+                                        <td class="text-zinc-400">More data, test with Mike first. Iterate on prompt engineering. Denver's profanity makes voice distinctive.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">$2K is thin for scope</td>
+                                        <td class="text-zinc-400">Loss leader. Demo sells the engagement. Phase 1 revenue covers Phase 0 investment.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 4: DATA CHECKLIST ======================= -->
+        <div id="page-data" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 500px; height: 500px; background: rgba(245,158,11,0.04); top: -150px; left: -100px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #fbbf24;">
+                            <i data-lucide="clipboard-check" class="w-3 h-3"></i>
+                            Doc 16 — Prism
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Data Intake Checklist</h1>
+                        <p class="text-lg text-zinc-400">17 items across 3 priorities. 5 block the build.</p>
+                    </div>
+
+                    <!-- Priority Sections -->
+                    <div class="space-y-6 mb-10">
+
+                        <!-- P1: MUST HAVE -->
+                        <div class="glass-card p-6 phase-border-red">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.25);">
+                                        <span class="text-sm font-bold text-red-400">P1</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Must Have</h3>
+                                        <span class="text-xs text-red-400 font-medium">BUILD BLOCKERS</span>
+                                    </div>
+                                </div>
+                                <div class="badge severity-high text-xs">5 Items</div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(239,68,68,0.4);"><i data-lucide="square" class="w-3 h-3 text-red-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Text message training modules</span>
+                                        <p class="text-xs text-zinc-500 mt-1">The core content the agent learns from. Without this, nothing works.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(239,68,68,0.4);"><i data-lucide="square" class="w-3 h-3 text-red-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">10 best coaching videos (Denver's picks)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Voice calibration. How Denver actually talks, not how he writes.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(239,68,68,0.4);"><i data-lucide="square" class="w-3 h-3 text-red-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Example text exchanges (student + wife conversations)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Ground truth for what the agent critiques. Real conversations, not synthetic.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(239,68,68,0.4);"><i data-lucide="square" class="w-3 h-3 text-red-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">David's Google Doc (roadmap / architecture)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Understand what was built, what broke, and what to salvage.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(239,68,68,0.4);"><i data-lucide="square" class="w-3 h-3 text-red-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Program login (student-facing platform access)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">See what students see. Understand the coaching flow from their perspective.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- P2: SHOULD HAVE -->
+                        <div class="glass-card p-6 phase-border-amber">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.25);">
+                                        <span class="text-sm font-bold text-amber-400">P2</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Should Have</h3>
+                                        <span class="text-xs text-amber-400 font-medium">QUALITY BOOSTERS</span>
+                                    </div>
+                                </div>
+                                <div class="badge severity-medium text-xs">5 Items</div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(245,158,11,0.4);"><i data-lucide="square" class="w-3 h-3 text-amber-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Coaching call recordings</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Denver coaching live. How he handles pushback, emotion, resistance in real time.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(245,158,11,0.4);"><i data-lucide="square" class="w-3 h-3 text-amber-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Denver's constitution / coaching rules</span>
+                                        <p class="text-xs text-zinc-500 mt-1">The explicit rules Denver operates by. Framework for the coaching engine.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(245,158,11,0.4);"><i data-lucide="square" class="w-3 h-3 text-amber-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Previous AI agent access (David's system)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">If it still runs, test it. Know the bar we need to clear.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(245,158,11,0.4);"><i data-lucide="square" class="w-3 h-3 text-amber-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Pickax platform access</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Where the coaching content lives. Need to understand current tech stack.</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box" style="border-color: rgba(245,158,11,0.4);"><i data-lucide="square" class="w-3 h-3 text-amber-500/30"></i></div>
+                                    <div>
+                                        <span class="text-sm text-zinc-200 font-medium">Facebook group (read-only access)</span>
+                                        <p class="text-xs text-zinc-500 mt-1">Student communication patterns. How they talk about their situations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- P3: NICE TO HAVE -->
+                        <div class="glass-card p-6 phase-border-blue">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-5 gap-3">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                        <span class="text-sm font-bold text-blue-400">P3</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Nice to Have</h3>
+                                        <span class="text-xs text-blue-400 font-medium">DEPTH ENHANCERS</span>
+                                    </div>
+                                </div>
+                                <div class="badge" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60a5fa;">7 Items</div>
+                            </div>
+                            <div class="space-y-0">
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Full curriculum (all modules, not just text training)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Onboarding process (how students enter the program)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">MPMC applications (coach pipeline data for Phase 2 planning)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">David Zoom recording (debrief if Denver allows)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">YouTube analytics (what content performs, audience demographics)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">Sales call recordings (Denver's close patterns, objection handling)</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="check-box"><i data-lucide="square" class="w-3 h-3 text-zinc-600"></i></div>
+                                    <span class="text-sm text-zinc-300">EverWebinar masterclass recordings</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message to Send -->
+                    <div class="glass-card p-6 mb-8" style="border-left: 3px solid rgba(59,130,246,0.4);">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                <i data-lucide="send" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <h3 class="text-base font-semibold text-white">Message to Denver / Marcel</h3>
+                        </div>
+                        <div class="p-5 rounded-xl" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                            <p class="text-sm text-zinc-300 leading-relaxed italic">
+                                "Hey Denver — to hit the ground running on the text message coaching AI, we need a few things from your end. The big 5 that block the build: your text message training modules, your 10 best coaching videos, some real example text exchanges between students and their wives, David's Google Doc with his roadmap, and a login to the student-facing program. If Marcel can get us started on those, we can begin Day 1. Everything else on the list is gravy — we'll work with what we get."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Data Handling Rules -->
+                    <div class="glass-card p-6 phase-border-green">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);">
+                                <i data-lucide="lock" class="w-5 h-5 text-green-400"></i>
+                            </div>
+                            <h3 class="text-base font-semibold text-white">Data Handling Rules</h3>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="hard-drive" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">All data stored locally on Denver's hardware</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="mic" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">On-device transcription (no cloud speech-to-text)</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="database" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">Local Neo4j for knowledge graph and student memory</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="shield-off" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">Never touches cloud LLM training data</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="key" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">Encrypted credentials for all service access</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="copy" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                <span class="text-sm text-zinc-400">3-4 backup locations per Denver's security preference</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 5: AGENT SPEC ======================= -->
+        <div id="page-spec" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 600px; height: 600px; background: rgba(59,130,246,0.05); top: -200px; right: -200px;"></div>
+                <div class="glow-orb" style="width: 400px; height: 400px; background: rgba(168,85,247,0.04); bottom: 100px; left: -100px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); color: #c084fc;">
+                            <i data-lucide="cpu" class="w-3 h-3"></i>
+                            Doc 17 — Prism
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Shepherd — Text Coach Agent</h1>
+                        <p class="text-lg text-zinc-400">Voice: Denver Griffin. Memory: Persistent. Safety: Built-in.</p>
+                    </div>
+
+                    <!-- Flow Diagram -->
+                    <div class="glass-card-static p-6 mb-10">
+                        <h3 class="text-base font-semibold text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="workflow" class="w-4 h-4 text-blue-400"></i>
+                            Conversation Flow
+                        </h3>
+                        <div class="flex flex-col items-center gap-1">
+                            <!-- Row 1 -->
+                            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-3 w-full justify-center flex-wrap">
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[140px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="camera" class="w-4 h-4 text-blue-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Screenshot Upload</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[140px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="eye" class="w-4 h-4 text-purple-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Vision / OCR</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[180px]" style="border-color: rgba(245,158,11,0.2);">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="message-circle-question" class="w-4 h-4 text-amber-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">"Your proposed response?"</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[140px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="pencil" class="w-4 h-4 text-green-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Student Types Draft</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Arrow down -->
+                            <div class="py-1">
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400"></i>
+                            </div>
+                            <!-- Row 2 -->
+                            <div class="flex flex-col md:flex-row items-center gap-2 md:gap-3 w-full justify-center flex-wrap">
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[200px]" style="border-color: rgba(239,68,68,0.2);">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="brain" class="w-4 h-4 text-red-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Critique: Right / Wrong / WHY</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[140px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Revised Response</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[100px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="send" class="w-4 h-4 text-blue-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Send</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[140px]">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="message-circle" class="w-4 h-4 text-pink-400"></i>
+                                        <span class="text-xs font-semibold text-zinc-200">Wife Responds</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-blue-400 hidden md:block"></i>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-blue-400 md:hidden"></i>
+                                <div class="glass-card-flat px-4 py-3 text-center min-w-[80px]" style="border-color: rgba(59,130,246,0.3);">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <i data-lucide="repeat" class="w-4 h-4 text-blue-400"></i>
+                                        <span class="text-xs font-semibold text-blue-300">Loop</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Component Cards -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-10">
+
+                        <!-- Vision/OCR -->
+                        <div class="glass-card p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2);">
+                                    <i data-lucide="eye" class="w-5 h-5 text-purple-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">Vision / OCR</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Extract text from iPhone and Android screenshots. Handle iMessage and WhatsApp formats, light and dark mode variants. Must reliably identify sender vs. receiver in conversation threads and extract timestamps when visible.</p>
+                        </div>
+
+                        <!-- Student Memory -->
+                        <div class="glass-card p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                    <i data-lucide="database" class="w-5 h-5 text-blue-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">Student Memory</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">Per-student history persists across sessions. Two-tiered architecture: full access for deep coaching analysis (complete conversation thread), fast access for quick critique (recent context window). Local Neo4j graph database. No student data leaves Denver's hardware.</p>
+                        </div>
+
+                        <!-- Coaching Engine -->
+                        <div class="glass-card p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);">
+                                    <i data-lucide="brain" class="w-5 h-5 text-amber-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">Coaching Engine</h3>
+                            </div>
+                            <div class="text-sm text-zinc-400 leading-relaxed mb-3">Denver's 7 Rules:</div>
+                            <ol class="space-y-2 text-sm text-zinc-400 list-decimal list-inside">
+                                <li>Never be needy. Never chase.</li>
+                                <li>Lead with strength, not emotion.</li>
+                                <li>Don't explain yourself — state your position.</li>
+                                <li>Mirror her energy, don't absorb it.</li>
+                                <li>Create space. Absence builds attraction.</li>
+                                <li>Every text is a strategic move, not a feeling dump.</li>
+                                <li>The goal is respect, not agreement.</li>
+                            </ol>
+                            <div class="mt-3 text-xs text-zinc-500 italic">Voice: profane, direct, explains WHY, tough love with care.</div>
+                        </div>
+
+                        <!-- Crisis Detection -->
+                        <div class="glass-card p-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2);">
+                                    <i data-lucide="shield" class="w-5 h-5 text-red-400"></i>
+                                </div>
+                                <h3 class="text-base font-semibold text-white">Crisis Detection</h3>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed mb-3">Hard stops that override all coaching logic:</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                    <span class="text-sm text-zinc-300">Suicidal ideation detected</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                    <span class="text-sm text-zinc-300">Domestic violence indicators</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                    <span class="text-sm text-zinc-300">Homicidal ideation</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-zinc-500 mt-3">Agent pauses coaching, provides crisis resources (988 Lifeline, NDVH), flags for human review. Safety is non-negotiable.</p>
+                        </div>
+
+                        <!-- Upsell Stub -->
+                        <div class="glass-card p-6 md:col-span-2">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);">
+                                    <i data-lucide="trending-up" class="w-5 h-5 text-green-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-base font-semibold text-white">Upsell Stub</h3>
+                                    <span class="text-xs text-zinc-500">Phase 2 Only — Not in Demo</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-zinc-400 leading-relaxed">7-day free trial of AI coaching. After trial, agent surfaces: "Steps 4 and 5 in the Divorce Stoppers program go deeper into what you're dealing with. Want me to show you what's in there?" Natural enrollment conversion path. No hard sell — the coaching quality sells itself.</p>
+                        </div>
+                    </div>
+
+                    <!-- Acceptance Criteria -->
+                    <div class="glass-card-static p-6 mb-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);">
+                                <i data-lucide="list-checks" class="w-5 h-5 text-green-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Acceptance Criteria</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">#</th>
+                                        <th>Criterion</th>
+                                        <th style="width: 80px;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">1</td>
+                                        <td class="text-zinc-300">Agent can extract text from an iPhone screenshot (light and dark mode)</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">2</td>
+                                        <td class="text-zinc-300">Agent can extract text from an Android / WhatsApp screenshot</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">3</td>
+                                        <td class="text-zinc-300">Agent asks for the student's proposed response before critiquing</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">4</td>
+                                        <td class="text-zinc-300">Critique identifies what is right, what is wrong, and explains WHY</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">5</td>
+                                        <td class="text-zinc-300">Revised response sounds like Denver (profane, direct, strategic)</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">6</td>
+                                        <td class="text-zinc-300">Student memory persists across sessions (returns to same student, knows history)</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">7</td>
+                                        <td class="text-zinc-300">Crisis detection triggers on suicidal ideation keyword patterns</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">8</td>
+                                        <td class="text-zinc-300">Crisis detection triggers on domestic violence indicators</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">9</td>
+                                        <td class="text-zinc-300">Response time under 5 seconds for complete critique cycle</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">10</td>
+                                        <td class="text-zinc-300">No student data leaves local environment during demo</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">11</td>
+                                        <td class="text-zinc-300">Demo UI is clean, minimal, and works on mobile</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-500 font-mono">12</td>
+                                        <td class="text-zinc-300">Denver says "That sounds like me" during internal review</td>
+                                        <td class="text-center"><i data-lucide="square" class="w-4 h-4 text-zinc-600 inline"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="glass-card-static p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                <i data-lucide="layers" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Tech Stack</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Component</th>
+                                        <th>Demo</th>
+                                        <th>Production</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Vision</td>
+                                        <td class="text-zinc-400">Claude Sonnet (multimodal)</td>
+                                        <td class="text-zinc-400">Local model (on-device)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">LLM</td>
+                                        <td class="text-zinc-400">Claude (API)</td>
+                                        <td class="text-zinc-400">Local fine-tuned model</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Memory</td>
+                                        <td class="text-zinc-400">Local Neo4j</td>
+                                        <td class="text-zinc-400">Local Neo4j</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Interface</td>
+                                        <td class="text-zinc-400">Gradio / Streamlit</td>
+                                        <td class="text-zinc-400">Gradio / Streamlit</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Image Input</td>
+                                        <td class="text-zinc-400">Base64 upload</td>
+                                        <td class="text-zinc-400">Base64 upload</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 6: DEMO SCRIPT ======================= -->
+        <div id="page-demo" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 600px; height: 600px; background: rgba(34,197,94,0.04); top: -200px; right: -200px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); color: #4ade80;">
+                            <i data-lucide="presentation" class="w-3 h-3"></i>
+                            Doc 19 — Prism
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Demo Day</h1>
+                        <p class="text-lg text-zinc-400">3 scenarios. One close. 45 minutes.</p>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="space-y-4 mb-12">
+
+                        <!-- Opening -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                        <i data-lucide="play" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-blue-400 font-semibold">OPENING</div>
+                                        <div class="text-lg font-bold text-white">2 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">Mike Leads</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed">Set the frame. No tech talk. No slides. Denver sees a working thing, not a pitch deck.</p>
+                                    <div class="mt-4 quote-block">
+                                        "We took the text message training content you gave us and built what we think your AI coach should have been from the start."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 1 -->
+                        <div class="glass-card p-6" style="border-left: 3px solid #22c55e;">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25);">
+                                        <span class="text-sm font-bold text-green-400">1</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-green-400 font-semibold">EASY WIN</div>
+                                        <div class="text-lg font-bold text-white">5 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">Neutral Wife Text</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed mb-3">Wife sends a calm, neutral text. Student drafts a needy, over-explaining response. Agent critiques the draft: identifies the neediness, explains WHY it's wrong, rewrites with Denver's framework.</p>
+                                    <div class="glass-card-flat p-3 inline-block">
+                                        <span class="text-xs text-green-400 font-semibold">Denver should say:</span>
+                                        <span class="text-sm text-zinc-300 ml-2">"That sounds like me."</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 2 -->
+                        <div class="glass-card p-6" style="border-left: 3px solid #f59e0b;">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.25);">
+                                        <span class="text-sm font-bold text-amber-400">2</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-amber-400 font-semibold">HARD CASE</div>
+                                        <div class="text-lg font-bold text-white">5 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">Angry Wife Text</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed mb-3">Wife sends an angry, accusatory text. Student gets defensive, wants to fire back. Agent says the hard thing: "What the fuck are you thinking? You're about to blow everything." Coaches through Denver's framework. Explains WHY the defensive response destroys progress.</p>
+                                    <div class="glass-card-flat p-3 inline-block">
+                                        <span class="text-xs text-amber-400 font-semibold">Shows:</span>
+                                        <span class="text-sm text-zinc-300 ml-2">Denver's voice at full intensity. Tough love that actually teaches.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 3 -->
+                        <div class="glass-card p-6" style="border-left: 3px solid #a855f7;">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.25);">
+                                        <span class="text-sm font-bold text-purple-400">3</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-purple-400 font-semibold">MEMORY</div>
+                                        <div class="text-lg font-bold text-white">5 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">Same Student, Days Later</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed mb-3">Same student comes back days later with a new screenshot. Agent REMEMBERS: "Last time you were dealing with the custody text. How'd that go?" References previous conversation, builds on prior coaching. No re-explaining.</p>
+                                    <div class="glass-card-flat p-3 inline-block" style="border-color: rgba(168,85,247,0.3);">
+                                        <span class="text-xs text-purple-400 font-semibold">The differentiator:</span>
+                                        <span class="text-sm text-zinc-300 ml-2">"This is what David's agent never did."</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Crisis -->
+                        <div class="glass-card p-6" style="border-left: 3px solid #ef4444;">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.25);">
+                                        <i data-lucide="shield-alert" class="w-4 h-4 text-red-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-red-400 font-semibold">CRISIS</div>
+                                        <div class="text-lg font-bold text-white">2 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">Safety Demo (Optional)</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed">Agent encounters a message indicating crisis. Immediately pauses coaching mode. Checks student safety. Provides resources. Shows Denver that the agent has a conscience — it won't coach someone off a cliff.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discussion -->
+                        <div class="glass-card p-6">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                        <i data-lucide="message-square" class="w-4 h-4 text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-blue-400 font-semibold">DISCUSSION</div>
+                                        <div class="text-lg font-bold text-white">10 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-3">4 Key Questions</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-start gap-3">
+                                            <span class="text-blue-400 font-bold text-sm min-w-[20px]">1.</span>
+                                            <span class="text-sm text-zinc-300">Where is it off? What doesn't sound like you?</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <span class="text-blue-400 font-bold text-sm min-w-[20px]">2.</span>
+                                            <span class="text-sm text-zinc-300">Scale of 1-10, how close is this to your coaching?</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <span class="text-blue-400 font-bold text-sm min-w-[20px]">3.</span>
+                                            <span class="text-sm text-zinc-300">What needs to change before you'd let a student use this?</span>
+                                        </div>
+                                        <div class="flex items-start gap-3">
+                                            <span class="text-blue-400 font-bold text-sm min-w-[20px]">4.</span>
+                                            <span class="text-sm text-zinc-300">Are you ready to test this with a 7-day trial group?</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proposal -->
+                        <div class="glass-card p-6" style="border-left: 3px solid #22c55e;">
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="flex items-center gap-3 md:min-w-[140px]">
+                                    <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25);">
+                                        <i data-lucide="handshake" class="w-4 h-4 text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-green-400 font-semibold">PROPOSAL</div>
+                                        <div class="text-lg font-bold text-white">15 min</div>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-base font-semibold text-white mb-2">The Close</h3>
+                                    <p class="text-sm text-zinc-400 leading-relaxed mb-4">Transition from demo reaction to Phase 1 engagement. Present pricing options. Let Denver choose the structure that fits.</p>
+                                    <div class="quote-block">
+                                        "You spent months and thousands on something that almost worked. What you saw today works. The question is: do you want to deploy it?"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contingencies -->
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-blue-400"></i>
+                        Contingency Plans
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="glass-card p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-red-400"></i>
+                                <span class="text-sm font-semibold text-white">Demo fails live</span>
+                            </div>
+                            <p class="text-sm text-zinc-400">Backup video recording ready. Show the pre-recorded demo. Explain: "The live version does exactly this — here's proof." Offer to run it on Denver's hardware after the meeting.</p>
+                        </div>
+                        <div class="glass-card p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                                <span class="text-sm font-semibold text-white">"David's was better"</span>
+                            </div>
+                            <p class="text-sm text-zinc-400">Don't argue. Ask: "What specifically was better?" Build a punch list. "Great — those are Phase 1 targets. We can match and exceed in 30 days." Turn objection into scope.</p>
+                        </div>
+                        <div class="glass-card p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-400"></i>
+                                <span class="text-sm font-semibold text-white">Can't afford Phase 1</span>
+                            </div>
+                            <p class="text-sm text-zinc-400">Performance-based pricing: $0 upfront, low monthly base + revenue share. "We believe in this enough to bet on it." Option B is designed exactly for this objection.</p>
+                        </div>
+                        <div class="glass-card p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-green-400"></i>
+                                <span class="text-sm font-semibold text-white">Wants to start now</span>
+                            </div>
+                            <p class="text-sm text-zinc-400">Agreement is ready. Walk through pricing options on the spot. Get verbal commitment, follow up with written agreement within 24 hours. Don't let momentum die.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================= PAGE 7: PROPOSAL ======================= -->
+        <div id="page-proposal" class="page">
+            <div class="relative">
+                <div class="glow-orb" style="width: 600px; height: 600px; background: rgba(59,130,246,0.05); top: -200px; left: -200px;"></div>
+                <div class="glow-orb" style="width: 400px; height: 400px; background: rgba(245,158,11,0.04); bottom: 0; right: -100px;"></div>
+
+                <div class="max-w-6xl mx-auto px-6 py-12 relative z-10">
+                    <!-- Header -->
+                    <div class="mb-10">
+                        <div class="badge mb-6" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60a5fa;">
+                            <i data-lucide="file-text" class="w-3 h-3"></i>
+                            Doc 20 — Prism
+                        </div>
+                        <h1 class="text-4xl font-bold text-gradient-white mb-3">Engagement Proposal v2</h1>
+                        <p class="text-lg text-zinc-400">Performance-aligned. Denver owns everything.</p>
+                    </div>
+
+                    <!-- Phase Timeline (Horizontal) -->
+                    <div class="glass-card-static p-6 mb-10">
+                        <h3 class="text-base font-semibold text-white mb-6 flex items-center gap-2">
+                            <i data-lucide="git-branch" class="w-4 h-4 text-blue-400"></i>
+                            Engagement Phases
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Phase 0 -->
+                            <div class="glass-card-flat p-4 text-center relative" style="border-color: rgba(34,197,94,0.3);">
+                                <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-3 h-3 text-white"></i>
+                                </div>
+                                <div class="text-xs text-green-400 font-semibold mb-1">PHASE 0</div>
+                                <div class="text-lg font-bold text-white mb-1">$2K Demo</div>
+                                <div class="text-xs text-zinc-500">2 Weeks</div>
+                                <div class="mt-2 badge" style="background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25); color: #4ade80; font-size: 9px;">
+                                    AGREED
+                                </div>
+                            </div>
+                            <!-- Phase 1 -->
+                            <div class="glass-card-flat p-4 text-center">
+                                <div class="text-xs text-blue-400 font-semibold mb-1">PHASE 1</div>
+                                <div class="text-lg font-bold text-white mb-1">Production Agent</div>
+                                <div class="text-xs text-zinc-500">Month 1-2</div>
+                                <div class="mt-2 badge" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); color: #60a5fa; font-size: 9px;">
+                                    NEXT
+                                </div>
+                            </div>
+                            <!-- Phase 1.5 -->
+                            <div class="glass-card-flat p-4 text-center">
+                                <div class="text-xs text-amber-400 font-semibold mb-1">PHASE 1.5</div>
+                                <div class="text-lg font-bold text-white mb-1">Funnel Automation</div>
+                                <div class="text-xs text-zinc-500">Month 2-3</div>
+                                <div class="mt-2 badge" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #71717a; font-size: 9px;">
+                                    PLANNED
+                                </div>
+                            </div>
+                            <!-- Phase 2 -->
+                            <div class="glass-card-flat p-4 text-center">
+                                <div class="text-xs text-purple-400 font-semibold mb-1">PHASE 2</div>
+                                <div class="text-lg font-bold text-white mb-1">MPMC Platform</div>
+                                <div class="text-xs text-zinc-500">Month 3-6</div>
+                                <div class="mt-2 badge" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #71717a; font-size: 9px;">
+                                    PLANNED
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pricing Cards -->
+                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="credit-card" class="w-5 h-5 text-blue-400"></i>
+                        Phase 1 Pricing Options
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-6 mb-10">
+                        <!-- Option A -->
+                        <div class="glass-card p-6">
+                            <div class="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-3">Option A</div>
+                            <h3 class="text-xl font-bold text-white mb-1">Monthly</h3>
+                            <div class="text-3xl font-bold text-gradient-blue mb-4">$2,500<span class="text-sm text-zinc-500 font-normal">/mo</span></div>
+                            <div class="space-y-3 text-sm text-zinc-400">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                    <span>$2,500/mo x 2 months = $5K total</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                    <span>Cancel anytime</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                    <span>Full code ownership</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-blue-400 mt-0.5 shrink-0"></i>
+                                    <span>Maximum flexibility</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Option B (Recommended) -->
+                        <div class="glass-card p-6 relative" style="border-color: rgba(34,197,94,0.3); box-shadow: 0 0 40px rgba(34,197,94,0.08);">
+                            <div class="recommended-badge">RECOMMENDED</div>
+                            <div class="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-3">Option B</div>
+                            <h3 class="text-xl font-bold text-white mb-1">Performance</h3>
+                            <div class="text-3xl font-bold text-gradient-blue mb-1">$1K<span class="text-sm text-zinc-500 font-normal">/mo base</span></div>
+                            <div class="text-sm text-green-400 font-medium mb-4">+ 10% incremental revenue</div>
+                            <div class="space-y-3 text-sm text-zinc-400">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                    <span>Cap at $5K/mo</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                    <span>6-month minimum</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                    <span>Aligned incentives</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-green-400 mt-0.5 shrink-0"></i>
+                                    <span>Lowest cash commitment</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Option C -->
+                        <div class="glass-card p-6">
+                            <div class="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-3">Option C</div>
+                            <h3 class="text-xl font-bold text-white mb-1">Hybrid</h3>
+                            <div class="text-3xl font-bold text-gradient-blue mb-1">$1,500<span class="text-sm text-zinc-500 font-normal">/mo</span></div>
+                            <div class="text-sm text-amber-400 font-medium mb-4">+ 5% incremental revenue</div>
+                            <div class="space-y-3 text-sm text-zinc-400">
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 shrink-0"></i>
+                                    <span>Cap at $3,500/mo</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 shrink-0"></i>
+                                    <span>3-month minimum</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 shrink-0"></i>
+                                    <span>Balanced risk/reward</span>
+                                </div>
+                                <div class="flex items-start gap-2">
+                                    <i data-lucide="check" class="w-4 h-4 text-amber-400 mt-0.5 shrink-0"></i>
+                                    <span>Middle ground option</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ownership Table -->
+                    <div class="glass-card-static p-6 mb-10">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                <i data-lucide="key" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-white">Ownership</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Asset</th>
+                                        <th>Owner</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Code</td>
+                                        <td><span class="text-green-400 font-semibold">Denver</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Training Data</td>
+                                        <td><span class="text-green-400 font-semibold">Denver</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Student Data</td>
+                                        <td><span class="text-green-400 font-semibold">Denver</span> <span class="text-xs text-zinc-500">(local Neo4j)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Hardware</td>
+                                        <td><span class="text-green-400 font-semibold">Denver</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Fine-Tuned Models</td>
+                                        <td><span class="text-green-400 font-semibold">Denver</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-zinc-300 font-medium">Meridian Framework</td>
+                                        <td><span class="text-blue-400 font-semibold">Licensed</span> <span class="text-xs text-zinc-500">(we retain framework IP)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- MPMC Revenue Share (Featured) -->
+                    <div class="glass-card p-8 mb-10 amber-glow" style="border-color: rgba(245,158,11,0.25);">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.25);">
+                                <i data-lucide="trophy" class="w-6 h-6 text-amber-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">MPMC Revenue Share — Phase 2</h3>
+                                <span class="text-xs text-amber-400 font-medium">The Real Opportunity</span>
+                            </div>
+                        </div>
+                        <p class="text-base text-zinc-300 leading-relaxed mb-6">Meridian takes 15-20% of MPMC net revenue. No upfront fee. We build the platform, Denver fills it with coaches, we both win when it scales.</p>
+                        <div class="glass-card-flat p-5" style="border-color: rgba(245,158,11,0.15);">
+                            <div class="grid md:grid-cols-3 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-white">100</div>
+                                    <div class="text-xs text-zinc-500">Coaches Onboarded</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-white">$20M</div>
+                                    <div class="text-xs text-zinc-500">Total Revenue (100 x $200K avg)</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-amber-400">$3M/yr</div>
+                                    <div class="text-xs text-zinc-500">Meridian Share (15%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- The Ask -->
+                    <div class="glass-card p-6" style="border-top: 2px solid #3b82f6;">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);">
+                                <i data-lucide="target" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">The Ask</h3>
+                        </div>
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                    <span class="text-sm font-bold text-blue-400">1</span>
+                                </div>
+                                <div>
+                                    <span class="text-base text-white font-medium">Which pricing option feels right?</span>
+                                    <p class="text-sm text-zinc-500 mt-1">All three give you full ownership. The difference is cash vs. performance alignment.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                    <span class="text-sm font-bold text-blue-400">2</span>
+                                </div>
+                                <div>
+                                    <span class="text-base text-white font-medium">Can Marcel give program access this week?</span>
+                                    <p class="text-sm text-zinc-500 mt-1">We need the P1 data items to start building. Marcel is the fastest path.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                    <span class="text-sm font-bold text-blue-400">3</span>
+                                </div>
+                                <div>
+                                    <span class="text-base text-white font-medium">Pick 10 students for the pilot</span>
+                                    <p class="text-sm text-zinc-500 mt-1">Mix of easy and hard cases. We need real-world test subjects after the demo.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25);">
+                                    <span class="text-sm font-bold text-blue-400">4</span>
+                                </div>
+                                <div>
+                                    <span class="text-base text-white font-medium">Schedule weekly 30-min check-ins</span>
+                                    <p class="text-sm text-zinc-500 mt-1">Quick sync on progress, feedback, and course corrections. Same day/time each week.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.querySelector('[data-page="' + pageId + '"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('sidebar').classList.remove('mobile-open');
+        }
+
+        function toggleMobileNav() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
