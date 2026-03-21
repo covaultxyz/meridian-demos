@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divorce Stoppers Intelligence Briefing — Meridian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#3b82f6', dark: '#2563eb', glow: 'rgba(59,130,246,0.5)' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; color: #a1a1aa; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); }
+        .glass-card {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(59,130,246,0.25); background: rgba(255,255,255,0.06);
+            transform: translateY(-2px); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(59,130,246,0.08);
+        }
+        .glass-card-static {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 24px;
+        }
+        .nav-glass { background: rgba(0,0,0,0.6); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .sidebar-glass { background: rgba(0,0,0,0.4); backdrop-filter: blur(30px); border-right: 1px solid rgba(255,255,255,0.06); }
+        .glow-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(120px); }
+
+        .text-gradient-white { background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-gradient-blue { background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        .data-table thead th { padding: 14px 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #71717a; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .data-table tbody td { padding: 16px 20px; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .data-table tbody tr { transition: background 0.2s ease; }
+        .data-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .nav-link { padding: 10px 16px; border-radius: 12px; font-size: 13px; font-weight: 500; color: #71717a; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+        .nav-link:hover { color: #d4d4d8; background: rgba(255,255,255,0.04); }
+        .nav-link.active { color: #fff; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.2); }
+        .nav-link .nav-num { font-size: 10px; font-weight: 700; color: #52525b; min-width: 20px; }
+        .nav-link.active .nav-num { color: #3b82f6; }
+
+        .phase-line { position: relative; padding-left: 32px; }
+        .phase-line::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: rgba(59,130,246,0.2); }
+        .phase-dot { position: absolute; left: 3px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: rgba(59,130,246,0.15); border: 2px solid #3b82f6; }
+
+        .severity-critical { color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); }
+        .severity-high { color: #f59e0b; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+        .severity-medium { color: #3b82f6; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); }
+        .severity-low { color: #22c55e; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); }
+
+        .question-card { border-left: 3px solid rgba(59,130,246,0.3); padding-left: 20px; margin-bottom: 24px; }
+        .question-card .q-num { font-size: 11px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.1em; }
+        .question-card .q-text { font-size: 16px; font-weight: 600; color: #e4e4e7; margin-top: 4px; }
+        .question-card .q-why { font-size: 13px; color: #71717a; margin-top: 6px; font-style: italic; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .sidebar.mobile-open { display: flex; position: fixed; inset: 0; z-index: 100; width: 100%; }
+            .main-content { margin-left: 0 !important; }
+        }
+
+        .competitor-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.06); overflow: hidden; }
+        .competitor-bar-fill { height: 100%; border-radius: 3px; }
+
+        .waterfall-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .waterfall-label { font-size: 13px; color: #a1a1aa; min-width: 160px; }
+        .waterfall-bar { flex: 1; height: 28px; border-radius: 6px; position: relative; display: flex; align-items: center; padding: 0 12px; font-size: 12px; font-weight: 600; color: #fff; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-blue/30 selection:text-white">
+
+    <!-- MOBILE NAV -->
+    <nav class="fixed w-full z-50 top-0 nav-glass md:hidden">
+        <div class="flex justify-between items-center h-16 px-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-4 h-4 text-blue-400"></i>
+                </div>
+                <span class="text-white font-semibold">DS Briefing</span>
+            </div>
+            <button onclick="toggleMobileNav()" class="text-zinc-400 p-2">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar fixed left-0 top-0 bottom-0 w-64 sidebar-glass z-40 flex flex-col pt-8 pb-6 px-4 overflow-y-auto">
+        <div class="flex items-center gap-3 px-4 mb-8">
+            <div class="w-9 h-9 rounded-xl bg-brand-blue/20 border border-brand-blue/30 flex items-center justify-center">
+                <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
+            </div>
+            <div>
+                <p class="text-white font-bold text-sm">Meridian</p>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Intelligence Briefing</p>
+            </div>
+        </div>
+
+        <p class="text-[10px] text-zinc-600 uppercase tracking-widest font-semibold px-4 mb-3">Analysis</p>
+        <div class="space-y-1 mb-6">
+            <div class="nav-link active" onclick="showPage('overview')" data-page="overview">
+                <span class="nav-num">00</span> Overview
+            </div>
+            <div class="nav-link" onclick="showPage('signal')" data-page="signal">
+                <span class="nav-num">01</span> Signal Read
+            </div>
+            <div class="nav-link" onclick="showPage('opportunity')" data-page="opportunity">
+                <span class="nav-num">02</span> Opportunities
+            </div>
+            <div class="nav-link" onclick="showPage('architecture')" data-page="architecture">
+                <span class="nav-num">03</span> Architecture
+            </div>
+            <div class="nav-link" onclick="showPage('competitive')" data-page="competitive">
+                <span class="nav-num">04</span> Competitive Intel
+            </div>
+        </div>
+
+        <p class="text-[10px] text-zinc-600 uppercase tracking-widest font-semibold px-4 mb-3">Deal</p>
+        <div class="space-y-1 mb-6">
+            <div class="nav-link" onclick="showPage('engagement')" data-page="engagement">
+                <span class="nav-num">05</span> Engagement Model
+            </div>
+            <div class="nav-link" onclick="showPage('commission')" data-page="commission">
+                <span class="nav-num">06</span> Your Commission
+            </div>
+            <div class="nav-link" onclick="showPage('risks')" data-page="risks">
+                <span class="nav-num">07</span> Risks
+            </div>
+        </div>
+
+        <p class="text-[10px] text-zinc-600 uppercase tracking-widest font-semibold px-4 mb-3">Action</p>
+        <div class="space-y-1">
+            <div class="nav-link" onclick="showPage('gaps')" data-page="gaps">
+                <span class="nav-num">08</span> Gap Analysis
+            </div>
+            <div class="nav-link" onclick="showPage('discovery')" data-page="discovery">
+                <span class="nav-num">09</span> Discovery Call
+            </div>
+        </div>
+
+        <div class="mt-auto pt-6 px-2">
+            <div class="glass-card-static p-4 text-center" style="border-color: rgba(34,197,94,0.2);">
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">Pipeline Status</p>
+                <p class="text-lg font-bold text-green-400">Research Complete</p>
+                <p class="text-xs text-zinc-500 mt-1">Ready for Discovery Call</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content md:ml-64 min-h-screen pt-20 md:pt-0">
+
+        <!-- PAGE: OVERVIEW -->
+        <div id="page-overview" class="page active">
+            <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+                <div class="glow-orb w-[600px] h-[600px] bg-brand-blue/10 top-[-200px] left-1/2 -translate-x-1/2"></div>
+                <div class="glow-orb w-[300px] h-[300px] bg-purple-500/5 bottom-[-100px] right-[-50px]"></div>
+
+                <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+                    <div class="badge bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-8">
+                        <i data-lucide="target" class="w-3 h-3"></i>
+                        Prospect Intelligence Briefing
+                    </div>
+
+                    <h1 class="text-4xl md:text-6xl font-bold text-gradient-white leading-[1.1] mb-6">
+                        Meridian <span class="text-gradient-blue">&times;</span> Divorce Stoppers
+                    </h1>
+                    <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-6">
+                        Denver Griffin's $5-10M AI coaching empire runs on a stateless chatbot.
+                        Meridian replaces it with persistent memory, safety protocols, and competitive intelligence.
+                    </p>
+                    <p class="text-sm text-zinc-600 mb-12">Prepared for Mike Bitler &mdash; March 2026</p>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                        <div class="glass-card p-6 text-center">
+                            <p class="text-3xl font-bold text-white">$5-10M</p>
+                            <p class="text-[10px] text-green-400 uppercase tracking-widest mt-1">Validated</p>
+                            <p class="text-xs text-zinc-500 mt-1">Act 60 + Podcast Economics</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <p class="text-3xl font-bold text-blue-400">0</p>
+                            <p class="text-[10px] text-red-400 uppercase tracking-widest mt-1">Employees</p>
+                            <p class="text-xs text-zinc-500 mt-1">Solo Operator Confirmed</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <p class="text-3xl font-bold text-amber-400">$85K</p>
+                            <p class="text-[10px] text-zinc-400 uppercase tracking-widest mt-1">Hudson Top Tier</p>
+                            <p class="text-xs text-zinc-500 mt-1">Can't Copy AI Play</p>
+                        </div>
+                        <div class="glass-card p-6 text-center">
+                            <p class="text-3xl font-bold text-green-400">7/15</p>
+                            <p class="text-[10px] text-green-400 uppercase tracking-widest mt-1">Gaps Closed</p>
+                            <p class="text-xs text-zinc-500 mt-1">14 Research Docs</p>
+                        </div>
+                    </div>
+
+                    <!-- Confirmed Tech Stack Strip -->
+                    <div class="glass-card-static p-4 mt-8 max-w-3xl mx-auto">
+                        <p class="text-[10px] text-zinc-600 uppercase tracking-widest text-center mb-3">Confirmed Tech Stack</p>
+                        <div class="flex flex-wrap justify-center gap-3">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Wix (Frontend)</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">GoHighLevel (CRM)</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">WebinarJam</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700">Klarna (BNPL)</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-red-500/10 text-red-300 border border-red-500/20">No Custom AI</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Context Cards -->
+                    <div class="grid md:grid-cols-3 gap-6 mt-16 text-left">
+                        <div class="glass-card p-8">
+                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+                                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400"></i>
+                            </div>
+                            <h3 class="text-white font-semibold mb-2">His Problem</h3>
+                            <p class="text-sm text-zinc-400">"AI clone" forgets every client between sessions. No safety protocols for men in crisis at 3AM. No outcome data behind the "90% success rate" claim. <span class="text-red-400 font-medium">FTC has prosecuted identical "90% success rate" claims (FTC v. Truman).</span></p>
+                        </div>
+                        <div class="glass-card p-8">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4">
+                                <i data-lucide="cpu" class="w-5 h-5 text-blue-400"></i>
+                            </div>
+                            <h3 class="text-white font-semibold mb-2">Our Solution</h3>
+                            <p class="text-sm text-zinc-400">Persistent coaching agent with per-client memory. Crisis escalation built in. Competitive intelligence watchtower. Outcome analytics that become the real moat.</p>
+                        </div>
+                        <div class="glass-card p-8">
+                            <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4">
+                                <i data-lucide="dollar-sign" class="w-5 h-5 text-green-400"></i>
+                            </div>
+                            <h3 class="text-white font-semibold mb-2">The Deal</h3>
+                            <p class="text-sm text-zinc-400">$45-70K build across 4 phases. $2.65-4.7K/mo operational (LLM costs confirmed at $383/mo blended for 500 clients). Your commission: <span class="text-green-400 font-bold">$18-30K Year 1</span> under partnership terms.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: SIGNAL READ -->
+        <div id="page-signal" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-6">
+                    <i data-lucide="radio" class="w-3 h-3"></i> Lens: Signal Read
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">What's Actually Present</h2>
+                <p class="text-zinc-400 mb-12">Reading Griffin's operation as frequency, not content. Dropping the moral framing. What is the actual signal underneath?</p>
+
+                <div class="space-y-6">
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-green-500/10 text-green-400 border border-green-500/20">High Coherence</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 1: Genuine Market Pain</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">Men facing unwanted divorce experience acute crisis &mdash; identity destabilization, financial terror, grief &mdash; and traditional therapy moves too slowly. Licensed therapists require both spouses. These men's spouses have already checked out. The structural gap is real and underserved.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20">Moderate</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 2: Working Behavioral Mechanism</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">Underneath the theology: stop pursuing &rarr; remove pressure &rarr; spouse de-escalates. This maps to attachment theory (anxious-avoidant interruption). Griffin is repackaging validated psychology into a format men actually consume. The "7 Day Turn Around" is marketing theater, but the core behavioral interruption is real.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-red-500/10 text-red-400 border border-red-500/20">Dissonance</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 3: AI Aspiration, Primitive Execution</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">Claims "$1M+ using AI" and "AI Cloning for 10x growth." Almost certainly a fine-tuned chatbot or GPT wrapper. No evidence of persistent memory, client state tracking, or multi-agent orchestration. <span class="text-white font-medium">He's seen the future but doesn't have the engineering to build it.</span> This gap is the entire opportunity.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-green-500/10 text-green-400 border border-green-500/20">High Coherence</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 4: Sophisticated Revenue Architecture</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">Klarna/BNPL removes financial friction at peak vulnerability. Brad Lea podcast targets the exact psychographic. Puerto Rico Act 60 for tax optimization. YouTube &rarr; masterclass &rarr; free call &rarr; high-ticket close. <span class="text-white font-medium">This is not a naive preacher. He's an operator.</span></p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-green-500/10 text-green-400 border border-green-500/20">High Coherence</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 5: Faith Layer Is Load-Bearing</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">The Christian prosperity framing is structural, not decoration. It insulates from empirical criticism, provides built-in community trust, creates upsell paths ("Biblical Entrepreneur"), and inoculates against refund demands. Any solution must be compatible with this frame.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="badge bg-red-500/10 text-red-400 border border-red-500/20">Dissonance</span>
+                            <h3 class="text-white font-semibold text-lg">Signal 6: Competitive Moat Is Thin</h3>
+                        </div>
+                        <p class="text-sm text-zinc-400">Josh Hudson, Chris Blundell, Geoffrey Setiawan all run near-identical operations. Same demographic, same funnel, same methodology. Griffin's only differentiator is the survivor mythos and faith layer. <span class="text-white font-medium">If a competitor builds better AI tooling, the moat evaporates.</span> That's where Meridian enters.</p>
+                    </div>
+                </div>
+
+                <!-- Summary Table -->
+                <div class="glass-card-static mt-12 overflow-hidden">
+                    <table class="data-table">
+                        <thead><tr><th>Signal</th><th>Coherence</th><th>Implication</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-white">Market Pain</td><td><span class="text-green-400 font-semibold">High</span></td><td>Real, underserved, corroborated</td></tr>
+                            <tr><td class="text-white">Behavioral Mechanism</td><td><span class="text-amber-400 font-semibold">Moderate</span></td><td>Valid psychology, inflated claims</td></tr>
+                            <tr><td class="text-white">AI Execution</td><td><span class="text-red-400 font-semibold">Low</span></td><td>Aspiration correct, implementation primitive</td></tr>
+                            <tr><td class="text-white">Revenue Architecture</td><td><span class="text-green-400 font-semibold">High</span></td><td>Sophisticated operator</td></tr>
+                            <tr><td class="text-white">Faith Layer</td><td><span class="text-green-400 font-semibold">High</span></td><td>Structural, not decorative</td></tr>
+                            <tr><td class="text-white">Competitive Moat</td><td><span class="text-red-400 font-semibold">Low</span></td><td>Thin, easily replicated</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: OPPORTUNITIES -->
+        <div id="page-opportunity" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-6">
+                    <i data-lucide="layers" class="w-3 h-3"></i> Prism: Opportunity Render
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Six Capability Matches</h2>
+                <p class="text-zinc-400 mb-12">Each opportunity mapped to existing Meridian infrastructure. Assembly, not R&D.</p>
+
+                <div class="space-y-6">
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">1. Persistent Coaching Agent &mdash; "Shepherd"</h3>
+                            <span class="badge bg-green-500/10 text-green-400 border border-green-500/20">Primary</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 mb-4">Per-client knowledge graph in Neo4j. Full session history. Behavioral milestone tracking. The daemon knows where this man is in the program, what assignments he's completed, his specific marital dynamics, and what worked for men in similar situations.</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/15">Deployed Pattern</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/15">High Revenue Impact</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/15">Medium Build</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">2. Lead Intelligence Pipeline</h3>
+                            <span class="badge bg-green-500/10 text-green-400 border border-green-500/20">High Value</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 mb-4">When a lead books a "free call," closers get a one-page brief: emotional urgency score, competitor exposure, financial qualification, recommended angle. Intake enrichment, scoring, and pre-call briefing &mdash; all automated.</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/15">Avery Pipeline</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/15">Direct Revenue Lift</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">3. Competitive Watchtower</h3>
+                            <span class="badge bg-blue-500/10 text-blue-400 border border-blue-500/20">Defensive</span>
+                        </div>
+                        <p class="text-sm text-zinc-400 mb-4">YouTube, Reddit, and SERP monitoring on all competitors. Weekly intelligence reports. Alerts on content surges, negative sentiment clusters, and ranking drops. Griffin knows what Marriage Reset is doing before their audience does.</p>
+                        <div class="flex gap-3 flex-wrap">
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-300 border border-blue-500/15">OSINT Sentinel</span>
+                            <span class="text-xs px-3 py-1.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/15">Low Build Effort</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">4. Content Multiplication Engine</h3>
+                            <span class="badge bg-blue-500/10 text-blue-400 border border-blue-500/20">Scale</span>
+                        </div>
+                        <p class="text-sm text-zinc-400">100+ videos &rarr; structured knowledge &rarr; each video becomes 10-15 shorts scripts, email sequences, social captions. 10x content output. Human review gate on everything.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">5. Crisis Response Bot (24/7)</h3>
+                            <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20">Safety</span>
+                        </div>
+                        <p class="text-sm text-zinc-400">WhatsApp/Telegram bot deploying Griffin's methodology at 3AM. Tracks client state across sessions. Auto-routes to crisis hotline + human coach when distress signals detected. Session continuity &mdash; every interaction feeds back to the MIG profile.</p>
+                    </div>
+
+                    <div class="glass-card p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-white">6. Outcome Analytics &mdash; The Real Moat</h3>
+                            <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20">Long-term</span>
+                        </div>
+                        <p class="text-sm text-zinc-400">Track: enrollment &rarr; milestone completion &rarr; spouse re-engagement &rarr; 30/60/90 day outcomes. After 6 months, Griffin has <span class="text-white font-medium">structured outcome data no competitor possesses</span>. That data validates the methodology, enables continuous improvement, and becomes the marketing asset that replaces testimonials with proof.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card-static p-8 mt-12 text-center">
+                    <p class="text-sm text-zinc-400 mb-2">Recommended sequence</p>
+                    <p class="text-white font-semibold text-lg">Coaching Agent <span class="text-zinc-600 mx-2">&rarr;</span> Lead Pipeline <span class="text-zinc-600 mx-2">&rarr;</span> Watchtower <span class="text-zinc-600 mx-2">&rarr;</span> Content <span class="text-zinc-600 mx-2">&rarr;</span> Crisis Bot <span class="text-zinc-600 mx-2">&rarr;</span> Outcome Data</p>
+                    <p class="text-xs text-zinc-600 mt-3">Lead with immediate differentiation. Anchor with the moat.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: ARCHITECTURE -->
+        <div id="page-architecture" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
+                    <i data-lucide="server" class="w-3 h-3"></i> Architecture Blueprint
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Four Daemons, One Gateway</h2>
+                <p class="text-zinc-400 mb-12">Every component maps to an existing Meridian primitive. Assembly, not invention.</p>
+
+                <div class="glass-card-static p-8 mb-8 font-mono text-sm text-zinc-400 overflow-x-auto">
+<pre style="line-height:1.8">
+<span class="text-zinc-600">CLIENT LAYER</span>
+  <span class="text-blue-400">WhatsApp</span> / <span class="text-blue-400">Telegram</span> / <span class="text-blue-400">Web Portal</span>
+        |
+  <span class="text-zinc-300">Gateway API</span> (FastAPI + Auth)
+        |
+<span class="text-zinc-600">DAEMON MESH</span>
+  <span class="text-green-400">Shepherd</span>    <span class="text-amber-400">Sentinel</span>    <span class="text-purple-400">Content</span>    <span class="text-cyan-400">Intake</span>
+  (coaching)  (OSINT)     (content)   (leads)
+        \         |          |         /
+         \________|__________|________/
+                  |          |
+            <span class="text-blue-300">NATS Hub</span>    <span class="text-green-300">Neo4j MIG</span>
+          (messaging)  (knowledge)
+</pre>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glass-card p-6">
+                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-green-500"></span> Shepherd (Coaching)</h4>
+                        <ul class="text-sm text-zinc-400 space-y-2">
+                            <li>Loads full client context from MIG before every response</li>
+                            <li>Tracks behavioral milestone completion</li>
+                            <li>Escalates on: crisis language, client request, 48hr stall</li>
+                            <li>Verified scripture database &mdash; no LLM-generated Bible quotes</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-amber-500"></span> Sentinel (Intelligence)</h4>
+                        <ul class="text-sm text-zinc-400 space-y-2">
+                            <li>YouTube: competitor uploads, view velocity, sentiment</li>
+                            <li>Reddit: brand mentions, competitor recommendations</li>
+                            <li>SERP: ranking shifts on key queries</li>
+                            <li>Weekly automated intelligence report</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-purple-500"></span> Content (Generation)</h4>
+                        <ul class="text-sm text-zinc-400 space-y-2">
+                            <li>Video transcripts &rarr; structured knowledge nodes</li>
+                            <li>Content atomization: 1 video &rarr; 15 shorts + emails</li>
+                            <li>A/B title generation from engagement patterns</li>
+                            <li>Human review gate &mdash; nothing auto-publishes</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h4 class="text-white font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-cyan-500"></span> Intake (Lead Pipeline)</h4>
+                        <ul class="text-sm text-zinc-400 space-y-2">
+                            <li>Captures leads from masterclass, YouTube CTA, Klarna</li>
+                            <li>Scores: urgency, financial, readiness, competitor exposure</li>
+                            <li>Generates one-page brief for closers before calls</li>
+                            <li>Tracks full funnel: view &rarr; signup &rarr; call &rarr; close &rarr; retained</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 mt-8">
+                    <h4 class="text-white font-semibold mb-3">Deployment: T2 Cloud-Hosted Submarine</h4>
+                    <p class="text-sm text-zinc-400">Denver Griffin gets a dedicated, isolated instance of Meridian infrastructure. His data, frameworks, and client interactions are fully separated from all other customers. This is the first proof-of-concept of the Intelligence-as-API product model.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: COMPETITIVE -->
+        <div id="page-competitive" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-6">
+                    <i data-lucide="swords" class="w-3 h-3"></i> Competitive Intelligence
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Battlefield Topology</h2>
+                <p class="text-zinc-400 mb-12">Five operators. One playbook. Thin moats all around.</p>
+
+                <div class="glass-card-static overflow-hidden mb-8">
+                    <table class="data-table">
+                        <thead><tr><th>Operator</th><th>Brand</th><th>Differentiator</th><th>Threat</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Denver Griffin</td><td>Divorce Stoppers</td><td>Cancer survivor, faith layer, AI claims</td><td><span class="text-blue-400">Our client</span></td></tr>
+                            <tr><td class="text-white font-medium">Josh Hudson</td><td>Marriage Reset</td><td>LMFT credentials, $2.5K/$6.8K/$85K tiers, <span class="text-red-400">zero AI</span></td><td><span class="text-red-400 font-semibold">High</span></td></tr>
+                            <tr><td class="text-white font-medium">Geoffrey Setiawan</td><td>Personal brand</td><td>"Save Marriage Alone" niche</td><td><span class="text-amber-400">Moderate</span></td></tr>
+                            <tr><td class="text-white font-medium">Chris Blundell</td><td>Personal brand</td><td>"#1 Repair Moment" click-bait</td><td><span class="text-green-400">Low-Mod</span></td></tr>
+                            <tr><td class="text-white font-medium">Licensed Therapists</td><td>Various</td><td>Actual credentials, different market</td><td><span class="text-green-400">Low</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="text-xl font-bold text-white mb-6">Where Griffin Wins Today</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-12">
+                    <div class="glass-card p-5"><p class="text-sm"><span class="text-white font-medium">Survivor narrative</span> &mdash; cancer + angelic visitation is more dramatic than any competitor</p></div>
+                    <div class="glass-card p-5"><p class="text-sm"><span class="text-white font-medium">Faith layer</span> &mdash; opens the Christian prosperity demographic (high-trust, high-spend)</p></div>
+                    <div class="glass-card p-5"><p class="text-sm"><span class="text-white font-medium">Podcast network</span> &mdash; Brad Lea cross-pollinates with sales/alpha-male ecosystem</p></div>
+                    <div class="glass-card p-5"><p class="text-sm"><span class="text-white font-medium">AI narrative</span> &mdash; nobody else claims "$1M empire using AI" (even superficially)</p></div>
+                </div>
+
+                <h3 class="text-xl font-bold text-white mb-6">Where Griffin Is Vulnerable</h3>
+                <div class="space-y-4">
+                    <div class="glass-card p-6 border-l-4 border-l-red-500/50">
+                        <p class="text-white font-medium mb-1">Algorithmic dependence</p>
+                        <p class="text-sm text-zinc-400">100% of top-of-funnel runs through YouTube. One algorithm change collapses acquisition overnight.</p>
+                    </div>
+                    <div class="glass-card p-6 border-l-4 border-l-red-500/50">
+                        <p class="text-white font-medium mb-1">Methodology is commoditized</p>
+                        <p class="text-sm text-zinc-400">"Stop pursuing, remove pressure" is attachment theory repackaged. Anyone can teach it. It's not proprietary.</p>
+                    </div>
+                    <div class="glass-card p-6 border-l-4 border-l-amber-500/50">
+                        <p class="text-white font-medium mb-1">No outcome data</p>
+                        <p class="text-sm text-zinc-400">"90% success rate" has no verifiable data. If a competitor produces actual metrics first, Griffin's credibility evaporates.</p>
+                    </div>
+                    <div class="glass-card p-6 border-l-4 border-l-amber-500/50">
+                        <p class="text-white font-medium mb-1">AI claims without substance</p>
+                        <p class="text-sm text-zinc-400">If a prospect investigates and finds a generic chatbot behind "AI cloning for 10x growth," credibility damage extends to the entire brand.</p>
+                    </div>
+                </div>
+
+                <!-- NEW: Strategic Asymmetry Section -->
+                <div class="glass-card p-8 mt-12 border border-green-500/20" style="background: rgba(34,197,94,0.03);">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                            <i data-lucide="lock" class="w-5 h-5 text-green-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Strategic Asymmetry: Hudson Cannot Copy This</h3>
+                            <p class="text-xs text-green-400 uppercase tracking-widest">Confirmed by Deep Research</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 mb-4">Josh Hudson runs <span class="text-white font-medium">zero AI on client-facing surfaces</span>. No chatbots, no automated coaching, no AI agents. This is deliberate &mdash; his entire brand is "bespoke executive coaching" and human-only attention. He charges $85,000 for founder access specifically because it's him, not a machine.</p>
+                    <p class="text-sm text-zinc-400 mb-6">If Griffin deploys persistent AI coaching and Hudson doesn't, Griffin captures the technology-seeking segment permanently. Hudson's only responses:</p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
+                            <p class="text-xs text-red-400 font-semibold uppercase mb-1">Match on AI</p>
+                            <p class="text-xs text-zinc-500">Destroys his "human-only premium" brand</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
+                            <p class="text-xs text-red-400 font-semibold uppercase mb-1">Match on Price</p>
+                            <p class="text-xs text-zinc-500">Race to bottom &mdash; kills $85K tier</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
+                            <p class="text-xs text-red-400 font-semibold uppercase mb-1">Ignore It</p>
+                            <p class="text-xs text-zinc-500">Loses tech-seeking clients to Griffin</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-green-400 font-medium mt-6 text-center">This advantage is durable and compounds over time.</p>
+                </div>
+
+                <!-- Hudson Pricing Comparison -->
+                <div class="glass-card-static p-8 mt-8">
+                    <h3 class="text-lg font-bold text-white mb-6">Pricing Landscape (from deep research)</h3>
+                    <table class="data-table">
+                        <thead><tr><th>Tier</th><th>Marriage Reset (Hudson)</th><th>Divorce Stoppers (Griffin)</th><th>Griffin + Meridian</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-zinc-400">Base Curriculum</td><td class="text-white">$2,500</td><td class="text-zinc-500">$1,000+ (Klarna)</td><td class="text-zinc-500">$1,000+ (unchanged)</td></tr>
+                            <tr><td class="text-zinc-400">Coaching Program</td><td class="text-white">$6,800 (5 sessions)</td><td class="text-zinc-500">~$3-5K (est.)</td><td class="text-zinc-500">$3-5K (Shepherd-augmented)</td></tr>
+                            <tr><td class="text-zinc-400">AI-Powered Intensive</td><td class="text-zinc-600">Does not exist</td><td class="text-zinc-600">Does not exist</td><td class="text-green-400 font-semibold">$12-15K (NEW TIER)</td></tr>
+                            <tr><td class="text-zinc-400">Founder Access</td><td class="text-white font-semibold">$85,000</td><td class="text-zinc-500">Unknown</td><td class="text-zinc-500">Unknown</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="text-xs text-zinc-600 mt-4 text-center">The "$12-15K AI Intensive" tier is pure margin &mdash; Shepherd handles 80% of coaching interactions, minimal human touchpoints. Revenue Griffin can't capture today because the technology doesn't exist in his stack.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: ENGAGEMENT MODEL -->
+        <div id="page-engagement" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-green-500/10 text-green-400 border border-green-500/20 mb-6">
+                    <i data-lucide="handshake" class="w-3 h-3"></i> Engagement Model
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Four Phases, Each Gates the Next</h2>
+                <p class="text-zinc-400 mb-12">Demonstrate, then build, then expand. Each phase earns the right to the next.</p>
+
+                <div class="space-y-8">
+                    <div class="phase-line">
+                        <div class="phase-dot"></div>
+                        <div class="glass-card p-8">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-bold text-white">Phase 0: Discovery & Proof</h3>
+                                <span class="text-xs text-zinc-500">Week 1-2 &bull; $0-$500</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4">Deploy watchtower on competitors. Generate first intelligence report. Build Shepherd prototype with 10-15 video transcripts. Demo: show Griffin a conversation where the bot remembers a client's situation across sessions.</p>
+                            <p class="text-xs text-zinc-600">Gate: Griffin approves demo, signs SOW.</p>
+                        </div>
+                    </div>
+
+                    <div class="phase-line">
+                        <div class="phase-dot"></div>
+                        <div class="glass-card p-8">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-bold text-white">Phase 1: Foundation Build</h3>
+                                <span class="text-xs text-zinc-500">Month 1-2 &bull; $15-25K</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4">Full Shepherd deployment on WhatsApp Business API. Crisis escalation configured. Lead intake pipeline integrated with Klarna, Calendly, masterclass signups. 2-week supervised pilot with 10-20 clients.</p>
+                            <p class="text-xs text-zinc-600">Gate: 10+ pilot clients, >3 avg sessions, 0 unhandled crises, 50+ leads scored.</p>
+                        </div>
+                    </div>
+
+                    <div class="phase-line">
+                        <div class="phase-dot"></div>
+                        <div class="glass-card p-8">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-bold text-white">Phase 2: Intelligence & Content</h3>
+                                <span class="text-xs text-zinc-500">Month 2-3 &bull; $10-15K</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4">Production competitive watchtower. Weekly intelligence reports. Content generation pipeline: full video library extracted, content atomization active, human review gate enforced.</p>
+                            <p class="text-xs text-zinc-600">Gate: 4+ weekly reports, 20+ content pieces generated, 10+ approved.</p>
+                        </div>
+                    </div>
+
+                    <div class="phase-line">
+                        <div class="phase-dot"></div>
+                        <div class="glass-card p-8">
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xl font-bold text-white">Phase 3: Outcome Analytics & Moat</h3>
+                                <span class="text-xs text-zinc-500">Month 3-6 &bull; $20-30K</span>
+                            </div>
+                            <p class="text-sm text-zinc-400 mb-4">Structured outcome tracking at 7/14/30/60/90 day intervals. Analytics dashboard: which techniques correlate with positive outcomes, which client profiles respond best. Methodology refinement loop.</p>
+                            <p class="text-xs text-zinc-600">Gate: 50+ clients through Shepherd, 30+ days of data, aggregate metrics ready for marketing use.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revenue Impact -->
+                <div class="glass-card-static p-8 mt-12">
+                    <h3 class="text-lg font-bold text-white mb-6">Revenue Impact (Conservative)</h3>
+                    <div class="space-y-4">
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Coaching agent (+10% retention)</span>
+                            <div class="waterfall-bar bg-green-500/30" style="width:40%"><span>+$8-10K/mo</span></div>
+                        </div>
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Lead pipeline (+5% close rate)</span>
+                            <div class="waterfall-bar bg-blue-500/30" style="width:30%"><span>+$4-8K/mo</span></div>
+                        </div>
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Content engine (10x volume)</span>
+                            <div class="waterfall-bar bg-purple-500/30" style="width:50%"><span>+$10-20K/mo</span></div>
+                        </div>
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Outcome data (premium pricing)</span>
+                            <div class="waterfall-bar bg-amber-500/30" style="width:35%"><span>+$5-10K/mo</span></div>
+                        </div>
+                        <div class="waterfall-row border-t border-zinc-800 pt-4">
+                            <span class="waterfall-label text-white font-semibold">Total Monthly Uplift</span>
+                            <div class="waterfall-bar bg-green-500/50" style="width:80%"><span class="font-bold">+$27-48K/mo</span></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-500 mt-6 text-center">ROI at steady state: <span class="text-green-400 font-bold">4-8x</span> monthly operational cost</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: YOUR COMMISSION -->
+        <div id="page-commission" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-green-500/10 text-green-400 border border-green-500/20 mb-6">
+                    <i data-lucide="wallet" class="w-3 h-3"></i> Your Commission
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Mike, Here's Your Number</h2>
+                <p class="text-zinc-400 mb-12">Per the Meridian&ndash;Bitler Partnership Terms. You source + close = full 40% distribution pool on operational.</p>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="glass-card p-8 text-center">
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest mb-2">Build Fees (One-Time)</p>
+                        <p class="text-4xl font-bold text-white mb-2">$4.5-7K</p>
+                        <p class="text-sm text-zinc-500">10% of $45-70K (you source + close)</p>
+                        <p class="text-xs text-zinc-600 mt-3">Custom Dev: 90% Meridian / 5% orchestrator / 5% closer</p>
+                    </div>
+                    <div class="glass-card p-8 text-center">
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest mb-2">Monthly Operational</p>
+                        <p class="text-4xl font-bold text-green-400 mb-2">$1.1-1.9K</p>
+                        <p class="text-sm text-zinc-500">40% of $2,650-4,700/mo net revenue</p>
+                        <p class="text-xs text-zinc-600 mt-3">Subscription: 60% Meridian / 40% you (source + close)</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center mb-8">
+                    <p class="text-xs text-zinc-500 uppercase tracking-widest mb-3">Year 1 Total Commission</p>
+                    <p class="text-5xl font-bold text-gradient-blue mb-3">$17,700 &ndash; $29,800</p>
+                    <p class="text-sm text-zinc-500">Build fee ($4.5-7K) + 12 months of operational commission ($1.1-1.9K/mo)</p>
+                </div>
+
+                <div class="glass-card-static p-8">
+                    <h4 class="text-white font-semibold mb-4">Commission Waterfall</h4>
+                    <div class="space-y-3">
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Gross Revenue</span>
+                            <div class="waterfall-bar bg-zinc-700" style="width:100%"><span>$2,650-4,700/mo</span></div>
+                        </div>
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">Meridian (60%)</span>
+                            <div class="waterfall-bar bg-blue-500/30" style="width:60%"><span>$1,590-2,820</span></div>
+                        </div>
+                        <div class="waterfall-row">
+                            <span class="waterfall-label">You (40%)</span>
+                            <div class="waterfall-bar bg-green-500/40" style="width:40%"><span class="font-bold">$1,060-1,880</span></div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-600 mt-6">Lifetime revenue share per partnership terms. No cap. Attribution tracked in shared client ledger.</p>
+                </div>
+
+                <div class="glass-card p-6 mt-8 border-l-4 border-l-amber-500/50">
+                    <p class="text-white font-medium mb-1">Revenue Share Alternative</p>
+                    <p class="text-sm text-zinc-400">If Griffin takes the $0-build / 10-15% incremental revenue model: you get 40% of the revenue share collected. Example: $10K/mo incremental &times; 12% &times; 40% = <span class="text-white">$480/mo to you</span>. Lower but zero-risk for Griffin.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: RISKS -->
+        <div id="page-risks" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-6">
+                    <i data-lucide="shield-alert" class="w-3 h-3"></i> Risk Register
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Honest Accounting</h2>
+                <p class="text-zinc-400 mb-12">13 risks (3 added from deep research). Four high-severity. Named because burying dissonance doesn't make it go away.</p>
+
+                <div class="glass-card-static overflow-hidden">
+                    <table class="data-table">
+                        <thead><tr><th>ID</th><th>Risk</th><th>Severity</th><th>Mitigation</th></tr></thead>
+                        <tbody>
+                            <tr><td class="text-zinc-500">R1</td><td class="text-white">Ethical boundary &mdash; amplifying crisis monetization</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Team ethical review required. Crisis escalation non-negotiable.</td></tr>
+                            <tr><td class="text-zinc-500">R2</td><td class="text-white">Reputational association if Griffin is exposed</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>No co-branding. Tech licensing only. Clean separation.</td></tr>
+                            <tr><td class="text-zinc-500">R3</td><td class="text-white">Griffin doesn't execute / engage</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Phased engagement. Phase 0 tests commitment.</td></tr>
+                            <tr><td class="text-zinc-500">R4</td><td class="text-white">Voice/faith fidelity in AI content</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Iterative calibration. Verified scripture database. Human review gate.</td></tr>
+                            <tr><td class="text-zinc-500">R5</td><td class="text-white">Crisis bot liability (suicidal ideation)</td><td><span class="badge severity-critical text-xs">High</span></td><td>NLP crisis detection. Auto-route to 988 hotline + human coach. Mandatory.</td></tr>
+                            <tr><td class="text-zinc-500">R6</td><td class="text-white">Data privacy &mdash; marital crisis data breach</td><td><span class="badge severity-critical text-xs">High</span></td><td>Isolated Neo4j. Encryption at rest. SOC 2 target. 1-year retention policy.</td></tr>
+                            <tr><td class="text-zinc-500">R7</td><td class="text-white">Platform dependency (WhatsApp/Meta)</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Multi-channel from day one. Abstraction layer.</td></tr>
+                            <tr><td class="text-zinc-500">R8</td><td class="text-white">Scope creep (voice cloning, video gen, etc.)</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Per-phase SOW. "Yes &mdash; in Phase N."</td></tr>
+                            <tr><td class="text-zinc-500">R9</td><td class="text-white">Payment risk (revenue cycles)</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>6-month minimum. First 3 months prepaid.</td></tr>
+                            <tr><td class="text-zinc-500">R10</td><td class="text-white">Intermediary dynamics (Bitler as referral)</td><td><span class="badge severity-low text-xs">Low</span></td><td>Partnership terms applied. Direct tech channel after intro.</td></tr>
+                            <tr style="background:rgba(239,68,68,0.03)"><td class="text-red-400 font-semibold">R5a</td><td class="text-white">FTC "90% success rate" claim &mdash; <span class="text-red-400">exact match to FTC v. Truman prosecution</span></td><td><span class="badge severity-critical text-xs">High</span></td><td>Outcome analytics positioned as "marketing substantiation" tool.</td></tr>
+                            <tr style="background:rgba(59,130,246,0.03)"><td class="text-blue-400 font-semibold">R11</td><td class="text-white">AI disclosure (CA SB 1001, FTC, WhatsApp ToS)</td><td><span class="badge severity-medium text-xs">Medium</span></td><td>Persistent bot disclosure: "This is an AI assistant." in every first message.</td></tr>
+                            <tr style="background:rgba(239,68,68,0.03)"><td class="text-red-400 font-semibold">R12</td><td class="text-white">Scripture hallucination &mdash; LLMs fabricate Bible verses, audience fact-checks</td><td><span class="badge severity-critical text-xs">High</span></td><td>Verified scripture DB (API.Bible). RAG only. Zero LLM-generated scripture. AMP translation default.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="glass-card p-6 mt-8 border-l-4 border-l-red-500/50">
+                    <p class="text-white font-medium mb-2">Top 4 to Resolve Before Engagement</p>
+                    <ol class="text-sm text-zinc-400 space-y-2 list-decimal list-inside">
+                        <li><span class="text-white">R1 &mdash; Ethical review.</span> Team must be comfortable amplifying this business.</li>
+                        <li><span class="text-white">R5 &mdash; Crisis protocol.</span> Hybrid NLP architecture confirmed: BERT Layer 1 + Comprehend Medical Layer 2 + C-SSRS framework.</li>
+                        <li><span class="text-white">R5a &mdash; FTC risk.</span> "90% success rate" matches exact prosecution pattern. Outcome analytics = substantiation tool.</li>
+                        <li><span class="text-white">R12 &mdash; Scripture hallucination.</span> Verified DB required. Amplified Bible (AMP) default. Claude hallucinates 25% less but confabulates elaborately when inhibition misfires.</li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: GAP ANALYSIS -->
+        <div id="page-gaps" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-6">
+                    <i data-lucide="search" class="w-3 h-3"></i> Gap Analysis
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">7 of 15 Gaps Closed by Deep Research</h2>
+                <p class="text-zinc-400 mb-6">14 research documents eliminated most unknowns. 1 critical gap remains. 8 new intelligence items surfaced.</p>
+
+                <!-- Research Impact Strip -->
+                <div class="grid grid-cols-3 gap-4 mb-12">
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-2xl font-bold text-green-400">7</p>
+                        <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Gaps Closed</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-2xl font-bold text-amber-400">1</p>
+                        <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Critical Remaining</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-2xl font-bold text-blue-400">8</p>
+                        <p class="text-[10px] text-zinc-500 uppercase tracking-widest">New Intel Items</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-red-400 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-red-500"></span> Critical &mdash; Still Open
+                </h3>
+                <div class="space-y-4 mb-10">
+                    <div class="glass-card p-6 border-l-4 border-l-red-500/50">
+                        <p class="text-white font-semibold mb-1">G1: T2 Submarine Not Built Yet</p>
+                        <p class="text-sm text-zinc-400">FM#03 and FM#04 are Wave 3 specs, not running code. <span class="text-white">Fix:</span> Phase 0 demo on existing infra with manual isolation, migrate to proper T2 during Phase 1.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-green-400 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span> Closed by Deep Research
+                </h3>
+                <div class="space-y-3 mb-10">
+                    <div class="glass-card p-5 border-l-4 border-l-green-500/30" style="opacity:0.8">
+                        <div class="flex items-center justify-between">
+                            <p class="text-zinc-400 font-medium"><span class="line-through">G2: Tech Stack Unknown</span></p>
+                            <span class="text-xs text-green-400 font-semibold">CLOSED</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 mt-1">Wix + GoHighLevel + WebinarJam + Klarna. No custom AI. Solo operator confirmed.</p>
+                    </div>
+                    <div class="glass-card p-5 border-l-4 border-l-green-500/30" style="opacity:0.8">
+                        <div class="flex items-center justify-between">
+                            <p class="text-zinc-400 font-medium"><span class="line-through">G4: Client Journey Map</span></p>
+                            <span class="text-xs text-green-400 font-semibold">CLOSED</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 mt-1">Full ToFU → MoFU → BoFU mapped with CTA routing and platform handoffs.</p>
+                    </div>
+                    <div class="glass-card p-5 border-l-4 border-l-green-500/30" style="opacity:0.8">
+                        <div class="flex items-center justify-between">
+                            <p class="text-zinc-400 font-medium"><span class="line-through">G6: LLM Inference Costs</span></p>
+                            <span class="text-xs text-green-400 font-semibold">CLOSED</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 mt-1">$383/mo blended for 500 clients (Haiku default, Sonnet escalation, Groq crisis screening).</p>
+                    </div>
+                    <div class="glass-card p-5 border-l-4 border-l-green-500/30" style="opacity:0.8">
+                        <div class="flex items-center justify-between">
+                            <p class="text-zinc-400 font-medium"><span class="line-through">G7: AI Disclosure / Regulatory</span></p>
+                            <span class="text-xs text-green-400 font-semibold">CLOSED</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 mt-1">FTC Operation AI Comply, CA SB 1001, CCPA/CPRA, WhatsApp ToS, 44-state AG coalition all mapped.</p>
+                    </div>
+                    <div class="glass-card p-5 border-l-4 border-l-green-500/30" style="opacity:0.8">
+                        <div class="flex items-center justify-between">
+                            <p class="text-zinc-400 font-medium"><span class="line-through">G8: Scripture Hallucination</span></p>
+                            <span class="text-xs text-green-400 font-semibold">CLOSED</span>
+                        </div>
+                        <p class="text-xs text-zinc-600 mt-1">FaithBench, 4 hallucination types, RAG w/ Amplified Bible (AMP), Claude 25% fewer but elaborate confabulations on misfire.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-500"></span> Key New Intelligence
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-10">
+                    <div class="glass-card p-5">
+                        <p class="text-xs text-blue-400 font-semibold uppercase mb-1">N1: Solo Operator</p>
+                        <p class="text-xs text-zinc-400">Zero W-2 employees. Must sell managed service, not build-and-hand-over.</p>
+                    </div>
+                    <div class="glass-card p-5">
+                        <p class="text-xs text-blue-400 font-semibold uppercase mb-1">N2: GHL Already Has AI</p>
+                        <p class="text-xs text-zinc-400">Agent Studio, RAG, GPT-5/Claude. But it's stateless &mdash; our differentiator.</p>
+                    </div>
+                    <div class="glass-card p-5">
+                        <p class="text-xs text-blue-400 font-semibold uppercase mb-1">N3: Hudson = $85K Founder Tier</p>
+                        <p class="text-xs text-zinc-400">Griffin can create $12-15K "AI Intensive" &mdash; pure margin nobody offers.</p>
+                    </div>
+                    <div class="glass-card p-5">
+                        <p class="text-xs text-blue-400 font-semibold uppercase mb-1">N7: Hudson Can't Copy</p>
+                        <p class="text-xs text-zinc-400">His brand = human-only. Deploying AI destroys his positioning. Durable asymmetry.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 text-center" style="background: rgba(34,197,94,0.03); border-color: rgba(34,197,94,0.15);">
+                    <p class="text-lg text-white font-semibold mb-2">Research Phase Complete</p>
+                    <p class="text-zinc-400">Zero remaining research questions. Engagement is gated on <span class="text-white">5 operational items</span> (T2 readiness, IP terms, demo spec, managed ops model, GHL objection prep), not knowledge gaps.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE: DISCOVERY CALL -->
+        <div id="page-discovery" class="page">
+            <section class="max-w-4xl mx-auto px-6 py-16">
+                <div class="badge bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-6">
+                    <i data-lucide="phone" class="w-3 h-3"></i> Discovery Call
+                </div>
+                <h2 class="text-3xl font-bold text-gradient-white mb-4">Meeting Guide: Alex + Mike + Denver</h2>
+                <p class="text-zinc-400 mb-4">15 questions across 4 sections. 4 pitch frames ready. Qualification scorecard for post-call scoring.</p>
+                <p class="text-xs text-zinc-600 mb-12">Full meeting script: <code class="text-zinc-500">10-meeting-questionnaire.md</code> &bull; Expected answers: <code class="text-zinc-500">11-expected-answers.md</code> &bull; Scorecard: <code class="text-zinc-500">12-qualification-scorecard.md</code></p>
+
+                <!-- Key Pitch Frames -->
+                <div class="glass-card p-6 mb-12" style="background: rgba(59,130,246,0.03); border-color: rgba(59,130,246,0.15);">
+                    <p class="text-xs text-blue-400 font-semibold uppercase tracking-widest mb-4">4 Pitch Frames (use after listening)</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-3 rounded-lg bg-black/30">
+                            <p class="text-xs text-blue-400 font-semibold mb-1">Frame 1: Memory</p>
+                            <p class="text-xs text-zinc-500">"Your AI forgets every client. Ours remembers their name, their situation, their week in the program &mdash; across every session."</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-black/30">
+                            <p class="text-xs text-blue-400 font-semibold mb-1">Frame 2: Competitor Lock-Out</p>
+                            <p class="text-xs text-zinc-500">"Hudson charges $85K and deliberately avoids AI. He can't copy this without destroying his brand."</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-black/30">
+                            <p class="text-xs text-blue-400 font-semibold mb-1">Frame 3: Revenue Tier</p>
+                            <p class="text-xs text-zinc-500">"Create a $12-15K 'AI Intensive' tier. Persistent coaching + limited human touchpoints. Nobody offers this."</p>
+                        </div>
+                        <div class="p-3 rounded-lg bg-black/30">
+                            <p class="text-xs text-blue-400 font-semibold mb-1">Frame 4: Data Moat</p>
+                            <p class="text-xs text-zinc-500">"After 6 months you have outcome data nobody else has. That validates or upgrades the 90% number with real evidence."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GHL Objection Prep -->
+                <div class="glass-card p-6 mb-12 border-l-4 border-l-amber-500/50">
+                    <p class="text-xs text-amber-400 font-semibold uppercase tracking-widest mb-2">GHL Objection Prep (keep in back pocket)</p>
+                    <p class="text-sm text-zinc-400">If Denver says "GoHighLevel already has AI":</p>
+                    <p class="text-sm text-white mt-2 italic">"It does &mdash; and for basic automation it works. The difference is memory. GHL's AI resets every conversation. If a client messages Monday about his wife filing papers and messages again Thursday, GHL's bot doesn't know about Monday. Our system carries the full client story across every interaction. It's the difference between a chatbot and a coach who knows your client."</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-6">Section A: Business & Operations <span class="text-xs text-zinc-500 font-normal ml-2">Safe for Bitler pre-screen</span></h3>
+                <div class="space-y-2 mb-12">
+                    <div class="question-card"><p class="q-num">Question 1</p><p class="q-text">How many active coaching clients do you have right now?</p><p class="q-why">Determines deployment scale. 50 = pilot. 500 = production infrastructure.</p></div>
+                    <div class="question-card"><p class="q-num">Question 2</p><p class="q-text">What does your team look like? Who handles what?</p><p class="q-why">Solo + VA vs. 10-person team changes everything.</p></div>
+                    <div class="question-card"><p class="q-num">Question 3</p><p class="q-text">What's your current monthly revenue range?</p><p class="q-why">Validates $1M+ claim. Prices our engagement correctly.</p></div>
+                    <div class="question-card"><p class="q-num">Question 4</p><p class="q-text">What's your biggest operational bottleneck right now?</p><p class="q-why">Whatever he says first is the real pain.</p></div>
+                    <div class="question-card"><p class="q-num">Question 5</p><p class="q-text">What made you open to this conversation?</p><p class="q-why">Surfaces the trigger. Is he actively looking or is this cold?</p></div>
+                    <div class="question-card"><p class="q-num">Question 6</p><p class="q-text">Have you looked at other AI solutions?</p><p class="q-why">Competitive positioning. What's he comparing us to?</p></div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-6">Section B: Tech Stack <span class="text-xs text-zinc-500 font-normal ml-2">Needs Griffin present</span></h3>
+                <div class="space-y-2 mb-12">
+                    <div class="question-card"><p class="q-num">Question 7</p><p class="q-text">Walk me through what happens when a new client signs up.</p><p class="q-why">Maps the actual client journey without asking a dry tools question.</p></div>
+                    <div class="question-card"><p class="q-num">Question 8</p><p class="q-text">What platform does your "AI clone" run on? Who built it?</p><p class="q-why">The core question. GPT wrapper? Custom build? GoHighLevel bot?</p></div>
+                    <div class="question-card"><p class="q-num">Question 9</p><p class="q-text">Does your AI remember anything about a client between conversations?</p><p class="q-why">Validates our core assumption. If yes, our pitch changes.</p></div>
+                    <div class="question-card"><p class="q-num">Question 10</p><p class="q-text">What CRM or client management system do you use?</p><p class="q-why">Integration point. Each platform has different API surfaces.</p></div>
+                    <div class="question-card"><p class="q-num">Question 11</p><p class="q-text">What platform delivers your course content?</p><p class="q-why">Replace, augment, or integrate with existing delivery.</p></div>
+                    <div class="question-card"><p class="q-num">Question 12</p><p class="q-text">Do you have a tech person on staff?</p><p class="q-why">Political risk. In-house tech may view us as a threat.</p></div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-6">Section C: Methodology</h3>
+                <div class="space-y-2 mb-12">
+                    <div class="question-card"><p class="q-num">Question 13</p><p class="q-text">What percentage of clients complete the full program?</p><p class="q-why">Baseline retention. Also reveals if he tracks this at all.</p></div>
+                    <div class="question-card"><p class="q-num">Question 14</p><p class="q-text">When a client is struggling at 2AM, what happens today?</p><p class="q-why">Surfaces the crisis gap. If "nothing" &mdash; the Shepherd pitch lands hard.</p></div>
+                    <div class="question-card"><p class="q-num">Question 15</p><p class="q-text">How important is scripture accuracy in your materials?</p><p class="q-why">Critical. His audience fact-checks Bible verses. LLMs hallucinate them.</p></div>
+                    <div class="question-card"><p class="q-num">Question 16</p><p class="q-text">Do clients interact with the AI for coaching, or mainly marketing/sales?</p><p class="q-why">Determines whether AI is client-facing or funnel-facing.</p></div>
+                </div>
+
+                <h3 class="text-lg font-bold text-white mb-6">Section D: Outcomes</h3>
+                <div class="space-y-2 mb-12">
+                    <div class="question-card"><p class="q-num">Question 17</p><p class="q-text">How do you measure whether the coaching worked?</p><p class="q-why">If "testimonials" &mdash; outcome analytics is a massive upgrade.</p></div>
+                    <div class="question-card"><p class="q-num">Question 18</p><p class="q-text">What would success look like in 90 days if we worked together?</p><p class="q-why">Let him name the number. His answer defines Phase 1 KPIs.</p></div>
+                </div>
+
+                <div class="glass-card p-8">
+                    <h4 class="text-white font-semibold mb-4">Walk-Away Signals</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/10">
+                            <p class="text-xs text-green-400 font-semibold uppercase mb-2">Green</p>
+                            <ul class="text-xs text-zinc-400 space-y-1">
+                                <li>Confirms $15K+ budget</li>
+                                <li>He's the decision-maker</li>
+                                <li>Names specific AI pain</li>
+                                <li>"I want this in 60 days"</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10">
+                            <p class="text-xs text-amber-400 font-semibold uppercase mb-2">Yellow</p>
+                            <ul class="text-xs text-zinc-400 space-y-1">
+                                <li>"Let me think about pricing"</li>
+                                <li>Partner needs to approve</li>
+                                <li>General interest, exploring</li>
+                                <li>"Sometime this quarter"</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-red-500/5 border border-red-500/10">
+                            <p class="text-xs text-red-400 font-semibold uppercase mb-2">Red (2+ = Walk)</p>
+                            <ul class="text-xs text-zinc-400 space-y-1">
+                                <li>Price shock, asks for free</li>
+                                <li>Layers of committee approval</li>
+                                <li>"Just curious what you do"</li>
+                                <li>Defensive about current AI</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('page-' + pageId).classList.add('active');
+            document.querySelector('[data-page="' + pageId + '"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Close mobile nav
+            document.getElementById('sidebar').classList.remove('mobile-open');
+        }
+
+        function toggleMobileNav() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        // Init Lucide icons
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
