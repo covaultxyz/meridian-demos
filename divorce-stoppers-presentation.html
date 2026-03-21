@@ -41,12 +41,16 @@
         }
         .glow-orb { position: absolute; border-radius: 50%; pointer-events: none; filter: blur(150px); }
         .hero-video {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.18; z-index: 0; pointer-events: none;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.225; z-index: 0; pointer-events: none;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .hero-overlay {
-            position: absolute; inset: 0; z-index: 1;
-            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 60%, #000 100%);
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
+            background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 60%, #000 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.65) 60%, #000 100%);
         }
         .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(245,158,11,0.2), transparent); }
         .badge {
@@ -80,7 +84,7 @@
     <!-- SECTION 1: HERO -->
     <!-- ============================================ -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline x-webkit-airplay="deny" disableRemotePlayback>
             <source src="https://d1yei2z3i6k35z.cloudfront.net/10816672/69b21beed361e_globenode.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
