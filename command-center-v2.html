@@ -1547,8 +1547,8 @@ var TasksView = function(props) {
           items.slice(0, 20).map(function(t, i) {
             return React.createElement('div', { key: i, className: 'px-4 py-2 flex items-center justify-between' },
               React.createElement('div', { className: 'flex-1 min-w-0' },
-                React.createElement('span', { className: 'text-sm text-[#e2e8f0] truncate block' }, t.title || t.name || 'Untitled'),
-                t.assignee ? React.createElement('span', { className: 'text-[10px] text-[#8899aa]' }, t.assignee) : null
+                React.createElement('span', { className: 'text-sm text-[#e2e8f0] truncate block' }, t.action || t.title || t.name || 'Untitled'),
+                (t.assignee || t.owner) ? React.createElement('span', { className: 'text-[10px] text-[#8899aa]' }, t.assignee || t.owner) : null
               ),
               React.createElement('div', { className: 'flex items-center gap-2 shrink-0' },
                 t.priority ? React.createElement('span', {
@@ -1571,9 +1571,9 @@ var TasksView = function(props) {
           return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5 last:border-0' },
             React.createElement('span', { className: 'text-xs mt-0.5', style: { color: a.done ? '#22c55e' : '#8899aa' } }, a.done ? '\u2713' : '\u25CB'),
             React.createElement('div', { className: 'flex-1' },
-              React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, a.text || a.title || ''),
+              React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, a.action || a.text || a.title || ''),
               a.owner ? React.createElement('span', { className: 'text-[10px] text-[#a78bfa] ml-2' }, '[' + a.owner + ']') : null,
-              a.due_date ? React.createElement('span', { className: 'text-[10px] text-[#f97316] ml-1' }, a.due_date) : null
+              (a.due_date || a.due) ? React.createElement('span', { className: 'text-[10px] text-[#f97316] ml-1' }, a.due_date || a.due) : null
             )
           );
         })
