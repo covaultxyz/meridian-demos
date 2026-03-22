@@ -317,6 +317,9 @@ var SearchBar = function(props) {
     ((data.calls||{}).clients||[]).forEach(function(c) { add('\uD83D\uDC64',c.name||c.slug||'','Client','calls',(c.name||'')+' '+(c.slug||'')); });
     ((data.sales||{}).opportunities||[]).forEach(function(o) { add('\uD83D\uDCB0',o.name||'','Sales - '+(o.stage||''),'sales',(o.name||'')+' '+(o.stage||'')); });
     ((data.development||{}).recent_issues||[]).forEach(function(i) { add('\uD83D\uDCCB','#'+i.number+' '+(i.title||''),'Development','development',(i.title||'')+' '+i.number); });
+    var reg=(data.registry||{});
+    (reg.projects||[]).forEach(function(p) { var tab=p.type==='client'?'customers':'products'; add('\uD83D\uDCC1',p.name||'','Product - '+(p.type||''),''+tab,(p.name||'')+' '+(p.type||'')+' '+(p.owner||'')+' '+(p.phase||'')); });
+    (reg.calls||[]).forEach(function(c) { add('\uD83D\uDCDE',c.title||'Call','Calls - '+(c.type||''),'calls',(c.title||'')+' '+(c.customer||'')+' '+(c.type||'')); });
     return idx;
   }
   function doSearch(q) {
@@ -471,34 +474,77 @@ var AuthGate = function(props) {
 var DashboardView = function(props) {
   var data = props.data;
   var source = props.source;
+  var onNavigate = props.onNavigate;
   var ops = data && data.operations ? data.operations : {};
   var dev = data && data.development ? data.development : {};
   var intel = data && data.intelligence ? data.intelligence : {};
   var migLive = intel.mig_live || ops.mig_live || {};
+  var reg = (data && data.registry) || {};
+  var regProjects = reg.projects || [];
+  var regCalls = reg.calls || [];
+  var regSummary = reg.summary || {};
 
-  var memoryCount = migLive.memory_count || '---';
-  var activeDaemons = (data && data.daemons ? data.daemons.filter(function(d) { return d.status === 'online'; }).length : 0);
-  var totalDaemons = (data && data.daemons ? data.daemons.length : 0);
-  var openIssues = dev.open_issues ? dev.open_issues.total : 0;
-  var sessions = ops.active_sessions ? ops.active_sessions.length : 0;
+  var totalProjects=regProjects.length||0,clientCount=0,internalCount=0,activeCount=0,blockedCount=0,shippedCount=0;
+  regProjects.forEach(function(p){if(p.type==='client')clientCount++;else internalCount++;var st=(p.status||'').toLowerCase();if(st==='active'||st==='in_progress')activeCount++;else if(st==='blocked')blockedCount++;else if(st==='shipped'||st==='completed'||st==='live')shippedCount++;});
+  var pipeline=(data&&data.pipeline)||{};
+  var revClosed=(regSummary.revenue_closed!=null)?regSummary.revenue_closed:(pipeline.revenue_closed||0);
+  var revPipeline=(regSummary.revenue_pipeline!=null)?regSummary.revenue_pipeline:(pipeline.total_weighted_pipeline||0);
+  var now=new Date(),callsThisMonth=0;
+  regCalls.forEach(function(c){if(!c.date)return;var d=new Date(c.date);if(d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear())callsThisMonth++;});
+  var teamSection=(data&&data.team)||{},teamCount=(teamSection.members||[]).length||3;
+  var memoryCount=migLive.memory_count||'---';
+  var activeDaemons=(data&&data.daemons?data.daemons.filter(function(d){return d.status==='online';}).length:0);
+  var totalDaemons=(data&&data.daemons?data.daemons.length:0);
+  var openIssues=dev.open_issues?dev.open_issues.total:0;
+  var daemons=data&&data.daemons?data.daemons:[],daemonTasks=ops.daemon_tasks||[];
+  var recentIssues=dev.recent_issues?dev.recent_issues.slice(0,10):[];
+  var clientProjects=regProjects.filter(function(p){return p.type==='client';});
+  var internalProjects=regProjects.filter(function(p){return p.type!=='client';});
 
-  // Daemon health strip
-  var daemons = data && data.daemons ? data.daemons : [];
-  var daemonTasks = ops.daemon_tasks || [];
+  var _e=React.createElement;
+  function projTypeBadge(t){var cm={client:'#22c55e',internal:'#38bdf8',research:'#a78bfa',blocked:'#ef4444'},c=cm[t]||'#8899aa';return _e('span',{className:'text-[8px] font-bold uppercase px-1.5 py-0.5 rounded',style:{color:c,background:c+'15'}},t);}
+  function projStatusDot(s){var st=(s||'').toLowerCase();if(st==='active'||st==='in_progress')return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-green-400 shrink-0'});if(st==='blocked')return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-red-400 shrink-0'});if(st==='shipped'||st==='completed'||st==='live')return _e('span',{className:'text-[10px] text-green-400 shrink-0'},'\u2713');return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0'});}
+  function renderProjectCard(p,i){var pg=p.progress||0,tt=p.type==='client'?'customers':'products',bc=p.type==='client'?'#22c55e':'#38bdf8';return _e('div',{key:i,className:'bg-[#1a2234] rounded-lg p-2 cursor-pointer hover:bg-[#1e2740] transition-colors min-w-0',onClick:function(){if(onNavigate)onNavigate(tt);}},_e('div',{className:'flex items-center gap-1.5 mb-1'},projStatusDot(p.status),_e('span',{className:'text-[11px] font-semibold text-[#e2e8f0] truncate flex-1'},p.name||'Untitled'),projTypeBadge(p.type)),_e('div',{className:'h-1 bg-[#111827] rounded-full overflow-hidden'},_e('div',{className:'h-full rounded-full transition-all',style:{width:Math.min(pg,100)+'%',background:bc}})),_e('div',{className:'flex items-center justify-between mt-0.5'},p.owner?_e('span',{className:'text-[8px] text-[#8899aa] truncate'},p.owner):_e('span',null),_e('span',{className:'text-[8px] text-[#8899aa]'},pg+'%')));}
 
-  // Recent activity from issues
-  var recentIssues = dev.recent_issues ? dev.recent_issues.slice(0, 10) : [];
+  var hasRegistry = regProjects.length > 0;
 
   return React.createElement('div', { className: 'space-y-6' },
     React.createElement(SectionHeader, { title: 'Dashboard', source: source }),
 
-    // KPI row
-    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
+    // Top KPI row
+    hasRegistry ? React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-5 gap-3' },
+      React.createElement(KPICard, { label: 'Total Projects', value: totalProjects, color: '#38bdf8', sub: clientCount + ' client / ' + internalCount + ' internal' }),
+      React.createElement(KPICard, { label: 'Active / Blocked / Shipped', value: activeCount + ' / ' + blockedCount + ' / ' + shippedCount, color: '#22c55e' }),
+      React.createElement(KPICard, { label: 'Revenue', value: fmtMoney(revClosed) + ' closed', color: '#a78bfa', sub: fmtMoney(revPipeline) + ' pipeline' }),
+      React.createElement(KPICard, { label: 'Calls This Month', value: callsThisMonth, color: '#06b6d4', sub: regCalls.length + ' total' }),
+      React.createElement(KPICard, { label: 'Team Members', value: teamCount, color: '#eab308' })
+    ) : React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
       React.createElement(KPICard, { label: 'Memory Nodes', value: typeof memoryCount === 'number' ? memoryCount.toLocaleString() : memoryCount, color: '#a78bfa' }),
       React.createElement(KPICard, { label: 'Running Programs', value: activeDaemons + '/' + totalDaemons, color: '#22c55e', sub: 'online' }),
       React.createElement(KPICard, { label: 'Open Tasks', value: openIssues, color: '#38bdf8' }),
-      React.createElement(KPICard, { label: 'Active Sessions', value: sessions, color: '#06b6d4' })
+      React.createElement(KPICard, { label: 'Active Sessions', value: (ops.active_sessions ? ops.active_sessions.length : 0), color: '#06b6d4' })
     ),
+
+    // Project Health Grid
+    hasRegistry ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Project Health'),
+
+      // Client Projects section
+      clientProjects.length > 0 ? React.createElement('div', { className: 'mb-4' },
+        React.createElement('div', { className: 'text-[10px] text-[#22c55e] uppercase tracking-wider font-bold mb-2' }, 'Client Projects'),
+        React.createElement('div', { className: 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2' },
+          clientProjects.map(function(p, i) { return renderProjectCard(p, 'c-' + i); })
+        )
+      ) : null,
+
+      // Internal Products section
+      internalProjects.length > 0 ? React.createElement('div', null,
+        React.createElement('div', { className: 'text-[10px] text-[#38bdf8] uppercase tracking-wider font-bold mb-2' }, 'Internal Products'),
+        React.createElement('div', { className: 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2' },
+          internalProjects.map(function(p, i) { return renderProjectCard(p, 'i-' + i); })
+        )
+      ) : null
+    ) : null,
 
     // Daemon health strip
     React.createElement(GlassCard, { className: 'p-4' },
@@ -1276,30 +1322,83 @@ var CallsView = function(props) {
   var totalSignals = calls.total_signals || 0;
   var clients = calls.clients || [];
 
-  // Compute this_week / last_week volumes (simplified: use totalSignals as this_week)
-  var thisWeek = totalSignals;
-  var lastWeek = 0; // No historical data in static — will come from Gateway
-  var trendDir = thisWeek > lastWeek ? 'up' : (thisWeek < lastWeek ? 'down' : 'stable');
-  var trendColor = trendDir === 'up' ? '#22c55e' : (trendDir === 'down' ? '#ef4444' : '#8899aa');
-  var trendArrow = trendDir === 'up' ? '\u2191' : (trendDir === 'down' ? '\u2193' : '\u2192');
+  var reg=(data&&data.registry)||{},regCalls=reg.calls||[],hasRegCalls=regCalls.length>0;
+  var _callFilter=useState('all'),callFilter=_callFilter[0],setCallFilter=_callFilter[1];
+  function _isExt(c){return c.type==='external'||c.type==='client';}
+  function _isInt(c){return c.type==='internal'||c.type==='team';}
+  var filteredCalls=regCalls;
+  if(callFilter==='external')filteredCalls=regCalls.filter(_isExt);
+  else if(callFilter==='internal')filteredCalls=regCalls.filter(_isInt);
+  var now=new Date(),regTotal=regCalls.length,regInternal=regCalls.filter(_isInt).length,regExternal=regCalls.filter(_isExt).length,regThisMonth=0;
+  regCalls.forEach(function(c){if(!c.date)return;var d=new Date(c.date);if(d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear())regThisMonth++;});
+  var thisWeek=totalSignals,lastWeek=0;
+  var trendDir=thisWeek>lastWeek?'up':(thisWeek<lastWeek?'down':'stable');
+  var trendColor=trendDir==='up'?'#22c55e':(trendDir==='down'?'#ef4444':'#8899aa');
+  var trendArrow=trendDir==='up'?'\u2191':(trendDir==='down'?'\u2193':'\u2192');
+  function filterBtn(label,value){var ia=callFilter===value;return React.createElement('button',{onClick:function(){setCallFilter(value);},className:'text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors cursor-pointer '+(ia?'bg-sky-500/15 border-sky-500/40 text-[#38bdf8]':'border-[#1e2d4a] text-[#8899aa] hover:border-[#38bdf8] hover:text-[#e2e8f0]')},label);}
 
   return React.createElement('div', { className: 'space-y-6' },
-    React.createElement(SectionHeader, { title: 'Recent Calls', source: source }),
+    React.createElement(SectionHeader, { title: 'Calls', source: source }),
 
-    // KPI row
-    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 gap-3' },
-      React.createElement(KPICard, {
-        label: 'Calls This Week',
-        value: thisWeek,
-        color: trendColor,
-        sub: trendArrow + ' vs last week'
-      }),
+    hasRegCalls ? React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
+      React.createElement(KPICard, { label: 'Total Calls', value: regTotal, color: '#38bdf8' }),
+      React.createElement(KPICard, { label: 'This Month', value: regThisMonth, color: '#06b6d4' }),
+      React.createElement(KPICard, { label: 'Internal', value: regInternal, color: '#a78bfa' }),
+      React.createElement(KPICard, { label: 'External (Client)', value: regExternal, color: '#22c55e' })
+    ) : React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 gap-3' },
+      React.createElement(KPICard, { label: 'Calls This Week', value: thisWeek, color: trendColor, sub: trendArrow + ' vs last week' }),
       React.createElement(KPICard, { label: 'Total Signals', value: totalSignals, color: '#38bdf8' }),
       React.createElement(KPICard, { label: 'Active Clients', value: clients.length, color: '#a78bfa' })
     ),
 
-    // Recent signal cards
-    React.createElement(GlassCard, { className: 'p-4' },
+    hasRegCalls && regTotal > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-2' }, 'Call Volume'),
+      React.createElement('div', { className: 'flex items-center gap-2' },
+        React.createElement('span', { className: 'text-[10px] text-[#a78bfa] shrink-0' }, 'Internal ' + regInternal),
+        React.createElement('div', { className: 'flex-1 h-3 bg-[#1a2234] rounded-full overflow-hidden flex' },
+          React.createElement('div', {
+            className: 'h-full transition-all',
+            style: { width: Math.round(regInternal / regTotal * 100) + '%', background: '#a78bfa' }
+          }),
+          React.createElement('div', {
+            className: 'h-full transition-all',
+            style: { width: Math.round(regExternal / regTotal * 100) + '%', background: '#22c55e' }
+          })
+        ),
+        React.createElement('span', { className: 'text-[10px] text-[#22c55e] shrink-0' }, regExternal + ' External')
+      )
+    ) : null,
+
+    hasRegCalls ? React.createElement(GlassCard, { className: 'overflow-hidden' },
+      React.createElement('div', { className: 'px-4 py-3 border-b border-[#1e2d4a] flex items-center justify-between flex-wrap gap-2' },
+        React.createElement('h3', { className: 'text-xs font-bold text-[#38bdf8] uppercase tracking-widest' }, 'All Calls (' + filteredCalls.length + ')'),
+        React.createElement('div', { className: 'flex gap-1.5' },
+          filterBtn('All Calls', 'all'),
+          filterBtn('External (Client)', 'external'),
+          filterBtn('Internal (Team)', 'internal')
+        )
+      ),
+      React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40 max-h-[600px] overflow-y-auto' },
+        filteredCalls.length === 0
+          ? React.createElement('div', { className: 'p-6 text-center text-[#8899aa] text-sm' }, 'No calls match this filter')
+          : filteredCalls.map(function(cl,i){var ext=_isExt(cl),tbc=ext?'#22c55e':'#a78bfa',tbt=ext?'CLIENT':'INTERNAL',pts=(cl.participants||[]).map(function(p){return typeof p==='string'?p:(p.name||'');}).join(', ');
+            var _l=function(f,c,t){return f?React.createElement('a',{href:f,target:'_blank',className:'text-[10px] text-['+c+'] hover:underline'},t):null;};
+            return React.createElement('div',{key:i,className:'px-4 py-3 hover:bg-white/[0.02] transition-colors'},
+              React.createElement('div',{className:'flex items-start justify-between gap-2 mb-1'},
+                React.createElement('div',{className:'flex-1 min-w-0'},
+                  React.createElement('div',{className:'flex items-center gap-2 mb-0.5'},
+                    React.createElement('span',{className:'text-xs text-[#8899aa] shrink-0'},cl.date||'--'),
+                    React.createElement('span',{className:'text-[8px] font-bold uppercase px-1.5 py-0.5 rounded shrink-0',style:{color:tbc,background:tbc+'15'}},tbt),
+                    React.createElement('span',{className:'text-sm font-semibold text-[#e2e8f0] truncate'},cl.title||'Call')),
+                  React.createElement('div',{className:'flex items-center gap-3 text-[10px] text-[#8899aa]'},
+                    pts?React.createElement('span',null,pts):null,
+                    cl.customer?React.createElement('span',{className:'text-[#22c55e] capitalize'},cl.customer.replace(/-/g,' ')):null,
+                    cl.duration_min?React.createElement('span',null,cl.duration_min+' min'):null))),
+              React.createElement('div',{className:'flex gap-2 mt-1'},_l(cl.transcript_file,'#38bdf8','Transcript'),_l(cl.signals_file,'#22c55e','Signals'),_l(cl.audit_file,'#a78bfa','Audit')));})
+      )
+    ) : null,
+
+    !hasRegCalls ? React.createElement(GlassCard, { className: 'p-4' },
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Call Signals'),
       recentSignals.length === 0
         ? React.createElement('p', { className: 'text-[#8899aa] text-sm text-center py-4' }, 'No call signals recorded yet')
@@ -1345,9 +1444,8 @@ var CallsView = function(props) {
             );
           })
         )
-    ),
+    ) : null,
 
-    // Client overview
     clients.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Client Overview'),
       React.createElement('div', { className: 'space-y-2' },
@@ -2200,6 +2298,34 @@ var MyReportsView = function(props) {
     op.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#22c55e] uppercase tracking-widest mb-3'},'Opportunities ('+op.length+')'),h('div',{className:'space-y-1'},op.map(function(o,i){return h('div',{key:i,className:'text-xs text-[#22c55e] py-1 border-b border-white/5'},'\u2605 '+o.t+' ('+o.ph+')');}))):null);
 };
 
+/* VIEW: PRODUCTS */
+var ProductsView = function(props) {
+  var d=props.data,s=props.source,reg=(d&&d.registry)||{},rp=reg.projects||[];
+  var products=rp.filter(function(p){return p.type!=='client';});
+  if(!products.length) return _emptyView('Products',s,'No internal product data yet. Add registry data to sections.registry.');
+  var ap=0,sp=0,bp=0,tp=0;
+  products.forEach(function(p){var st=(p.status||'').toLowerCase();if(st==='active'||st==='in_progress')ap++;else if(st==='shipped'||st==='completed'||st==='live')sp++;else if(st==='blocked')bp++;tp+=(p.progress||0);});
+  var avg=products.length>0?Math.round(tp/products.length):0;
+  function phC(ph){var p=(ph||'').toLowerCase();if(p.indexOf('ship')!==-1||p.indexOf('live')!==-1||p.indexOf('complete')!==-1)return'#22c55e';if(p.indexOf('block')!==-1)return'#ef4444';if(p.indexOf('spec')!==-1||p.indexOf('plan')!==-1)return'#eab308';if(p.indexOf('build')!==-1||p.indexOf('dev')!==-1)return'#38bdf8';return'#8899aa';}
+  function stB(st){var s2=(st||'').toLowerCase(),c='#8899aa';if(s2==='active'||s2==='in_progress')c='#22c55e';else if(s2==='shipped'||s2==='completed'||s2==='live')c='#06b6d4';else if(s2==='blocked')c='#ef4444';else if(s2==='planning')c='#eab308';return h('span',{className:'text-[10px] font-semibold px-2 py-0.5 rounded-full border uppercase',style:{color:c,background:c+'18',borderColor:c+'40'}},st||'unknown');}
+  return h('div',{className:'space-y-6'},
+    h(SectionHeader,{title:'Products',source:s}),
+    h('div',{className:'grid grid-cols-2 md:grid-cols-4 gap-3'},
+      h(KPICard,{label:'Internal Products',value:products.length,color:'#38bdf8'}),
+      h(KPICard,{label:'Active',value:ap,color:'#22c55e'}),
+      h(KPICard,{label:'Shipped',value:sp,color:'#06b6d4'}),
+      h(KPICard,{label:'Avg Progress',value:avg+'%',color:'#a78bfa'})),
+    h('div',{className:'grid grid-cols-1 md:grid-cols-2 gap-3'},
+      products.map(function(pr,i){var pg=pr.progress||0,pc=phC(pr.phase);
+        return h(GlassCard,{key:i,className:'p-4'},
+          h('div',{className:'flex items-start justify-between gap-2 mb-2'},
+            h('div',{className:'flex-1 min-w-0'},h('h3',{className:'text-sm font-bold text-white truncate'},pr.name||'Untitled'),pr.phase?h('span',{className:'text-[10px] font-semibold',style:{color:pc}},pr.phase):null),stB(pr.status)),
+          h('div',{className:'flex items-center gap-2 mb-2'},h('div',{className:'flex-1 h-2 bg-[#1a2234] rounded-full overflow-hidden'},h('div',{className:'h-full rounded-full transition-all',style:{width:Math.min(pg,100)+'%',background:'#38bdf8'}})),h('span',{className:'text-xs font-semibold text-[#38bdf8] shrink-0'},pg+'%')),
+          h('div',{className:'flex items-center gap-3 text-[10px] text-[#8899aa]'},pr.owner?h('span',null,'Owner: '+pr.owner):null,pr.type?h('span',{className:'px-1.5 py-0.5 rounded',style:{color:pr.type==='research'?'#a78bfa':'#38bdf8',background:(pr.type==='research'?'#a78bfa':'#38bdf8')+'15'}},pr.type):null),
+          pr.description?h('p',{className:'text-[10px] text-[#8899aa] mt-2'},pr.description):null);})),
+    bp>0?h(GlassCard,{className:'p-4 border-l-4 border-l-[#ef4444]'},h('div',{className:'flex items-center gap-2'},h('span',{className:'text-[#ef4444] text-lg'},'\u26A0'),h('div',null,h('span',{className:'text-sm font-semibold text-[#ef4444]'},bp+' Blocked Product'+(bp!==1?'s':'')),h('p',{className:'text-[10px] text-[#8899aa]'},'These products need attention to unblock progress')))):null);
+};
+
 /* MAIN APP */
 var App = function() {
   var _auth = useState(checkAuthSync());
@@ -2236,6 +2362,7 @@ var App = function() {
     { id: 'dashboard', label: 'DASHBOARD' },
     { id: 'team', label: 'TEAM' },
     { id: 'customers', label: 'CUSTOMERS' },
+    { id: 'products', label: 'PRODUCTS' },
     { id: 'pipeline', label: 'PIPELINE' },
     { id: 'operations', label: 'OPERATIONS' },
     { id: 'development', label: 'DEVELOPMENT' },
@@ -2369,9 +2496,10 @@ var App = function() {
 
   function renderView() {
     switch (activeTab) {
-      case 'dashboard': return React.createElement(DashboardView, { data: data, source: dataSource });
+      case 'dashboard': return React.createElement(DashboardView, { data: data, source: dataSource, onNavigate: switchTab });
       case 'team': return React.createElement(TeamView, { data: data, source: dataSource });
       case 'customers': return React.createElement(CustomersView, { data: data, source: dataSource });
+      case 'products': return React.createElement(ProductsView, { data: data, source: dataSource });
       case 'pipeline': return React.createElement(PipelineView, { data: data, source: dataSource });
       case 'operations': return React.createElement(OperationsView, { data: data, source: dataSource });
       case 'development': return React.createElement(DevelopmentView, { data: data, source: dataSource });
@@ -2384,7 +2512,7 @@ var App = function() {
       case 'mydata': return React.createElement(MyDataView, { data: data, source: dataSource });
       case 'myactivity': return React.createElement(MyActivityView, { data: data, source: dataSource });
       case 'myreports': return React.createElement(MyReportsView, { data: data, source: dataSource });
-      default: return React.createElement(DashboardView, { data: data, source: dataSource });
+      default: return React.createElement(DashboardView, { data: data, source: dataSource, onNavigate: switchTab });
     }
   }
 
