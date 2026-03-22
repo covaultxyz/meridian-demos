@@ -823,7 +823,7 @@ body {
       <span class="freshness" id="fresh-development">--</span>
     </button>
     <button class="tab-btn" data-tab="intelligence" onclick="switchTab('intelligence')">
-      Intelligence
+      Knowledge
       <span class="freshness" id="fresh-intelligence">--</span>
     </button>
     <button class="tab-btn" data-tab="calls" onclick="switchTab('calls')">
@@ -1245,8 +1245,38 @@ function renderOperations(o) {
     html += '</div></div>';
   }
 
-  // mesh_live placeholder
-  if (o.mesh_live === null || o.mesh_live === undefined) {
+  // mesh_live data or placeholder
+  if (o.mesh_live && typeof o.mesh_live === 'object' && !o.mesh_live.error) {
+    var ml = o.mesh_live;
+    var staleWarn = ml._stale_warning ? '<div style="color:var(--orange);font-size:0.7rem;margin-bottom:0.5rem">\u26a0 ' + escHtml(ml._stale_warning) + '</div>' : '';
+    html += '<div class="card"><div class="card-header">Live Mesh Status</div><div class="card-body">';
+    html += staleWarn;
+    html += '<div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(100px,1fr))">';
+    if (ml.system) {
+      html += '<div class="kpi"><div class="label">CPU Load</div><div class="value" style="font-size:1.1rem;color:' + (ml.system.cpu_load_1m > 2 ? 'var(--red)' : 'var(--green)') + '">' + (ml.system.cpu_load_1m || '--') + '</div></div>';
+      html += '<div class="kpi"><div class="label">Memory</div><div class="value" style="font-size:1.1rem;color:' + (ml.system.memory_available_mb < 500 ? 'var(--red)' : 'var(--green)') + '">' + Math.round((ml.system.memory_available_mb || 0) / 1024 * 10) / 10 + 'GB free</div></div>';
+      html += '<div class="kpi"><div class="label">Swap</div><div class="value" style="font-size:1.1rem;color:' + (ml.system.swap_used_mb > ml.system.swap_total_mb * 0.8 ? 'var(--red)' : 'var(--yellow)') + '">' + Math.round((ml.system.swap_used_mb || 0) / 1024 * 10) / 10 + '/' + Math.round((ml.system.swap_total_mb || 0) / 1024 * 10) / 10 + 'GB</div></div>';
+      html += '<div class="kpi"><div class="label">Disk</div><div class="value" style="font-size:1.1rem;color:var(--green)">' + (ml.system.disk_used_gb || '--') + '/' + (ml.system.disk_total_gb || '--') + 'GB</div></div>';
+      html += '<div class="kpi"><div class="label">Uptime</div><div class="value" style="font-size:1.1rem;color:var(--dim)">' + Math.round(ml.system.uptime_days || 0) + 'd</div></div>';
+    }
+    html += '</div>';
+    if (ml.nats && ml.nats.streams) {
+      html += '<div style="margin-top:0.8rem"><div style="color:var(--dim);font-size:0.7rem;text-transform:uppercase;margin-bottom:0.4rem">NATS Streams</div>';
+      Object.keys(ml.nats.streams).forEach(function(name) {
+        var st = ml.nats.streams[name];
+        html += '<div class="metric-row"><span class="metric-label">' + escHtml(name) + '</span><span class="metric-value">' + st.messages + ' msgs / ' + st.consumers + ' consumers</span></div>';
+      });
+      html += '</div>';
+    }
+    if (ml.nodes && ml.nodes.length > 0) {
+      html += '<div style="margin-top:0.8rem"><div style="color:var(--dim);font-size:0.7rem;text-transform:uppercase;margin-bottom:0.4rem">Node Reachability</div>';
+      ml.nodes.forEach(function(n) {
+        html += '<div class="metric-row"><span class="metric-label">' + escHtml(n.name) + ' <span style="color:var(--dim)">(' + escHtml(n.ip) + ')</span></span><span class="metric-value" style="color:' + (n.reachable ? 'var(--green)' : 'var(--red)') + '">' + (n.reachable ? 'Reachable' : 'Unreachable') + '</span></div>';
+      });
+      html += '</div>';
+    }
+    html += '</div></div>';
+  } else if (o.mesh_live === null || o.mesh_live === undefined) {
     html += '<div class="card"><div class="card-header">Live Mesh Status</div><div class="card-body">';
     html += renderPlaceholderNull();
     html += '</div></div>';
