@@ -1361,49 +1361,75 @@ function renderIntelligence(intel) {
   var html = '';
   var sc = intel.scorecard || {};
 
-  // Friendly metric names
-  var metricNames = {
-    task_resolution: 'Task Resolution',
-    ci_pass_rate: 'Build Pass Rate',
-    noise_ratio: 'Signal Clarity',
-    context_quality: 'Context Quality',
-    human_override: 'Manual Corrections'
-  };
-  var metricColors = {
-    task_resolution: 'var(--accent)',
-    ci_pass_rate: 'var(--green)',
-    noise_ratio: 'var(--cyan)',
-    context_quality: 'var(--yellow)',
-    human_override: 'var(--purple)'
-  };
+  // Handle both flat format ({task_resolution: 0.66}) and rich format ({summary, metrics[], kpis[]})
+  var kpis = sc.kpis || [];
+  var metrics = sc.metrics || [];
+  var summary = sc.summary || {};
 
-  // Overall score (average of non-null metrics)
-  var vals = Object.values(sc).filter(function(v) { return v != null; });
-  var avg = vals.length > 0 ? vals.reduce(function(a, b) { return a + b; }, 0) / vals.length : 0;
-  var overallColor = avg >= 0.8 ? 'var(--green)' : avg >= 0.6 ? 'var(--yellow)' : 'var(--red)';
+  // If flat format (mock data), convert to kpis array
+  if (kpis.length === 0 && !sc.summary && typeof sc === 'object') {
+    Object.keys(sc).forEach(function(k) {
+      if (typeof sc[k] === 'number') kpis.push({id: k, name: k.replace(/_/g, ' '), value: sc[k], pct: Math.round(sc[k] * 100)});
+    });
+  }
 
-  html += '<div class="kpi-grid">';
-  html += '<div class="kpi"><div class="label">System Health Score</div><div class="value" style="color:' + overallColor + '">' + fmtPct(avg) + '</div><div class="sub">average across all metrics</div></div>';
-  html += '</div>';
+  // Overall score from KPIs
+  var kpiVals = kpis.filter(function(k) { return k.value != null; }).map(function(k) { return k.pct || Math.round(k.value * 100); });
+  var avg = kpiVals.length > 0 ? Math.round(kpiVals.reduce(function(a, b) { return a + b; }, 0) / kpiVals.length) : 0;
+  var overallColor = avg >= 80 ? 'var(--green)' : avg >= 60 ? 'var(--yellow)' : 'var(--red)';
 
-  // Scorecard bars
-  html += '<div class="card"><div class="card-header">Scorecard</div><div class="card-body">';
-  Object.keys(sc).forEach(function(key) {
-    var val = sc[key];
-    var pct = val != null ? Math.round(val * 100) : 0;
-    var color = metricColors[key] || 'var(--accent)';
-    var barColor = val >= 0.8 ? 'var(--green)' : val >= 0.6 ? 'var(--yellow)' : val >= 0.3 ? 'var(--orange)' : 'var(--red)';
-    // For human_override, lower is better
-    if (key === 'human_override') {
-      barColor = val <= 0.1 ? 'var(--green)' : val <= 0.3 ? 'var(--yellow)' : 'var(--red)';
-    }
-    html += '<div class="metric-row">';
-    html += '<span class="metric-label">' + (metricNames[key] || key) + '</span>';
-    html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>';
-    html += '<span class="metric-value" style="color:' + barColor + '">' + fmtPct(val) + '</span>';
+  // Summary header
+  if (summary.overall) {
+    var ov = summary.overall;
+    html += '<div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">';
+    html += '<div class="kpi"><div class="label">Metrics Met</div><div class="value" style="color:var(--green)">' + ov.met + '/' + ov.total + '</div></div>';
+    html += '<div class="kpi"><div class="label">Close</div><div class="value" style="color:var(--yellow)">' + (ov.close || 0) + '</div></div>';
+    html += '<div class="kpi"><div class="label">Gaps</div><div class="value" style="color:var(--red)">' + (ov.gap || 0) + '</div></div>';
+    html += '<div class="kpi"><div class="label">TBD</div><div class="value" style="color:var(--dim)">' + (ov.tbd || 0) + '</div></div>';
     html += '</div>';
-  });
-  html += '</div></div>';
+  } else {
+    html += '<div class="kpi-grid"><div class="kpi"><div class="label">System Health Score</div><div class="value" style="color:' + overallColor + '">' + avg + '%</div><div class="sub">average across KPIs</div></div></div>';
+  }
+
+  // KPIs section
+  if (kpis.length > 0) {
+    html += '<div class="card"><div class="card-header">Key Performance Indicators</div><div class="card-body">';
+    kpis.forEach(function(k) {
+      var pct = k.pct || 0;
+      var barColor = k.status === 'met' ? 'var(--green)' : k.status === 'close' ? 'var(--yellow)' : 'var(--red)';
+      html += '<div class="metric-row">';
+      html += '<span class="metric-label">' + (k.name || k.id) + '</span>';
+      html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>';
+      html += '<span class="metric-value" style="color:' + barColor + '">' + (k.display || k.value) + '</span>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // Phase breakdown (from rich scorecard)
+  if (summary.phases && summary.phases.length > 0) {
+    html += '<div class="card"><div class="card-header">Phase Progress</div><div class="card-body">';
+    summary.phases.forEach(function(p) {
+      var pct = p.total > 0 ? Math.round((p.met / p.total) * 100) : 0;
+      var barColor = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+      html += '<div class="metric-row">';
+      html += '<span class="metric-label">' + p.name + ' <span style="color:var(--dim);font-size:.6rem">' + (p.subtitle || '') + '</span></span>';
+      html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>';
+      html += '<span class="metric-value" style="color:' + barColor + '">' + p.met + '/' + p.total + '</span>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // Full metrics table (collapsible)
+  if (metrics.length > 0) {
+    html += '<div class="card"><div class="card-header" style="cursor:pointer" onclick="var t=this.nextElementSibling;t.style.display=t.style.display===\'none\'?\'block\':\'none\'">Scorecard Details (' + metrics.length + ' metrics) \u25BC</div><div class="card-body" style="display:none;overflow-x:auto"><table class="data-table"><thead><tr><th>Metric</th><th>Value</th><th>Target</th><th>Status</th></tr></thead><tbody>';
+    metrics.forEach(function(m) {
+      var statusColor = m.status === 'met' ? 'var(--green)' : m.status === 'close' ? 'var(--yellow)' : m.status === 'gap' ? 'var(--red)' : 'var(--dim)';
+      html += '<tr><td>' + m.name + '</td><td>' + (m.display || m.value || 'TBD') + '</td><td style="color:var(--dim)">' + (m.target || '') + '</td><td style="color:' + statusColor + '">' + (m.status || 'tbd').toUpperCase() + '</td></tr>';
+    });
+    html += '</tbody></table></div></div>';
+  }
 
   // MIG live placeholder
   if (intel.mig_live === null || intel.mig_live === undefined) {
@@ -1500,9 +1526,12 @@ function renderSales(s) {
   // Revenue Projections
   html += '<div class="card"><div class="card-header">Revenue Projections</div><div class="card-body">';
   html += '<div class="proj-grid">';
-  if (proj['30d'] != null) html += '<div class="proj-card"><div class="proj-period">30-Day</div><div class="proj-value" style="color:var(--green)">' + fmtMoney(proj['30d']) + '</div></div>';
-  if (proj['90d'] != null) html += '<div class="proj-card"><div class="proj-period">90-Day</div><div class="proj-value" style="color:var(--accent)">' + fmtMoney(proj['90d']) + '</div></div>';
-  if (proj['6mo'] != null) html += '<div class="proj-card"><div class="proj-period">6-Month</div><div class="proj-value" style="color:var(--purple)">' + fmtMoney(proj['6mo']) + '</div></div>';
+  // Handle projections as {low,mid,high} objects or flat numbers
+  function projVal(p) { return typeof p === 'object' && p !== null ? (p.mid || p.low || 0) : (p || 0); }
+  function projRange(p) { return typeof p === 'object' && p !== null ? fmtMoney(p.low) + ' \u2013 ' + fmtMoney(p.high) : ''; }
+  if (proj['30d'] != null) html += '<div class="proj-card"><div class="proj-period">30-Day</div><div class="proj-value" style="color:var(--green)">' + fmtMoney(projVal(proj['30d'])) + '</div>' + (projRange(proj['30d']) ? '<div style="font-size:.6rem;color:var(--dim)">' + projRange(proj['30d']) + '</div>' : '') + '</div>';
+  if (proj['90d'] != null) html += '<div class="proj-card"><div class="proj-period">90-Day</div><div class="proj-value" style="color:var(--accent)">' + fmtMoney(projVal(proj['90d'])) + '</div>' + (projRange(proj['90d']) ? '<div style="font-size:.6rem;color:var(--dim)">' + projRange(proj['90d']) + '</div>' : '') + '</div>';
+  if (proj['6mo'] != null) html += '<div class="proj-card"><div class="proj-period">6-Month</div><div class="proj-value" style="color:var(--purple)">' + fmtMoney(projVal(proj['6mo'])) + '</div>' + (projRange(proj['6mo']) ? '<div style="font-size:.6rem;color:var(--dim)">' + projRange(proj['6mo']) + '</div>' : '') + '</div>';
   html += '</div></div></div>';
 
   // Opportunity cards
@@ -1510,12 +1539,16 @@ function renderSales(s) {
     html += '<div class="card"><div class="card-header">Deals in Progress</div><div class="card-body">';
     html += '<div class="opp-grid">';
     opps.forEach(function(o) {
-      var pct = Math.round((o.probability || 0) * 100);
-      var pColor = probColor(o.probability);
-      var weighted = Math.round((o.value || 0) * (o.probability || 0));
+      // probability may be 0-1 or 0-100
+      var rawProb = o.probability || 0;
+      var prob01 = rawProb > 1 ? rawProb / 100 : rawProb;
+      var pct = Math.round(prob01 * 100);
+      var pColor = probColor(prob01);
+      var dealVal = o.value || o.annual_value || 0;
+      var weighted = Math.round(dealVal * prob01);
       html += '<div class="opp-card">';
       html += '<div class="opp-name">' + escHtml(o.name) + '</div>';
-      html += '<div class="opp-value">' + fmtMoney(o.value) + '</div>';
+      html += '<div class="opp-value">' + fmtMoney(dealVal) + '</div>';
       html += '<div class="opp-meta">';
       html += stageBadge(o.stage);
       html += ' <span style="margin-left:0.5rem">Confidence: ' + pct + '%</span>';
