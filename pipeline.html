@@ -1,29 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MERIDIAN Client Pipeline</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-               max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
-        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
-        code { background: #f4f4f4; padding: 0.2rem 0.4rem; }
-    </style>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MERIDIAN — Client Pipeline</title>
 <style>
-:root {
-  --bg:#0a0e17;--s1:#111827;--s2:#1a2234;--bd:#1e2d4a;
-  --tx:#e2e8f0;--dim:#8899aa;--ac:#38bdf8;
-  --gn:#22c55e;--yl:#eab308;--or:#f97316;--rd:#ef4444;--pr:#a78bfa;--cy:#06b6d4;
-}
+:root{--bg:#0a0e17;--s1:#111827;--s2:#1a2234;--bd:#1e2d4a;--tx:#e2e8f0;--dim:#8899aa;--ac:#38bdf8;--gn:#22c55e;--yl:#eab308;--or:#f97316;--rd:#ef4444;--pr:#a78bfa;--cy:#06b6d4}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh}
 .hdr{background:linear-gradient(135deg,#0f172a,#1e293b);border-bottom:1px solid var(--bd);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
@@ -32,34 +14,42 @@ body{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;background:var(
 .hdr .ts{color:var(--dim);font-size:.72rem}
 .hdr a{color:var(--dim);text-decoration:none;font-size:.75rem;padding:.25rem .6rem;border:1px solid var(--bd);border-radius:4px;transition:all .2s}
 .hdr a:hover{color:var(--ac);border-color:var(--ac)}
-.badge-live{background:rgba(34,197,94,.15);color:var(--gn);padding:.2rem .6rem;border-radius:10px;font-size:.65rem;font-weight:600;border:1px solid rgba(34,197,94,.3);letter-spacing:.04em}
+.blv{background:rgba(34,197,94,.15);color:var(--gn);padding:.2rem .6rem;border-radius:10px;font-size:.65rem;font-weight:600;border:1px solid rgba(34,197,94,.3);letter-spacing:.04em}
 .wrap{max-width:1300px;margin:0 auto;padding:1.5rem}
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-bottom:1.5rem}
 .kc{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:1rem;text-align:center}
 .kc .lb{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.3rem}
 .kc .vl{font-size:1.7rem;font-weight:700}
 .kc .sb{font-size:.65rem;color:var(--dim);margin-top:.15rem}
-.funnel-card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;margin-bottom:1.5rem;overflow:hidden}
-.funnel-card .ch{padding:.6rem 1rem;border-bottom:1px solid var(--bd);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
+.fc{background:var(--s1);border:1px solid var(--bd);border-radius:8px;margin-bottom:1.5rem;overflow:hidden}
+.fc .ch{padding:.6rem 1rem;border-bottom:1px solid var(--bd);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
 .funnel{display:flex;align-items:stretch;padding:.75rem;gap:0;overflow-x:auto}
-.fs{flex:1;min-width:100px;text-align:center;padding:.75rem .4rem;position:relative}
+.fs{flex:1;min-width:100px;text-align:center;padding:.75rem .4rem}
 .fs .sn{font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.4rem}
 .fs .bar{height:42px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;cursor:default;transition:transform .15s}
 .fs .bar:hover{transform:scale(1.03)}
 .fs .ct{font-size:1.1rem;font-weight:700;margin-top:.4rem}
 .fa{color:var(--dim);font-size:1rem;display:flex;align-items:center;opacity:.35;padding:0 .15rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1rem;margin-bottom:1.5rem}
-@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.5rem}
 .deal{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden;transition:border-color .2s}
 .deal:hover{border-color:rgba(56,189,248,.4)}
-.deal-top{padding:1rem;border-bottom:1px solid var(--bd)}
+.deal-top{padding:1rem;border-bottom:1px solid var(--bd);cursor:pointer;user-select:none}
 .deal-top .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
 .deal-name{font-weight:700;font-size:.95rem}
-.deal-body{padding:1rem;font-size:.8rem}
-.deal-body .field{display:flex;gap:.5rem;padding:.25rem 0;border-bottom:1px solid rgba(30,45,74,.3)}
-.deal-body .field:last-child{border-bottom:none}
-.deal-body .fk{color:var(--dim);min-width:90px;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
-.deal-body .fv{flex:1}
+.deal-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;margin-top:.5rem;font-size:.75rem}
+.deal-summary .sf{background:var(--s2);padding:.4rem .6rem;border-radius:4px}
+.deal-summary .sf .sk{color:var(--dim);font-size:.6rem;text-transform:uppercase;letter-spacing:.05em}
+.expand-hint{color:var(--dim);font-size:.6rem;text-align:right;margin-top:.25rem;transition:opacity .2s}
+.deal.open .expand-hint{opacity:0}
+.detail{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.deal.open .detail{max-height:5000px}
+.detail-inner{padding:1rem;border-top:1px solid var(--bd)}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--bd);padding:0 1rem}
+.tab{padding:.5rem 1rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--dim);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab:hover{color:var(--tx)}
+.tab.active{color:var(--ac);border-bottom-color:var(--ac)}
+.tab-content{display:none;padding:1rem}
+.tab-content.active{display:block}
 .deal-footer{padding:.6rem 1rem;background:var(--s2);border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;font-size:.7rem}
 .deal-footer a{color:var(--ac);text-decoration:none}
 .deal-footer a:hover{text-decoration:underline}
@@ -76,119 +66,325 @@ body{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;background:var(
 .b-b{background:rgba(56,189,248,.15);color:var(--ac);border:1px solid rgba(56,189,248,.3)}
 .b-c{background:rgba(234,179,8,.15);color:var(--yl);border:1px solid rgba(234,179,8,.3)}
 .b-d{background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)}
-.pb{background:var(--s2);border-radius:4px;height:6px;overflow:hidden;margin-top:.4rem}
-.pf{height:100%;border-radius:4px;transition:width .5s}
-.risk{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-left:3px solid var(--rd);border-radius:0 6px 6px 0;padding:.5rem .75rem;font-size:.75rem;margin-top:.5rem}
+.risk{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-left:3px solid var(--rd);border-radius:0 6px 6px 0;padding:.5rem .75rem;font-size:.75rem;margin-bottom:.5rem}
 .risk strong{color:var(--rd)}
-.prod{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:.75rem;margin-top:.5rem}
-.prod .row{display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem}
+.warn{background:rgba(249,115,22,.08);border:1px solid rgba(249,115,22,.2);border-left:3px solid var(--or);border-radius:0 6px 6px 0;padding:.5rem .75rem;font-size:.75rem;margin-bottom:.5rem}
+.warn strong{color:var(--or)}
+.info{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2);border-left:3px solid var(--ac);border-radius:0 6px 6px 0;padding:.5rem .75rem;font-size:.75rem;margin-bottom:.5rem}
+.info strong{color:var(--ac)}
+.prod{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:.75rem;margin-bottom:.75rem}
+.prod .row{display:flex;gap:.75rem;flex-wrap:wrap;font-size:.72rem}
 .prod .tag{background:rgba(56,189,248,.1);color:var(--ac);padding:.15rem .4rem;border-radius:4px;font-size:.6rem}
-.tbl{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:1.5rem}
+.tbl{width:100%;border-collapse:collapse;font-size:.78rem}
 .tbl th{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--bd);color:var(--dim);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
-.tbl td{padding:.5rem .6rem;border-bottom:1px solid rgba(30,45,74,.4)}
+.tbl td{padding:.5rem .6rem;border-bottom:1px solid rgba(30,45,74,.4);vertical-align:top}
 .tbl tr:hover td{background:rgba(56,189,248,.03)}
 .card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
 .ch{padding:.6rem 1rem;border-bottom:1px solid var(--bd);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ac);display:flex;justify-content:space-between;align-items:center}
 .cb{padding:1rem}
-.footer{text-align:center;padding:1.5rem;color:var(--dim);font-size:.65rem;border-top:1px solid var(--bd);margin-top:1.5rem}
+.tl-item{display:flex;gap:.75rem;padding:.35rem 0;font-size:.78rem}
+.tl-date{color:var(--dim);font-size:.65rem;min-width:55px;text-align:right;padding-top:2px}
+.tl-dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.tl-dot.done{background:var(--gn)}.tl-dot.blocked{background:var(--rd)}.tl-dot.pending{background:var(--yl)}.tl-dot.future{background:var(--bd)}
+.contact{display:flex;align-items:center;gap:.6rem;padding:.4rem .6rem;background:var(--s2);border-radius:6px;margin-bottom:.4rem;font-size:.78rem}
+.contact .c-name{font-weight:600}.contact .c-role{color:var(--dim);font-size:.65rem}
+.meter{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;font-size:.75rem}
+.meter-bar{flex:1;height:8px;background:var(--s2);border-radius:4px;overflow:hidden}
+.meter-fill{height:100%;border-radius:4px}
+.meter-label{min-width:80px;color:var(--dim);font-size:.65rem}
+.meter-val{min-width:35px;text-align:right;font-weight:600;font-size:.7rem}
+.footer{text-align:center;padding:1.5rem;color:var(--dim);font-size:.65rem;border-top:1px solid var(--bd);margin-top:2rem}
 </style>
 </head>
 <body>
 <div class="hdr">
-  <div>
-    <h1>MERIDIAN — Client Pipeline</h1>
-    <div class="ts">Project #13 · <span id="updated">Loading...</span></div>
-  </div>
-  <div class="hdr-right">
-    <span class="badge-live" id="status-badge">LOADING</span>
-    <a href="https://github.com/users/covaultxyz/projects/13" target="_blank">Open in GitHub →</a>
-  </div>
+  <div><h1>MERIDIAN — Client Pipeline</h1><div class="ts">Project #13 · <span id="updated"></span></div></div>
+  <div class="hdr-right"><span class="blv" id="status-badge"></span><a href="https://github.com/users/covaultxyz/projects/13" target="_blank">Open in GitHub</a></div>
 </div>
 <div class="wrap">
   <div class="kpi" id="kpi-row"></div>
-  <div class="funnel-card">
-    <div class="ch">Pipeline Funnel</div>
-    <div class="funnel" id="funnel"></div>
-  </div>
+  <div class="fc"><div class="ch">Pipeline Funnel</div><div class="funnel" id="funnel"></div></div>
   <div class="grid" id="deals"></div>
-  <div class="card">
-    <div class="ch">Pipeline Table</div>
-    <div class="cb" style="overflow-x:auto">
-      <table class="tbl" id="pipeline-table">
-        <thead>
-          <tr><th>Client</th><th>Stage</th><th>Revenue</th><th>Next Action</th><th>Deadline</th><th>Owner</th><th>Risk</th><th>Grade</th></tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-      </table>
-    </div>
-  </div>
+  <div class="card"><div class="ch">Pipeline Summary</div><div class="cb" style="overflow-x:auto"><table class="tbl"><thead><tr><th>Client</th><th>Stage</th><th>Revenue</th><th>Next Action</th><th>Deadline</th><th>Owner</th><th>Risk</th></tr></thead><tbody id="table-body"></tbody></table></div></div>
 </div>
-<div class="footer" id="footer">MERIDIAN · Client Pipeline Dashboard · Loading...</div>
+<div class="footer" id="footer"></div>
+
 <script>
-const STAGES = ['Lead','Qualified','Discovery','Proposal','Engaged','Active','Completed','Lost'];
-const STAGE_COLORS = {
-  Lead:'107,114,128', Qualified:'234,179,8', Discovery:'167,139,250',
-  Proposal:'6,182,212', Engaged:'34,197,94', Active:'56,189,248',
-  Completed:'34,197,94', Lost:'239,68,68'
-};
-function daysUntil(d){if(!d)return null;const diff=Math.ceil((new Date(d)-new Date())/(1000*60*60*24));return diff}
-function fmtDate(d){if(!d)return'\u2014';const dt=new Date(d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
-function deadlineColor(d){const days=daysUntil(d);if(days===null)return'var(--dim)';if(days<0)return'var(--rd)';if(days<=3)return'var(--or)';if(days<=7)return'var(--yl)';return'var(--gn)'}
-function stageClass(s){return 'b-'+(s||'lead').toLowerCase().replace(/[^a-z]/g,'')}
-function gradeClass(g){return 'b-'+(g||'').toLowerCase()}
-function renderKPIs(data){
-  const s=data.summary;const el=document.getElementById('kpi-row');
-  el.innerHTML='<div class="kc"><div class="lb">Total Deals</div><div class="vl" style="color:var(--ac)">'+s.total_deals+'</div><div class="sb">'+s.engaged+' engaged \u00b7 '+s.leads+' leads</div></div><div class="kc"><div class="lb">Revenue Closed</div><div class="vl" style="color:var(--gn)">$'+s.revenue_closed.toLocaleString()+'</div><div class="sb">invoiced</div></div><div class="kc"><div class="lb">Pipeline (Proposed)</div><div class="vl" style="color:var(--yl)">$'+s.revenue_pipeline.toLocaleString()+'</div><div class="sb">$5K/mo \u00d7 3 months</div></div><div class="kc"><div class="lb">90-Day EV</div><div class="vl" style="color:var(--cy)">$'+s.pipeline_ev_90day.toLocaleString()+'</div><div class="sb">probability-weighted</div></div><div class="kc"><div class="lb">Avg Deal Age</div><div class="vl" style="color:var(--pr)">'+Math.round(data.deals.reduce(function(a,d){return a+Math.max(0,-daysUntil(d.created))},0)/data.deals.length)+'d</div><div class="sb">since creation</div></div>';
-}
-function renderFunnel(data){
-  var counts={};STAGES.forEach(function(s){counts[s]=0});
-  data.deals.forEach(function(d){if(counts[d.stage]!==undefined)counts[d.stage]++});
-  var el=document.getElementById('funnel');
-  el.innerHTML=STAGES.map(function(s,i){
-    var c=STAGE_COLORS[s]||'107,114,128';
-    var names=data.deals.filter(function(d){return d.stage===s}).map(function(d){return d.client}).join(', ')||'\u2014';
-    return (i>0?'<div class="fa">\u2192</div>':'')+
-      '<div class="fs"><div class="sn">'+s+'</div><div class="bar" style="background:rgba('+c+',.2);color:rgba('+c+',1)" title="'+names+'">'+names+'</div><div class="ct" style="color:rgba('+c+',1)">'+counts[s]+'</div></div>';
-  }).join('');
-}
-function renderDeals(data){
-  var el=document.getElementById('deals');
-  el.innerHTML=data.deals.map(function(d){
-    var dlDays=daysUntil(d.deadline);
-    var dlText=d.deadline?(dlDays<0?Math.abs(dlDays)+'d overdue':dlDays===0?'Today':dlDays+'d left'):'No deadline';
-    var prod=d.product?'<div class="prod"><div style="font-weight:600;margin-bottom:.3rem;color:var(--ac)">'+d.product.name+'</div><div class="row"><span class="tag">'+d.product.files+' files</span><span class="tag">'+d.product.lines.toLocaleString()+' lines</span><span class="tag">'+d.product.tests+' tests</span>'+(d.product.live_url?'<span class="tag"><a href="'+d.product.live_url+'" target="_blank" style="color:var(--gn);text-decoration:none">Live \u2197</a></span>':'')+(d.product.telegram?'<span class="tag">'+d.product.telegram+'</span>':'')+'</div>'+(d.data_ingested?'<div style="font-size:.65rem;color:var(--dim);margin-top:.3rem">'+d.data_ingested.videos+' videos \u00b7 '+(d.data_ingested.words/1000).toFixed(0)+'K words \u00b7 '+d.data_ingested.hours+'hrs ingested</div>':'')+'</div>':'';
-    var risk=d.risk?'<div class="risk"><strong>Risk:</strong> '+d.risk+'</div>':'';
-    var stg=d.stage||'Lead';
-    var sc=stageClass(stg);
-    return '<div class="deal"><div class="deal-top"><div class="row"><div class="deal-name">'+d.client+'</div><span class="b '+sc+'">'+stg+'</span></div><div style="font-size:.75rem;color:var(--dim)">'+d.title.replace('[Client] ','')+'</div></div><div class="deal-body"><div class="field"><div class="fk">Revenue</div><div class="fv" style="color:'+(d.revenue?'var(--gn)':'var(--dim)')+'">'+(d.revenue||'\u2014')+'</div></div><div class="field"><div class="fk">Next</div><div class="fv">'+(d.next_action||'\u2014')+'</div></div><div class="field"><div class="fk">Deadline</div><div class="fv" style="color:'+deadlineColor(d.deadline)+'">'+fmtDate(d.deadline)+' <span style="font-size:.65rem;opacity:.7">('+dlText+')</span></div></div><div class="field"><div class="fk">Owner</div><div class="fv">'+(d.owner||'\u2014')+'</div></div><div class="field"><div class="fk">Grade</div><div class="fv"><span class="b '+gradeClass(d.grade)+'">'+(d.grade||'\u2014')+'</span></div></div>'+risk+prod+'</div><div class="deal-footer"><a href="'+d.url+'" target="_blank">#'+d.number+'</a><span style="color:var(--dim)">Created '+fmtDate(d.created)+'</span></div></div>';
-  }).join('');
-}
-function renderTable(data){
-  var tbody=document.getElementById('table-body');
-  tbody.innerHTML=data.deals.map(function(d){
-    return '<tr><td><strong>'+d.client+'</strong></td><td><span class="b '+stageClass(d.stage)+'">'+d.stage+'</span></td><td style="color:'+(d.revenue?'var(--gn)':'var(--dim)')+'">'+(d.revenue||'\u2014')+'</td><td style="max-width:200px">'+(d.next_action||'\u2014')+'</td><td style="color:'+deadlineColor(d.deadline)+'">'+fmtDate(d.deadline)+'</td><td>'+(d.owner||'\u2014')+'</td><td style="color:'+(d.risk?'var(--rd)':'var(--dim)')+'">'+(d.risk||'\u2014')+'</td><td><span class="b '+gradeClass(d.grade)+'">'+(d.grade||'\u2014')+'</span></td></tr>';
-  }).join('');
-}
-var PIPELINE_DATA = {
-  "project":{"title":"Client Pipeline","number":13,"url":"https://github.com/users/covaultxyz/projects/13","updated":"2026-03-22T04:00:00Z"},
-  "deals":[
-    {"number":1675,"title":"Denver Griffin \u2014 AI Coaching System Phase 0","url":"https://github.com/covaultxyz/meridian/issues/1675","state":"OPEN","created":"2026-03-22T03:44:34Z","client":"Denver Griffin","stage":"Engaged","status":"In Progress","revenue":"$2K retainer (invoiced) + $5K/mo proposed","next_action":"Confirm payment; follow up data handoff; P1 phone tests","deadline":"2026-04-04","owner":"Joint","risk":"Data handoff blocked; scope doc not written","grade":"B","product":{"name":"Shepherd","files":24,"lines":11052,"tests":369,"live_url":"https://shepherd-coach.onrender.com","telegram":"@SHEPHERD_DivorceStoppers_Bot"},"data_ingested":{"videos":115,"words":764077,"hours":66.4}},
-    {"number":1676,"title":"Gordon (GCC) \u2014 EHR System + Family Offices","url":"https://github.com/covaultxyz/meridian/issues/1676","state":"OPEN","created":"2026-03-22T03:44:50Z","client":"Gordon (GCC)","stage":"Lead","status":"Todo","revenue":null,"next_action":"Deep research EHR needs; schedule meeting after Gordon returns ~Mar 28","deadline":"2026-03-28","owner":"Bitler","risk":null,"grade":"D"},
-    {"number":1677,"title":"Brian Cook (StretchMed) \u2014 Prior Contact","url":"https://github.com/covaultxyz/meridian/issues/1677","state":"OPEN","created":"2026-03-22T03:44:56Z","client":"Brian Cook","stage":"Lead","status":"Todo","revenue":null,"next_action":"Re-engage via Bitler after Denver demo ships","deadline":null,"owner":"Bitler","risk":null,"grade":"D"}
+var STAGES=['Lead','Qualified','Discovery','Proposal','Engaged','Active','Completed','Lost'];
+var SC={Lead:'107,114,128',Qualified:'234,179,8',Discovery:'167,139,250',Proposal:'6,182,212',Engaged:'34,197,94',Active:'56,189,248',Completed:'34,197,94',Lost:'239,68,68'};
+function du(d){if(!d)return null;return Math.ceil((new Date(d)-new Date())/(864e5))}
+function fd(d){if(!d)return'\u2014';return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function dc(d){var days=du(d);if(days===null)return'var(--dim)';if(days<0)return'var(--rd)';if(days<=3)return'var(--or)';if(days<=7)return'var(--yl)';return'var(--gn)'}
+function sc(s){return'b-'+(s||'lead').toLowerCase().replace(/[^a-z]/g,'')}
+function gc(g){return'b-'+(g||'').toLowerCase()}
+
+var DATA={
+"project":{"title":"Client Pipeline","number":13,"url":"https://github.com/users/covaultxyz/projects/13","updated":"2026-03-22T08:00:00Z"},
+"summary":{"total_deals":3,"engaged":1,"leads":2,"revenue_closed":2000,"revenue_pipeline":15000,"pipeline_ev_90day":11375},
+"stages":STAGES,
+"deals":[
+{
+  "number":1675,"client":"Denver Griffin","title":"AI Coaching System Phase 0",
+  "url":"https://github.com/covaultxyz/meridian/issues/1675",
+  "state":"OPEN","created":"2026-03-22T03:44:34Z","stage":"Engaged","status":"In Progress",
+  "revenue":"$2K retainer (invoiced) + $5K/mo proposed","next_action":"Confirm payment; follow up data handoff; P1 phone tests",
+  "deadline":"2026-04-04","owner":"Joint","risk":"Data handoff blocked; scope doc not written","grade":"B",
+  "product":{"name":"Shepherd","files":24,"lines":11052,"tests":369,"live_url":"https://shepherd-coach.onrender.com","telegram":"@SHEPHERD_DivorceStoppers_Bot","modules":[
+    {"name":"coach.py","lines":765,"purpose":"Coaching engine + pre-submit scoring"},
+    {"name":"prompts.py","lines":569,"purpose":"Denver's voice, security fence, few-shot"},
+    {"name":"crisis.py","lines":290,"purpose":"52 crisis patterns, 15 exclusions"},
+    {"name":"knowledge.py","lines":374,"purpose":"TF-IDF keyword search, theme mapping"},
+    {"name":"vision.py","lines":483,"purpose":"Screenshot OCR (Claude + Apple Vision)"},
+    {"name":"pipeline.py","lines":552,"purpose":"screenshot \u2192 parse \u2192 crisis \u2192 coach"},
+    {"name":"telegram_bot.py","lines":1031,"purpose":"Full Telegram bot with onboarding"},
+    {"name":"student.py","lines":446,"purpose":"Per-user profiles and memory"},
+    {"name":"security.py","lines":190,"purpose":"3-layer defense"},
+    {"name":"sms_bot.py","lines":814,"purpose":"SMS via Twilio (built, not deployed)"},
+    {"name":"analytics.py","lines":630,"purpose":"Usage analytics dashboard"},
+    {"name":"web_ui.py","lines":515,"purpose":"Gradio web interface"}
+  ]},
+  "data_ingested":{"videos":115,"words":764077,"hours":66.4,"categories":{"core_methodology":71,"training":32,"mindset":3,"testimonial":8,"sales":1}},
+  "profile":{
+    "business":"Divorce prevention coaching for men (Divorce Stoppers)",
+    "clients_active":"40-50","queue":"~4,500","team":"Solo (fired 16-person team)",
+    "revenue_current":"~$100K/mo","revenue_peak":"$700-800K/mo (2024, short-lived)",
+    "platform":"Go High Level ($300/mo)","crm":"Unknown","tech_pref":"Claude",
+    "data_sovereignty":"Strong \u2014 wants to own everything",
+    "previous_ai":"Chati/others \u2014 broke ~4 months ago, never recovered"
+  },
+  "contacts":[
+    {"name":"Denver Griffin","role":"Owner / Coach","status":"Client"},
+    {"name":"Mike Bitler","role":"Sales / BD","status":"Core team"},
+    {"name":"David","role":"Denver's tech person","status":"Zoom walk-through pending"},
+    {"name":"Marcel","role":"Hungarian coach","status":"Part of Denver's team"}
   ],
-  "stages":["Lead","Qualified","Discovery","Proposal","Engaged","Active","Completed","Lost"],
-  "summary":{"total_deals":3,"engaged":1,"leads":2,"revenue_closed":2000,"revenue_pipeline":15000,"pipeline_ev_90day":11375}
-};
-function load(){
-  var data = PIPELINE_DATA;
-  document.getElementById('updated').textContent='Updated '+fmtDate(data.project.updated);
-  document.getElementById('status-badge').textContent=data.deals.length+' DEALS';
-  renderKPIs(data);renderFunnel(data);renderDeals(data);renderTable(data);
-  document.getElementById('footer').textContent='MERIDIAN \u00b7 Client Pipeline \u00b7 Project #'+data.project.number+' \u00b7 '+data.deals.length+' deals \u00b7 Last updated '+fmtDate(data.project.updated);
+  "timeline":[
+    {"date":"Mar 21","text":"Initial consultation (60 min)","status":"done"},
+    {"date":"Mar 21","text":"AI call audit generated","status":"done"},
+    {"date":"Mar 21","text":"115 YouTube videos scraped (764K words)","status":"done"},
+    {"date":"Mar 21","text":"Webinar platform deep research","status":"done"},
+    {"date":"Mar 21","text":"$2,000 invoice sent (PayPal)","status":"done"},
+    {"date":"Mar 21","text":"Shepherd agent built (11K lines, 369 tests)","status":"done"},
+    {"date":"Mar 21","text":"Live demo deployed (shepherd-coach.onrender.com)","status":"done"},
+    {"date":"Mar 21","text":"Telegram bot deployed (@SHEPHERD_DivorceStoppers_Bot)","status":"done"},
+    {"date":"Pending","text":"Denver data handoff (CRM, recordings, GHL access)","status":"blocked"},
+    {"date":"Pending","text":"Two P1 phone tests (vision OCR + mobile web UI)","status":"pending"},
+    {"date":"Pending","text":"Write $2K scope document","status":"pending"},
+    {"date":"Wk 1-2","text":"Extract coaching methodology from transcripts","status":"future"},
+    {"date":"Wk 2","text":"Text coaching agent refinement with Denver's data","status":"future"},
+    {"date":"Wk 2","text":"Webinar CTA prototype (video.js, 45-min timing)","status":"future"},
+    {"date":"Wk 3","text":"Demo presentation \u2192 $5K/mo proposal","status":"future"}
+  ],
+  "contradictions":[
+    {"label":"Revenue vs Affordability","text":"Claims $700-800K/month peak but can't afford $2,500. Treat $100K/month as ceiling. Forensic verification needed."},
+    {"label":"Solo + Queue Paradox","text":"Running 40-50 clients alone with 4,500 in queue. Bandwidth collapse is the real pain \u2014 not AI features."},
+    {"label":"Scope vs Payment","text":"$2K buys a taste, not a meal. Performance-based ongoing proposed but not scoped. Written deliverables needed."},
+    {"label":"Previous AI Failed","text":"Denver's team had 'almost perfect' agent before it broke. Likely prompt drift. Must understand failure modes."}
+  ],
+  "action_items":[
+    {"text":"Confirm Denver $2K PayPal received","owner":"Mike","priority":"high","status":"todo"},
+    {"text":"Write scoped deliverables for $2K phase","owner":"Alex + Mike","priority":"high","status":"todo"},
+    {"text":"Test vision/OCR with real iPhone screenshot","owner":"Alex","priority":"high","status":"todo"},
+    {"text":"Mobile test Render web UI on iPhone","owner":"Alex","priority":"high","status":"todo"},
+    {"text":"Follow up on Denver data handoff","owner":"Mike","priority":"high","status":"todo"},
+    {"text":"Build webinar CTA prototype","owner":"Alex","priority":"medium","status":"todo"},
+    {"text":"Cross-reference Denver revenue claims","owner":"Alex","priority":"medium","status":"todo"},
+    {"text":"Extract NEPQ coaching patterns from Jeremy Miner materials","owner":"Alex","priority":"medium","status":"todo"},
+    {"text":"Full 637-chunk MIG ingestion","owner":"Alex","priority":"medium","status":"todo"},
+    {"text":"WhatsApp Business API setup","owner":"Alex","priority":"low","status":"future"}
+  ],
+  "opportunities":[
+    {"name":"MPMC Template (450 coaches)","type":"Scale play","status":"Dependent on Denver success","detail":"If one coaching agent works \u2192 replicate to 450 coaches at low marginal cost. $500-2K/mo per coach."},
+    {"name":"Webinar Platform","type":"Product","status":"Research complete","detail":"video.js overlays. CTA at 81 min hits 25% of viewers \u2192 45 min doubles audience. $25/mo vs $299/mo."},
+    {"name":"Shanda (CEO coach)","type":"Network lead","status":"Vapor","detail":"Private jet tier. Fills rooms of 400-500 CEOs. Different energy \u2014 re-approach after Denver success."},
+    {"name":"Text Coaching SaaS","type":"Product","status":"MVP built","detail":"Shepherd is a standalone SaaS product. Denver is proof case \u2192 launch to broader coaching market."}
+  ],
+  "coherence":{"internal":0.82,"evidence":0.42,"completeness":0.45,"sequencing":0.70,"overall":0.566},
+  "frameworks":["Confirmation Bias (30 videos)","Positive Polite Playful (11)","Iron Sharpens Iron (10)","SPICE (10)","Three C's (9)","Sexual Polarity (7)","Heard Valued Seen (6)","Hero/Zero State (5)"]
+},
+{
+  "number":1676,"client":"Gordon (GCC)","title":"EHR System + Family Offices",
+  "url":"https://github.com/covaultxyz/meridian/issues/1676",
+  "state":"OPEN","created":"2026-03-22T03:44:50Z","stage":"Lead","status":"Todo",
+  "revenue":null,"next_action":"Deep research EHR needs; schedule meeting after Gordon returns ~Mar 28",
+  "deadline":"2026-03-28","owner":"Bitler","risk":null,"grade":"D",
+  "contacts":[
+    {"name":"Gordon","role":"Owner \u2014 EHR / Family Offices","status":"Gone 1 week"},
+    {"name":"Mike Bitler","role":"Sales / BD","status":"Core team"},
+    {"name":"Levi","role":"Gordon's collaborator","status":"Aging-out doctor offices"}
+  ],
+  "opportunities":[
+    {"name":"EHR System Intelligence","type":"Product","status":"Needs research","detail":"Electronic health records system. AI-powered clinical decision support."},
+    {"name":"Family Office Conferences","type":"Events","status":"Dependent","detail":"Gordon offers booth, airfare, hotel paid. Access to family office network."},
+    {"name":"Doctor Office Acquisitions","type":"Service","status":"Speculative","detail":"Working with Levi on aging-out doctor office acquisitions + service optimization."}
+  ],
+  "action_items":[
+    {"text":"Deep research on EHR needs and competitive landscape","owner":"Alex","priority":"medium","status":"todo"},
+    {"text":"Schedule meeting after Gordon returns ~Mar 28","owner":"Mike","priority":"medium","status":"todo"},
+    {"text":"Prepare demo/pitch tailored to medical vertical","owner":"Alex + Mike","priority":"low","status":"future"}
+  ],
+  "profile":{"business":"Electronic health records + family office consulting","known_for_years":"10 (Mike's contact)","network":"Family offices, medical practices","personality":"Multiple irons in fire \u2014 will expand once first demo works"}
+},
+{
+  "number":1677,"client":"Brian Cook","title":"StretchMed \u2014 Prior Contact",
+  "url":"https://github.com/covaultxyz/meridian/issues/1677",
+  "state":"OPEN","created":"2026-03-22T03:44:56Z","stage":"Lead","status":"Todo",
+  "revenue":null,"next_action":"Re-engage via Bitler after Denver demo ships","deadline":null,"owner":"Bitler","risk":null,"grade":"D",
+  "contacts":[{"name":"Brian Cook","role":"Owner \u2014 StretchMed","status":"Prior contact"},{"name":"Mike Bitler","role":"Sales / BD","status":"Core team"}],
+  "action_items":[{"text":"Re-engage after Denver demo ships successfully","owner":"Mike","priority":"low","status":"future"}],
+  "profile":{"business":"StretchMed \u2014 stretch therapy franchise/service"}
 }
-load();
+]};
+
+function renderKPIs(d){
+  var s=d.summary,el=document.getElementById('kpi-row');
+  el.innerHTML='<div class="kc"><div class="lb">Total Deals</div><div class="vl" style="color:var(--ac)">'+s.total_deals+'</div><div class="sb">'+s.engaged+' engaged \u00b7 '+s.leads+' leads</div></div><div class="kc"><div class="lb">Revenue Closed</div><div class="vl" style="color:var(--gn)">$'+s.revenue_closed.toLocaleString()+'</div><div class="sb">invoiced</div></div><div class="kc"><div class="lb">Pipeline (Proposed)</div><div class="vl" style="color:var(--yl)">$'+s.revenue_pipeline.toLocaleString()+'</div><div class="sb">$5K/mo \u00d7 3</div></div><div class="kc"><div class="lb">90-Day EV</div><div class="vl" style="color:var(--cy)">$'+s.pipeline_ev_90day.toLocaleString()+'</div><div class="sb">probability-weighted</div></div><div class="kc"><div class="lb">Shepherd</div><div class="vl" style="color:var(--gn)">LIVE</div><div class="sb">11K lines \u00b7 369 tests</div></div>';
+}
+function renderFunnel(d){
+  var counts={};STAGES.forEach(function(s){counts[s]=0});d.deals.forEach(function(dl){if(counts[dl.stage]!==undefined)counts[dl.stage]++});
+  document.getElementById('funnel').innerHTML=STAGES.map(function(s,i){
+    var c=SC[s]||'107,114,128',names=d.deals.filter(function(dl){return dl.stage===s}).map(function(dl){return dl.client}).join(', ')||'\u2014';
+    return(i>0?'<div class="fa">\u2192</div>':'')+'<div class="fs"><div class="sn">'+s+'</div><div class="bar" style="background:rgba('+c+',.2);color:rgba('+c+',1)">'+names+'</div><div class="ct" style="color:rgba('+c+',1)">'+counts[s]+'</div></div>';
+  }).join('');
+}
+function renderDeals(d){
+  var el=document.getElementById('deals');
+  el.innerHTML=d.deals.map(function(dl,idx){
+    var days=du(dl.deadline),dlTxt=dl.deadline?(days<0?Math.abs(days)+'d overdue':days===0?'Today':days+'d left'):'No deadline';
+    var stg=dl.stage||'Lead';
+    // Summary row
+    var summ='<div class="deal-summary">';
+    summ+='<div class="sf"><div class="sk">Revenue</div><div style="color:'+(dl.revenue?'var(--gn)':'var(--dim)')+'">'+(dl.revenue||'\u2014')+'</div></div>';
+    summ+='<div class="sf"><div class="sk">Deadline</div><div style="color:'+dc(dl.deadline)+'">'+fd(dl.deadline)+' ('+dlTxt+')</div></div>';
+    summ+='<div class="sf"><div class="sk">Owner</div><div>'+(dl.owner||'\u2014')+'</div></div>';
+    summ+='<div class="sf"><div class="sk">Next</div><div>'+(dl.next_action||'\u2014')+'</div></div>';
+    summ+='</div>';
+    // Detail tabs
+    var tabs='',panels='';
+    var tabList=[];
+    if(dl.profile)tabList.push('Profile');
+    if(dl.timeline)tabList.push('Timeline');
+    if(dl.product)tabList.push('Product');
+    if(dl.action_items&&dl.action_items.length)tabList.push('Actions');
+    if(dl.contradictions&&dl.contradictions.length)tabList.push('Risks');
+    if(dl.opportunities&&dl.opportunities.length)tabList.push('Opportunities');
+    if(dl.contacts&&dl.contacts.length)tabList.push('Contacts');
+    if(dl.coherence)tabList.push('Coherence');
+    tabs='<div class="tabs">'+tabList.map(function(t,ti){return'<div class="tab'+(ti===0?' active':'')+'" data-tab="'+t+'-'+idx+'" onclick="switchTab(this,\''+t+'-'+idx+'\')">'+t+'</div>'}).join('')+'</div>';
+    // Profile panel
+    if(dl.profile){
+      var p=dl.profile,active=tabList[0]==='Profile'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Profile-'+idx+'"><table class="tbl">';
+      for(var k in p)panels+='<tr><td style="color:var(--dim);width:140px;text-transform:capitalize">'+k.replace(/_/g,' ')+'</td><td>'+p[k]+'</td></tr>';
+      panels+='</table></div>';
+    }
+    // Timeline panel
+    if(dl.timeline){
+      var active=tabList[0]==='Timeline'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Timeline-'+idx+'">'+dl.timeline.map(function(t){
+        return'<div class="tl-item"><div class="tl-date">'+t.date+'</div><div class="tl-dot '+t.status+'"></div><div>'+t.text+'</div></div>';
+      }).join('')+'</div>';
+    }
+    // Product panel
+    if(dl.product){
+      var pr=dl.product,active=tabList[0]==='Product'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Product-'+idx+'">';
+      panels+='<div class="prod"><div style="font-weight:600;color:var(--ac);margin-bottom:.4rem;font-size:.9rem">'+pr.name+'</div>';
+      panels+='<div class="row" style="margin-bottom:.5rem"><span class="tag">'+pr.files+' files</span><span class="tag">'+pr.lines.toLocaleString()+' lines</span><span class="tag">'+pr.tests+' tests</span>';
+      if(pr.live_url)panels+='<span class="tag"><a href="'+pr.live_url+'" target="_blank" style="color:var(--gn);text-decoration:none">Live Demo \u2197</a></span>';
+      if(pr.telegram)panels+='<span class="tag">'+pr.telegram+'</span>';
+      panels+='</div></div>';
+      if(pr.modules){
+        panels+='<div style="font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Module Breakdown</div><table class="tbl"><thead><tr><th>Module</th><th>Lines</th><th>Purpose</th></tr></thead><tbody>';
+        pr.modules.forEach(function(m){panels+='<tr><td style="color:var(--ac)">'+m.name+'</td><td>'+m.lines+'</td><td>'+m.purpose+'</td></tr>'});
+        panels+='</tbody></table>';
+      }
+      if(dl.data_ingested){
+        var di=dl.data_ingested;
+        panels+='<div style="margin-top:.75rem;font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Data Ingested</div>';
+        panels+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem">';
+        panels+='<div class="sf" style="background:var(--s2);padding:.5rem;border-radius:4px;text-align:center"><div class="sk">Videos</div><div style="font-size:1.2rem;font-weight:700;color:var(--cy)">'+di.videos+'</div></div>';
+        panels+='<div class="sf" style="background:var(--s2);padding:.5rem;border-radius:4px;text-align:center"><div class="sk">Words</div><div style="font-size:1.2rem;font-weight:700;color:var(--cy)">'+(di.words/1000).toFixed(0)+'K</div></div>';
+        panels+='<div class="sf" style="background:var(--s2);padding:.5rem;border-radius:4px;text-align:center"><div class="sk">Hours</div><div style="font-size:1.2rem;font-weight:700;color:var(--cy)">'+di.hours+'</div></div>';
+        panels+='</div>';
+        if(di.categories){
+          panels+='<div style="margin-top:.5rem;font-size:.72rem">';
+          for(var cat in di.categories)panels+='<span style="margin-right:.75rem"><span style="color:var(--dim)">'+cat.replace(/_/g,' ')+':</span> '+di.categories[cat]+'</span>';
+          panels+='</div>';
+        }
+      }
+      if(dl.frameworks){
+        panels+='<div style="margin-top:.75rem;font-size:.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem">Denver\'s Coaching Frameworks</div><div style="display:flex;flex-wrap:wrap;gap:.3rem">';
+        dl.frameworks.forEach(function(f){panels+='<span class="tag">'+f+'</span>'});
+        panels+='</div>';
+      }
+      panels+='</div>';
+    }
+    // Actions panel
+    if(dl.action_items&&dl.action_items.length){
+      var active=tabList[0]==='Actions'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Actions-'+idx+'"><table class="tbl"><thead><tr><th>#</th><th>Action</th><th>Owner</th><th>Priority</th><th>Status</th></tr></thead><tbody>';
+      dl.action_items.forEach(function(a,ai){
+        var pc=a.priority==='high'?'var(--rd)':a.priority==='medium'?'var(--yl)':'var(--dim)';
+        panels+='<tr><td>'+(ai+1)+'</td><td>'+a.text+'</td><td>'+a.owner+'</td><td style="color:'+pc+'">'+a.priority+'</td><td><span class="b b-'+(a.status==='todo'?'lead':a.status==='done'?'completed':'d')+'">'+a.status+'</span></td></tr>';
+      });
+      panels+='</tbody></table></div>';
+    }
+    // Risks/contradictions panel
+    if(dl.contradictions&&dl.contradictions.length){
+      var active=tabList[0]==='Risks'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Risks-'+idx+'">';
+      if(dl.risk)panels+='<div class="risk"><strong>Active Risk:</strong> '+dl.risk+'</div>';
+      dl.contradictions.forEach(function(c){panels+='<div class="warn"><strong>'+c.label+':</strong> '+c.text+'</div>'});
+      panels+='</div>';
+    }
+    // Opportunities panel
+    if(dl.opportunities&&dl.opportunities.length){
+      var active=tabList[0]==='Opportunities'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Opportunities-'+idx+'"><table class="tbl"><thead><tr><th>Opportunity</th><th>Type</th><th>Status</th><th>Detail</th></tr></thead><tbody>';
+      dl.opportunities.forEach(function(o){panels+='<tr><td style="font-weight:600">'+o.name+'</td><td>'+o.type+'</td><td><span class="b b-'+(o.status.toLowerCase().indexOf('complete')>=0||o.status.toLowerCase().indexOf('built')>=0?'completed':o.status.toLowerCase().indexOf('depend')>=0?'qualified':'lead')+'">'+o.status+'</span></td><td style="font-size:.72rem;color:var(--dim)">'+o.detail+'</td></tr>'});
+      panels+='</tbody></table></div>';
+    }
+    // Contacts panel
+    if(dl.contacts&&dl.contacts.length){
+      var active=tabList[0]==='Contacts'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Contacts-'+idx+'">';
+      dl.contacts.forEach(function(c){panels+='<div class="contact"><div><div class="c-name">'+c.name+'</div><div class="c-role">'+c.role+'</div></div><div style="margin-left:auto"><span class="b b-'+(c.status==='Client'||c.status==='Core team'?'engaged':'lead')+'">'+c.status+'</span></div></div>'});
+      panels+='</div>';
+    }
+    // Coherence panel
+    if(dl.coherence){
+      var co=dl.coherence,active=tabList[0]==='Coherence'?' active':'';
+      panels+='<div class="tab-content'+active+'" id="tc-Coherence-'+idx+'">';
+      panels+='<div style="font-size:.7rem;color:var(--dim);margin-bottom:.75rem">Coherence audit from Sensei/Delphi megaaudit (40 claims, 8 artifacts)</div>';
+      var meters=[['Internal Consistency',co.internal],['Evidence Grounding',co.evidence],['Completeness',co.completeness],['Sequencing',co.sequencing]];
+      meters.forEach(function(m){
+        var pct=Math.round(m[1]*100),clr=pct>=70?'var(--gn)':pct>=50?'var(--yl)':'var(--rd)';
+        panels+='<div class="meter"><div class="meter-label">'+m[0]+'</div><div class="meter-bar"><div class="meter-fill" style="width:'+pct+'%;background:'+clr+'"></div></div><div class="meter-val" style="color:'+clr+'">'+pct+'%</div></div>';
+      });
+      panels+='<div style="margin-top:.75rem;padding:.5rem;background:var(--s2);border-radius:6px;text-align:center"><div style="font-size:.6rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">Overall Coherence</div><div style="font-size:1.5rem;font-weight:700;color:'+(co.overall>=0.7?'var(--gn)':co.overall>=0.5?'var(--yl)':'var(--rd)')+'">'+(co.overall*100).toFixed(1)+'%</div></div>';
+      panels+='</div>';
+    }
+    return '<div class="deal" id="deal-'+idx+'"><div class="deal-top" onclick="toggleDeal('+idx+')"><div class="row"><div class="deal-name">'+dl.client+'</div><div><span class="b '+gc(dl.grade)+'">'+dl.grade+'</span> <span class="b '+sc(stg)+'">'+stg+'</span></div></div><div style="font-size:.75rem;color:var(--dim)">'+dl.title+'</div>'+summ+'<div class="expand-hint">\u25BC Click to expand details</div></div><div class="detail"><div class="detail-inner">'+tabs+panels+'</div></div><div class="deal-footer"><a href="'+dl.url+'" target="_blank">#'+dl.number+'</a><span style="color:var(--dim)">Created '+fd(dl.created)+'</span></div></div>';
+  }).join('');
+}
+function renderTable(d){
+  document.getElementById('table-body').innerHTML=d.deals.map(function(dl){
+    return'<tr><td><strong>'+dl.client+'</strong></td><td><span class="b '+sc(dl.stage)+'">'+dl.stage+'</span></td><td style="color:'+(dl.revenue?'var(--gn)':'var(--dim)')+'">'+(dl.revenue||'\u2014')+'</td><td style="max-width:200px">'+(dl.next_action||'\u2014')+'</td><td style="color:'+dc(dl.deadline)+'">'+fd(dl.deadline)+'</td><td>'+(dl.owner||'\u2014')+'</td><td style="color:'+(dl.risk?'var(--rd)':'var(--dim)')+'">'+(dl.risk||'\u2014')+'</td></tr>';
+  }).join('');
+}
+function toggleDeal(idx){var el=document.getElementById('deal-'+idx);el.classList.toggle('open')}
+function switchTab(tabEl,id){
+  var tabs=tabEl.parentNode.children;for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('active');
+  tabEl.classList.add('active');
+  var panels=tabEl.parentNode.parentNode.querySelectorAll('.tab-content');
+  panels.forEach(function(p){p.classList.remove('active')});
+  document.getElementById('tc-'+id).classList.add('active');
+}
+document.getElementById('updated').textContent='Updated '+fd(DATA.project.updated);
+document.getElementById('status-badge').textContent=DATA.deals.length+' DEALS';
+renderKPIs(DATA);renderFunnel(DATA);renderDeals(DATA);renderTable(DATA);
+document.getElementById('footer').textContent='MERIDIAN \u00b7 Client Pipeline \u00b7 Project #13 \u00b7 '+DATA.deals.length+' deals \u00b7 Last updated '+fd(DATA.project.updated);
 </script>
-</body>
-</html>
 </body>
 </html>
