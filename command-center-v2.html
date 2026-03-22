@@ -924,6 +924,559 @@ var SalesView = function(props) {
 };
 
 /* ================================================================
+   VIEW 6: INTELLIGENCE (KNOWLEDGE in customer mode)
+   ================================================================ */
+var IntelligenceView = function(props) {
+  var data = props.data;
+  var source = props.source;
+  var intel = (data && data.intelligence) || {};
+  var scorecard = intel.scorecard || {};
+  var summary = scorecard.summary || {};
+  var overall = summary.overall || {};
+  var phases = summary.phases || [];
+  var metrics = scorecard.metrics || [];
+  var kpis = scorecard.kpis || [];
+  var migLive = intel.mig_live || null;
+  var domains = migLive && migLive.domains ? migLive.domains : null;
+  var _detailsOpen = useState(false);
+  var detailsOpen = _detailsOpen[0]; var setDetailsOpen = _detailsOpen[1];
+
+  var isCustomer = CONFIG.mode === 'customer';
+  var viewTitle = isCustomer ? 'Knowledge Base' : 'Intelligence';
+
+  var memoryCount = migLive ? (migLive.memory_count || 0) : '---';
+  var conceptCount = migLive ? (migLive.concept_count || 0) : '---';
+  var edgeCount = migLive ? (migLive.edge_count || 0) : '---';
+
+  function statusColor(st) {
+    if (st === 'met') return '#22c55e';
+    if (st === 'close') return '#eab308';
+    if (st === 'gap') return '#ef4444';
+    return '#6b7280';
+  }
+
+  function statusLabel(st) {
+    if (st === 'met') return 'Met';
+    if (st === 'close') return 'Close';
+    if (st === 'gap') return 'Gap';
+    return 'TBD';
+  }
+
+  return React.createElement('div', { className: 'space-y-6' },
+    React.createElement(SectionHeader, { title: viewTitle, source: source }),
+
+    // KPI cards row
+    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 gap-3' },
+      React.createElement(KPICard, {
+        label: isCustomer ? 'Knowledge Nodes' : 'Memory Nodes',
+        value: typeof memoryCount === 'number' ? memoryCount.toLocaleString() : memoryCount,
+        color: '#a78bfa'
+      }),
+      React.createElement(KPICard, {
+        label: 'Concepts',
+        value: typeof conceptCount === 'number' ? conceptCount.toLocaleString() : conceptCount,
+        color: '#06b6d4'
+      }),
+      React.createElement(KPICard, {
+        label: 'Connections',
+        value: typeof edgeCount === 'number' ? edgeCount.toLocaleString() : edgeCount,
+        color: '#38bdf8'
+      })
+    ),
+
+    // Scorecard summary KPIs
+    overall.met != null ? React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
+      React.createElement(KPICard, { label: 'Metrics Met', value: overall.met || 0, color: '#22c55e' }),
+      React.createElement(KPICard, { label: 'Close', value: overall.close || 0, color: '#eab308' }),
+      React.createElement(KPICard, { label: 'Gaps', value: overall.gap || 0, color: '#ef4444' }),
+      React.createElement(KPICard, { label: 'TBD', value: overall.tbd || 0, color: '#6b7280' })
+    ) : null,
+
+    // KPI bars
+    kpis.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Key Performance Indicators'),
+      React.createElement('div', { className: 'space-y-1' },
+        kpis.map(function(kpi) {
+          var sc = statusColor(kpi.status);
+          return React.createElement(MetricBar, {
+            key: kpi.id,
+            label: kpi.name,
+            pct: kpi.pct || 0,
+            display: kpi.value != null ? String(typeof kpi.value === 'number' && kpi.value <= 1 ? Math.round(kpi.value * 100) + '%' : kpi.value) : 'TBD',
+            color: sc
+          });
+        })
+      )
+    ) : null,
+
+    // Phase progress bars
+    phases.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Phase Progress'),
+      React.createElement('div', { className: 'space-y-3' },
+        phases.map(function(ph) {
+          var pct = ph.total > 0 ? Math.round(ph.met / ph.total * 100) : 0;
+          return React.createElement('div', { key: ph.id },
+            React.createElement('div', { className: 'flex items-center justify-between mb-1' },
+              React.createElement('div', null,
+                React.createElement('span', { className: 'text-sm font-semibold text-[#e2e8f0]' }, ph.name),
+                React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, ph.subtitle)
+              ),
+              React.createElement('span', { className: 'text-xs font-semibold', style: { color: ph.color || '#38bdf8' } }, ph.met + '/' + ph.total)
+            ),
+            React.createElement('div', { className: 'h-2.5 bg-[#1a2234] rounded-full overflow-hidden' },
+              React.createElement('div', { className: 'h-full rounded-full transition-all duration-500', style: { width: pct + '%', background: ph.color || '#38bdf8' } })
+            )
+          );
+        })
+      )
+    ) : null,
+
+    // Domain coverage
+    domains ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, isCustomer ? 'Knowledge Domains' : 'Domain Coverage'),
+      (function() {
+        var keys = Object.keys(domains);
+        var maxVal = Math.max.apply(null, keys.map(function(k) { return domains[k]; }).concat([1]));
+        return React.createElement('div', { className: 'space-y-1' },
+          keys.map(function(k) {
+            var count = domains[k];
+            var pct = count / maxVal * 100;
+            var label = k.replace(/_/g, ' ').replace(/-/g, ' ');
+            return React.createElement(MetricBar, {
+              key: k,
+              label: label,
+              pct: pct,
+              display: count.toLocaleString(),
+              color: '#a78bfa'
+            });
+          })
+        );
+      })()
+    ) : null,
+
+    // Collapsible scorecard details
+    metrics.length > 0 ? React.createElement(GlassCard, { className: 'overflow-hidden' },
+      React.createElement('div', {
+        className: 'px-4 py-3 border-b border-[#1e2d4a] cursor-pointer hover:bg-white/[0.02] transition-colors flex items-center justify-between',
+        onClick: function() { setDetailsOpen(!detailsOpen); }
+      },
+        React.createElement('h3', { className: 'text-xs font-bold text-[#38bdf8] uppercase tracking-widest' }, 'Scorecard Details'),
+        React.createElement('span', { className: 'text-[#8899aa] text-xs' }, detailsOpen ? 'Collapse' : 'Expand')
+      ),
+      detailsOpen ? React.createElement('div', { className: 'overflow-x-auto' },
+        React.createElement('table', { className: 'w-full text-xs' },
+          React.createElement('thead', null,
+            React.createElement('tr', { className: 'border-b border-[#1e2d4a]' },
+              React.createElement('th', { className: 'text-left px-4 py-2 text-[#8899aa] uppercase text-[10px] tracking-wider font-medium' }, 'Metric'),
+              React.createElement('th', { className: 'text-left px-4 py-2 text-[#8899aa] uppercase text-[10px] tracking-wider font-medium' }, 'Value'),
+              React.createElement('th', { className: 'text-left px-4 py-2 text-[#8899aa] uppercase text-[10px] tracking-wider font-medium' }, 'Target'),
+              React.createElement('th', { className: 'text-left px-4 py-2 text-[#8899aa] uppercase text-[10px] tracking-wider font-medium' }, 'Status')
+            )
+          ),
+          React.createElement('tbody', null,
+            metrics.map(function(m) {
+              var sc = statusColor(m.status);
+              return React.createElement('tr', { key: m.id, className: 'border-b border-[#1e2d4a]/40 hover:bg-sky-500/[0.02]' },
+                React.createElement('td', { className: 'px-4 py-2 text-[#e2e8f0]' }, m.name),
+                React.createElement('td', { className: 'px-4 py-2 font-semibold', style: { color: sc } }, m.display || '--'),
+                React.createElement('td', { className: 'px-4 py-2 text-[#8899aa]' }, m.target || '--'),
+                React.createElement('td', { className: 'px-4 py-2' },
+                  React.createElement('span', {
+                    className: 'text-[10px] font-semibold px-2 py-0.5 rounded-full',
+                    style: { color: sc, background: sc + '18' }
+                  }, statusLabel(m.status))
+                )
+              );
+            })
+          )
+        )
+      ) : null
+    ) : null,
+
+    // Placeholder if mig_live is null
+    !migLive ? React.createElement(GlassCard, { className: 'p-6 text-center' },
+      React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'Live metrics will appear here after the infrastructure bridge is deployed.')
+    ) : null
+  );
+};
+
+/* ================================================================
+   VIEW 7: CALLS
+   ================================================================ */
+var CallsView = function(props) {
+  var data = props.data;
+  var source = props.source;
+  var calls = (data && data.calls) || {};
+  var recentSignals = calls.recent_signals || [];
+  var callVolume = calls.call_volume || {};
+  var totalSignals = calls.total_signals || 0;
+  var clients = calls.clients || [];
+
+  // Compute this_week / last_week volumes (simplified: use totalSignals as this_week)
+  var thisWeek = totalSignals;
+  var lastWeek = 0; // No historical data in static — will come from Gateway
+  var trendDir = thisWeek > lastWeek ? 'up' : (thisWeek < lastWeek ? 'down' : 'stable');
+  var trendColor = trendDir === 'up' ? '#22c55e' : (trendDir === 'down' ? '#ef4444' : '#8899aa');
+  var trendArrow = trendDir === 'up' ? '\u2191' : (trendDir === 'down' ? '\u2193' : '\u2192');
+
+  return React.createElement('div', { className: 'space-y-6' },
+    React.createElement(SectionHeader, { title: 'Recent Calls', source: source }),
+
+    // KPI row
+    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 gap-3' },
+      React.createElement(KPICard, {
+        label: 'Calls This Week',
+        value: thisWeek,
+        color: trendColor,
+        sub: trendArrow + ' vs last week'
+      }),
+      React.createElement(KPICard, { label: 'Total Signals', value: totalSignals, color: '#38bdf8' }),
+      React.createElement(KPICard, { label: 'Active Clients', value: clients.length, color: '#a78bfa' })
+    ),
+
+    // Recent signal cards
+    React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Call Signals'),
+      recentSignals.length === 0
+        ? React.createElement('p', { className: 'text-[#8899aa] text-sm text-center py-4' }, 'No call signals recorded yet')
+        : React.createElement('div', { className: 'space-y-3' },
+          recentSignals.map(function(sig, i) {
+            var ds = sig.deal_signals || {};
+            var clientName = sig.client ? sig.client.replace(/-/g, ' ') : 'Unknown';
+            var buyingCount = ds.buying_signal_count || sig.buying_signal_count || 0;
+            var objectionCount = ds.objection_count || sig.objection_count || 0;
+            var sentiment = ds.sentiment || sig.sentiment || 'neutral';
+            var sentimentColor = sentiment === 'positive' ? '#22c55e' : (sentiment === 'negative' ? '#ef4444' : '#eab308');
+
+            return React.createElement(GlassCard, { key: i, className: 'p-4' },
+              React.createElement('div', { className: 'flex items-start justify-between mb-2' },
+                React.createElement('div', null,
+                  React.createElement('span', { className: 'font-bold text-sm text-white capitalize' }, clientName),
+                  React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, sig.title || '')
+                ),
+                React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded-full',
+                  style: { color: sentimentColor, background: sentimentColor + '18' }
+                }, sentiment)
+              ),
+              React.createElement('div', { className: 'flex gap-2 flex-wrap mb-2' },
+                buyingCount > 0 ? React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded bg-green-500/10 text-[#22c55e]'
+                }, buyingCount + ' buying signal' + (buyingCount !== 1 ? 's' : '')) : null,
+                objectionCount > 0 ? React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded bg-orange-500/10 text-[#f97316]'
+                }, objectionCount + ' objection' + (objectionCount !== 1 ? 's' : '')) : null,
+                ds.pricing_discussed ? React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-500/10 text-[#38bdf8]'
+                }, 'Pricing discussed') : null,
+                ds.competitor_mentions > 0 ? React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded bg-purple-500/10 text-[#a78bfa]'
+                }, ds.competitor_mentions + ' competitor mention' + (ds.competitor_mentions !== 1 ? 's' : '')) : null
+              ),
+              ds.suggested_stage ? React.createElement('div', { className: 'text-[10px] text-[#8899aa]' },
+                'Suggested stage: ',
+                React.createElement('span', { className: 'capitalize text-[#e2e8f0]' }, ds.suggested_stage)
+              ) : null,
+              sig.file ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1 truncate' }, sig.file) : null
+            );
+          })
+        )
+    ),
+
+    // Client overview
+    clients.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Client Overview'),
+      React.createElement('div', { className: 'space-y-2' },
+        clients.map(function(c, i) {
+          var deal = c.deal || {};
+          var sColor = stageColor(c.stage ? c.stage.charAt(0).toUpperCase() + c.stage.slice(1) : '');
+          return React.createElement('div', { key: i, className: 'flex items-center justify-between py-2 border-b border-white/5 last:border-0' },
+            React.createElement('div', null,
+              React.createElement('span', { className: 'text-sm font-semibold text-[#e2e8f0]' }, c.name),
+              React.createElement('span', {
+                className: 'text-[10px] font-semibold ml-2 px-2 py-0.5 rounded-full border capitalize',
+                style: { color: sColor, background: sColor + '18', borderColor: sColor + '40' }
+              }, c.stage || 'unknown'),
+              c.tier ? React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, c.tier) : null
+            ),
+            deal.scope ? React.createElement('span', { className: 'text-[10px] text-[#8899aa] max-w-xs truncate hidden md:inline' }, deal.scope) : null
+          );
+        })
+      )
+    ) : null
+  );
+};
+
+/* ================================================================
+   VIEW 8: TASKS (Gateway-powered)
+   ================================================================ */
+var TasksView = function(props) {
+  var data = props.data;
+  var source = props.source;
+  var _tasks = useState(null);
+  var tasks = _tasks[0]; var setTasks = _tasks[1];
+  var _actions = useState(null);
+  var actions = _actions[0]; var setActions = _actions[1];
+  var _questions = useState(null);
+  var questions = _questions[0]; var setQuestions = _questions[1];
+  var _wins = useState(null);
+  var wins = _wins[0]; var setWins = _wins[1];
+  var _gwAvail = useState(false);
+  var gwAvail = _gwAvail[0]; var setGwAvail = _gwAvail[1];
+
+  useEffect(function() {
+    if (!CONFIG.gateway) return;
+    var headers = { 'Authorization': 'Bearer ' + (localStorage.getItem('mrd_gateway_token') || '') };
+    var opts = { headers: headers, signal: AbortSignal.timeout(5000) };
+
+    Promise.all([
+      fetch(CONFIG.gateway + '/api/humantask/tasks', opts).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+      fetch(CONFIG.gateway + '/api/humantask/actions', opts).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+      fetch(CONFIG.gateway + '/api/humantask/questions', opts).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+      fetch(CONFIG.gateway + '/api/humantask/wins', opts).then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    ]).then(function(results) {
+      if (results[0]) { setTasks(results[0]); setGwAvail(true); }
+      if (results[1]) { setActions(results[1]); setGwAvail(true); }
+      if (results[2]) { setQuestions(results[2]); setGwAvail(true); }
+      if (results[3]) { setWins(results[3]); setGwAvail(true); }
+    });
+  }, []);
+
+  var priorityColor = function(p) {
+    if (p === 'high' || p === 'urgent') return '#ef4444';
+    if (p === 'medium') return '#eab308';
+    return '#8899aa';
+  };
+
+  // Group tasks by status
+  var grouped = { open: [], in_progress: [], completed: [] };
+  if (tasks && Array.isArray(tasks)) {
+    tasks.forEach(function(t) {
+      var s = (t.status || 'open').toLowerCase().replace(/ /g, '_');
+      if (grouped[s]) grouped[s].push(t);
+      else grouped.open.push(t);
+    });
+  }
+
+  if (!gwAvail) {
+    return React.createElement('div', { className: 'space-y-6' },
+      React.createElement(SectionHeader, { title: 'Tasks', source: 'unavailable' }),
+      React.createElement(GlassCard, { className: 'p-8 text-center' },
+        React.createElement('p', { className: 'text-[#8899aa] text-sm mb-2' }, 'Connect to Gateway for live task data'),
+        React.createElement('p', { className: 'text-[10px] text-[#8899aa]' }, 'Add ?gateway=https://your-gateway-url to enable')
+      )
+    );
+  }
+
+  return React.createElement('div', { className: 'space-y-6' },
+    React.createElement(SectionHeader, { title: 'Tasks', source: 'live' }),
+
+    // Task groups
+    ['open', 'in_progress', 'completed'].map(function(status) {
+      var items = grouped[status];
+      var statusLabels = { open: 'Open', in_progress: 'In Progress', completed: 'Completed' };
+      var statusColors = { open: '#38bdf8', in_progress: '#eab308', completed: '#22c55e' };
+      if (!items || items.length === 0) return null;
+      return React.createElement(GlassCard, { key: status, className: 'overflow-hidden' },
+        React.createElement('div', { className: 'px-4 py-3 border-b border-[#1e2d4a] flex items-center gap-2' },
+          React.createElement('span', { className: 'w-2 h-2 rounded-full', style: { background: statusColors[status] } }),
+          React.createElement('h3', { className: 'text-xs font-bold uppercase tracking-widest', style: { color: statusColors[status] } },
+            statusLabels[status] + ' (' + items.length + ')')
+        ),
+        React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40' },
+          items.slice(0, 20).map(function(t, i) {
+            return React.createElement('div', { key: i, className: 'px-4 py-2 flex items-center justify-between' },
+              React.createElement('div', { className: 'flex-1 min-w-0' },
+                React.createElement('span', { className: 'text-sm text-[#e2e8f0] truncate block' }, t.title || t.name || 'Untitled'),
+                t.assignee ? React.createElement('span', { className: 'text-[10px] text-[#8899aa]' }, t.assignee) : null
+              ),
+              React.createElement('div', { className: 'flex items-center gap-2 shrink-0' },
+                t.priority ? React.createElement('span', {
+                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded',
+                  style: { color: priorityColor(t.priority), background: priorityColor(t.priority) + '18' }
+                }, t.priority) : null,
+                t.due_date ? React.createElement('span', { className: 'text-[10px] text-[#8899aa]' }, t.due_date) : null
+              )
+            );
+          })
+        )
+      );
+    }),
+
+    // Action items
+    actions && Array.isArray(actions) && actions.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Action Items'),
+      React.createElement('div', { className: 'space-y-1.5' },
+        actions.slice(0, 15).map(function(a, i) {
+          return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5 last:border-0' },
+            React.createElement('span', { className: 'text-xs mt-0.5', style: { color: a.done ? '#22c55e' : '#8899aa' } }, a.done ? '\u2713' : '\u25CB'),
+            React.createElement('div', { className: 'flex-1' },
+              React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, a.text || a.title || ''),
+              a.owner ? React.createElement('span', { className: 'text-[10px] text-[#a78bfa] ml-2' }, '[' + a.owner + ']') : null,
+              a.due_date ? React.createElement('span', { className: 'text-[10px] text-[#f97316] ml-1' }, a.due_date) : null
+            )
+          );
+        })
+      )
+    ) : null,
+
+    // Open questions
+    questions && Array.isArray(questions) && questions.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Open Questions'),
+      React.createElement('div', { className: 'space-y-2' },
+        questions.slice(0, 10).map(function(q, i) {
+          var daysOpen = q.created_at ? Math.floor((Date.now() - new Date(q.created_at).getTime()) / 86400000) : null;
+          return React.createElement('div', { key: i, className: 'bg-[#1a2234] rounded-lg p-3' },
+            React.createElement('p', { className: 'text-xs text-[#e2e8f0] mb-1' }, q.text || q.question || ''),
+            React.createElement('div', { className: 'flex gap-3 text-[10px] text-[#8899aa]' },
+              q.asked_by ? React.createElement('span', null, 'Asked by: ' + q.asked_by) : null,
+              daysOpen != null ? React.createElement('span', null, daysOpen + ' day' + (daysOpen !== 1 ? 's' : '') + ' open') : null
+            )
+          );
+        })
+      )
+    ) : null,
+
+    // Wins
+    wins && Array.isArray(wins) && wins.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Wins'),
+      React.createElement('div', { className: 'space-y-2' },
+        wins.slice(0, 10).map(function(w, i) {
+          return React.createElement('div', { key: i, className: 'flex items-start gap-3 py-2 border-b border-white/5 last:border-0' },
+            React.createElement('span', { className: 'text-lg shrink-0' }, '\u2605'),
+            React.createElement('div', { className: 'flex-1' },
+              React.createElement('span', { className: 'text-sm text-[#e2e8f0]' }, w.text || w.title || ''),
+              React.createElement('div', { className: 'flex gap-3 text-[10px] text-[#8899aa] mt-0.5' },
+                w.impact ? React.createElement('span', { className: 'text-[#22c55e] font-semibold' }, 'Impact: ' + w.impact) : null,
+                w.date ? React.createElement('span', null, w.date) : null
+              )
+            )
+          );
+        })
+      )
+    ) : null
+  );
+};
+
+/* ================================================================
+   VIEW 9: INSIGHTS
+   ================================================================ */
+var InsightsView = function(props) {
+  var data = props.data;
+  var source = props.source;
+  var dev = (data && data.development) || {};
+  var ci = dev.ci || {};
+  var issues = dev.recent_issues || [];
+  var intel = (data && data.intelligence) || {};
+  var daemons = intel.daemons || [];
+
+  var _daemonScores = useState(null);
+  var daemonScores = _daemonScores[0]; var setDaemonScores = _daemonScores[1];
+
+  useEffect(function() {
+    if (!CONFIG.gateway) return;
+    fetch(CONFIG.gateway + '/api/humantask/daemon-scores', {
+      headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('mrd_gateway_token') || '') },
+      signal: AbortSignal.timeout(5000)
+    }).then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(d) { if (d) setDaemonScores(d); })
+      .catch(function() {});
+  }, []);
+
+  // CI trend
+  var passRate = ci.pass_rate_7d;
+  var passRatePct = passRate != null ? (passRate > 1 ? passRate : Math.round(passRate * 100)) : null;
+  var passRateColor = passRatePct != null ? (passRatePct >= 90 ? '#22c55e' : (passRatePct >= 70 ? '#eab308' : '#ef4444')) : '#8899aa';
+
+  // Issue age distribution
+  var now = Date.now();
+  var ageBuckets = { today: 0, this_week: 0, this_month: 0, older: 0 };
+  var staleCount = 0;
+  issues.forEach(function(issue) {
+    if (!issue.created_at) { ageBuckets.older++; return; }
+    var age = now - new Date(issue.created_at).getTime();
+    var days = age / 86400000;
+    if (days < 1) ageBuckets.today++;
+    else if (days < 7) ageBuckets.this_week++;
+    else if (days < 30) ageBuckets.this_month++;
+    else ageBuckets.older++;
+    if (days > 14) staleCount++;
+  });
+
+  // Daemon health from static data (fallback)
+  var daemonList = daemonScores || daemons;
+
+  var hasContent = passRatePct != null || issues.length > 0 || daemonList.length > 0;
+
+  return React.createElement('div', { className: 'space-y-6' },
+    React.createElement(SectionHeader, { title: 'Insights', source: daemonScores ? 'live' : source }),
+
+    !hasContent ? React.createElement(GlassCard, { className: 'p-8 text-center' },
+      React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'Connect to Gateway for full insights')
+    ) : null,
+
+    // CI trend - large KPI
+    passRatePct != null ? React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-3' },
+      React.createElement(GlassCard, { className: 'p-6 text-center md:col-span-1' },
+        React.createElement('div', { className: 'text-[10px] uppercase tracking-widest text-[#8899aa] mb-1' }, 'Build Pass Rate (7 Day)'),
+        React.createElement('div', { className: 'text-4xl font-bold', style: { color: passRateColor } }, passRatePct + '%'),
+        React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1' },
+          ci.last_run_status ? 'Last run: ' + ci.last_run_status : ''
+        )
+      ),
+      // Issue age distribution
+      issues.length > 0 ? React.createElement(GlassCard, { className: 'p-4 md:col-span-2' },
+        React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Issue Age Distribution'),
+        (function() {
+          var maxBucket = Math.max(ageBuckets.today, ageBuckets.this_week, ageBuckets.this_month, ageBuckets.older, 1);
+          return React.createElement('div', { className: 'space-y-1' },
+            React.createElement(MetricBar, { label: 'Today', pct: ageBuckets.today / maxBucket * 100, display: String(ageBuckets.today), color: '#22c55e' }),
+            React.createElement(MetricBar, { label: 'This Week', pct: ageBuckets.this_week / maxBucket * 100, display: String(ageBuckets.this_week), color: '#38bdf8' }),
+            React.createElement(MetricBar, { label: 'This Month', pct: ageBuckets.this_month / maxBucket * 100, display: String(ageBuckets.this_month), color: '#eab308' }),
+            React.createElement(MetricBar, { label: 'Older', pct: ageBuckets.older / maxBucket * 100, display: String(ageBuckets.older), color: '#ef4444' })
+          );
+        })()
+      ) : null
+    ) : null,
+
+    // Stale issues alert
+    staleCount > 5 ? React.createElement(GlassCard, { className: 'p-4 border-l-4 border-l-[#f97316]' },
+      React.createElement('div', { className: 'flex items-center gap-2' },
+        React.createElement('span', { className: 'text-[#f97316] text-lg' }, '\u26A0'),
+        React.createElement('div', null,
+          React.createElement('span', { className: 'text-sm font-semibold text-[#f97316]' }, staleCount + ' Stale Issues'),
+          React.createElement('p', { className: 'text-[10px] text-[#8899aa]' }, 'Issues older than 14 days may need attention or closure')
+        )
+      )
+    ) : null,
+
+    // Daemon scorecards
+    daemonList.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Program Health'),
+      React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3' },
+        daemonList.map(function(d, i) {
+          var score = d.score != null ? d.score : null;
+          var isOnline = d.status === 'online' || d.status === 'active';
+          var healthColor = score != null ? (score >= 80 ? '#22c55e' : (score >= 50 ? '#eab308' : '#ef4444')) : (isOnline ? '#22c55e' : '#6b7280');
+          return React.createElement('div', {
+            key: i,
+            className: 'bg-[#1a2234] rounded-lg p-3 text-center'
+          },
+            React.createElement('div', { className: 'text-sm font-bold capitalize mb-1', style: { color: healthColor } }, d.name),
+            score != null
+              ? React.createElement('div', { className: 'text-2xl font-bold', style: { color: healthColor } }, score)
+              : React.createElement('div', { className: 'text-xs capitalize', style: { color: healthColor } }, d.status || 'unknown'),
+            d.current_assignment
+              ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1 truncate' }, d.current_assignment)
+              : (d.host ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1' }, d.host) : null)
+          );
+        })
+      )
+    ) : null
+  );
+};
+
+/* ================================================================
    MAIN APP
    ================================================================ */
 var App = function() {
@@ -955,12 +1508,16 @@ var App = function() {
     { id: 'pipeline', label: 'PIPELINE' },
     { id: 'operations', label: 'OPERATIONS' },
     { id: 'development', label: 'DEVELOPMENT' },
-    { id: 'sales', label: 'SALES' }
+    { id: 'sales', label: 'SALES' },
+    { id: 'intelligence', label: CONFIG.mode === 'customer' ? 'KNOWLEDGE' : 'INTELLIGENCE' },
+    { id: 'calls', label: 'CALLS' },
+    { id: 'tasks', label: 'TASKS' },
+    { id: 'insights', label: 'INSIGHTS' }
   ];
 
-  // Hide development in customer mode
+  // Hide development + insights in customer mode
   var visibleTabs = CONFIG.mode === 'customer'
-    ? TABS.filter(function(t) { return t.id !== 'development'; })
+    ? TABS.filter(function(t) { return t.id !== 'development' && t.id !== 'insights'; })
     : TABS;
 
   // Load data
@@ -1075,6 +1632,10 @@ var App = function() {
       case 'operations': return React.createElement(OperationsView, { data: data, source: dataSource });
       case 'development': return React.createElement(DevelopmentView, { data: data, source: dataSource });
       case 'sales': return React.createElement(SalesView, { data: data, source: dataSource });
+      case 'intelligence': return React.createElement(IntelligenceView, { data: data, source: dataSource });
+      case 'calls': return React.createElement(CallsView, { data: data, source: dataSource });
+      case 'tasks': return React.createElement(TasksView, { data: data, source: dataSource });
+      case 'insights': return React.createElement(InsightsView, { data: data, source: dataSource });
       default: return React.createElement(DashboardView, { data: data, source: dataSource });
     }
   }
