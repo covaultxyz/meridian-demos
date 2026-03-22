@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Ops Dashboard</title>
+<style>
+:root {
+  --bg: #0a0e17;
+  --surface: #111827;
+  --surface2: #1a2234;
+  --border: #1e2d4a;
+  --text: #e2e8f0;
+  --dim: #8899aa;
+  --accent: #38bdf8;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --orange: #f97316;
+  --red: #ef4444;
+  --purple: #a78bfa;
+  --cyan: #06b6d4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Auth Gate ── */
+#auth-overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+#auth-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  width: 320px;
+  text-align: center;
+}
+#auth-box h2 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+#auth-box .sub {
+  color: var(--dim);
+  font-size: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+#auth-box input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  text-align: center;
+  outline: none;
+  margin-bottom: 0.75rem;
+}
+#auth-box input:focus {
+  border-color: var(--accent);
+}
+#auth-box button {
+  width: 100%;
+  padding: 0.6rem;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 6px;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#auth-box button:hover {
+  background: rgba(56, 189, 248, 0.25);
+}
+#auth-error {
+  color: var(--red);
+  font-size: 0.7rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.header h1 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.header .meta {
+  color: var(--dim);
+  font-size: 0.65rem;
+}
+.header .version-badge {
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent);
+  padding: 0.15rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* ── Tab Bar ── */
+.tab-bar {
+  display: flex;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dim);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+  position: relative;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.tab-btn .freshness {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--dim);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 0.1rem;
+}
+
+/* ── Content ── */
+.wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Cards ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.card-header {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-body { padding: 1rem; }
+
+/* ── KPI Row ── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+.kpi .label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  margin-bottom: 0.3rem;
+}
+.kpi .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.kpi .sub {
+  font-size: 0.6rem;
+  color: var(--dim);
+  margin-top: 0.15rem;
+}
+
+/* ── Funnel ── */
+.funnel {
+  display: flex;
+  align-items: stretch;
+  padding: 0.75rem;
+  gap: 0;
+  overflow-x: auto;
+}
+.funnel-stage {
+  flex: 1;
+  min-width: 90px;
+  text-align: center;
+  padding: 0.6rem 0.3rem;
+}
+.funnel-stage .stage-name {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  margin-bottom: 0.4rem;
+}
+.funnel-stage .bar {
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.15s;
+}
+.funnel-stage .bar:hover { transform: scale(1.03); }
+.funnel-arrow {
+  color: var(--dim);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.35;
+  padding: 0 0.1rem;
+}
+
+/* ── Deal Cards ── */
+.deal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  margin-bottom: 0.75rem;
+}
+.deal:hover { border-color: rgba(56, 189, 248, 0.4); }
+.deal-top {
+  padding: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+.deal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.deal-name { font-weight: 700; font-size: 0.95rem; }
+.deal-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+.deal-field {
+  background: var(--surface2);
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+.deal-field .field-key {
+  color: var(--dim);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.expand-hint {
+  color: var(--dim);
+  font-size: 0.6rem;
+  text-align: right;
+  margin-top: 0.25rem;
+  transition: opacity 0.2s;
+}
+.deal.open .expand-hint { opacity: 0; }
+.deal-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.deal.open .deal-detail { max-height: 2000px; }
+.detail-inner {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+.detail-section {
+  margin-bottom: 0.75rem;
+}
+.detail-section h4 {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+.detail-section ul {
+  list-style: none;
+  padding: 0;
+}
+.detail-section li {
+  font-size: 0.78rem;
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+.detail-section li::before {
+  content: "\2022";
+  color: var(--accent);
+  position: absolute;
+  left: 0;
+}
+.deal-footer {
+  padding: 0.5rem 1rem;
+  background: var(--surface2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.deal-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.deal-footer a:hover { text-decoration: underline; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-block;
+  padding: 0.12rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge-engaged { background: rgba(34, 197, 94, 0.15); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.3); }
+.badge-lead { background: rgba(107, 114, 128, 0.15); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3); }
+.badge-qualified { background: rgba(234, 179, 8, 0.15); color: var(--yellow); border: 1px solid rgba(234, 179, 8, 0.3); }
+.badge-active { background: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-discovery { background: rgba(167, 139, 250, 0.15); color: var(--purple); border: 1px solid rgba(167, 139, 250, 0.3); }
+.badge-proposal { background: rgba(6, 182, 212, 0.15); color: var(--cyan); border: 1px solid rgba(6, 182, 212, 0.3); }
+.badge-completed { background: rgba(34, 197, 94, 0.15); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.3); }
+.badge-lost { background: rgba(239, 68, 68, 0.15); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-grade-a { background: rgba(34, 197, 94, 0.15); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.3); }
+.badge-grade-b { background: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.3); }
+.badge-grade-c { background: rgba(234, 179, 8, 0.15); color: var(--yellow); border: 1px solid rgba(234, 179, 8, 0.3); }
+.badge-grade-d { background: rgba(249, 115, 22, 0.15); color: var(--orange); border: 1px solid rgba(249, 115, 22, 0.3); }
+
+/* ── Risk / Warning / Info banners ── */
+.risk-banner {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-left: 3px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.risk-banner strong { color: var(--red); }
+
+/* ── Product Card ── */
+.product-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.product-card .product-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: 0.72rem;
+}
+.product-tag {
+  background: rgba(56, 189, 248, 0.1);
+  color: var(--accent);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.6rem;
+}
+
+/* ── Tables ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.tbl th {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--dim);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+.tbl td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(30, 45, 74, 0.4);
+  vertical-align: top;
+}
+.tbl tr:hover td {
+  background: rgba(56, 189, 248, 0.03);
+}
+
+/* ── Server Node Card ── */
+.node-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.node-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.node-card .node-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+.node-card .node-ip {
+  color: var(--dim);
+  font-size: 0.68rem;
+  margin-bottom: 0.5rem;
+}
+.node-card .node-meta {
+  font-size: 0.72rem;
+  color: var(--dim);
+}
+.node-card .node-meta span {
+  display: inline-block;
+  margin-right: 0.75rem;
+}
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.3rem;
+  vertical-align: middle;
+}
+.status-active { background: var(--green); }
+.status-inactive { background: var(--red); }
+.status-unknown { background: var(--yellow); }
+.daemon-tag {
+  display: inline-block;
+  background: rgba(167, 139, 250, 0.12);
+  color: var(--purple);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 600;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+/* ── Session list ── */
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid rgba(30, 45, 74, 0.4);
+  font-size: 0.78rem;
+}
+.session-item:last-child { border-bottom: none; }
+.session-daemon { font-weight: 600; color: var(--purple); }
+
+/* ── Metric Bars ── */
+.metric-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+.metric-label {
+  min-width: 140px;
+  color: var(--dim);
+  font-size: 0.68rem;
+}
+.metric-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.metric-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+.metric-value {
+  min-width: 45px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+/* ── Call Signal Card ── */
+.signal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.signal-card .client-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
+}
+.signal-card .signal-date {
+  color: var(--dim);
+  font-size: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+.signal-card .summary-text {
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.signal-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.signal-list h5 {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+.signal-list.positive h5 { color: var(--green); }
+.signal-list.negative h5 { color: var(--orange); }
+.signal-list ul {
+  list-style: none;
+  padding: 0;
+}
+.signal-list li {
+  font-size: 0.75rem;
+  padding: 0.2rem 0;
+  padding-left: 0.8rem;
+  position: relative;
+}
+.signal-list.positive li::before {
+  content: "+";
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+.signal-list.negative li::before {
+  content: "\2013";
+  color: var(--orange);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+/* ── Sales Opportunity ── */
+.opp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.opp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.opp-card .opp-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.opp-card .opp-value { font-size: 1.3rem; font-weight: 700; color: var(--green); }
+.opp-card .opp-meta {
+  font-size: 0.7rem;
+  color: var(--dim);
+  margin-top: 0.25rem;
+}
+.prob-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.prob-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ── Projections ── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+.proj-card .proj-period {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  margin-bottom: 0.3rem;
+}
+.proj-card .proj-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ── Error / Placeholder ── */
+.error-card {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.error-card .error-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.error-card .error-hint {
+  color: var(--dim);
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+.placeholder-card {
+  background: rgba(56, 189, 248, 0.04);
+  border: 1px dashed rgba(56, 189, 248, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--dim);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Issue label colors ── */
+.issue-label {
+  display: inline-block;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  margin-right: 0.2rem;
+}
+.issue-label-bug { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+.issue-label-enhancement { background: rgba(167, 139, 250, 0.15); color: var(--purple); }
+.issue-label-infrastructure { background: rgba(234, 179, 8, 0.15); color: var(--yellow); }
+.issue-label-client { background: rgba(56, 189, 248, 0.15); color: var(--accent); }
+.issue-label-security { background: rgba(249, 115, 22, 0.15); color: var(--orange); }
+.issue-label-default { background: rgba(107, 114, 128, 0.15); color: #9ca3af; }
+
+/* ── CI Status ── */
+.ci-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.ci-pass { background: rgba(34, 197, 94, 0.15); color: var(--green); }
+.ci-fail { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+
+/* ── Loading ── */
+#loading {
+  text-align: center;
+  padding: 4rem;
+  color: var(--dim);
+}
+.spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 0.5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--dim);
+  font-size: 0.65rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+/* ── Mobile Responsive ── */
+@media (max-width: 768px) {
+  .header { padding: 0.75rem 1rem; }
+  .header h1 { font-size: 1rem; }
+  .wrap { padding: 1rem; }
+  .tab-btn { padding: 0.6rem 0.8rem; font-size: 0.65rem; }
+  .tab-btn .freshness { font-size: 0.5rem; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .kpi .value { font-size: 1.3rem; }
+  .node-grid { grid-template-columns: 1fr; }
+  .opp-grid { grid-template-columns: 1fr; }
+  .signal-columns { grid-template-columns: 1fr; }
+  .deal-summary { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  .funnel { flex-wrap: nowrap; }
+  .funnel-stage { min-width: 70px; }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .tab-btn { padding: 0.5rem 0.6rem; font-size: 0.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Auth Gate -->
+<div id="auth-overlay">
+  <div id="auth-box">
+    <h2>MERIDIAN Ops</h2>
+    <div class="sub">Enter PIN to access dashboard</div>
+    <input id="auth-input" type="password" placeholder="PIN" autofocus>
+    <button onclick="doAuth()">Unlock</button>
+    <div id="auth-error">Invalid PIN</div>
+  </div>
+</div>
+
+<!-- Main App (hidden until auth) -->
+<div id="app" style="display:none">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h1>MERIDIAN — Ops Dashboard</h1>
+      <div class="meta">Generated <span id="gen-time">--</span></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <span class="version-badge" id="version-badge">--</span>
+      <button onclick="loadData()" style="background:none;border:1px solid var(--border);border-radius:4px;padding:0.25rem 0.6rem;color:var(--dim);cursor:pointer;font-family:inherit;font-size:0.7rem;transition:all 0.2s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--dim)';this.style.borderColor='var(--border)'">Refresh</button>
+    </div>
+  </div>
+
+  <!-- Tab Bar -->
+  <div class="tab-bar" id="tab-bar">
+    <button class="tab-btn active" data-tab="pipeline" onclick="switchTab('pipeline')">
+      Pipeline
+      <span class="freshness" id="fresh-pipeline">--</span>
+    </button>
+    <button class="tab-btn" data-tab="operations" onclick="switchTab('operations')">
+      Operations
+      <span class="freshness" id="fresh-operations">--</span>
+    </button>
+    <button class="tab-btn" data-tab="development" onclick="switchTab('development')">
+      Development
+      <span class="freshness" id="fresh-development">--</span>
+    </button>
+    <button class="tab-btn" data-tab="intelligence" onclick="switchTab('intelligence')">
+      Intelligence
+      <span class="freshness" id="fresh-intelligence">--</span>
+    </button>
+    <button class="tab-btn" data-tab="calls" onclick="switchTab('calls')">
+      Calls
+      <span class="freshness" id="fresh-calls">--</span>
+    </button>
+    <button class="tab-btn" data-tab="sales" onclick="switchTab('sales')">
+      Sales
+      <span class="freshness" id="fresh-sales">--</span>
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <div>Loading dashboard data...</div>
+  </div>
+
+  <!-- Tab Panels -->
+  <div class="wrap" id="panels" style="display:none">
+
+    <!-- ═══ PIPELINE ═══ -->
+    <div class="tab-panel active" id="panel-pipeline"></div>
+
+    <!-- ═══ OPERATIONS ═══ -->
+    <div class="tab-panel" id="panel-operations"></div>
+
+    <!-- ═══ DEVELOPMENT ═══ -->
+    <div class="tab-panel" id="panel-development"></div>
+
+    <!-- ═══ INTELLIGENCE ═══ -->
+    <div class="tab-panel" id="panel-intelligence"></div>
+
+    <!-- ═══ CALLS ═══ -->
+    <div class="tab-panel" id="panel-calls"></div>
+
+    <!-- ═══ SALES ═══ -->
+    <div class="tab-panel" id="panel-sales"></div>
+  </div>
+
+  <div class="footer" id="footer"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   AUTH
+   ═══════════════════════════════════════════ */
+var AUTH_HASH = '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824';
+
+function checkAuth() {
+  if (sessionStorage.getItem('mrd_auth') === 'ok') return Promise.resolve(true);
+  return Promise.resolve(false);
+}
+
+function doAuth() {
+  var pin = document.getElementById('auth-input').value;
+  if (!pin) return;
+  crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin))
+    .then(function(buf) {
+      var hash = Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      if (hash === AUTH_HASH) {
+        sessionStorage.setItem('mrd_auth', 'ok');
+        document.getElementById('auth-overlay').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        loadData();
+      } else {
+        document.getElementById('auth-error').style.display = 'block';
+        document.getElementById('auth-input').value = '';
+        document.getElementById('auth-input').focus();
+      }
+    });
+}
+
+document.getElementById('auth-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doAuth();
+});
+
+/* ═══════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════ */
+checkAuth().then(function(ok) {
+  if (ok) {
+    document.getElementById('auth-overlay').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadData();
+  }
+});
+
+// Restore tab from hash
+var initHash = window.location.hash.replace('#', '');
+if (initHash && ['pipeline','operations','development','intelligence','calls','sales'].indexOf(initHash) !== -1) {
+  switchTab(initHash);
+}
+
+/* ═══════════════════════════════════════════
+   DATA LOADING
+   ═══════════════════════════════════════════ */
+var DATA = null;
+
+function loadData() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('panels').style.display = 'none';
+  fetch('dashboard-data.json?t=' + Date.now())
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(d) {
+      DATA = d;
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('panels').style.display = 'block';
+      renderAll();
+    })
+    .catch(function(err) {
+      document.getElementById('loading').innerHTML =
+        '<div class="error-card"><div class="error-icon">&#9888;</div>' +
+        '<div>Failed to load data: ' + escHtml(err.message) + '</div>' +
+        '<div class="error-hint">Check that dashboard-data.json exists. Run: python scripts/generate-unified-dashboard.py</div></div>';
+    });
+}
+
+/* ═══════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════ */
+function escHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+function fmtMoney(n) {
+  if (n == null) return '--';
+  if (n >= 1000) return '$' + (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
+  return '$' + n.toLocaleString();
+}
+
+function fmtPct(n) {
+  if (n == null) return '--';
+  return Math.round(n * 100) + '%';
+}
+
+function relativeTime(isoStr) {
+  if (!isoStr) return 'unknown';
+  var diff = Date.now() - new Date(isoStr).getTime();
+  var mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + ' min ago';
+  var hours = Math.floor(mins / 60);
+  if (hours < 24) return hours + ' hour' + (hours !== 1 ? 's' : '') + ' ago';
+  var days = Math.floor(hours / 24);
+  return days + ' day' + (days !== 1 ? 's' : '') + ' ago';
+}
+
+function stageBadge(stage) {
+  var cls = 'badge badge-' + (stage || 'lead').toLowerCase().replace(/[^a-z]/g, '');
+  return '<span class="' + cls + '">' + escHtml(stage) + '</span>';
+}
+
+function gradeBadge(grade) {
+  if (!grade) return '';
+  return ' <span class="badge badge-grade-' + grade.toLowerCase() + '">Grade ' + escHtml(grade) + '</span>';
+}
+
+function labelClass(label) {
+  var map = {bug:'bug', enhancement:'enhancement', infrastructure:'infrastructure', client:'client', security:'security'};
+  return 'issue-label issue-label-' + (map[label] || 'default');
+}
+
+function stageColor(stage) {
+  var m = {
+    Lead: '107,114,128', Qualified: '234,179,8', Discovery: '167,139,250',
+    Proposal: '6,182,212', Engaged: '34,197,94', Active: '56,189,248',
+    Completed: '34,197,94', Lost: '239,68,68'
+  };
+  return m[stage] || '107,114,128';
+}
+
+function probColor(p) {
+  if (p >= 0.6) return 'var(--green)';
+  if (p >= 0.3) return 'var(--yellow)';
+  return 'var(--dim)';
+}
+
+function renderErrorOrPlaceholder(section) {
+  if (section && section.error) {
+    return '<div class="error-card">' +
+      '<div class="error-icon">&#9888;</div>' +
+      '<div>Data unavailable: ' + escHtml(section.error) + '</div>' +
+      '<div class="error-hint">This section will populate when the data source is connected.</div>' +
+      '</div>';
+  }
+  return null;
+}
+
+function renderPlaceholderNull(fieldName) {
+  return '<div class="placeholder-card">Live metrics will appear here after the infrastructure bridge is deployed.</div>';
+}
+
+/* ═══════════════════════════════════════════
+   TAB SWITCHING
+   ═══════════════════════════════════════════ */
+function switchTab(name) {
+  var btns = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.tab-panel');
+  btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-tab') === name); });
+  panels.forEach(function(p) { p.classList.toggle('active', p.id === 'panel-' + name); });
+  window.location.hash = name;
+}
+
+/* ═══════════════════════════════════════════
+   RENDER ALL
+   ═══════════════════════════════════════════ */
+function renderAll() {
+  if (!DATA) return;
+  var s = DATA.sections;
+
+  // Header info
+  document.getElementById('gen-time').textContent = relativeTime(DATA.generated_at);
+  document.getElementById('version-badge').textContent = DATA.generator_version || '--';
+  document.getElementById('footer').textContent =
+    'MERIDIAN Ops Dashboard \u00B7 Generated ' + new Date(DATA.generated_at).toLocaleString() +
+    ' \u00B7 ' + (DATA.generator_version || '');
+
+  // Freshness per tab
+  var tabs = ['pipeline','operations','development','intelligence','calls','sales'];
+  tabs.forEach(function(t) {
+    var el = document.getElementById('fresh-' + t);
+    if (el && s[t]) {
+      el.textContent = 'Updated ' + relativeTime(s[t].updated_at);
+    }
+  });
+
+  renderPipeline(s.pipeline);
+  renderOperations(s.operations);
+  renderDevelopment(s.development);
+  renderIntelligence(s.intelligence);
+  renderCalls(s.calls);
+  renderSales(s.sales);
+}
+
+/* ═══════════════════════════════════════════
+   1. PIPELINE
+   ═══════════════════════════════════════════ */
+function renderPipeline(p) {
+  var el = document.getElementById('panel-pipeline');
+  var err = renderErrorOrPlaceholder(p);
+  if (err) { el.innerHTML = err; return; }
+  if (!p) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var deals = p.deals || [];
+  var funnel = p.funnel || {};
+  var stages = ['Lead','Qualified','Discovery','Proposal','Engaged','Active','Completed','Lost'];
+  var totalDeals = deals.length;
+  var engaged = deals.filter(function(d) { return d.stage === 'Engaged'; }).length;
+  var leads = deals.filter(function(d) { return d.stage === 'Lead'; }).length;
+
+  // KPIs
+  var html = '<div class="kpi-grid">';
+  html += '<div class="kpi"><div class="label">Total Deals</div><div class="value" style="color:var(--accent)">' + totalDeals + '</div><div class="sub">' + engaged + ' engaged, ' + leads + ' leads</div></div>';
+  html += '<div class="kpi"><div class="label">Expected Revenue</div><div class="value" style="color:var(--green)">' + fmtMoney(p.total_weighted_pipeline) + '</div><div class="sub">probability-weighted</div></div>';
+  html += '</div>';
+
+  // Funnel
+  html += '<div class="card"><div class="card-header">Pipeline Funnel</div><div class="funnel">';
+  stages.forEach(function(s, i) {
+    var c = stageColor(s);
+    var count = funnel[s] || 0;
+    if (i > 0) html += '<div class="funnel-arrow">\u2192</div>';
+    html += '<div class="funnel-stage"><div class="stage-name">' + s + '</div>';
+    html += '<div class="bar" style="background:rgba(' + c + ',.18);color:rgba(' + c + ',1)">' + count + '</div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  // Deal cards
+  html += '<div class="card"><div class="card-header">Deals</div><div class="card-body" style="padding:0.5rem">';
+  deals.forEach(function(d, idx) {
+    html += renderDealCard(d, idx);
+  });
+  html += '</div></div>';
+
+  el.innerHTML = html;
+
+  // Attach expand listeners
+  el.querySelectorAll('.deal-top').forEach(function(top) {
+    top.addEventListener('click', function() {
+      top.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+function renderDealCard(d, idx) {
+  var h = '<div class="deal" id="deal-' + idx + '">';
+  h += '<div class="deal-top">';
+  h += '<div class="deal-row"><span class="deal-name">' + escHtml(d.title) + '</span>' + stageBadge(d.stage) + gradeBadge(d.grade) + '</div>';
+  h += '<div class="deal-summary">';
+  if (d.revenue_text) h += '<div class="deal-field"><div class="field-key">Revenue</div>' + escHtml(d.revenue_text) + '</div>';
+  if (d.value != null) h += '<div class="deal-field"><div class="field-key">Deal Value</div>' + fmtMoney(d.value) + '</div>';
+  if (d.probability != null) h += '<div class="deal-field"><div class="field-key">Confidence</div>' + fmtPct(d.probability) + '</div>';
+  if (d.assignee) h += '<div class="deal-field"><div class="field-key">Owner</div>' + escHtml(d.assignee) + '</div>';
+  if (d.last_activity) h += '<div class="deal-field"><div class="field-key">Last Activity</div>' + relativeTime(d.last_activity) + '</div>';
+  h += '</div>';
+  h += '<div class="expand-hint">Click to expand</div>';
+  h += '</div>';
+
+  // Detail section
+  h += '<div class="deal-detail"><div class="detail-inner">';
+
+  // Risk
+  if (d.risk) {
+    h += '<div class="risk-banner"><strong>Risk:</strong> ' + escHtml(d.risk) + '</div>';
+  }
+
+  // Action items
+  if (d.action_items && d.action_items.length > 0) {
+    h += '<div class="detail-section"><h4>Action Items</h4><ul>';
+    d.action_items.forEach(function(a) {
+      h += '<li>' + escHtml(a) + '</li>';
+    });
+    h += '</ul></div>';
+  }
+
+  // Product
+  if (d.product) {
+    var pr = d.product;
+    h += '<div class="detail-section"><h4>Product</h4>';
+    h += '<div class="product-card">';
+    h += '<div style="font-weight:700;font-size:0.85rem;margin-bottom:0.4rem">' + escHtml(pr.name) + '</div>';
+    h += '<div class="product-row">';
+    if (pr.files) h += '<span class="product-tag">' + pr.files + ' files</span>';
+    if (pr.lines) h += '<span class="product-tag">' + pr.lines.toLocaleString() + ' lines</span>';
+    if (pr.tests) h += '<span class="product-tag">' + pr.tests + ' tests</span>';
+    h += '</div>';
+    if (pr.live_url) {
+      h += '<div style="margin-top:0.4rem;font-size:0.72rem"><a href="' + escHtml(pr.live_url) + '" target="_blank" style="color:var(--accent);text-decoration:none">View Live Demo \u2192</a></div>';
+    }
+    h += '</div></div>';
+  }
+
+  // Client config
+  if (d.client_config && Object.keys(d.client_config).length > 0) {
+    h += '<div class="detail-section"><h4>Client Details</h4>';
+    h += '<div style="font-size:0.75rem">';
+    Object.keys(d.client_config).forEach(function(k) {
+      h += '<div style="margin-bottom:0.2rem"><span style="color:var(--dim);text-transform:capitalize">' + escHtml(k) + ':</span> ' + escHtml(d.client_config[k]) + '</div>';
+    });
+    h += '</div></div>';
+  }
+
+  h += '</div></div>'; // end detail-inner, deal-detail
+
+  // Footer
+  h += '<div class="deal-footer">';
+  if (d.labels && d.labels.length > 0) {
+    h += '<div>' + d.labels.map(function(l) { return '<span class="' + labelClass(l) + '">' + escHtml(l) + '</span>'; }).join(' ') + '</div>';
+  } else {
+    h += '<div></div>';
+  }
+  if (d.github_url) {
+    h += '<a href="' + escHtml(d.github_url) + '" target="_blank">Edit in GitHub \u2192</a>';
+  }
+  h += '</div>';
+
+  h += '</div>';
+  return h;
+}
+
+/* ═══════════════════════════════════════════
+   2. OPERATIONS
+   ═══════════════════════════════════════════ */
+function renderOperations(o) {
+  var el = document.getElementById('panel-operations');
+  var err = renderErrorOrPlaceholder(o);
+  if (err) { el.innerHTML = err; return; }
+  if (!o) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var html = '';
+
+  // Phase banner
+  if (o.phase) {
+    html += '<div class="kpi-grid">';
+    html += '<div class="kpi"><div class="label">Current Phase</div><div class="value" style="color:var(--accent)">Phase ' + o.phase.number + '</div><div class="sub">' + escHtml(o.phase.status) + '</div></div>';
+    html += '<div class="kpi"><div class="label">Focus</div><div class="value" style="color:var(--text);font-size:0.85rem;line-height:1.4">' + escHtml(o.phase.focus) + '</div></div>';
+    html += '</div>';
+  }
+
+  // Server nodes
+  html += '<div class="card"><div class="card-header">Servers</div><div class="card-body">';
+  html += '<div class="node-grid">';
+  (o.nodes || []).forEach(function(n) {
+    html += '<div class="node-card">';
+    html += '<div style="display:flex;align-items:center;gap:0.4rem"><span class="status-dot status-' + (n.status || 'unknown') + '"></span><span class="node-name">' + escHtml(n.name) + '</span></div>';
+    html += '<div class="node-ip">' + escHtml(n.ip) + '</div>';
+    html += '<div class="node-meta">';
+    html += '<span>Last Deployed: ' + escHtml(n.release) + '</span>';
+    html += '<span>Commit: <code style="color:var(--accent)">' + escHtml(n.commit) + '</code></span>';
+    html += '</div>';
+    if (n.daemons && n.daemons.length > 0) {
+      html += '<div style="margin-top:0.3rem">';
+      html += '<span style="color:var(--dim);font-size:0.6rem;text-transform:uppercase;letter-spacing:0.06em">Running Programs: </span>';
+      n.daemons.forEach(function(dm) {
+        html += '<span class="daemon-tag">' + escHtml(dm) + '</span>';
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  html += '</div></div></div>';
+
+  // Active sessions
+  if (o.active_sessions && o.active_sessions.length > 0) {
+    html += '<div class="card"><div class="card-header">Active Sessions</div><div class="card-body" style="padding:0">';
+    o.active_sessions.forEach(function(s) {
+      html += '<div class="session-item">';
+      html += '<div><span class="session-daemon">' + escHtml(s.daemon) + '</span><span style="color:var(--dim);font-size:0.68rem;margin-left:0.5rem">' + escHtml(s.terminal) + '</span></div>';
+      html += '<div style="color:var(--dim);font-size:0.68rem">Since ' + relativeTime(s.launched) + '</div>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // mesh_live placeholder
+  if (o.mesh_live === null || o.mesh_live === undefined) {
+    html += '<div class="card"><div class="card-header">Live Mesh Status</div><div class="card-body">';
+    html += renderPlaceholderNull();
+    html += '</div></div>';
+  }
+
+  el.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════
+   3. DEVELOPMENT
+   ═══════════════════════════════════════════ */
+function renderDevelopment(d) {
+  var el = document.getElementById('panel-development');
+  var err = renderErrorOrPlaceholder(d);
+  if (err) { el.innerHTML = err; return; }
+  if (!d) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var html = '';
+
+  // KPIs
+  var oi = d.open_issues || {};
+  var ci = d.ci || {};
+  html += '<div class="kpi-grid">';
+  html += '<div class="kpi"><div class="label">Open Tasks</div><div class="value" style="color:var(--accent)">' + (oi.total || 0) + '</div></div>';
+  html += '<div class="kpi"><div class="label">Build Status</div><div class="value">';
+  if (ci.last_run_status === 'success') {
+    html += '<span class="ci-pass">Passing</span>';
+  } else if (ci.last_run_status === 'failure') {
+    html += '<span class="ci-fail">Failing</span>';
+  } else {
+    html += '<span style="color:var(--dim)">' + escHtml(ci.last_run_status || 'Unknown') + '</span>';
+  }
+  html += '</div><div class="sub">Last run ' + relativeTime(ci.last_run_at) + '</div></div>';
+  html += '<div class="kpi"><div class="label">7-Day Pass Rate</div><div class="value" style="color:' + (ci.pass_rate_7d >= 0.9 ? 'var(--green)' : ci.pass_rate_7d >= 0.7 ? 'var(--yellow)' : 'var(--red)') + '">' + fmtPct(ci.pass_rate_7d) + '</div></div>';
+  html += '</div>';
+
+  // Tasks by category
+  if (oi.by_label) {
+    html += '<div class="card"><div class="card-header">Tasks by Category</div><div class="card-body">';
+    Object.keys(oi.by_label).forEach(function(label) {
+      var count = oi.by_label[label];
+      var maxCount = Math.max.apply(null, Object.values(oi.by_label));
+      var pct = maxCount > 0 ? (count / maxCount * 100) : 0;
+      html += '<div class="metric-row">';
+      html += '<span class="metric-label" style="text-transform:capitalize">' + escHtml(label) + '</span>';
+      html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:var(--accent)"></div></div>';
+      html += '<span class="metric-value">' + count + '</span>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // Tasks by team member (daemon)
+  if (oi.by_daemon) {
+    html += '<div class="card"><div class="card-header">Tasks by Team Member</div><div class="card-body">';
+    Object.keys(oi.by_daemon).forEach(function(daemon) {
+      var count = oi.by_daemon[daemon];
+      var maxCount = Math.max.apply(null, Object.values(oi.by_daemon));
+      var pct = maxCount > 0 ? (count / maxCount * 100) : 0;
+      html += '<div class="metric-row">';
+      html += '<span class="metric-label" style="text-transform:capitalize">' + escHtml(daemon) + '</span>';
+      html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:var(--purple)"></div></div>';
+      html += '<span class="metric-value">' + count + '</span>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  // Recent tasks
+  if (d.recent_issues && d.recent_issues.length > 0) {
+    html += '<div class="card"><div class="card-header">Recent Tasks</div><div class="card-body" style="padding:0;overflow-x:auto">';
+    html += '<table class="tbl"><thead><tr><th>#</th><th>Task</th><th>Status</th><th>Labels</th><th>Created</th></tr></thead><tbody>';
+    d.recent_issues.forEach(function(issue) {
+      html += '<tr>';
+      html += '<td><a href="' + escHtml(issue.url) + '" target="_blank" style="color:var(--accent);text-decoration:none">#' + issue.number + '</a></td>';
+      html += '<td>' + escHtml(issue.title) + '</td>';
+      html += '<td>' + stageBadge(issue.state === 'open' ? 'Active' : 'Completed') + '</td>';
+      html += '<td>' + (issue.labels || []).map(function(l) { return '<span class="' + labelClass(l) + '">' + escHtml(l) + '</span>'; }).join(' ') + '</td>';
+      html += '<td style="color:var(--dim)">' + escHtml(issue.created_at) + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div></div>';
+  }
+
+  // Recent changes (commits)
+  if (d.recent_commits && d.recent_commits.length > 0) {
+    html += '<div class="card"><div class="card-header">Recent Changes</div><div class="card-body" style="padding:0;overflow-x:auto">';
+    html += '<table class="tbl"><thead><tr><th>Commit</th><th>Message</th><th>Author</th><th>Date</th></tr></thead><tbody>';
+    d.recent_commits.forEach(function(c) {
+      html += '<tr>';
+      html += '<td><code style="color:var(--cyan)">' + escHtml(c.sha) + '</code></td>';
+      html += '<td>' + escHtml(c.message) + '</td>';
+      html += '<td style="color:var(--purple)">' + escHtml(c.author) + '</td>';
+      html += '<td style="color:var(--dim)">' + escHtml(c.date) + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div></div>';
+  }
+
+  el.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════
+   4. INTELLIGENCE
+   ═══════════════════════════════════════════ */
+function renderIntelligence(intel) {
+  var el = document.getElementById('panel-intelligence');
+  var err = renderErrorOrPlaceholder(intel);
+  if (err) { el.innerHTML = err; return; }
+  if (!intel) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var html = '';
+  var sc = intel.scorecard || {};
+
+  // Friendly metric names
+  var metricNames = {
+    task_resolution: 'Task Resolution',
+    ci_pass_rate: 'Build Pass Rate',
+    noise_ratio: 'Signal Clarity',
+    context_quality: 'Context Quality',
+    human_override: 'Manual Corrections'
+  };
+  var metricColors = {
+    task_resolution: 'var(--accent)',
+    ci_pass_rate: 'var(--green)',
+    noise_ratio: 'var(--cyan)',
+    context_quality: 'var(--yellow)',
+    human_override: 'var(--purple)'
+  };
+
+  // Overall score (average of non-null metrics)
+  var vals = Object.values(sc).filter(function(v) { return v != null; });
+  var avg = vals.length > 0 ? vals.reduce(function(a, b) { return a + b; }, 0) / vals.length : 0;
+  var overallColor = avg >= 0.8 ? 'var(--green)' : avg >= 0.6 ? 'var(--yellow)' : 'var(--red)';
+
+  html += '<div class="kpi-grid">';
+  html += '<div class="kpi"><div class="label">System Health Score</div><div class="value" style="color:' + overallColor + '">' + fmtPct(avg) + '</div><div class="sub">average across all metrics</div></div>';
+  html += '</div>';
+
+  // Scorecard bars
+  html += '<div class="card"><div class="card-header">Scorecard</div><div class="card-body">';
+  Object.keys(sc).forEach(function(key) {
+    var val = sc[key];
+    var pct = val != null ? Math.round(val * 100) : 0;
+    var color = metricColors[key] || 'var(--accent)';
+    var barColor = val >= 0.8 ? 'var(--green)' : val >= 0.6 ? 'var(--yellow)' : val >= 0.3 ? 'var(--orange)' : 'var(--red)';
+    // For human_override, lower is better
+    if (key === 'human_override') {
+      barColor = val <= 0.1 ? 'var(--green)' : val <= 0.3 ? 'var(--yellow)' : 'var(--red)';
+    }
+    html += '<div class="metric-row">';
+    html += '<span class="metric-label">' + (metricNames[key] || key) + '</span>';
+    html += '<div class="metric-bar"><div class="metric-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>';
+    html += '<span class="metric-value" style="color:' + barColor + '">' + fmtPct(val) + '</span>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  // MIG live placeholder
+  if (intel.mig_live === null || intel.mig_live === undefined) {
+    html += '<div class="card"><div class="card-header">Knowledge Base (Live)</div><div class="card-body">';
+    html += renderPlaceholderNull();
+    html += '</div></div>';
+  }
+
+  el.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════
+   5. CALLS
+   ═══════════════════════════════════════════ */
+function renderCalls(c) {
+  var el = document.getElementById('panel-calls');
+  var err = renderErrorOrPlaceholder(c);
+  if (err) { el.innerHTML = err; return; }
+  if (!c) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var html = '';
+  var vol = c.call_volume || {};
+
+  // KPIs
+  html += '<div class="kpi-grid">';
+  html += '<div class="kpi"><div class="label">Calls This Week</div><div class="value" style="color:var(--accent)">' + (vol.this_week || 0) + '</div></div>';
+  html += '<div class="kpi"><div class="label">Last Week</div><div class="value" style="color:var(--dim)">' + (vol.last_week || 0) + '</div></div>';
+  html += '<div class="kpi"><div class="label">Trend</div><div class="value" style="color:' + (vol.trend === 'up' ? 'var(--green)' : vol.trend === 'down' ? 'var(--red)' : 'var(--dim)') + '">' + (vol.trend === 'up' ? '\u2191 Up' : vol.trend === 'down' ? '\u2193 Down' : '\u2192 Flat') + '</div></div>';
+  html += '</div>';
+
+  // Recent call signals
+  var signals = c.recent_signals || [];
+  if (signals.length === 0) {
+    html += '<div class="card"><div class="card-header">Recent Calls</div><div class="card-body">';
+    html += '<div style="color:var(--dim);font-size:0.8rem;text-align:center;padding:1rem">No call data available yet.</div>';
+    html += '</div></div>';
+  } else {
+    html += '<div class="card"><div class="card-header">Recent Calls</div><div class="card-body" style="padding:0.5rem">';
+    signals.forEach(function(sig) {
+      html += '<div class="signal-card">';
+      html += '<div class="client-name">' + escHtml(sig.client || 'Unknown') + '</div>';
+      html += '<div class="signal-date">' + escHtml(sig.date || '') + '</div>';
+      html += '<div class="summary-text">' + escHtml(sig.summary || '') + '</div>';
+
+      html += '<div class="signal-columns">';
+      // Buying signals
+      if (sig.buying_signals && sig.buying_signals.length > 0) {
+        html += '<div class="signal-list positive"><h5>What They Said (Positive)</h5><ul>';
+        sig.buying_signals.forEach(function(b) {
+          html += '<li>' + escHtml(b) + '</li>';
+        });
+        html += '</ul></div>';
+      }
+      // Objections
+      if (sig.objections && sig.objections.length > 0) {
+        html += '<div class="signal-list negative"><h5>Concerns Raised</h5><ul>';
+        sig.objections.forEach(function(o) {
+          html += '<li>' + escHtml(o) + '</li>';
+        });
+        html += '</ul></div>';
+      }
+      html += '</div>';
+
+      if (sig.file) {
+        html += '<div style="margin-top:0.5rem;font-size:0.65rem;color:var(--dim)">Source: ' + escHtml(sig.file) + '</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div></div>';
+  }
+
+  el.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════
+   6. SALES
+   ═══════════════════════════════════════════ */
+function renderSales(s) {
+  var el = document.getElementById('panel-sales');
+  var err = renderErrorOrPlaceholder(s);
+  if (err) { el.innerHTML = err; return; }
+  if (!s) { el.innerHTML = renderPlaceholderNull(); return; }
+
+  var html = '';
+  var opps = s.opportunities || [];
+  var proj = s.projections || {};
+
+  // KPIs
+  html += '<div class="kpi-grid">';
+  html += '<div class="kpi"><div class="label">Expected Revenue</div><div class="value" style="color:var(--green)">' + fmtMoney(s.weighted_pipeline) + '</div><div class="sub">probability-weighted total</div></div>';
+  html += '<div class="kpi"><div class="label">Deals in Progress</div><div class="value" style="color:var(--accent)">' + opps.length + '</div></div>';
+  html += '</div>';
+
+  // Revenue Projections
+  html += '<div class="card"><div class="card-header">Revenue Projections</div><div class="card-body">';
+  html += '<div class="proj-grid">';
+  if (proj['30d'] != null) html += '<div class="proj-card"><div class="proj-period">30-Day</div><div class="proj-value" style="color:var(--green)">' + fmtMoney(proj['30d']) + '</div></div>';
+  if (proj['90d'] != null) html += '<div class="proj-card"><div class="proj-period">90-Day</div><div class="proj-value" style="color:var(--accent)">' + fmtMoney(proj['90d']) + '</div></div>';
+  if (proj['6mo'] != null) html += '<div class="proj-card"><div class="proj-period">6-Month</div><div class="proj-value" style="color:var(--purple)">' + fmtMoney(proj['6mo']) + '</div></div>';
+  html += '</div></div></div>';
+
+  // Opportunity cards
+  if (opps.length > 0) {
+    html += '<div class="card"><div class="card-header">Deals in Progress</div><div class="card-body">';
+    html += '<div class="opp-grid">';
+    opps.forEach(function(o) {
+      var pct = Math.round((o.probability || 0) * 100);
+      var pColor = probColor(o.probability);
+      var weighted = Math.round((o.value || 0) * (o.probability || 0));
+      html += '<div class="opp-card">';
+      html += '<div class="opp-name">' + escHtml(o.name) + '</div>';
+      html += '<div class="opp-value">' + fmtMoney(o.value) + '</div>';
+      html += '<div class="opp-meta">';
+      html += stageBadge(o.stage);
+      html += ' <span style="margin-left:0.5rem">Confidence: ' + pct + '%</span>';
+      html += '</div>';
+      html += '<div class="prob-bar"><div class="prob-fill" style="width:' + pct + '%;background:' + pColor + '"></div></div>';
+      html += '<div style="font-size:0.68rem;color:var(--dim);margin-top:0.3rem">Expected: ' + fmtMoney(weighted) + '</div>';
+      html += '</div>';
+    });
+    html += '</div></div></div>';
+  }
+
+  el.innerHTML = html;
+}
+</script>
+</body>
+</html>
