@@ -1508,10 +1508,26 @@ var TasksView = function(props) {
     return '#8899aa';
   };
 
-  // Group tasks by status
+  // Filter out machine-generated daemon housekeeping tasks
+  function isHumanTask(t) {
+    var txt = (t.action || t.title || t.name || '').toLowerCase();
+    // Skip: corroboration reviews (MIG internal), pending_review (e2e chunks),
+    // UUID-heavy strings, daemon-internal operations
+    if (txt.indexOf('review corroboration') !== -1) return false;
+    if (txt.indexOf('pending_review:') !== -1) return false;
+    if (txt.indexOf('e2e-test-') !== -1) return false;
+    // Skip if title is mostly hex/UUIDs (>50% hex chars)
+    var hexChars = (txt.match(/[0-9a-f]/g) || []).length;
+    if (txt.length > 20 && hexChars / txt.length > 0.5) return false;
+    return true;
+  }
+
+  // Group tasks by status (human-readable only)
   var grouped = { open: [], in_progress: [], completed: [] };
+  var filteredCount = 0;
   if (tasks && Array.isArray(tasks)) {
     tasks.forEach(function(t) {
+      if (!isHumanTask(t)) { filteredCount++; return; }
       var s = (t.status || 'open').toLowerCase().replace(/ /g, '_');
       if (grouped[s]) grouped[s].push(t);
       else grouped.open.push(t);
@@ -1530,6 +1546,10 @@ var TasksView = function(props) {
 
   return React.createElement('div', { className: 'space-y-6' },
     React.createElement(SectionHeader, { title: 'Tasks', source: 'live' }),
+
+    // Filtered notice
+    filteredCount > 0 ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] px-1' },
+      filteredCount + ' daemon housekeeping tasks hidden') : null,
 
     // Task groups
     ['open', 'in_progress', 'completed'].map(function(status) {
@@ -1563,11 +1583,11 @@ var TasksView = function(props) {
       );
     }),
 
-    // Action items
-    actions && Array.isArray(actions) && actions.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+    // Action items (filtered for human-readable)
+    actions && Array.isArray(actions) && actions.filter(isHumanTask).length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Action Items'),
       React.createElement('div', { className: 'space-y-1.5' },
-        actions.slice(0, 15).map(function(a, i) {
+        actions.filter(isHumanTask).slice(0, 15).map(function(a, i) {
           return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5 last:border-0' },
             React.createElement('span', { className: 'text-xs mt-0.5', style: { color: a.done ? '#22c55e' : '#8899aa' } }, a.done ? '\u2713' : '\u25CB'),
             React.createElement('div', { className: 'flex-1' },
