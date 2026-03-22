@@ -65,21 +65,17 @@ var useEffect = React.useEffect;
 var useCallback = React.useCallback;
 var useRef = React.useRef;
 
-/* ================================================================
-   CONFIG — from URL params or defaults
-   ================================================================ */
+/* CONFIG */
 var _params = new URLSearchParams(window.location.search);
 var CONFIG = {
-  gateway: _params.get('gateway') || '',
+  gateway: _params.get('gateway') || localStorage.getItem('mrd_gateway_url') || '',
   workspace: _params.get('workspace') || 'meridian',
   mode: _params.get('mode') || 'auto',
   name: _params.get('name') || 'MERIDIAN',
   accent: _params.get('accent') || '#38bdf8',
 };
 
-/* ================================================================
-   AUTH — SHA-256 PIN gate (same hash as ops.html)
-   ================================================================ */
+/* AUTH */
 var AUTH_HASH = '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824';
 
 function checkAuthSync() {
@@ -95,9 +91,7 @@ function hashPin(pin) {
     });
 }
 
-/* ================================================================
-   DATA FETCHING
-   ================================================================ */
+/* DATA FETCHING */
 function fetchWithFallback(gatewayPath, staticSection) {
   var tryGateway = CONFIG.gateway ? fetch(CONFIG.gateway + gatewayPath, {
     headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('mrd_gateway_token') || '') },
@@ -115,9 +109,7 @@ function fetchWithFallback(gatewayPath, staticSection) {
   });
 }
 
-/* ================================================================
-   UTILITIES
-   ================================================================ */
+/* UTILITIES */
 function escHtml(s) {
   if (!s) return '';
   var d = document.createElement('div');
@@ -177,9 +169,7 @@ function projRange(p) {
   return '';
 }
 
-/* ================================================================
-   SHARED COMPONENTS
-   ================================================================ */
+/* SHARED COMPONENTS */
 var GlassCard = function(props) {
   return React.createElement('div', {
     className: 'bg-[#111827] border border-[#1e2d4a] rounded-xl overflow-hidden relative ' + (props.className || ''),
@@ -197,6 +187,196 @@ var Ping = function(props) {
     React.createElement('span', { className: 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ' + color }),
     React.createElement('span', { className: 'relative inline-flex rounded-full h-2 w-2 ' + color })
   );
+};
+
+/* MIKE MODE VIEW */
+var MikeModeView = function(props) {
+  var data = props.data;
+  if (!data) return React.createElement('div', { className: 'p-8 text-center text-[#8899aa]' }, 'Loading...');
+  var pipeline = (data && data.pipeline) || {};
+  var deals = pipeline.deals || [];
+  var sigs = ((data && data.calls) || {}).recent_signals || [];
+  var sales = (data && data.sales) || {};
+  var opps = sales.opportunities || [];
+  var actions = sales.action_items || [];
+  var cs = 'bg-[#111827] border border-[#1e2d4a] rounded-2xl p-6';
+  var row = 'flex items-center justify-between py-3 border-b border-white/5 last:border-0';
+  function badge(text, color) {
+    return React.createElement('span', { className: 'text-sm font-semibold px-3 py-1 rounded-full', style: { color: color, background: color + '18' } }, text);
+  }
+  return React.createElement('div', { className: 'space-y-6 max-w-4xl mx-auto' },
+    React.createElement('div', { className: cs },
+      React.createElement('h2', { className: 'text-xl font-bold text-white mb-4' }, 'My Deals'),
+      deals.length === 0 ? React.createElement('p', { className: 'text-lg text-[#8899aa]' }, 'No active deals')
+      : React.createElement('div', { className: 'space-y-1' }, deals.slice(0,5).map(function(d,i) {
+        return React.createElement('div', { key: i, className: row },
+          React.createElement('div', null,
+            React.createElement('div', { className: 'text-lg font-semibold text-white' }, d.title || d.client),
+            React.createElement('div', { className: 'text-sm text-[#8899aa]' }, (d.revenue || '') + (d.deadline ? ' | Due: ' + d.deadline : ''))
+          ), badge(d.stage, stageColor(d.stage)));
+      }))),
+    React.createElement('div', { className: cs },
+      React.createElement('h2', { className: 'text-xl font-bold text-white mb-4' }, 'My Calls'),
+      sigs.length === 0 ? React.createElement('p', { className: 'text-lg text-[#8899aa]' }, 'No recent calls')
+      : React.createElement('div', { className: 'space-y-1' }, sigs.slice(0,5).map(function(s,i) {
+        var sn = (s.deal_signals||{}).sentiment || s.sentiment || 'neutral';
+        var sc = sn==='positive'?'#22c55e':sn==='negative'?'#ef4444':'#eab308';
+        return React.createElement('div', { key: i, className: row },
+          React.createElement('div', null,
+            React.createElement('span', { className: 'text-lg font-semibold text-white capitalize' }, s.client ? s.client.replace(/-/g,' ') : 'Unknown'),
+            s.title ? React.createElement('span', { className: 'text-sm text-[#8899aa] ml-2' }, s.title) : null
+          ), badge(sn, sc));
+      }))),
+    React.createElement('div', { className: cs },
+      React.createElement('h2', { className: 'text-xl font-bold text-white mb-4' }, 'My Revenue'),
+      React.createElement('div', { className: 'grid grid-cols-2 gap-6' },
+        React.createElement('div', { className: 'text-center' }, React.createElement('div', { className: 'text-sm text-[#8899aa] mb-1' }, 'Expected'), React.createElement('div', { className: 'text-3xl font-bold text-[#22c55e]' }, fmtMoney(sales.weighted_pipeline || 0))),
+        React.createElement('div', { className: 'text-center' }, React.createElement('div', { className: 'text-sm text-[#8899aa] mb-1' }, 'Closed'), React.createElement('div', { className: 'text-3xl font-bold text-[#a78bfa]' }, fmtMoney(pipeline.revenue_closed || 0)))
+      ),
+      opps.length > 0 ? React.createElement('div', { className: 'mt-4 space-y-2' }, opps.slice(0,3).map(function(o,i) {
+        var p = o.probability||0; p = p>1?p/100:p;
+        return React.createElement('div', { key: i, className: 'flex items-center justify-between text-sm py-2 border-b border-white/5 last:border-0' },
+          React.createElement('span', { className: 'text-white font-semibold' }, o.name),
+          React.createElement('span', { className: 'text-[#8899aa]' }, fmtMoney(o.annual_revenue||o.value||0) + ' @ ' + Math.round(p*100) + '%'));
+      })) : null),
+    React.createElement('div', { className: cs },
+      React.createElement('h2', { className: 'text-xl font-bold text-white mb-4' }, 'My Actions'),
+      actions.length === 0 ? React.createElement('p', { className: 'text-lg text-[#8899aa]' }, 'No action items')
+      : React.createElement('div', { className: 'space-y-1' }, actions.filter(function(a){return !a.done;}).slice(0,5).map(function(a,i) {
+        return React.createElement('div', { key: i, className: 'flex items-start gap-3 py-2 border-b border-white/5 last:border-0' },
+          React.createElement('span', { className: 'text-lg text-[#8899aa] mt-0.5' }, '\u25CB'),
+          React.createElement('div', null,
+            React.createElement('div', { className: 'text-base text-white' }, a.text),
+            React.createElement('div', { className: 'text-sm text-[#8899aa]' }, (a.owner ? '['+a.owner+']' : '') + (a.due ? ' Due: '+a.due : ''))));
+      })))
+  );
+};
+
+/* ALERT BANNER */
+var AlertBanner = function(props) {
+  var data = props.data;
+  var _d = useState(function() { try { return JSON.parse(sessionStorage.getItem('mrd_alerts_dismissed')||'{}'); } catch(e) { return {}; } });
+  var dismissed = _d[0]; var setDismissed = _d[1];
+  var _ex = useState(false); var expanded = _ex[0]; var setExpanded = _ex[1];
+  if (!data) return null;
+  var alerts = []; var now = new Date();
+  var allProj = ((data&&data.projects)||{}).projects || [];
+  allProj.forEach(function(proj) {
+    (proj.phases||[]).forEach(function(ph) {
+      if (ph.deadline) {
+        var dl = new Date(ph.deadline);
+        if (!isNaN(dl.getTime())) {
+          var dd = Math.ceil((dl.getTime()-now.getTime())/86400000);
+          var nm = (proj.name||proj._file||'Project')+' - '+(ph.name||ph.id||'Phase');
+          if (dd<0) alerts.push({color:'#ef4444',bg:'bg-red-500/10 border-red-500/30',icon:'\u26A0',text:nm+' overdue by '+Math.abs(dd)+'d',key:'dl-'+nm});
+          else if (dd<=7) alerts.push({color:'#eab308',bg:'bg-yellow-500/10 border-yellow-500/30',icon:'\u23F0',text:nm+' due in '+dd+'d',key:'dl-'+nm});
+        }
+      }
+      var bl = ph.blockers||[];
+      if (bl.length>0) { var pn=(proj.name||proj._file||'Project')+' - '+(ph.name||ph.id||'Phase'); alerts.push({color:'#f97316',bg:'bg-orange-500/10 border-orange-500/30',icon:'\u26D4',text:pn+': '+bl.length+' blocker'+(bl.length!==1?'s':''),key:'bl-'+pn}); }
+    });
+  });
+  var dc=0; (((data&&data.sales)||{}).action_items||[]).forEach(function(a) {
+    if (a.done||!a.due) return; var dt=new Date(a.due); if (!isNaN(dt.getTime())&&Math.ceil((dt.getTime()-now.getTime())/86400000)<=7) dc++;
+  });
+  if (dc>0) alerts.push({color:'#38bdf8',bg:'bg-sky-500/10 border-sky-500/30',icon:'\u2611',text:dc+' action item'+(dc!==1?'s':'')+' due this week',key:'actions-week'});
+  var visible = alerts.filter(function(a){return !dismissed[a.key];});
+  if (visible.length===0) return null;
+  var shown = expanded ? visible : visible.slice(0,3); var extra = visible.length-3;
+  function dismiss(key) { var n=Object.assign({},dismissed); n[key]=true; setDismissed(n); try{sessionStorage.setItem('mrd_alerts_dismissed',JSON.stringify(n));}catch(e){} }
+  return React.createElement('div', { className: 'max-w-7xl mx-auto px-4 pt-3 space-y-1.5' },
+    shown.map(function(a) {
+      return React.createElement('div', { key: a.key, className: 'flex items-center gap-2 px-3 py-2 rounded-lg border text-sm '+a.bg },
+        React.createElement('span', null, a.icon),
+        React.createElement('span', { className: 'flex-1', style:{color:a.color} }, a.text),
+        React.createElement('button', { onClick: function(){dismiss(a.key);}, className: 'text-[#8899aa] hover:text-white text-xs ml-2 shrink-0' }, '\u2715'));
+    }),
+    !expanded&&extra>0 ? React.createElement('button', { onClick: function(){setExpanded(true);}, className: 'text-xs text-[#38bdf8] hover:underline pl-1' }, '+'+extra+' more') : null,
+    expanded&&extra>0 ? React.createElement('button', { onClick: function(){setExpanded(false);}, className: 'text-xs text-[#38bdf8] hover:underline pl-1' }, 'Show fewer') : null
+  );
+};
+
+/* SEARCH BAR */
+var SearchBar = function(props) {
+  var data = props.data; var onNavigate = props.onNavigate;
+  var _q = useState(''); var query = _q[0]; var setQuery = _q[1];
+  var _r = useState([]); var results = _r[0]; var setResults = _r[1];
+  var _o = useState(false); var open = _o[0]; var setOpen = _o[1];
+  var dbRef = useRef(null); var wRef = useRef(null);
+  function buildIndex() {
+    if (!data) return [];
+    var idx = [];
+    function add(icon,title,sub,tab,mt) { idx.push({icon:icon,title:title,subtitle:sub,tab:tab,matchText:mt}); }
+    ((data.pipeline||{}).deals||[]).forEach(function(d) { add('\uD83D\uDCBC',d.title||d.client||'','Pipeline - '+(d.stage||''),'pipeline',(d.title||'')+' '+(d.client||'')+' '+(d.stage||'')); });
+    ((data.team||{}).members||[]).forEach(function(m) { add('\uD83D\uDC64',m.name||m.id||'','Team - '+(m.role||''),'team',(m.name||'')+' '+(m.id||'')+' '+(m.role||'')); });
+    ((data.projects||{}).projects||[]).forEach(function(p) {
+      add('\uD83D\uDCC1',p.name||p._file||'','Customer - '+(p._client_slug||''),'customers',(p.name||'')+' '+(p._client_slug||''));
+      (p.phases||[]).forEach(function(ph) { add('\uD83D\uDCC5',(ph.name||ph.id||'')+' ('+p.name+')','Phase','customers',(ph.name||'')+' '+(p.name||'')); });
+    });
+    ((data.calls||{}).recent_signals||[]).forEach(function(s) { var cn=s.client?s.client.replace(/-/g,' '):''; add('\uD83D\uDCDE',cn+(s.title?' - '+s.title:''),'Calls','calls',cn+' '+(s.title||'')); });
+    ((data.calls||{}).clients||[]).forEach(function(c) { add('\uD83D\uDC64',c.name||c.slug||'','Client','calls',(c.name||'')+' '+(c.slug||'')); });
+    ((data.sales||{}).opportunities||[]).forEach(function(o) { add('\uD83D\uDCB0',o.name||'','Sales - '+(o.stage||''),'sales',(o.name||'')+' '+(o.stage||'')); });
+    ((data.development||{}).recent_issues||[]).forEach(function(i) { add('\uD83D\uDCCB','#'+i.number+' '+(i.title||''),'Development','development',(i.title||'')+' '+i.number); });
+    return idx;
+  }
+  function doSearch(q) {
+    if (!q||q.length<2) { setResults([]); setOpen(false); return; }
+    var low = q.toLowerCase();
+    var m = buildIndex().filter(function(it) { return it.matchText.toLowerCase().indexOf(low)!==-1||it.title.toLowerCase().indexOf(low)!==-1; }).slice(0,10);
+    setResults(m); setOpen(m.length>0);
+  }
+  function onInput(e) { var v=e.target.value; setQuery(v); if(dbRef.current) clearTimeout(dbRef.current); dbRef.current=setTimeout(function(){doSearch(v);},300); }
+  function onKey(e) { if(e.key==='Escape'){setOpen(false);setQuery('');} }
+  useEffect(function() {
+    function hc(e){if(wRef.current&&!wRef.current.contains(e.target))setOpen(false);}
+    document.addEventListener('mousedown',hc); return function(){document.removeEventListener('mousedown',hc);};
+  }, []);
+  return React.createElement('div', { ref: wRef, className: 'relative', style: {minWidth:'180px'} },
+    React.createElement('input', { type:'text', value:query, onChange:onInput, onKeyDown:onKey, placeholder:'Search...', className:'w-full px-3 py-1.5 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-sm text-[#e2e8f0] outline-none focus:border-[#38bdf8] placeholder-[#8899aa]' }),
+    open ? React.createElement('div', { className: 'absolute top-full left-0 right-0 mt-1 bg-[#111827] border border-[#1e2d4a] rounded-lg shadow-2xl z-50 max-h-80 overflow-y-auto' },
+      results.map(function(r,i) {
+        return React.createElement('button', { key:i, onClick:function(){onNavigate(r.tab);setOpen(false);setQuery('');}, className:'w-full text-left px-3 py-2 hover:bg-white/[0.03] flex items-center gap-2 border-b border-white/5 last:border-0' },
+          React.createElement('span', { className:'text-base shrink-0' }, r.icon),
+          React.createElement('div', { className:'flex-1 min-w-0' },
+            React.createElement('div', { className:'text-sm text-[#e2e8f0] truncate' }, r.title),
+            React.createElement('div', { className:'text-[10px] text-[#8899aa]' }, r.subtitle)),
+          React.createElement('span', { className:'text-[10px] text-[#38bdf8] shrink-0 uppercase' }, r.tab));
+      })) : null);
+};
+
+/* GATEWAY CONNECTION */
+var GatewayModal = function(props) {
+  if (!props.isOpen) return null;
+  var _u = useState(localStorage.getItem('mrd_gateway_url')||''); var url = _u[0]; var setUrl = _u[1];
+  var _t = useState(localStorage.getItem('mrd_gateway_token')||''); var tok = _t[0]; var setTok = _t[1];
+  var inputCls = 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-sm text-[#e2e8f0] outline-none focus:border-[#38bdf8]';
+  return React.createElement('div', { className:'fixed inset-0 bg-black/60 flex items-center justify-center z-50', onClick:function(e){if(e.target===e.currentTarget)props.onClose();} },
+    React.createElement(GlassCard, { className:'w-96 p-6' },
+      React.createElement('div', { className:'flex items-center justify-between mb-4' },
+        React.createElement('h2', { className:'text-sm font-bold text-white uppercase tracking-wider' }, 'Gateway Connection'),
+        React.createElement('button', { onClick:props.onClose, className:'text-[#8899aa] hover:text-white text-sm' }, '\u2715')),
+      props.isConnected ? React.createElement('div', { className:'mb-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg' },
+        React.createElement('div', { className:'flex items-center gap-2' }, React.createElement(Ping, {color:'bg-green-400'}), React.createElement('span', { className:'text-sm text-green-400 font-semibold' }, 'Connected')),
+        React.createElement('p', { className:'text-[10px] text-[#8899aa] mt-1 truncate' }, CONFIG.gateway)) : null,
+      React.createElement('div', { className:'space-y-3' },
+        React.createElement('div', null, React.createElement('label', { className:'text-[10px] text-[#8899aa] uppercase tracking-wider block mb-1' }, 'Gateway URL'), React.createElement('input', { type:'text', value:url, onChange:function(e){setUrl(e.target.value);}, placeholder:'https://meridian-prime.tailb5bb37.ts.net', className:inputCls })),
+        React.createElement('div', null, React.createElement('label', { className:'text-[10px] text-[#8899aa] uppercase tracking-wider block mb-1' }, 'Auth Token'), React.createElement('input', { type:'password', value:tok, onChange:function(e){setTok(e.target.value);}, placeholder:'Token (optional)', className:inputCls })),
+        React.createElement('div', { className:'flex gap-2 pt-2' },
+          React.createElement('button', { onClick:function(){if(!url)return;props.onConnect(url,tok);props.onClose();}, className:'flex-1 py-2 bg-sky-500/15 border border-sky-500/30 rounded-lg text-[#38bdf8] text-sm font-semibold cursor-pointer hover:bg-sky-500/25' }, 'Connect'),
+          props.isConnected ? React.createElement('button', { onClick:function(){props.onDisconnect();setUrl('');setTok('');props.onClose();}, className:'py-2 px-4 bg-red-500/10 border border-red-500/30 rounded-lg text-[#ef4444] text-sm font-semibold cursor-pointer hover:bg-red-500/20' }, 'Disconnect') : null))));
+};
+
+var GatewayConnectCard = function(props) {
+  var _u = useState(''); var url = _u[0]; var setUrl = _u[1];
+  var _t = useState(''); var tok = _t[0]; var setTok = _t[1];
+  var inputCls = 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-sm text-[#e2e8f0] outline-none focus:border-[#38bdf8] placeholder-[#8899aa]';
+  return React.createElement(GlassCard, { className:'p-6 max-w-md mx-auto my-4' },
+    React.createElement('div', { className:'flex items-center gap-2 mb-4' }, React.createElement('span', { className:'w-2.5 h-2.5 rounded-full bg-yellow-400' }), React.createElement('h3', { className:'text-sm font-bold text-white uppercase tracking-wider' }, 'Connect to Mesh')),
+    React.createElement('p', { className:'text-xs text-[#8899aa] mb-4' }, 'Connect to a MERIDIAN Gateway for live data and real-time updates.'),
+    React.createElement('div', { className:'space-y-3' },
+      React.createElement('input', { type:'text', value:url, onChange:function(e){setUrl(e.target.value);}, placeholder:'https://meridian-prime.tailb5bb37.ts.net', className:inputCls }),
+      React.createElement('input', { type:'password', value:tok, onChange:function(e){setTok(e.target.value);}, placeholder:'Auth Token (optional)', className:inputCls }),
+      React.createElement('button', { onClick:function(){if(url)props.onConnect(url,tok);}, className:'w-full py-2 bg-sky-500/15 border border-sky-500/30 rounded-lg text-[#38bdf8] text-sm font-semibold cursor-pointer hover:bg-sky-500/25' }, 'Connect')));
 };
 
 var SourceBadge = function(props) {
@@ -245,9 +425,7 @@ var MetricBar = function(props) {
   );
 };
 
-/* ================================================================
-   AUTH GATE COMPONENT
-   ================================================================ */
+/* AUTH GATE */
 var AuthGate = function(props) {
   var _s1 = useState('');
   var pin = _s1[0]; var setPin = _s1[1];
@@ -289,9 +467,7 @@ var AuthGate = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 1: DASHBOARD (HOME)
-   ================================================================ */
+/* VIEW: DASHBOARD */
 var DashboardView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -367,9 +543,7 @@ var DashboardView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 2: PIPELINE
-   ================================================================ */
+/* VIEW: PIPELINE */
 var PipelineView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -520,9 +694,7 @@ var PipelineView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 3: OPERATIONS
-   ================================================================ */
+/* VIEW: OPERATIONS */
 var OperationsView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -660,9 +832,7 @@ var OperationsView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 4: DEVELOPMENT
-   ================================================================ */
+/* VIEW: DEVELOPMENT */
 var DevelopmentView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -803,9 +973,7 @@ var DevelopmentView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 5: SALES
-   ================================================================ */
+/* VIEW: SALES */
 var SalesView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -923,9 +1091,7 @@ var SalesView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 6: INTELLIGENCE (KNOWLEDGE in customer mode)
-   ================================================================ */
+/* VIEW: INTELLIGENCE */
 var IntelligenceView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1100,9 +1266,7 @@ var IntelligenceView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 7: CALLS
-   ================================================================ */
+/* VIEW: CALLS */
 var CallsView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1207,9 +1371,7 @@ var CallsView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 8: TASKS (Gateway-powered)
-   ================================================================ */
+/* VIEW: TASKS */
 var TasksView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1358,9 +1520,7 @@ var TasksView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 9: INSIGHTS
-   ================================================================ */
+/* VIEW: INSIGHTS */
 var InsightsView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1476,9 +1636,7 @@ var InsightsView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 10: TEAM
-   ================================================================ */
+/* VIEW: TEAM */
 var TeamView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1613,9 +1771,7 @@ var TeamView = function(props) {
   );
 };
 
-/* ================================================================
-   VIEW 11: CUSTOMERS
-   ================================================================ */
+/* VIEW: CUSTOMERS */
 var CustomersView = function(props) {
   var data = props.data;
   var source = props.source;
@@ -1926,9 +2082,7 @@ var CustomersView = function(props) {
   );
 };
 
-/* ================================================================
-   MAIN APP
-   ================================================================ */
+/* MAIN APP */
 var App = function() {
   var _auth = useState(checkAuthSync());
   var authed = _auth[0]; var setAuthed = _auth[1];
@@ -1953,26 +2107,31 @@ var App = function() {
 
   var refreshTimerRef = useRef(null);
 
+  var _pc = useState(function(){return sessionStorage.getItem('mrd_preview_customer')==='true';}); var previewCustomer = _pc[0]; var setPreviewCustomer = _pc[1];
+  function togglePreviewCustomer() { var n=!previewCustomer; setPreviewCustomer(n); sessionStorage.setItem('mrd_preview_customer',String(n)); }
+  var _gm = useState(false); var gwModalOpen = _gm[0]; var setGwModalOpen = _gm[1];
+  function handleGatewayConnect(u,t) { localStorage.setItem('mrd_gateway_url',u); if(t)localStorage.setItem('mrd_gateway_token',t); CONFIG.gateway=u; loadData(); }
+  function handleGatewayDisconnect() { localStorage.removeItem('mrd_gateway_url'); localStorage.removeItem('mrd_gateway_token'); CONFIG.gateway=''; loadData(); }
+  var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer;
+
   var TABS = [
     { id: 'dashboard', label: 'DASHBOARD' },
     { id: 'team', label: 'TEAM' },
-    { id: 'customers', label: CONFIG.mode === 'customer' ? 'MY PROJECTS' : 'CUSTOMERS' },
+    { id: 'customers', label: effectiveCustomerMode ? 'MY PROJECTS' : 'CUSTOMERS' },
     { id: 'pipeline', label: 'PIPELINE' },
     { id: 'operations', label: 'OPERATIONS' },
     { id: 'development', label: 'DEVELOPMENT' },
-    { id: 'intelligence', label: CONFIG.mode === 'customer' ? 'KNOWLEDGE' : 'INTELLIGENCE' },
+    { id: 'intelligence', label: effectiveCustomerMode ? 'KNOWLEDGE' : 'INTELLIGENCE' },
     { id: 'calls', label: 'CALLS' },
     { id: 'tasks', label: 'TASKS' },
     { id: 'insights', label: 'INSIGHTS' },
     { id: 'sales', label: 'SALES' }
   ];
 
-  // Hide team + development + insights in customer mode
-  var visibleTabs = CONFIG.mode === 'customer'
+  var visibleTabs = effectiveCustomerMode
     ? TABS.filter(function(t) { return t.id !== 'development' && t.id !== 'insights' && t.id !== 'team'; })
     : TABS;
 
-  // Load data
   var loadData = useCallback(function() {
     setLoading(true);
     // Try loading static data first
@@ -2018,27 +2177,24 @@ var App = function() {
       });
   }, []);
 
-  // Manual refresh
   var doRefresh = function() {
     setRefreshing(true);
     loadData();
     setTimeout(function() { setRefreshing(false); }, 1000);
   };
 
-  // Initial load
+  var canLoad = authed || CONFIG.mode === 'mike';
   useEffect(function() {
-    if (authed) loadData();
-  }, [authed, loadData]);
+    if (canLoad) loadData();
+  }, [canLoad, loadData]);
 
-  // Auto-refresh timer
   useEffect(function() {
-    if (!authed) return;
+    if (!canLoad) return;
     var interval = dataSource === 'live' ? 60000 : 300000; // 1m live, 5m static
     refreshTimerRef.current = setInterval(function() { loadData(); }, interval);
     return function() { clearInterval(refreshTimerRef.current); };
-  }, [authed, dataSource, loadData]);
+  }, [canLoad, dataSource, loadData]);
 
-  // Hash routing
   useEffect(function() {
     function onHash() {
       var h = window.location.hash.replace('#', '');
@@ -2055,9 +2211,20 @@ var App = function() {
     window.location.hash = id;
   }
 
-  // Auth gate
-  if (!authed) {
+  if (!authed && CONFIG.mode !== 'mike') {
     return React.createElement(AuthGate, { onAuth: function() { setAuthed(true); } });
+  }
+
+  if (CONFIG.mode === 'mike') {
+    if (loading && !data) return React.createElement('div', { className: 'min-h-screen flex items-center justify-center' },
+      React.createElement('div', { className: 'w-8 h-8 border-2 border-[#1e2d4a] border-t-[#38bdf8] rounded-full mx-auto', style:{animation:'spin 0.8s linear infinite'} }));
+    return React.createElement('div', { className: 'min-h-screen mesh-grid' },
+      React.createElement('header', { className: 'border-b border-[#1e2d4a] bg-gradient-to-r from-[#0f172a] to-[#1e293b]' },
+        React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-4 flex items-center justify-between' },
+          React.createElement('h1', { className: 'text-[#38bdf8] font-bold text-xl tracking-wide' }, "MERIDIAN -- Mike's Dashboard"),
+          React.createElement('button', { onClick:doRefresh, className:'text-xs text-[#8899aa] border border-[#1e2d4a] rounded px-2.5 py-1 hover:text-[#38bdf8] hover:border-[#38bdf8]' }, refreshing ? 'Refreshing...' : 'Refresh'))),
+      React.createElement('main', { className: 'max-w-4xl mx-auto px-4 py-6' },
+        data ? React.createElement(MikeModeView, { data: data }) : React.createElement('p', { className: 'text-center text-[#8899aa]' }, 'No data')));
   }
 
   // Loading state
@@ -2073,10 +2240,8 @@ var App = function() {
     );
   }
 
-  // Display name
-  var displayName = CONFIG.mode === 'customer' ? CONFIG.name : 'MERIDIAN';
+  var displayName = effectiveCustomerMode ? CONFIG.name : 'MERIDIAN';
 
-  // Render active view
   function renderView() {
     switch (activeTab) {
       case 'dashboard': return React.createElement(DashboardView, { data: data, source: dataSource });
@@ -2094,29 +2259,31 @@ var App = function() {
     }
   }
 
+  var gwConn = !!CONFIG.gateway && dataSource === 'live';
+  var gwSC = gwConn ? '#22c55e' : '#eab308';
+  var gwST = gwConn ? 'Connected' : 'Local only';
+
   return React.createElement('div', { className: 'min-h-screen mesh-grid' },
-    // Header
+    React.createElement(GatewayModal, { isOpen:gwModalOpen, onClose:function(){setGwModalOpen(false);}, onConnect:handleGatewayConnect, onDisconnect:handleGatewayDisconnect, isConnected:gwConn }),
     React.createElement('header', { className: 'border-b border-[#1e2d4a] bg-gradient-to-r from-[#0f172a] to-[#1e293b]' },
       React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2' },
         React.createElement('div', null,
           React.createElement('h1', { className: 'text-[#38bdf8] font-bold text-lg tracking-wide' },
-            displayName,
-            React.createElement('span', { className: 'text-[#8899aa] font-normal text-sm ml-2' }, '-- Command Center')
-          ),
-          React.createElement('div', { className: 'text-[10px] text-[#8899aa]' },
-            lastUpdated ? 'Generated ' + relativeTime(lastUpdated) : ''
-          )
-        ),
-        React.createElement('div', { className: 'flex items-center gap-3' },
+            displayName, React.createElement('span', { className: 'text-[#8899aa] font-normal text-sm ml-2' }, '-- Command Center'),
+            previewCustomer ? React.createElement('span', { className: 'text-[10px] text-green-400 ml-2 uppercase font-semibold' }, '(Customer Preview)') : null),
+          React.createElement('div', { className: 'text-[10px] text-[#8899aa]' }, lastUpdated ? 'Generated ' + relativeTime(lastUpdated) : '')),
+        React.createElement('div', { className: 'flex items-center gap-2' },
+          React.createElement(SearchBar, { data: data, onNavigate: switchTab }),
+          React.createElement('button', { onClick:function(){setGwModalOpen(true);}, className:'flex items-center gap-1.5 text-[10px] px-2 py-1 rounded border border-[#1e2d4a] hover:border-[#38bdf8] cursor-pointer shrink-0', title:'Gateway' },
+            React.createElement('span', { className:'w-1.5 h-1.5 rounded-full shrink-0', style:{background:gwSC} }),
+            React.createElement('span', { style:{color:gwSC} }, gwST)),
+          CONFIG.mode !== 'customer' ? React.createElement('button', { onClick:togglePreviewCustomer, className:'text-[10px] px-2 py-1 rounded border shrink-0 cursor-pointer '+(previewCustomer?'bg-green-500/15 border-green-500/40 text-green-400':'border-[#1e2d4a] text-[#8899aa] hover:border-[#38bdf8] hover:text-[#38bdf8]') }, '\uD83D\uDC64 '+(previewCustomer?'Exit Preview':'Customer View')) : null,
           React.createElement(SourceBadge, { source: dataSource }),
-          React.createElement('span', { className: 'text-[10px] bg-sky-500/10 text-[#38bdf8] px-2 py-0.5 rounded-full border border-sky-500/20 font-semibold' }, 'v2.0'),
-          React.createElement('button', {
-            onClick: doRefresh,
-            className: 'text-xs text-[#8899aa] border border-[#1e2d4a] rounded px-2.5 py-1 hover:text-[#38bdf8] hover:border-[#38bdf8] transition-all ' + (refreshing ? 'animate-pulse' : ''),
-          }, refreshing ? 'Refreshing...' : 'Refresh')
-        )
-      )
-    ),
+          React.createElement('span', { className: 'text-[10px] bg-sky-500/10 text-[#38bdf8] px-2 py-0.5 rounded-full border border-sky-500/20 font-semibold shrink-0' }, 'v2.0'),
+          React.createElement('button', { onClick:doRefresh, className:'text-xs text-[#8899aa] border border-[#1e2d4a] rounded px-2.5 py-1 hover:text-[#38bdf8] hover:border-[#38bdf8] shrink-0 '+(refreshing?'animate-pulse':'') }, refreshing ? 'Refreshing...' : 'Refresh')))),
+
+    // Alert Banner
+    React.createElement(AlertBanner, { data: data }),
 
     // Tab bar
     React.createElement('nav', { className: 'bg-[#111827] border-b border-[#1e2d4a] overflow-x-auto' },
@@ -2137,6 +2304,8 @@ var App = function() {
 
     // Content
     React.createElement('main', { className: 'max-w-7xl mx-auto px-4 py-6' },
+      // Show Gateway connect card on dashboard when no gateway configured
+      activeTab === 'dashboard' && !CONFIG.gateway ? React.createElement(GatewayConnectCard, { onConnect: handleGatewayConnect }) : null,
       data
         ? renderView()
         : React.createElement('div', { className: 'text-center py-12' },
@@ -2155,9 +2324,7 @@ var App = function() {
   );
 };
 
-/* ================================================================
-   MOUNT
-   ================================================================ */
+/* MOUNT */
 var root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(React.createElement(App));
 </script>
