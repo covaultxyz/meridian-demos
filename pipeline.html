@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN Client Pipeline</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 0.2rem 0.4rem; }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Client Pipeline</title>
+<style>
+:root {
+  --bg:#0a0e17;--s1:#111827;--s2:#1a2234;--bd:#1e2d4a;
+  --tx:#e2e8f0;--dim:#8899aa;--ac:#38bdf8;
+  --gn:#22c55e;--yl:#eab308;--or:#f97316;--rd:#ef4444;--pr:#a78bfa;--cy:#06b6d4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'SF Mono','Fira Code','Cascadia Code',monospace;background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh}
+.hdr{background:linear-gradient(135deg,#0f172a,#1e293b);border-bottom:1px solid var(--bd);padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.hdr h1{font-size:1.3rem;color:var(--ac);letter-spacing:.04em}
+.hdr-right{display:flex;align-items:center;gap:1rem}
+.hdr .ts{color:var(--dim);font-size:.72rem}
+.hdr a{color:var(--dim);text-decoration:none;font-size:.75rem;padding:.25rem .6rem;border:1px solid var(--bd);border-radius:4px;transition:all .2s}
+.hdr a:hover{color:var(--ac);border-color:var(--ac)}
+.badge-live{background:rgba(34,197,94,.15);color:var(--gn);padding:.2rem .6rem;border-radius:10px;font-size:.65rem;font-weight:600;border:1px solid rgba(34,197,94,.3);letter-spacing:.04em}
+.wrap{max-width:1300px;margin:0 auto;padding:1.5rem}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.kc{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:1rem;text-align:center}
+.kc .lb{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.3rem}
+.kc .vl{font-size:1.7rem;font-weight:700}
+.kc .sb{font-size:.65rem;color:var(--dim);margin-top:.15rem}
+.funnel-card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;margin-bottom:1.5rem;overflow:hidden}
+.funnel-card .ch{padding:.6rem 1rem;border-bottom:1px solid var(--bd);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
+.funnel{display:flex;align-items:stretch;padding:.75rem;gap:0;overflow-x:auto}
+.fs{flex:1;min-width:100px;text-align:center;padding:.75rem .4rem;position:relative}
+.fs .sn{font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:.4rem}
+.fs .bar{height:42px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:600;cursor:default;transition:transform .15s}
+.fs .bar:hover{transform:scale(1.03)}
+.fs .ct{font-size:1.1rem;font-weight:700;margin-top:.4rem}
+.fa{color:var(--dim);font-size:1rem;display:flex;align-items:center;opacity:.35;padding:0 .15rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:1rem;margin-bottom:1.5rem}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.deal{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden;transition:border-color .2s}
+.deal:hover{border-color:rgba(56,189,248,.4)}
+.deal-top{padding:1rem;border-bottom:1px solid var(--bd)}
+.deal-top .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.deal-name{font-weight:700;font-size:.95rem}
+.deal-body{padding:1rem;font-size:.8rem}
+.deal-body .field{display:flex;gap:.5rem;padding:.25rem 0;border-bottom:1px solid rgba(30,45,74,.3)}
+.deal-body .field:last-child{border-bottom:none}
+.deal-body .fk{color:var(--dim);min-width:90px;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em}
+.deal-body .fv{flex:1}
+.deal-footer{padding:.6rem 1rem;background:var(--s2);border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;font-size:.7rem}
+.deal-footer a{color:var(--ac);text-decoration:none}
+.deal-footer a:hover{text-decoration:underline}
+.b{display:inline-block;padding:.12rem .45rem;border-radius:8px;font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.b-engaged{background:rgba(34,197,94,.15);color:var(--gn);border:1px solid rgba(34,197,94,.3)}
+.b-lead{background:rgba(107,114,128,.15);color:#9ca3af;border:1px solid rgba(107,114,128,.3)}
+.b-qualified{background:rgba(234,179,8,.15);color:var(--yl);border:1px solid rgba(234,179,8,.3)}
+.b-active{background:rgba(56,189,248,.15);color:var(--ac);border:1px solid rgba(56,189,248,.3)}
+.b-discovery{background:rgba(167,139,250,.15);color:var(--pr);border:1px solid rgba(167,139,250,.3)}
+.b-proposal{background:rgba(6,182,212,.15);color:var(--cy);border:1px solid rgba(6,182,212,.3)}
+.b-completed{background:rgba(34,197,94,.15);color:var(--gn);border:1px solid rgba(34,197,94,.3)}
+.b-lost{background:rgba(239,68,68,.15);color:var(--rd);border:1px solid rgba(239,68,68,.3)}
+.b-a{background:rgba(34,197,94,.15);color:var(--gn);border:1px solid rgba(34,197,94,.3)}
+.b-b{background:rgba(56,189,248,.15);color:var(--ac);border:1px solid rgba(56,189,248,.3)}
+.b-c{background:rgba(234,179,8,.15);color:var(--yl);border:1px solid rgba(234,179,8,.3)}
+.b-d{background:rgba(249,115,22,.15);color:var(--or);border:1px solid rgba(249,115,22,.3)}
+.pb{background:var(--s2);border-radius:4px;height:6px;overflow:hidden;margin-top:.4rem}
+.pf{height:100%;border-radius:4px;transition:width .5s}
+.risk{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-left:3px solid var(--rd);border-radius:0 6px 6px 0;padding:.5rem .75rem;font-size:.75rem;margin-top:.5rem}
+.risk strong{color:var(--rd)}
+.prod{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:.75rem;margin-top:.5rem}
+.prod .row{display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem}
+.prod .tag{background:rgba(56,189,248,.1);color:var(--ac);padding:.15rem .4rem;border-radius:4px;font-size:.6rem}
+.tbl{width:100%;border-collapse:collapse;font-size:.78rem;margin-bottom:1.5rem}
+.tbl th{text-align:left;padding:.5rem .6rem;border-bottom:1px solid var(--bd);color:var(--dim);font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.tbl td{padding:.5rem .6rem;border-bottom:1px solid rgba(30,45,74,.4)}
+.tbl tr:hover td{background:rgba(56,189,248,.03)}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
+.ch{padding:.6rem 1rem;border-bottom:1px solid var(--bd);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ac);display:flex;justify-content:space-between;align-items:center}
+.cb{padding:1rem}
+.footer{text-align:center;padding:1.5rem;color:var(--dim);font-size:.65rem;border-top:1px solid var(--bd);margin-top:1.5rem}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>MERIDIAN — Client Pipeline</h1>
+    <div class="ts">Project #13 · <span id="updated">Loading...</span></div>
+  </div>
+  <div class="hdr-right">
+    <span class="badge-live" id="status-badge">LOADING</span>
+    <a href="https://github.com/users/covaultxyz/projects/13" target="_blank">Open in GitHub →</a>
+  </div>
+</div>
+<div class="wrap">
+  <div class="kpi" id="kpi-row"></div>
+  <div class="funnel-card">
+    <div class="ch">Pipeline Funnel</div>
+    <div class="funnel" id="funnel"></div>
+  </div>
+  <div class="grid" id="deals"></div>
+  <div class="card">
+    <div class="ch">Pipeline Table</div>
+    <div class="cb" style="overflow-x:auto">
+      <table class="tbl" id="pipeline-table">
+        <thead>
+          <tr><th>Client</th><th>Stage</th><th>Revenue</th><th>Next Action</th><th>Deadline</th><th>Owner</th><th>Risk</th><th>Grade</th></tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="footer" id="footer">MERIDIAN · Client Pipeline Dashboard · Loading...</div>
+<script>
+const STAGES = ['Lead','Qualified','Discovery','Proposal','Engaged','Active','Completed','Lost'];
+const STAGE_COLORS = {
+  Lead:'107,114,128', Qualified:'234,179,8', Discovery:'167,139,250',
+  Proposal:'6,182,212', Engaged:'34,197,94', Active:'56,189,248',
+  Completed:'34,197,94', Lost:'239,68,68'
+};
+function daysUntil(d){if(!d)return null;const diff=Math.ceil((new Date(d)-new Date())/(1000*60*60*24));return diff}
+function fmtDate(d){if(!d)return'\u2014';const dt=new Date(d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function deadlineColor(d){const days=daysUntil(d);if(days===null)return'var(--dim)';if(days<0)return'var(--rd)';if(days<=3)return'var(--or)';if(days<=7)return'var(--yl)';return'var(--gn)'}
+function stageClass(s){return 'b-'+(s||'lead').toLowerCase().replace(/[^a-z]/g,'')}
+function gradeClass(g){return 'b-'+(g||'').toLowerCase()}
+function renderKPIs(data){
+  const s=data.summary;const el=document.getElementById('kpi-row');
+  el.innerHTML='<div class="kc"><div class="lb">Total Deals</div><div class="vl" style="color:var(--ac)">'+s.total_deals+'</div><div class="sb">'+s.engaged+' engaged \u00b7 '+s.leads+' leads</div></div><div class="kc"><div class="lb">Revenue Closed</div><div class="vl" style="color:var(--gn)">$'+s.revenue_closed.toLocaleString()+'</div><div class="sb">invoiced</div></div><div class="kc"><div class="lb">Pipeline (Proposed)</div><div class="vl" style="color:var(--yl)">$'+s.revenue_pipeline.toLocaleString()+'</div><div class="sb">$5K/mo \u00d7 3 months</div></div><div class="kc"><div class="lb">90-Day EV</div><div class="vl" style="color:var(--cy)">$'+s.pipeline_ev_90day.toLocaleString()+'</div><div class="sb">probability-weighted</div></div><div class="kc"><div class="lb">Avg Deal Age</div><div class="vl" style="color:var(--pr)">'+Math.round(data.deals.reduce(function(a,d){return a+Math.max(0,-daysUntil(d.created))},0)/data.deals.length)+'d</div><div class="sb">since creation</div></div>';
+}
+function renderFunnel(data){
+  var counts={};STAGES.forEach(function(s){counts[s]=0});
+  data.deals.forEach(function(d){if(counts[d.stage]!==undefined)counts[d.stage]++});
+  var el=document.getElementById('funnel');
+  el.innerHTML=STAGES.map(function(s,i){
+    var c=STAGE_COLORS[s]||'107,114,128';
+    var names=data.deals.filter(function(d){return d.stage===s}).map(function(d){return d.client}).join(', ')||'\u2014';
+    return (i>0?'<div class="fa">\u2192</div>':'')+
+      '<div class="fs"><div class="sn">'+s+'</div><div class="bar" style="background:rgba('+c+',.2);color:rgba('+c+',1)" title="'+names+'">'+names+'</div><div class="ct" style="color:rgba('+c+',1)">'+counts[s]+'</div></div>';
+  }).join('');
+}
+function renderDeals(data){
+  var el=document.getElementById('deals');
+  el.innerHTML=data.deals.map(function(d){
+    var dlDays=daysUntil(d.deadline);
+    var dlText=d.deadline?(dlDays<0?Math.abs(dlDays)+'d overdue':dlDays===0?'Today':dlDays+'d left'):'No deadline';
+    var prod=d.product?'<div class="prod"><div style="font-weight:600;margin-bottom:.3rem;color:var(--ac)">'+d.product.name+'</div><div class="row"><span class="tag">'+d.product.files+' files</span><span class="tag">'+d.product.lines.toLocaleString()+' lines</span><span class="tag">'+d.product.tests+' tests</span>'+(d.product.live_url?'<span class="tag"><a href="'+d.product.live_url+'" target="_blank" style="color:var(--gn);text-decoration:none">Live \u2197</a></span>':'')+(d.product.telegram?'<span class="tag">'+d.product.telegram+'</span>':'')+'</div>'+(d.data_ingested?'<div style="font-size:.65rem;color:var(--dim);margin-top:.3rem">'+d.data_ingested.videos+' videos \u00b7 '+(d.data_ingested.words/1000).toFixed(0)+'K words \u00b7 '+d.data_ingested.hours+'hrs ingested</div>':'')+'</div>':'';
+    var risk=d.risk?'<div class="risk"><strong>Risk:</strong> '+d.risk+'</div>':'';
+    var stg=d.stage||'Lead';
+    var sc=stageClass(stg);
+    return '<div class="deal"><div class="deal-top"><div class="row"><div class="deal-name">'+d.client+'</div><span class="b '+sc+'">'+stg+'</span></div><div style="font-size:.75rem;color:var(--dim)">'+d.title.replace('[Client] ','')+'</div></div><div class="deal-body"><div class="field"><div class="fk">Revenue</div><div class="fv" style="color:'+(d.revenue?'var(--gn)':'var(--dim)')+'">'+(d.revenue||'\u2014')+'</div></div><div class="field"><div class="fk">Next</div><div class="fv">'+(d.next_action||'\u2014')+'</div></div><div class="field"><div class="fk">Deadline</div><div class="fv" style="color:'+deadlineColor(d.deadline)+'">'+fmtDate(d.deadline)+' <span style="font-size:.65rem;opacity:.7">('+dlText+')</span></div></div><div class="field"><div class="fk">Owner</div><div class="fv">'+(d.owner||'\u2014')+'</div></div><div class="field"><div class="fk">Grade</div><div class="fv"><span class="b '+gradeClass(d.grade)+'">'+(d.grade||'\u2014')+'</span></div></div>'+risk+prod+'</div><div class="deal-footer"><a href="'+d.url+'" target="_blank">#'+d.number+'</a><span style="color:var(--dim)">Created '+fmtDate(d.created)+'</span></div></div>';
+  }).join('');
+}
+function renderTable(data){
+  var tbody=document.getElementById('table-body');
+  tbody.innerHTML=data.deals.map(function(d){
+    return '<tr><td><strong>'+d.client+'</strong></td><td><span class="b '+stageClass(d.stage)+'">'+d.stage+'</span></td><td style="color:'+(d.revenue?'var(--gn)':'var(--dim)')+'">'+(d.revenue||'\u2014')+'</td><td style="max-width:200px">'+(d.next_action||'\u2014')+'</td><td style="color:'+deadlineColor(d.deadline)+'">'+fmtDate(d.deadline)+'</td><td>'+(d.owner||'\u2014')+'</td><td style="color:'+(d.risk?'var(--rd)':'var(--dim)')+'">'+(d.risk||'\u2014')+'</td><td><span class="b '+gradeClass(d.grade)+'">'+(d.grade||'\u2014')+'</span></td></tr>';
+  }).join('');
+}
+var PIPELINE_DATA = {
+  "project":{"title":"Client Pipeline","number":13,"url":"https://github.com/users/covaultxyz/projects/13","updated":"2026-03-22T04:00:00Z"},
+  "deals":[
+    {"number":1675,"title":"Denver Griffin \u2014 AI Coaching System Phase 0","url":"https://github.com/covaultxyz/meridian/issues/1675","state":"OPEN","created":"2026-03-22T03:44:34Z","client":"Denver Griffin","stage":"Engaged","status":"In Progress","revenue":"$2K retainer (invoiced) + $5K/mo proposed","next_action":"Confirm payment; follow up data handoff; P1 phone tests","deadline":"2026-04-04","owner":"Joint","risk":"Data handoff blocked; scope doc not written","grade":"B","product":{"name":"Shepherd","files":24,"lines":11052,"tests":369,"live_url":"https://shepherd-coach.onrender.com","telegram":"@SHEPHERD_DivorceStoppers_Bot"},"data_ingested":{"videos":115,"words":764077,"hours":66.4}},
+    {"number":1676,"title":"Gordon (GCC) \u2014 EHR System + Family Offices","url":"https://github.com/covaultxyz/meridian/issues/1676","state":"OPEN","created":"2026-03-22T03:44:50Z","client":"Gordon (GCC)","stage":"Lead","status":"Todo","revenue":null,"next_action":"Deep research EHR needs; schedule meeting after Gordon returns ~Mar 28","deadline":"2026-03-28","owner":"Bitler","risk":null,"grade":"D"},
+    {"number":1677,"title":"Brian Cook (StretchMed) \u2014 Prior Contact","url":"https://github.com/covaultxyz/meridian/issues/1677","state":"OPEN","created":"2026-03-22T03:44:56Z","client":"Brian Cook","stage":"Lead","status":"Todo","revenue":null,"next_action":"Re-engage via Bitler after Denver demo ships","deadline":null,"owner":"Bitler","risk":null,"grade":"D"}
+  ],
+  "stages":["Lead","Qualified","Discovery","Proposal","Engaged","Active","Completed","Lost"],
+  "summary":{"total_deals":3,"engaged":1,"leads":2,"revenue_closed":2000,"revenue_pipeline":15000,"pipeline_ev_90day":11375}
+};
+function load(){
+  var data = PIPELINE_DATA;
+  document.getElementById('updated').textContent='Updated '+fmtDate(data.project.updated);
+  document.getElementById('status-badge').textContent=data.deals.length+' DEALS';
+  renderKPIs(data);renderFunnel(data);renderDeals(data);renderTable(data);
+  document.getElementById('footer').textContent='MERIDIAN \u00b7 Client Pipeline \u00b7 Project #'+data.project.number+' \u00b7 '+data.deals.length+' deals \u00b7 Last updated '+fmtDate(data.project.updated);
+}
+load();
+</script>
+</body>
+</html>
+</body>
+</html>
