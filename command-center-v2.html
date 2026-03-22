@@ -1968,6 +1968,7 @@ var CustomersView = function(props) {
 
                     // Phase details (expanded)
                     isPhaseExpanded ? React.createElement('div', { className: 'border-t border-[#111827] px-3 pb-3 pt-2 space-y-3' },
+                      React.createElement(PhaseDependencyFlow, { phases: proj.phases || [] }),
                       (proj.phases || []).map(function(phase, phIdx) {
                         var phStatus = phase.status || 'pending';
                         var phColor = phStatus === 'active' ? '#22c55e' : (phStatus === 'completed' ? '#38bdf8' : (phStatus === 'planning' ? '#eab308' : '#8899aa'));
@@ -2049,6 +2050,8 @@ var CustomersView = function(props) {
               )
             ) : null,
 
+            cust.projects.length>0?React.createElement('div',null,cust.projects.map(function(rp,ri){return(rp.phases||[]).length>0?React.createElement(RevenueBreakdown,{key:ri,phases:rp.phases}):null;})):null,
+
             // Calls for this customer
             cust.calls.length > 0 ? React.createElement('div', { className: 'px-4 py-3 border-t border-[#1e2d4a]/30' },
               React.createElement('h4', { className: 'text-[10px] text-[#38bdf8] uppercase tracking-wider font-bold mb-2' }, 'Calls (' + cust.calls.length + ')'),
@@ -2080,6 +2083,121 @@ var CustomersView = function(props) {
       })
     )
   );
+};
+
+/* CUSTOMER HELPERS */
+function _custProj(data) {
+  var ps = ((data && data.projects) || {}).projects || [];
+  var ws = CONFIG.workspace || '';
+  if (ws && ws !== 'meridian') { for (var i=0;i<ps.length;i++) { if (ps[i]._client_slug===ws) return ps[i]; } }
+  return ps.length > 0 ? ps[0] : null;
+}
+function _phColor(st) { return st==='completed'?'#22c55e':(st==='active'||st==='in_progress'?'#38bdf8':'#6b7280'); }
+function _emptyView(t,s,msg){return h('div',{className:'space-y-6'},h(SectionHeader,{title:t,source:s}),h(GlassCard,{className:'p-8 text-center'},h('p',{className:'text-[#8899aa] text-sm'},msg)));}
+var h=React.createElement;
+
+/* PHASE DEP FLOW */
+var PhaseDependencyFlow = function(props) {
+  var phs=props.phases||[]; if(!phs.length) return null;
+  var pm={},ids=[];
+  phs.forEach(function(p,i){var id=p.id||('p-'+i);pm[id]=p;ids.push(id);});
+  var edges=[];
+  phs.forEach(function(p,i){var pid=p.id||('p-'+i);(p.depends_on||[]).forEach(function(d){var ds=typeof d==='string'?d:JSON.stringify(d);if(ids.indexOf(ds)!==-1)edges.push({f:ds,t:pid});});});
+  var dep={};ids.forEach(function(id){dep[id]=0;});
+  var ch=true,sf=0;while(ch&&sf<20){ch=false;sf++;edges.forEach(function(e){if(dep[e.t]<=dep[e.f]){dep[e.t]=dep[e.f]+1;ch=true;}});}
+  var mx=0;ids.forEach(function(id){if(dep[id]>mx)mx=dep[id];});
+  var cols=[];for(var c=0;c<=mx;c++)cols.push([]);
+  ids.forEach(function(id){cols[dep[id]].push(id);});
+  return h('div',{className:'mb-3 overflow-x-auto'},
+    h('div',{className:'text-[10px] text-[#8899aa] uppercase tracking-wider mb-1 font-bold'},'Dependency Flow'),
+    h('div',{className:'flex items-start gap-1'},cols.map(function(col,ci){
+      var it=[];if(ci>0)it.push(h('span',{key:'a'+ci,className:'self-center text-[#8899aa] opacity-40 px-0.5'},'\u2192'));
+      it.push(h('div',{key:'c'+ci,className:'flex flex-col gap-1'},col.map(function(id){var p=pm[id]||{},cl=_phColor(p.status);return h('div',{key:id,className:'px-2 py-0.5 rounded border text-[10px] font-semibold',style:{color:cl,borderColor:cl+'40'}},p.name||id);})));
+      return it;})));
+};
+
+/* REVENUE BREAKDOWN */
+var RevenueBreakdown = function(props) {
+  var phs=props.phases||[]; if(!phs.length) return null;
+  var tc=0,tp=0;
+  var rows=phs.map(function(p,i){var b=p.budget,bs=p.budget_status||'',bm=p.budget_model||'',bp=p.budget_proposed||'',d='',cl='#6b7280';
+    if(b!=null){d=fmtMoney(b);if(bs==='paid'){cl='#22c55e';tc+=b;}else if(bs==='invoiced'){cl='#eab308';tc+=b;}else if(bs==='proposed'||bm){cl='#8899aa';tp+=b;}else{tp+=b;}if(bm)d=d+'/'+bm;if(bs)d=d+' ('+bs+')';}else if(bp){d=String(bp);cl='#8899aa';}else{d='TBD';cl='#4b5563';}
+    return{n:p.name||p.id||('Phase '+i),d:d,c:cl};});
+  return h('div',{className:'px-4 py-2 border-t border-[#1e2d4a]/30'},
+    h('h4',{className:'text-[10px] text-[#38bdf8] uppercase tracking-wider font-bold mb-1'},'Revenue'),
+    h('div',null,rows.map(function(r,i){return h('div',{key:i,className:'text-[10px]'},h('span',{className:'text-[#8899aa]'},'\u251C '),h('span',null,r.n+': '),h('span',{style:{color:r.c}},r.d));})),
+    h('div',{className:'text-[10px] mt-1 pt-1 border-t border-white/5'},'\u2514 Total: ',h('span',{className:'text-[#22c55e]'},fmtMoney(tc)+' closed'),h('span',{className:'text-[#8899aa]'},' / '),h('span',{className:'text-[#eab308]'},fmtMoney(tp)+' pipeline')));
+};
+
+/* VIEW: MY AGENT */
+var MyAgentView = function(props) {
+  var d=props.data,s=props.source,proj=_custProj(d);
+  if(!proj) return _emptyView('My Agent',s,'Your agent is being configured');
+  var deals=((d&&d.pipeline)||{}).deals||[];
+  var deal=deals.find(function(dl){return dl.client===(proj._client_slug||'')||(dl.title&&dl.title.toLowerCase().indexOf((proj._client_slug||'').replace(/-/g,' '))!==-1);})||{};
+  var pr=deal.product||proj.product||null,di=deal.data_ingested||proj.data_ingested||null,fw=proj.frameworks||deal.frameworks||[];
+  var ps=proj.status||'unknown',pc=ps==='active'?'#22c55e':(ps==='planning'?'#eab308':'#8899aa');
+  return h('div',{className:'space-y-6'},
+    h(SectionHeader,{title:'My Agent',source:s}),
+    h(GlassCard,{className:'p-6'},
+      h('div',{className:'flex items-center justify-between mb-4'},h('h3',{className:'text-lg font-bold text-white'},pr?pr.name:(proj.name||'Agent')),h('span',{className:'text-[10px] font-semibold px-3 py-1 rounded-full border uppercase',style:{color:pc,background:pc+'18',borderColor:pc+'40'}},ps)),
+      pr?h('div',{className:'grid grid-cols-3 gap-3 mb-4'},pr.files?h(KPICard,{label:'Files',value:pr.files,color:'#38bdf8'}):null,pr.lines?h(KPICard,{label:'Lines',value:pr.lines.toLocaleString(),color:'#a78bfa'}):null,pr.tests?h(KPICard,{label:'Tests',value:pr.tests,color:'#22c55e'}):null):null,
+      h('div',{className:'flex gap-2 mb-4'},pr&&pr.live_url?h('a',{href:pr.live_url,target:'_blank',className:'text-xs px-3 py-1 rounded bg-sky-500/15 text-[#38bdf8] font-semibold'},'Live Demo'):null,pr&&pr.telegram_bot?h('a',{href:pr.telegram_bot,target:'_blank',className:'text-xs px-3 py-1 rounded bg-purple-500/15 text-[#a78bfa] font-semibold'},'Telegram Bot'):null),
+      di?h('div',{className:'mb-4'},h('h4',{className:'text-[10px] text-[#8899aa] uppercase tracking-wider font-bold mb-2'},'Data Ingested'),h('div',{className:'flex gap-4 text-xs'},h('span',{className:'text-[#38bdf8] font-bold'},(di.videos||0)+' videos'),h('span',{className:'text-[#a78bfa] font-bold'},((di.words||0)/1000).toFixed(0)+'K words'),h('span',{className:'text-[#22c55e] font-bold'},(di.hours||0)+'h'))):null,
+      fw.length>0?h('div',null,h('h4',{className:'text-[10px] text-[#8899aa] uppercase tracking-wider font-bold mb-2'},'Frameworks'),h('div',{className:'flex flex-wrap gap-1'},fw.map(function(f,i){return h('span',{key:i,className:'text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/10 text-[#06b6d4]'},typeof f==='string'?f:(f.name||''));}))):null));
+};
+
+/* VIEW: MY DATA */
+var MyDataView = function(props) {
+  var d=props.data,s=props.source,proj=_custProj(d);
+  if(!proj) return _emptyView('My Data',s,'Data ingestion will begin soon');
+  var phs=proj.phases||[],ap=null,np=null;
+  for(var j=0;j<phs.length;j++){if(phs[j].status==='active'||phs[j].status==='in_progress'){ap=phs[j];if(j+1<phs.length)np=phs[j+1];break;}}
+  if(!ap&&phs.length>0){ap=phs[0];if(phs.length>1)np=phs[1];}
+  var dls=ap?(ap.deliverables||[]):[],di=proj.data_ingested||{};
+  return h('div',{className:'space-y-6'},
+    h(SectionHeader,{title:'My Data',source:s}),
+    ap?h(GlassCard,{className:'p-6'},
+      h('h3',{className:'text-sm font-bold text-white mb-3'},'Current Phase: '+(ap.name||ap.id||'Active')),
+      h('div',{className:'flex items-center gap-2 mb-4'},h('div',{className:'flex-1 h-2 bg-[#1a2234] rounded-full overflow-hidden'},h('div',{className:'h-full rounded-full',style:{width:(ap.progress||0)+'%',background:'#38bdf8'}})),h('span',{className:'text-xs font-semibold text-[#38bdf8]'},(ap.progress||0)+'%')),
+      dls.length>0?h('div',{className:'mb-4'},h('h4',{className:'text-[10px] text-[#8899aa] uppercase tracking-wider font-bold mb-2'},'Deliverables'),h('div',{className:'space-y-1'},dls.map(function(dl,i){var dn=typeof dl==='string'?dl:(dl.name||dl.title||''),dd=typeof dl==='object'&&dl&&dl.status==='completed',db=typeof dl==='object'&&dl&&dl.status==='blocked',dc=dd?'#22c55e':(db?'#ef4444':'#8899aa');return h('div',{key:i,className:'flex items-center gap-2 py-0.5'},h('span',{style:{color:dc}},dd?'\u2713':(db?'\u26D4':'\u25CB')),h('span',{className:'text-xs '+(dd?'text-[#8899aa] line-through':'text-[#e2e8f0]')},dn));}))):null,
+      (di.videos||di.words||di.hours)?h('div',{className:'bg-[#1a2234] rounded-lg p-3 mb-4'},h('div',{className:'flex gap-4 text-xs'},h('span',null,(di.videos||0)+' videos'),h('span',{className:'text-[#8899aa]'},'|'),h('span',null,((di.words||0)/1000).toFixed(0)+'K words'),h('span',{className:'text-[#8899aa]'},'|'),h('span',null,(di.hours||0)+'h'))):null
+    ):null,
+    np?h(GlassCard,{className:'p-6'},h('h3',{className:'text-sm font-bold text-white mb-2'},"What's Next: "+(np.name||np.id||'Next Phase')),h('div',{className:'space-y-1'},(np.deliverables||[]).map(function(dl,i){var dn=typeof dl==='string'?dl:(dl.name||dl.title||'');return h('div',{key:i,className:'flex items-center gap-2 text-xs text-[#8899aa]'},h('span',null,'\u25CB'),h('span',null,dn));}),(!np.deliverables||np.deliverables.length===0)?h('p',{className:'text-xs text-[#8899aa]'},'Deliverables will be defined when this phase begins'):null)):null);
+};
+
+/* VIEW: MY ACTIVITY */
+var MyActivityView = function(props) {
+  var d=props.data,s=props.source,proj=_custProj(d);
+  var slug=proj?(proj._client_slug||''):(CONFIG.workspace||'');
+  var cc=((d&&d.calls_log)||{}).calls||[];
+  var sigs=((d&&d.calls)||{}).recent_signals||[];
+  var custCalls=cc.filter(function(c){return c.customer===slug;});
+  var custSigs=sigs.filter(function(sg){return sg.client===slug||(sg.client&&sg.client.replace(/-/g,' ')===slug.replace(/-/g,' '));});
+  var phs=proj?(proj.phases||[]):[];
+  return h('div',{className:'space-y-6'},
+    h(SectionHeader,{title:'My Activity',source:s}),
+    custCalls.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3'},'Recent Calls'),h('div',{className:'space-y-1'},custCalls.slice(0,15).map(function(c,i){return h('div',{key:i,className:'flex items-center gap-2 text-xs py-1.5 border-b border-white/5 last:border-0'},h('span',{className:'text-[#8899aa] shrink-0 w-20'},c.date||'--'),h('span',{className:'text-[#e2e8f0] flex-1 truncate'},c.title||'Call'),c.duration_min?h('span',{className:'text-[10px] text-[#8899aa] shrink-0'},c.duration_min+' min'):null);}))):h(GlassCard,{className:'p-6 text-center'},h('p',{className:'text-[#8899aa] text-sm'},'No calls recorded yet')),
+    custSigs.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3'},'Call Signals'),h('div',{className:'space-y-1'},custSigs.slice(0,10).map(function(sg,i){var ds=sg.deal_signals||{},bc=ds.buying_signal_count||0,oc=ds.objection_count||0,sn=ds.sentiment||sg.sentiment||'neutral',sc=sn==='positive'?'#22c55e':(sn==='negative'?'#ef4444':'#eab308');return h('div',{key:i,className:'flex items-center gap-2 py-1.5 border-b border-white/5'},h('span',{className:'text-xs text-white flex-1'},sg.title||'Call'),bc>0?h('span',{className:'text-[10px] px-1.5 rounded bg-green-500/10 text-[#22c55e]'},bc+' buy'):null,oc>0?h('span',{className:'text-[10px] px-1.5 rounded bg-orange-500/10 text-[#f97316]'},oc+' obj'):null,h('span',{className:'text-[10px] px-1.5 rounded-full',style:{color:sc,background:sc+'18'}},sn));}))):null,
+    phs.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3'},'Phase Progress'),h('div',{className:'space-y-2'},phs.map(function(ph,pi){var pc=_phColor(ph.status),pp=ph.progress||0;return h('div',{key:pi},h('div',{className:'flex items-center justify-between mb-0.5'},h('span',{className:'text-xs font-semibold',style:{color:pc}},ph.name||ph.id||'Phase'),h('span',{className:'text-[10px] text-[#8899aa]'},pp+'%')),h('div',{className:'h-1.5 bg-[#1a2234] rounded-full overflow-hidden'},h('div',{className:'h-full rounded-full',style:{width:pp+'%',background:pc}})));}))
+    ):null);
+};
+
+/* VIEW: MY REPORTS */
+var MyReportsView = function(props) {
+  var d=props.data,s=props.source,proj=_custProj(d);
+  if(!proj) return _emptyView('My Reports',s,'Reports will be available once your project begins');
+  var phs=proj.phases||[],bl=[],op=[];
+  phs.forEach(function(p){(p.blockers||[]).forEach(function(b){bl.push({ph:p.name||p.id||'Phase',t:typeof b==='string'?b:(b.text||b.description||'')});});(p.opportunities||[]).forEach(function(o){op.push({ph:p.name||p.id||'Phase',t:typeof o==='string'?o:(o.text||o.description||'')});});});
+  var tI=0,tP=0,tR=0;
+  phs.forEach(function(p){var b=p.budget||0;if(p.budget_status==='paid')tP+=b;else if(p.budget_status==='invoiced')tI+=b;else if(p.budget_status==='proposed')tR+=b;});
+  var op2=proj.overall_progress||0,hc=bl.length>2?'#ef4444':(bl.length>0?'#eab308':'#22c55e'),hl=bl.length>2?'At Risk':(bl.length>0?'Needs Attention':'On Track');
+  return h('div',{className:'space-y-6'},
+    h(SectionHeader,{title:'My Reports',source:s}),
+    h('div',{className:'grid grid-cols-2 md:grid-cols-4 gap-3'},h(KPICard,{label:'Overall Progress',value:op2+'%',color:'#38bdf8'}),h(KPICard,{label:'Project Health',value:hl,color:hc}),h(KPICard,{label:'Paid',value:fmtMoney(tP),color:'#22c55e'}),h(KPICard,{label:'Pipeline',value:fmtMoney(tI+tR),color:'#eab308'})),
+    phs.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3'},'Phase Progress'),h('div',{className:'space-y-2'},phs.map(function(p,i){var pp=p.progress||0,pc=_phColor(p.status);return h('div',{key:i},h('div',{className:'flex justify-between mb-0.5'},h('span',{className:'text-xs text-[#e2e8f0]'},p.name||p.id||'Phase'),h('span',{className:'text-[10px]',style:{color:pc}},pp+'%'+(p.budget!=null?' '+fmtMoney(p.budget):''))),h('div',{className:'h-2 bg-[#1a2234] rounded-full overflow-hidden'},h('div',{className:'h-full rounded-full',style:{width:pp+'%',background:pc}})));}))):null,
+    bl.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#ef4444] uppercase tracking-widest mb-3'},'Blockers ('+bl.length+')'),h('div',{className:'space-y-1'},bl.map(function(b,i){return h('div',{key:i,className:'text-xs text-[#ef4444] py-1 border-b border-white/5'},'\u26A0 '+b.t+' ('+b.ph+')');}))):null,
+    op.length>0?h(GlassCard,{className:'p-4'},h('h3',{className:'text-xs font-bold text-[#22c55e] uppercase tracking-widest mb-3'},'Opportunities ('+op.length+')'),h('div',{className:'space-y-1'},op.map(function(o,i){return h('div',{key:i,className:'text-xs text-[#22c55e] py-1 border-b border-white/5'},'\u2605 '+o.t+' ('+o.ph+')');}))):null);
 };
 
 /* MAIN APP */
@@ -2114,23 +2232,30 @@ var App = function() {
   function handleGatewayDisconnect() { localStorage.removeItem('mrd_gateway_url'); localStorage.removeItem('mrd_gateway_token'); CONFIG.gateway=''; loadData(); }
   var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer;
 
-  var TABS = [
+  var INTERNAL_TABS = [
     { id: 'dashboard', label: 'DASHBOARD' },
     { id: 'team', label: 'TEAM' },
-    { id: 'customers', label: effectiveCustomerMode ? 'MY PROJECTS' : 'CUSTOMERS' },
+    { id: 'customers', label: 'CUSTOMERS' },
     { id: 'pipeline', label: 'PIPELINE' },
     { id: 'operations', label: 'OPERATIONS' },
     { id: 'development', label: 'DEVELOPMENT' },
-    { id: 'intelligence', label: effectiveCustomerMode ? 'KNOWLEDGE' : 'INTELLIGENCE' },
+    { id: 'intelligence', label: 'INTELLIGENCE' },
     { id: 'calls', label: 'CALLS' },
     { id: 'tasks', label: 'TASKS' },
     { id: 'insights', label: 'INSIGHTS' },
     { id: 'sales', label: 'SALES' }
   ];
 
-  var visibleTabs = effectiveCustomerMode
-    ? TABS.filter(function(t) { return t.id !== 'development' && t.id !== 'insights' && t.id !== 'team'; })
-    : TABS;
+  var CUSTOMER_TABS = [
+    { id: 'dashboard', label: 'DASHBOARD' },
+    { id: 'myagent', label: 'MY AGENT' },
+    { id: 'mydata', label: 'MY DATA' },
+    { id: 'myactivity', label: 'MY ACTIVITY' },
+    { id: 'myreports', label: 'MY REPORTS' }
+  ];
+
+  var TABS = effectiveCustomerMode ? CUSTOMER_TABS : INTERNAL_TABS;
+  var visibleTabs = TABS;
 
   var loadData = useCallback(function() {
     setLoading(true);
@@ -2255,6 +2380,10 @@ var App = function() {
       case 'calls': return React.createElement(CallsView, { data: data, source: dataSource });
       case 'tasks': return React.createElement(TasksView, { data: data, source: dataSource });
       case 'insights': return React.createElement(InsightsView, { data: data, source: dataSource });
+      case 'myagent': return React.createElement(MyAgentView, { data: data, source: dataSource });
+      case 'mydata': return React.createElement(MyDataView, { data: data, source: dataSource });
+      case 'myactivity': return React.createElement(MyActivityView, { data: data, source: dataSource });
+      case 'myreports': return React.createElement(MyReportsView, { data: data, source: dataSource });
       default: return React.createElement(DashboardView, { data: data, source: dataSource });
     }
   }
