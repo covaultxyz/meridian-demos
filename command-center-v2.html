@@ -2640,7 +2640,18 @@ var App = function() {
   var _gm = useState(false); var gwModalOpen = _gm[0]; var setGwModalOpen = _gm[1];
   function handleGatewayConnect(u,t) { localStorage.setItem('mrd_gateway_url',u); if(t)localStorage.setItem('mrd_gateway_token',t); CONFIG.gateway=u; loadData(); }
   function handleGatewayDisconnect() { localStorage.removeItem('mrd_gateway_url'); localStorage.removeItem('mrd_gateway_token'); CONFIG.gateway=''; loadData(); }
-  var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer;
+  var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer || !!CONFIG.clientSlug;
+  var _ca = useState(function() { return !CONFIG.clientSlug || sessionStorage.getItem('meridian_auth_' + CONFIG.clientSlug) === 'true'; });
+  var clientAuthed = _ca[0]; var setClientAuthed = _ca[1];
+  var _co = useState(null); var clientOverview = _co[0]; var setClientOverview = _co[1];
+  useEffect(function() {
+    if (!CONFIG.clientSlug || !data) return;
+    var ov = data.overview || {};
+    setClientOverview(ov);
+    if (ov.primary_color) document.documentElement.style.setProperty('--brand-color', ov.primary_color);
+    if (ov.company_name) document.title = ov.company_name + ' \u2014 Command Center';
+    if (!ov.auth_pin) setClientAuthed(true);
+  }, [data]);
 
   var INTERNAL_TABS = [
     { id: 'dashboard', label: 'DASHBOARD' },
@@ -2741,8 +2752,20 @@ var App = function() {
     window.location.hash = id;
   }
 
-  if (!authed && CONFIG.mode !== 'mike') {
+  if (!authed && CONFIG.mode !== 'mike' && !CONFIG.clientSlug) {
     return React.createElement(AuthGate, { onAuth: function() { setAuthed(true); } });
+  }
+  if (CONFIG.clientSlug && !clientAuthed) {
+    var pinVal = clientOverview ? clientOverview.auth_pin : null;
+    if (!data || (loading && !clientOverview)) {
+      return React.createElement('div', { className: 'min-h-screen flex items-center justify-center' },
+        React.createElement('div', { className: 'w-8 h-8 border-2 border-[#1e2d4a] border-t-[#38bdf8] rounded-full mx-auto', style:{animation:'spin 0.8s linear infinite'} }));
+    }
+    return React.createElement(ClientAuthGate, {
+      expectedPin: pinVal, companyName: clientOverview ? clientOverview.company_name : CONFIG.clientSlug,
+      primaryColor: (clientOverview && clientOverview.primary_color) || '#38bdf8',
+      onAuth: function() { setClientAuthed(true); }
+    });
   }
 
   if (CONFIG.mode === 'mike') {
