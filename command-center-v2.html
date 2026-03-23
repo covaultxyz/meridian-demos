@@ -1584,6 +1584,33 @@ var CallIntelView = function(props) {
   var ci = (props.data && props.data.call_intelligence) || {};
   var ss = ci.signal_summary || {};
   var decisions = ci.decisions || [], commitments = ci.commitments || [], discoveries = ci.discoveries || [], actions = ci.action_items || [], sentiments = ci.sentiments || [];
+  var csuiteRaw = (props.data && props.data.csuite_audits) || {};
+  var csuiteAudits = csuiteRaw.audits || [];
+  var personaColors = { CEO: '#ef4444', CSO: '#22c55e', CFO: '#eab308', COO: '#38bdf8', CTO: '#a78bfa', CMO: '#f97316', CPO: '#06b6d4' };
+  function csuiteExtractBullets(obj) {
+    if (!obj || typeof obj !== 'object') return [];
+    var bullets = [];
+    var keys = Object.keys(obj);
+    for (var k = 0; k < keys.length; k++) {
+      var key = keys[k];
+      var val = obj[key];
+      if (typeof val === 'string' && val.length > 0 && val.length < 300) {
+        bullets.push(key.replace(/_/g, ' ') + ': ' + val);
+      } else if (Array.isArray(val)) {
+        for (var j = 0; j < val.length && j < 3; j++) {
+          var item = val[j];
+          if (typeof item === 'string') {
+            bullets.push(item);
+          } else if (item && typeof item === 'object') {
+            var txt = item.action || item.objection || item.name || item.what || '';
+            if (txt) bullets.push(txt);
+          }
+        }
+      }
+      if (bullets.length >= 4) break;
+    }
+    return bullets.slice(0, 4);
+  }
   return React.createElement('div', { className: 'space-y-4 mt-4' },
     React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-5 gap-3' },
       React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#f97316]' }, ss.total_objections || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Objections')),
@@ -1606,7 +1633,41 @@ var CallIntelView = function(props) {
     sentiments.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Sentiment Trend'),
       React.createElement('div', { className: 'flex gap-2 flex-wrap' }, sentiments.map(function(s, i) { var col = s.sentiment === 'positive' ? '#22c55e' : s.sentiment === 'negative' ? '#ef4444' : '#eab308'; return React.createElement('div', { key: i, className: 'text-center' }, React.createElement('div', { className: 'w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold', style: { background: col + '20', color: col } }, s.sentiment.charAt(0).toUpperCase()), React.createElement('div', { className: 'text-[8px] text-[#8899aa] mt-0.5' }, s.date.slice(5))); }))) : null,
-    (decisions.length + commitments.length + discoveries.length + actions.length) === 0 ? React.createElement(GlassCard, { className: 'p-8 text-center' }, React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'No call intelligence yet. Add decisions and discoveries to calls in project-registry.yaml')) : null);
+    csuiteAudits.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#ef4444] uppercase tracking-widest mb-3' }, 'C-Suite Insights (' + csuiteAudits.length + ' audits)'),
+      React.createElement('div', { className: 'space-y-4 max-h-[600px] overflow-y-auto' },
+        csuiteAudits.map(function(audit, ai) {
+          var cls = (audit.classification) || {};
+          var topic = cls.call_topic || 'Untitled call';
+          var personas = audit.persona_insights || {};
+          var personaNames = Object.keys(personas);
+          var client = audit._client || 'unknown';
+          var auditDate = audit.audited_at ? audit.audited_at.slice(0, 10) : '';
+          return React.createElement('div', { key: ai, className: 'border border-[#1e2d4a] rounded-lg p-3' },
+            React.createElement('div', { className: 'flex items-start justify-between mb-2' },
+              React.createElement('div', null,
+                React.createElement('div', { className: 'text-xs text-[#e2e8f0] font-semibold' }, topic),
+                React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-0.5' }, client + (auditDate ? ' \u2014 ' + auditDate : ''))),
+              React.createElement('div', { className: 'flex gap-1' },
+                personaNames.map(function(pn, pi) {
+                  var pc = personaColors[pn] || '#8899aa';
+                  return React.createElement('span', { key: pi, className: 'text-[9px] font-bold px-1.5 py-0.5 rounded', style: { background: pc + '20', color: pc } }, pn);
+                }))),
+            React.createElement('div', { className: 'grid gap-3 mt-2', style: { gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' } },
+              personaNames.map(function(pn, pi) {
+                var pc = personaColors[pn] || '#8899aa';
+                var bullets = csuiteExtractBullets(personas[pn]);
+                return React.createElement('div', { key: pi, className: 'space-y-1' },
+                  React.createElement('div', { className: 'text-[10px] font-bold uppercase tracking-wider', style: { color: pc } }, pn),
+                  bullets.length > 0 ? React.createElement('ul', { className: 'space-y-0.5' },
+                    bullets.map(function(b, bi) {
+                      return React.createElement('li', { key: bi, className: 'text-[11px] text-[#c8d6e5] leading-tight flex items-start gap-1' },
+                        React.createElement('span', { className: 'shrink-0 mt-1', style: { color: pc } }, '\u2022'),
+                        React.createElement('span', null, b));
+                    })) : React.createElement('div', { className: 'text-[10px] text-[#8899aa] italic' }, 'No insights'));
+              })));
+        }))) : null,
+    (decisions.length + commitments.length + discoveries.length + actions.length + csuiteAudits.length) === 0 ? React.createElement(GlassCard, { className: 'p-8 text-center' }, React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'No call intelligence yet. Add decisions and discoveries to calls in project-registry.yaml')) : null);
 };
 
 /* VIEW: CALLS */
