@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN AI Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: #f8fafc; color: #1e293b; }
+        .gradient-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 70%, #4338ca 100%);
+        }
+        .tier-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tier-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+            border-color: #c7d2fe;
+        }
+        .tier-card.featured {
+            border: 2px solid #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+        }
+        .tier-card.featured:hover {
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08), 0 20px 40px -12px rgba(99, 102, 241, 0.2);
+        }
+        .buy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .buy-btn-primary {
+            background: #4f46e5;
+            color: #ffffff;
+        }
+        .buy-btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+        }
+        .buy-btn-outline {
+            background: #ffffff;
+            color: #4f46e5;
+            border: 2px solid #c7d2fe;
+        }
+        .buy-btn-outline:hover {
+            background: #eef2ff;
+            border-color: #6366f1;
+            transform: translateY(-1px);
+        }
+        .service-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .feature-check {
+            color: #22c55e;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+        .badge-popular {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        .section-divider {
+            width: 4rem;
+            height: 3px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border-radius: 2px;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        .animate-in:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in:nth-child(3) { animation-delay: 0.3s; }
+        .animate-in:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="gradient-header text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Nav -->
+            <nav class="flex items-center justify-between py-5">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-lg bg-white/10 backdrop-blur flex items-center justify-center">
+                        <i class="fas fa-bolt text-indigo-300"></i>
+                    </div>
+                    <span class="text-lg font-bold tracking-tight">MERIDIAN</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#services" class="text-sm text-indigo-200 hover:text-white transition hidden sm:inline">Services</a>
+                    <a href="#contact" class="text-sm text-indigo-200 hover:text-white transition hidden sm:inline">Contact</a>
+                    <a href="command-center-v2.html" class="text-sm text-indigo-200 hover:text-white transition hidden sm:inline">Dashboard</a>
+                </div>
+            </nav>
+
+            <!-- Hero -->
+            <div class="py-16 sm:py-24 text-center">
+                <p class="text-indigo-300 text-sm font-semibold tracking-widest uppercase mb-4">AI-Powered Business Intelligence</p>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Intelligence That<br>
+                    <span class="bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 text-transparent bg-clip-text">Works While You Sleep</span>
+                </h1>
+                <p class="text-indigo-200 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                    From websites to competitive intelligence to live dashboards &mdash; MERIDIAN deploys autonomous AI systems that deliver results, not just reports.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#services" class="buy-btn buy-btn-primary text-base px-8 py-3">
+                        <i class="fas fa-arrow-down text-sm"></i> View Services
+                    </a>
+                    <a href="#contact" class="buy-btn bg-white/10 backdrop-blur text-white border border-white/20 hover:bg-white/20 text-base px-8 py-3">
+                        <i class="fas fa-envelope text-sm"></i> Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services -->
+    <main id="services" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+
+        <!-- Section 1: AI Website Generation -->
+        <section class="mb-20 sm:mb-28">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="service-icon bg-blue-50 text-blue-600">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">AI Website Generation</h2>
+            </div>
+            <div class="section-divider mb-3"></div>
+            <p class="text-slate-500 text-base sm:text-lg mb-10 max-w-2xl">
+                Production-ready websites built by AI agents &mdash; designed, written, and deployed in hours, not weeks.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Starter -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Starter</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$500</span>
+                            <span class="text-slate-400 text-sm">one-time</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Single-page site</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 1 template design</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Hosting included</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Mobile responsive</li>
+                    </ul>
+                    <a id="stripe-website-starter" href="#stripe-starter" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+
+                <!-- Professional -->
+                <div class="tier-card featured p-6 animate-in flex flex-col relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="badge-popular">Most Popular</span>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Professional</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-indigo-600">$1,000</span>
+                            <span class="text-slate-400 text-sm">one-time</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Custom content &amp; copy</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 2 design revisions</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> SEO optimization</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Hosting included</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Analytics setup</li>
+                    </ul>
+                    <a id="stripe-website-professional" href="#stripe-professional" class="buy-btn buy-btn-primary justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+
+                <!-- Premium -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Premium</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$2,000</span>
+                            <span class="text-slate-400 text-sm">one-time</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Multi-section site</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Custom copywriting</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Advanced analytics</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 30-day support</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Hosting included</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Performance tuning</li>
+                    </ul>
+                    <a id="stripe-website-premium" href="#stripe-premium" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Competitive Intelligence Reports -->
+        <section class="mb-20 sm:mb-28">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="service-icon bg-amber-50 text-amber-600">
+                    <i class="fas fa-binoculars"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Competitive Intelligence Reports</h2>
+            </div>
+            <div class="section-divider mb-3"></div>
+            <p class="text-slate-500 text-base sm:text-lg mb-10 max-w-2xl">
+                AI-driven competitor analysis with real data &mdash; SWOT frameworks, sentiment scoring, and actionable positioning insights.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Quick Scan -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Quick Scan</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$200</span>
+                            <span class="text-slate-400 text-sm">per report</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 3 competitors analyzed</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> SWOT framework</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 24&ndash;48 hour delivery</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> PDF &amp; slides</li>
+                    </ul>
+                    <a id="stripe-intel-quickscan" href="#stripe-quickscan" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+
+                <!-- Deep Dive -->
+                <div class="tier-card featured p-6 animate-in flex flex-col relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="badge-popular">Best Value</span>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Deep Dive</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-indigo-600">$350</span>
+                            <span class="text-slate-400 text-sm">per report</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 5&ndash;8 competitors analyzed</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Sentiment analysis</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Market positioning map</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 3&ndash;5 day delivery</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> PDF, slides &amp; data</li>
+                    </ul>
+                    <a id="stripe-intel-deepdive" href="#stripe-deepdive" class="buy-btn buy-btn-primary justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+
+                <!-- Full Brief -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Full Brief</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$500</span>
+                            <span class="text-slate-400 text-sm">per report</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 10+ competitors analyzed</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Multi-source intelligence</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Quarterly refresh option</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Strategy recommendations</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Executive summary</li>
+                    </ul>
+                    <a id="stripe-intel-fullbrief" href="#stripe-fullbrief" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: AI Marketing Content System -->
+        <section class="mb-20 sm:mb-28">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="service-icon bg-green-50 text-green-600">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">AI Marketing Content System</h2>
+            </div>
+            <div class="section-divider mb-3"></div>
+            <p class="text-slate-500 text-base sm:text-lg mb-10 max-w-2xl">
+                Consistent, on-brand content produced autonomously &mdash; posts, newsletters, and email sequences powered by your business context.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Starter -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Starter</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$500</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 12 posts per month</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 1 platform</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Brand voice calibration</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Content calendar</li>
+                    </ul>
+                    <a id="stripe-marketing-starter" href="#stripe-marketing-starter" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+
+                <!-- Pro -->
+                <div class="tier-card featured p-6 animate-in flex flex-col relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="badge-popular">Most Popular</span>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Pro</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-indigo-600">$1,000</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 20 posts per month</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 2 platforms</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Weekly newsletter</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Performance analytics</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Brand voice calibration</li>
+                    </ul>
+                    <a id="stripe-marketing-pro" href="#stripe-marketing-pro" class="buy-btn buy-btn-primary justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+
+                <!-- Full Stack -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Full Stack</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$2,000</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 30 posts per month</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 3 platforms</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Email sequences</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Monthly strategy call</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Newsletter + blog</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Dedicated account manager</li>
+                    </ul>
+                    <a id="stripe-marketing-fullstack" href="#stripe-marketing-fullstack" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Live BI Dashboard -->
+        <section class="mb-20 sm:mb-28">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="service-icon bg-purple-50 text-purple-600">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">Live BI Dashboard</h2>
+            </div>
+            <div class="section-divider mb-3"></div>
+            <p class="text-slate-500 text-base sm:text-lg mb-10 max-w-2xl">
+                Real-time business intelligence dashboards that surface signals, track KPIs, and drive decisions &mdash; updated automatically.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Essentials -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Essentials</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$300</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 4 dashboard views</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Daily data refresh</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Mobile responsive</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Export to PDF</li>
+                    </ul>
+                    <a id="stripe-dashboard-essentials" href="#stripe-dashboard-essentials" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+
+                <!-- Professional -->
+                <div class="tier-card featured p-6 animate-in flex flex-col relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                        <span class="badge-popular">Recommended</span>
+                    </div>
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Professional</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-indigo-600">$600</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> 11 dashboard views</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Hourly data refresh</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Call signal alerts</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Team access (5 seats)</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Slack/email notifications</li>
+                    </ul>
+                    <a id="stripe-dashboard-professional" href="#stripe-dashboard-professional" class="buy-btn buy-btn-primary justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="tier-card p-6 animate-in flex flex-col">
+                    <div class="mb-5">
+                        <h3 class="text-lg font-bold text-slate-900">Enterprise</h3>
+                        <div class="flex items-baseline gap-1 mt-2">
+                            <span class="text-3xl font-extrabold text-slate-900">$1,000</span>
+                            <span class="text-slate-400 text-sm">/month</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-1">
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Custom views &amp; KPIs</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> White-label branding</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> API access</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Real-time streaming</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Unlimited seats</li>
+                        <li class="flex gap-2 text-sm text-slate-600"><i class="fas fa-check feature-check"></i> Dedicated support</li>
+                    </ul>
+                    <a id="stripe-dashboard-enterprise" href="#stripe-dashboard-enterprise" class="buy-btn buy-btn-outline justify-center w-full">
+                        <i class="fas fa-shopping-cart text-xs"></i> Subscribe
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom / Contact -->
+        <section id="contact" class="mb-16">
+            <div class="tier-card p-8 sm:p-12 text-center" style="background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); border-color: #c7d2fe;">
+                <div class="service-icon bg-indigo-100 text-indigo-600 mx-auto mb-5">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">Need Something Custom?</h2>
+                <p class="text-slate-500 text-base sm:text-lg max-w-xl mx-auto mb-8">
+                    Every business is different. Let's talk about what MERIDIAN can build specifically for yours &mdash; from bespoke AI pipelines to full-stack intelligence systems.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="mailto:alex@covault.xyz" class="buy-btn buy-btn-primary text-base px-8 py-3">
+                        <i class="fas fa-envelope text-sm"></i> alex@covault.xyz
+                    </a>
+                    <a href="https://calendly.com" class="buy-btn buy-btn-outline text-base px-8 py-3" target="_blank" rel="noopener">
+                        <i class="fas fa-calendar text-sm"></i> Book a Call
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-bolt text-indigo-500 text-sm"></i>
+                    <span class="text-sm font-semibold text-slate-700">MERIDIAN</span>
+                    <span class="text-sm text-slate-400">&middot; AI-Powered Business Intelligence</span>
+                </div>
+                <div class="flex items-center gap-6 text-sm text-slate-400">
+                    <a href="https://github.com/covaultxyz" class="hover:text-slate-600 transition" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:alex@covault.xyz" class="hover:text-slate-600 transition">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <span>&copy; 2026 CoVault</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer for scroll animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-in').forEach(function(el) {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    var target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
