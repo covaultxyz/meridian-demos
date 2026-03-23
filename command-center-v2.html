@@ -307,18 +307,18 @@ var SearchBar = function(props) {
     if (!data) return [];
     var idx = [];
     function add(icon,title,sub,tab,mt) { idx.push({icon:icon,title:title,subtitle:sub,tab:tab,matchText:mt}); }
-    ((data.pipeline||{}).deals||[]).forEach(function(d) { add('\uD83D\uDCBC',d.title||d.client||'','Pipeline - '+(d.stage||''),'pipeline',(d.title||'')+' '+(d.client||'')+' '+(d.stage||'')); });
-    ((data.team||{}).members||[]).forEach(function(m) { add('\uD83D\uDC64',m.name||m.id||'','Team - '+(m.role||''),'team',(m.name||'')+' '+(m.id||'')+' '+(m.role||'')); });
+    ((data.pipeline||{}).deals||[]).forEach(function(d) { add('\uD83D\uDCBC',d.title||d.client||'','Pipeline - '+(d.stage||''),'deals',(d.title||'')+' '+(d.client||'')+' '+(d.stage||'')); });
+    ((data.team||{}).members||[]).forEach(function(m) { add('\uD83D\uDC64',m.name||m.id||'','Team - '+(m.role||''),'dashboard',(m.name||'')+' '+(m.id||'')+' '+(m.role||'')); });
     ((data.projects||{}).projects||[]).forEach(function(p) {
-      add('\uD83D\uDCC1',p.name||p._file||'','Customer - '+(p._client_slug||''),'customers',(p.name||'')+' '+(p._client_slug||''));
-      (p.phases||[]).forEach(function(ph) { add('\uD83D\uDCC5',(ph.name||ph.id||'')+' ('+p.name+')','Phase','customers',(ph.name||'')+' '+(p.name||'')); });
+      add('\uD83D\uDCC1',p.name||p._file||'','Customer - '+(p._client_slug||''),'deals',(p.name||'')+' '+(p._client_slug||''));
+      (p.phases||[]).forEach(function(ph) { add('\uD83D\uDCC5',(ph.name||ph.id||'')+' ('+p.name+')','Phase','deals',(ph.name||'')+' '+(p.name||'')); });
     });
     ((data.calls||{}).recent_signals||[]).forEach(function(s) { var cn=s.client?s.client.replace(/-/g,' '):''; add('\uD83D\uDCDE',cn+(s.title?' - '+s.title:''),'Calls','calls',cn+' '+(s.title||'')); });
     ((data.calls||{}).clients||[]).forEach(function(c) { add('\uD83D\uDC64',c.name||c.slug||'','Client','calls',(c.name||'')+' '+(c.slug||'')); });
-    ((data.sales||{}).opportunities||[]).forEach(function(o) { add('\uD83D\uDCB0',o.name||'','Sales - '+(o.stage||''),'sales',(o.name||'')+' '+(o.stage||'')); });
-    ((data.development||{}).recent_issues||[]).forEach(function(i) { add('\uD83D\uDCCB','#'+i.number+' '+(i.title||''),'Development','development',(i.title||'')+' '+i.number); });
+    ((data.sales||{}).opportunities||[]).forEach(function(o) { add('\uD83D\uDCB0',o.name||'','Sales - '+(o.stage||''),'deals',(o.name||'')+' '+(o.stage||'')); });
+    ((data.development||{}).recent_issues||[]).forEach(function(i) { add('\uD83D\uDCCB','#'+i.number+' '+(i.title||''),'Development','work',(i.title||'')+' '+i.number); });
     var reg=(data.registry||{});
-    (reg.projects||[]).forEach(function(p) { var tab=p.type==='client'?'customers':'products'; add('\uD83D\uDCC1',p.name||'','Product - '+(p.type||''),''+tab,(p.name||'')+' '+(p.type||'')+' '+(p.owner||'')+' '+(p.phase||'')); });
+    (reg.projects||[]).forEach(function(p) { var tab=p.type==='client'?'deals':'work'; add('\uD83D\uDCC1',p.name||'','Product - '+(p.type||''),''+tab,(p.name||'')+' '+(p.type||'')+' '+(p.owner||'')+' '+(p.phase||'')); });
     (reg.calls||[]).forEach(function(c) { add('\uD83D\uDCDE',c.title||'Call','Calls - '+(c.type||''),'calls',(c.title||'')+' '+(c.customer||'')+' '+(c.type||'')); });
     return idx;
   }
@@ -470,122 +470,235 @@ var AuthGate = function(props) {
   );
 };
 
-/* VIEW: DASHBOARD */
+/* VIEW: DASHBOARD (Leadership Home) */
 var DashboardView = function(props) {
   var data = props.data;
   var source = props.source;
   var onNavigate = props.onNavigate;
-  var ops = data && data.operations ? data.operations : {};
-  var dev = data && data.development ? data.development : {};
-  var intel = data && data.intelligence ? data.intelligence : {};
-  var migLive = intel.mig_live || ops.mig_live || {};
   var reg = (data && data.registry) || {};
   var regProjects = reg.projects || [];
   var regCalls = reg.calls || [];
   var regSummary = reg.summary || {};
+  var pipeline = (data && data.pipeline) || {};
+  var teamSection = (data && data.team) || {};
+  var members = teamSection.members || [];
+  var dev = (data && data.development) || {};
+  var recentIssues = dev.recent_issues || [];
+  var ops = (data && data.operations) || {};
 
-  var totalProjects=regProjects.length||0,clientCount=0,internalCount=0,activeCount=0,blockedCount=0,shippedCount=0;
-  regProjects.forEach(function(p){if(p.type==='client')clientCount++;else internalCount++;var st=(p.status||'').toLowerCase();if(st==='active'||st==='in_progress')activeCount++;else if(st==='blocked')blockedCount++;else if(st==='shipped'||st==='completed'||st==='live')shippedCount++;});
-  var pipeline=(data&&data.pipeline)||{};
-  var revClosed=(regSummary.revenue_closed!=null)?regSummary.revenue_closed:(pipeline.revenue_closed||0);
-  var revPipeline=(regSummary.revenue_pipeline!=null)?regSummary.revenue_pipeline:(pipeline.total_weighted_pipeline||0);
-  var now=new Date(),callsThisMonth=0;
-  regCalls.forEach(function(c){if(!c.date)return;var d=new Date(c.date);if(d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear())callsThisMonth++;});
-  var teamSection=(data&&data.team)||{},teamCount=(teamSection.members||[]).length||3;
-  var memoryCount=migLive.memory_count||'---';
-  var activeDaemons=(data&&data.daemons?data.daemons.filter(function(d){return d.status==='online';}).length:0);
-  var totalDaemons=(data&&data.daemons?data.daemons.length:0);
-  var openIssues=dev.open_issues?dev.open_issues.total:0;
-  var daemons=data&&data.daemons?data.daemons:[],daemonTasks=ops.daemon_tasks||[];
-  var recentIssues=dev.recent_issues?dev.recent_issues.slice(0,10):[];
-  var clientProjects=regProjects.filter(function(p){return p.type==='client';});
-  var internalProjects=regProjects.filter(function(p){return p.type!=='client';});
+  // Revenue KPI
+  var revClosed = (regSummary.revenue_closed != null) ? regSummary.revenue_closed : (pipeline.revenue_closed || 0);
+  var revPipeline = (regSummary.revenue_pipeline != null) ? regSummary.revenue_pipeline : (pipeline.total_weighted_pipeline || 0);
+  var revColor = revClosed > 0 ? '#22c55e' : (revPipeline > 0 ? '#eab308' : '#ef4444');
 
-  var _e=React.createElement;
-  function projTypeBadge(t){var cm={client:'#22c55e',internal:'#38bdf8',research:'#a78bfa',blocked:'#ef4444'},c=cm[t]||'#8899aa';return _e('span',{className:'text-[8px] font-bold uppercase px-1.5 py-0.5 rounded',style:{color:c,background:c+'15'}},t);}
-  function projStatusDot(s){var st=(s||'').toLowerCase();if(st==='active'||st==='in_progress')return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-green-400 shrink-0'});if(st==='blocked')return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-red-400 shrink-0'});if(st==='shipped'||st==='completed'||st==='live')return _e('span',{className:'text-[10px] text-green-400 shrink-0'},'\u2713');return _e('span',{className:'w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0'});}
-  function renderProjectCard(p,i){var pg=p.progress||0,tt=p.type==='client'?'customers':'products',bc=p.type==='client'?'#22c55e':'#38bdf8';return _e('div',{key:i,className:'bg-[#1a2234] rounded-lg p-2 cursor-pointer hover:bg-[#1e2740] transition-colors min-w-0',onClick:function(){if(onNavigate)onNavigate(tt);}},_e('div',{className:'flex items-center gap-1.5 mb-1'},projStatusDot(p.status),_e('span',{className:'text-[11px] font-semibold text-[#e2e8f0] truncate flex-1'},p.name||'Untitled'),projTypeBadge(p.type)),_e('div',{className:'h-1 bg-[#111827] rounded-full overflow-hidden'},_e('div',{className:'h-full rounded-full transition-all',style:{width:Math.min(pg,100)+'%',background:bc}})),_e('div',{className:'flex items-center justify-between mt-0.5'},p.owner?_e('span',{className:'text-[8px] text-[#8899aa] truncate'},p.owner):_e('span',null),_e('span',{className:'text-[8px] text-[#8899aa]'},pg+'%')));}
+  // Projects KPI
+  var activeCount = 0, blockedCount = 0;
+  regProjects.forEach(function(p) {
+    var st = (p.status || '').toLowerCase();
+    if (st === 'active' || st === 'in_progress') activeCount++;
+    else if (st === 'blocked') blockedCount++;
+  });
+  var projColor = blockedCount === 0 ? '#22c55e' : (blockedCount === 1 ? '#eab308' : '#ef4444');
 
-  var hasRegistry = regProjects.length > 0;
+  // Attention KPI — read from data.attention if available, else derive
+  var attentionData = (data && data.attention) || null;
+  var attItems = attentionData ? (attentionData.items || []) : [];
+  var attRedCount = attentionData ? (attentionData.red_count || 0) : 0;
+  var attYellowCount = attentionData ? (attentionData.yellow_count || 0) : 0;
+  // Fallback: derive attention from blockers/deadlines if no attention section
+  if (!attentionData) {
+    var now = new Date();
+    regProjects.forEach(function(p) {
+      (p.phases || []).forEach(function(ph) {
+        if ((ph.blockers || []).length > 0) {
+          attItems.push({ type: 'blocker', severity: 'red', title: (p.name || 'Project') + ' - ' + (ph.name || 'Phase'), description: (ph.blockers || []).length + ' blocker(s)' });
+          attRedCount++;
+        }
+        if (ph.deadline) {
+          var dl = new Date(ph.deadline);
+          if (!isNaN(dl.getTime())) {
+            var dd = Math.ceil((dl.getTime() - now.getTime()) / 86400000);
+            if (dd < 0) { attItems.push({ type: 'deadline', severity: 'red', title: (p.name || 'Project') + ' - ' + (ph.name || 'Phase'), description: 'Overdue by ' + Math.abs(dd) + ' days' }); attRedCount++; }
+            else if (dd <= 7) { attItems.push({ type: 'deadline', severity: 'yellow', title: (p.name || 'Project') + ' - ' + (ph.name || 'Phase'), description: 'Due in ' + dd + ' days' }); attYellowCount++; }
+          }
+        }
+      });
+    });
+    if (blockedCount > 0) { attItems.push({ type: 'project', severity: blockedCount >= 2 ? 'red' : 'orange', title: blockedCount + ' blocked project(s)', description: 'Review blocked projects in Work tab' }); if (blockedCount >= 2) attRedCount++; }
+  }
+  var attColor = attRedCount === 0 ? '#22c55e' : (attRedCount <= 2 ? '#eab308' : '#ef4444');
+
+  // Attention dismissals
+  var _attDismissed = useState(function() { try { return JSON.parse(sessionStorage.getItem('mrd_dash_att_dismissed') || '{}'); } catch(e) { return {}; } });
+  var attDismissed = _attDismissed[0]; var setAttDismissed = _attDismissed[1];
+  function dismissAtt(idx) { var n = {}; for (var k in attDismissed) n[k] = attDismissed[k]; n[idx] = true; setAttDismissed(n); try { sessionStorage.setItem('mrd_dash_att_dismissed', JSON.stringify(n)); } catch(e) {} }
+
+  // Sort attention: red first, then orange, then yellow
+  var sevOrder = { red: 0, orange: 1, yellow: 2 };
+  var sortedAtt = attItems.slice().sort(function(a, b) { return (sevOrder[a.severity] || 3) - (sevOrder[b.severity] || 3); });
+  var visibleAtt = sortedAtt.filter(function(_, i) { return !attDismissed[i]; });
+  var shownAtt = visibleAtt.slice(0, 5);
+  var extraAtt = visibleAtt.length - 5;
+
+  // Timeline — read from data.timeline if available, else derive from recent issues/commits
+  var timelineData = (data && data.timeline) || null;
+  var timelineEvents = timelineData ? (timelineData.events || []) : [];
+  if (!timelineData) {
+    recentIssues.slice(0, 10).forEach(function(issue) {
+      timelineEvents.push({ type: 'issue', date: issue.created_at, title: '#' + issue.number + ' ' + (issue.title || ''), detail: '', url: issue.url });
+    });
+    regCalls.slice(0, 5).forEach(function(c) {
+      timelineEvents.push({ type: 'call', date: c.date, title: c.title || 'Call', detail: c.customer ? c.customer.replace(/-/g, ' ') : '' });
+    });
+    var commits = (dev.recent_commits || []).slice(0, 5);
+    commits.forEach(function(c) {
+      timelineEvents.push({ type: 'commit', date: c.date, title: c.message || '', detail: c.author || '' });
+    });
+    timelineEvents.sort(function(a, b) {
+      var da = a.date ? new Date(a.date).getTime() : 0;
+      var db = b.date ? new Date(b.date).getTime() : 0;
+      return db - da;
+    });
+  }
+  var shownTimeline = timelineEvents.slice(0, 10);
+
+  // Severity dot color
+  function sevDotColor(sev) {
+    if (sev === 'red') return '#ef4444';
+    if (sev === 'orange') return '#f97316';
+    if (sev === 'yellow') return '#eab308';
+    return '#8899aa';
+  }
+
+  // Timeline type icon
+  function timeIcon(type) {
+    if (type === 'commit') return '\u2022';
+    if (type === 'call') return '\u260E';
+    if (type === 'issue') return '\u2611';
+    return '\u25AA';
+  }
 
   return React.createElement('div', { className: 'space-y-6' },
     React.createElement(SectionHeader, { title: 'Dashboard', source: source }),
 
-    // Top KPI row
-    hasRegistry ? React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-5 gap-3' },
-      React.createElement(KPICard, { label: 'Total Projects', value: totalProjects, color: '#38bdf8', sub: clientCount + ' client / ' + internalCount + ' internal' }),
-      React.createElement(KPICard, { label: 'Active / Blocked / Shipped', value: activeCount + ' / ' + blockedCount + ' / ' + shippedCount, color: '#22c55e' }),
-      React.createElement(KPICard, { label: 'Revenue', value: fmtMoney(revClosed) + ' closed', color: '#a78bfa', sub: fmtMoney(revPipeline) + ' pipeline' }),
-      React.createElement(KPICard, { label: 'Calls This Month', value: callsThisMonth, color: '#06b6d4', sub: regCalls.length + ' total' }),
-      React.createElement(KPICard, { label: 'Team Members', value: teamCount, color: '#eab308' })
-    ) : React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
-      React.createElement(KPICard, { label: 'Memory Nodes', value: typeof memoryCount === 'number' ? memoryCount.toLocaleString() : memoryCount, color: '#a78bfa' }),
-      React.createElement(KPICard, { label: 'Running Programs', value: activeDaemons + '/' + totalDaemons, color: '#22c55e', sub: 'online' }),
-      React.createElement(KPICard, { label: 'Open Tasks', value: openIssues, color: '#38bdf8' }),
-      React.createElement(KPICard, { label: 'Active Sessions', value: (ops.active_sessions ? ops.active_sessions.length : 0), color: '#06b6d4' })
-    ),
-
-    // Project Health Grid
-    hasRegistry ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Project Health'),
-
-      // Client Projects section
-      clientProjects.length > 0 ? React.createElement('div', { className: 'mb-4' },
-        React.createElement('div', { className: 'text-[10px] text-[#22c55e] uppercase tracking-wider font-bold mb-2' }, 'Client Projects'),
-        React.createElement('div', { className: 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2' },
-          clientProjects.map(function(p, i) { return renderProjectCard(p, 'c-' + i); })
+    // Row 1: 3 Large KPI Cards
+    React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-4' },
+      // Revenue card
+      React.createElement(GlassCard, { className: 'p-6 text-center cursor-pointer hover:bg-white/[0.02] transition-colors', onClick: function() { if (onNavigate) onNavigate('deals'); } },
+        React.createElement('div', { className: 'text-[10px] uppercase tracking-widest text-[#8899aa] mb-2' }, 'Revenue'),
+        React.createElement('div', { className: 'text-3xl font-bold mb-1', style: { color: revColor } },
+          fmtMoney(revClosed) + ' / ' + fmtMoney(revPipeline)
+        ),
+        React.createElement('div', { className: 'text-[10px] text-[#8899aa] mb-2' }, 'closed / pipeline'),
+        React.createElement('div', { className: 'flex items-center justify-center gap-1.5' },
+          React.createElement('span', { className: 'w-2 h-2 rounded-full', style: { background: revColor } }),
+          React.createElement('span', { className: 'text-[10px] font-semibold', style: { color: revColor } },
+            revClosed > 0 ? 'Revenue closed' : (revPipeline > 0 ? 'Pipeline only' : 'No revenue'))
         )
-      ) : null,
-
-      // Internal Products section
-      internalProjects.length > 0 ? React.createElement('div', null,
-        React.createElement('div', { className: 'text-[10px] text-[#38bdf8] uppercase tracking-wider font-bold mb-2' }, 'Internal Products'),
-        React.createElement('div', { className: 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2' },
-          internalProjects.map(function(p, i) { return renderProjectCard(p, 'i-' + i); })
+      ),
+      // Projects card
+      React.createElement(GlassCard, { className: 'p-6 text-center cursor-pointer hover:bg-white/[0.02] transition-colors', onClick: function() { if (onNavigate) onNavigate('work'); } },
+        React.createElement('div', { className: 'text-[10px] uppercase tracking-widest text-[#8899aa] mb-2' }, 'Projects'),
+        React.createElement('div', { className: 'text-3xl font-bold mb-1', style: { color: projColor } },
+          activeCount + ' Active'
+        ),
+        React.createElement('div', { className: 'text-[10px] text-[#8899aa] mb-2' },
+          blockedCount + ' blocked' + ' / ' + regProjects.length + ' total'
+        ),
+        React.createElement('div', { className: 'flex items-center justify-center gap-1.5' },
+          React.createElement('span', { className: 'w-2 h-2 rounded-full', style: { background: projColor } }),
+          React.createElement('span', { className: 'text-[10px] font-semibold', style: { color: projColor } },
+            blockedCount === 0 ? 'All clear' : (blockedCount + ' blocked'))
         )
-      ) : null
-    ) : null,
-
-    // Daemon health strip
-    React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Running Programs'),
-      React.createElement('div', { className: 'space-y-2' },
-        daemons.map(function(d, i) {
-          var task = daemonTasks.find(function(t) { return t.daemon === d.name; });
-          var isOnline = d.status === 'online';
-          var barColor = isOnline ? '#22c55e' : '#6b7280';
-          var barWidth = isOnline ? '100%' : '20%';
-          return React.createElement('div', { key: i, className: 'flex items-center gap-3' },
-            React.createElement('span', { className: 'text-xs font-semibold w-20 text-right capitalize', style: { color: isOnline ? '#e2e8f0' : '#6b7280' } }, d.name),
-            React.createElement('div', { className: 'flex-1 h-3 bg-[#1a2234] rounded-full overflow-hidden' },
-              React.createElement('div', { className: 'h-full rounded-full transition-all duration-700', style: { width: barWidth, background: barColor } })
-            ),
-            React.createElement('span', { className: 'text-[10px] uppercase tracking-wider font-semibold w-16', style: { color: barColor } }, d.status),
-            React.createElement('span', { className: 'text-[10px] text-[#8899aa] hidden md:inline truncate max-w-xs' }, task ? task.current_assignment : d.host)
-          );
-        })
+      ),
+      // Attention card
+      React.createElement(GlassCard, { className: 'p-6 text-center cursor-pointer hover:bg-white/[0.02] transition-colors', onClick: function() { if (onNavigate) onNavigate('health'); } },
+        React.createElement('div', { className: 'text-[10px] uppercase tracking-widest text-[#8899aa] mb-2' }, 'Attention'),
+        React.createElement('div', { className: 'text-3xl font-bold mb-1', style: { color: attColor } },
+          attRedCount + ' Red'
+        ),
+        React.createElement('div', { className: 'text-[10px] text-[#8899aa] mb-2' },
+          attYellowCount + ' yellow items'
+        ),
+        React.createElement('div', { className: 'flex items-center justify-center gap-1.5' },
+          React.createElement('span', { className: 'w-2 h-2 rounded-full', style: { background: attColor } }),
+          React.createElement('span', { className: 'text-[10px] font-semibold', style: { color: attColor } },
+            attRedCount === 0 ? 'No urgent items' : (attRedCount + ' need attention'))
+        )
       )
     ),
 
-    // Recent activity
+    // Row 2: Needs Attention Panel
+    sortedAtt.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Needs Attention'),
+      React.createElement('div', { className: 'space-y-1.5' },
+        shownAtt.map(function(item, i) {
+          var dotC = sevDotColor(item.severity);
+          return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1.5 border-b border-white/5 last:border-0' },
+            React.createElement('span', { className: 'w-2 h-2 rounded-full shrink-0 mt-1', style: { background: dotC } }),
+            React.createElement('div', { className: 'flex-1 min-w-0' },
+              React.createElement('span', { className: 'text-xs font-semibold text-[#e2e8f0]' }, item.title),
+              item.description ? React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, item.description) : null
+            ),
+            React.createElement('button', {
+              onClick: function() { dismissAtt(sortedAtt.indexOf(item)); },
+              className: 'text-[#8899aa] hover:text-white text-xs shrink-0 ml-2'
+            }, '\u2715')
+          );
+        }),
+        extraAtt > 0 ? React.createElement('div', { className: 'text-[10px] text-[#38bdf8] pt-1' }, '+' + extraAtt + ' more') : null
+      )
+    ) : React.createElement(GlassCard, { className: 'p-4 text-center' },
+      React.createElement('p', { className: 'text-[#22c55e] text-sm font-semibold' }, 'All clear -- no items need attention')
+    ),
+
+    // Row 3: Timeline Feed
     React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Recent Activity'),
-      recentIssues.length === 0
-        ? React.createElement('p', { className: 'text-[#8899aa] text-sm text-center py-4' }, 'No recent activity')
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Timeline'),
+      shownTimeline.length === 0
+        ? React.createElement('p', { className: 'text-[#8899aa] text-sm text-center py-4' }, 'No recent events')
         : React.createElement('div', { className: 'space-y-1' },
-          recentIssues.map(function(issue, i) {
+          shownTimeline.map(function(ev, i) {
             return React.createElement('div', { key: i, className: 'flex items-center gap-2 py-1.5 border-b border-white/5 last:border-0' },
-              React.createElement('a', {
-                href: issue.url,
-                target: '_blank',
-                className: 'text-xs text-[#38bdf8] hover:underline shrink-0'
-              }, '#' + issue.number),
-              React.createElement('span', { className: 'text-sm text-[#e2e8f0] flex-1 truncate' }, issue.title),
-              React.createElement('span', { className: 'text-[10px] text-[#8899aa] shrink-0' }, relativeTime(issue.created_at))
+              React.createElement('span', { className: 'text-sm shrink-0' }, timeIcon(ev.type)),
+              React.createElement('span', { className: 'text-[10px] text-[#8899aa] shrink-0 w-16' }, ev.date ? relativeTime(ev.date) : '--'),
+              ev.url
+                ? React.createElement('a', { href: ev.url, target: '_blank', className: 'text-xs text-[#38bdf8] hover:underline flex-1 truncate' }, ev.title)
+                : React.createElement('span', { className: 'text-xs text-[#e2e8f0] flex-1 truncate' }, ev.title),
+              ev.detail ? React.createElement('span', { className: 'text-[10px] text-[#8899aa] shrink-0 hidden md:inline' }, ev.detail) : null
             );
           })
         )
-    )
+    ),
+
+    // Row 4: Team Strip
+    members.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Team'),
+      React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-3' },
+        members.map(function(member, idx) {
+          var memberCustomers = member.customers || [];
+          var assignedCount = recentIssues.filter(function(issue) {
+            return issue.assignee && (issue.assignee === (member.github || '') || issue.assignee === (member.id || ''));
+          }).length;
+          var capColor = assignedCount < 5 ? '#22c55e' : (assignedCount <= 10 ? '#eab308' : '#ef4444');
+          var capLabel = assignedCount < 5 ? 'Available' : (assignedCount <= 10 ? 'Busy' : 'Overloaded');
+          return React.createElement('div', { key: idx, className: 'bg-[#1a2234] rounded-lg p-3' },
+            React.createElement('div', { className: 'flex items-center justify-between mb-1' },
+              React.createElement('span', { className: 'text-sm font-bold text-white' }, member.name || member.id || 'Member'),
+              React.createElement('span', { className: 'text-[10px] font-semibold', style: { color: capColor } }, capLabel)
+            ),
+            React.createElement('div', { className: 'text-[10px] text-[#8899aa] mb-1.5' }, member.role || ''),
+            React.createElement('div', { className: 'flex items-center gap-3 text-[10px]' },
+              React.createElement('span', { className: 'text-[#38bdf8]' }, memberCustomers.length + ' customers'),
+              React.createElement('span', { className: 'text-[#8899aa]' }, assignedCount + ' tasks'),
+              React.createElement('div', { className: 'flex-1 h-1 bg-[#111827] rounded-full overflow-hidden' },
+                React.createElement('div', { className: 'h-full rounded-full', style: { width: Math.min(assignedCount * 10, 100) + '%', background: capColor } })
+              )
+            )
+          );
+        })
+      )
+    ) : null
   );
 };
 
@@ -1854,141 +1967,6 @@ var InsightsView = function(props) {
   );
 };
 
-/* VIEW: TEAM */
-var TeamView = function(props) {
-  var data = props.data;
-  var source = props.source;
-  var teamSection = (data && data.team) || {};
-  var members = teamSection.members || [];
-  var projectsSection = (data && data.projects) || {};
-  var allProjects = projectsSection.projects || [];
-  var callsLogSection = (data && data.calls_log) || {};
-  var allCalls = callsLogSection.calls || [];
-  var dev = (data && data.development) || {};
-  var recentIssues = dev.recent_issues || [];
-
-  if (members.length === 0) {
-    return React.createElement('div', { className: 'space-y-6' },
-      React.createElement(SectionHeader, { title: 'Team', source: source }),
-      React.createElement(GlassCard, { className: 'p-8 text-center' },
-        React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'No team data yet. Add members to config/team.yaml')
-      )
-    );
-  }
-
-  return React.createElement('div', { className: 'space-y-6' },
-    React.createElement(SectionHeader, { title: 'Team', source: source }),
-
-    React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4' },
-      members.map(function(member, idx) {
-        var memberId = member.id || '';
-        var memberGithub = member.github || '';
-
-        // Count active projects for this member
-        var memberCustomers = member.customers || [];
-        var memberProjects = allProjects.filter(function(p) {
-          return memberCustomers.indexOf(p._client_slug) !== -1;
-        });
-
-        // Find issues assigned to this member (match by github username)
-        var assignedIssues = recentIssues.filter(function(issue) {
-          return issue.assignee && (issue.assignee === memberGithub || issue.assignee === memberId);
-        });
-
-        // Find calls this member participated in
-        var memberCalls = allCalls.filter(function(call) {
-          var participants = call.participants || [];
-          for (var i = 0; i < participants.length; i++) {
-            var p = participants[i];
-            if (typeof p === 'string' && (p === memberId || p === member.name)) return true;
-            if (typeof p === 'object' && p !== null && (p.id === memberId || p.name === member.name)) return true;
-          }
-          return false;
-        }).slice(0, 5);
-
-        // Capacity heuristic
-        var itemCount = assignedIssues.length;
-        var capacityColor = itemCount < 5 ? '#22c55e' : (itemCount <= 10 ? '#eab308' : '#ef4444');
-        var capacityLabel = itemCount < 5 ? 'Available' : (itemCount <= 10 ? 'Busy' : 'Overloaded');
-        var capacityPct = Math.min(itemCount * 10, 100);
-
-        return React.createElement(GlassCard, { key: idx, className: 'p-5' },
-          // Name and role
-          React.createElement('div', { className: 'mb-3' },
-            React.createElement('h3', { className: 'text-base font-bold text-white mb-0.5' }, member.name || memberId),
-            React.createElement('p', { className: 'text-xs text-[#8899aa]' }, member.role || ''),
-            member.focus ? React.createElement('p', { className: 'text-[10px] text-[#06b6d4] mt-1' }, member.focus) : null
-          ),
-
-          // Customer badges
-          memberCustomers.length > 0 ? React.createElement('div', { className: 'mb-3' },
-            React.createElement('span', { className: 'text-[10px] text-[#8899aa] uppercase tracking-wider block mb-1' }, 'Customers'),
-            React.createElement('div', { className: 'flex flex-wrap gap-1' },
-              memberCustomers.map(function(cust, j) {
-                return React.createElement('span', {
-                  key: j,
-                  className: 'text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-500/10 text-[#38bdf8] border border-sky-500/20 capitalize'
-                }, cust.replace(/-/g, ' '));
-              })
-            )
-          ) : null,
-
-          // Active projects count
-          React.createElement('div', { className: 'flex items-center justify-between mb-3 text-xs' },
-            React.createElement('span', { className: 'text-[#8899aa]' }, 'Active Projects'),
-            React.createElement('span', { className: 'font-semibold text-[#a78bfa]' }, memberProjects.length)
-          ),
-
-          // Capacity bar
-          React.createElement('div', { className: 'mb-3' },
-            React.createElement('div', { className: 'flex items-center justify-between mb-1' },
-              React.createElement('span', { className: 'text-[10px] text-[#8899aa] uppercase tracking-wider' }, 'Capacity'),
-              React.createElement('span', { className: 'text-[10px] font-semibold', style: { color: capacityColor } },
-                itemCount + ' items - ' + capacityLabel)
-            ),
-            React.createElement('div', { className: 'h-1.5 bg-[#1a2234] rounded-full overflow-hidden' },
-              React.createElement('div', {
-                className: 'h-full rounded-full transition-all',
-                style: { width: capacityPct + '%', background: capacityColor }
-              })
-            )
-          ),
-
-          // Assigned issues
-          assignedIssues.length > 0 ? React.createElement('div', { className: 'mb-3' },
-            React.createElement('span', { className: 'text-[10px] text-[#8899aa] uppercase tracking-wider block mb-1' }, 'Assigned Issues'),
-            React.createElement('div', { className: 'space-y-1' },
-              assignedIssues.slice(0, 5).map(function(issue, k) {
-                return React.createElement('div', { key: k, className: 'flex items-center gap-1.5' },
-                  React.createElement('a', {
-                    href: issue.url,
-                    target: '_blank',
-                    className: 'text-[10px] text-[#38bdf8] hover:underline shrink-0'
-                  }, '#' + issue.number),
-                  React.createElement('span', { className: 'text-[10px] text-[#e2e8f0] truncate' }, issue.title)
-                );
-              })
-            )
-          ) : null,
-
-          // Recent calls
-          memberCalls.length > 0 ? React.createElement('div', null,
-            React.createElement('span', { className: 'text-[10px] text-[#8899aa] uppercase tracking-wider block mb-1' }, 'Recent Calls'),
-            React.createElement('div', { className: 'space-y-1' },
-              memberCalls.map(function(call, k) {
-                return React.createElement('div', { key: k, className: 'flex items-center gap-1.5 text-[10px]' },
-                  React.createElement('span', { className: 'text-[#8899aa] shrink-0' }, call.date || '--'),
-                  React.createElement('span', { className: 'text-[#e2e8f0] truncate' }, call.title || 'Call')
-                );
-              })
-            )
-          ) : null
-        );
-      })
-    )
-  );
-};
-
 /* VIEW: CUSTOMERS */
 var CustomersView = function(props) {
   var data = props.data;
@@ -2446,6 +2424,68 @@ var ProductsView = function(props) {
     bp>0?h(GlassCard,{className:'p-4 border-l-4 border-l-[#ef4444]'},h('div',{className:'flex items-center gap-2'},h('span',{className:'text-[#ef4444] text-lg'},'\u26A0'),h('div',null,h('span',{className:'text-sm font-semibold text-[#ef4444]'},bp+' Blocked Product'+(bp!==1?'s':'')),h('p',{className:'text-[10px] text-[#8899aa]'},'These products need attention to unblock progress')))):null);
 };
 
+/* VIEW: DEALS (wrapper with sub-tabs: Pipeline / Customers / Revenue) */
+var DealsView = function(props) {
+  var _subTab = useState('pipeline');
+  var subTab = _subTab[0]; var setSubTab = _subTab[1];
+  var subTabs = ['pipeline', 'customers', 'revenue'];
+  return React.createElement('div', { className: 'space-y-4' },
+    React.createElement('div', { className: 'flex gap-1' },
+      subTabs.map(function(t) {
+        return React.createElement('button', {
+          key: t,
+          className: 'px-3 py-1 text-xs rounded ' + (subTab === t ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#8899aa] hover:text-white'),
+          onClick: function() { setSubTab(t); }
+        }, t.charAt(0).toUpperCase() + t.slice(1));
+      })
+    ),
+    subTab === 'pipeline' ? React.createElement(PipelineView, { data: props.data, source: props.source }) : null,
+    subTab === 'customers' ? React.createElement(CustomersView, { data: props.data, source: props.source }) : null,
+    subTab === 'revenue' ? React.createElement(SalesView, { data: props.data, source: props.source }) : null
+  );
+};
+
+/* VIEW: WORK (wrapper with sub-tabs: Development / Products) */
+var WorkView = function(props) {
+  var _subTab = useState('development');
+  var subTab = _subTab[0]; var setSubTab = _subTab[1];
+  var subTabs = ['development', 'products'];
+  return React.createElement('div', { className: 'space-y-4' },
+    React.createElement('div', { className: 'flex gap-1' },
+      subTabs.map(function(t) {
+        return React.createElement('button', {
+          key: t,
+          className: 'px-3 py-1 text-xs rounded ' + (subTab === t ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#8899aa] hover:text-white'),
+          onClick: function() { setSubTab(t); }
+        }, t.charAt(0).toUpperCase() + t.slice(1));
+      })
+    ),
+    subTab === 'development' ? React.createElement(DevelopmentView, { data: props.data, source: props.source }) : null,
+    subTab === 'products' ? React.createElement(ProductsView, { data: props.data, source: props.source }) : null
+  );
+};
+
+/* VIEW: HEALTH (wrapper with sub-tabs: Operations / Metrics / Programs) */
+var HealthView = function(props) {
+  var _subTab = useState('operations');
+  var subTab = _subTab[0]; var setSubTab = _subTab[1];
+  var subTabs = ['operations', 'metrics', 'programs'];
+  return React.createElement('div', { className: 'space-y-4' },
+    React.createElement('div', { className: 'flex gap-1' },
+      subTabs.map(function(t) {
+        return React.createElement('button', {
+          key: t,
+          className: 'px-3 py-1 text-xs rounded ' + (subTab === t ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#8899aa] hover:text-white'),
+          onClick: function() { setSubTab(t); }
+        }, t.charAt(0).toUpperCase() + t.slice(1));
+      })
+    ),
+    subTab === 'operations' ? React.createElement(OperationsView, { data: props.data, source: props.source }) : null,
+    subTab === 'metrics' ? React.createElement(IntelligenceView, { data: props.data, source: props.source }) : null,
+    subTab === 'programs' ? React.createElement(InsightsView, { data: props.data, source: props.source }) : null
+  );
+};
+
 /* MAIN APP */
 var App = function() {
   var _auth = useState(checkAuthSync());
@@ -2480,17 +2520,11 @@ var App = function() {
 
   var INTERNAL_TABS = [
     { id: 'dashboard', label: 'DASHBOARD' },
-    { id: 'team', label: 'TEAM' },
-    { id: 'customers', label: 'CUSTOMERS' },
-    { id: 'products', label: 'PRODUCTS' },
-    { id: 'pipeline', label: 'PIPELINE' },
-    { id: 'operations', label: 'OPERATIONS' },
-    { id: 'development', label: 'DEVELOPMENT' },
-    { id: 'intelligence', label: 'INTELLIGENCE' },
+    { id: 'deals', label: 'DEALS' },
+    { id: 'work', label: 'WORK' },
+    { id: 'health', label: 'HEALTH' },
     { id: 'calls', label: 'CALLS' },
-    { id: 'tasks', label: 'TASKS' },
-    { id: 'insights', label: 'INSIGHTS' },
-    { id: 'sales', label: 'SALES' }
+    { id: 'tasks', label: 'TASKS' }
   ];
 
   var CUSTOMER_TABS = [
@@ -2617,17 +2651,11 @@ var App = function() {
   function renderView() {
     switch (activeTab) {
       case 'dashboard': return React.createElement(DashboardView, { data: data, source: dataSource, onNavigate: switchTab });
-      case 'team': return React.createElement(TeamView, { data: data, source: dataSource });
-      case 'customers': return React.createElement(CustomersView, { data: data, source: dataSource });
-      case 'products': return React.createElement(ProductsView, { data: data, source: dataSource });
-      case 'pipeline': return React.createElement(PipelineView, { data: data, source: dataSource });
-      case 'operations': return React.createElement(OperationsView, { data: data, source: dataSource });
-      case 'development': return React.createElement(DevelopmentView, { data: data, source: dataSource });
-      case 'sales': return React.createElement(SalesView, { data: data, source: dataSource });
-      case 'intelligence': return React.createElement(IntelligenceView, { data: data, source: dataSource });
+      case 'deals': return React.createElement(DealsView, { data: data, source: dataSource });
+      case 'work': return React.createElement(WorkView, { data: data, source: dataSource });
+      case 'health': return React.createElement(HealthView, { data: data, source: dataSource });
       case 'calls': return React.createElement(CallsView, { data: data, source: dataSource });
       case 'tasks': return React.createElement(TasksView, { data: data, source: dataSource });
-      case 'insights': return React.createElement(InsightsView, { data: data, source: dataSource });
       case 'myagent': return React.createElement(MyAgentView, { data: data, source: dataSource });
       case 'mydata': return React.createElement(MyDataView, { data: data, source: dataSource });
       case 'myactivity': return React.createElement(MyActivityView, { data: data, source: dataSource });
