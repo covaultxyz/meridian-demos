@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-23T20:53:31.818887+00:00",
+  "generated_at": "2026-03-23T22:52:34.772583+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-23T20:53:27.961202+00:00",
+      "updated_at": "2026-03-23T22:52:29.617144+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1160,7 +1160,7 @@
       ]
     },
     "operations": {
-      "updated_at": "2026-03-23 by claude-code (resolve OAuth prose/table contradiction)",
+      "updated_at": "2026-03-23 by atlas (add yakiras-mac-mini to mesh)",
       "source": "boot-state.md",
       "current_phase": {
         "number": 2,
@@ -1189,13 +1189,6 @@
       "active_sessions": [
         {
           "daemon": "sensei",
-          "pid": "74181",
-          "terminal": "ttys006",
-          "launched": "2026-03-23T03:33",
-          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
-        },
-        {
-          "daemon": "sensei",
           "pid": "41414",
           "terminal": "ttys062",
           "launched": "2026-03-23T04:12",
@@ -1214,6 +1207,20 @@
           "terminal": "ttys080",
           "launched": "2026-03-23T18:37",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery"
+        },
+        {
+          "daemon": "sandman",
+          "pid": "16107",
+          "terminal": "ttys089",
+          "launched": "2026-03-23T21:01",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/sandman"
+        },
+        {
+          "daemon": "atlas",
+          "pid": "22416",
+          "terminal": "ttys092",
+          "launched": "2026-03-23T21:02",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
         }
       ],
       "daemon_tasks": [
@@ -1269,6 +1276,11 @@
           "systemd_unit": "meridian-daemon@atlas"
         },
         {
+          "node": "yakiras-mac-mini",
+          "daemon": "TBD",
+          "systemd_unit": "pending daemon assignment"
+        },
+        {
           "node": "desktop-36mhmhk",
           "daemon": "TBD",
           "systemd_unit": "pending daemon assignment"
@@ -1322,11 +1334,11 @@
           }
         ],
         "collected_at": "2026-03-22T20:13:06.987399+00:00",
-        "_stale_warning": "Data is 25 hours old"
+        "_stale_warning": "Data is 27 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-23T20:53:31.408619+00:00",
+      "updated_at": "2026-03-23T22:52:34.704611+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -2688,65 +2700,107 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "failure",
-        "name": "CI",
-        "created_at": "2026-03-23T20:45:27Z",
-        "head_sha": "7f4e9c0c"
+        "status": "queued",
+        "conclusion": null,
+        "name": "CI Full",
+        "created_at": "2026-03-23T22:20:30Z",
+        "head_sha": "e1638ebb"
       },
       "ci_recent_runs": [
         {
-          "id": 23459244040,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-23T20:45:27Z",
-          "updated_at": "2026-03-23T20:45:37Z",
-          "head_sha": "7f4e9c0c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23459244040"
+          "id": 23463008283,
+          "name": "CI Full",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-03-23T22:20:30Z",
+          "updated_at": "2026-03-23T22:20:30Z",
+          "head_sha": "e1638ebb",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23463008283"
         },
         {
-          "id": 23459244063,
+          "id": 23462271503,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-03-23T22:00:06Z",
+          "updated_at": "2026-03-23T22:00:19Z",
+          "head_sha": "0bf98281",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23462271503"
+        },
+        {
+          "id": 23462173168,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-03-23T21:57:28Z",
+          "updated_at": "2026-03-23T21:57:40Z",
+          "head_sha": "dfd2c80a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23462173168"
+        },
+        {
+          "id": 23462173167,
           "name": "CodeQL Analysis",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-23T20:45:27Z",
-          "updated_at": "2026-03-23T20:52:49Z",
-          "head_sha": "7f4e9c0c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23459244063"
+          "created_at": "2026-03-23T21:57:28Z",
+          "updated_at": "2026-03-23T22:13:13Z",
+          "head_sha": "dfd2c80a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23462173167"
         },
         {
-          "id": 23458921450,
+          "id": 23462054859,
           "name": "CI",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-23T20:37:28Z",
-          "updated_at": "2026-03-23T20:37:39Z",
-          "head_sha": "dedcc7e3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23458921450"
-        },
-        {
-          "id": 23458921446,
-          "name": "Deploy Dashboard to GitHub Pages",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-23T20:37:28Z",
-          "updated_at": "2026-03-23T20:37:32Z",
-          "head_sha": "dedcc7e3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23458921446"
-        },
-        {
-          "id": 23458538382,
-          "name": "CI Full",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-03-23T20:28:12Z",
-          "updated_at": "2026-03-23T20:28:13Z",
-          "head_sha": "1ec0d14c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23458538382"
+          "conclusion": "success",
+          "created_at": "2026-03-23T21:54:22Z",
+          "updated_at": "2026-03-23T21:54:35Z",
+          "head_sha": "542f2cf4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23462054859"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "218ba537",
+          "message": "ops(mesh): add yakiras-mac-mini (100.95.86.127) to mesh topology",
+          "author": "covaultxyz",
+          "date": "2026-03-23T22:49:58Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/218ba5372ecd67e44c0fb11302dd1f7f7dd677ec"
+        },
+        {
+          "sha": "e1638ebb",
+          "message": "docs(ci): add test fixes report + remaining failures guide",
+          "author": "covaultxyz",
+          "date": "2026-03-23T22:01:40Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e1638ebb1b33706c807e4789b8c1d8d1ff02665b"
+        },
+        {
+          "sha": "0bf98281",
+          "message": "feat(cortex): Neo4j MIG Knowledge Graph Intelligence cortex \u2014 manifest + 7 expert reference docs",
+          "author": "Glasshaus",
+          "date": "2026-03-23T21:59:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0bf98281bea9fbad4fb9492330e6754ac37477c9"
+        },
+        {
+          "sha": "dfd2c80a",
+          "message": "fix(daemon): wrap JetStream publish errors as CursorFleetError for proper fallback",
+          "author": "Glasshaus",
+          "date": "2026-03-23T21:57:13Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/dfd2c80a300d299fe48c5a3c7440e90ab095decb"
+        },
+        {
+          "sha": "542f2cf4",
+          "message": "fix(ci): resolve 43 test failures \u2014 WriteEvent audit, EmbeddingCache, prediction alerts, forge-pc, source norm",
+          "author": "covaultxyz",
+          "date": "2026-03-23T21:54:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/542f2cf47af500feef778b93fa1b0e5e4b1993ed"
+        },
+        {
+          "sha": "d0da8d10",
+          "message": "fix(data): deep Glassy\u2192Ely Beckman cleanup across 63 files",
+          "author": "covaultxyz",
+          "date": "2026-03-23T20:53:22Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d0da8d106fe4a37970ffb272373d9784fe697454"
+        },
         {
           "sha": "7f4e9c0c",
           "message": "fix(ci): sqlite extension graceful fallback + gitleaks allowlist",
@@ -2774,52 +2828,10 @@
           "author": "covaultxyz",
           "date": "2026-03-23T19:50:55Z",
           "url": "https://github.com/covaultxyz/meridian/commit/22af291305aba4bd06985634488101e7ebefc92a"
-        },
-        {
-          "sha": "8f2b303d",
-          "message": "fix(embedding): port 8081\u21928080 in settings.yaml \u2014 root cause of hybrid search returning empty",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:59:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8f2b303d7e93eb79a913dd3ebe3b8530ae38318c"
-        },
-        {
-          "sha": "782e2a30",
-          "message": "fix(ci): pass GITHUB_TOKEN to all checkout steps \u2014 unblock self-hosted runner auth",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:55:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/782e2a30aa11c0b053ca0e66f6f65757dc4cd1e2"
-        },
-        {
-          "sha": "b3157532",
-          "message": "docs(ci): update remaining-work \u2014 P1/P3/P4/P6 resolved",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:55:08Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b31575324b7e9fcef5e6732fbf546cf54a368c27"
-        },
-        {
-          "sha": "783743e7",
-          "message": "fix(ci-full): cross-platform Python detection \u2014 macOS Homebrew + Linux",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:53:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/783743e75fa02f1574761bcb8d29d33bd0a623f0"
-        },
-        {
-          "sha": "3f48a797",
-          "message": "feat(infra): dashboard auto-regen via M1 LaunchAgent \u2014 bypass GitHub Actions billing",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:53:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3f48a797a7922aa47e4216494a9f4bb21e6f2b2c"
-        },
-        {
-          "sha": "8aca5338",
-          "message": "docs(daemon-ux): final DONE + TODO + USAGE \u2014 all code shipped",
-          "author": "covaultxyz",
-          "date": "2026-03-23T18:53:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8aca5338e6ec12cae0cbe66b20628aa8ec9acda9"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-23T20:53:28.821408+00:00",
+        "updated_at": "2026-03-23T22:52:30.422529+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -2888,7 +2900,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "members": [
         {
           "id": "alex",
@@ -2959,7 +2971,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "projects": [
         {
           "project": {
@@ -3389,7 +3401,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3501,7 +3513,7 @@
       "this_week": 9
     },
     "decisions": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3598,7 +3610,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -4622,7 +4634,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-23T20:53:31.754247+00:00",
+      "updated_at": "2026-03-23T22:52:34.756757+00:00",
       "sops": [
         {
           "name": "Autonomous Website Generation",
@@ -4759,6 +4771,12 @@
           "modified": "2026-03-23"
         },
         {
+          "name": "Ci Remaining Failures",
+          "file": "docs/runbooks/ci-remaining-failures.md",
+          "size": 7150,
+          "modified": "2026-03-23"
+        },
+        {
           "name": "Ci Remaining Work",
           "file": "docs/runbooks/ci-remaining-work.md",
           "size": 5110,
@@ -4769,6 +4787,12 @@
           "file": "docs/runbooks/ci-runner-restart.md",
           "size": 5438,
           "modified": "2026-03-20"
+        },
+        {
+          "name": "Ci Test Fixes 2026 03 23",
+          "file": "docs/runbooks/ci-test-fixes-2026-03-23.md",
+          "size": 4820,
+          "modified": "2026-03-23"
         },
         {
           "name": "Client Offboarding",
@@ -5599,8 +5623,8 @@
         {
           "name": "Claude",
           "file": "CLAUDE.md",
-          "size": 30590,
-          "modified": "2026-03-21"
+          "size": 30739,
+          "modified": "2026-03-23"
         },
         {
           "name": "Agent Protocol",
@@ -5640,13 +5664,13 @@
         }
       ],
       "total_sops": 13,
-      "total_runbooks": 77,
+      "total_runbooks": 79,
       "total_plans": 71,
       "total_protocols": 7,
-      "total_docs": 168
+      "total_docs": 170
     },
     "deals": {
-      "updated_at": "2026-03-23T20:53:31.754355+00:00",
+      "updated_at": "2026-03-23T22:52:34.756843+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -5880,7 +5904,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-23T20:53:31.408635+00:00",
+      "updated_at": "2026-03-23T22:52:34.704627+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -14515,7 +14539,7 @@
       "total": 33
     },
     "call_intelligence": {
-      "updated_at": "2026-03-23T20:53:31.813257+00:00",
+      "updated_at": "2026-03-23T22:52:34.770348+00:00",
       "signal_summary": {
         "total_objections": 19,
         "total_buying_signals": 14,
@@ -14851,7 +14875,7 @@
       "total_action_items": 13
     },
     "attention": {
-      "updated_at": "2026-03-23T20:53:31.818809+00:00",
+      "updated_at": "2026-03-23T22:52:34.772526+00:00",
       "items": [
         {
           "type": "blocked",
@@ -14926,8 +14950,44 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-23T20:53:31.818869+00:00",
+      "updated_at": "2026-03-23T22:52:34.772571+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-03-23T22:49:58Z",
+          "title": "ops(mesh): add yakiras-mac-mini (100.95.86.127) to mesh topology",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T22:01:40Z",
+          "title": "docs(ci): add test fixes report + remaining failures guide",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T21:59:54Z",
+          "title": "feat(cortex): Neo4j MIG Knowledge Graph Intelligence cortex \u2014 manifest + 7 exper",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T21:57:13Z",
+          "title": "fix(daemon): wrap JetStream publish errors as CursorFleetError for proper fallba",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T21:54:03Z",
+          "title": "fix(ci): resolve 43 test failures \u2014 WriteEvent audit, EmbeddingCache, prediction",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T20:53:22Z",
+          "title": "fix(data): deep Glassy\u2192Ely Beckman cleanup across 63 files",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-03-23T20:45:23Z",
@@ -14950,42 +15010,6 @@
           "type": "commit",
           "date": "2026-03-23T19:50:55Z",
           "title": "fix(embedding): service on 8081 (was 8080 conflicting with gateway), MemoryMax 2",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:59:24Z",
-          "title": "fix(embedding): port 8081\u21928080 in settings.yaml \u2014 root cause of hybrid search re",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:55:09Z",
-          "title": "fix(ci): pass GITHUB_TOKEN to all checkout steps \u2014 unblock self-hosted runner au",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:55:08Z",
-          "title": "docs(ci): update remaining-work \u2014 P1/P3/P4/P6 resolved",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:53:21Z",
-          "title": "fix(ci-full): cross-platform Python detection \u2014 macOS Homebrew + Linux",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:53:18Z",
-          "title": "feat(infra): dashboard auto-regen via M1 LaunchAgent \u2014 bypass GitHub Actions bil",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T18:53:06Z",
-          "title": "docs(daemon-ux): final DONE + TODO + USAGE \u2014 all code shipped",
           "detail": "covaultxyz"
         },
         {
