@@ -1647,9 +1647,9 @@ var CallsView = function(props) {
                 !hasRichData&&cl.preview?React.createElement('div',{className:'mt-3'},
                   React.createElement('p',{className:'text-xs text-[#8899aa] italic leading-relaxed'},'\u201C'+String(cl.preview||'')+'\u201D')):null,
                 React.createElement('div',{className:'flex gap-3 mt-3 pt-2 border-t border-[#1e2d4a]/30'},
-                  cl.file?React.createElement('a',{href:cl.file,target:'_blank',className:'text-[10px] text-[#38bdf8] hover:underline font-semibold'},'View Transcript'):null,
-                  cl.signals?React.createElement('a',{href:cl.signals,target:'_blank',className:'text-[10px] text-[#22c55e] hover:underline font-semibold'},'View Signals'):null,
-                  cl.audit?React.createElement('a',{href:cl.audit,target:'_blank',className:'text-[10px] text-[#a78bfa] hover:underline font-semibold'},'View Audit'):null)
+                  cl.file?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.file,target:'_blank',className:'text-[10px] text-[#38bdf8] hover:underline font-semibold'},'View Transcript'):null,
+                  cl.signals?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.signals,target:'_blank',className:'text-[10px] text-[#22c55e] hover:underline font-semibold'},'View Signals'):null,
+                  cl.audit?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.audit,target:'_blank',className:'text-[10px] text-[#a78bfa] hover:underline font-semibold'},'View Audit'):null)
               ):null);})
       )
     ) : null,
