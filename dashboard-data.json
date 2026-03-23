@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-23T04:22:47.043800+00:00",
+  "generated_at": "2026-03-23T04:40:35.224329+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-23T04:22:44.325584+00:00",
+      "updated_at": "2026-03-23T04:40:32.506463+00:00",
       "recent_signals": [
         {
           "client": "denver-griffin",
@@ -1058,7 +1058,7 @@
       ]
     },
     "operations": {
-      "updated_at": "2026-03-21 ~00:10 UTC by Sensei (full fleet audit + triage \u2014 swap relief, avery canonical placement, deploy key auth, daemon inventory sentinel)",
+      "updated_at": "2026-03-23 by claude-code (resolve OAuth prose/table contradiction)",
       "source": "boot-state.md",
       "current_phase": {
         "number": 2,
@@ -1098,6 +1098,13 @@
           "terminal": "ttys062",
           "launched": "2026-03-23T04:12",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "77439",
+          "terminal": "ttys067",
+          "launched": "2026-03-23T04:40",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
       "daemon_tasks": [
@@ -1209,7 +1216,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-03-23T04:22:46.921041+00:00",
+      "updated_at": "2026-03-23T04:40:35.145899+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -2583,65 +2590,93 @@
         ]
       },
       "ci": {
-        "status": "pending",
-        "conclusion": null,
+        "status": "completed",
+        "conclusion": "failure",
         "name": "CI",
-        "created_at": "2026-03-23T04:18:44Z",
-        "head_sha": "f0d4faa1"
+        "created_at": "2026-03-23T04:36:44Z",
+        "head_sha": "e7d140c1"
       },
       "ci_recent_runs": [
         {
-          "id": 23421256878,
+          "id": 23421663878,
           "name": "CI",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-03-23T04:18:44Z",
-          "updated_at": "2026-03-23T04:18:44Z",
-          "head_sha": "f0d4faa1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421256878"
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-23T04:36:44Z",
+          "updated_at": "2026-03-23T04:37:41Z",
+          "head_sha": "e7d140c1",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421663878"
         },
         {
-          "id": 23421256877,
+          "id": 23421599802,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-23T04:33:55Z",
+          "updated_at": "2026-03-23T04:35:33Z",
+          "head_sha": "a932a154",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421599802"
+        },
+        {
+          "id": 23421599806,
           "name": "CodeQL Analysis",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-03-23T04:18:44Z",
-          "updated_at": "2026-03-23T04:21:45Z",
-          "head_sha": "f0d4faa1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421256877"
+          "created_at": "2026-03-23T04:33:55Z",
+          "updated_at": "2026-03-23T04:36:57Z",
+          "head_sha": "a932a154",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421599806"
         },
         {
-          "id": 23421108314,
+          "id": 23421517914,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-23T04:30:16Z",
+          "updated_at": "2026-03-23T04:33:04Z",
+          "head_sha": "a98b490a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421517914"
+        },
+        {
+          "id": 23421381039,
           "name": "Deploy Dashboard to GitHub Pages",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-23T04:12:28Z",
-          "updated_at": "2026-03-23T04:12:31Z",
-          "head_sha": "43771e42",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421108314"
-        },
-        {
-          "id": 23421108336,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-03-23T04:12:28Z",
-          "updated_at": "2026-03-23T04:15:45Z",
-          "head_sha": "43771e42",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421108336"
-        },
-        {
-          "id": 23421108327,
-          "name": "CodeQL Analysis",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-03-23T04:12:28Z",
-          "updated_at": "2026-03-23T04:18:45Z",
-          "head_sha": "43771e42",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421108327"
+          "created_at": "2026-03-23T04:24:02Z",
+          "updated_at": "2026-03-23T04:24:05Z",
+          "head_sha": "520ae273",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23421381039"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "e7d140c1",
+          "message": "fix(ci): move to GitHub-hosted runners + cancel-in-progress \u2014 unblock 0% pass rate",
+          "author": "covaultxyz",
+          "date": "2026-03-23T04:36:26Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e7d140c1a1a7ba4872c9817f2a815a08f6cfe2a2"
+        },
+        {
+          "sha": "a932a154",
+          "message": "fix(website): datetime KeyError in .format() template strings",
+          "author": "covaultxyz",
+          "date": "2026-03-23T04:33:46Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a932a15433654fcca0d26b0c2bb8f9435ff45d54"
+        },
+        {
+          "sha": "a98b490a",
+          "message": "docs(boot-state): resolve OAuth contradiction \u2014 align prose with fixed status",
+          "author": "covaultxyz",
+          "date": "2026-03-23T04:30:12Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a98b490a9d1f8c2b710a9e746f26a7092b9101c9"
+        },
+        {
+          "sha": "520ae273",
+          "message": "feat(dashboard): 49 call detail pages + docs/SOP inventory tab",
+          "author": "covaultxyz",
+          "date": "2026-03-23T04:23:58Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/520ae2731217edd136c4282418e9b0940ff4656d"
+        },
         {
           "sha": "f0d4faa1",
           "message": "feat(dashboard): per-client data isolation + client configs",
@@ -2683,38 +2718,10 @@
           "author": "covaultxyz",
           "date": "2026-03-23T03:29:41Z",
           "url": "https://github.com/covaultxyz/meridian/commit/f8ece7efba6c17e48fef44966b7915e4ac89af46"
-        },
-        {
-          "sha": "7bb2e6b1",
-          "message": "fix(dashboard): call links point to GitHub repo instead of relative 404 paths",
-          "author": "covaultxyz",
-          "date": "2026-03-23T03:12:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7bb2e6b1ee4a1d68a782876756db9ac0937e6095"
-        },
-        {
-          "sha": "1732d050",
-          "message": "fix(deploy): downgrade DAEMON_CLAIMS to warning \u2014 identity lock async, not deploy-blocking",
-          "author": "covaultxyz",
-          "date": "2026-03-23T03:11:07Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1732d0500440cf005b39e95ceac4af09400c372d"
-        },
-        {
-          "sha": "9045fe59",
-          "message": "feat(dashboard): expandable call cards with structured intelligence",
-          "author": "covaultxyz",
-          "date": "2026-03-23T02:52:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9045fe5976fd59ebeb009928ca6c45c3caef1c6c"
-        },
-        {
-          "sha": "b8876d3f",
-          "message": "fix(deal): four co-founder agreement \u2014 Alan B. Charity is Coherence Architect",
-          "author": "covaultxyz",
-          "date": "2026-03-23T02:48:52Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b8876d3f23af6ea5a640a564919dfca90911d970"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-23T04:22:44.929662+00:00",
+        "updated_at": "2026-03-23T04:40:33.159294+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -2783,7 +2790,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-23T04:22:46.921056+00:00",
+      "updated_at": "2026-03-23T04:40:35.145920+00:00",
       "members": [
         {
           "id": "alex",
@@ -2840,7 +2847,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-23T04:22:46.921056+00:00",
+      "updated_at": "2026-03-23T04:40:35.145920+00:00",
       "projects": [
         {
           "project": {
@@ -3270,7 +3277,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-23T04:22:46.921056+00:00",
+      "updated_at": "2026-03-23T04:40:35.145920+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3285,7 +3292,8 @@
           "signals": "clients/denver-griffin/signals/deal-signals-march2110am-2026-03-22.json",
           "audit": "mikebitler/calls meetings/march21/renders/sensei delphi.md",
           "customer": "denver-griffin",
-          "_project": "shepherd"
+          "_project": "shepherd",
+          "detail_page": "calls/2026-03-21-internal-debrief-on-denver-consultation.html"
         },
         {
           "date": "2026-03-21",
@@ -3299,7 +3307,8 @@
           "transcript": "mikebitler/calls meetings/march21/march2111amglassy.md",
           "signals": "clients/denver-griffin/signals/deal-signals-march2111amglassy-2026-03-22.json",
           "customer": "denver-griffin",
-          "_project": "shepherd"
+          "_project": "shepherd",
+          "detail_page": "calls/2026-03-21-at-glassys-location--setup--strategy.html"
         },
         {
           "date": "2026-03-21",
@@ -3313,7 +3322,8 @@
           "signals": "clients/denver-griffin/signals/deal-signals-march21bitlershouse-2026-03-22.json",
           "audit": "mikebitler/denvergriffin/calls/march21bitlershouse-audit.md",
           "customer": "denver-griffin",
-          "_project": "shepherd"
+          "_project": "shepherd",
+          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html"
         },
         {
           "date": "2026-03-21",
@@ -3321,6 +3331,7 @@
           "customer": null,
           "_source": "meeting_notes",
           "_file": "mikebitler/calls meetings/march21/march2110am.md",
+          "detail_page": "calls/2026-03-21-march2110am.html",
           "preview": "Go ahead. Oh, I said we went through the process. We know he has. He had, like 40/50 clients currently. He has like four,500 lined up in the queue. You do realize you can do thisunk easy for you, right?"
         },
         {
@@ -3329,6 +3340,7 @@
           "customer": null,
           "_source": "meeting_notes",
           "_file": "mikebitler/calls meetings/march21/march2111amglassy.md",
+          "detail_page": "calls/2026-03-21-march2111amglassy.html",
           "preview": "OK, email accounts, family other users. Um. Hmm. So, I know you spent some time with Cade. What do you feel that he has that I don't am, like.. I don't he has you. I can you what he has."
         },
         {
@@ -3342,7 +3354,8 @@
           "transcript": "mikebitler/calls meetings/march 18 glassy intro bitler.md",
           "signals": "clients/denver-griffin/signals/deal-signals-march 18 glassy intro bitler-2026-03-22.json",
           "customer": "denver-griffin",
-          "_project": "shepherd"
+          "_project": "shepherd",
+          "detail_page": "calls/2026-03-18-glassy-intro-with-bitler.html"
         },
         {
           "date": "2026-03-18",
@@ -3350,6 +3363,7 @@
           "customer": null,
           "_source": "meeting_notes",
           "_file": "mikebitler/calls meetings/call logs/march18-executive-summary.md",
+          "detail_page": "calls/2026-03-18-march18-executive-summary.html",
           "preview": "March 18 Call \u2014 Executive Summary Date: 2026-03-18 Duration: ~2h 30m Participants: Alex Mazzei, Ely Beckman (Glassy), Michael Bitler Nature: Intro call \u2014 Alex + Ely presenting Meridian to Bitler (new sales partner). First meeting between Ely and Bitler. ---"
         },
         {
@@ -3358,6 +3372,7 @@
           "customer": null,
           "_source": "meeting_notes",
           "_file": "mikebitler/calls meetings/call logs/march18-glassy-intro-summary.md",
+          "detail_page": "calls/2026-03-18-march18-glassy-intro-summary.html",
           "preview": "March 18, 2026 \u2014 Glassy Intro Call Summary Duration: ~2h 30m Participants: Glassy (new sales partner), Mike Bitler, Alex Mazzei, Ely Beckman Purpose: Introduction, alignment check, scope the commercial relationship Recording: iPhone transcription \u2192 Meridian processing --- Participants Glassy (New)"
         },
         {
@@ -3366,6 +3381,7 @@
           "customer": null,
           "_source": "meeting_notes",
           "_file": "mikebitler/calls meetings/call logs/march18.md",
+          "detail_page": "calls/2026-03-18-march18.html",
           "preview": "March 18 Call \u2014 File Index Date: 2026-03-18 Call: Alex + Ely (Glassy) + Bitler (~2.5 hours) Raw transcript: `../march 18 glassy intro bitler.md` > Note: Glassy = Ely Beckman. They are the same person. The call was Alex and"
         }
       ],
@@ -3373,7 +3389,7 @@
       "this_week": 9
     },
     "decisions": {
-      "updated_at": "2026-03-23T04:22:46.921056+00:00",
+      "updated_at": "2026-03-23T04:40:35.145920+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3470,7 +3486,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-23T04:22:46.921056+00:00",
+      "updated_at": "2026-03-23T04:40:35.145920+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -3764,6 +3780,7 @@
             "Write scope document for $2K phase",
             "Two P1 phone tests (vision + mobile)"
           ],
+          "detail_page": "calls/2026-03-21-internal-debrief-on-denver-consultation.html",
           "preview": "Reviewed Denver consultation results. Denver has 40-50 active clients, ~4,500 in queue. $2K retainer agreed. Uses Go High Level. Previous AI broke ~4 months ago. Wants data sovereignty."
         },
         {
@@ -3805,6 +3822,7 @@
             "Set up headless HDMI dongles for browser automation",
             "Follow up with Gordon after his return"
           ],
+          "detail_page": "calls/2026-03-21-at-glassys-location--setup--strategy.html",
           "preview": "On-site at Glassy's location. Set up Windows profile, installed Tailscale, connected PC to MERIDIAN mesh. Pulled 115 Denver YouTube transcripts (66 hours, 764K words). Deep researched webinar platform alternatives. Sent $2K invoice via PayPal."
         },
         {
@@ -3858,6 +3876,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
+          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -3870,6 +3889,7 @@
             "bitler"
           ],
           "summary": "Master war room planning document",
+          "detail_page": "calls/2026-03-18-master-war-room.html",
           "preview": "Master war room planning document"
         },
         {
@@ -3882,6 +3902,7 @@
             "bitler"
           ],
           "summary": "Bitler team member profile",
+          "detail_page": "calls/2026-03-18-bitler-profile.html",
           "preview": "Bitler team member profile"
         },
         {
@@ -3894,6 +3915,7 @@
             "bitler"
           ],
           "summary": "Glassy team member profile",
+          "detail_page": "calls/2026-03-18-glassy-profile-correction-glassy--ely.html",
           "preview": "Glassy team member profile"
         },
         {
@@ -3906,6 +3928,7 @@
             "bitler"
           ],
           "summary": "Action items from March 18 sessions",
+          "detail_page": "calls/2026-03-18-action-items--march-18.html",
           "preview": "Action items from March 18 sessions"
         },
         {
@@ -3918,6 +3941,7 @@
             "bitler"
           ],
           "summary": "Index of all March 18 calls",
+          "detail_page": "calls/2026-03-18-march-18-call-index.html",
           "preview": "Index of all March 18 calls"
         },
         {
@@ -3930,6 +3954,7 @@
             "bitler"
           ],
           "summary": "Executive summary of March 18 sessions",
+          "detail_page": "calls/2026-03-18-march-18-executive-summary.html",
           "preview": "Executive summary of March 18 sessions"
         },
         {
@@ -3942,6 +3967,7 @@
             "bitler"
           ],
           "summary": "Summary of Glassy intro call on March 18",
+          "detail_page": "calls/2026-03-18-march-18-glassy-intro-summary.html",
           "preview": "Summary of Glassy intro call on March 18"
         },
         {
@@ -3954,6 +3980,7 @@
             "bitler"
           ],
           "summary": "Specification for Amazon review automation product",
+          "detail_page": "calls/2026-03-18-amazon-review-automation-spec.html",
           "preview": "Specification for Amazon review automation product"
         },
         {
@@ -3966,6 +3993,7 @@
             "bitler"
           ],
           "summary": "Pitch document for business broker opportunity",
+          "detail_page": "calls/2026-03-18-business-broker-pitch.html",
           "preview": "Pitch document for business broker opportunity"
         },
         {
@@ -3978,6 +4006,7 @@
             "bitler"
           ],
           "summary": "Product concept for continuity check-in service",
+          "detail_page": "calls/2026-03-18-continuity-check-in-product.html",
           "preview": "Product concept for continuity check-in service"
         },
         {
@@ -3990,6 +4019,7 @@
             "bitler"
           ],
           "summary": "Discovery preparation for CPA firm engagement",
+          "detail_page": "calls/2026-03-18-cpa-discovery-prep.html",
           "preview": "Discovery preparation for CPA firm engagement"
         },
         {
@@ -4002,6 +4032,7 @@
             "bitler"
           ],
           "summary": "Deep research prompt templates for Gemini",
+          "detail_page": "calls/2026-03-18-gemini-deep-research-prompts.html",
           "preview": "Deep research prompt templates for Gemini"
         },
         {
@@ -4014,6 +4045,7 @@
             "bitler"
           ],
           "summary": "Intellectual property protection playbook",
+          "detail_page": "calls/2026-03-18-ip-protection-playbook.html",
           "preview": "Intellectual property protection playbook"
         },
         {
@@ -4026,6 +4058,7 @@
             "bitler"
           ],
           "summary": "Knowledge-as-a-Service product brief",
+          "detail_page": "calls/2026-03-18-kaas-product-brief.html",
           "preview": "Knowledge-as-a-Service product brief"
         },
         {
@@ -4038,6 +4071,7 @@
             "bitler"
           ],
           "summary": "30-day execution roadmap",
+          "detail_page": "calls/2026-03-18-next-30-days-roadmap.html",
           "preview": "30-day execution roadmap"
         },
         {
@@ -4050,6 +4084,7 @@
             "bitler"
           ],
           "summary": "Partnership addendum for Glassy (obsolete)",
+          "detail_page": "calls/2026-03-18-partnership-addendum--glassy-obsolete.html",
           "preview": "Partnership addendum for Glassy (obsolete)"
         },
         {
@@ -4062,6 +4097,7 @@
             "bitler"
           ],
           "summary": "Sales pipeline tracking document",
+          "detail_page": "calls/2026-03-18-pipeline-tracker.html",
           "preview": "Sales pipeline tracking document"
         },
         {
@@ -4074,6 +4110,7 @@
             "bitler"
           ],
           "summary": "Template for pre-acquisition proposals",
+          "detail_page": "calls/2026-03-18-pre-acquisition-proposal-template.html",
           "preview": "Template for pre-acquisition proposals"
         },
         {
@@ -4086,6 +4123,7 @@
             "bitler"
           ],
           "summary": "Sales playbook for Glassy",
+          "detail_page": "calls/2026-03-18-sales-playbook--glassy.html",
           "preview": "Sales playbook for Glassy"
         },
         {
@@ -4098,6 +4136,7 @@
             "bitler"
           ],
           "summary": "Catalog of terminal products",
+          "detail_page": "calls/2026-03-18-terminal-product-catalog.html",
           "preview": "Catalog of terminal products"
         },
         {
@@ -4110,6 +4149,7 @@
             "bitler"
           ],
           "summary": "Strategy for trusted node network",
+          "detail_page": "calls/2026-03-18-trusted-node-strategy.html",
           "preview": "Strategy for trusted node network"
         },
         {
@@ -4138,6 +4178,7 @@
             "Schedule Denver Griffin intro call",
             "Set up shared communication channels"
           ],
+          "detail_page": "calls/2026-03-18-glassy-intro--denver-pitch.html",
           "preview": "Introductory call between Alex and Bitler. Established trust basis, discussed alignment on principles and sales capacity. Bitler described 40+ years of business experience. Laid foundation for Denver engagement and defined working relationship."
         },
         {
@@ -4150,6 +4191,7 @@
             "bitler"
           ],
           "summary": "Afternoon sync with Glassy",
+          "detail_page": "calls/2026-03-16-glassy-1pm-sync.html",
           "preview": "Afternoon sync with Glassy"
         },
         {
@@ -4162,6 +4204,7 @@
             "bitler"
           ],
           "summary": "Call about Dr. Omar psychiatry opportunity",
+          "detail_page": "calls/2026-03-16-omar-call.html",
           "preview": "Call about Dr. Omar psychiatry opportunity"
         },
         {
@@ -4174,6 +4217,7 @@
             "bitler"
           ],
           "summary": "Discussion about Omar opportunity with Glassy",
+          "detail_page": "calls/2026-03-16-glassy-omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Glassy"
         },
         {
@@ -4186,6 +4230,7 @@
             "bitler"
           ],
           "summary": "Follow-up discussion on Omar opportunity",
+          "detail_page": "calls/2026-03-16-glassy-omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -4198,6 +4243,7 @@
             "cade"
           ],
           "summary": "Meeting with Cade about Gentleman Boss project",
+          "detail_page": "calls/2026-03-10-cade--gentleman-boss-meeting.html",
           "preview": "Meeting with Cade about Gentleman Boss project"
         },
         {
@@ -4210,6 +4256,7 @@
             "bitler"
           ],
           "summary": "Evening call with Glassy",
+          "detail_page": "calls/2026-03-10-glassy-6pm-call.html",
           "preview": "Evening call with Glassy"
         },
         {
@@ -4222,6 +4269,7 @@
             "ely"
           ],
           "summary": "Late night sync with Glassy",
+          "detail_page": "calls/2026-03-05-glassy-midnight-sync-march-6.html",
           "preview": "Late night sync with Glassy"
         },
         {
@@ -4234,6 +4282,7 @@
             "bitler"
           ],
           "summary": "Morning sync with Glassy",
+          "detail_page": "calls/2026-03-04-glassy-10am-sync.html",
           "preview": "Morning sync with Glassy"
         },
         {
@@ -4246,6 +4295,7 @@
             "bitler"
           ],
           "summary": "Morning sync with Glassy",
+          "detail_page": "calls/2026-03-03-glassy-morning-sync.html",
           "preview": "Morning sync with Glassy"
         },
         {
@@ -4258,6 +4308,7 @@
             "bitler"
           ],
           "summary": "Morning sync with Glassy",
+          "detail_page": "calls/2026-03-02-glassy-morning-sync.html",
           "preview": "Morning sync with Glassy"
         },
         {
@@ -4270,6 +4321,7 @@
             "bitler"
           ],
           "summary": "Afternoon sync with Glassy",
+          "detail_page": "calls/2026-03-02-glassy-afternoon-sync.html",
           "preview": "Afternoon sync with Glassy"
         },
         {
@@ -4282,6 +4334,7 @@
             "bitler"
           ],
           "summary": "Research prompt development with Glassy",
+          "detail_page": "calls/2026-03-02-glassy-9am--research-prompts.html",
           "preview": "Research prompt development with Glassy"
         },
         {
@@ -4294,6 +4347,7 @@
             "ely"
           ],
           "summary": "Sensei demo pipeline session",
+          "detail_page": "calls/2026-03-01-sensei-demo-pipeline-session.html",
           "preview": "Sensei demo pipeline session"
         },
         {
@@ -4305,6 +4359,7 @@
             "alex"
           ],
           "summary": "Tactical assessment of daemon tendency configuration",
+          "detail_page": "calls/2026-02-25-tactical-assessment--daemon-tendency-config.html",
           "preview": "Tactical assessment of daemon tendency configuration"
         },
         {
@@ -4319,6 +4374,7 @@
             "bitler"
           ],
           "summary": "Full team meeting with Alan and Glassy",
+          "detail_page": "calls/2026-02-19-full-team--alan--glassy.html",
           "preview": "Full team meeting with Alan and Glassy"
         },
         {
@@ -4331,6 +4387,7 @@
             "alan"
           ],
           "summary": "Call with Alan",
+          "detail_page": "calls/2026-02-19-alan-call-feb-19.html",
           "preview": "Call with Alan"
         },
         {
@@ -4343,6 +4400,7 @@
             "bitler"
           ],
           "summary": "Call with Glassy",
+          "detail_page": "calls/2026-02-19-glassy-call-feb-19.html",
           "preview": "Call with Glassy"
         },
         {
@@ -4355,6 +4413,7 @@
             "ely"
           ],
           "summary": "Internal team sync",
+          "detail_page": "calls/2026-02-16-team-sync.html",
           "preview": "Internal team sync"
         },
         {
@@ -4367,6 +4426,7 @@
             "ely"
           ],
           "summary": "Internal afternoon sync",
+          "detail_page": "calls/2026-02-16-afternoon-sync.html",
           "preview": "Internal afternoon sync"
         },
         {
@@ -4379,6 +4439,7 @@
             "ely"
           ],
           "summary": "Internal morning sync",
+          "detail_page": "calls/2026-02-13-morning-sync.html",
           "preview": "Internal morning sync"
         },
         {
@@ -4391,6 +4452,7 @@
             "ely"
           ],
           "summary": "Internal noon sync",
+          "detail_page": "calls/2026-02-13-noon-sync.html",
           "preview": "Internal noon sync"
         },
         {
@@ -4403,6 +4465,7 @@
             "ely"
           ],
           "summary": "Internal team sync",
+          "detail_page": "calls/2026-02-12-team-sync.html",
           "preview": "Internal team sync"
         },
         {
@@ -4415,6 +4478,7 @@
             "ely"
           ],
           "summary": "Internal team sync",
+          "detail_page": "calls/2026-02-11-team-sync.html",
           "preview": "Internal team sync"
         },
         {
@@ -4427,6 +4491,7 @@
             "ely"
           ],
           "summary": "Audit review of February 11 team sync",
+          "detail_page": "calls/2026-02-11-audit-of-feb-11-sync.html",
           "preview": "Audit review of February 11 team sync"
         }
       ],
@@ -4445,7 +4510,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-23T04:22:47.039456+00:00",
+      "updated_at": "2026-03-23T04:40:35.221184+00:00",
       "sops": [
         {
           "name": "Autonomous Website Generation",
@@ -5385,7 +5450,7 @@
       "total_docs": 154
     },
     "deals": {
-      "updated_at": "2026-03-23T04:22:47.039638+00:00",
+      "updated_at": "2026-03-23T04:40:35.221315+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -5619,7 +5684,7 @@
       }
     },
     "attention": {
-      "updated_at": "2026-03-23T04:22:47.043703+00:00",
+      "updated_at": "2026-03-23T04:40:35.224264+00:00",
       "items": [
         {
           "type": "blocked",
@@ -5694,8 +5759,32 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-23T04:22:47.043781+00:00",
+      "updated_at": "2026-03-23T04:40:35.224316+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-03-23T04:36:26Z",
+          "title": "fix(ci): move to GitHub-hosted runners + cancel-in-progress \u2014 unblock 0% pass ra",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T04:33:46Z",
+          "title": "fix(website): datetime KeyError in .format() template strings",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T04:30:12Z",
+          "title": "docs(boot-state): resolve OAuth contradiction \u2014 align prose with fixed status",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T04:23:58Z",
+          "title": "feat(dashboard): 49 call detail pages + docs/SOP inventory tab",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-03-23T04:18:23Z",
@@ -5730,30 +5819,6 @@
           "type": "commit",
           "date": "2026-03-23T03:29:41Z",
           "title": "fix(deploy): use printf for yellow ANSI \u2014 no yellow() function in smoke test",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T03:12:28Z",
-          "title": "fix(dashboard): call links point to GitHub repo instead of relative 404 paths",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T03:11:07Z",
-          "title": "fix(deploy): downgrade DAEMON_CLAIMS to warning \u2014 identity lock async, not deplo",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T02:52:23Z",
-          "title": "feat(dashboard): expandable call cards with structured intelligence",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T02:48:52Z",
-          "title": "fix(deal): four co-founder agreement \u2014 Alan B. Charity is Coherence Architect",
           "detail": "covaultxyz"
         },
         {
