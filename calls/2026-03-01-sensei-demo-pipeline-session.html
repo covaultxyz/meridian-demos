@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensei demo pipeline session — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Sensei demo pipeline session</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-03-01</span>
+<span>alex, ely</span>
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Sensei demo pipeline session</p></div>
+
+
+
+
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Sensei Session — Local Demo Video Pipeline + Cursor Agent Queue</h2>
+<p>_Date: 2026-03-01 | Branch: main | Commits: bed43b2, 1379be1_</p>
+<p>---</p>
+<h3>What We Built</h3>
+<h4>Problem</h4>
+<p>Cursor&#x27;s cloud BG agents produce demo videos automatically ($40–100/run). Goal: replicate ~80% of that capability locally on M1 at zero extra cost using tools already installed.</p>
+<h4>What Was Audited (3 rounds)</h4>
+<p>**Round 1 — Initial plan audit** (from `docs/transcriptions/feb25/cursor agents/cursorcodeagents.md`):</p>
+<p style='padding-left:1rem'>&bull; Identified two paths: BG Agent (cloud, expensive) vs local pipeline (free, buildable)</p>
+<p style='padding-left:1rem'>&bull; Identified that `config/cursor/prompt_template.md:33` said &quot;Cursor built-in demo recording&quot; — meaningless for local sessions</p>
+<p>**Round 2 — Plan v1 audit**:</p>
+<p style='padding-left:1rem'>&bull; Found dead Remotion reference (`/output/ai-takes-your-inbox/node_modules/@remotion/` — doesn&#x27;t exist)</p>
+<p style='padding-left:1rem'>&bull; Found broken GitHub PR attachment strategy (relative file links in PR comments don&#x27;t embed video)</p>
+<p style='padding-left:1rem'>&bull; Correct strategy: `gh release upload` → CDN URL → link in comment</p>
+<p style='padding-left:1rem'>&bull; Found ffmpeg `drawtext` paste artifact in plan</p>
+<p style='padding-left:1rem'>&bull; Found missing `--dry-run` flag for smoke testing</p>
+<p style='padding-left:1rem'>&bull; Found missing `.webm` filename detection strategy (Playwright writes UUID-named files, not script-named)</p>
+<p>**Round 3 — Plan v2 audit** (all prior issues fixed):</p>
+<p style='padding-left:1rem'>&bull; Verified Playwright chromium installed at `~/Library/Caches/ms-playwright/chromium-1208`</p>
+<p style='padding-left:1rem'>&bull; Verified `gh release upload --clobber` flag exists</p>
+<p style='padding-left:1rem'>&bull; Confirmed `demo-videos` release doesn&#x27;t exist yet (first run creates it)</p>
+<p style='padding-left:1rem'>&bull; Identified one remaining gap: Playwright UUID `.webm` filename detection — snapshot before/after</p>
+<p>---</p>
+<h3>Files Created / Modified</h3>
+<p>| File | Action | Notes |</p>
+<p>|------|--------|-------|</p>
+<p>| `workers/demo_recorder.py` | CREATE | Full pipeline CLI — Playwright → ffmpeg → gh release → PR comment |</p>
+<p>| `demos/playwright_template.py` | CREATE | Copy-and-fill template for agents |</p>
+<p>| `demos/.gitignore` | CREATE | Excludes `raw/` and `*.webm` |</p>
+<p>| `config/cursor/prompt_template.md:33` | MODIFY | Points to local pipeline instead of &quot;Cursor built-in demo recording&quot; |</p>
+<p>| `config/cursor/issue_61_jetstream_fact_extraction.md:58` | MODIFY | Stale verification step updated to use `demo_recorder.py` |</p>
+<p>| `scripts/cursor_claim.py` | CREATE | Cursor queue manager (claim/done/abandon/enqueue/list) |</p>
+<p>| `config/cursor/issue_351_cassian_sats.md` | CREATE | Cursor prompt for #351/#474 |</p>
+<p>| `config/cursor/issue_321_323_self_healing.md` | CREATE | Cursor prompt for #321+#323 |</p>
+<p>| `config/cursor/issue_324_alert_routing.md` | CREATE | Cursor prompt for #324 |</p>
+<p>---</p>
+<h3>Pipeline Architecture</h3>
+<p>```</p>
+<p>Cursor agent finishes feature</p>
+<p>│</p>
+<p>▼</p>
+<p>Writes demos/playwright_&lt;feature&gt;.py  (copy of playwright_template.py)</p>
+<p>│</p>
+<p>▼</p>
+<p>python workers/demo_recorder.py \</p>
+<p>--script demos/playwright_&lt;feature&gt;.py \</p>
+<p>--pr &lt;N&gt; \</p>
+<p>--title &quot;&lt;feature name&gt;&quot;</p>
+<p>│</p>
+<p>├─ 1. Snapshot demos/raw/ (capture .webm UUID diff)</p>
+<p>├─ 2. Run Playwright with RECORD_VIDEO=1 → UUID-named .webm</p>
+<p>├─ 3. ffmpeg: .webm → 1280x720 h264 .mp4 (scale + pad)</p>
+<p>├─ 4. ffmpeg: drawtext title overlay (falls back if libfreetype missing)</p>
+<p>├─ 5. gh release create demo-videos (idempotent, || true)</p>
+<p>├─ 6. gh release upload --clobber → CDN URL</p>
+<p>└─ 7. gh pr comment &lt;N&gt; --body &quot;🎬 Demo: &lt;CDN_URL&gt;&quot;</p>
+<p>```</p>
+<p>Videos never land in the git tree — they live as GitHub release assets on the `demo-videos` tag.</p>
+<p>---</p>
+<h3>Smoke Test Results</h3>
+<p>```bash</p>
+<p>cp demos/playwright_template.py demos/playwright_smoke.py</p>
+<h2>Added: page.goto(&quot;https://example.com&quot;) + page.wait_for_load_state(&quot;networkidle&quot;)</h2>
+<p>RECORD_VIDEO=1 python workers/demo_recorder.py \</p>
+<p>--script demos/playwright_smoke.py --pr 0 --title &quot;smoke test&quot; --dry-run</p>
+<p>```</p>
+<p>| Step | Result |</p>
+<p>|------|--------|</p>
+<p>| Playwright record → UUID `.webm` | ✅ |</p>
+<p>| ffmpeg scale → 1280x720 h264 | ✅ |</p>
+<p>| drawtext overlay | ⚠️ `libfreetype` not compiled into this ffmpeg build — falls back to scaled mp4, logs warning |</p>
+<p>| dry-run output | ✅ CDN URL printed, nothing uploaded |</p>
+<p>| `ffprobe` verify | ✅ `1280 720 h264` |</p>
+<p>**Fix applied during smoke test**: `drawtext` step made non-fatal in `demo_recorder.py`. If `libfreetype` isn&#x27;t in the ffmpeg build, falls back to the scaled mp4 with a `drawtext_unavailable_fallback` warning.</p>
+<p>---</p>
+<h3>Cursor Agent Queue System</h3>
+<h4>Problem Found</h4>
+<p>`~/cursor_queue.json` was write-only — nothing ever marked tasks `in_progress` or `done`. Stale `pending` entry from Feb 28 (#61, already deployed) was sitting unresolved.</p>
+<h4>Fix</h4>
+<p>`scripts/cursor_claim.py` — queue manager with subcommands:</p>
+<p>```bash</p>
+<p>python scripts/cursor_claim.py list                      # see all tasks by status</p>
+<p>python scripts/cursor_claim.py claim &lt;task_id_prefix&gt;   # mark in_progress (open session)</p>
+<p>python scripts/cursor_claim.py done &lt;task_id_prefix&gt;    # mark done (PR merged)</p>
+<p>python scripts/cursor_claim.py abandon &lt;task_id_prefix&gt; # return to pending (aborted)</p>
+<p>python scripts/cursor_claim.py enqueue --title &quot;...&quot; --prompt-file &quot;...&quot; --issue N</p>
+<p>```</p>
+<p>`enqueue` publishes to NATS JetStream → `cursor_dispatcher` picks it up → writes to queue file + Telegram notification + GitHub issue comment.</p>
+<h4>Parallel Session Protocol</h4>
+<p style='padding-left:1rem'>&bull; `cursor_claim.py list` before starting — check nothing is already `in_progress` in the same file zone</p>
+<p style='padding-left:1rem'>&bull; Max 2 parallel sessions with non-overlapping file scopes</p>
+<p style='padding-left:1rem'>&bull; `claim` when opening Cursor, `done` when PR merges</p>
+<p>---</p>
+<h3>Three Prompt Files Written</h3>
+<h4>`issue_351_cassian_sats.md` → #351/#474 Cassian SATs</h4>
+<p>Thin wrapper — the detailed spec already existed in `issue_474_cassian_sats.md`.</p>
+<p>Notes: use 474 spec, close both #351 and #474 on the same PR.</p>
+<p>Branch: `ely/cassian-sats-474`</p>
+<h4>`issue_321_323_self_healing.md` → #321 + #323 (bundled session)</h4>
+<p>**#321** — Replace flat 120s cooldown in `sentinel_remediation.py:125` with per-daemon exponential backoff + jitter:</p>
+<p>```python</p>
+<p>delay = min(base * (2 ** attempt) * (1 + random.uniform(0, jitter)), max_delay)</p>
+<p>```</p>
+<p>Config: `health.yaml` → `restart_backoff.{base_delay_seconds, jitter_factor, max_delay_seconds}`</p>
+<p>**#323** — Add 4 Cypher-backed methods to `services/incident_manager.py`:</p>
+<p style='padding-left:1rem'>&bull; `compute_mttr()` — target &lt;180s</p>
+<p style='padding-left:1rem'>&bull; `compute_recurrence_rate()` — target &lt;15%</p>
+<p style='padding-left:1rem'>&bull; `compute_false_positive_rate()` — target &lt;10%</p>
+<p style='padding-left:1rem'>&bull; `compute_remediation_success_rate()` — target &gt;85%</p>
+<p>Document as Metric #20a–d in `audits/metrics-framework.md`.</p>
+<p>Branch: `ely/self-healing-321-323`</p>
+<h4>`issue_324_alert_routing.md` → #324 Tiered Alert Routing</h4>
+<p>New `integrations/alert_router.py`:</p>
+<p>| Severity | Destination |</p>
+<p>|----------|-------------|</p>
+<p>| CRITICAL | Telegram DM to Alex (direct Bot API, bypasses NATS) |</p>
+<p>| WARNING | `channel.outbound.telegram` NATS topic (existing bridge) |</p>
+<p>| INFO | `daemon.health.events` NATS only, no Telegram |</p>
+<p>Wire into `sentinel_remediation.py` replacing all existing Telegram calls.</p>
+<p>Branch: `ely/alert-routing-324`</p>
+<p>---</p>
+<h3>Queue State at Session End</h3>
+<p>```</p>
+<p>⏳ PENDING (6)</p>
+<p>1f7f8cea  #474 Cassian SATs  (old entry from prior session)</p>
+<p>22be6d87  #474 Intelligence Analysis Framework  (old entry, duplicate)</p>
+<p>3a9e4732  #913 Fix conductor C1+C2  (surfaced from JetStream backlog)</p>
+<p>04cc84cd  #351/#474 Cassian SATs — Intelligence Analysis Framework  ← new</p>
+<p>85564da6  #321+#323 Self-Healing Backoff + SRE Metrics  ← new</p>
+<p>510b2def  #324 Tiered Alert Routing  ← new</p>
+<p>✅ DONE (1)</p>
+<p>48085930  Test dispatch — #61  (marked done this session)</p>
+<p>```</p>
+<p>**Note**: `1f7f8cea` and `22be6d87` are old #474 entries — mark one done when starting the Cassian SATs session, ignore the other. `04cc84cd` is the authoritative new entry.</p>
+<p>---</p>
+<h3>Known Issues / Follow-Up</h3>
+<p style='padding-left:1rem'>&bull; `libfreetype` not in Homebrew ffmpeg build → drawtext title overlay silently falls back. Acceptable for Phase 1 — title is visible from the demo content itself. To enable: `brew install ffmpeg` with freetype support (requires tap or build-from-source).</p>
+<p style='padding-left:1rem'>&bull; Duplicate #474 queue entries — clean up by marking stale ones done before starting that session.</p>
+<p style='padding-left:1rem'>&bull; `#913 conductor C1+C2` prompt file has a doubled path in the queue entry (`config/cursor/config/cursor/...`) — data issue in the queue JSON, not the actual file. Actual file is `config/cursor/issue_913_conductor_c1_c2.md`.</p>
+<p>---</p>
+<h3>Commits This Session</h3>
+<p>| Hash | Message |</p>
+<p>|------|---------|</p>
+<p>| `bed43b2` | `docs(cursor): add prompt files for #351, #321+#323, #324 self-healing sprint` |</p>
+<p>| `1379be1` | Rebased onto ff94689 (remote had 5 commits ahead) |</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-22 23:25</div>
+</body></html>
