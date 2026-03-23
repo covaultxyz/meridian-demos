@@ -350,7 +350,7 @@ var SearchBar = function(props) {
 /* GATEWAY CONNECTION */
 var GatewayModal = function(props) {
   if (!props.isOpen) return null;
-  var _u = useState(localStorage.getItem('mrd_gateway_url')||''); var url = _u[0]; var setUrl = _u[1];
+  var _u = useState(localStorage.getItem('mrd_gateway_url')||'https://meridian-prime.tailb5bb37.ts.net'); var url = _u[0]; var setUrl = _u[1];
   var _t = useState(localStorage.getItem('mrd_gateway_token')||''); var tok = _t[0]; var setTok = _t[1];
   var inputCls = 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-sm text-[#e2e8f0] outline-none focus:border-[#38bdf8]';
   return React.createElement('div', { className:'fixed inset-0 bg-black/60 flex items-center justify-center z-50', onClick:function(e){if(e.target===e.currentTarget)props.onClose();} },
@@ -370,7 +370,7 @@ var GatewayModal = function(props) {
 };
 
 var GatewayConnectCard = function(props) {
-  var _u = useState(''); var url = _u[0]; var setUrl = _u[1];
+  var _u = useState('https://meridian-prime.tailb5bb37.ts.net'); var url = _u[0]; var setUrl = _u[1];
   var _t = useState(''); var tok = _t[0]; var setTok = _t[1];
   var inputCls = 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-sm text-[#e2e8f0] outline-none focus:border-[#38bdf8] placeholder-[#8899aa]';
   return React.createElement(GlassCard, { className:'p-6 max-w-md mx-auto my-4' },
