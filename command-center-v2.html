@@ -1733,20 +1733,26 @@ var InsightsView = function(props) {
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Program Health'),
       React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3' },
         daemonList.map(function(d, i) {
-          var score = d.score != null ? d.score : null;
+          // API returns overall_score/daemon, static returns score/name
+          var score = d.overall_score != null ? d.overall_score : (d.score != null ? d.score : null);
+          var dName = d.daemon || d.name || 'unknown';
           var isOnline = d.status === 'online' || d.status === 'active';
-          var healthColor = score != null ? (score >= 80 ? '#22c55e' : (score >= 50 ? '#eab308' : '#ef4444')) : (isOnline ? '#22c55e' : '#6b7280');
+          var healthColor = score != null && score > 0 ? (score >= 80 ? '#22c55e' : (score >= 50 ? '#eab308' : '#ef4444')) : (isOnline ? '#22c55e' : '#6b7280');
+          // Build subtitle from available fields
+          var subtitle = d.current_assignment || d.host || '';
+          if (!subtitle && d.memories_stored) subtitle = d.memories_stored + ' memories';
+          if (!subtitle && d.total_points) subtitle = d.total_points + ' points';
           return React.createElement('div', {
             key: i,
             className: 'bg-[#1a2234] rounded-lg p-3 text-center'
           },
-            React.createElement('div', { className: 'text-sm font-bold capitalize mb-1', style: { color: healthColor } }, d.name),
-            score != null
-              ? React.createElement('div', { className: 'text-2xl font-bold', style: { color: healthColor } }, score)
-              : React.createElement('div', { className: 'text-xs capitalize', style: { color: healthColor } }, d.status || 'unknown'),
-            d.current_assignment
-              ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1 truncate' }, d.current_assignment)
-              : (d.host ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1' }, d.host) : null)
+            React.createElement('div', { className: 'text-sm font-bold capitalize mb-1', style: { color: healthColor } }, dName),
+            score != null && score > 0
+              ? React.createElement('div', { className: 'text-2xl font-bold', style: { color: healthColor } }, Math.round(score))
+              : React.createElement('div', { className: 'text-xs capitalize', style: { color: healthColor } }, d.status || (d.tasks_completed != null ? d.tasks_completed + ' tasks done' : 'idle')),
+            subtitle
+              ? React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-1 truncate' }, subtitle)
+              : null
           );
         })
       )
