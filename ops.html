@@ -1267,6 +1267,44 @@ function renderOperations(o) {
         html += '<div class="metric-row"><span class="metric-label">' + escHtml(name) + '</span><span class="metric-value">' + st.messages + ' msgs / ' + st.consumers + ' consumers</span></div>';
       });
       html += '</div>';
+
+      // ── Consumer Lag Gauges ──────────────────────────────────────────────
+      var hasLag = false;
+      Object.keys(ml.nats.streams).forEach(function(name) {
+        var st = ml.nats.streams[name];
+        if (st.consumer_lag && st.consumer_lag.length > 0) { hasLag = true; }
+      });
+      if (hasLag) {
+        html += '<div style="margin-top:0.8rem"><div style="color:var(--dim);font-size:0.7rem;text-transform:uppercase;margin-bottom:0.4rem">JetStream Consumer Lag</div>';
+        html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem">';
+        Object.keys(ml.nats.streams).forEach(function(name) {
+          var st = ml.nats.streams[name];
+          if (!st.consumer_lag || st.consumer_lag.length === 0) return;
+          // Calculate aggregate pending for the stream
+          var totalPending = 0;
+          st.consumer_lag.forEach(function(c) { if (c.pending > 0) totalPending += c.pending; });
+          var streamLevel = totalPending >= 500 ? 'critical' : totalPending >= 100 ? 'warning' : 'ok';
+          var borderColor = streamLevel === 'critical' ? 'var(--red)' : streamLevel === 'warning' ? 'var(--yellow)' : 'var(--green)';
+          var bgColor = streamLevel === 'critical' ? 'rgba(239,68,68,0.08)' : streamLevel === 'warning' ? 'rgba(234,179,8,0.08)' : 'rgba(34,197,94,0.08)';
+
+          html += '<div style="background:' + bgColor + ';border:1px solid var(--border);border-left:3px solid ' + borderColor + ';border-radius:6px;padding:0.6rem 0.8rem">';
+          html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.3rem">';
+          html += '<span style="font-size:0.75rem;font-weight:600;color:var(--text)">' + escHtml(name) + '</span>';
+          html += '<span style="font-size:1rem;font-weight:700;color:' + borderColor + '">' + totalPending.toLocaleString() + '</span>';
+          html += '</div>';
+          // Per-consumer breakdown
+          st.consumer_lag.forEach(function(c) {
+            var cColor = c.level === 'critical' ? 'var(--red)' : c.level === 'warning' ? 'var(--yellow)' : c.level === 'unknown' ? 'var(--dim)' : 'var(--green)';
+            var pendingText = c.pending >= 0 ? c.pending.toLocaleString() : '?';
+            html += '<div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--dim);padding:0.1rem 0">';
+            html += '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%">' + escHtml(c.name) + '</span>';
+            html += '<span style="color:' + cColor + ';font-weight:600">' + pendingText + '</span>';
+            html += '</div>';
+          });
+          html += '</div>';
+        });
+        html += '</div></div>';
+      }
     }
     if (ml.nodes && ml.nodes.length > 0) {
       html += '<div style="margin-top:0.8rem"><div style="color:var(--dim);font-size:0.7rem;text-transform:uppercase;margin-bottom:0.4rem">Node Reachability</div>';
