@@ -35,8 +35,6 @@ tailwind.config = {
   --red: #ef4444;
   --purple: #a78bfa;
   --cyan: #06b6d4;
-  --primary-color: #38bdf8;
-  --accent-color: #22c55e;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -75,9 +73,8 @@ var CONFIG = {
   mode: _params.get('mode') || 'auto',
   name: _params.get('name') || 'MERIDIAN',
   accent: _params.get('accent') || '#38bdf8',
-  clientSlug: _params.get('client') || null,
+  clientSlug: _params.get('client') || '',
 };
-/* Client-aware data file selection (Item 17) */
 var CLIENT_DATA_FILE = CONFIG.clientSlug
   ? 'dashboard-data-' + CONFIG.clientSlug + '.json'
   : 'dashboard-data.json';
@@ -473,64 +470,6 @@ var AuthGate = function(props) {
         className: 'w-full py-2 bg-sky-500/15 border border-sky-500/30 rounded-lg text-[#38bdf8] text-sm font-semibold cursor-pointer hover:bg-sky-500/25 transition-all'
       }, 'Unlock'),
       err ? React.createElement('p', { className: 'text-[#ef4444] text-xs mt-2' }, 'Invalid PIN') : null
-    )
-  );
-};
-
-/* CLIENT PIN AUTH GATE (Item 18) — lightweight per-client PIN overlay */
-var ClientAuthGate = function(props) {
-  var clientSlug = props.clientSlug;
-  var expectedPin = props.expectedPin;
-  var companyName = props.companyName || 'Client Dashboard';
-  var primaryColor = props.primaryColor || '#38bdf8';
-
-  var _s1 = useState('');
-  var pin = _s1[0]; var setPin = _s1[1];
-  var _s2 = useState(false);
-  var err = _s2[0]; var setErr = _s2[1];
-
-  function submit() {
-    if (!pin) return;
-    if (pin === expectedPin) {
-      sessionStorage.setItem('meridian_auth_' + clientSlug, 'true');
-      props.onAuth();
-    } else {
-      setErr(true);
-      setPin('');
-    }
-  }
-
-  return React.createElement('div', {
-    className: 'fixed inset-0 flex items-center justify-center z-50',
-    style: { background: 'rgba(10,14,23,0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }
-  },
-    React.createElement(GlassCard, { className: 'w-80 p-8 text-center' },
-      React.createElement('h2', {
-        className: 'text-lg font-bold mb-1',
-        style: { color: primaryColor }
-      }, companyName),
-      React.createElement('p', { className: 'text-[#8899aa] text-xs mb-6' }, 'Enter your PIN to access this dashboard'),
-      React.createElement('input', {
-        type: 'password',
-        value: pin,
-        onChange: function(e) { setPin(e.target.value); setErr(false); },
-        onKeyDown: function(e) { if (e.key === 'Enter') submit(); },
-        placeholder: 'PIN',
-        autoFocus: true,
-        maxLength: 6,
-        className: 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-[#e2e8f0] text-center text-lg tracking-[0.3em] outline-none focus:border-[#38bdf8] mb-3',
-        style: { borderColor: err ? '#ef4444' : undefined }
-      }),
-      React.createElement('button', {
-        onClick: submit,
-        className: 'w-full py-2 rounded-lg text-sm font-semibold cursor-pointer transition-all',
-        style: {
-          background: primaryColor + '22',
-          border: '1px solid ' + primaryColor + '55',
-          color: primaryColor
-        }
-      }, 'Unlock'),
-      err ? React.createElement('p', { className: 'text-[#ef4444] text-xs mt-2' }, 'Invalid PIN — please try again') : null
     )
   );
 };
@@ -1579,97 +1518,6 @@ var IntelligenceView = function(props) {
   );
 };
 
-/* VIEW: CALL INTELLIGENCE */
-var CallIntelView = function(props) {
-  var ci = (props.data && props.data.call_intelligence) || {};
-  var ss = ci.signal_summary || {};
-  var decisions = ci.decisions || [], commitments = ci.commitments || [], discoveries = ci.discoveries || [], actions = ci.action_items || [], sentiments = ci.sentiments || [];
-  var csuiteRaw = (props.data && props.data.csuite_audits) || {};
-  var csuiteAudits = csuiteRaw.audits || [];
-  var personaColors = { CEO: '#ef4444', CSO: '#22c55e', CFO: '#eab308', COO: '#38bdf8', CTO: '#a78bfa', CMO: '#f97316', CPO: '#06b6d4' };
-  function csuiteExtractBullets(obj) {
-    if (!obj || typeof obj !== 'object') return [];
-    var bullets = [];
-    var keys = Object.keys(obj);
-    for (var k = 0; k < keys.length; k++) {
-      var key = keys[k];
-      var val = obj[key];
-      if (typeof val === 'string' && val.length > 0 && val.length < 300) {
-        bullets.push(key.replace(/_/g, ' ') + ': ' + val);
-      } else if (Array.isArray(val)) {
-        for (var j = 0; j < val.length && j < 3; j++) {
-          var item = val[j];
-          if (typeof item === 'string') {
-            bullets.push(item);
-          } else if (item && typeof item === 'object') {
-            var txt = item.action || item.objection || item.name || item.what || '';
-            if (txt) bullets.push(txt);
-          }
-        }
-      }
-      if (bullets.length >= 4) break;
-    }
-    return bullets.slice(0, 4);
-  }
-  return React.createElement('div', { className: 'space-y-4 mt-4' },
-    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-5 gap-3' },
-      React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#f97316]' }, ss.total_objections || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Objections')),
-      React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#22c55e]' }, ss.total_buying_signals || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Buying Signals')),
-      React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#a78bfa]' }, ss.total_competitors || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Competitors')),
-      React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#38bdf8]' }, ss.pricing_discussions || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Pricing Talks')),
-      React.createElement(GlassCard, { className: 'p-4 text-center' }, React.createElement('div', { className: 'text-2xl font-bold text-[#e2e8f0]' }, ss.calls_with_signals || 0), React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase' }, 'Calls Analyzed'))),
-    decisions.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#22c55e] uppercase tracking-widest mb-3' }, 'Decisions Made (' + decisions.length + ')'),
-      React.createElement('div', { className: 'space-y-1.5 max-h-60 overflow-y-auto' }, decisions.map(function(d, i) { return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5' }, React.createElement('span', { className: 'text-[#22c55e] text-xs' }, '\u2713'), React.createElement('div', null, React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, d.decision), React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, d.date + ' \u2014 ' + d.call))); }))) : null,
-    commitments.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#38bdf8] uppercase tracking-widest mb-3' }, 'Commitments (' + commitments.length + ')'),
-      React.createElement('div', { className: 'space-y-1.5 max-h-60 overflow-y-auto' }, commitments.map(function(c, i) { return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5' }, React.createElement('span', { className: 'text-[#38bdf8] text-xs' }, '\u2022'), React.createElement('div', null, c.who ? React.createElement('span', { className: 'text-xs text-[#38bdf8] font-semibold' }, c.who + ': ') : null, React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, c.what || ''), React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, c.date))); }))) : null,
-    discoveries.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#a78bfa] uppercase tracking-widest mb-3' }, 'Key Discoveries (' + discoveries.length + ')'),
-      React.createElement('div', { className: 'space-y-1.5 max-h-60 overflow-y-auto' }, discoveries.map(function(d, i) { return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5' }, React.createElement('span', { className: 'text-[#a78bfa] text-xs' }, '\u2022'), React.createElement('div', null, React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, d.discovery), React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, d.date))); }))) : null,
-    actions.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#eab308] uppercase tracking-widest mb-3' }, 'Action Items (' + actions.length + ')'),
-      React.createElement('div', { className: 'space-y-1.5 max-h-60 overflow-y-auto' }, actions.map(function(a, i) { return React.createElement('div', { key: i, className: 'flex items-start gap-2 py-1 border-b border-white/5' }, React.createElement('span', { className: 'text-[#eab308] text-xs' }, '\u25CB'), React.createElement('div', null, React.createElement('span', { className: 'text-xs text-[#e2e8f0]' }, a.action), React.createElement('span', { className: 'text-[10px] text-[#8899aa] ml-2' }, a.date))); }))) : null,
-    sentiments.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Sentiment Trend'),
-      React.createElement('div', { className: 'flex gap-2 flex-wrap' }, sentiments.map(function(s, i) { var col = s.sentiment === 'positive' ? '#22c55e' : s.sentiment === 'negative' ? '#ef4444' : '#eab308'; return React.createElement('div', { key: i, className: 'text-center' }, React.createElement('div', { className: 'w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold', style: { background: col + '20', color: col } }, s.sentiment.charAt(0).toUpperCase()), React.createElement('div', { className: 'text-[8px] text-[#8899aa] mt-0.5' }, s.date.slice(5))); }))) : null,
-    csuiteAudits.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
-      React.createElement('h3', { className: 'text-xs font-bold text-[#ef4444] uppercase tracking-widest mb-3' }, 'C-Suite Insights (' + csuiteAudits.length + ' audits)'),
-      React.createElement('div', { className: 'space-y-4 max-h-[600px] overflow-y-auto' },
-        csuiteAudits.map(function(audit, ai) {
-          var cls = (audit.classification) || {};
-          var topic = cls.call_topic || 'Untitled call';
-          var personas = audit.persona_insights || {};
-          var personaNames = Object.keys(personas);
-          var client = audit._client || 'unknown';
-          var auditDate = audit.audited_at ? audit.audited_at.slice(0, 10) : '';
-          return React.createElement('div', { key: ai, className: 'border border-[#1e2d4a] rounded-lg p-3' },
-            React.createElement('div', { className: 'flex items-start justify-between mb-2' },
-              React.createElement('div', null,
-                React.createElement('div', { className: 'text-xs text-[#e2e8f0] font-semibold' }, topic),
-                React.createElement('div', { className: 'text-[10px] text-[#8899aa] mt-0.5' }, client + (auditDate ? ' \u2014 ' + auditDate : ''))),
-              React.createElement('div', { className: 'flex gap-1' },
-                personaNames.map(function(pn, pi) {
-                  var pc = personaColors[pn] || '#8899aa';
-                  return React.createElement('span', { key: pi, className: 'text-[9px] font-bold px-1.5 py-0.5 rounded', style: { background: pc + '20', color: pc } }, pn);
-                }))),
-            React.createElement('div', { className: 'grid gap-3 mt-2', style: { gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' } },
-              personaNames.map(function(pn, pi) {
-                var pc = personaColors[pn] || '#8899aa';
-                var bullets = csuiteExtractBullets(personas[pn]);
-                return React.createElement('div', { key: pi, className: 'space-y-1' },
-                  React.createElement('div', { className: 'text-[10px] font-bold uppercase tracking-wider', style: { color: pc } }, pn),
-                  bullets.length > 0 ? React.createElement('ul', { className: 'space-y-0.5' },
-                    bullets.map(function(b, bi) {
-                      return React.createElement('li', { key: bi, className: 'text-[11px] text-[#c8d6e5] leading-tight flex items-start gap-1' },
-                        React.createElement('span', { className: 'shrink-0 mt-1', style: { color: pc } }, '\u2022'),
-                        React.createElement('span', null, b));
-                    })) : React.createElement('div', { className: 'text-[10px] text-[#8899aa] italic' }, 'No insights'));
-              })));
-        }))) : null,
-    (decisions.length + commitments.length + discoveries.length + actions.length + csuiteAudits.length) === 0 ? React.createElement(GlassCard, { className: 'p-8 text-center' }, React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'No call intelligence yet. Add decisions and discoveries to calls in project-registry.yaml')) : null);
-};
-
 /* VIEW: CALLS */
 var CallsView = function(props) {
   var data = props.data;
@@ -1734,12 +1582,10 @@ var CallsView = function(props) {
         React.createElement('div', { className: 'flex gap-1.5' },
           filterBtn('All Calls', 'all'),
           filterBtn('External (Client)', 'external'),
-          filterBtn('Internal (Team)', 'internal'),
-          filterBtn('Intelligence', 'intel')
+          filterBtn('Internal (Team)', 'internal')
         )
       ),
-      callFilter === 'intel' ? React.createElement(CallIntelView, { data: data }) : null,
-      callFilter !== 'intel' ? React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40 max-h-[800px] overflow-y-auto' },
+      React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40 max-h-[800px] overflow-y-auto' },
         filteredCalls.length === 0
           ? React.createElement('div', { className: 'p-6 text-center text-[#8899aa] text-sm' }, 'No calls match this filter')
           : filteredCalls.map(function(cl,i){
@@ -1805,11 +1651,10 @@ var CallsView = function(props) {
                 !hasRichData&&cl.preview?React.createElement('div',{className:'mt-3'},
                   React.createElement('p',{className:'text-xs text-[#8899aa] italic leading-relaxed'},'\u201C'+String(cl.preview||'')+'\u201D')):null,
                 React.createElement('div',{className:'flex gap-3 mt-3 pt-2 border-t border-[#1e2d4a]/30'},
-                  cl.file?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.file,target:'_blank',className:'text-[10px] text-[#38bdf8] hover:underline font-semibold'},'View Transcript'):null,
-                  cl.signals?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.signals,target:'_blank',className:'text-[10px] text-[#22c55e] hover:underline font-semibold'},'View Signals'):null,
-                  cl.audit?React.createElement('a',{href:'https://github.com/covaultxyz/meridian/blob/main/'+cl.audit,target:'_blank',className:'text-[10px] text-[#a78bfa] hover:underline font-semibold'},'View Audit'):null)
+                  cl.detail_page?React.createElement('a',{href:cl.detail_page,target:'_blank',className:'text-[10px] text-[#38bdf8] hover:underline font-semibold px-2 py-1 bg-[#38bdf8]/10 rounded'},'View Full Details \u2192'):null)
               ):null);})
-      ) : null,
+      )
+    ) : null,
 
     !hasRegCalls ? React.createElement(GlassCard, { className: 'p-4' },
       React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Call Signals'),
@@ -2744,6 +2589,27 @@ var HealthView = function(props) {
   );
 };
 
+/* CLIENT AUTH GATE — PIN lock for client dashboards */
+var ClientAuthGate = function(props) {
+  var _s1 = useState(''); var pin = _s1[0]; var setPin = _s1[1];
+  var _s2 = useState(false); var err = _s2[0]; var setErr = _s2[1];
+  var color = props.primaryColor || '#38bdf8';
+  function submit() {
+    if (!pin) return;
+    if (pin === props.expectedPin) { sessionStorage.setItem('meridian_auth_' + CONFIG.clientSlug, 'true'); props.onAuth(); }
+    else { setErr(true); setPin(''); }
+  }
+  return React.createElement('div', { className: 'fixed inset-0 flex items-center justify-center z-50', style: { background: 'rgba(10,14,23,0.92)', backdropFilter: 'blur(8px)' } },
+    React.createElement(GlassCard, { className: 'w-80 p-8 text-center' },
+      React.createElement('h2', { className: 'text-lg font-bold mb-1', style: { color: color } }, props.companyName || 'Dashboard'),
+      React.createElement('p', { className: 'text-[#8899aa] text-xs mb-6' }, 'Enter your PIN to access'),
+      React.createElement('input', { type: 'password', value: pin, onChange: function(e) { setPin(e.target.value); setErr(false); }, onKeyDown: function(e) { if (e.key === 'Enter') submit(); }, placeholder: 'PIN', autoFocus: true, maxLength: 6, className: 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-[#e2e8f0] text-center text-lg tracking-[0.3em] outline-none focus:border-[#38bdf8] mb-3', style: { borderColor: err ? '#ef4444' : undefined } }),
+      React.createElement('button', { onClick: submit, className: 'w-full py-2 rounded-lg text-sm font-semibold cursor-pointer', style: { background: color + '22', border: '1px solid ' + color + '55', color: color } }, 'Unlock'),
+      err ? React.createElement('p', { className: 'text-[#ef4444] text-xs mt-2' }, 'Invalid PIN') : null
+    )
+  );
+};
+
 /* MAIN APP */
 var App = function() {
   var _auth = useState(checkAuthSync());
@@ -2774,19 +2640,7 @@ var App = function() {
   var _gm = useState(false); var gwModalOpen = _gm[0]; var setGwModalOpen = _gm[1];
   function handleGatewayConnect(u,t) { localStorage.setItem('mrd_gateway_url',u); if(t)localStorage.setItem('mrd_gateway_token',t); CONFIG.gateway=u; loadData(); }
   function handleGatewayDisconnect() { localStorage.removeItem('mrd_gateway_url'); localStorage.removeItem('mrd_gateway_token'); CONFIG.gateway=''; loadData(); }
-
-  /* Client auth state (Item 18) */
-  var _clientAuthed = useState(function() {
-    if (!CONFIG.clientSlug) return true; // No client = no gate needed
-    return sessionStorage.getItem('meridian_auth_' + CONFIG.clientSlug) === 'true';
-  });
-  var clientAuthed = _clientAuthed[0]; var setClientAuthed = _clientAuthed[1];
-
-  /* Client overview/branding state (Items 19 & D) */
-  var _clientOverview = useState(null);
-  var clientOverview = _clientOverview[0]; var setClientOverview = _clientOverview[1];
-
-  var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer || !!CONFIG.clientSlug;
+  var effectiveCustomerMode = CONFIG.mode === 'customer' || previewCustomer;
 
   var INTERNAL_TABS = [
     { id: 'dashboard', label: 'DASHBOARD' },
@@ -2805,30 +2659,12 @@ var App = function() {
     { id: 'myreports', label: 'MY REPORTS' }
   ];
 
-  /* Tab filtering (Items 19 & D) */
-  var baseTabs = effectiveCustomerMode ? CUSTOMER_TABS : INTERNAL_TABS;
-  var visibleTabs = baseTabs;
-
-  /* When clientSlug is set: apply visible_tabs filtering from overview */
-  if (CONFIG.clientSlug && clientOverview && clientOverview.visible_tabs && clientOverview.visible_tabs.length > 0) {
-    var allowedIds = clientOverview.visible_tabs;
-    visibleTabs = baseTabs.filter(function(t) { return allowedIds.indexOf(t.id) !== -1; });
-    /* Ensure at least dashboard is shown */
-    if (visibleTabs.length === 0) visibleTabs = [baseTabs[0]];
-  }
-
-  /* Item D: When mode=customer or clientSlug — hide Team/Operations tabs, rename Customers */
-  if (effectiveCustomerMode && !CONFIG.clientSlug) {
-    visibleTabs = visibleTabs.filter(function(t) { return t.id !== 'health'; });
-    visibleTabs = visibleTabs.map(function(t) {
-      if (t.id === 'deals') return { id: 'deals', label: 'MY PROJECTS' };
-      return t;
-    });
-  }
+  var TABS = effectiveCustomerMode ? CUSTOMER_TABS : INTERNAL_TABS;
+  var visibleTabs = TABS;
 
   var loadData = useCallback(function() {
     setLoading(true);
-    // Try loading static data first (client-aware file selection)
+    // Try loading static data first
     fetch(CLIENT_DATA_FILE + '?t=' + Date.now())
       .then(function(r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -2837,25 +2673,6 @@ var App = function() {
       .then(function(d) {
         window.STATIC_DATA = d;
         setLastUpdated(d.generated_at);
-
-        /* Extract client overview for branding/auth (Items 18, 19) */
-        if (CONFIG.clientSlug && d.sections && d.sections.overview) {
-          setClientOverview(d.sections.overview);
-          /* Apply white-label branding CSS variables (Item 19) */
-          var ov = d.sections.overview;
-          if (ov.primary_color) {
-            document.documentElement.style.setProperty('--primary-color', ov.primary_color);
-            document.documentElement.style.setProperty('--accent', ov.primary_color);
-          }
-          if (ov.accent_color) {
-            document.documentElement.style.setProperty('--accent-color', ov.accent_color);
-            document.documentElement.style.setProperty('--green', ov.accent_color);
-          }
-          /* Update page title for client branding */
-          if (ov.company_name) {
-            document.title = ov.company_name + ' — Command Center';
-          }
-        }
 
         // Now try gateway
         if (CONFIG.gateway) {
@@ -2896,8 +2713,7 @@ var App = function() {
     setTimeout(function() { setRefreshing(false); }, 1000);
   };
 
-  /* For client dashboards, always load data (needed for PIN check). For internal, require auth first. */
-  var canLoad = authed || CONFIG.mode === 'mike' || !!CONFIG.clientSlug;
+  var canLoad = authed || CONFIG.mode === 'mike';
   useEffect(function() {
     if (canLoad) loadData();
   }, [canLoad, loadData]);
@@ -2920,46 +2736,12 @@ var App = function() {
     return function() { window.removeEventListener('hashchange', onHash); };
   }, [visibleTabs]);
 
-  /* Auto-authenticate client when data loaded but no PIN required (Item 18) */
-  useEffect(function() {
-    if (!CONFIG.clientSlug || clientAuthed) return;
-    if (!data) return; // Still loading
-    var pinFromOverview = clientOverview ? clientOverview.auth_pin : null;
-    if (!pinFromOverview) {
-      /* No PIN configured — auto-authenticate */
-      setClientAuthed(true);
-    }
-  }, [data, clientOverview, clientAuthed]);
-
   function switchTab(id) {
     setActiveTab(id);
     window.location.hash = id;
   }
 
-  /* Auth gate logic: client dashboards use ClientAuthGate, internal uses AuthGate */
-  if (CONFIG.clientSlug) {
-    /* Client mode: skip internal auth, use client PIN gate instead */
-    if (!clientAuthed) {
-      var pinFromOverview = clientOverview ? clientOverview.auth_pin : null;
-      /* Still loading data — show spinner until we know the PIN */
-      if (!data || (loading && !clientOverview)) {
-        return React.createElement('div', { className: 'min-h-screen flex items-center justify-center', style: { background: 'var(--bg)' } },
-          React.createElement('div', { className: 'w-8 h-8 border-2 border-[#1e2d4a] border-t-[#38bdf8] rounded-full mx-auto', style: { animation: 'spin 0.8s linear infinite' } }));
-      }
-      /* Data loaded and PIN configured — show PIN gate */
-      if (pinFromOverview) {
-        return React.createElement(ClientAuthGate, {
-          clientSlug: CONFIG.clientSlug,
-          expectedPin: pinFromOverview,
-          companyName: clientOverview ? clientOverview.company_name : CONFIG.clientSlug,
-          primaryColor: (clientOverview && clientOverview.primary_color) || '#38bdf8',
-          onAuth: function() { setClientAuthed(true); }
-        });
-      }
-      /* No PIN — useEffect above will auto-authenticate on next render */
-      return null;
-    }
-  } else if (!authed && CONFIG.mode !== 'mike') {
+  if (!authed && CONFIG.mode !== 'mike') {
     return React.createElement(AuthGate, { onAuth: function() { setAuthed(true); } });
   }
 
@@ -2988,16 +2770,7 @@ var App = function() {
     );
   }
 
-  /* White-label branding: client overview overrides display name (Item 19) */
-  var displayName = 'MERIDIAN';
-  if (CONFIG.clientSlug && clientOverview && clientOverview.company_name) {
-    displayName = clientOverview.company_name;
-  } else if (effectiveCustomerMode) {
-    displayName = CONFIG.name;
-  }
-  var brandColor = (CONFIG.clientSlug && clientOverview && clientOverview.primary_color) || '#38bdf8';
-  var brandAccent = (CONFIG.clientSlug && clientOverview && clientOverview.accent_color) || null;
-  var brandLogoUrl = (CONFIG.clientSlug && clientOverview && clientOverview.logo_url) || null;
+  var displayName = effectiveCustomerMode ? CONFIG.name : 'MERIDIAN';
 
   function renderView() {
     switch (activeTab) {
@@ -3023,28 +2796,19 @@ var App = function() {
     React.createElement(GatewayModal, { isOpen:gwModalOpen, onClose:function(){setGwModalOpen(false);}, onConnect:handleGatewayConnect, onDisconnect:handleGatewayDisconnect, isConnected:gwConn }),
     React.createElement('header', { className: 'border-b border-[#1e2d4a] bg-gradient-to-r from-[#0f172a] to-[#1e293b]' },
       React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2' },
-        React.createElement('div', { className: 'flex items-center gap-3' },
-          /* White-label logo (Item 19) */
-          brandLogoUrl ? React.createElement('img', {
-            src: brandLogoUrl,
-            alt: displayName + ' logo',
-            className: 'h-8 w-auto rounded',
-            style: { maxWidth: '120px' }
-          }) : null,
-          React.createElement('div', null,
-            React.createElement('h1', { className: 'font-bold text-lg tracking-wide', style: { color: brandColor } },
-              displayName, React.createElement('span', { className: 'text-[#8899aa] font-normal text-sm ml-2' }, '-- Command Center'),
-              previewCustomer ? React.createElement('span', { className: 'text-[10px] text-green-400 ml-2 uppercase font-semibold' }, '(Customer Preview)') : null),
-            React.createElement('div', { className: 'text-[10px] text-[#8899aa]' }, lastUpdated ? 'Generated ' + relativeTime(lastUpdated) : ''))),
+        React.createElement('div', null,
+          React.createElement('h1', { className: 'text-[#38bdf8] font-bold text-lg tracking-wide' },
+            displayName, React.createElement('span', { className: 'text-[#8899aa] font-normal text-sm ml-2' }, '-- Command Center'),
+            previewCustomer ? React.createElement('span', { className: 'text-[10px] text-green-400 ml-2 uppercase font-semibold' }, '(Customer Preview)') : null),
+          React.createElement('div', { className: 'text-[10px] text-[#8899aa]' }, lastUpdated ? 'Generated ' + relativeTime(lastUpdated) : '')),
         React.createElement('div', { className: 'flex items-center gap-2' },
           React.createElement(SearchBar, { data: data, onNavigate: switchTab }),
-          /* Hide internal controls when in client mode */
-          !CONFIG.clientSlug ? React.createElement('button', { onClick:function(){setGwModalOpen(true);}, className:'flex items-center gap-1.5 text-[10px] px-2 py-1 rounded border border-[#1e2d4a] hover:border-[#38bdf8] cursor-pointer shrink-0', title:'Gateway' },
+          React.createElement('button', { onClick:function(){setGwModalOpen(true);}, className:'flex items-center gap-1.5 text-[10px] px-2 py-1 rounded border border-[#1e2d4a] hover:border-[#38bdf8] cursor-pointer shrink-0', title:'Gateway' },
             React.createElement('span', { className:'w-1.5 h-1.5 rounded-full shrink-0', style:{background:gwSC} }),
-            React.createElement('span', { style:{color:gwSC} }, gwST)) : null,
-          !CONFIG.clientSlug && CONFIG.mode !== 'customer' ? React.createElement('button', { onClick:togglePreviewCustomer, className:'text-[10px] px-2 py-1 rounded border shrink-0 cursor-pointer '+(previewCustomer?'bg-green-500/15 border-green-500/40 text-green-400':'border-[#1e2d4a] text-[#8899aa] hover:border-[#38bdf8] hover:text-[#38bdf8]') }, '\uD83D\uDC64 '+(previewCustomer?'Exit Preview':'Customer View')) : null,
+            React.createElement('span', { style:{color:gwSC} }, gwST)),
+          CONFIG.mode !== 'customer' ? React.createElement('button', { onClick:togglePreviewCustomer, className:'text-[10px] px-2 py-1 rounded border shrink-0 cursor-pointer '+(previewCustomer?'bg-green-500/15 border-green-500/40 text-green-400':'border-[#1e2d4a] text-[#8899aa] hover:border-[#38bdf8] hover:text-[#38bdf8]') }, '\uD83D\uDC64 '+(previewCustomer?'Exit Preview':'Customer View')) : null,
           React.createElement(SourceBadge, { source: dataSource }),
-          React.createElement('span', { className: 'text-[10px] px-2 py-0.5 rounded-full font-semibold shrink-0', style: { background: brandColor + '18', color: brandColor, border: '1px solid ' + brandColor + '33' } }, 'v2.0'),
+          React.createElement('span', { className: 'text-[10px] bg-sky-500/10 text-[#38bdf8] px-2 py-0.5 rounded-full border border-sky-500/20 font-semibold shrink-0' }, 'v2.0'),
           React.createElement('button', { onClick:doRefresh, className:'text-xs text-[#8899aa] border border-[#1e2d4a] rounded px-2.5 py-1 hover:text-[#38bdf8] hover:border-[#38bdf8] shrink-0 '+(refreshing?'animate-pulse':'') }, refreshing ? 'Refreshing...' : 'Refresh')))),
 
     // Alert Banner
@@ -3060,9 +2824,8 @@ var App = function() {
             onClick: function() { switchTab(tab.id); },
             className: 'px-4 py-3 text-xs font-semibold uppercase tracking-widest whitespace-nowrap transition-all border-b-2 '
               + (isActive
-                ? ''
-                : 'text-[#8899aa] border-transparent hover:text-[#e2e8f0]'),
-            style: isActive ? { color: brandColor, borderBottomColor: brandColor } : undefined
+                ? 'text-[#38bdf8] border-[#38bdf8]'
+                : 'text-[#8899aa] border-transparent hover:text-[#e2e8f0]')
           }, tab.label);
         })
       )
@@ -3070,14 +2833,14 @@ var App = function() {
 
     // Content
     React.createElement('main', { className: 'max-w-7xl mx-auto px-4 py-6' },
-      // Show Gateway connect card on dashboard when no gateway configured (hide for client dashboards)
-      activeTab === 'dashboard' && !CONFIG.gateway && !CONFIG.clientSlug ? React.createElement(GatewayConnectCard, { onConnect: handleGatewayConnect }) : null,
+      // Show Gateway connect card on dashboard when no gateway configured
+      activeTab === 'dashboard' && !CONFIG.gateway ? React.createElement(GatewayConnectCard, { onConnect: handleGatewayConnect }) : null,
       data
         ? renderView()
         : React.createElement('div', { className: 'text-center py-12' },
           React.createElement('div', { className: 'bg-red-500/5 border border-red-500/20 rounded-xl p-6 max-w-md mx-auto' },
             React.createElement('p', { className: 'text-[#ef4444] font-semibold mb-1' }, 'Data Unavailable'),
-            React.createElement('p', { className: 'text-xs text-[#8899aa]' }, 'Check that ' + CLIENT_DATA_FILE + ' exists. Run: python scripts/generate-unified-dashboard.py')
+            React.createElement('p', { className: 'text-xs text-[#8899aa]' }, 'Check that dashboard-data.json exists. Run: python scripts/generate-unified-dashboard.py')
           )
         )
     ),
