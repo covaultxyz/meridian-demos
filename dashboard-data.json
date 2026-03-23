@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-23T12:41:30.829426+00:00",
+  "generated_at": "2026-03-23T13:03:20.846901+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -780,19 +780,19 @@
         }
       ],
       "mig_live": {
-        "memory_count": 21847,
-        "concept_count": 5893,
-        "edge_count": 951846,
-        "avg_importance": 8.3,
+        "memory_count": 22032,
+        "concept_count": 5894,
+        "edge_count": 954960,
+        "avg_importance": 8.33,
         "domains": {
-          "agent_architecture": 7207,
-          "market_intelligence": 3903,
-          "infrastructure": 2351,
-          "security_compliance": 1344,
-          "business_operations": 1175,
-          "ai_capabilities": 1103,
-          "intelligence": 283,
-          "capital_markets": 88,
+          "agent_architecture": 7524,
+          "market_intelligence": 3924,
+          "infrastructure": 2387,
+          "security_compliance": 1383,
+          "business_operations": 1213,
+          "ai_capabilities": 1130,
+          "intelligence": 300,
+          "capital_markets": 92,
           "research": 27,
           "agent-architecture": 26
         },
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-23T12:41:28.184876+00:00",
+      "updated_at": "2026-03-23T13:03:17.992747+00:00",
       "recent_signals": [
         {
           "client": "denver-griffin",
@@ -1168,32 +1168,147 @@
       "mesh_live": {
         "system": {
           "hostname": "racknerd-c0be9f6",
-          "cpu_load_1m": 1.22,
-          "cpu_load_5m": 1.17,
+          "cpu_load_1m": 1.6,
+          "cpu_load_5m": 1.05,
           "memory_total_mb": 5925,
-          "memory_available_mb": 1401,
-          "swap_used_mb": 2819,
+          "memory_available_mb": 1828,
+          "swap_used_mb": 2467,
           "swap_total_mb": 3071,
           "disk_total_gb": 135.0,
-          "disk_used_gb": 60.0,
-          "uptime_days": 7.2
+          "disk_used_gb": 62.0,
+          "uptime_days": 7.9
         },
         "nats": {
           "streams": {
             "WORK_QUEUE": {
-              "messages": 941,
-              "bytes": 542402,
-              "consumers": 18
+              "messages": 977,
+              "bytes": 583228,
+              "consumers": 18,
+              "consumer_lag": [
+                {
+                  "name": "audio-interview-consumer",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "cortex-builder-neo4j-browser",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "cortex-builder-neo4j-deep",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "cursor_dispatcher_cursor_agent",
+                  "pending": 116,
+                  "level": "warning"
+                },
+                {
+                  "name": "forge_batch_embeddings",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_call_processor",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_claude_docs_monitor",
+                  "pending": 16,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_corroboration_discovery",
+                  "pending": 274,
+                  "level": "warning"
+                },
+                {
+                  "name": "forge_fact_extraction",
+                  "pending": 69,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_funnel_step",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_memory_gardening",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_send_campaign_email",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "forge_youtube_transcript",
+                  "pending": 6,
+                  "level": "ok"
+                },
+                {
+                  "name": "image-worker_image_generation",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "imagefx-worker_imagefx",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "research-worker_browser_research",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "research-worker_deep_research",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "website-worker_website_generation",
+                  "pending": 0,
+                  "level": "ok"
+                }
+              ]
             },
             "MESH_DLQ": {
-              "messages": 258,
-              "bytes": 593532,
-              "consumers": 0
+              "messages": 263,
+              "bytes": 615978,
+              "consumers": 0,
+              "consumer_lag": []
             },
             "PULSE": {
               "messages": 0,
               "bytes": 0,
-              "consumers": 4
+              "consumers": 4,
+              "consumer_lag": [
+                {
+                  "name": "pulse-consumer-pulse-tick-5m",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "pulse-consumer-pulse-tick-6h",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "pulse-consumer-pulse-tick-daily",
+                  "pending": 0,
+                  "level": "ok"
+                },
+                {
+                  "name": "pulse-consumer-pulse-tick-hourly",
+                  "pending": 0,
+                  "level": "ok"
+                }
+              ]
             }
           },
           "connections": null,
@@ -1212,12 +1327,11 @@
             "reachable": true
           }
         ],
-        "collected_at": "2026-03-22T20:13:06.987399+00:00",
-        "_stale_warning": "Data is 16 hours old"
+        "collected_at": "2026-03-23T12:01:01.773474+00:00"
       }
     },
     "development": {
-      "updated_at": "2026-03-23T12:41:30.720113+00:00",
+      "updated_at": "2026-03-23T13:03:20.759897+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -2591,30 +2705,50 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-03-23T12:39:58Z",
-        "head_sha": "9e024a7f"
+        "status": "completed",
+        "conclusion": "failure",
+        "name": "Deploy Dashboard to GitHub Pages",
+        "created_at": "2026-03-23T12:42:42Z",
+        "head_sha": "54fce3ca"
       },
       "ci_recent_runs": [
         {
+          "id": 23437839664,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-23T12:42:42Z",
+          "updated_at": "2026-03-23T12:42:46Z",
+          "head_sha": "54fce3ca",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23437839664"
+        },
+        {
+          "id": 23437839702,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-23T12:42:42Z",
+          "updated_at": "2026-03-23T12:45:41Z",
+          "head_sha": "54fce3ca",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23437839702"
+        },
+        {
           "id": 23437733557,
           "name": "CI",
-          "status": "queued",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "created_at": "2026-03-23T12:39:58Z",
-          "updated_at": "2026-03-23T12:40:06Z",
+          "updated_at": "2026-03-23T12:42:47Z",
           "head_sha": "9e024a7f",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/23437733557"
         },
         {
           "id": 23437676858,
           "name": "CodeQL Analysis",
-          "status": "pending",
+          "status": "queued",
           "conclusion": null,
           "created_at": "2026-03-23T12:38:28Z",
-          "updated_at": "2026-03-23T12:38:29Z",
+          "updated_at": "2026-03-23T12:41:30Z",
           "head_sha": "8bc37c38",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/23437676858"
         },
@@ -2627,29 +2761,51 @@
           "updated_at": "2026-03-23T12:40:06Z",
           "head_sha": "8bc37c38",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/23437676855"
-        },
-        {
-          "id": 23437432328,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-23T12:32:00Z",
-          "updated_at": "2026-03-23T12:34:39Z",
-          "head_sha": "51399698",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23437432328"
-        },
-        {
-          "id": 23437432352,
-          "name": "CodeQL Analysis",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-03-23T12:32:00Z",
-          "updated_at": "2026-03-23T12:38:30Z",
-          "head_sha": "51399698",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23437432352"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "c46ab7bf",
+          "message": "docs(audit): update TODO \u2014 sync migrations done, CI runner auth is the blocker",
+          "author": "covaultxyz",
+          "date": "2026-03-23T13:01:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c46ab7bfa92d8935a7613ed0334d427c6c46a073"
+        },
+        {
+          "sha": "5ca87e55",
+          "message": "docs: multi-terminal isolation changelog + usage guide",
+          "author": "covaultxyz",
+          "date": "2026-03-23T12:57:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5ca87e55a709f08ba3fa2a1d54cb60422338eb4a"
+        },
+        {
+          "sha": "caf27d31",
+          "message": "docs(prod-readiness): final update \u2014 deploy complete, 57/67 items, all 3 VPS green",
+          "author": "covaultxyz",
+          "date": "2026-03-23T12:55:51Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/caf27d317dc91648a45179d04fefe030d7ce00df"
+        },
+        {
+          "sha": "c0f85e68",
+          "message": "docs(audit): rewrite COMPLETED, TODO, README for full Dify arc",
+          "author": "covaultxyz",
+          "date": "2026-03-23T12:53:47Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c0f85e6886441a1b4714b422c6560798cbd278f0"
+        },
+        {
+          "sha": "54fce3ca",
+          "message": "feat(dashboard): Call Intelligence tab \u2014 C-suite framework integration",
+          "author": "covaultxyz",
+          "date": "2026-03-23T12:42:39Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/54fce3ca5b0a1e3e23e65d0e7e99e424c3aba3f3"
+        },
+        {
+          "sha": "b1df80a9",
+          "message": "ci: clean retrigger \u2014 stale work dir cleared",
+          "author": "covaultxyz",
+          "date": "2026-03-23T12:41:33Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b1df80a918b52b5daf91c1f47df6c726a6e6a4b9"
+        },
         {
           "sha": "9e024a7f",
           "message": "fix(ci): setup-python Permission denied on self-hosted runner \u2014 pre-create /Users/runner dir + clean gitleaks temp files",
@@ -2677,52 +2833,10 @@
           "author": "covaultxyz",
           "date": "2026-03-23T12:36:07Z",
           "url": "https://github.com/covaultxyz/meridian/commit/a95aef8b9afefb4a44645f42d60f06eb3cc80a4f"
-        },
-        {
-          "sha": "1fdfe62c",
-          "message": "ci: trigger run \u2014 runner work dir moved to space-free path",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:34:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1fdfe62c1a63b26abc1b379e378b10111aa645ee"
-        },
-        {
-          "sha": "51399698",
-          "message": "feat(sentinel): NATS config drift detection \u2014 hourly via monitoring API",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:31:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/51399698a8e23b9d712969522888e7d63af840ea"
-        },
-        {
-          "sha": "de84c549",
-          "message": "docs(ops): dashboard client onboarding SOP + hourly refresh LaunchAgent",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:30:36Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/de84c5492359564264aedf82d7244c6e5fd4fa7f"
-        },
-        {
-          "sha": "e0324175",
-          "message": "ci: trigger run to verify RUNNER_TEMP fix on intel-mac-ci",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:29:33Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e03241751b78e6343825a23c4ce61808c988e9a1"
-        },
-        {
-          "sha": "58c88ea1",
-          "message": "feat(funnel): conditional branches, engagement scoring, A/B splits",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:29:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/58c88ea1a4a2789068e6976f62b8a4aa249d26ee"
-        },
-        {
-          "sha": "96c1ed4d",
-          "message": "feat(content): Denver Griffin content calendar config",
-          "author": "covaultxyz",
-          "date": "2026-03-23T12:29:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/96c1ed4df93765acf9c94cd488ad788b64fc84f1"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-23T12:41:28.798831+00:00",
+        "updated_at": "2026-03-23T13:03:18.818537+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -2791,7 +2905,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-23T12:41:30.720134+00:00",
+      "updated_at": "2026-03-23T13:03:20.759918+00:00",
       "members": [
         {
           "id": "alex",
@@ -2848,7 +2962,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-23T12:41:30.720134+00:00",
+      "updated_at": "2026-03-23T13:03:20.759918+00:00",
       "projects": [
         {
           "project": {
@@ -3278,7 +3392,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-23T12:41:30.720134+00:00",
+      "updated_at": "2026-03-23T13:03:20.759918+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3390,7 +3504,7 @@
       "this_week": 9
     },
     "decisions": {
-      "updated_at": "2026-03-23T12:41:30.720134+00:00",
+      "updated_at": "2026-03-23T13:03:20.759918+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3487,7 +3601,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-23T12:41:30.720134+00:00",
+      "updated_at": "2026-03-23T13:03:20.759918+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -4511,7 +4625,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-23T12:41:30.826214+00:00",
+      "updated_at": "2026-03-23T13:03:20.843742+00:00",
       "sops": [
         {
           "name": "Autonomous Website Generation",
@@ -5192,19 +5306,19 @@
         {
           "name": "Production Readiness Done",
           "file": "docs/plans/production-readiness-DONE.md",
-          "size": 5709,
+          "size": 6866,
           "modified": "2026-03-23"
         },
         {
           "name": "Production Readiness Guide",
           "file": "docs/plans/production-readiness-GUIDE.md",
-          "size": 6300,
+          "size": 6508,
           "modified": "2026-03-23"
         },
         {
           "name": "Production Readiness Todo",
           "file": "docs/plans/production-readiness-TODO.md",
-          "size": 4597,
+          "size": 4705,
           "modified": "2026-03-23"
         },
         {
@@ -5463,7 +5577,7 @@
       "total_docs": 156
     },
     "deals": {
-      "updated_at": "2026-03-23T12:41:30.826379+00:00",
+      "updated_at": "2026-03-23T13:03:20.843886+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -5697,7 +5811,7 @@
       }
     },
     "call_intelligence": {
-      "updated_at": "2026-03-23T12:41:30.826449+00:00",
+      "updated_at": "2026-03-23T13:03:20.843942+00:00",
       "signal_summary": {
         "total_objections": 9,
         "total_buying_signals": 8,
@@ -6008,7 +6122,7 @@
       "total_action_items": 13
     },
     "attention": {
-      "updated_at": "2026-03-23T12:41:30.829347+00:00",
+      "updated_at": "2026-03-23T13:03:20.846835+00:00",
       "items": [
         {
           "type": "blocked",
@@ -6083,8 +6197,44 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-23T12:41:30.829411+00:00",
+      "updated_at": "2026-03-23T13:03:20.846889+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-03-23T13:01:44Z",
+          "title": "docs(audit): update TODO \u2014 sync migrations done, CI runner auth is the blocker",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T12:57:54Z",
+          "title": "docs: multi-terminal isolation changelog + usage guide",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T12:55:51Z",
+          "title": "docs(prod-readiness): final update \u2014 deploy complete, 57/67 items, all 3 VPS gre",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T12:53:47Z",
+          "title": "docs(audit): rewrite COMPLETED, TODO, README for full Dify arc",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T12:42:39Z",
+          "title": "feat(dashboard): Call Intelligence tab \u2014 C-suite framework integration",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-23T12:41:33Z",
+          "title": "ci: clean retrigger \u2014 stale work dir cleared",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-03-23T12:39:38Z",
@@ -6107,42 +6257,6 @@
           "type": "commit",
           "date": "2026-03-23T12:36:07Z",
           "title": "ci: verify runner with space-free work dir",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:34:55Z",
-          "title": "ci: trigger run \u2014 runner work dir moved to space-free path",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:31:41Z",
-          "title": "feat(sentinel): NATS config drift detection \u2014 hourly via monitoring API",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:30:36Z",
-          "title": "docs(ops): dashboard client onboarding SOP + hourly refresh LaunchAgent",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:29:33Z",
-          "title": "ci: trigger run to verify RUNNER_TEMP fix on intel-mac-ci",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:29:16Z",
-          "title": "feat(funnel): conditional branches, engagement scoring, A/B splits",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-23T12:29:06Z",
-          "title": "feat(content): Denver Griffin content calendar config",
           "detail": "covaultxyz"
         },
         {
