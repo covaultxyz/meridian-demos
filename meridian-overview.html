@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN — Distributed AI Operations Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@200;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            violet: '#8b5cf6',
+                            cyan: '#06b6d4',
+                            glow: 'rgba(139, 92, 246, 0.5)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #050308;
+            color: #a1a1aa;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, .font-outfit, th {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Glow Orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glow-1 { top: -10%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); }
+        .glow-2 { bottom: -20%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, #06b6d4 0%, transparent 70%); }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(139,92,246,0.25);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(139,92,246,0.06);
+        }
+
+        .nav-glass {
+            background: rgba(5,3,8,0.6);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Gradients */
+        .text-gradient-white {
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.06) 80%, transparent 100%);
+        }
+
+        /* Icon Box */
+        .icon-box {
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.15);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .data-table thead th {
+            padding: 14px 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #71717a;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .data-table tbody td {
+            padding: 16px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .data-table tbody tr {
+            transition: background 0.2s ease;
+        }
+        .data-table tbody tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Flow Line */
+        .flow-line {
+            position: relative;
+            padding-left: 32px;
+        }
+        .flow-line::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(139,92,246,0.2);
+        }
+        .flow-dot {
+            position: absolute;
+            left: 3px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(139,92,246,0.15);
+            border: 2px solid #8b5cf6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050308; }
+        ::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+    </style>
+</head>
+<body class="relative selection:bg-violet-500/30 selection:text-white">
+
+    <!-- Background Video -->
+    <div id="video-container" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;"></div>
+    <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(5,3,8,0.88);z-index:1;pointer-events:none;"></div>
+    <script>
+    (function(){
+        var c = document.getElementById('video-container');
+        var v = document.createElement('video');
+        v.id = 'bg-video';
+        v.muted = true;
+        v.defaultMuted = true;
+        v.loop = true;
+        v.playsInline = true;
+        v.setAttribute('muted', '');
+        v.setAttribute('autoplay', '');
+        v.setAttribute('loop', '');
+        v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
+        v.setAttribute('disablepictureinpicture', '');
+        v.setAttribute('disableremoteplayback', '');
+        v.setAttribute('preload', 'auto');
+        v.controls = false;
+        v.volume = 0;
+        v.style.cssText = 'width:100%;height:100%;object-fit:cover;pointer-events:none;';
+        v.src = 'https://agentvoxai.onrender.com/bg-video.mp4';
+        c.appendChild(v);
+        v.load();
+        function tryPlay() {
+            var p = v.play();
+            if (p !== undefined) p.catch(function(){});
+        }
+        v.addEventListener('loadedmetadata', tryPlay);
+        v.addEventListener('canplay', tryPlay);
+        tryPlay();
+        ['touchstart','touchend','click','scroll','pointerdown'].forEach(function(evt) {
+            document.addEventListener(evt, function handler() {
+                v.muted = true;
+                v.play().catch(function(){});
+                document.removeEventListener(evt, handler);
+            }, { once: true, passive: true });
+        });
+    })();
+    </script>
+
+    <div class="film-grain"></div>
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 nav-glass">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
+                        <i data-lucide="orbit" class="w-4 h-4 text-violet-400"></i>
+                    </div>
+                    <span class="text-white font-semibold text-lg font-outfit tracking-wide">MERIDIAN</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#agents" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Agents</a>
+                    <a href="#knowledge" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Knowledge</a>
+                    <a href="#products" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Products</a>
+                    <a href="#scaling" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Scaling</a>
+                    <a href="#security" class="text-[13px] text-zinc-400 hover:text-white transition-colors duration-300 font-medium">Security</a>
+                </div>
+                <div class="hidden md:flex items-center gap-3">
+                    <span class="text-xs tracking-widest text-cyan-400/80 uppercase font-outfit">Active</span>
+                    <div class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_12px_rgba(6,182,212,0.8)]"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden">
+        <div class="text-center max-w-5xl mx-auto mt-20 reveal">
+            <div class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-8">
+                <i data-lucide="radar" class="w-3 h-3"></i>
+                Distributed AI Operations
+            </div>
+
+            <h1 class="font-outfit text-6xl md:text-8xl lg:text-[9rem] font-black tracking-tighter uppercase leading-none mb-6">
+                <span class="block text-transparent bg-clip-text bg-gradient-to-br from-white via-violet-200 to-violet-900">MERIDIAN</span>
+            </h1>
+
+            <p class="reveal reveal-delay-1 text-lg md:text-2xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed mb-12">
+                A mesh of specialized AI agents that share a persistent knowledge graph,
+                coordinate in real time, and deliver continuous intelligence that compounds over time.
+            </p>
+
+            <!-- Key Stats -->
+            <div class="reveal reveal-delay-2 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-white font-outfit">5+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Specialized Agents</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-white font-outfit">17,900+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Persistent Memories</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-cyan-400 font-outfit">49+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Health Sentinels</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-emerald-400 font-outfit">7,800+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Passing Tests</p>
+                </div>
+            </div>
+
+            <div class="reveal reveal-delay-3 mt-20 mx-auto w-[1px] h-32 bg-gradient-to-b from-violet-400 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- WHY MERIDIAN -->
+    <section class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+                    <i data-lucide="zap" class="w-3 h-3"></i>
+                    The Difference
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Not a Chatbot. An Operations Team.</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Instead of one monolithic AI assistant, MERIDIAN runs a mesh of specialized agents &mdash; each with a distinct role, personality, and set of capabilities.</p>
+            </div>
+
+            <div class="reveal reveal-delay-1 overflow-x-auto rounded-2xl border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+                <table class="data-table min-w-[600px]">
+                    <thead>
+                        <tr>
+                            <th class="font-outfit">Traditional AI</th>
+                            <th class="font-outfit text-cyan-400">MERIDIAN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-zinc-300">
+                        <tr>
+                            <td class="text-zinc-500">Single chat session, no memory</td>
+                            <td class="text-cyan-300/80">Persistent knowledge graph (17,900+ memories)</td>
+                        </tr>
+                        <tr>
+                            <td class="text-zinc-500">One model, one personality</td>
+                            <td class="text-cyan-300/80">5+ specialized agents with distinct roles</td>
+                        </tr>
+                        <tr>
+                            <td class="text-zinc-500">Runs on one machine</td>
+                            <td class="text-cyan-300/80">Distributed across multiple machines</td>
+                        </tr>
+                        <tr>
+                            <td class="text-zinc-500">User drives every interaction</td>
+                            <td class="text-cyan-300/80">Agents proactively detect issues and opportunities</td>
+                        </tr>
+                        <tr>
+                            <td class="text-zinc-500">Knowledge resets between sessions</td>
+                            <td class="text-cyan-300/80">Knowledge compounds &mdash; nothing is forgotten</td>
+                        </tr>
+                        <tr>
+                            <td class="text-zinc-500">No coordination between agents</td>
+                            <td class="text-cyan-300/80">Agents collaborate, delegate, and review each other</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- THE AGENT SYSTEM -->
+    <section id="agents" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+                    <i data-lucide="users" class="w-3 h-3"></i>
+                    The Agent System
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Five Specialized Agents</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Each with a defined role, authority boundaries, and collaboration protocols. No single agent can overreach.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal reveal-delay-1">
+                <!-- Sensei -->
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Sensei</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Coherence Director</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Architectural consistency, contradiction detection, and safety gating. Has <span class="text-white">stop-the-line authority</span> &mdash; can block any action that crosses identity or security boundaries.</p>
+                </div>
+
+                <!-- Atlas -->
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="brain" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Atlas</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Chief Intelligence Officer</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Cross-domain synthesis and strategic intelligence. Reads the full knowledge graph to surface <span class="text-white">blind spots, convergence signals, and emerging patterns</span>.</p>
+                </div>
+
+                <!-- Delphi -->
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="server" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Delphi</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Infrastructure Architect</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Deployment, messaging health, incident response, and infrastructure operations. Has <span class="text-white">rollback authority</span> and can declare incidents across the mesh.</p>
+                </div>
+
+                <!-- Sandman -->
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Sandman</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Chief Operating Officer</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Task routing, queue health, quota allocation, and revenue portfolio management. Enforces <span class="text-white">work-in-progress limits</span> and orchestrates daily operations.</p>
+                </div>
+
+                <!-- Forge -->
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="cpu" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Forge</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Compute Engineer</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Heavy compute workloads &mdash; batch processing, knowledge graph maintenance, <span class="text-white">deep research</span>, and resource-intensive analysis tasks.</p>
+                </div>
+
+                <!-- Collaboration Card -->
+                <div class="glass-card p-8 border-violet-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center bg-cyan-500/08 border-cyan-500/15">
+                            <i data-lucide="git-merge" class="w-5 h-5 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Collaboration</h3>
+                            <p class="text-xs text-cyan-400/80 uppercase tracking-wider">How They Work Together</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed"><span class="text-white">Synchronous request/reply</span> for direct questions. <span class="text-white">Collaboration threads</span> for multi-round structured discussions. A <span class="text-white">shared knowledge graph</span> every agent reads and writes to.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- KNOWLEDGE GRAPH -->
+    <section id="knowledge" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-4">
+                    <i data-lucide="database" class="w-3 h-3"></i>
+                    The Knowledge Graph
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Persistent Intelligence</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Everything the system has learned, decided, and observed &mdash; stored permanently and compounding over time.</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 reveal reveal-delay-1">
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-white font-outfit">17,900+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Memories</p>
+                    <p class="text-[11px] text-zinc-600 mt-1">Facts, decisions, observations</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-white font-outfit">5,100+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Concepts</p>
+                    <p class="text-[11px] text-zinc-600 mt-1">People, tech, companies</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-white font-outfit">10,800+</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Research Chunks</p>
+                    <p class="text-[11px] text-zinc-600 mt-1">Indexed with domain tags</p>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <p class="text-3xl font-bold text-violet-400 font-outfit">7</p>
+                    <p class="text-xs text-zinc-500 mt-2 uppercase tracking-wider">Knowledge Domains</p>
+                    <p class="text-[11px] text-zinc-600 mt-1">Strict enforced taxonomy</p>
+                </div>
+            </div>
+
+            <!-- Knowledge Flow -->
+            <div class="max-w-3xl mx-auto reveal reveal-delay-2">
+                <h3 class="font-outfit text-sm tracking-[0.3em] uppercase text-violet-400 font-bold mb-8 text-center">How Knowledge Flows</h3>
+                <div class="space-y-6">
+                    <div class="flow-line relative">
+                        <div class="flow-dot"></div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-white font-semibold text-sm font-outfit mb-1">Ingestion</h4>
+                            <p class="text-sm text-zinc-400">External input arrives &mdash; transcripts, documents, conversations, API calls, research feeds.</p>
+                        </div>
+                    </div>
+                    <div class="flow-line relative">
+                        <div class="flow-dot"></div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-white font-semibold text-sm font-outfit mb-1">Fact Extraction</h4>
+                            <p class="text-sm text-zinc-400">40+ fact types detected: preferences, decisions, threats, market signals, technical observations, contradictions.</p>
+                        </div>
+                    </div>
+                    <div class="flow-line relative">
+                        <div class="flow-dot"></div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-white font-semibold text-sm font-outfit mb-1">Mutation Pipeline</h4>
+                            <p class="text-sm text-zinc-400">Deduplication, contradiction detection, domain classification, importance calibration, and embedding generation.</p>
+                        </div>
+                    </div>
+                    <div class="flow-line relative">
+                        <div class="flow-dot"></div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-white font-semibold text-sm font-outfit mb-1">Write Validation</h4>
+                            <p class="text-sm text-zinc-400">8 quality gates: binary detection, length checks, category validation, domain normalization, permission enforcement, injection sanitization, and audit trail logging.</p>
+                        </div>
+                    </div>
+                    <div class="flow-line relative">
+                        <div class="flow-dot"></div>
+                        <div class="glass-card p-6">
+                            <h4 class="text-white font-semibold text-sm font-outfit mb-1">Storage & Enrichment</h4>
+                            <p class="text-sm text-zinc-400">Idempotent storage with immutable audit trail. Background enrichment: auto-linking, entity extraction, and periodic corroboration scanning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Lifecycle -->
+            <div class="mt-20 reveal">
+                <h3 class="font-outfit text-sm tracking-[0.3em] uppercase text-violet-400 font-bold mb-8 text-center">Memory Lifecycle</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-2xl mb-3">&#9878;</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit mb-2">Importance</h4>
+                        <p class="text-xs text-zinc-500">Rated 1&ndash;10. Governs recall priority and decay resistance.</p>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-2xl mb-3">&#9883;</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit mb-2">Confidence</h4>
+                        <p class="text-xs text-zinc-500">Scored 0.0&ndash;1.0. Tracks certainty from provenance strength.</p>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-2xl mb-3">&#9201;</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit mb-2">Temporal Class</h4>
+                        <p class="text-xs text-zinc-500">Ephemeral (7-day), operational (standard decay), or permanent.</p>
+                    </div>
+                    <div class="glass-card p-6 text-center">
+                        <div class="text-2xl mb-3">&#10003;</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit mb-2">Corroboration</h4>
+                        <p class="text-xs text-zinc-500">Memories validated by 3+ sources become decay-protected.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Query Capabilities -->
+            <div class="mt-16 reveal">
+                <div class="glass-card p-8 max-w-3xl mx-auto">
+                    <h3 class="text-white font-semibold font-outfit mb-4 flex items-center gap-3">
+                        <i data-lucide="search" class="w-5 h-5 text-cyan-400"></i>
+                        Query Capabilities
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Full-text search across all memories</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Vector-based semantic search (sub-100ms)</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Domain-scoped recall with importance filters</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Multi-hop graph traversal</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Corroboration-weighted evidence summaries</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> 7-domain knowledge taxonomy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+                    <i data-lucide="package" class="w-3 h-3"></i>
+                    Products
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Three Revenue Streams</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Each at a different maturity level, all powered by the same underlying intelligence mesh.</p>
+            </div>
+
+            <div class="space-y-6 reveal reveal-delay-1">
+                <!-- Agent Vox -->
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center bg-emerald-500/08 border-emerald-500/15">
+                            <i data-lucide="phone-call" class="w-5 h-5 text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-xl font-outfit">Agent Vox</h3>
+                            <p class="text-xs text-emerald-400/80 uppercase tracking-wider">Voice-First AI Platform</p>
+                        </div>
+                        <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 ml-auto">Active</span>
+                    </div>
+                    <p class="text-zinc-400 mb-6">A voice AI platform that handles inbound and outbound calls, remembers every conversation, and delivers intelligence before each call.</p>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Inbound/outbound call handling with persistent memory</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Contact management and campaign orchestration</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> SMS text-back automation</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Call recording, transcription, and sentiment analysis</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Prompt variation A/B testing</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Analytics dashboard (volume, outcomes, trends)</div>
+                    </div>
+                </div>
+
+                <!-- Intelligence API -->
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center bg-amber-500/08 border-amber-500/15">
+                            <i data-lucide="plug" class="w-5 h-5 text-amber-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-xl font-outfit">Intelligence API</h3>
+                            <p class="text-xs text-amber-400/80 uppercase tracking-wider">Knowledge-as-a-Service</p>
+                        </div>
+                        <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20 ml-auto">Building</span>
+                    </div>
+                    <p class="text-zinc-400 mb-6">A REST API giving clients access to MERIDIAN's accumulated intelligence &mdash; search, recall, extract facts from documents, and generate intelligence briefs.</p>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> 18 live endpoints with auth and rate limiting</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Search, research, document ingestion</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Report generation</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Tiered access from free to enterprise</div>
+                    </div>
+                </div>
+
+                <!-- Capital Markets -->
+                <div class="glass-card p-8 md:p-10">
+                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center bg-violet-500/08 border-violet-500/15">
+                            <i data-lucide="landmark" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-xl font-outfit">Capital Markets Advisory</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Development Finance Intelligence</p>
+                        </div>
+                        <span class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 ml-auto">Proof of Concept</span>
+                    </div>
+                    <p class="text-zinc-400 mb-6">Specialized intelligence for real estate development finance &mdash; capital stack analysis, funding program matching, and development plan generation.</p>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Financing structure analysis</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Stacking order recommendations</div>
+                        <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Funding program mapping</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- PRICING -->
+    <section class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-4">
+                    <i data-lucide="credit-card" class="w-3 h-3"></i>
+                    Intelligence API
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Pricing</h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-4 reveal reveal-delay-1">
+                <div class="glass-card p-8 text-center">
+                    <h4 class="text-white font-semibold font-outfit mb-2">Explorer</h4>
+                    <p class="text-4xl font-bold text-white font-outfit">Free</p>
+                    <p class="text-xs text-zinc-500 mb-6">&nbsp;</p>
+                    <div class="space-y-2 text-sm text-zinc-400 text-left">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> 1,000 ops/month</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Read-only search</div>
+                    </div>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <h4 class="text-white font-semibold font-outfit mb-2">Starter</h4>
+                    <p class="text-4xl font-bold text-white font-outfit">$99</p>
+                    <p class="text-xs text-zinc-500 mb-6">per month</p>
+                    <div class="space-y-2 text-sm text-zinc-400 text-left">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> 10,000 ops/month</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Search + research</div>
+                    </div>
+                </div>
+                <div class="glass-card p-8 text-center border-violet-500/30">
+                    <h4 class="text-white font-semibold font-outfit mb-2">Builder</h4>
+                    <p class="text-4xl font-bold text-gradient-brand font-outfit">$199</p>
+                    <p class="text-xs text-zinc-500 mb-6">per month</p>
+                    <div class="space-y-2 text-sm text-zinc-400 text-left">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> 50,000 ops/month</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Reports &amp; clipboard</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> CRM integration</div>
+                    </div>
+                </div>
+                <div class="glass-card p-8 text-center">
+                    <h4 class="text-white font-semibold font-outfit mb-2">Enterprise</h4>
+                    <p class="text-4xl font-bold text-white font-outfit">$500+</p>
+                    <p class="text-xs text-zinc-500 mb-6">per month</p>
+                    <div class="space-y-2 text-sm text-zinc-400 text-left">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Unlimited ops</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> GDPR compliance</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Dedicated SLA</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i> Dual A/B slots</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- SCALING -->
+    <section id="scaling" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+                    <i data-lucide="layers" class="w-3 h-3"></i>
+                    Federation
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">How It Scales</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">One platform template, many isolated instances. The shipyard model &mdash; build once, deploy everywhere.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-16 reveal reveal-delay-1">
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center bg-cyan-500/08 border-cyan-500/15">
+                            <i data-lucide="cloud" class="w-5 h-5 text-cyan-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">API-First</h3>
+                            <p class="text-xs text-cyan-400/80 uppercase tracking-wider">Recommended</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-4">Customers integrate via REST API. All intelligence runs on MERIDIAN's infrastructure. Zero deployment per customer &mdash; API key issuance is instant.</p>
+                    <div class="space-y-2 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"></i> IP protection is structural &mdash; code never exposed</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"></i> Intelligence compounds in our graph (data moat)</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"></i> ~$6&ndash;8/month per customer infrastructure cost</div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="hard-drive" class="w-5 h-5 text-violet-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-lg font-outfit">Self-Hosted Instance</h3>
+                            <p class="text-xs text-violet-400/80 uppercase tracking-wider">Enterprise / Regulated</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-4">Fully isolated infrastructure provisioned automatically. Customer controls their own environment and data residency.</p>
+                    <div class="space-y-2 text-sm text-zinc-400">
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Maximum isolation &mdash; separate machines</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Meets strict regulatory requirements</div>
+                        <div class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0"></i> Connects to hub for updates and research</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scaling Capacity -->
+            <div class="reveal reveal-delay-2 overflow-x-auto rounded-2xl border border-white/10 bg-black/40 backdrop-blur-2xl shadow-2xl">
+                <table class="data-table min-w-[600px]">
+                    <thead>
+                        <tr>
+                            <th class="font-outfit">Scale</th>
+                            <th class="font-outfit">Customers</th>
+                            <th class="font-outfit">Daily Ops</th>
+                            <th class="font-outfit">What Changes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-zinc-300">
+                        <tr>
+                            <td class="text-white font-semibold">10</td>
+                            <td>10</td>
+                            <td>~500</td>
+                            <td class="text-zinc-400">Nothing &mdash; current infrastructure handles this</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white font-semibold">50</td>
+                            <td>50</td>
+                            <td>~2,500</td>
+                            <td class="text-zinc-400">Multi-worker processing, increased memory allocation</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white font-semibold">200</td>
+                            <td>200</td>
+                            <td>~10,000</td>
+                            <td class="text-zinc-400">Dedicated processing nodes, multi-worker gateway</td>
+                        </tr>
+                        <tr>
+                            <td class="text-white font-semibold">1,000</td>
+                            <td>1,000</td>
+                            <td>~50,000</td>
+                            <td class="text-zinc-400">Dedicated knowledge store, load balancing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Revenue -->
+            <div class="reveal mt-12 glass-card p-8 max-w-2xl mx-auto text-center">
+                <h3 class="text-white font-semibold font-outfit mb-2">Revenue at 100 Customers</h3>
+                <p class="text-zinc-400 text-sm mb-4">50% Starter + 30% Builder + 20% Enterprise</p>
+                <div class="flex justify-center gap-8">
+                    <div>
+                        <p class="text-3xl font-bold text-emerald-400 font-outfit">~$16K</p>
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider">Monthly Revenue</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-zinc-500 font-outfit">~$3K</p>
+                        <p class="text-xs text-zinc-500 uppercase tracking-wider">Infrastructure Cost</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- SECURITY -->
+    <section id="security" class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-4">
+                    <i data-lucide="lock" class="w-3 h-3"></i>
+                    Security
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">Defense in Depth</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Security is architectural, not bolted on.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal reveal-delay-1">
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="key-round" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Zero Static Credentials</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">LLM access uses OAuth &mdash; no API keys stored on infrastructure nodes.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="file-lock-2" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Encrypted Secrets</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">GPG-encrypted credential store with volatile runtime-only access on remote nodes.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="network" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Private Mesh Network</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">All machine-to-machine communication over an encrypted mesh VPN. No public exposure.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Injection Prevention</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Write validator sanitizes against query injection. Action parser enforces security allowlists.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="scroll-text" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Immutable Audit Trail</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Every mutation logged in an immutable event trail with undo snapshots for reversibility.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="circuit-board" class="w-5 h-5 text-red-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Circuit Breakers</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Per-target circuit breakers prevent cascading failures. Identity locks prevent concurrent execution conflicts.</p>
+                </div>
+            </div>
+
+            <!-- Enterprise Hardening -->
+            <div class="reveal mt-12 glass-card p-8 max-w-3xl mx-auto">
+                <h3 class="text-white font-semibold font-outfit mb-4 flex items-center gap-3">
+                    <i data-lucide="construction" class="w-5 h-5 text-amber-400"></i>
+                    Enterprise Hardening (In Progress)
+                </h3>
+                <div class="grid md:grid-cols-2 gap-3 text-sm text-zinc-400">
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Policy engine for fine-grained permissions</div>
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Privacy router for PII stripping</div>
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Egress gate for outbound allowlisting</div>
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Cost router for model tier routing</div>
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> Inference meter for token tracking</div>
+                    <div class="flex items-start gap-2"><i data-lucide="chevron-right" class="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0"></i> SOC 2 CC7 audit logging</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- SENTINELS -->
+    <section class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-4">
+                    <i data-lucide="activity" class="w-3 h-3"></i>
+                    Health Monitoring
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">49+ Automated Sentinels</h2>
+                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">A pulse-based system watching everything at four cadences.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 reveal reveal-delay-1">
+                <div class="glass-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-xs font-bold text-violet-400 font-outfit">5m</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit">Every 5 Minutes</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Stale task detection, communication checks, research stream depth.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-xs font-bold text-cyan-400 font-outfit">1h</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit">Hourly</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Entity dedup, board sync, drift detection, pipeline health, corroboration scanning.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xs font-bold text-emerald-400 font-outfit">6h</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit">Every 6 Hours</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Metrics collection, research statistics, ontology health, semantic coverage.</p>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-xs font-bold text-amber-400 font-outfit">24h</div>
+                        <h4 class="text-white font-semibold text-sm font-outfit">Daily</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Graph density analysis, morning brief, agent behavioral drift, portfolio audit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto relative z-10"></div>
+
+    <!-- CURRENT STATE -->
+    <section class="relative z-10 py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="badge bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-4">
+                    <i data-lucide="check-circle" class="w-3 h-3"></i>
+                    Production Ready
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gradient-white mt-4 font-outfit">What's Live Today</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal reveal-delay-1">
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="users" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">5 Core Agents</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Running continuously across 3 distributed nodes with defined roles, authority, and collaboration protocols.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="database" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">17,900+ Memories</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Persistent knowledge graph with full-text, vector, and graph traversal search.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="radio" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Real-Time Messaging</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Durable work queues, dead letter handling, circuit breakers, and adaptive metrics.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="refresh-cw" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Zero-Downtime Deploys</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Blue/green deployment with canary rollout, health verification, and instant rollback.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">Live Chat Interface</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">Telegram bot providing external access to the Oracle for real-time queries and intelligence.</p>
+                </div>
+                <div class="glass-card p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="plug" class="w-5 h-5 text-emerald-400"></i>
+                        <h4 class="text-white font-semibold font-outfit">API Gateway</h4>
+                    </div>
+                    <p class="text-sm text-zinc-400">18 endpoints with authentication, rate limiting, tiered billing, and webhook processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 py-16 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <div class="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
+                    <i data-lucide="orbit" class="w-4 h-4 text-violet-400"></i>
+                </div>
+                <span class="text-white font-semibold text-lg font-outfit tracking-wide">MERIDIAN</span>
+            </div>
+            <p class="text-zinc-500 text-sm">Distributed AI Operations Platform</p>
+            <p class="text-zinc-600 text-xs mt-2">Built by Covault &middot; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Scroll Reveal Observer -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        lucide.createIcons();
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            observer.observe(el);
+        });
+    });
+    </script>
+
+</body>
+</html>
