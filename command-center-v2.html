@@ -2503,10 +2503,53 @@ var DealsView = function(props) {
 };
 
 /* VIEW: WORK (wrapper with sub-tabs: Development / Products) */
+/* VIEW: DOCS & SOPs */
+var DocsView = function(props) {
+  var docs = (props.data && props.data.docs) || {};
+  var sections = [
+    { key: 'protocols', title: 'Core Protocols', color: '#ef4444', items: docs.protocols || [] },
+    { key: 'sops', title: 'Standard Operating Procedures', color: '#22c55e', items: docs.sops || [] },
+    { key: 'runbooks', title: 'Runbooks', color: '#eab308', items: docs.runbooks || [] },
+    { key: 'plans', title: 'Plans & Specifications', color: '#a78bfa', items: docs.plans || [] },
+  ];
+  var total = docs.total_docs || 0;
+  if (total === 0) return React.createElement(GlassCard, { className: 'p-8 text-center' },
+    React.createElement('p', { className: 'text-[#8899aa] text-sm' }, 'No documentation inventory available'));
+  return React.createElement('div', { className: 'space-y-4' },
+    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
+      sections.map(function(s) {
+        return React.createElement(GlassCard, { key: s.key, className: 'p-4 text-center' },
+          React.createElement('div', { className: 'text-2xl font-bold', style: { color: s.color } }, s.items.length),
+          React.createElement('div', { className: 'text-[10px] text-[#8899aa] uppercase tracking-wider mt-1' }, s.title));
+      })
+    ),
+    sections.map(function(s) {
+      if (s.items.length === 0) return null;
+      return React.createElement(GlassCard, { key: s.key, className: 'overflow-hidden' },
+        React.createElement('div', { className: 'px-4 py-3 border-b border-[#1e2d4a] flex items-center gap-2' },
+          React.createElement('span', { className: 'w-2 h-2 rounded-full', style: { background: s.color } }),
+          React.createElement('h3', { className: 'text-xs font-bold uppercase tracking-widest', style: { color: s.color } },
+            s.title + ' (' + s.items.length + ')')),
+        React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40' },
+          s.items.map(function(item, i) {
+            return React.createElement('a', {
+              key: i,
+              href: 'https://github.com/covaultxyz/meridian/blob/main/' + (item.file || ''),
+              target: '_blank',
+              className: 'px-4 py-2 flex items-center justify-between hover:bg-[#1a2234]/50 block text-inherit no-underline'
+            },
+              React.createElement('span', { className: 'text-sm text-[#e2e8f0]' }, item.name),
+              React.createElement('span', { className: 'text-[10px] text-[#8899aa]' }, item.modified));
+          })));
+    })
+  );
+};
+
 var WorkView = function(props) {
   var _subTab = useState('development');
   var subTab = _subTab[0]; var setSubTab = _subTab[1];
-  var subTabs = ['development', 'products'];
+  var subTabs = ['development', 'products', 'docs'];
+  var subLabels = { development: 'Development', products: 'Products', docs: 'Docs & SOPs' };
   return React.createElement('div', { className: 'space-y-4' },
     React.createElement('div', { className: 'flex gap-1' },
       subTabs.map(function(t) {
@@ -2514,11 +2557,12 @@ var WorkView = function(props) {
           key: t,
           className: 'px-3 py-1 text-xs rounded ' + (subTab === t ? 'bg-[#38bdf8]/20 text-[#38bdf8]' : 'text-[#8899aa] hover:text-white'),
           onClick: function() { setSubTab(t); }
-        }, t.charAt(0).toUpperCase() + t.slice(1));
+        }, subLabels[t] || t);
       })
     ),
     subTab === 'development' ? React.createElement(DevelopmentView, { data: props.data, source: props.source }) : null,
-    subTab === 'products' ? React.createElement(ProductsView, { data: props.data, source: props.source }) : null
+    subTab === 'products' ? React.createElement(ProductsView, { data: props.data, source: props.source }) : null,
+    subTab === 'docs' ? React.createElement(DocsView, { data: props.data }) : null
   );
 };
 
