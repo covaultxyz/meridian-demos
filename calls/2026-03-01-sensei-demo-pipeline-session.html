@@ -54,10 +54,10 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 </div>
 <div class="wrap">
 <div class="section"><h2>Summary</h2><p>Sensei demo pipeline session</p></div>
-
-
-
-
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Build local M1 demo video pipeline to replace expensive Cursor cloud agents</li><li>Store demo videos as GitHub release assets, not in git tree</li><li>Make ffmpeg drawtext non-fatal to gracefully handle missing libfreetype</li><li>Create cursor queue manager with claim/done/abandon workflow</li><li>Replace flat 120s daemon restart cooldown with exponential backoff and jitter</li><li>Implement severity-based alert routing (CRITICAL→Telegram DM, WARNING→NATS, INFO→NATS)</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Cassian SATs implementation (#351/#474) queued for cursor agents</li><li>Self-healing backoff and SRE metrics (#321+#323) queued for cursor agents</li><li>Tiered alert routing (#324) queued for cursor agents</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Cursor queue was write-only with stale Feb 28 entries never marked done</li><li>Playwright successfully records UUID-named .webm files as expected</li><li>Homebrew ffmpeg lacks libfreetype, drawtext fails gracefully to fallback</li><li>Duplicate #474 queue entries exist and require cleanup</li><li>config/cursor/prompt_template.md contained stale reference to non-existent Cursor built-in demo recording</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;cursor agent&#x27;, &#x27;what&#x27;: &#x27;Implement Cassian SATs (#351/#474) per issue_351_cassian_sats.md on ely/cassian-sats-474&#x27;}</li><li>{&#x27;who&#x27;: &#x27;cursor agent&#x27;, &#x27;what&#x27;: &#x27;Implement self-healing backoff and metrics (#321+#323) per issue_321_323_self_healing.md on ely/self-healing-321-323&#x27;}</li><li>{&#x27;who&#x27;: &#x27;cursor agent&#x27;, &#x27;what&#x27;: &#x27;Implement tiered alert routing (#324) per issue_324_alert_routing.md on ely/alert-routing-324&#x27;}</li><li>{&#x27;who&#x27;: &#x27;developer&#x27;, &#x27;what&#x27;: &#x27;Mark stale #474 queue entries as done to clean up duplicates&#x27;}</li><li>{&#x27;who&#x27;: &#x27;developer&#x27;, &#x27;what&#x27;: &#x27;Fix doubled path in #913 conductor queue entry&#x27;}</li></ul></div>
 
 <div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Sensei Session — Local Demo Video Pipeline + Cursor Agent Queue</h2>
 <p>_Date: 2026-03-01 | Branch: main | Commits: bed43b2, 1379be1_</p>
@@ -205,5 +205,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| `bed43b2` | `docs(cursor): add prompt files for #351, #321+#323, #324 self-healing sprint` |</p>
 <p>| `1379be1` | Rebased onto ff94689 (remote had 5 commits ahead) |</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-24 17:56</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-24 18:16</div>
 </body></html>
