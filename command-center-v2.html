@@ -284,6 +284,19 @@ var AlertBanner = function(props) {
     if (a.done||!a.due) return; var dt=new Date(a.due); if (!isNaN(dt.getTime())&&Math.ceil((dt.getTime()-now.getTime())/86400000)<=7) dc++;
   });
   if (dc>0) alerts.push({color:'#38bdf8',bg:'bg-sky-500/10 border-sky-500/30',icon:'\u2611',text:dc+' action item'+(dc!==1?'s':'')+' due this week',key:'actions-week'});
+  // Pull from data.attention section
+  var attSection = (data && data.attention) || {};
+  var attItems = attSection.items || [];
+  attItems.forEach(function(item, i) {
+    var sev = item.severity || 'yellow';
+    var ac, abg, aicon;
+    if (sev === 'red') { ac = '#ef4444'; abg = 'bg-red-500/10 border-red-500/30'; aicon = '\u26A0'; }
+    else if (sev === 'orange') { ac = '#f97316'; abg = 'bg-orange-500/10 border-orange-500/30'; aicon = '\u26D4'; }
+    else { ac = '#eab308'; abg = 'bg-yellow-500/10 border-yellow-500/30'; aicon = '\u26A1'; }
+    var txt = item.title || '';
+    if (item.description) txt = txt + ' \u2014 ' + item.description;
+    alerts.push({ color: ac, bg: abg, icon: aicon, text: txt, key: 'att-' + i + '-' + (item.title || '').slice(0, 20) });
+  });
   var visible = alerts.filter(function(a){return !dismissed[a.key];});
   if (visible.length===0) return null;
   var shown = expanded ? visible : visible.slice(0,3); var extra = visible.length-3;
@@ -2483,6 +2496,82 @@ var ProductsView = function(props) {
     bp>0?h(GlassCard,{className:'p-4 border-l-4 border-l-[#ef4444]'},h('div',{className:'flex items-center gap-2'},h('span',{className:'text-[#ef4444] text-lg'},'\u26A0'),h('div',null,h('span',{className:'text-sm font-semibold text-[#ef4444]'},bp+' Blocked Product'+(bp!==1?'s':'')),h('p',{className:'text-[10px] text-[#8899aa]'},'These products need attention to unblock progress')))):null);
 };
 
+/* DEAL STAGE FUNNEL — horizontal pipeline visualization */
+var DealStageFunnel = function(props) {
+  var data = props.data;
+  var sales = (data && data.sales) || {};
+  var pipeline = (data && data.pipeline) || {};
+  var opps = sales.opportunities || [];
+  var pipeDeals = pipeline.deals || [];
+  // Combine all deal sources
+  var allDeals = [].concat(opps, pipeDeals);
+  // Map existing stages to funnel categories
+  var stageMap = {
+    'Lead': 'DISCOVERY', 'Qualification': 'DISCOVERY', 'Discovery': 'DISCOVERY',
+    'Re-engagement': 'DISCOVERY', 'Qualified': 'DISCOVERY',
+    'Proposal': 'STRUCTURE', 'Engaged': 'NEGOTIATE',
+    'Active': 'CLOSE', 'Completed': 'CLOSE'
+  };
+  var funnelStages = [
+    { id: 'DISCOVERY', label: 'DISCOVERY', color: '#3b82f6' },
+    { id: 'STRUCTURE', label: 'STRUCTURE', color: '#8b5cf6' },
+    { id: 'NEGOTIATE', label: 'NEGOTIATE', color: '#eab308' },
+    { id: 'CLOSE', label: 'CLOSE', color: '#22c55e' }
+  ];
+  var counts = { DISCOVERY: 0, STRUCTURE: 0, NEGOTIATE: 0, CLOSE: 0 };
+  var revenue = { DISCOVERY: 0, STRUCTURE: 0, NEGOTIATE: 0, CLOSE: 0 };
+  var seen = {};
+  allDeals.forEach(function(d) {
+    var key = (d.client || d.name || d.title || '').toLowerCase();
+    if (seen[key]) return;
+    seen[key] = true;
+    var mapped = stageMap[d.stage] || null;
+    if (!mapped) return;
+    counts[mapped]++;
+    var rev = d.annual_revenue || 0;
+    if (!rev && d.revenue) {
+      var m = String(d.revenue).match(/\$(\d[\d,]*)/);
+      if (m) rev = parseInt(m[1].replace(/,/g, ''), 10) * 12;
+    }
+    revenue[mapped] += rev;
+  });
+  var totalDeals = counts.DISCOVERY + counts.STRUCTURE + counts.NEGOTIATE + counts.CLOSE;
+  if (totalDeals === 0) return null;
+  return React.createElement(GlassCard, { className: 'p-4' },
+    React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Deal Stage Funnel'),
+    React.createElement('div', { className: 'flex items-stretch gap-1 overflow-x-auto' },
+      funnelStages.map(function(s, i) {
+        var count = counts[s.id];
+        var pct = totalDeals > 0 ? Math.max(count / totalDeals, 0.15) : 0.25;
+        var items = [];
+        if (i > 0) {
+          items.push(React.createElement('div', {
+            key: 'arrow-' + i,
+            className: 'flex items-center px-0.5',
+            style: { color: '#8899aa', opacity: 0.3, fontSize: '14px' }
+          }, '\u25B6'));
+        }
+        items.push(React.createElement('div', {
+          key: 'seg-' + i,
+          className: 'text-center py-3 rounded-lg transition-transform hover:scale-[1.02]',
+          style: {
+            flex: String(pct),
+            minWidth: '80px',
+            background: s.color + '18',
+            borderLeft: '3px solid ' + s.color
+          }
+        },
+          React.createElement('div', { className: 'text-[10px] uppercase tracking-wider font-bold mb-1', style: { color: s.color } }, s.label),
+          React.createElement('div', { className: 'text-lg font-bold', style: { color: s.color } }, count),
+          React.createElement('div', { className: 'text-[10px]', style: { color: '#8899aa' } },
+            revenue[s.id] > 0 ? fmtMoney(revenue[s.id]) + '/yr' : '--')
+        ));
+        return items;
+      })
+    )
+  );
+};
+
 /* VIEW: DEALS (wrapper with sub-tabs: Pipeline / Customers / Revenue) */
 var DealsView = function(props) {
   var _subTab = useState('pipeline');
@@ -2498,6 +2587,7 @@ var DealsView = function(props) {
         }, t.charAt(0).toUpperCase() + t.slice(1));
       })
     ),
+    React.createElement(DealStageFunnel, { data: props.data }),
     subTab === 'pipeline' ? React.createElement(PipelineView, { data: props.data, source: props.source }) : null,
     subTab === 'customers' ? React.createElement(CustomersView, { data: props.data, source: props.source }) : null,
     subTab === 'revenue' ? React.createElement(SalesView, { data: props.data, source: props.source }) : null
@@ -2606,6 +2696,42 @@ var ClientAuthGate = function(props) {
       React.createElement('input', { type: 'password', value: pin, onChange: function(e) { setPin(e.target.value); setErr(false); }, onKeyDown: function(e) { if (e.key === 'Enter') submit(); }, placeholder: 'PIN', autoFocus: true, maxLength: 6, className: 'w-full px-3 py-2 bg-[#1a2234] border border-[#1e2d4a] rounded-lg text-[#e2e8f0] text-center text-lg tracking-[0.3em] outline-none focus:border-[#38bdf8] mb-3', style: { borderColor: err ? '#ef4444' : undefined } }),
       React.createElement('button', { onClick: submit, className: 'w-full py-2 rounded-lg text-sm font-semibold cursor-pointer', style: { background: color + '22', border: '1px solid ' + color + '55', color: color } }, 'Unlock'),
       err ? React.createElement('p', { className: 'text-[#ef4444] text-xs mt-2' }, 'Invalid PIN') : null
+    )
+  );
+};
+
+/* STALENESS FOOTER — persistent bar showing data freshness */
+var StalenessFooter = function(props) {
+  var lastUpdated = props.lastUpdated;
+  if (!lastUpdated) return null;
+  var ts = new Date(lastUpdated).getTime();
+  if (isNaN(ts)) return null;
+  var diffMs = Date.now() - ts;
+  var diffMins = Math.floor(diffMs / 60000);
+  var diffHours = Math.round(diffMins / 6) / 10; // one decimal
+  var dotColor, label;
+  if (diffMins < 60) {
+    dotColor = '#22c55e';
+    label = 'Data updated ' + diffMins + ' minute' + (diffMins !== 1 ? 's' : '') + ' ago';
+  } else if (diffMins < 360) {
+    dotColor = '#eab308';
+    var hrs = diffHours < 1 ? 1 : diffHours;
+    label = 'Data is ' + hrs + ' hour' + (hrs !== 1 ? 's' : '') + ' old';
+  } else {
+    dotColor = '#ef4444';
+    var hrsStale = diffHours < 1 ? 1 : diffHours;
+    label = 'Data is ' + hrsStale + ' hour' + (hrsStale !== 1 ? 's' : '') + ' stale';
+  }
+  return React.createElement('div', {
+    className: 'fixed bottom-0 left-0 right-0 z-40',
+    style: { background: '#1a2332', borderTop: '1px solid #1e2d4a' }
+  },
+    React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-1.5 flex items-center justify-end gap-2' },
+      React.createElement('span', {
+        className: 'inline-block w-2 h-2 rounded-full shrink-0',
+        style: { background: dotColor }
+      }),
+      React.createElement('span', { className: 'text-[11px]', style: { color: '#8899aa' } }, label)
     )
   );
 };
@@ -2854,8 +2980,8 @@ var App = function() {
       )
     ),
 
-    // Content
-    React.createElement('main', { className: 'max-w-7xl mx-auto px-4 py-6' },
+    // Content (pb-10 prevents overlap with fixed staleness footer)
+    React.createElement('main', { className: 'max-w-7xl mx-auto px-4 py-6 pb-10' },
       // Show Gateway connect card on dashboard when no gateway configured
       activeTab === 'dashboard' && !CONFIG.gateway ? React.createElement(GatewayConnectCard, { onConnect: handleGatewayConnect }) : null,
       data
@@ -2869,10 +2995,13 @@ var App = function() {
     ),
 
     // Footer
-    React.createElement('footer', { className: 'border-t border-[#1e2d4a] text-center py-4 text-[10px] text-[#8899aa] mt-8' },
+    React.createElement('footer', { className: 'border-t border-[#1e2d4a] text-center py-4 text-[10px] text-[#8899aa] mt-8 mb-8' },
       displayName + ' Command Center v2.0',
       lastUpdated ? ' | Generated ' + new Date(lastUpdated).toLocaleString() : ''
-    )
+    ),
+
+    // Staleness indicator (fixed bottom bar)
+    React.createElement(StalenessFooter, { lastUpdated: lastUpdated })
   );
 };
 
