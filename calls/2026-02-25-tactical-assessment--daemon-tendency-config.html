@@ -54,9 +54,9 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 </div>
 <div class="wrap">
 <div class="section"><h2>Summary</h2><p>Tactical assessment of daemon tendency configuration</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Adopt four-daemon role framework: Sandman (orchestrator), Delphi (infra architect), Sensei (coherence gate), Atlas (operator surfaces), each with defined primary tendencies, inhibitors, escalation triggers, and bench-down adjustments</li><li>Require handoff packages (with standardized schema including owner, task class, goal, success criteria, rollback plan, blast radius, proof artifacts, decision record) as the unit of accountability for all cross-lane work</li><li>Establish conflict protocol: Sandman declares decision window, Sensei writes risk memo, Delphi writes feasibility/blast radius, Atlas writes operator impact, then Sandman decides and logs rationale</li><li>Enforce authority matrix specifying what each daemon may and must not do (routing/prioritization, infra changes, blocking actions, building surfaces)</li><li>Treat bench-down as explicit declared system state with automatic mesh-wide effects (gate tightening, WIP reduction, decision TTLs) when resource constraints are declared</li><li>Enable capability envelope expansion during degraded mode with controlled takeover rules when any daemon is unavailable (expansion scope, TTL, budget adjustments)</li><li>Delphi has incident-initiator authority to begin recovery actions when SLO is breached but must notify Sandman via handoff package</li></ul></div>
 
-
-
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>The missing piece for perfect daemon configuration is tendency shaping (decision-making defaults per daemon), not additional capability</li><li>Current daemon role boundaries already align with the recommended framework without major restructuring needed</li><li>Daemon capability envelopes should expand into adjacent work only during degraded mode, following explicit containment rules</li></ul></div>
 
 
 <div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Tactical Assessment: Perfect Daemon Tendency Configurations (Delphi, Atlas, Sandman, Sensei) v4</h2>
@@ -416,5 +416,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p style='padding-left:1rem'>&bull; **Bench-down only** (tighter governance)?</p>
 <p>[Audit &amp; vNext recommendations — Perfect Daemon Tendency Configurations](https://www.notion.so/Audit-vNext-recommendations-Perfect-Daemon-Tendency-Configurations-30935e812bbb81d38c6bd9f23ff52540?pvs=21)</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-24 17:56</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-24 18:16</div>
 </body></html>
