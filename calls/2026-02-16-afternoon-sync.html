@@ -54,10 +54,10 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 </div>
 <div class="wrap">
 <div class="section"><h2>Summary</h2><p>Internal afternoon sync</p></div>
-
-
-
-
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Daemon tendencies schema finalized with role-specific behaviors (Atlas reviews code quality, Sensei reviews security, Sandman reviews efficiency/scalability, others handle MIG tasks)</li><li>ATPO version 3.1 completed through multiple Notion iterations and combinations</li><li>Deep research produces GitHub issues for voting and bot grading rather than auto-implementing</li><li>Work products from daemons must be placed in separate message bubbles after completion, not same conversation thread</li><li>Checkpoint mechanism will save work 10 seconds before timeout (at 250-275s mark before 300s limit)</li><li>Daemons respond only when explicitly mentioned via hashtag (@name) to prevent chat overwhelm</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Finishing daemon tendencies schema with context-specific role assignments</li><li>Continuing ATPO iteration and refinement</li><li>Delphi executing long-running operation currently 120+ turns in progress</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Sandman daemon is down with no identified root cause</li><li>Daemon collaboration breaks after single move instead of sustaining multi-step work</li><li>Timeout mechanism causes complete loss of work from incomplete long-running operations</li><li>Daemon outputs posted 5+ minutes ago in long message sequences are missed when users scroll recent chat history</li><li>Daemons take 7+ minutes for tasks that could be executed with simple LLM query, suggesting inefficient tool chain selection</li><li>Oracle bot sometimes tags other daemons&#x27; names when responding, creating routing ambiguity</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Infrastructure&#x27;, &#x27;what&#x27;: &#x27;Debug why Sandman daemon is down and why daemon collaboration breaks after single move&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Engineering&#x27;, &#x27;what&#x27;: &#x27;Implement checkpoint/save protocol at 250-275 seconds before timeout to prevent work loss&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Daemons&#x27;, &#x27;what&#x27;: &#x27;Place work product outputs in separate message bubbles post-completion instead of same thread&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Engineering&#x27;, &#x27;what&#x27;: &#x27;Research and optimize daemon model selection to use direct LLM calls for text-only tasks instead of full tool chains&#x27;}</li><li>{&#x27;who&#x27;: &#x27;UI&#x27;, &#x27;what&#x27;: &#x27;Add different colors and avatars for daemon visual distinction in chat interface&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Product&#x27;, &#x27;what&#x27;: &#x27;Document and test /board command functionality for querying virtual team archetypes&#x27;}</li></ul></div>
 
 <div class="section"><h2>Full Transcript</h2><div class="transcript"><p>(...)</p>
 <p>Alertbot from the chat into the chat. Oh great, thank you for tuning in.</p>
@@ -208,5 +208,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>(...)</p>
 <p>Yeah, go ahead and do that. I&#x27;m going to be out for a few hours. I&#x27;m about to go drive up and see my daughter at her school and then go see a friend of his for his birthday. Friend of mine for his birthday.</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-23 16:47</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-24 18:59</div>
 </body></html>
