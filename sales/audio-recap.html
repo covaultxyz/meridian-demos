@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN Recap | Your Business Has a Podcast</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 500: '#06b6d4', 600: '#0891b2' }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #fff; overflow-x: hidden; }
+        body.loading { overflow: hidden; }
+        #preloader { transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1); }
+        #preloader.loaded { transform: translateY(-100%); }
+
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .ken-burns { animation: kenBurns 25s ease-in-out infinite alternate; transform-origin: center center; }
+        @keyframes kenBurns { 0% { transform: scale(1.05); } 100% { transform: scale(1.15) translate(-1%, -1%); } }
+
+        .mask-wrap { overflow: hidden; display: inline-block; vertical-align: top; }
+        .mask-text { display: inline-block; transform: translateY(110%); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mask-wrap.active .mask-text { transform: translateY(0); }
+
+        .reveal-fade { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-fade.active { opacity: 1; transform: translateY(0); }
+
+        .marquee-container { width: 100vw; overflow: hidden; white-space: nowrap; display: flex; }
+        .marquee-content { display: flex; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        @media (hover: hover) and (pointer: fine) { body, a, button, input, select { cursor: none; } }
+        #cursor-dot, #cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; mix-blend-mode: difference; }
+        #cursor-dot { width: 8px; height: 8px; background-color: white; transition: transform 0.2s; }
+        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5); transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; }
+
+        .magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .magnetic:hover { transition: transform 0.1s; }
+
+        #navbar.scrolled { background-color: rgba(5,5,5,0.95); backdrop-filter: blur(16px); padding-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        ::-webkit-scrollbar { width: 0px; }
+
+        .node-pulse { animation: nodePulse 3s ease-in-out infinite; }
+        @keyframes nodePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0.4); } 50% { box-shadow: 0 0 20px 10px rgba(6,182,212,0.1); } }
+
+        @keyframes scrollLine { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+        .qual-check { animation: qualCheck 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .qual-check.active { opacity: 1; }
+
+        /* Waveform bar animation */
+        .wave-bar { animation: waveAnim 1.2s ease-in-out infinite; }
+        @keyframes waveAnim {
+            0%, 100% { transform: scaleY(0.4); }
+            50% { transform: scaleY(1); }
+        }
+
+        /* Play button pulse */
+        .play-pulse { animation: playPulse 2s ease-in-out infinite; }
+        @keyframes playPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0.4); }
+            50% { box-shadow: 0 0 30px 15px rgba(6,182,212,0.1); }
+        }
+
+        /* Daemon voice card hover */
+        .daemon-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .daemon-card:hover { transform: translateY(-4px); border-color: rgba(6,182,212,0.3); }
+
+        /* Audio progress bar */
+        .progress-track { position: relative; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; cursor: pointer; }
+        .progress-fill { position: absolute; top: 0; left: 0; height: 100%; width: 35%; background: #06b6d4; border-radius: 2px; transition: width 0.3s; }
+        .progress-knob { position: absolute; top: 50%; left: 35%; width: 12px; height: 12px; background: white; border-radius: 50%; transform: translate(-50%, -50%); transition: left 0.3s; }
+
+        /* Typing cursor for transcript */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #06b6d4;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center">
+        <div class="overflow-hidden mb-4">
+            <h2 id="loader-text" class="font-display font-black text-7xl md:text-9xl text-white transform translate-y-full transition-transform duration-700">0%</h2>
+        </div>
+        <div class="w-48 h-[1px] bg-zinc-800 relative overflow-hidden">
+            <div id="loader-bar" class="absolute top-0 left-0 h-full bg-brand-500 w-0 transition-all duration-300"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-outline" class="hidden md:block"></div>
+
+    <!-- Film Grain -->
+    <div class="film-grain"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 py-6 px-6 md:px-12 flex justify-between items-center transition-all duration-500">
+        <a href="#" class="font-display font-black text-xl tracking-[0.2em] uppercase text-white hover:text-brand-500 transition-colors cursor-scale">
+            Meridian <span class="text-brand-500 font-light text-sm tracking-normal lowercase">recap</span>
+        </a>
+        <div class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] uppercase font-bold">
+            <a href="#player" class="text-white relative group cursor-scale">Listen</a>
+            <a href="#how" class="text-white relative group cursor-scale">How It Works</a>
+            <a href="#voices" class="text-white relative group cursor-scale">Voices</a>
+            <a href="#pricing" class="text-white relative group cursor-scale">Pricing</a>
+        </div>
+        <a href="#qualify" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 font-sans text-xs tracking-[0.15em] uppercase font-bold magnetic">
+            Get Started
+        </a>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=2070&auto=format&fit=crop"
+                 alt="Audio Studio" class="w-full h-full object-cover ken-burns opacity-40">
+        </div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/30 to-[#050505]"></div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto flex flex-col items-center mt-16">
+            <div class="mask-wrap mb-6">
+                <span class="mask-text font-sans text-brand-500 tracking-[0.4em] text-xs md:text-sm font-bold uppercase block">
+                    A Podcast From Your AI Team
+                </span>
+            </div>
+
+            <h1 class="font-display font-black text-5xl md:text-[6.5rem] lg:text-[8rem] uppercase tracking-tighter leading-[0.85] mb-4 text-white">
+                <div class="mask-wrap"><span class="mask-text block">Your Business</span></div><br>
+                <div class="mask-wrap"><span class="mask-text block text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">Has a Podcast.</span></div>
+            </h1>
+
+            <div class="mask-wrap mb-4">
+                <h2 class="mask-text font-display font-bold text-xl md:text-3xl uppercase tracking-tight text-zinc-400">
+                    It just doesn't know it yet.
+                </h2>
+            </div>
+
+            <div class="mask-wrap mb-10">
+                <p class="mask-text font-sans text-zinc-300 text-base md:text-xl font-light max-w-2xl mx-auto tracking-wide leading-relaxed">
+                    Every week, six AI agents review your operations, research, deals, and infrastructure &mdash; and report back in their own voice. A 15-minute audio briefing, fully automated, delivered before Monday morning.
+                </p>
+            </div>
+
+            <!-- Hero CTAs -->
+            <div class="mask-wrap flex flex-col sm:flex-row gap-4">
+                <a href="#player" class="mask-text px-10 py-5 bg-white text-black font-sans text-xs tracking-[0.2em] uppercase font-bold transition-colors duration-300 flex items-center justify-center gap-3 magnetic hover:bg-brand-500">
+                    <i data-lucide="play" class="w-4 h-4"></i> Hear a Sample Recap
+                </a>
+                <a href="#qualify" class="mask-text px-10 py-5 border border-white text-white font-sans text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 flex items-center justify-center gap-3 magnetic hover:bg-white hover:text-black">
+                    Get Started <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center reveal-fade">
+            <span class="font-sans text-[0.6rem] tracking-[0.3em] uppercase mb-4">Scroll</span>
+            <div class="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white animate-[scrollLine_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== AUDIO PLAYER SECTION ==================== -->
+    <section id="player" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Sample Briefing</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Press Play</h2>
+                </div>
+            </div>
+
+            <!-- Audio Player Card -->
+            <div class="reveal-fade bg-black/60 backdrop-blur-md border border-zinc-800 rounded-lg overflow-hidden">
+                <!-- Top bar -->
+                <div class="px-8 pt-8 pb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">MERIDIAN Weekly Recap</h3>
+                            <p class="font-sans text-zinc-500 text-xs tracking-wide">March 25, 2026</p>
+                        </div>
+                        <div class="font-sans text-zinc-500 text-sm tabular-nums">18:42</div>
+                    </div>
+                </div>
+
+                <!-- Waveform Visualization -->
+                <div class="px-8 py-6">
+                    <svg viewBox="0 0 800 80" class="w-full h-16" preserveAspectRatio="none">
+                        <!-- Waveform bars - stylized audio visualization -->
+                        <g fill="#06b6d4" opacity="0.8">
+                            <!-- Left portion (played) - brighter -->
+                            <rect x="0" y="30" width="3" height="20" rx="1.5" class="wave-bar" style="animation-delay: 0s"><animate attributeName="height" values="20;40;15;35;20" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y" values="30;20;32;22;30" dur="2.5s" repeatCount="indefinite"/></rect>
+                            <rect x="8" y="20" width="3" height="40" rx="1.5"><animate attributeName="height" values="40;25;45;30;40" dur="2.8s" repeatCount="indefinite"/><animate attributeName="y" values="20;28;18;25;20" dur="2.8s" repeatCount="indefinite"/></rect>
+                            <rect x="16" y="25" width="3" height="30" rx="1.5"><animate attributeName="height" values="30;50;20;45;30" dur="2.2s" repeatCount="indefinite"/><animate attributeName="y" values="25;15;30;18;25" dur="2.2s" repeatCount="indefinite"/></rect>
+                            <rect x="24" y="15" width="3" height="50" rx="1.5"><animate attributeName="height" values="50;30;55;25;50" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="15;25;12;28;15" dur="3s" repeatCount="indefinite"/></rect>
+                            <rect x="32" y="22" width="3" height="36" rx="1.5"><animate attributeName="height" values="36;55;28;48;36" dur="2.4s" repeatCount="indefinite"/><animate attributeName="y" values="22;12;26;16;22" dur="2.4s" repeatCount="indefinite"/></rect>
+                            <rect x="40" y="28" width="3" height="24" rx="1.5"><animate attributeName="height" values="24;42;18;38;24" dur="2.6s" repeatCount="indefinite"/><animate attributeName="y" values="28;19;31;21;28" dur="2.6s" repeatCount="indefinite"/></rect>
+                            <rect x="48" y="18" width="3" height="44" rx="1.5"><animate attributeName="height" values="44;28;52;32;44" dur="2.9s" repeatCount="indefinite"/><animate attributeName="y" values="18;26;14;24;18" dur="2.9s" repeatCount="indefinite"/></rect>
+                            <rect x="56" y="10" width="3" height="60" rx="1.5"><animate attributeName="height" values="60;35;65;30;60" dur="3.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;22;8;25;10" dur="3.2s" repeatCount="indefinite"/></rect>
+                            <rect x="64" y="20" width="3" height="40" rx="1.5"><animate attributeName="height" values="40;58;32;50;40" dur="2.3s" repeatCount="indefinite"/><animate attributeName="y" values="20;11;24;15;20" dur="2.3s" repeatCount="indefinite"/></rect>
+                            <rect x="72" y="25" width="3" height="30" rx="1.5"><animate attributeName="height" values="30;48;22;42;30" dur="2.7s" repeatCount="indefinite"/><animate attributeName="y" values="25;16;29;19;25" dur="2.7s" repeatCount="indefinite"/></rect>
+                            <rect x="80" y="15" width="3" height="50" rx="1.5"><animate attributeName="height" values="50;32;55;28;50" dur="3.1s" repeatCount="indefinite"/><animate attributeName="y" values="15;24;12;26;15" dur="3.1s" repeatCount="indefinite"/></rect>
+                            <rect x="88" y="22" width="3" height="36" rx="1.5"><animate attributeName="height" values="36;52;30;48;36" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y" values="22;14;25;16;22" dur="2.5s" repeatCount="indefinite"/></rect>
+                            <rect x="96" y="28" width="3" height="24" rx="1.5"><animate attributeName="height" values="24;40;18;35;24" dur="2.8s" repeatCount="indefinite"/><animate attributeName="y" values="28;20;31;22;28" dur="2.8s" repeatCount="indefinite"/></rect>
+                            <rect x="104" y="18" width="3" height="44" rx="1.5"><animate attributeName="height" values="44;30;50;26;44" dur="2.6s" repeatCount="indefinite"/><animate attributeName="y" values="18;25;15;27;18" dur="2.6s" repeatCount="indefinite"/></rect>
+                            <rect x="112" y="12" width="3" height="56" rx="1.5"><animate attributeName="height" values="56;38;62;34;56" dur="3.3s" repeatCount="indefinite"/><animate attributeName="y" values="12;21;9;23;12" dur="3.3s" repeatCount="indefinite"/></rect>
+                            <rect x="120" y="20" width="3" height="40" rx="1.5"><animate attributeName="height" values="40;55;32;50;40" dur="2.4s" repeatCount="indefinite"/><animate attributeName="y" values="20;12;24;15;20" dur="2.4s" repeatCount="indefinite"/></rect>
+                            <rect x="128" y="26" width="3" height="28" rx="1.5"><animate attributeName="height" values="28;45;22;40;28" dur="2.9s" repeatCount="indefinite"/><animate attributeName="y" values="26;18;29;20;26" dur="2.9s" repeatCount="indefinite"/></rect>
+                            <rect x="136" y="16" width="3" height="48" rx="1.5"><animate attributeName="height" values="48;30;54;28;48" dur="2.7s" repeatCount="indefinite"/><animate attributeName="y" values="16;25;13;26;16" dur="2.7s" repeatCount="indefinite"/></rect>
+                            <rect x="144" y="22" width="3" height="36" rx="1.5"><animate attributeName="height" values="36;50;28;46;36" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="22;15;26;17;22" dur="3s" repeatCount="indefinite"/></rect>
+                            <rect x="152" y="10" width="3" height="60" rx="1.5"><animate attributeName="height" values="60;40;65;35;60" dur="2.2s" repeatCount="indefinite"/><animate attributeName="y" values="10;20;8;22;10" dur="2.2s" repeatCount="indefinite"/></rect>
+                            <rect x="160" y="18" width="3" height="44" rx="1.5"><animate attributeName="height" values="44;58;36;52;44" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y" values="18;11;22;14;18" dur="2.5s" repeatCount="indefinite"/></rect>
+                            <rect x="168" y="24" width="3" height="32" rx="1.5"><animate attributeName="height" values="32;48;24;42;32" dur="2.8s" repeatCount="indefinite"/><animate attributeName="y" values="24;16;28;19;24" dur="2.8s" repeatCount="indefinite"/></rect>
+                            <rect x="176" y="14" width="3" height="52" rx="1.5"><animate attributeName="height" values="52;35;58;30;52" dur="3.1s" repeatCount="indefinite"/><animate attributeName="y" values="14;22;11;25;14" dur="3.1s" repeatCount="indefinite"/></rect>
+                            <rect x="184" y="20" width="3" height="40" rx="1.5"><animate attributeName="height" values="40;56;34;50;40" dur="2.3s" repeatCount="indefinite"/><animate attributeName="y" values="20;12;23;15;20" dur="2.3s" repeatCount="indefinite"/></rect>
+                            <rect x="192" y="28" width="3" height="24" rx="1.5"><animate attributeName="height" values="24;38;18;34;24" dur="2.6s" repeatCount="indefinite"/><animate attributeName="y" values="28;21;31;23;28" dur="2.6s" repeatCount="indefinite"/></rect>
+                            <rect x="200" y="16" width="3" height="48" rx="1.5"><animate attributeName="height" values="48;62;40;56;48" dur="2.9s" repeatCount="indefinite"/><animate attributeName="y" values="16;9;20;12;16" dur="2.9s" repeatCount="indefinite"/></rect>
+                            <rect x="208" y="22" width="3" height="36" rx="1.5"><animate attributeName="height" values="36;50;28;44;36" dur="3.2s" repeatCount="indefinite"/><animate attributeName="y" values="22;15;26;18;22" dur="3.2s" repeatCount="indefinite"/></rect>
+                            <rect x="216" y="12" width="3" height="56" rx="1.5"><animate attributeName="height" values="56;40;60;36;56" dur="2.4s" repeatCount="indefinite"/><animate attributeName="y" values="12;20;10;22;12" dur="2.4s" repeatCount="indefinite"/></rect>
+                            <rect x="224" y="26" width="3" height="28" rx="1.5"><animate attributeName="height" values="28;44;20;38;28" dur="2.7s" repeatCount="indefinite"/><animate attributeName="y" values="26;18;30;21;26" dur="2.7s" repeatCount="indefinite"/></rect>
+                            <rect x="232" y="18" width="3" height="44" rx="1.5"><animate attributeName="height" values="44;58;36;54;44" dur="3s" repeatCount="indefinite"/><animate attributeName="y" values="18;11;22;13;18" dur="3s" repeatCount="indefinite"/></rect>
+                            <rect x="240" y="20" width="3" height="40" rx="1.5"><animate attributeName="height" values="40;55;32;48;40" dur="2.5s" repeatCount="indefinite"/><animate attributeName="y" values="20;12;24;16;20" dur="2.5s" repeatCount="indefinite"/></rect>
+                            <rect x="248" y="14" width="3" height="52" rx="1.5"><animate attributeName="height" values="52;38;58;34;52" dur="2.8s" repeatCount="indefinite"/><animate attributeName="y" values="14;21;11;23;14" dur="2.8s" repeatCount="indefinite"/></rect>
+                        </g>
+                        <!-- Right portion (unplayed) - dimmer -->
+                        <g fill="#06b6d4" opacity="0.25">
+                            <rect x="280" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="288" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="296" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="304" y="14" width="3" height="52" rx="1.5"/>
+                            <rect x="312" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="320" y="30" width="3" height="20" rx="1.5"/>
+                            <rect x="328" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="336" y="26" width="3" height="28" rx="1.5"/>
+                            <rect x="344" y="12" width="3" height="56" rx="1.5"/>
+                            <rect x="352" y="20" width="3" height="40" rx="1.5"/>
+                            <rect x="360" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="368" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="376" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="384" y="10" width="3" height="60" rx="1.5"/>
+                            <rect x="392" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="400" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="408" y="30" width="3" height="20" rx="1.5"/>
+                            <rect x="416" y="14" width="3" height="52" rx="1.5"/>
+                            <rect x="424" y="26" width="3" height="28" rx="1.5"/>
+                            <rect x="432" y="20" width="3" height="40" rx="1.5"/>
+                            <rect x="440" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="448" y="12" width="3" height="56" rx="1.5"/>
+                            <rect x="456" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="464" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="472" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="480" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="488" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="496" y="14" width="3" height="52" rx="1.5"/>
+                            <rect x="504" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="512" y="30" width="3" height="20" rx="1.5"/>
+                            <rect x="520" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="528" y="26" width="3" height="28" rx="1.5"/>
+                            <rect x="536" y="12" width="3" height="56" rx="1.5"/>
+                            <rect x="544" y="20" width="3" height="40" rx="1.5"/>
+                            <rect x="552" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="560" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="568" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="576" y="10" width="3" height="60" rx="1.5"/>
+                            <rect x="584" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="592" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="600" y="30" width="3" height="20" rx="1.5"/>
+                            <rect x="608" y="14" width="3" height="52" rx="1.5"/>
+                            <rect x="616" y="26" width="3" height="28" rx="1.5"/>
+                            <rect x="624" y="20" width="3" height="40" rx="1.5"/>
+                            <rect x="632" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="640" y="12" width="3" height="56" rx="1.5"/>
+                            <rect x="648" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="656" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="664" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="672" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="680" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="688" y="14" width="3" height="52" rx="1.5"/>
+                            <rect x="696" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="704" y="30" width="3" height="20" rx="1.5"/>
+                            <rect x="712" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="720" y="26" width="3" height="28" rx="1.5"/>
+                            <rect x="728" y="12" width="3" height="56" rx="1.5"/>
+                            <rect x="736" y="20" width="3" height="40" rx="1.5"/>
+                            <rect x="744" y="28" width="3" height="24" rx="1.5"/>
+                            <rect x="752" y="16" width="3" height="48" rx="1.5"/>
+                            <rect x="760" y="22" width="3" height="36" rx="1.5"/>
+                            <rect x="768" y="10" width="3" height="60" rx="1.5"/>
+                            <rect x="776" y="24" width="3" height="32" rx="1.5"/>
+                            <rect x="784" y="18" width="3" height="44" rx="1.5"/>
+                            <rect x="792" y="28" width="3" height="24" rx="1.5"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="px-8 mb-2">
+                    <div class="progress-track">
+                        <div class="progress-fill"></div>
+                        <div class="progress-knob"></div>
+                    </div>
+                    <div class="flex justify-between mt-2 font-sans text-[0.65rem] text-zinc-600 tabular-nums">
+                        <span>6:32</span>
+                        <span>18:42</span>
+                    </div>
+                </div>
+
+                <!-- Controls + Daemon Avatars -->
+                <div class="px-8 py-6 border-t border-zinc-800/50">
+                    <div class="flex items-center justify-between">
+                        <!-- Daemon Avatars -->
+                        <div class="flex items-center gap-4 overflow-x-auto">
+                            <!-- Sensei - Eye -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Sensei</span>
+                            </div>
+                            <!-- Atlas - Constellation -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <circle cx="6" cy="6" r="1.5" fill="#06b6d4"/>
+                                        <circle cx="18" cy="8" r="1.5" fill="#06b6d4"/>
+                                        <circle cx="12" cy="4" r="1" fill="#06b6d4"/>
+                                        <circle cx="8" cy="16" r="1.5" fill="#06b6d4"/>
+                                        <circle cx="16" cy="18" r="1" fill="#06b6d4"/>
+                                        <line x1="6" y1="6" x2="12" y2="4"/>
+                                        <line x1="12" y1="4" x2="18" y2="8"/>
+                                        <line x1="6" y1="6" x2="8" y2="16"/>
+                                        <line x1="18" y1="8" x2="16" y2="18"/>
+                                        <line x1="8" y1="16" x2="16" y2="18"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Atlas</span>
+                            </div>
+                            <!-- Delphi - Hexagonal -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/>
+                                        <line x1="12" y1="2" x2="12" y2="22"/>
+                                        <line x1="3" y1="7" x2="21" y2="17"/>
+                                        <line x1="21" y1="7" x2="3" y2="17"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Delphi</span>
+                            </div>
+                            <!-- Sandman - Gauge -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10"/>
+                                        <path d="M12 12L16 6" stroke-width="2" stroke-linecap="round"/>
+                                        <circle cx="12" cy="12" r="2" fill="#06b6d4"/>
+                                        <path d="M4.5 16.5h2M17.5 16.5h2"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Sandman</span>
+                            </div>
+                            <!-- Forge - Energy Burst -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="none"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Forge</span>
+                            </div>
+                            <!-- Avery - Broadcast Signal -->
+                            <div class="flex flex-col items-center gap-1 flex-shrink-0">
+                                <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="2" fill="#06b6d4"/>
+                                        <path d="M8.5 8.5a5 5 0 0 1 7 0"/>
+                                        <path d="M5.5 5.5a9 9 0 0 1 13 0"/>
+                                        <path d="M15.5 15.5a5 5 0 0 1-7 0"/>
+                                        <path d="M18.5 18.5a9 9 0 0 1-13 0"/>
+                                    </svg>
+                                </div>
+                                <span class="font-sans text-[0.55rem] text-zinc-500 uppercase tracking-wider">Avery</span>
+                            </div>
+                        </div>
+
+                        <!-- Play Button -->
+                        <button id="play-btn" class="w-16 h-16 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 ml-4 play-pulse magnetic hover:bg-brand-600 transition-colors">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                <polygon points="8,5 20,12 8,19"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Transcript Preview -->
+                <div class="px-8 py-6 border-t border-zinc-800/50 bg-zinc-950/50">
+                    <p class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 mb-3">Transcript Preview</p>
+                    <div class="font-sans text-sm text-zinc-400 leading-relaxed space-y-3">
+                        <p><span class="text-brand-500 font-semibold">SENSEI:</span> I'm Sensei, Coherence Director of MERIDIAN. Here's what we shipped this week. The biggest push was the Command Center &mdash; full operational dashboard with drill-down modals for every daemon, every metric, every deployment.</p>
+                        <p><span class="text-brand-500 font-semibold">ATLAS:</span> Atlas here, Chief Intelligence Officer. I catalogued twenty-one active projects this week, mapped fifteen discovery calls, and built the competitive matrix for the CPA vertical. Full visibility, finally<span class="typing-cursor"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section id="how" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">How It Works</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Four Steps.<br>Zero Effort.</h2>
+                </div>
+                <p class="font-sans text-zinc-500 text-sm mt-6 reveal-fade max-w-xl mx-auto">From data sources to your earbuds. Fully automated. No templates, no canned reports.</p>
+            </div>
+
+            <div class="relative border-l border-zinc-800 ml-4 md:ml-0">
+                <!-- Step 1: Connect -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Connect</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Data Sources</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Point MERIDIAN at your knowledge graph, git repos, CRM, or project tools. The daemons learn your operations.
+                    </div>
+                </div>
+                <!-- Step 2: Monitor -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Monitor</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Continuous Tracking</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        Six specialized AI agents continuously track what's happening across your business &mdash; code, deals, research, infrastructure, operations.
+                    </div>
+                </div>
+                <!-- Step 3: Script -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Script</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">AI-Generated</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Each week, Claude generates a conversational script from each daemon's perspective &mdash; no templates, no canned reports. Every recap is unique.
+                    </div>
+                </div>
+                <!-- Step 4: Deliver -->
+                <div class="md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-white rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto shadow-[0_0_15px_#fff]"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Deliver</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-white mt-1">Before Monday</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        Neural voices synthesize the scripts into a single MP3. Delivered to Telegram, Slack, or email before your Monday standup.
+                    </div>
+                </div>
+                <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-800 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container bg-brand-500 text-black py-4 border-y border-brand-500">
+        <div class="marquee-content font-display font-black text-5xl tracking-widest uppercase items-center">
+            &nbsp;SIX VOICES <span class="mx-6 text-2xl">&#9670;</span> ZERO EFFORT <span class="mx-6 text-2xl">&#9670;</span> WEEKLY RECAP <span class="mx-6 text-2xl">&#9670;</span> FULLY AUTOMATED <span class="mx-6 text-2xl">&#9670;</span>
+            SIX VOICES <span class="mx-6 text-2xl">&#9670;</span> ZERO EFFORT <span class="mx-6 text-2xl">&#9670;</span> WEEKLY RECAP <span class="mx-6 text-2xl">&#9670;</span> FULLY AUTOMATED <span class="mx-6 text-2xl">&#9670;</span>
+        </div>
+    </div>
+
+    <!-- ==================== WHAT YOU HEAR — Daemon Voice Cards ==================== -->
+    <section id="voices" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Six Perspectives</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">What You Hear</h2>
+                </div>
+                <p class="font-sans text-zinc-500 text-sm mt-6 reveal-fade max-w-xl mx-auto">Each daemon speaks in a distinct neural voice. Different accent, different domain, different lens on your business.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Sensei -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Sensei</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Coherence Director</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">Deep American male &mdash; reports on quality, coherence, reviews</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;Eighty percent of what the task queue was processing turned out to be noise. That number alone reshapes how we tune next sprint.&rdquo;
+                    </blockquote>
+                </div>
+
+                <!-- Atlas -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <circle cx="6" cy="6" r="1.5" fill="#06b6d4"/>
+                                <circle cx="18" cy="8" r="1.5" fill="#06b6d4"/>
+                                <circle cx="12" cy="4" r="1" fill="#06b6d4"/>
+                                <circle cx="8" cy="16" r="1.5" fill="#06b6d4"/>
+                                <circle cx="16" cy="18" r="1" fill="#06b6d4"/>
+                                <line x1="6" y1="6" x2="12" y2="4"/>
+                                <line x1="12" y1="4" x2="18" y2="8"/>
+                                <line x1="6" y1="6" x2="8" y2="16"/>
+                                <line x1="18" y1="8" x2="16" y2="18"/>
+                                <line x1="8" y1="16" x2="16" y2="18"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Atlas</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Chief Intelligence Officer</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">Australian male &mdash; reports on intelligence, research, dashboards</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;We went from ten percent visibility to full operational coverage in one week. Twenty-one projects catalogued, fifteen calls mapped.&rdquo;
+                    </blockquote>
+                </div>
+
+                <!-- Delphi -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/>
+                                <line x1="12" y1="2" x2="12" y2="22"/>
+                                <line x1="3" y1="7" x2="21" y2="17"/>
+                                <line x1="21" y1="7" x2="3" y2="17"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Delphi</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Infrastructure Architect</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">British male &mdash; reports on infrastructure, deployments, security</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;All three nodes deployed at 25a35781. OAuth fixed on e3b5f73. NATS auth stable at single shared token.&rdquo;
+                    </blockquote>
+                </div>
+
+                <!-- Sandman -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10"/>
+                                <path d="M12 12L16 6" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="12" cy="12" r="2" fill="#06b6d4"/>
+                                <path d="M4.5 16.5h2M17.5 16.5h2"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Sandman</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Chief Operating Officer</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">American male &mdash; reports on operations, pipeline, business metrics</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;Pipeline value quantified. Seven new leads in funnel. Two moved to engaged this week.&rdquo;
+                    </blockquote>
+                </div>
+
+                <!-- Forge -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="none"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Forge</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Compute Engineer</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">American male, distinct &mdash; reports on compute, batch processing, pipelines</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;Batch embedding throughput up 3x after MemoryMax bump to 512M. Consumer backlog cleared.&rdquo;
+                    </blockquote>
+                </div>
+
+                <!-- Avery -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-10 h-10 rounded-full border border-brand-500/40 bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="2" fill="#06b6d4"/>
+                                <path d="M8.5 8.5a5 5 0 0 1 7 0"/>
+                                <path d="M5.5 5.5a9 9 0 0 1 13 0"/>
+                                <path d="M15.5 15.5a5 5 0 0 1-7 0"/>
+                                <path d="M18.5 18.5a9 9 0 0 1-13 0"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">Avery</h3>
+                            <p class="font-sans text-zinc-500 text-xs">Business Development</p>
+                        </div>
+                    </div>
+                    <p class="font-sans text-zinc-400 text-xs mb-4">Irish male &mdash; reports on deals, outreach, partnerships</p>
+                    <blockquote class="font-sans text-zinc-300 text-sm italic leading-relaxed border-l-2 border-brand-500/30 pl-4">
+                        &ldquo;Bitler partnership advanced to STRUCTURE stage. Two new discovery calls booked for next week.&rdquo;
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COMPARISON ==================== -->
+    <section class="py-24 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Comparison</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter text-white">
+                        What's Wrong With Your<br>
+                        <span class="text-brand-500">Status Updates?</span>
+                    </h2>
+                </div>
+            </div>
+
+            <div class="reveal-fade overflow-x-auto">
+                <table class="w-full border-collapse min-w-[800px]">
+                    <thead>
+                        <tr class="border-b border-zinc-800">
+                            <th class="text-left font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 py-4 pr-4 w-[18%]"></th>
+                            <th class="text-left font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-600 py-4 pr-4 w-[20%]">Standup Meetings</th>
+                            <th class="text-left font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-600 py-4 pr-4 w-[20%]">Written Reports</th>
+                            <th class="text-left font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-600 py-4 pr-4 w-[20%]">Dashboards</th>
+                            <th class="text-left font-sans text-[0.6rem] tracking-[0.2em] uppercase text-brand-500 py-4 w-[22%]">MERIDIAN Recap</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-sans text-sm">
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-4 text-zinc-400 font-medium">Time to produce</td>
+                            <td class="py-4 pr-4 text-zinc-500">30min/day (everyone stops)</td>
+                            <td class="py-4 pr-4 text-zinc-500">2-4 hrs/week (someone writes it)</td>
+                            <td class="py-4 pr-4 text-zinc-500">Always stale by reading time</td>
+                            <td class="py-4 text-white font-medium">Zero &mdash; fully automated</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-4 text-zinc-400 font-medium">Completeness</td>
+                            <td class="py-4 pr-4 text-zinc-500">Only what people remember</td>
+                            <td class="py-4 pr-4 text-zinc-500">Only what the writer knows</td>
+                            <td class="py-4 pr-4 text-zinc-500">Only what's instrumented</td>
+                            <td class="py-4 text-white font-medium">Queries ALL sources &mdash; graph, git, CRM, tickets</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-4 text-zinc-400 font-medium">Format</td>
+                            <td class="py-4 pr-4 text-zinc-500">Ephemeral &mdash; no record</td>
+                            <td class="py-4 pr-4 text-zinc-500">PDF nobody reads</td>
+                            <td class="py-4 pr-4 text-zinc-500">Overwhelming charts</td>
+                            <td class="py-4 text-white font-medium">15-min audio you listen to while commuting</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-4 text-zinc-400 font-medium">Frequency</td>
+                            <td class="py-4 pr-4 text-zinc-500">Daily (burns team time)</td>
+                            <td class="py-4 pr-4 text-zinc-500">Weekly (late, incomplete)</td>
+                            <td class="py-4 pr-4 text-zinc-500">Real-time (but who's watching?)</td>
+                            <td class="py-4 text-white font-medium">Weekly or daily &mdash; your choice</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 pr-4 text-zinc-400 font-medium">Cost</td>
+                            <td class="py-4 pr-4 text-zinc-500">Everyone's salary &times; 30min/day</td>
+                            <td class="py-4 pr-4 text-zinc-500">$2K-5K/mo for someone to compile</td>
+                            <td class="py-4 pr-4 text-zinc-500">$500+/mo SaaS + maintenance</td>
+                            <td class="py-4 text-white font-medium">Sub-$50/mo infrastructure</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BIG QUOTE ==================== -->
+    <section class="py-24 bg-[#050505] border-b border-zinc-900 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal-fade">
+            <blockquote class="font-display font-black text-3xl md:text-5xl uppercase tracking-tight text-white leading-snug">
+                &ldquo;Status updates are debt.<br>
+                <span class="text-brand-500">Recaps are interest.&rdquo;</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ==================== PRICING ==================== -->
+    <section id="pricing" class="py-32 bg-zinc-950 border-b border-zinc-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Pricing</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">What It Costs</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Starter -->
+                <div class="border border-zinc-800 p-8 reveal-fade hover:border-zinc-700 transition-colors group">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-2">Starter</p>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="font-display font-black text-4xl text-white">$500</span>
+                        <span class="font-sans text-zinc-500 text-sm">/mo</span>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">Weekly recap</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">3 daemon voices</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">Email delivery</span>
+                        </div>
+                    </div>
+                    <a href="#qualify" class="block w-full text-center py-3 border border-zinc-700 text-white font-sans text-xs tracking-[0.15em] uppercase font-bold hover:border-brand-500 hover:text-brand-500 transition-colors magnetic">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Professional -->
+                <div class="border-2 border-brand-500 p-8 reveal-fade relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-black font-sans text-[0.6rem] tracking-[0.2em] uppercase font-bold px-4 py-1">
+                        Most Popular
+                    </div>
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-brand-500 mb-2">Professional</p>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="font-display font-black text-4xl text-white">$1,500</span>
+                        <span class="font-sans text-zinc-500 text-sm">/mo</span>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-300 text-sm">Daily + weekly recaps</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-300 text-sm">All 6 daemon voices</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-300 text-sm">Telegram, Slack & email delivery</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-300 text-sm">Custom data sources</span>
+                        </div>
+                    </div>
+                    <a href="#qualify" class="block w-full text-center py-3 bg-brand-500 text-black font-sans text-xs tracking-[0.15em] uppercase font-bold hover:bg-white transition-colors magnetic">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="border border-zinc-800 p-8 reveal-fade hover:border-zinc-700 transition-colors group">
+                    <p class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-2">Enterprise</p>
+                    <div class="flex items-baseline gap-1 mb-6">
+                        <span class="font-display font-black text-4xl text-white">$3,000</span>
+                        <span class="font-sans text-zinc-500 text-sm">/mo</span>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">Unlimited recaps</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">Custom daemon personas</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">Your branding</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0"></i>
+                            <span class="font-sans text-zinc-400 text-sm">API access</span>
+                        </div>
+                    </div>
+                    <a href="#qualify" class="block w-full text-center py-3 border border-zinc-700 text-white font-sans text-xs tracking-[0.15em] uppercase font-bold hover:border-brand-500 hover:text-brand-500 transition-colors magnetic">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+
+            <p class="text-center font-sans text-zinc-500 text-sm reveal-fade">
+                Every tier includes: knowledge graph setup, daemon configuration, voice selection, and delivery pipeline. No hidden costs.
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== WHO LISTENS (Use Cases) ==================== -->
+    <section class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Use Cases</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Who Listens?</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- CEOs -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6">
+                        <i data-lucide="crown" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">CEOs</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        Listen during your Monday commute. Know what shipped, what's stuck, and what needs your attention &mdash; without reading 47 Slack threads.
+                    </p>
+                </div>
+
+                <!-- Investors -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">Investors</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        Get a weekly audio update from every portfolio company's AI team. Standardized, automated, zero overhead for the founders.
+                    </p>
+                </div>
+
+                <!-- Teams -->
+                <div class="daemon-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6">
+                        <i data-lucide="users" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">Teams</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        Replace the Monday standup with a recap everyone actually listens to. Get 30 minutes back every day.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== QUALIFICATION GATE ==================== -->
+    <section id="qualify" class="py-32 bg-zinc-950 relative overflow-hidden z-10 border-t border-zinc-900">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+             style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 12px);"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Get Started</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Is This<br>For You?</h2>
+                </div>
+            </div>
+
+            <!-- Qualification Criteria -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal-fade">
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">3+ Data Sources You Can't Track</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">Git, CRM, project boards, tickets, Slack &mdash; information scattered across tools that don't talk to each other.</p>
+                </div>
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">Tired of Writing Status Reports</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">You or your team spend hours every week compiling what happened. Nobody reads the result anyway.</p>
+                </div>
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">Want to Know Without Asking</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">You want a complete picture of what happened &mdash; without pinging anyone, scheduling a meeting, or reading a dashboard.</p>
+                </div>
+            </div>
+
+            <!-- Lead Form -->
+            <form id="lead-form" class="bg-black/40 backdrop-blur-md border border-zinc-800 p-8 md:p-16 text-left space-y-8 reveal-fade max-w-2xl mx-auto">
+                <div class="text-center mb-4">
+                    <h3 class="font-display font-bold text-2xl uppercase tracking-tight text-white">Get Your First Recap Free</h3>
+                    <p class="font-sans text-zinc-500 text-sm mt-2">We'll set up a sample recap from your data. No commitment.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Full Name</label>
+                        <input type="text" id="lead-name" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Email Address</label>
+                        <input type="email" id="lead-email" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                </div>
+                <div class="space-y-2 relative group">
+                    <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">How Many People Need to Hear Your Weekly Recap?</label>
+                    <select id="lead-team-size" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale appearance-none">
+                        <option value="" class="bg-zinc-900">Select...</option>
+                        <option value="just-me" class="bg-zinc-900">Just me</option>
+                        <option value="2-5" class="bg-zinc-900">2-5</option>
+                        <option value="5-20" class="bg-zinc-900">5-20</option>
+                        <option value="20+" class="bg-zinc-900">20+</option>
+                    </select>
+                </div>
+                <input type="text" name="website" id="lead-honeypot" style="display:none" tabindex="-1" autocomplete="off">
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="lead-consent" class="mt-1 accent-brand-500 cursor-scale">
+                    <label for="lead-consent" class="font-sans text-[0.6rem] tracking-[0.1em] uppercase text-zinc-500 leading-relaxed">
+                        I consent to Covault processing my data to set up a MERIDIAN Recap trial. <a href="#" class="text-brand-500 hover:text-white transition-colors">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-white text-black font-sans font-bold uppercase tracking-[0.2em] text-xs py-5 hover:bg-brand-500 transition-colors duration-300 mt-8 magnetic cursor-scale">
+                    Get Your First Recap Free
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-black pt-32 pb-12 relative z-10 overflow-hidden border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Connect</h4>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="send" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Stay Updated</h4>
+                    <p class="font-sans text-sm text-zinc-400 mb-4 font-light">Get notified when new voices and features ship.</p>
+                    <div class="flex border-b border-zinc-700 focus-within:border-white transition-colors">
+                        <input type="email" placeholder="Enter email" class="w-full bg-transparent py-2 text-white outline-none font-sans text-sm">
+                        <button class="text-brand-500 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold px-2">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full text-center border-b border-zinc-900 pb-12 mb-12">
+                <h1 class="font-display font-black text-[12vw] leading-none uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 to-black select-none pointer-events-none">
+                    RECAP
+                </h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 font-sans text-[0.65rem] tracking-widest uppercase text-zinc-600">
+                <p>&copy; 2026 Covault. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        lucide.createIcons();
+
+        // Preloader
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+        setTimeout(() => { loaderText.style.transform = 'translateY(0)'; }, 100);
+        let progress = 0;
+        const duration = 2000, interval = 20, step = 100 / (duration / interval);
+        const counter = setInterval(() => {
+            progress += step;
+            if (progress >= 100) { progress = 100; clearInterval(counter); finishLoading(); }
+            loaderBar.style.width = `${progress}%`;
+            loaderText.innerText = `${Math.floor(progress)}%`;
+        }, interval);
+        function finishLoading() {
+            setTimeout(() => {
+                preloader.classList.add('loaded');
+                document.body.classList.remove('loading');
+                setTimeout(() => {
+                    document.querySelectorAll('header .mask-wrap, header .reveal-fade').forEach(el => el.classList.add('active'));
+                }, 400);
+            }, 500);
+        }
+
+        // Scroll Observers
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        setTimeout(() => {
+            document.querySelectorAll('section .mask-wrap, section .reveal-fade').forEach(el => observer.observe(el));
+        }, 2500);
+
+        // Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Play button interaction
+        const playBtn = document.getElementById('play-btn');
+        let isPlaying = false;
+        if (playBtn) {
+            playBtn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+                if (isPlaying) {
+                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+                    playBtn.classList.remove('play-pulse');
+                    // Animate progress bar
+                    animateProgress();
+                } else {
+                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>';
+                    playBtn.classList.add('play-pulse');
+                    if (progressInterval) clearInterval(progressInterval);
+                }
+            });
+        }
+
+        let progressInterval;
+        function animateProgress() {
+            const fill = document.querySelector('.progress-fill');
+            const knob = document.querySelector('.progress-knob');
+            const timeDisplay = document.querySelector('.progress-track').parentElement.querySelector('span');
+            let currentWidth = 35;
+            progressInterval = setInterval(() => {
+                currentWidth += 0.1;
+                if (currentWidth >= 100) {
+                    currentWidth = 100;
+                    clearInterval(progressInterval);
+                    // Reset play button
+                    isPlaying = false;
+                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>';
+                    playBtn.classList.add('play-pulse');
+                }
+                fill.style.width = currentWidth + '%';
+                knob.style.left = currentWidth + '%';
+                // Update time display
+                const totalSeconds = Math.floor((currentWidth / 100) * 1122); // 18:42 = 1122 seconds
+                const mins = Math.floor(totalSeconds / 60);
+                const secs = totalSeconds % 60;
+                timeDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+            }, 100);
+        }
+
+        // Cursor + Magnetic
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+            function animate() {
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+                requestAnimationFrame(animate);
+            }
+            animate();
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
+            });
+            document.querySelectorAll('.cursor-scale, a, button, input, select').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
+                    cursorOutline.style.backgroundColor = 'white';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+            document.querySelectorAll('.magnetic').forEach(magnet => {
+                magnet.addEventListener('mousemove', (e) => {
+                    const rect = magnet.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                magnet.addEventListener('mouseleave', () => { magnet.style.transform = 'translate(0px, 0px)'; });
+            });
+        }
+
+        // Lead Form
+        const leadForm = document.getElementById('lead-form');
+        if (leadForm) {
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Submitting...'; btn.disabled = true;
+                const consent = document.getElementById('lead-consent');
+                if (!consent.checked) { btn.textContent = 'Please accept the consent checkbox'; btn.disabled = false; return; }
+                try {
+                    const res = await fetch('https://meridian.covault.xyz/api/leads', {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: document.getElementById('lead-name').value.trim(),
+                            email: document.getElementById('lead-email').value.trim(),
+                            team_size: document.getElementById('lead-team-size').value,
+                            product: 'recap',
+                            gdpr_consent: consent.checked,
+                            website: document.getElementById('lead-honeypot').value,
+                        }),
+                    });
+                    if (res.ok) {
+                        leadForm.innerHTML = `
+                            <div class="text-center space-y-4">
+                                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-brand-500 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-8 h-8 text-brand-500"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-2xl uppercase tracking-tight text-white">Request Received</h3>
+                                <p class="font-sans text-zinc-400 font-light">We'll set up your sample recap and reach out within 48 hours.</p>
+                            </div>`;
+                        lucide.createIcons();
+                    } else { btn.textContent = 'Error — please try again'; btn.disabled = false; }
+                } catch (err) { btn.textContent = 'Connection error'; btn.disabled = false; }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
