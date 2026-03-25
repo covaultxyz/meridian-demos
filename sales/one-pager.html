@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN | Multi-Agent Intelligence Mesh</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Cinematic Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Reveal-fade animation */
+        .reveal-fade {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-fade.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+
+        /* Table styling */
+        .data-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .data-table th {
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #06b6d4;
+            padding: 0.625rem 0.75rem;
+            border-bottom: 1px solid #27272a;
+        }
+        .data-table td {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table td:first-child {
+            color: #e4e4e7;
+            font-weight: 500;
+        }
+
+        /* Differentiator icons */
+        .diff-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            flex-shrink: 0;
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { width: 0px; }
+
+        /* Print styles */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .film-grain {
+                display: none !important;
+            }
+            * {
+                color: #000000 !important;
+                border-color: #d4d4d8 !important;
+            }
+            .bg-brand-500, .text-brand-500 {
+                color: #0891b2 !important;
+            }
+            .reveal-fade {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            section, div {
+                background-color: transparent !important;
+            }
+            .data-table th {
+                color: #0891b2 !important;
+                font-weight: 700;
+            }
+            .data-table td {
+                color: #18181b !important;
+            }
+            .data-table td:first-child {
+                color: #000000 !important;
+            }
+            .diff-icon {
+                background: transparent !important;
+                border-color: #0891b2 !important;
+            }
+            .diff-icon svg {
+                color: #0891b2 !important;
+            }
+            header {
+                border-bottom-color: #d4d4d8 !important;
+            }
+            .metric-card {
+                background: transparent !important;
+                border-color: #d4d4d8 !important;
+            }
+            .metric-value {
+                color: #0891b2 !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black">
+
+    <!-- Film Grain -->
+    <div class="film-grain"></div>
+
+    <!-- ===== HEADER BAR ===== -->
+    <header class="w-full py-4 px-6 md:px-10 flex justify-between items-center border-b border-zinc-800/60 relative z-10">
+        <div class="font-display font-black text-lg tracking-[0.2em] uppercase text-white">
+            MERIDIAN
+        </div>
+        <div class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 font-semibold">
+            Multi-Agent Intelligence Mesh <span class="hidden sm:inline">&nbsp;&bull;&nbsp; covault.xyz</span>
+        </div>
+    </header>
+
+    <!-- ===== ONE SENTENCE ===== -->
+    <section class="py-14 md:py-20 px-6 md:px-10 relative z-10">
+        <div class="max-w-4xl mx-auto text-center reveal-fade">
+            <h1 class="font-display font-bold text-2xl md:text-[2rem] lg:text-[2.25rem] leading-snug tracking-tight text-white">
+                MERIDIAN is the software layer that drives business intelligence operations &mdash; the way Shopify is the software layer that drives e-commerce.
+            </h1>
+        </div>
+    </section>
+
+    <!-- ===== PROBLEM / SOLUTION ===== -->
+    <section class="pb-12 px-6 md:px-10 relative z-10">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+            <!-- Problem -->
+            <div class="reveal-fade delay-1">
+                <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-4">The Problem</h2>
+                <ul class="space-y-3 text-zinc-400 font-sans text-sm leading-relaxed">
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-zinc-600 mt-0.5 flex-shrink-0"><i data-lucide="x" class="w-3.5 h-3.5"></i></span>
+                        AI tools are reactive. You prompt, they respond. Intelligence arrives after you needed it.
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-zinc-600 mt-0.5 flex-shrink-0"><i data-lucide="x" class="w-3.5 h-3.5"></i></span>
+                        The system generates more noise, not more clarity.
+                    </li>
+                    <li class="flex items-start gap-2.5">
+                        <span class="text-zinc-600 mt-0.5 flex-shrink-0"><i data-lucide="x" class="w-3.5 h-3.5"></i></span>
+                        You manage the AI as much as it manages your work.
+                    </li>
+                </ul>
+            </div>
+            <!-- Solution -->
+            <div class="reveal-fade delay-2">
+                <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-4">The Solution</h2>
+                <p class="text-zinc-400 font-sans text-sm leading-relaxed">
+                    A multi-agent mesh that <span class="text-white font-medium">orders your day instead of automating it</span>. Overnight research, morning briefings, pre-meeting context &mdash; delivered before the chaos arrives. The system measures its own noise ratio and gets quieter over time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== METRICS STRIP ===== -->
+    <section class="py-8 px-6 md:px-10 border-y border-zinc-800/50 relative z-10">
+        <div class="max-w-5xl mx-auto reveal-fade delay-2">
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 text-center">
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">17,900+</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Nodes</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">5,135</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Concepts</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">472+</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Research Docs</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">5</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Daemons</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">49</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Sentinels</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">&lt;$50</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">Mo. Infra</div>
+                </div>
+                <div class="metric-card py-3">
+                    <div class="metric-value font-display font-bold text-lg text-brand-500">1,133</div>
+                    <div class="font-sans text-[0.55rem] tracking-[0.15em] uppercase text-zinc-500 mt-0.5">TaxSection Nodes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS ===== -->
+    <section class="py-12 px-6 md:px-10 relative z-10">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <!-- KaaS API -->
+            <div class="reveal-fade delay-1">
+                <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-1">Knowledge-as-a-Service (KaaS)</h2>
+                <p class="font-sans text-xs text-zinc-500 mb-4">API access to curated, connected knowledge graphs. Graph traversal returns cross-referenced insights that vector search cannot find.</p>
+                <div class="border border-zinc-800/60 rounded-lg overflow-hidden">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>API</th>
+                                <th>Data Readiness</th>
+                                <th>Pricing</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tax Code Intelligence</td>
+                                <td>Ready (1,133 nodes)</td>
+                                <td>$300&ndash;$1,000/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Compliance &amp; Regulatory</td>
+                                <td>Partial (SOC 2 exists)</td>
+                                <td>$500&ndash;$3,000/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Business Valuation</td>
+                                <td>Building (5+ engagements)</td>
+                                <td>$500&ndash;$2,000/mo</td>
+                            </tr>
+                            <tr>
+                                <td>E-Commerce CI</td>
+                                <td>Requires partnerships</td>
+                                <td>$1,000&ndash;$4,000/mo</td>
+                            </tr>
+                            <tr>
+                                <td>Industry SOP Templates</td>
+                                <td>Building (10+ deploys)</td>
+                                <td>$200&ndash;$500/mo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Meridian Terminal -->
+            <div class="reveal-fade delay-2">
+                <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-1">Meridian Terminal</h2>
+                <p class="font-sans text-xs text-zinc-500 mb-4">Full AI operating system deployed into your business. Persistent memory, multi-agent coordination, call intelligence, full data ownership.</p>
+                <div class="border border-zinc-800/60 rounded-lg overflow-hidden">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Monthly</th>
+                                <th>Includes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Starter</td>
+                                <td class="text-white font-semibold">$1,500</td>
+                                <td>2 agents, 1 voice line, shared infra</td>
+                            </tr>
+                            <tr>
+                                <td>Professional</td>
+                                <td class="text-white font-semibold">$3,000</td>
+                                <td>4&ndash;6 agents, 3 voice lines, dedicated infra</td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise</td>
+                                <td class="text-white font-semibold">$5,000+</td>
+                                <td>Unlimited agents, multi-location, your hardware</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIFFERENTIATORS ===== -->
+    <section class="py-10 px-6 md:px-10 relative z-10">
+        <div class="max-w-5xl mx-auto reveal-fade delay-2">
+            <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-5">Why Meridian</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div class="flex items-start gap-3 py-2.5 px-3 rounded-lg border border-zinc-800/40 bg-zinc-900/20">
+                    <div class="diff-icon">
+                        <i data-lucide="sunrise" class="w-3.5 h-3.5 text-brand-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-sans text-xs text-white font-semibold">First Voice</div>
+                        <div class="font-sans text-[0.7rem] text-zinc-500 leading-snug mt-0.5">Intel arrives before your first meeting</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 py-2.5 px-3 rounded-lg border border-zinc-800/40 bg-zinc-900/20">
+                    <div class="diff-icon">
+                        <i data-lucide="git-branch" class="w-3.5 h-3.5 text-brand-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-sans text-xs text-white font-semibold">Graph, Not Vector</div>
+                        <div class="font-sans text-[0.7rem] text-zinc-500 leading-snug mt-0.5">Traverses connected knowledge, not keywords</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 py-2.5 px-3 rounded-lg border border-zinc-800/40 bg-zinc-900/20">
+                    <div class="diff-icon">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-sans text-xs text-white font-semibold">Evidence-Gated</div>
+                        <div class="font-sans text-[0.7rem] text-zinc-500 leading-snug mt-0.5">Blocks output when confidence is low</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 py-2.5 px-3 rounded-lg border border-zinc-800/40 bg-zinc-900/20">
+                    <div class="diff-icon">
+                        <i data-lucide="volume-x" class="w-3.5 h-3.5 text-brand-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-sans text-xs text-white font-semibold">Self-Quieting</div>
+                        <div class="font-sans text-[0.7rem] text-zinc-500 leading-snug mt-0.5">Measures and reduces its own noise over time</div>
+                    </div>
+                </div>
+                <div class="flex items-start gap-3 py-2.5 px-3 rounded-lg border border-zinc-800/40 bg-zinc-900/20">
+                    <div class="diff-icon">
+                        <i data-lucide="lock" class="w-3.5 h-3.5 text-brand-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-sans text-xs text-white font-semibold">You Own It</div>
+                        <div class="font-sans text-[0.7rem] text-zinc-500 leading-snug mt-0.5">Your data, your hardware, no vendor lock-in</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PARTNERSHIP MODEL ===== -->
+    <section class="py-8 px-6 md:px-10 relative z-10">
+        <div class="max-w-5xl mx-auto reveal-fade delay-3">
+            <div class="border border-zinc-800/40 rounded-lg px-6 py-5 bg-zinc-900/20">
+                <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-2">Partnership Model</h2>
+                <p class="font-sans text-sm text-zinc-400 leading-relaxed">
+                    For strategic partners: <span class="text-white font-medium">equity-for-exclusivity</span> arrangements. Provide MERIDIAN services in exchange for an equity stake &mdash; validated by Palantir's $6M equity-for-services deal with Surf Air Mobility (2025). Board seat or observer rights included.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TEAM STRIP ===== -->
+    <section class="py-8 px-6 md:px-10 border-t border-zinc-800/50 relative z-10">
+        <div class="max-w-5xl mx-auto reveal-fade delay-3">
+            <h2 class="font-sans text-[0.6rem] tracking-[0.25em] uppercase text-brand-500 font-bold mb-5">Team</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                    <div class="font-sans text-sm text-white font-semibold">Alexander Mazzei</div>
+                    <div class="font-sans text-xs text-zinc-500 mt-0.5">Infrastructure, Deployment, Audits</div>
+                </div>
+                <div>
+                    <div class="font-sans text-sm text-white font-semibold">Ely Beckman</div>
+                    <div class="font-sans text-xs text-zinc-500 mt-0.5">Core Engineering, Brain, Orchestrator</div>
+                </div>
+                <div>
+                    <div class="font-sans text-sm text-white font-semibold">Michael Bitler</div>
+                    <div class="font-sans text-xs text-zinc-500 mt-0.5">Channel Partner, AgentVox Co-founder</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER / CTA ===== -->
+    <footer class="py-10 px-6 md:px-10 border-t border-zinc-800/50 relative z-10">
+        <div class="max-w-5xl mx-auto text-center reveal-fade delay-4">
+            <p class="font-sans text-sm text-zinc-300 leading-relaxed mb-3">
+                60-minute discovery call. Written assessment within 48 hours. No commitment.
+            </p>
+            <a href="mailto:contact@covault.xyz" class="inline-block font-sans text-sm font-semibold text-brand-500 hover:text-white transition-colors tracking-wide">
+                contact@covault.xyz
+            </a>
+            <div class="mt-8 font-sans text-[0.55rem] tracking-[0.2em] uppercase text-zinc-700">
+                &copy; 2026 Covault. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Scroll reveal observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+
+        document.querySelectorAll('.reveal-fade').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

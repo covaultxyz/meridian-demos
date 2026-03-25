@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN | Intelligence That Arrives Before the Noise</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Preloader */
+        #preloader {
+            transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        #preloader.loaded {
+            transform: translateY(-100%);
+        }
+
+        /* Cinematic Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Animations */
+        .ken-burns {
+            animation: kenBurns 25s ease-in-out infinite alternate;
+            transform-origin: center center;
+        }
+        @keyframes kenBurns {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.15) translate(-1%, -1%); }
+        }
+
+        /* Text Mask Reveal */
+        .mask-wrap {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .mask-text {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mask-wrap.active .mask-text {
+            transform: translateY(0);
+        }
+
+        .reveal-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-fade.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Infinite Marquee */
+        .marquee-container {
+            width: 100vw;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            position: relative;
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Image Hover Scale */
+        .img-hover-scale {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .img-hover-scale {
+            transform: scale(1.08);
+        }
+
+        /* Custom Cursor */
+        @media (hover: hover) and (pointer: fine) {
+            body, a, button, input, textarea { cursor: none; }
+        }
+
+        #cursor-dot, #cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        /* Floating Image Hover Reveal */
+        #hover-image-reveal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 350px; height: 220px;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        #hover-image-reveal img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        #hover-image-reveal.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Magnetic */
+        .magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .magnetic:hover { transition: transform 0.1s; }
+
+        /* Nav Background */
+        #navbar.scrolled {
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(16px);
+            padding-top: 1rem; padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { width: 0px; }
+
+        /* Mesh node pulse animation */
+        .node-pulse {
+            animation: nodePulse 3s ease-in-out infinite;
+        }
+        @keyframes nodePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(6, 182, 212, 0.1); }
+        }
+
+        /* Comparison table */
+        .comparison-table th,
+        .comparison-table td {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .comparison-table tr:hover td {
+            background-color: rgba(6, 182, 212, 0.03);
+        }
+
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center">
+        <div class="overflow-hidden mb-4">
+            <h2 id="loader-text" class="font-display font-black text-7xl md:text-9xl text-white transform translate-y-full transition-transform duration-700">0%</h2>
+        </div>
+        <div class="w-48 h-[1px] bg-zinc-800 relative overflow-hidden">
+            <div id="loader-bar" class="absolute top-0 left-0 h-full bg-brand-500 w-0 transition-all duration-300"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-outline" class="hidden md:block"></div>
+    <div id="hover-image-reveal" class="hidden md:block shadow-2xl">
+        <img id="reveal-img" src="" alt="Hover Preview">
+    </div>
+
+    <!-- Cinematic Grain -->
+    <div class="film-grain"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 py-6 px-6 md:px-12 flex justify-between items-center transition-all duration-500">
+        <a href="#" class="font-display font-black text-xl tracking-[0.2em] uppercase text-white hover:text-brand-500 transition-colors cursor-scale" data-scale="2">
+            Meridian
+        </a>
+
+        <div class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] uppercase font-bold">
+            <a href="#how-it-works" class="text-white relative group cursor-scale">How It Works</a>
+            <a href="#why-different" class="text-white relative group cursor-scale">Why Different</a>
+            <a href="#products" class="text-white relative group cursor-scale">Products</a>
+            <a href="#contact" class="text-white relative group cursor-scale">Contact</a>
+        </div>
+
+        <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 font-sans text-xs tracking-[0.15em] uppercase font-bold magnetic">
+            Book a Call
+        </a>
+
+        <button class="md:hidden text-white cursor-scale">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+        <div class="absolute inset-0 z-0 mouse-parallax" data-speed="-1.5">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                 alt="Earth from space with network connections"
+                 class="w-full h-full object-cover ken-burns opacity-60">
+        </div>
+
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/30 to-[#050505]"></div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto flex flex-col items-center mt-16 mouse-parallax" data-speed="2">
+
+            <div class="mask-wrap mb-6">
+                <span class="mask-text font-sans text-brand-500 tracking-[0.4em] text-xs md:text-sm font-bold uppercase block">
+                    Proactive Intelligence // Always On
+                </span>
+            </div>
+
+            <h1 class="font-display font-black text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter leading-[0.9] mb-6 text-white">
+                <div class="mask-wrap"><span class="mask-text block delay-100">Shopify didn't open</span></div>
+                <div class="mask-wrap"><span class="mask-text block delay-200">a single store.</span></div>
+                <div class="mask-wrap mt-2"><span class="mask-text block delay-300 text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600">It built the software layer</span></div>
+                <div class="mask-wrap"><span class="mask-text block delay-400 text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600">every store ran on.</span></div>
+            </h1>
+
+            <div class="mask-wrap mb-4">
+                <p class="mask-text font-sans text-brand-500 text-base md:text-xl font-semibold max-w-3xl mx-auto tracking-wide leading-relaxed delay-500">
+                    We're building the same layer for business intelligence.
+                </p>
+            </div>
+
+            <div class="mask-wrap mb-12">
+                <p class="mask-text font-sans text-zinc-400 text-sm md:text-base font-light max-w-2xl mx-auto tracking-wide leading-relaxed delay-500">
+                    Overnight research, morning briefings, pre-meeting context. Intelligence that arrives before the noise.
+                </p>
+            </div>
+
+            <div class="mask-wrap flex gap-4">
+                <a href="#contact" class="mask-text delay-600 px-10 py-5 bg-white text-black font-sans text-xs tracking-[0.2em] uppercase font-bold transition-colors duration-300 flex items-center justify-center gap-3 magnetic hover:bg-brand-500">
+                    Book a Discovery Call <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center reveal-fade">
+            <span class="font-sans text-[0.6rem] tracking-[0.3em] uppercase mb-4">Scroll</span>
+            <div class="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white animate-[scrollLine_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section class="py-32 relative z-10 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <div class="mask-wrap mb-8">
+                        <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+                            Every AI tool<br>
+                            <span class="text-zinc-600">is reactive.</span>
+                        </h2>
+                    </div>
+                    <div class="reveal-fade">
+                        <p class="font-sans text-zinc-400 leading-relaxed mb-8 font-light text-lg">
+                            You prompt, it responds. You feed it data, it returns output. The human is always the initiator. This means:
+                        </p>
+                    </div>
+
+                    <div class="space-y-8 border-t border-zinc-900 pt-12 reveal-fade">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="clock" class="w-4 h-4 text-zinc-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-semibold text-white mb-1">Intelligence arrives late</h4>
+                                <p class="font-sans text-zinc-500 text-sm font-light">Always after you needed it, never before the meeting starts.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="volume-2" class="w-4 h-4 text-zinc-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-semibold text-white mb-1">AI generates more noise</h4>
+                                <p class="font-sans text-zinc-500 text-sm font-light">When you're already drowning, it floods you with more output to manage.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="brain" class="w-4 h-4 text-zinc-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-sans font-semibold text-white mb-1">Nothing carries over</h4>
+                                <p class="font-sans text-zinc-500 text-sm font-light">What your AI learns today is gone tomorrow. Every session starts from zero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-[700px] overflow-hidden group reveal-fade">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop"
+                         alt="Data center infrastructure"
+                         class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-scale">
+                    <div class="absolute inset-0 bg-brand-500/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Timeline -->
+    <section id="how-it-works" class="py-32 bg-zinc-950 border-y border-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">How It Works</h2>
+                </div>
+                <p class="font-sans text-[0.65rem] tracking-[0.3em] uppercase text-zinc-500 mt-4 reveal-fade delay-200">Four Layers of Proactive Intelligence</p>
+            </div>
+
+            <div class="relative border-l border-zinc-800 ml-4 md:ml-0 md:pl-0">
+                <!-- Layer 1 — Overnight -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Overnight</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Autonomous Research</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Autonomous daemons research, extract, and correlate across your data while you sleep.
+                    </div>
+                </div>
+
+                <!-- Layer 2 — Morning -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative delay-100">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Morning</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Coherent Briefing</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        A coherent briefing assembled from overnight signals &mdash; before your first meeting.
+                    </div>
+                </div>
+
+                <!-- Layer 3 — All Day -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative delay-200">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">All Day</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Pre-Meeting Context</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Context prepared for conversations you haven't had yet. Intelligence that anticipates.
+                    </div>
+                </div>
+
+                <!-- Layer 4 — Continuous -->
+                <div class="md:flex justify-between items-center w-full reveal-fade relative delay-300">
+                    <div class="absolute w-3 h-3 bg-white rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto shadow-[0_0_15px_#fff]"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Continuous</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-white mt-1">Self-Calibrating</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        System measures its own noise ratio and gets quieter over time. The mesh runs 24/7.
+                    </div>
+                </div>
+                <!-- Center Line for Desktop -->
+                <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-800 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container bg-brand-500 text-black py-4 border-y border-brand-500 cursor-scale" data-scale="2">
+        <div class="marquee-content font-display font-black text-5xl tracking-widest uppercase items-center">
+            &nbsp;GRAPH INTELLIGENCE <span class="mx-6 text-2xl">&#9670;</span> EVIDENCE-GATED <span class="mx-6 text-2xl">&#9670;</span> FIRST VOICE <span class="mx-6 text-2xl">&#9670;</span> KNOWLEDGE MESH <span class="mx-6 text-2xl">&#9670;</span>
+            GRAPH INTELLIGENCE <span class="mx-6 text-2xl">&#9670;</span> EVIDENCE-GATED <span class="mx-6 text-2xl">&#9670;</span> FIRST VOICE <span class="mx-6 text-2xl">&#9670;</span> KNOWLEDGE MESH <span class="mx-6 text-2xl">&#9670;</span>
+        </div>
+    </div>
+
+    <!-- 7 Reasons Bento Grid -->
+    <section id="why-different" class="py-32 bg-[#050505] relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mask-wrap mb-4">
+                <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">7 Reasons</h2>
+            </div>
+            <p class="font-sans text-zinc-500 text-sm mb-16 reveal-fade">Why this is different from everything else.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Bento 1 (Large) — 17,900+ Knowledge Nodes -->
+                <div class="group relative md:col-span-2 md:row-span-2 overflow-hidden bg-zinc-900 reveal-fade min-h-[400px]">
+                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="font-display font-black text-5xl text-brand-500 mb-2">17,900<span class="text-2xl text-zinc-500">+</span></div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight">Knowledge Nodes in Production</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-2 font-light">A live, queryable knowledge graph with provenance tracking, confidence scoring, and temporal decay. 5,135 linked concepts with vector embeddings.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 2 — 5 Specialized Daemons -->
+                <div class="group relative md:col-span-2 overflow-hidden bg-zinc-900 reveal-fade delay-100 min-h-[200px]">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="font-display font-black text-4xl text-brand-500 mb-1">05</div>
+                        <h3 class="font-display font-bold text-xl uppercase tracking-tight">Specialized Daemons</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-2 font-light">Production services with systemd units, health checks, 49 monitoring sentinels, and SLO targets. Real-time coordination.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 3 — Sub-$50/Month -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade delay-200 min-h-[200px]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black"></div>
+                    <div class="relative p-6 flex flex-col justify-end h-full">
+                        <div class="font-display font-black text-4xl text-brand-500 mb-1">&lt;$50</div>
+                        <h3 class="font-display font-bold text-lg uppercase tracking-tight">/Month Infra</h3>
+                        <p class="font-sans text-zinc-500 text-xs mt-2 font-light">Three $6/month VPS nodes. No GPU clusters. No enterprise licenses.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 4 — Accent: Graph Intelligence -->
+                <div class="group relative overflow-hidden reveal-fade delay-300 flex items-center justify-center p-8 bg-brand-500 text-black min-h-[200px]">
+                    <div class="text-center">
+                        <i data-lucide="git-branch" class="w-12 h-12 mx-auto mb-4"></i>
+                        <h3 class="font-display font-black text-2xl uppercase tracking-tighter leading-tight">Graph<br>Intelligence</h3>
+                        <p class="font-sans text-black/70 text-xs mt-2">Not vector search. Full graph traversal across connected knowledge.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 5 — Evidence-Gated -->
+                <div class="group relative md:col-span-2 overflow-hidden bg-zinc-900 reveal-fade delay-100 min-h-[200px]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-950 to-black"></div>
+                    <div class="relative p-6 flex flex-col justify-end h-full">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full border border-brand-500 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-5 h-5 text-brand-500"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-xl uppercase tracking-tight">Evidence-Gated Output</h3>
+                        </div>
+                        <p class="font-sans text-zinc-400 text-sm font-light">Every response passes through the Lens and Prism. The system blocks its own output when confidence doesn't match evidence. No other AI platform constrains its own noise ratio.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 6 — KaaS API -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade delay-200 min-h-[200px]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black"></div>
+                    <div class="relative p-6 flex flex-col justify-end h-full">
+                        <div class="font-sans text-brand-500 text-xs tracking-widest uppercase mb-2">Live Now</div>
+                        <h3 class="font-display font-bold text-lg uppercase tracking-tight">KaaS API</h3>
+                        <p class="font-sans text-zinc-500 text-xs mt-2 font-light">1,133 TaxSection nodes, 5,478 relationship edges. Queryable today.</p>
+                    </div>
+                </div>
+
+                <!-- Bento 7 — You Own Everything -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade delay-300 min-h-[200px]">
+                    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black"></div>
+                    <div class="relative p-6 flex flex-col justify-end h-full">
+                        <i data-lucide="lock" class="w-8 h-8 text-brand-500 mb-3"></i>
+                        <h3 class="font-display font-bold text-lg uppercase tracking-tight">You Own Everything</h3>
+                        <p class="font-sans text-zinc-500 text-xs mt-2 font-light">Your data, your workflows, your AI. Deploy on your hardware. No vendor lock-in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-24 bg-zinc-950 border-y border-zinc-900">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal-fade">
+                <i data-lucide="quote" class="w-10 h-10 text-brand-500 mx-auto mb-8 opacity-50"></i>
+                <blockquote class="font-display font-bold text-3xl md:text-5xl uppercase tracking-tighter text-white leading-tight mb-8">
+                    Other AI tools give you more.<br>
+                    <span class="text-brand-500">MERIDIAN gives you clarity.</span>
+                </blockquote>
+                <p class="font-sans text-zinc-500 text-sm font-light max-w-2xl mx-auto">
+                    Every metric on this page comes from production systems, not projections. We measure our own noise &mdash; and turn it down.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mask-wrap mb-16">
+                <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">The Comparison<br><span class="text-zinc-600">That Matters</span></h2>
+            </div>
+
+            <div class="reveal-fade overflow-x-auto">
+                <table class="comparison-table w-full text-left">
+                    <thead>
+                        <tr class="border-b border-zinc-800">
+                            <th class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 py-4 pr-8 w-1/4"></th>
+                            <th class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-500 py-4 pr-8 w-[37.5%]">Traditional AI Tools</th>
+                            <th class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-brand-500 py-4 w-[37.5%]">MERIDIAN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-sans text-sm">
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Initiative</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">You ask, it answers</td>
+                            <td class="py-5 text-white font-light">It briefs you before you ask</td>
+                        </tr>
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Memory</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">Forgets between sessions</td>
+                            <td class="py-5 text-white font-light">17,900+ persistent nodes with provenance</td>
+                        </tr>
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Search</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">Vector similarity (top-20 keyword match)</td>
+                            <td class="py-5 text-white font-light">Graph traversal across connected knowledge</td>
+                        </tr>
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Quality</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">None &mdash; outputs whatever the model generates</td>
+                            <td class="py-5 text-white font-light">Evidence-gated &mdash; blocks unsubstantiated claims</td>
+                        </tr>
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Cost</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">Scales linearly with usage</td>
+                            <td class="py-5 text-white font-light">Gets cheaper as the graph gets smarter</td>
+                        </tr>
+                        <tr>
+                            <td class="py-5 pr-8 text-zinc-500 font-semibold text-xs uppercase tracking-wider">Ownership</td>
+                            <td class="py-5 pr-8 text-zinc-500 font-light">Vendor-locked, cloud-only</td>
+                            <td class="py-5 text-white font-light">You own it. Deploy anywhere.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Who Section -->
+    <section id="products" class="py-32 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16 border-b border-zinc-900 pb-6 reveal-fade">
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Who This<br>Is For</h2>
+                </div>
+                <div class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 hidden md:block">Hover to preview</div>
+            </div>
+
+            <div class="flex flex-col">
+                <!-- Phase 1 — Capital Markets -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">Now</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Capital Markets</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Fund Managers &amp; Deal Teams</span>
+                </div>
+
+                <!-- Phase 2 — Business Operators -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">Next</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Business Operators</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Teams Drowning in AI Output</span>
+                </div>
+
+                <!-- Phase 3 — Platform Partners -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">Partner</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Platform Partners</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Embed Intelligence Layer</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Lead Form Section -->
+    <section id="contact" class="py-32 bg-zinc-950 relative overflow-hidden flex justify-center items-center">
+        <!-- Abstract mesh lines bg -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+             style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 12px);">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 w-full">
+            <div class="mask-wrap mb-4">
+                <h2 class="mask-text font-display font-black text-6xl md:text-8xl uppercase tracking-tighter text-white">
+                    Book a Call
+                </h2>
+            </div>
+            <p class="font-sans text-zinc-400 mb-4 text-sm font-light max-w-lg mx-auto reveal-fade">
+                60-minute discovery call. We'll map your operations, show you the intelligence mesh for your business, and deliver a written assessment within 48 hours.
+            </p>
+            <p class="font-sans text-zinc-500 mb-12 text-xs font-light max-w-lg mx-auto reveal-fade">
+                No pitch deck. No sales pressure. Just proof.
+            </p>
+
+            <form id="lead-form" class="bg-black/40 backdrop-blur-md border border-zinc-800 p-8 md:p-16 text-left space-y-8 reveal-fade max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Full Name</label>
+                        <input type="text" id="lead-name" required class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Email Address</label>
+                        <input type="email" id="lead-email" required class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                </div>
+                <div class="space-y-2 relative group">
+                    <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">What Are You Building?</label>
+                    <input type="text" id="lead-building" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale" placeholder="e.g. Fund intelligence pipeline, deal team briefings">
+                </div>
+                <input type="text" name="website" id="lead-honeypot" style="display:none" tabindex="-1" autocomplete="off">
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="lead-consent" class="mt-1 accent-brand-500 cursor-scale">
+                    <label for="lead-consent" class="font-sans text-[0.6rem] tracking-[0.1em] uppercase text-zinc-500 leading-relaxed">
+                        I consent to Covault processing my data to evaluate fit for Meridian. <a href="#" class="text-brand-500 hover:text-white transition-colors">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-white text-black font-sans font-bold uppercase tracking-[0.2em] text-xs py-5 hover:bg-brand-500 transition-colors duration-300 mt-8 magnetic cursor-scale" data-scale="0.5">
+                    Book Discovery Call
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-32 pb-12 relative z-10 overflow-hidden border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Connect</h4>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="send" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Intelligence Updates</h4>
+                    <p class="font-sans text-sm text-zinc-400 mb-4 font-light">Get notified when new capabilities ship and the mesh expands.</p>
+                    <div class="flex border-b border-zinc-700 focus-within:border-white transition-colors">
+                        <input type="email" placeholder="Enter email" class="w-full bg-transparent py-2 text-white outline-none font-sans text-sm">
+                        <button class="text-brand-500 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold px-2">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giant Text -->
+            <div class="w-full text-center border-b border-zinc-900 pb-12 mb-12">
+                <h1 class="font-display font-black text-[12vw] leading-none uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 to-black select-none pointer-events-none">
+                    MERIDIAN
+                </h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 font-sans text-[0.65rem] tracking-widest uppercase text-zinc-600">
+                <p>&copy; 2026 Covault. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // --- Preloader Logic ---
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+
+        // Ensure text slides up immediately
+        setTimeout(() => {
+            loaderText.style.transform = 'translateY(0)';
+        }, 100);
+
+        let progress = 0;
+        const duration = 2000; // 2 seconds loading
+        const interval = 20;
+        const step = (100 / (duration / interval));
+
+        const counter = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(counter);
+                finishLoading();
+            }
+            loaderBar.style.width = `${progress}%`;
+            loaderText.innerText = `${Math.floor(progress)}%`;
+        }, interval);
+
+        function finishLoading() {
+            setTimeout(() => {
+                preloader.classList.add('loaded');
+                document.body.classList.remove('loading');
+
+                // Trigger Hero Masks AFTER load
+                setTimeout(() => {
+                    document.querySelectorAll('header .mask-wrap, header .reveal-fade').forEach(el => el.classList.add('active'));
+                }, 400);
+
+            }, 500);
+        }
+
+        // --- Scroll Observers ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        // Wait to observe non-hero elements so they don't trigger during preloader
+        setTimeout(() => {
+            document.querySelectorAll('section .mask-wrap, section .reveal-fade, footer .reveal-fade').forEach(el => {
+                observer.observe(el);
+            });
+        }, 2500);
+
+        // --- Navbar Background on Scroll ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Advanced Mouse Interactions ---
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            const hoverReveal = document.getElementById('hover-image-reveal');
+            const revealImg = document.getElementById('reveal-img');
+
+            let mouseX = 0, mouseY = 0;
+            let outlineX = 0, outlineY = 0;
+            let revealX = 0, revealY = 0;
+
+            function animate() {
+                // Smooth easing
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+
+                revealX += (mouseX - revealX) * 0.08;
+                revealY += (mouseY - revealY) * 0.08;
+                hoverReveal.style.left = `${revealX}px`;
+                hoverReveal.style.top = `${revealY}px`;
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            });
+
+            // Scale Cursor
+            document.querySelectorAll('.cursor-scale, a, button, input').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    const scale = el.getAttribute('data-scale') || '1.5';
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.backgroundColor = 'white';
+                    cursorDot.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+
+            // Floating Image Reveal Logic
+            document.querySelectorAll('.hover-reveal-trigger').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    const imgSrc = el.getAttribute('data-image');
+                    revealImg.src = imgSrc;
+                    hoverReveal.classList.add('visible');
+                    cursorOutline.style.opacity = '0';
+                    cursorDot.style.opacity = '0';
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    hoverReveal.classList.remove('visible');
+                    cursorOutline.style.opacity = '1';
+                    cursorDot.style.opacity = '1';
+                });
+            });
+
+            // Magnetic Buttons
+            document.querySelectorAll('.magnetic').forEach(magnet => {
+                magnet.addEventListener('mousemove', (e) => {
+                    const rect = magnet.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                magnet.addEventListener('mouseleave', () => {
+                    magnet.style.transform = `translate(0px, 0px)`;
+                });
+            });
+
+            // Mouse Move Parallax Depth
+            const parallaxEls = document.querySelectorAll('.mouse-parallax');
+            window.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth - e.pageX * 2) / 90;
+                const y = (window.innerHeight - e.pageY * 2) / 90;
+                parallaxEls.forEach(el => {
+                    const speed = el.getAttribute('data-speed') || 1;
+                    el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                });
+            });
+        }
+
+        // --- Lead Form Submission ---
+        const leadForm = document.getElementById('lead-form');
+        if (leadForm) {
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Submitting...';
+                btn.disabled = true;
+
+                const consent = document.getElementById('lead-consent');
+                if (!consent.checked) {
+                    btn.textContent = 'Please accept the consent checkbox';
+                    btn.disabled = false;
+                    return;
+                }
+
+                try {
+                    const res = await fetch('https://meridian.covault.xyz/api/leads', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: document.getElementById('lead-name').value.trim(),
+                            email: document.getElementById('lead-email').value.trim(),
+                            building: document.getElementById('lead-building').value.trim(),
+                            gdpr_consent: consent.checked,
+                            website: document.getElementById('lead-honeypot').value,
+                        }),
+                    });
+
+                    if (res.ok) {
+                        leadForm.innerHTML = `
+                            <div class="text-center space-y-4">
+                                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-brand-500 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-8 h-8 text-brand-500"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-2xl uppercase tracking-tight text-white">Request Received</h3>
+                                <p class="font-sans text-zinc-400 font-light">We'll review your submission and reach out within 48 hours with a written assessment.</p>
+                                <p class="font-sans text-zinc-500 text-sm">Check your inbox for a confirmation email.</p>
+                            </div>
+                        `;
+                        lucide.createIcons();
+                    } else if (res.status === 429) {
+                        btn.textContent = 'Too many requests — wait a moment';
+                        btn.disabled = false;
+                    } else {
+                        const data = await res.json().catch(() => ({}));
+                        btn.textContent = data.detail || 'Error — please try again';
+                        btn.disabled = false;
+                    }
+                } catch (err) {
+                    btn.textContent = 'Network error — please try again';
+                    btn.disabled = false;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
