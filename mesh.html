@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN MESH | Distributed Intelligence Infrastructure</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+
+        /* Preloader */
+        #preloader {
+            transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        #preloader.loaded {
+            transform: translateY(-100%);
+        }
+
+        /* Cinematic Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Animations */
+        .ken-burns {
+            animation: kenBurns 25s ease-in-out infinite alternate;
+            transform-origin: center center;
+        }
+        @keyframes kenBurns {
+            0% { transform: scale(1.05); }
+            100% { transform: scale(1.15) translate(-1%, -1%); }
+        }
+
+        /* Text Mask Reveal */
+        .mask-wrap {
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .mask-text {
+            display: inline-block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mask-wrap.active .mask-text {
+            transform: translateY(0);
+        }
+
+        .reveal-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-fade.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Infinite Marquee */
+        .marquee-container {
+            width: 100vw;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            position: relative;
+        }
+        .marquee-content {
+            display: flex;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Image Hover Scale */
+        .img-hover-scale {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .group:hover .img-hover-scale {
+            transform: scale(1.08);
+        }
+
+        /* Custom Cursor */
+        @media (hover: hover) and (pointer: fine) {
+            body, a, button, input { cursor: none; }
+        }
+
+        #cursor-dot, #cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            mix-blend-mode: difference;
+        }
+
+        #cursor-dot {
+            width: 8px; height: 8px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+
+        #cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+        }
+
+        /* Floating Image Hover Reveal */
+        #hover-image-reveal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 350px; height: 220px;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        #hover-image-reveal img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        #hover-image-reveal.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Magnetic */
+        .magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .magnetic:hover { transition: transform 0.1s; }
+
+        /* Nav Background */
+        #navbar.scrolled {
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(16px);
+            padding-top: 1rem; padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { width: 0px; }
+
+        /* Mesh node pulse animation */
+        .node-pulse {
+            animation: nodePulse 3s ease-in-out infinite;
+        }
+        @keyframes nodePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(6, 182, 212, 0.1); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center">
+        <div class="overflow-hidden mb-4">
+            <h2 id="loader-text" class="font-display font-black text-7xl md:text-9xl text-white transform translate-y-full transition-transform duration-700">0%</h2>
+        </div>
+        <div class="w-48 h-[1px] bg-zinc-800 relative overflow-hidden">
+            <div id="loader-bar" class="absolute top-0 left-0 h-full bg-brand-500 w-0 transition-all duration-300"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-outline" class="hidden md:block"></div>
+    <div id="hover-image-reveal" class="hidden md:block shadow-2xl">
+        <img id="reveal-img" src="" alt="Hover Preview">
+    </div>
+
+    <!-- Cinematic Grain -->
+    <div class="film-grain"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 py-6 px-6 md:px-12 flex justify-between items-center transition-all duration-500">
+        <a href="#" class="font-display font-black text-xl tracking-[0.2em] uppercase text-white hover:text-brand-500 transition-colors cursor-scale" data-scale="2">
+            Meridian <span class="text-brand-500">Mesh</span>
+        </a>
+
+        <div class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] uppercase font-bold">
+            <a href="#architecture" class="text-white relative group cursor-scale">Architecture</a>
+            <a href="#capabilities" class="text-white relative group cursor-scale">Capabilities</a>
+            <a href="#daemons" class="text-white relative group cursor-scale">Daemons</a>
+            <a href="#stack" class="text-white relative group cursor-scale">Stack</a>
+        </div>
+
+        <a href="#access" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 font-sans text-xs tracking-[0.15em] uppercase font-bold magnetic">
+            Request Access
+        </a>
+
+        <button class="md:hidden text-white cursor-scale">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+        <div class="absolute inset-0 z-0 mouse-parallax" data-speed="-1.5">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                 alt="Earth from space with network connections"
+                 class="w-full h-full object-cover ken-burns opacity-60">
+        </div>
+
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/30 to-[#050505]"></div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-6xl mx-auto flex flex-col items-center mt-16 mouse-parallax" data-speed="2">
+
+            <div class="mask-wrap mb-6">
+                <span class="mask-text font-sans text-brand-500 tracking-[0.4em] text-xs md:text-sm font-bold uppercase block">
+                    Distributed AI Infrastructure // Always On
+                </span>
+            </div>
+
+            <h1 class="font-display font-black text-6xl md:text-[8rem] lg:text-[10rem] uppercase tracking-tighter leading-[0.8] mb-8 text-white">
+                <div class="mask-wrap"><span class="mask-text block delay-100">Intelligence</span></div><br>
+                <div class="mask-wrap"><span class="mask-text block delay-200 text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600">That Never Sleeps</span></div>
+            </h1>
+
+            <div class="mask-wrap mb-12">
+                <p class="mask-text font-sans text-zinc-300 text-sm md:text-lg font-light max-w-2xl mx-auto tracking-wide leading-relaxed delay-300">
+                    A self-healing mesh of AI daemons with persistent memory, real-time messaging, and autonomous coordination across distributed nodes.
+                </p>
+            </div>
+
+            <div class="mask-wrap">
+                <a href="#access" class="mask-text delay-400 px-10 py-5 bg-white text-black font-sans text-xs tracking-[0.2em] uppercase font-bold transition-colors duration-300 flex items-center justify-center gap-3 magnetic hover:bg-brand-500">
+                    Enter the Mesh <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center reveal-fade">
+            <span class="font-sans text-[0.6rem] tracking-[0.3em] uppercase mb-4">Scroll</span>
+            <div class="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white animate-[scrollLine_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+    </header>
+
+    <style>
+        @keyframes scrollLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+    </style>
+
+    <!-- Architecture / Stats Section -->
+    <section id="architecture" class="py-32 relative z-10 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <div class="mask-wrap mb-8">
+                        <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+                            Not just agents.<br>
+                            <span class="text-zinc-600">A living</span><br>
+                            mesh.
+                        </h2>
+                    </div>
+                    <div class="reveal-fade">
+                        <p class="font-sans text-zinc-400 leading-relaxed mb-12 font-light text-lg">
+                            Six specialized AI daemons share a persistent memory graph, coordinate through real-time messaging, and self-heal across distributed infrastructure. Each daemon owns a domain. Together, they form a single intelligence that operates around the clock.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-12 border-t border-zinc-900 pt-12 reveal-fade">
+                        <div>
+                            <div class="font-display font-black text-5xl text-brand-500 mb-2">17.9K<span class="text-2xl text-zinc-600">+</span></div>
+                            <div class="font-sans text-[0.65rem] font-bold uppercase tracking-[0.2em] text-zinc-500">Persistent Memories</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-black text-5xl text-brand-500 mb-2">06</div>
+                            <div class="font-sans text-[0.65rem] font-bold uppercase tracking-[0.2em] text-zinc-500">Active Daemons</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-black text-5xl text-brand-500 mb-2">03</div>
+                            <div class="font-sans text-[0.65rem] font-bold uppercase tracking-[0.2em] text-zinc-500">Distributed Nodes</div>
+                        </div>
+                        <div>
+                            <div class="font-display font-black text-5xl text-brand-500 mb-2">24<span class="text-2xl text-zinc-600">/7</span></div>
+                            <div class="font-sans text-[0.65rem] font-bold uppercase tracking-[0.2em] text-zinc-500">Autonomous Uptime</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-[700px] overflow-hidden group reveal-fade">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop"
+                         alt="Data center infrastructure"
+                         class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-scale">
+                    <div class="absolute inset-0 bg-brand-500/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container bg-brand-500 text-black py-4 border-y border-brand-500 cursor-scale" data-scale="2">
+        <div class="marquee-content font-display font-black text-5xl tracking-widest uppercase items-center">
+            &nbsp;PERSISTENT MEMORY <span class="mx-6 text-2xl">&#9670;</span> SELF-HEALING <span class="mx-6 text-2xl">&#9670;</span> MERIDIAN MESH <span class="mx-6 text-2xl">&#9670;</span> ALWAYS ON <span class="mx-6 text-2xl">&#9670;</span>
+            PERSISTENT MEMORY <span class="mx-6 text-2xl">&#9670;</span> SELF-HEALING <span class="mx-6 text-2xl">&#9670;</span> MERIDIAN MESH <span class="mx-6 text-2xl">&#9670;</span> ALWAYS ON <span class="mx-6 text-2xl">&#9670;</span>
+        </div>
+    </div>
+
+    <!-- Capabilities Bento Box -->
+    <section id="capabilities" class="py-32 bg-[#050505] relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mask-wrap mb-16">
+                <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">The Stack</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto md:h-[800px]">
+                <!-- Bento 1 (Large) — Memory Intelligence Graph -->
+                <div class="group relative md:col-span-2 md:row-span-2 overflow-hidden bg-zinc-900 reveal-fade">
+                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight">Memory Intelligence Graph</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-2 font-light">17,900+ memories in Neo4j with entity linking, corroboration scoring, and temporal decay.</p>
+                    </div>
+                </div>
+                <!-- Bento 2 — NATS Messaging -->
+                <div class="group relative md:col-span-2 overflow-hidden bg-zinc-900 reveal-fade delay-100">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight">NATS / JetStream</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-2 font-light">Real-time pub/sub coordination with guaranteed delivery and work queues.</p>
+                    </div>
+                </div>
+                <!-- Bento 3 — Self-Healing -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade delay-200">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <h3 class="font-display font-bold text-xl uppercase tracking-tight">Self-Healing Infra</h3>
+                    </div>
+                </div>
+                <!-- Bento 4 — Accent Box -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade delay-300 flex items-center justify-center p-8 bg-brand-500 text-black">
+                    <div class="text-center">
+                        <i data-lucide="brain" class="w-12 h-12 mx-auto mb-4"></i>
+                        <h3 class="font-display font-black text-2xl uppercase tracking-tighter leading-tight">Multi-Agent<br>Collaboration</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Timeline -->
+    <section id="stack" class="py-32 bg-zinc-950 border-y border-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">How It Works</h2>
+                </div>
+                <p class="font-sans text-[0.65rem] tracking-[0.3em] uppercase text-zinc-500 mt-4 reveal-fade delay-200">Four Layers of Distributed Intelligence</p>
+            </div>
+
+            <div class="relative border-l border-zinc-800 ml-4 md:ml-0 md:pl-0">
+                <!-- Layer 1 -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Memory Layer</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Neo4j Knowledge Graph</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Persistent Memory Intelligence Graph with entity linking, concept embeddings, corroboration scoring, and temporal decay.
+                    </div>
+                </div>
+
+                <!-- Layer 2 -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative delay-100">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Messaging</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">NATS / JetStream</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        Real-time pub/sub with request/reply patterns, work queues, dead letter handling, and circuit breaker protection.
+                    </div>
+                </div>
+
+                <!-- Layer 3 -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative delay-200">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Daemon Mesh</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Specialized AI Agents</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Six daemons with distinct roles, identity locks, and domain expertise. Each owns its lane, all share the graph.
+                    </div>
+                </div>
+
+                <!-- Layer 4 -->
+                <div class="md:flex justify-between items-center w-full reveal-fade relative delay-300">
+                    <div class="absolute w-3 h-3 bg-white rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto shadow-[0_0_15px_#fff]"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Autonomy</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-white mt-1">Self-Healing Coordination</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        Pulse-driven sentinels, blue/green deployments, automated health checks, and incident response &mdash; all without human intervention.
+                    </div>
+                </div>
+                <!-- Center Line for Desktop -->
+                <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-800 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daemons List Section -->
+    <section id="daemons" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16 border-b border-zinc-900 pb-6 reveal-fade">
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">The Daemons</h2>
+                </div>
+                <div class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500">Hover to preview</div>
+            </div>
+
+            <div class="flex flex-col">
+                <!-- Daemon 1 — Sensei -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">01</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Sensei</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Coherence Director</span>
+                </div>
+
+                <!-- Daemon 2 — Atlas -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">02</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Atlas</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Intelligence Officer</span>
+                </div>
+
+                <!-- Daemon 3 — Delphi -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">03</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Delphi</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Infra Architect</span>
+                </div>
+
+                <!-- Daemon 4 — Sandman -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">04</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Sandman</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Chief Operator</span>
+                </div>
+
+                <!-- Daemon 5 — Forge -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=2070&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">05</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Forge</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Compute Engine</span>
+                </div>
+
+                <!-- Daemon 6 — Avery -->
+                <div class="group border-b border-zinc-900/50 py-10 flex flex-col md:flex-row justify-between items-start md:items-center hover-reveal-trigger cursor-scale" data-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop">
+                    <div class="flex items-center gap-6">
+                        <span class="font-mono text-zinc-700 text-xl font-light">06</span>
+                        <h3 class="font-display font-bold text-4xl md:text-6xl uppercase tracking-tight text-zinc-500 group-hover:text-white transition-colors duration-500 transform group-hover:translate-x-4">Avery</h3>
+                    </div>
+                    <span class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 group-hover:text-brand-500 transition-colors mt-4 md:mt-0 border border-zinc-800 px-3 py-1 rounded-full group-hover:border-brand-500">Deal Director</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Partners Strip -->
+    <section class="py-16 bg-black border-y border-zinc-900 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
+            <span class="font-sans text-[0.55rem] tracking-[0.3em] uppercase text-zinc-600">Built With</span>
+        </div>
+        <div class="marquee-container opacity-50 hover:opacity-100 transition-opacity duration-500" style="--tw-bg-opacity: 0;">
+            <div class="marquee-content font-display font-bold text-2xl tracking-widest text-zinc-400 items-center gap-24">
+                <span>NEO4J</span> <span>NATS</span> <span>TAILSCALE</span> <span>CLAUDE</span> <span>PYTHON</span> <span>JETSTREAM</span>
+                <span>NEO4J</span> <span>NATS</span> <span>TAILSCALE</span> <span>CLAUDE</span> <span>PYTHON</span> <span>JETSTREAM</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Access Section -->
+    <section id="access" class="py-32 bg-zinc-950 relative overflow-hidden flex justify-center items-center">
+        <!-- Abstract mesh lines bg -->
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+             style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 12px);">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 w-full">
+            <div class="mask-wrap mb-4">
+                <h2 class="mask-text font-display font-black text-6xl md:text-8xl uppercase tracking-tighter text-white">
+                    Enter the Mesh
+                </h2>
+            </div>
+            <p class="font-sans text-zinc-400 mb-12 text-sm font-light max-w-lg mx-auto reveal-fade">
+                Early access is limited. Tell us what you're building and we'll show you what the mesh can do.
+            </p>
+
+            <form class="bg-black/40 backdrop-blur-md border border-zinc-800 p-8 md:p-16 text-left space-y-8 reveal-fade max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Full Name</label>
+                        <input type="text" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Email Address</label>
+                        <input type="email" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                </div>
+                <div class="space-y-2 relative group">
+                    <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">What Are You Building?</label>
+                    <input type="text" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale" placeholder="e.g. Multi-agent research pipeline">
+                </div>
+                <button type="button" class="w-full bg-white text-black font-sans font-bold uppercase tracking-[0.2em] text-xs py-5 hover:bg-brand-500 transition-colors duration-300 mt-8 magnetic cursor-scale" data-scale="0.5">
+                    Request Access
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black pt-32 pb-12 relative z-10 overflow-hidden border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Connect</h4>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="send" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Mesh Updates</h4>
+                    <p class="font-sans text-sm text-zinc-400 mb-4 font-light">Get notified when new capabilities ship and the mesh expands.</p>
+                    <div class="flex border-b border-zinc-700 focus-within:border-white transition-colors">
+                        <input type="email" placeholder="Enter email" class="w-full bg-transparent py-2 text-white outline-none font-sans text-sm">
+                        <button class="text-brand-500 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold px-2">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giant Text -->
+            <div class="w-full text-center border-b border-zinc-900 pb-12 mb-12">
+                <h1 class="font-display font-black text-[12vw] leading-none uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 to-black select-none pointer-events-none">
+                    MERIDIAN
+                </h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 font-sans text-[0.65rem] tracking-widest uppercase text-zinc-600">
+                <p>&copy; 2026 Covault. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // --- Preloader Logic ---
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+
+        // Ensure text slides up immediately
+        setTimeout(() => {
+            loaderText.style.transform = 'translateY(0)';
+        }, 100);
+
+        let progress = 0;
+        const duration = 2000; // 2 seconds loading
+        const interval = 20;
+        const step = (100 / (duration / interval));
+
+        const counter = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(counter);
+                finishLoading();
+            }
+            loaderBar.style.width = `${progress}%`;
+            loaderText.innerText = `${Math.floor(progress)}%`;
+        }, interval);
+
+        function finishLoading() {
+            setTimeout(() => {
+                preloader.classList.add('loaded');
+                document.body.classList.remove('loading');
+
+                // Trigger Hero Masks AFTER load
+                setTimeout(() => {
+                    document.querySelectorAll('header .mask-wrap, header .reveal-fade').forEach(el => el.classList.add('active'));
+                }, 400);
+
+            }, 500);
+        }
+
+        // --- Scroll Observers ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        // Wait to observe non-hero elements so they don't trigger during preloader
+        setTimeout(() => {
+            document.querySelectorAll('section .mask-wrap, section .reveal-fade').forEach(el => {
+                observer.observe(el);
+            });
+        }, 2500);
+
+        // --- Navbar Background on Scroll ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Advanced Mouse Interactions ---
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            const hoverReveal = document.getElementById('hover-image-reveal');
+            const revealImg = document.getElementById('reveal-img');
+
+            let mouseX = 0, mouseY = 0;
+            let outlineX = 0, outlineY = 0;
+            let revealX = 0, revealY = 0;
+
+            function animate() {
+                // Smooth easing
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+
+                revealX += (mouseX - revealX) * 0.08;
+                revealY += (mouseY - revealY) * 0.08;
+                hoverReveal.style.left = `${revealX}px`;
+                hoverReveal.style.top = `${revealY}px`;
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`;
+                cursorDot.style.top = `${mouseY}px`;
+            });
+
+            // Scale Cursor
+            document.querySelectorAll('.cursor-scale, a, button, input').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    const scale = el.getAttribute('data-scale') || '1.5';
+                    cursorOutline.style.width = '60px';
+                    cursorOutline.style.height = '60px';
+                    cursorOutline.style.backgroundColor = 'white';
+                    cursorDot.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px';
+                    cursorOutline.style.height = '40px';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+
+            // Floating Image Reveal Logic
+            document.querySelectorAll('.hover-reveal-trigger').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    const imgSrc = el.getAttribute('data-image');
+                    revealImg.src = imgSrc;
+                    hoverReveal.classList.add('visible');
+                    cursorOutline.style.opacity = '0';
+                    cursorDot.style.opacity = '0';
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    hoverReveal.classList.remove('visible');
+                    cursorOutline.style.opacity = '1';
+                    cursorDot.style.opacity = '1';
+                });
+            });
+
+            // Magnetic Buttons
+            document.querySelectorAll('.magnetic').forEach(magnet => {
+                magnet.addEventListener('mousemove', (e) => {
+                    const rect = magnet.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                magnet.addEventListener('mouseleave', () => {
+                    magnet.style.transform = `translate(0px, 0px)`;
+                });
+            });
+
+            // Mouse Move Parallax Depth
+            const parallaxEls = document.querySelectorAll('.mouse-parallax');
+            window.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth - e.pageX * 2) / 90;
+                const y = (window.innerHeight - e.pageY * 2) / 90;
+                parallaxEls.forEach(el => {
+                    const speed = el.getAttribute('data-speed') || 1;
+                    el.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                });
+            });
+        }
+    </script>
+</body>
+</html>
