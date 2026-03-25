@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-25T01:41:53.625005+00:00",
+  "generated_at": "2026-03-25T02:21:08.448066+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-25T01:41:49.646397+00:00",
+      "updated_at": "2026-03-25T02:21:05.320600+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1322,6 +1322,13 @@
           "terminal": "ttys135",
           "launched": "2026-03-25T01:36",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "97033",
+          "terminal": "ttys138",
+          "launched": "2026-03-25T01:47",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
       "daemon_tasks": [
@@ -1445,32 +1452,45 @@
           }
         ],
         "collected_at": "2026-03-22T20:13:06.987399+00:00",
-        "_stale_warning": "Data is 53 hours old"
+        "_stale_warning": "Data is 54 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-25T01:41:53.258648+00:00",
+      "updated_at": "2026-03-25T02:21:08.330948+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "sentinel-review:fail": 7,
           "bug": 2,
           "grade/B": 20,
           "enhancement": 3,
-          "grade/C": 7,
+          "grade/C": 6,
           "cursor-bench": 5,
           "sentinel-review:pass": 2,
           "dependencies": 3,
-          "sentinel-review:fail": 6,
           "grade/D": 2,
           "client": 3,
           "auto-created": 3,
           "grade/A": 1,
           "sentinel-review:warn": 1,
-          "mig": 3,
+          "mig": 2,
           "cleanup": 2
         }
       },
       "recent_issues": [
+        {
+          "number": 1715,
+          "title": "feat(#1714): selective outbound email redaction for Telegram/daemon text",
+          "state": "open",
+          "created_at": "2026-03-25T01:49:47Z",
+          "updated_at": "2026-03-25T01:53:57Z",
+          "labels": [
+            "sentinel-review:fail"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1715",
+          "project_slug": null
+        },
         {
           "number": 1714,
           "title": "fix(sanitizer): Telegram relay over-redacts public email addresses",
@@ -2114,24 +2134,23 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/1628",
           "project_slug": null
-        },
-        {
-          "number": 1625,
-          "title": "[MIG Design] Fan-out redistribution plan for high-concentration hub nodes",
-          "state": "open",
-          "created_at": "2026-03-20T16:34:09Z",
-          "updated_at": "2026-03-20T16:45:50Z",
-          "labels": [
-            "grade/C",
-            "mig"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1625",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 1715,
+            "title": "feat(#1714): selective outbound email redaction for Telegram/daemon text",
+            "state": "open",
+            "created_at": "2026-03-25T01:49:47Z",
+            "updated_at": "2026-03-25T01:53:57Z",
+            "labels": [
+              "sentinel-review:fail"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1715",
+            "project_slug": null
+          },
           {
             "number": 1714,
             "title": "fix(sanitizer): Telegram relay over-redacts public email addresses",
@@ -2494,20 +2513,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/1628",
             "project_slug": null
-          },
-          {
-            "number": 1625,
-            "title": "[MIG Design] Fan-out redistribution plan for high-concentration hub nodes",
-            "state": "open",
-            "created_at": "2026-03-20T16:34:09Z",
-            "updated_at": "2026-03-20T16:45:50Z",
-            "labels": [
-              "grade/C",
-              "mig"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1625",
-            "project_slug": null
           }
         ],
         "openclaw": [
@@ -2809,13 +2814,43 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "skipped",
-        "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-03-25T01:30:33Z",
-        "head_sha": "25a35781"
+        "status": "queued",
+        "conclusion": null,
+        "name": "CI",
+        "created_at": "2026-03-25T02:09:47Z",
+        "head_sha": "e4d54d7e"
       },
       "ci_recent_runs": [
+        {
+          "id": 23521535543,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-03-25T02:09:47Z",
+          "updated_at": "2026-03-25T02:09:48Z",
+          "head_sha": "e4d54d7e",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521535543"
+        },
+        {
+          "id": 23521515252,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-03-25T02:09:00Z",
+          "updated_at": "2026-03-25T02:09:48Z",
+          "head_sha": "b11948bd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521515252"
+        },
+        {
+          "id": 23521285706,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-03-25T02:00:15Z",
+          "updated_at": "2026-03-25T02:00:16Z",
+          "head_sha": "52ac696a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521285706"
+        },
         {
           "id": 23520537036,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
@@ -2835,112 +2870,82 @@
           "updated_at": "2026-03-25T01:30:22Z",
           "head_sha": "25a35781",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/23520531856"
-        },
-        {
-          "id": 23520390262,
-          "name": "CodeQL Analysis",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-03-25T01:24:52Z",
-          "updated_at": "2026-03-25T01:24:53Z",
-          "head_sha": "25a35781",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23520390262"
-        },
-        {
-          "id": 23520390261,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-03-25T01:24:52Z",
-          "updated_at": "2026-03-25T01:27:54Z",
-          "head_sha": "25a35781",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23520390261"
-        },
-        {
-          "id": 23520264560,
-          "name": "CodeQL Analysis",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-03-25T01:20:06Z",
-          "updated_at": "2026-03-25T01:24:53Z",
-          "head_sha": "c4d6c12b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23520264560"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "275a77dd",
+          "message": "docs(sales): Rankona Mazon deep audit \u2014 technical forensics + attack surface & quick wins",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:16:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/275a77dd1c5a4996984cef7f8c2fb4e7ea7af77a"
+        },
+        {
+          "sha": "0834fdf8",
+          "message": "docs(agentvox): Wave 10 \u2014 mark P0 complete, update priorities",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:15:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0834fdf89e74936920e8edb06d4ad36818b1b277"
+        },
+        {
+          "sha": "e858f946",
+          "message": "feat(sales): comprehensive rankonamazon.com prospect audit \u2014 7-file deep dive",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:09:18Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e858f946db1c44b9559710b682d9deb357b3a489"
+        },
+        {
+          "sha": "e4d54d7e",
+          "message": "feat(agentvox): seed scripts \u2014 5 agents, 25 contacts, 3 knowledge bases",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:09:43Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e4d54d7e4c0e3d01fef289080bfaea8ca2591566"
+        },
+        {
+          "sha": "b11948bd",
+          "message": "feat(agentvox): workflow execution engine \u2014 triggers on call events",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:08:56Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b11948bd78209a97007ec79c5d86be5d5b5b23dc"
+        },
+        {
+          "sha": "df1b515e",
+          "message": "docs: research extraction pipeline \u2014 what was built, what's next, how to use",
+          "author": "covaultxyz",
+          "date": "2026-03-25T02:08:21Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/df1b515e7097a01320c6b5563d1b103ccc3173ff"
+        },
+        {
+          "sha": "52ac696a",
+          "message": "feat(sales): add MERIDIAN x StretchMed engagement proposal \u2014 phased engagement with ROI projections, compliance notes, and next steps",
+          "author": "covaultxyz",
+          "date": "2026-03-25T01:52:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/52ac696a0a76760c91e455b1fe6b76215e6afe7d"
+        },
+        {
+          "sha": "90f4bf84",
+          "message": "docs(sales): Rankona Mazon full audit \u2014 6-file series (company profile, services, digital audit, competitive landscape, MERIDIAN opportunities, discovery questions)",
+          "author": "covaultxyz",
+          "date": "2026-03-25T01:49:57Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/90f4bf844d28b4767479909def068f5e4eee86a1"
+        },
+        {
+          "sha": "b141d160",
+          "message": "docs(agentvox): Wave 9 \u2014 workflow backend, auth fix, PC deployment, docs",
+          "author": "covaultxyz",
+          "date": "2026-03-25T01:48:34Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b141d160c350f192cd4cf9e38e27fc8c1efc3663"
+        },
         {
           "sha": "e8722394",
           "message": "chore: update boot-state.md \u2014 deployed 25a35781",
           "author": "covaultxyz",
           "date": "2026-03-25T01:39:24Z",
           "url": "https://github.com/covaultxyz/meridian/commit/e87223948ac2d89f2cc591a91c58cb00510856d0"
-        },
-        {
-          "sha": "6bac42b8",
-          "message": "feat(innov8): 15-well investor deck rescoped from pro forma CSVs",
-          "author": "Glasshaus",
-          "date": "2026-03-25T01:34:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6bac42b858709cb9478478864724f8961425fab1"
-        },
-        {
-          "sha": "25a35781",
-          "message": "wire(sentinel): add check_unprocessed_research to daily pulse checks",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:24:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/25a3578153e3fa7398e9a804d5013bc6717d8905"
-        },
-        {
-          "sha": "c4d6c12b",
-          "message": "feat(research): /research-extract skill + 3-layer auto-extraction pipeline",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:19:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c4d6c12bc9a8319383dc0e859c22b69cad58225c"
-        },
-        {
-          "sha": "7c8e72d3",
-          "message": "docs(audit): full session report + remaining work \u2014 2 day marathon",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:14:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7c8e72d36ff8bd5e2168ed35fa6c657a549c438c"
-        },
-        {
-          "sha": "d2413fff",
-          "message": "intel: auto-ingested 1 transcript(s)",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:09:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d2413fffc588db19d04642c7b212f6e4526e9651"
-        },
-        {
-          "sha": "84f8e45a",
-          "message": "chore: update boot-state.md \u2014 deployed 8db1c81f",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:09:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/84f8e45a9eedaba118ac48dcce6ec63d91ffec44"
-        },
-        {
-          "sha": "8db1c81f",
-          "message": "feat(agentvox): workflow backend \u2014 model, CRUD API, 10 seeded workflows",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:09:07Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8db1c81f8bbdad68bec500ce36c87bb5aea4b373"
-        },
-        {
-          "sha": "1cf63e19",
-          "message": "fix(corroboration): title-based dedup before embedding check",
-          "author": "covaultxyz",
-          "date": "2026-03-25T00:56:33Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1cf63e199941f8c0a3b18061fa1f9d8658dd18c6"
-        },
-        {
-          "sha": "0e52bc64",
-          "message": "audit(fleet): full daemon boot report analysis \u2014 80% of task queue is noise",
-          "author": "covaultxyz",
-          "date": "2026-03-25T00:07:00Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0e52bc64ddcd157a2442f2f7f458619a58466068"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-25T01:41:50.430038+00:00",
+        "updated_at": "2026-03-25T02:21:06.102316+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -3009,7 +3014,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "members": [
         {
           "id": "alex",
@@ -3080,7 +3085,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "projects": [
         {
           "project": {
@@ -3510,7 +3515,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3622,7 +3627,7 @@
       "this_week": 9
     },
     "decisions": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3719,7 +3724,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6051,7 +6056,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-25T01:41:53.513018+00:00",
+      "updated_at": "2026-03-25T02:21:08.420120+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -7106,8 +7111,8 @@
         {
           "name": "Sentinel Registry",
           "file": "docs/sentinel-registry.md",
-          "size": 15185,
-          "modified": "2026-03-19"
+          "size": 15368,
+          "modified": "2026-03-25"
         }
       ],
       "total_sops": 15,
@@ -7117,7 +7122,7 @@
       "total_docs": 175
     },
     "deals": {
-      "updated_at": "2026-03-25T01:41:53.513102+00:00",
+      "updated_at": "2026-03-25T02:21:08.420218+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7351,7 +7356,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-25T01:41:53.258684+00:00",
+      "updated_at": "2026-03-25T02:21:08.330961+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -16820,7 +16825,7 @@
       "total": 38
     },
     "call_intelligence": {
-      "updated_at": "2026-03-25T01:41:53.567407+00:00",
+      "updated_at": "2026-03-25T02:21:08.437591+00:00",
       "signal_summary": {
         "total_objections": 22,
         "total_buying_signals": 14,
@@ -20487,7 +20492,7 @@
       "total_action_items": 200
     },
     "attention": {
-      "updated_at": "2026-03-25T01:41:53.624956+00:00",
+      "updated_at": "2026-03-25T02:21:08.448021+00:00",
       "items": [
         {
           "type": "blocked",
@@ -20562,8 +20567,62 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-25T01:41:53.624994+00:00",
+      "updated_at": "2026-03-25T02:21:08.448055+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:16:19Z",
+          "title": "docs(sales): Rankona Mazon deep audit \u2014 technical forensics + attack surface & q",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:15:48Z",
+          "title": "docs(agentvox): Wave 10 \u2014 mark P0 complete, update priorities",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:09:43Z",
+          "title": "feat(agentvox): seed scripts \u2014 5 agents, 25 contacts, 3 knowledge bases",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:09:18Z",
+          "title": "feat(sales): comprehensive rankonamazon.com prospect audit \u2014 7-file deep dive",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:08:56Z",
+          "title": "feat(agentvox): workflow execution engine \u2014 triggers on call events",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T02:08:21Z",
+          "title": "docs: research extraction pipeline \u2014 what was built, what's next, how to use",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T01:52:23Z",
+          "title": "feat(sales): add MERIDIAN x StretchMed engagement proposal \u2014 phased engagement w",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T01:49:57Z",
+          "title": "docs(sales): Rankona Mazon full audit \u2014 6-file series (company profile, services",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-25T01:48:34Z",
+          "title": "docs(agentvox): Wave 9 \u2014 workflow backend, auth fix, PC deployment, docs",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-03-25T01:39:24Z",
@@ -20571,64 +20630,16 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-03-25T01:34:34Z",
-          "title": "feat(innov8): 15-well investor deck rescoped from pro forma CSVs",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:24:28Z",
-          "title": "wire(sentinel): add check_unprocessed_research to daily pulse checks",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:19:19Z",
-          "title": "feat(research): /research-extract skill + 3-layer auto-extraction pipeline",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:14:40Z",
-          "title": "docs(audit): full session report + remaining work \u2014 2 day marathon",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:09:55Z",
-          "title": "intel: auto-ingested 1 transcript(s)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:09:18Z",
-          "title": "chore: update boot-state.md \u2014 deployed 8db1c81f",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:09:07Z",
-          "title": "feat(agentvox): workflow backend \u2014 model, CRUD API, 10 seeded workflows",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T00:56:33Z",
-          "title": "fix(corroboration): title-based dedup before embedding check",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T00:07:00Z",
-          "title": "audit(fleet): full daemon boot report analysis \u2014 80% of task queue is noise",
-          "detail": "covaultxyz"
-        },
-        {
           "type": "call",
           "date": "2026-03-25",
           "title": "Audit1",
           "detail": "external \u2014 alex"
+        },
+        {
+          "type": "issue",
+          "date": "2026-03-25",
+          "title": "#1715 feat(#1714): selective outbound email redaction for Telegram",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -20676,12 +20687,6 @@
           "type": "issue",
           "date": "2026-03-24",
           "title": "#1702 Wire virtual teams & core personas to knowledge via targeted",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-03-23",
-          "title": "#1701 Arc C: End-to-End Smoke Test (Backup + Forge)",
           "detail": "open"
         }
       ],
