@@ -215,7 +215,7 @@
                             <h3 class="font-display font-bold text-lg uppercase tracking-tight text-white">MERIDIAN Weekly Recap</h3>
                             <p class="font-sans text-zinc-500 text-xs tracking-wide">March 25, 2026</p>
                         </div>
-                        <div class="font-sans text-zinc-500 text-sm tabular-nums">18:42</div>
+                        <div id="total-duration" class="font-sans text-zinc-500 text-sm tabular-nums">1:52</div>
                     </div>
                 </div>
 
@@ -336,8 +336,8 @@
                         <div class="progress-knob"></div>
                     </div>
                     <div class="flex justify-between mt-2 font-sans text-[0.65rem] text-zinc-600 tabular-nums">
-                        <span>6:32</span>
-                        <span>18:42</span>
+                        <span>0:00</span>
+                        <span>1:52</span>
                     </div>
                 </div>
 
@@ -435,8 +435,8 @@
                 <div class="px-8 py-6 border-t border-zinc-800/50 bg-zinc-950/50">
                     <p class="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-600 mb-3">Transcript Preview</p>
                     <div class="font-sans text-sm text-zinc-400 leading-relaxed space-y-3">
-                        <p><span class="text-brand-500 font-semibold">SENSEI:</span> I'm Sensei, Coherence Director of MERIDIAN. Here's what we shipped this week. The biggest push was the Command Center &mdash; full operational dashboard with drill-down modals for every daemon, every metric, every deployment.</p>
-                        <p><span class="text-brand-500 font-semibold">ATLAS:</span> Atlas here, Chief Intelligence Officer. I catalogued twenty-one active projects this week, mapped fifteen discovery calls, and built the competitive matrix for the CPA vertical. Full visibility, finally<span class="typing-cursor"></span></p>
+                        <p><span class="text-brand-500 font-semibold">SENSEI:</span> I'm Sensei, your Coherence Director. Every report, every AI output, every claim your system makes passes through me before it reaches you. I check whether the evidence actually supports what's being said. If it doesn't, I block it.</p>
+                        <p><span class="text-brand-500 font-semibold">DELPHI:</span> Delphi, Infrastructure Architect. I keep everything running. Forty-nine health checks, around the clock. If something breaks at three A.M., I catch it before you wake up<span class="typing-cursor"></span></p>
                     </div>
                 </div>
             </div>
@@ -1064,49 +1064,61 @@
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Play button interaction
+        // Real audio playback
         const playBtn = document.getElementById('play-btn');
+        const audio = new Audio('https://covaultxyz.github.io/meridian-demos/sales/recap-demo-v2.mp3');
+        const fill = document.querySelector('.progress-fill');
+        const knob = document.querySelector('.progress-knob');
+        const progressTrack = document.querySelector('.progress-track');
+        const timeDisplay = progressTrack ? progressTrack.parentElement.querySelector('span') : null;
         let isPlaying = false;
+
+        function formatTime(s) {
+            const m = Math.floor(s / 60);
+            const sec = Math.floor(s % 60);
+            return `${m}:${sec.toString().padStart(2, '0')}`;
+        }
+
         if (playBtn) {
             playBtn.addEventListener('click', () => {
-                isPlaying = !isPlaying;
                 if (isPlaying) {
-                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
-                    playBtn.classList.remove('play-pulse');
-                    // Animate progress bar
-                    animateProgress();
-                } else {
+                    audio.pause();
                     playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>';
                     playBtn.classList.add('play-pulse');
-                    if (progressInterval) clearInterval(progressInterval);
+                } else {
+                    audio.play();
+                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+                    playBtn.classList.remove('play-pulse');
                 }
+                isPlaying = !isPlaying;
             });
         }
 
-        let progressInterval;
-        function animateProgress() {
-            const fill = document.querySelector('.progress-fill');
-            const knob = document.querySelector('.progress-knob');
-            const timeDisplay = document.querySelector('.progress-track').parentElement.querySelector('span');
-            let currentWidth = 35;
-            progressInterval = setInterval(() => {
-                currentWidth += 0.1;
-                if (currentWidth >= 100) {
-                    currentWidth = 100;
-                    clearInterval(progressInterval);
-                    // Reset play button
-                    isPlaying = false;
-                    playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>';
-                    playBtn.classList.add('play-pulse');
-                }
-                fill.style.width = currentWidth + '%';
-                knob.style.left = currentWidth + '%';
-                // Update time display
-                const totalSeconds = Math.floor((currentWidth / 100) * 1122); // 18:42 = 1122 seconds
-                const mins = Math.floor(totalSeconds / 60);
-                const secs = totalSeconds % 60;
-                timeDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-            }, 100);
+        audio.addEventListener('timeupdate', () => {
+            if (!audio.duration) return;
+            const pct = (audio.currentTime / audio.duration) * 100;
+            if (fill) fill.style.width = pct + '%';
+            if (knob) knob.style.left = pct + '%';
+            if (timeDisplay) timeDisplay.textContent = formatTime(audio.currentTime);
+        });
+
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            playBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="8,5 20,12 8,19"/></svg>';
+            playBtn.classList.add('play-pulse');
+            if (fill) fill.style.width = '0%';
+            if (knob) knob.style.left = '0%';
+            if (timeDisplay) timeDisplay.textContent = '0:00';
+        });
+
+        // Click on progress bar to seek
+        if (progressTrack) {
+            progressTrack.addEventListener('click', (e) => {
+                if (!audio.duration) return;
+                const rect = progressTrack.getBoundingClientRect();
+                const pct = (e.clientX - rect.left) / rect.width;
+                audio.currentTime = pct * audio.duration;
+            });
         }
 
         // Cursor + Magnetic
