@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN x StretchMed — Intelligence Proposal</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 0.2rem 0.4rem; }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MERIDIAN x StretchMed — Intelligence Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: #000;
+    }
+
+    /* Cinematic Film Grain Overlay */
+    .film-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.2s; }
+    .reveal-delay-2 { transition-delay: 0.4s; }
+    .reveal-delay-3 { transition-delay: 0.6s; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Video Background */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    /* Dark vignette over video */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 60%, #000 100%);
+    }
+    /* All page content sits above the video layers */
+    .page-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Stat counter animation */
+    .stat-value {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Blockquote styling */
+    .client-quote {
+      border-left: 2px solid rgba(34, 211, 238, 0.3);
+      padding-left: 1.5rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-neutral-400 font-sans selection:bg-cyan-900/50 selection:text-cyan-100 overflow-x-hidden">
+
+  <!-- Video Background -->
+  <video
+    id="bg-video"
+    class="video-bg"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    x5-playsinline
+    preload="auto"
+    disablepictureinpicture
+    disableremoteplayback
+  >
+    <source src="https://d1yei2z3i6k35z.cloudfront.net/10816672/69b21beed361e_globenode.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <!-- All visible content above video -->
+  <div class="page-content">
+
+  <!-- Noise Overlay -->
+  <div class="film-grain"></div>
+
+  <!-- Hero / Cover Page -->
+  <header class="relative w-full h-screen flex flex-col items-center justify-center px-6 border-b border-neutral-900/50 overflow-hidden">
+    <div class="absolute top-0 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(34,211,238,0.1),transparent_70%)] pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto w-full text-center relative z-10 flex flex-col items-center">
+      <div class="reveal opacity-0 translate-y-8 flex flex-col items-center mb-12">
+        <i data-lucide="radio" class="w-12 h-12 text-cyan-500/80 mb-6 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]"></i>
+        <p class="text-[0.65rem] text-cyan-500 uppercase tracking-[0.4em] font-semibold mb-2">Intelligence Proposal</p>
+        <div class="w-px h-12 bg-gradient-to-b from-cyan-500/50 to-transparent"></div>
+      </div>
+
+      <h1 class="reveal reveal-delay-1 text-6xl md:text-8xl lg:text-[7rem] font-black text-white tracking-tighter uppercase mb-6 leading-[0.9] mix-blend-lighten">
+        Refine<br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-neutral-300 to-neutral-700">The Signal</span>
+      </h1>
+
+      <p class="reveal reveal-delay-2 text-lg md:text-xl text-neutral-500 max-w-2xl mx-auto mb-16 leading-relaxed font-light">
+        A persistent intelligence system that listens to every conversation, remembers every customer, and surfaces the patterns hiding $1.6M+ in recoverable revenue across 33 locations.
+      </p>
+
+      <div class="reveal reveal-delay-3 flex flex-col md:flex-row items-center justify-center gap-12 pt-8 text-left w-full max-w-2xl border-t border-neutral-900/80">
+        <div class="flex items-center space-x-4">
+          <div class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center border border-neutral-800">
+            <i data-lucide="building" class="w-4 h-4 text-neutral-400"></i>
+          </div>
+          <div>
+            <p class="text-[0.65rem] text-neutral-600 uppercase tracking-[0.2em] font-semibold mb-1">Prepared For</p>
+            <p class="text-sm text-neutral-200 uppercase tracking-widest">Brian Cook</p>
+            <p class="text-[0.6rem] text-neutral-500 uppercase tracking-widest mt-0.5">CEO &mdash; StretchMed Studios</p>
+          </div>
+        </div>
+        <div class="hidden md:block w-px h-12 bg-neutral-900"></div>
+        <div class="flex items-center space-x-4">
+          <div class="w-10 h-10 rounded-full bg-cyan-950/30 flex items-center justify-center border border-cyan-900/30">
+            <i data-lucide="shield-check" class="w-4 h-4 text-cyan-500"></i>
+          </div>
+          <div>
+            <p class="text-[0.65rem] text-neutral-600 uppercase tracking-[0.2em] font-semibold mb-1">Prepared By</p>
+            <p class="text-sm text-neutral-200 uppercase tracking-widest">MERIDIAN</p>
+            <p class="text-[0.6rem] text-neutral-500 uppercase tracking-widest mt-0.5">Alex Mazzei, Founder</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center animate-pulse opacity-50">
+      <span class="text-[0.55rem] uppercase tracking-[0.3em] text-neutral-500 mb-4">Scroll to Begin</span>
+      <div class="w-px h-16 bg-gradient-to-b from-neutral-500 to-transparent"></div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <div class="max-w-[90rem] mx-auto px-6 md:px-12 py-24 flex flex-col lg:flex-row gap-20 relative">
+
+    <!-- Sidebar Navigation -->
+    <div class="hidden lg:block w-48 shrink-0 relative z-20">
+      <div class="sticky top-32">
+        <h3 class="text-[0.6rem] font-bold text-neutral-600 uppercase tracking-[0.3em] mb-8 flex items-center">
+          <span class="w-2 h-2 rounded-full bg-cyan-500/50 mr-3 animate-pulse"></span>
+          Index
+        </h3>
+        <nav class="flex flex-col space-y-1 border-l border-neutral-900 pl-4 relative">
+          <div id="active-nav-line" class="absolute left-[-1px] top-0 w-[2px] h-8 bg-cyan-500 transition-all duration-500 ease-in-out shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+          <button data-target="overview" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-cyan-400">01. The Problem</button>
+          <button data-target="solution" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-neutral-600 hover:text-neutral-300">02. The System</button>
+          <button data-target="methodology" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-neutral-600 hover:text-neutral-300">03. Protocol</button>
+          <button data-target="timeline" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-neutral-600 hover:text-neutral-300">04. Timeline</button>
+          <button data-target="investment" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-neutral-600 hover:text-neutral-300">05. Investment</button>
+          <button data-target="next-steps" class="nav-btn text-left py-2 text-xs font-medium uppercase tracking-[0.15em] transition-all duration-300 text-neutral-600 hover:text-neutral-300">06. Next Steps</button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="flex-1 space-y-40 max-w-4xl pb-32">
+
+      <!-- 01. The Problem -->
+      <section id="overview" class="scroll-mt-32">
+        <div class="reveal flex items-baseline space-x-4 mb-10 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">01</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">The Intelligence Gap</h2>
+        </div>
+        <div class="reveal reveal-delay-1 prose prose-invert prose-lg max-w-none">
+          <p class="text-neutral-400 leading-relaxed font-light text-lg">
+            StretchMed generates ~$5.9M in annual membership revenue across 33 locations. The demand is there. The service works. The model scales. But the business is running blind &mdash; zero call recording, fragmented tools with no shared memory, and a 30-point close rate gap between top and bottom studios that no one can explain because no one can hear what's happening inside them.
+          </p>
+          <p class="text-neutral-400 leading-relaxed font-light text-lg mt-6">
+            Your 8-month average retention puts you at <strong class="text-white font-medium">3x worse than the industry benchmark</strong>. The top quartile in assisted stretching retains for 18-24 months at $1,800-$3,600 LTV. You're at $800. That delta &mdash; multiplied across 4,500 members &mdash; is where the money is hiding.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <div class="reveal reveal-delay-1 p-8 rounded-xl bg-gradient-to-b from-neutral-900/50 to-transparent border border-neutral-800/50 hover:border-cyan-900/50 transition-colors group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
+            <i data-lucide="ear-off" class="text-cyan-500/70 mb-6 w-8 h-8 group-hover:text-cyan-400 transition-colors"></i>
+            <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-3">Deaf</h3>
+            <p class="text-sm text-neutral-500 font-light">Zero calls recorded across 33 studios, SDR teams, and franchise sales. The heartbeat of the business is inaudible.</p>
+          </div>
+          <div class="reveal reveal-delay-2 p-8 rounded-xl bg-gradient-to-b from-neutral-900/50 to-transparent border border-neutral-800/50 hover:border-cyan-900/50 transition-colors group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
+            <i data-lucide="brain-cog" class="text-cyan-500/70 mb-6 w-8 h-8 group-hover:text-cyan-400 transition-colors"></i>
+            <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-3">Amnesiac</h3>
+            <p class="text-sm text-neutral-500 font-light">Six platforms that don't talk to each other. Every tool forgets. Every handoff drops context. ChatGPT resets every session.</p>
+          </div>
+          <div class="reveal reveal-delay-3 p-8 rounded-xl bg-gradient-to-b from-neutral-900/50 to-transparent border border-neutral-800/50 hover:border-cyan-900/50 transition-colors group relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl group-hover:bg-cyan-500/10 transition-colors duration-500"></div>
+            <i data-lucide="eye-off" class="text-cyan-500/70 mb-6 w-8 h-8 group-hover:text-cyan-400 transition-colors"></i>
+            <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-3">Blind</h3>
+            <p class="text-sm text-neutral-500 font-light">A 30-point close rate gap between studios with no way to see why. $16,000/month per store difference &mdash; unexplained.</p>
+          </div>
+        </div>
+
+        <div class="reveal mt-16 p-8 border-l-2 border-cyan-500/30 bg-neutral-950/50">
+          <p class="text-lg text-neutral-300 font-light italic leading-relaxed">
+            "Conversations, human to human, is crude oil. And when you refine that crude oil, there's extreme value there."
+          </p>
+          <p class="text-sm text-neutral-600 mt-4 uppercase tracking-widest">&mdash; Brian Cook</p>
+        </div>
+      </section>
+
+      <!-- 02. The System -->
+      <section id="solution" class="scroll-mt-32 relative">
+        <div class="reveal flex items-baseline space-x-4 mb-10 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">02</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">The Intelligence Layer</h2>
+        </div>
+
+        <div class="reveal reveal-delay-1 p-10 md:p-12 relative overflow-hidden bg-neutral-950 border border-neutral-900">
+          <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+          <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <h3 class="text-xs text-cyan-500 uppercase tracking-[0.3em] font-bold mb-4">Core Capability</h3>
+            <p class="text-2xl text-white font-light leading-snug mb-4">A system that listens, remembers, and acts &mdash; across every touchpoint in your business.</p>
+            <p class="text-sm text-neutral-500 font-light leading-relaxed mb-8">MERIDIAN replaces the gap between your fragmented tools with a persistent knowledge graph that connects every call, every customer, every KPI, and every SOP &mdash; then surfaces the patterns that drive revenue.</p>
+
+            <div class="space-y-6">
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">Voice AI &amp; Call Recording</h4>
+                  <p class="text-neutral-500 text-sm font-light">Replace $33K/month in SDR costs. AI agents handle inbound follow-up in English and Spanish. Every call recorded, transcribed, and scored against your sales script. State-by-state consent built in &mdash; critical for MA felony wiretap law.</p>
+                </div>
+              </div>
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">Top Performer Cloning</h4>
+                  <p class="text-neutral-500 text-sm font-light">AI analyzes your best closers &mdash; language, pacing, objection handling, question sequence &mdash; and generates a training playbook from actual data. New hires practice against AI prospects at 3/10, 6/10, and 9/10 difficulty before touching a real lead.</p>
+                </div>
+              </div>
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">Persistent Knowledge Graph</h4>
+                  <p class="text-neutral-500 text-sm font-light">Every customer interaction, SOP, KPI, and insight stored in a connected graph. No amnesia. No re-uploading documents. Any team member queries it in natural language: "What's the close rate in the Southeast?" Your ops manual, memorized.</p>
+                </div>
+              </div>
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">KPI Command Center</h4>
+                  <p class="text-neutral-500 text-sm font-light">Real-time dashboard via Telegram. 10-second leadership view. Drill-down analyst view. AI-generated alerts: "Brooklyn's close rate dropped 12% this week &mdash; here are the three calls that look different."</p>
+                </div>
+              </div>
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">Retention Intelligence</h4>
+                  <p class="text-neutral-500 text-sm font-light">Churn prediction before cancellation. Automated re-engagement at the right moment. Progress reports with ROM improvements that make the invisible visible &mdash; and extend your 8-month retention toward the 18-month industry benchmark.</p>
+                </div>
+              </div>
+              <div class="flex items-start group">
+                <div class="mt-1 mr-4 flex-shrink-0 w-6 h-6 rounded flex items-center justify-center bg-cyan-950/50 border border-cyan-900"><i data-lucide="check" class="text-cyan-400 w-3 h-3"></i></div>
+                <div>
+                  <h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1 group-hover:text-cyan-300 transition-colors">Franchise Sales Enrichment</h4>
+                  <p class="text-neutral-500 text-sm font-light">Every inbound franchise lead instantly enriched. AI-generated personalized first touch. Pre-call prospect simulation. Post-call analysis. At $250K+ LTV per franchise sale, one additional close per quarter pays for the entire engagement.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. Execution Protocol -->
+      <section id="methodology" class="scroll-mt-32">
+        <div class="reveal flex items-baseline space-x-4 mb-16 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">03</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">Execution Protocol</h2>
+        </div>
+        <div class="relative pl-8 md:pl-0">
+          <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-900/50 via-neutral-800 to-transparent md:-translate-x-1/2"></div>
+          <div class="space-y-20">
+            <div class="reveal relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+              <div class="hidden md:block w-[calc(50%-3rem)] text-right pr-12">
+                <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Listen</h3>
+                <p class="text-sm text-neutral-500 font-light leading-relaxed">Deploy voice AI agents. Record every sales conversation. Replace SDR spend. Build the data foundation that everything else runs on.</p>
+              </div>
+              <div class="absolute left-[-33px] md:static md:left-auto flex items-center justify-center w-4 h-4 rounded-full bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.8)] z-10 border-[3px] border-black md:mx-auto"></div>
+              <div class="md:w-[calc(50%-3rem)] md:pl-12">
+                <div class="md:hidden mb-2">
+                  <h3 class="text-2xl font-bold text-white mb-1 tracking-tight">Listen</h3>
+                  <p class="text-sm text-neutral-500 font-light leading-relaxed">Deploy voice AI agents. Record every sales conversation. Replace SDR spend. Build the data foundation.</p>
+                </div>
+                <div class="text-[0.65rem] font-bold text-cyan-500 uppercase tracking-[0.3em] mb-1">Phase 01</div>
+                <div class="text-xs text-neutral-600 font-mono">WEEKS 01 &ndash; 04</div>
+                <div class="text-xs text-neutral-700 font-mono mt-1">$4,500 / MONTH</div>
+              </div>
+            </div>
+            <div class="reveal relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+              <div class="md:w-[calc(50%-3rem)] md:pr-12 text-left md:text-right md:order-1">
+                <div class="text-[0.65rem] font-bold text-cyan-500 uppercase tracking-[0.3em] mb-1">Phase 02</div>
+                <div class="text-xs text-neutral-600 font-mono">WEEKS 04 &ndash; 12</div>
+                <div class="text-xs text-neutral-700 font-mono mt-1">$6,500 / MONTH</div>
+              </div>
+              <div class="absolute left-[-33px] md:static md:left-auto flex items-center justify-center w-4 h-4 rounded-full bg-neutral-700 group-hover:bg-cyan-500 transition-colors z-10 border-[3px] border-black md:mx-auto md:order-2"></div>
+              <div class="md:w-[calc(50%-3rem)] md:pl-12 md:order-3">
+                <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Understand</h3>
+                <p class="text-sm text-neutral-500 font-light leading-relaxed">Clone top performer patterns. Build the knowledge graph. Launch the KPI command center and SOP AI assistant. Turn raw data into actionable intelligence.</p>
+              </div>
+            </div>
+            <div class="reveal relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+              <div class="hidden md:block w-[calc(50%-3rem)] text-right pr-12">
+                <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Grow</h3>
+                <p class="text-sm text-neutral-500 font-light leading-relaxed">Activate retention intelligence. Launch outcome-based marketing. Instrument the franchise sales pipeline. Expand into Pinterest, SEO, and TikTok.</p>
+              </div>
+              <div class="absolute left-[-33px] md:static md:left-auto flex items-center justify-center w-4 h-4 rounded-full bg-neutral-700 group-hover:bg-cyan-500 transition-colors z-10 border-[3px] border-black md:mx-auto"></div>
+              <div class="md:w-[calc(50%-3rem)] md:pl-12">
+                <div class="md:hidden mb-2">
+                  <h3 class="text-2xl font-bold text-white mb-1 tracking-tight">Grow</h3>
+                  <p class="text-sm text-neutral-500 font-light leading-relaxed">Retention intelligence. Outcome-based marketing. Franchise sales enrichment. Channel expansion.</p>
+                </div>
+                <div class="text-[0.65rem] font-bold text-cyan-500 uppercase tracking-[0.3em] mb-1">Phase 03</div>
+                <div class="text-xs text-neutral-600 font-mono">MONTHS 03 &ndash; 06</div>
+                <div class="text-xs text-neutral-700 font-mono mt-1">$8,000 / MONTH</div>
+              </div>
+            </div>
+            <div class="reveal relative flex flex-col md:flex-row items-start md:items-center justify-between group">
+              <div class="md:w-[calc(50%-3rem)] md:pr-12 text-left md:text-right md:order-1">
+                <div class="text-[0.65rem] font-bold text-cyan-500 uppercase tracking-[0.3em] mb-1">Phase 04</div>
+                <div class="text-xs text-neutral-600 font-mono">MONTHS 06 &ndash; 12</div>
+                <div class="text-xs text-neutral-700 font-mono mt-1">$8,000 / MONTH</div>
+              </div>
+              <div class="absolute left-[-33px] md:static md:left-auto flex items-center justify-center w-4 h-4 rounded-full bg-neutral-700 group-hover:bg-cyan-500 transition-colors z-10 border-[3px] border-black md:mx-auto md:order-2"></div>
+              <div class="md:w-[calc(50%-3rem)] md:pl-12 md:order-3">
+                <h3 class="text-2xl font-bold text-white mb-2 tracking-tight">Scale</h3>
+                <p class="text-sm text-neutral-500 font-light leading-relaxed">Multi-brand intelligence across StretchMed, GISFW, remote, and mobile. Franchise acquisition analysis. "What if" simulation on real data. Full IP protection.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04. Mission Timeline -->
+      <section id="timeline" class="scroll-mt-32">
+        <div class="reveal flex items-baseline space-x-4 mb-10 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">04</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">Mission Timeline</h2>
+        </div>
+        <div class="reveal reveal-delay-1 border border-neutral-800 bg-neutral-950/50 overflow-x-auto">
+          <table class="w-full text-left border-collapse min-w-[600px]">
+            <thead>
+              <tr class="bg-black/80 border-b border-neutral-800 text-[0.65rem] text-neutral-500 tracking-[0.2em] uppercase">
+                <th class="p-6 font-medium">Deliverable</th>
+                <th class="p-6 font-medium">Window</th>
+                <th class="p-6 font-medium">Revenue Impact</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-900/50 text-sm font-light text-neutral-400">
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Voice AI + Call Recording</td><td class="p-6 font-mono text-cyan-500/70">WEEKS 01 &ndash; 04</td><td class="p-6">SDR replacement: ~$198K/yr savings</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Sales Scorecard + Top Performer Cloning</td><td class="p-6 font-mono text-cyan-500/70">WEEKS 04 &ndash; 08</td><td class="p-6">Close rate lift: ~$422K/yr recovered</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Knowledge Graph + SOP Assistant</td><td class="p-6 font-mono text-cyan-500/70">WEEKS 06 &ndash; 12</td><td class="p-6">Operational compliance + institutional memory</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">KPI Command Center</td><td class="p-6 font-mono text-cyan-500/70">WEEKS 08 &ndash; 12</td><td class="p-6">Real-time visibility across 33 locations</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Retention Intelligence</td><td class="p-6 font-mono text-cyan-500/70">MONTHS 03 &ndash; 06</td><td class="p-6">LTV extension: ~$675K&ndash;$1.35M/yr</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Franchise Sales Enrichment</td><td class="p-6 font-mono text-cyan-500/70">MONTHS 03 &ndash; 06</td><td class="p-6">+1 close/quarter = $250K+/yr</td></tr>
+              <tr class="hover:bg-neutral-900/30 transition-colors"><td class="p-6 text-white font-medium tracking-wide">Multi-Brand Intelligence + Scale</td><td class="p-6 font-mono text-cyan-500/70">MONTHS 06 &ndash; 12</td><td class="p-6">Cross-brand synergy + acquisition intelligence</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 05. Investment -->
+      <section id="investment" class="scroll-mt-32">
+        <div class="reveal flex items-baseline space-x-4 mb-10 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">05</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">Investment</h2>
+        </div>
+
+        <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+          <div class="text-center p-6 border border-neutral-900 bg-neutral-950/50"><div class="stat-value text-3xl font-light text-white mb-2">$1.6M+</div><div class="text-[0.6rem] text-neutral-600 uppercase tracking-[0.2em]">Recoverable Revenue</div></div>
+          <div class="text-center p-6 border border-neutral-900 bg-neutral-950/50"><div class="stat-value text-3xl font-light text-white mb-2">10x+</div><div class="text-[0.6rem] text-neutral-600 uppercase tracking-[0.2em]">Conservative ROI</div></div>
+          <div class="text-center p-6 border border-neutral-900 bg-neutral-950/50"><div class="stat-value text-3xl font-light text-white mb-2">$317K</div><div class="text-[0.6rem] text-neutral-600 uppercase tracking-[0.2em]">Replaceable Spend / yr</div></div>
+          <div class="text-center p-6 border border-neutral-900 bg-neutral-950/50"><div class="stat-value text-3xl font-light text-white mb-2">30 Days</div><div class="text-[0.6rem] text-neutral-600 uppercase tracking-[0.2em]">To First Signal</div></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+          <div class="reveal reveal-delay-1 p-10 border border-neutral-800 bg-black flex flex-col hover:border-neutral-600 transition-colors">
+            <div class="mb-8"><p class="text-[0.65rem] text-neutral-500 uppercase tracking-[0.3em] font-bold mb-2">Phase 01</p><h3 class="text-2xl font-light text-white mb-2">Listen</h3><p class="text-neutral-600 text-sm font-light">Voice AI, call recording, sales scorecard. The data foundation.</p></div>
+            <div class="mb-10 pb-10 border-b border-neutral-900"><span class="text-5xl font-light text-white tracking-tighter">$4.5k</span><span class="text-neutral-600 text-sm font-light ml-2">/ month</span></div>
+            <ul class="space-y-5 mb-10 flex-1">
+              <li class="flex items-start text-sm text-neutral-400 font-light"><i data-lucide="minus" class="text-neutral-600 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Voice AI agent deployment per location</li>
+              <li class="flex items-start text-sm text-neutral-400 font-light"><i data-lucide="minus" class="text-neutral-600 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Call recording + transcription with MA compliance</li>
+              <li class="flex items-start text-sm text-neutral-400 font-light"><i data-lucide="minus" class="text-neutral-600 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Sales scorecard &mdash; pass/fail per call</li>
+              <li class="flex items-start text-sm text-neutral-400 font-light"><i data-lucide="minus" class="text-neutral-600 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>SDR cost comparison analysis at Day 30</li>
+            </ul>
+            <div class="text-xs text-neutral-600 font-light text-center mt-auto pt-4 border-t border-neutral-900/50">30-day commitment. Exit with no obligation after Phase 1.</div>
+          </div>
+
+          <div class="reveal reveal-delay-2 p-10 border border-cyan-900/50 bg-gradient-to-b from-cyan-950/10 to-black relative flex flex-col shadow-[0_0_30px_rgba(34,211,238,0.05)] transform md:-translate-y-4">
+            <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+            <div class="mb-8 mt-2"><p class="text-[0.65rem] text-cyan-500 uppercase tracking-[0.3em] font-bold mb-2 animate-pulse">Recommended // Full Year</p><h3 class="text-2xl font-light text-white mb-2">Full Intelligence</h3><p class="text-neutral-500 text-sm font-light">Listen + Understand + Grow + Scale. The complete system.</p></div>
+            <div class="mb-10 pb-10 border-b border-neutral-900/50"><span class="text-5xl font-light text-white tracking-tighter">$89.5k</span><span class="text-neutral-600 text-sm font-light ml-2">/ year</span></div>
+            <ul class="space-y-5 mb-10 flex-1">
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Everything in Phase 1</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Top performer cloning + AI practice prospects</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Persistent knowledge graph</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>KPI command center via Telegram</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>SOP AI assistant (English + Spanish)</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Retention intelligence + churn prediction</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Franchise sales enrichment pipeline</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Multi-brand scaling + acquisition intel</li>
+              <li class="flex items-start text-sm text-neutral-300 font-light"><i data-lucide="plus" class="text-cyan-500 mr-3 mt-0.5 w-4 h-4 shrink-0"></i>Full IP protection &mdash; your data stays yours</li>
+            </ul>
+            <div class="text-xs text-neutral-500 font-light text-center mt-auto pt-4 border-t border-neutral-900/50">Additional: telephony pass-through (~$0.08&ndash;$0.13/min) + hosting (~$500&ndash;$1K/mo)</div>
+          </div>
+        </div>
+
+        <div class="reveal mt-16 p-8 md:p-10 border border-neutral-900 bg-neutral-950/50">
+          <h3 class="text-xs text-cyan-500 uppercase tracking-[0.3em] font-bold mb-6">What You're Spending Today That This Replaces</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-sm">
+            <div class="flex justify-between border-b border-neutral-900/50 pb-3"><span class="text-neutral-400 font-light">Philippines SDRs (partial)</span><span class="text-white font-mono">$198,000/yr</span></div>
+            <div class="flex justify-between border-b border-neutral-900/50 pb-3"><span class="text-neutral-400 font-light">Ments Stripe fee skimming</span><span class="text-white font-mono">$89,100/yr</span></div>
+            <div class="flex justify-between border-b border-neutral-900/50 pb-3"><span class="text-neutral-400 font-light">Screenshot Monitor</span><span class="text-white font-mono">$6,000/yr</span></div>
+            <div class="flex justify-between border-b border-neutral-900/50 pb-3"><span class="text-neutral-400 font-light">Manual KPI assembly (labor)</span><span class="text-white font-mono">$24,000/yr</span></div>
+          </div>
+          <div class="flex justify-between mt-6 pt-4 border-t border-cyan-900/30"><span class="text-cyan-400 text-sm font-semibold uppercase tracking-widest">Total Replaceable Spend</span><span class="text-white text-lg font-mono">$317,100/yr</span></div>
+        </div>
+      </section>
+
+      <!-- 06. Next Steps -->
+      <section id="next-steps" class="scroll-mt-32">
+        <div class="reveal flex items-baseline space-x-4 mb-10 border-b border-neutral-900 pb-6">
+          <span class="text-xl font-light text-cyan-500/50">06</span>
+          <h2 class="text-4xl font-bold text-white uppercase tracking-tight">Next Steps</h2>
+        </div>
+        <div class="reveal reveal-delay-1 space-y-6">
+          <div class="flex items-start group p-6 border border-neutral-900 hover:border-neutral-700 transition-colors bg-neutral-950/30">
+            <div class="mr-6 flex-shrink-0 w-10 h-10 rounded-full bg-cyan-950/30 border border-cyan-900/30 flex items-center justify-center"><span class="text-cyan-500 text-sm font-bold">1</span></div>
+            <div><h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1">Review &amp; Align</h4><p class="text-neutral-500 text-sm font-light">Review this proposal. Flag questions, adjustments, or priorities. <span class="text-neutral-600">&mdash; Brian, within 1 week</span></p></div>
+          </div>
+          <div class="flex items-start group p-6 border border-neutral-900 hover:border-neutral-700 transition-colors bg-neutral-950/30">
+            <div class="mr-6 flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center"><span class="text-neutral-400 text-sm font-bold">2</span></div>
+            <div><h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1">API Access &amp; Pilot Sites</h4><p class="text-neutral-500 text-sm font-light">Share Ments API documentation. Select 3 top-performing studios for pilot deployment. <span class="text-neutral-600">&mdash; Brian's team, Week 2</span></p></div>
+          </div>
+          <div class="flex items-start group p-6 border border-neutral-900 hover:border-neutral-700 transition-colors bg-neutral-950/30">
+            <div class="mr-6 flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center"><span class="text-neutral-400 text-sm font-bold">3</span></div>
+            <div><h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1">Engagement Letter</h4><p class="text-neutral-500 text-sm font-light">Countersign and schedule kickoff call. <span class="text-neutral-600">&mdash; Both parties, Week 2</span></p></div>
+          </div>
+          <div class="flex items-start group p-6 border border-neutral-900 hover:border-neutral-700 transition-colors bg-neutral-950/30">
+            <div class="mr-6 flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center"><span class="text-neutral-400 text-sm font-bold">4</span></div>
+            <div><h4 class="text-white text-sm font-semibold uppercase tracking-widest mb-1">Phase 1 Launch</h4><p class="text-neutral-500 text-sm font-light">Voice AI pilot in 3 studios. Recording consent deployment. First signal at Day 30. <span class="text-neutral-600">&mdash; MERIDIAN, Week 3</span></p></div>
+          </div>
+        </div>
+
+        <div class="reveal mt-16 p-8 border border-neutral-900/50 bg-neutral-950/30">
+          <h3 class="text-xs text-neutral-600 uppercase tracking-[0.3em] font-bold mb-4">Terms</h3>
+          <div class="space-y-3 text-sm text-neutral-500 font-light">
+            <p><strong class="text-neutral-300 font-medium">Commitment:</strong> Phase 1 is 30 days. Either party may discontinue after Phase 1 with no further obligation.</p>
+            <p><strong class="text-neutral-300 font-medium">Billing:</strong> Monthly retainer, billed on the 1st. 30-day written notice to pause or terminate.</p>
+            <p><strong class="text-neutral-300 font-medium">Data:</strong> All data generated during the engagement belongs to StretchMed. MERIDIAN retains no proprietary rights.</p>
+            <p><strong class="text-neutral-300 font-medium">IP:</strong> Custom systems transfer to StretchMed at conclusion of engagement or upon request.</p>
+            <p><strong class="text-neutral-300 font-medium">Confidentiality:</strong> All business information shared is treated as confidential. NDA available upon request.</p>
+          </div>
+        </div>
+
+        <div class="reveal mt-8 p-8 border border-amber-900/30 bg-amber-950/5">
+          <h3 class="text-xs text-amber-500/70 uppercase tracking-[0.3em] font-bold mb-4">Compliance Note</h3>
+          <p class="text-sm text-neutral-500 font-light leading-relaxed">52% of StretchMed locations operate in Massachusetts, where unauthorized recording is a <strong class="text-neutral-300">felony</strong> under G.L. c. 272, S 99. MERIDIAN will implement triple-layer consent (signage + signed waiver + verbal reminder) before any recording goes live. California AI transcription, PCI DSS payment pause, and HIPAA screening are also addressed. We coordinate with your legal counsel to validate all consent frameworks. MERIDIAN does not provide legal advice.</p>
+        </div>
+
+        <div class="reveal mt-12 text-center">
+          <p class="text-[0.6rem] text-neutral-700 uppercase tracking-[0.15em] max-w-2xl mx-auto leading-loose">Revenue projections are estimates based on industry benchmarks and operating data from discovery session &mdash; not guarantees of performance. Actual results depend on implementation quality, team adoption, and market conditions.</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-900 bg-black py-16 text-center relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col items-center">
+      <div class="flex items-center space-x-3 mb-8 opacity-40">
+        <i data-lucide="radio" class="text-cyan-500 w-5 h-5"></i>
+        <span class="text-sm font-bold tracking-[0.3em] uppercase text-white">MERIDIAN</span>
+      </div>
+      <p class="text-neutral-600 text-[0.65rem] uppercase tracking-[0.2em] max-w-md mx-auto mb-8 leading-loose">This proposal is confidential and prepared exclusively for the intended recipient.</p>
+      <div class="flex space-x-8 text-[0.65rem] text-neutral-500 uppercase tracking-widest">
+        <a href="https://covault.xyz" class="hover:text-white transition-colors">covault.xyz</a>
+        <a href="mailto:alex@covault.xyz" class="hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  </div><!-- /.page-content -->
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const navItems = ['overview', 'solution', 'methodology', 'timeline', 'investment', 'next-steps'];
+      const navButtons = document.querySelectorAll('.nav-btn');
+      const navIndicator = document.getElementById('active-nav-line');
+
+      navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          const element = document.getElementById(targetId);
+          if (element) { element.scrollIntoView({ behavior: 'smooth' }); }
+        });
+      });
+
+      window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY + 250;
+        let currentActive = 'overview';
+        let activeIndex = 0;
+        for (let i = navItems.length - 1; i >= 0; i--) {
+          const section = document.getElementById(navItems[i]);
+          if (section && section.offsetTop <= scrollPosition) { currentActive = navItems[i]; activeIndex = i; break; }
+        }
+        if(navIndicator) { navIndicator.style.transform = `translateY(${activeIndex * 32}px)`; }
+        navButtons.forEach(btn => {
+          const target = btn.getAttribute('data-target');
+          if (target === currentActive) { btn.classList.add('text-cyan-400'); btn.classList.remove('text-neutral-600'); }
+          else { btn.classList.remove('text-cyan-400'); btn.classList.add('text-neutral-600'); }
+        });
+      });
+
+      window.dispatchEvent(new Event('scroll'));
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); } });
+      }, { root: null, rootMargin: '0px', threshold: 0.15 });
+
+      document.querySelectorAll('.reveal').forEach(el => { observer.observe(el); });
+
+      setTimeout(() => {
+        document.querySelectorAll('.reveal').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if(rect.top < window.innerHeight) { el.classList.add('active'); }
+        });
+      }, 100);
+
+      const video = document.getElementById('bg-video');
+      if (video) {
+        video.muted = true;
+        video.setAttribute('muted', '');
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            const resumeVideo = () => {
+              video.play().catch(() => {});
+              document.removeEventListener('touchstart', resumeVideo);
+              document.removeEventListener('click', resumeVideo);
+              document.removeEventListener('scroll', resumeVideo);
+            };
+            document.addEventListener('touchstart', resumeVideo, { once: true, passive: true });
+            document.addEventListener('click', resumeVideo, { once: true });
+            document.addEventListener('scroll', resumeVideo, { once: true, passive: true });
+          });
+        }
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden && video.paused) { video.play().catch(() => {}); }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+</body>
+</html>
