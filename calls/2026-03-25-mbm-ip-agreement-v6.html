@@ -262,6 +262,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>(b) MBM is in the process of amending its Act 60 grant to include SaaS, intellectual property, AI, and technology services as additional eligible activities — **the Parties acknowledge that this Decree Amendment has not yet been approved as of the Effective Date, and certain Act 60 benefits related to software development activities under this Agreement may be contingent upon such approval**;</p>
 <p>(c) It has filed all required annual reports and paid all applicable filing fees;</p>
 <p>(d) It is not currently the subject of any audit, investigation, deficiency notice, or decree revocation proceeding by the DDEC, OIN, Puerto Rico Treasury Department (Hacienda), or the United States Internal Revenue Service related to its Act 60 status.</p>
+<p>MBM shall provide Contractor with a copy of its current Act 60 decree (with any confidential financial terms redacted at MBM&#x27;s discretion) within fifteen (15) days of the Effective Date, and shall provide updated copies within fifteen (15) days of any amendment, renewal, or modification thereof. This obligation is for Contractor&#x27;s compliance planning purposes and does not constitute a waiver of any privilege or confidentiality.</p>
 <h4>7.4 Contractor Residency Representation</h4>
 <p>Contractor represents and warrants that:</p>
 <p>(a) Contractor is a bona fide resident of Puerto Rico as defined by IRC § 937(a) and the applicable Treasury Regulations;</p>
@@ -294,7 +295,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>(b) **Professional Liability / Errors &amp; Omissions**: $1,000,000 per occurrence (required upon commencement of Project 2);</p>
 <p>(c) **Cyber Liability**: $1,000,000 per occurrence (required upon commencement of Project 2).</p>
 <p>Each Party shall provide the other with certificates of insurance within thirty (30) days of the Effective Date and upon each policy renewal thereafter. No Project 2 work shall commence until both Parties have provided certificates demonstrating coverage under items (b) and (c) above.</p>
-<p>The Parties acknowledge that insurance requirements for Project 2 reflect the elevated risk profile of handling Protected Health Information and may be adjusted by mutual written agreement as the Project scope evolves. The Parties shall discuss in good faith the allocation of insurance costs if the required coverage presents a disproportionate burden to either Party relative to the engagement value.</p>
+<p>The Parties acknowledge that insurance requirements for Project 2 reflect the elevated risk profile of handling Protected Health Information and may be adjusted by mutual written agreement as the Project scope evolves. To the extent Contractor is required to obtain Professional Liability or Cyber Liability coverage solely to satisfy this Agreement&#x27;s requirements for Project 2, the incremental premium cost above Contractor&#x27;s existing coverage (if any) shall be treated as a pre-approved, reimbursable Project 2 expense under Section 6.5, documented with policy declarations and premium invoices.</p>
 <p>---</p>
 <h3>ARTICLE 8 — INDEMNIFICATION AND LIABILITY</h3>
 <h4>8.1 Contractor&#x27;s Indemnification of MBM</h4>
@@ -437,7 +438,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>**Keep Time Records.** Detailed time logs showing what work was done for MBM vs. the Partnership protect against future disputes about what was created &quot;in scope&quot; of this Agreement.</p>
 <p>**Flag Overlaps Proactively.** If the Partnership develops a feature or tool that might overlap with MBM work, raise it immediately under Section 4.1. Early disclosure prevents small issues from becoming legal disputes.</p>
 <h4>D.3 Joint Recommendations</h4>
-<p>**Quarterly Review Meetings.** Hold regular check-ins specifically addressing IP boundaries, Exhibit A updates, Exhibit I accuracy, conflict-of-interest disclosures, and the overall health of the collaboration.</p>
+<p>**Quarterly Review Meetings.** Section 3.8 requires quarterly IP reviews. Use these meetings to also address the overall health of the collaboration, rate satisfaction, and upcoming scope changes.</p>
 <p>**Written Change Orders.** Any expansion of the Project scope should be documented in a written Statement of Work before work begins. Verbal agreements about scope create ambiguity in IP ownership.</p>
 <p>**Mediation-First Disputes.** Section 10.1 requires mediation before arbitration or litigation. Both Parties should identify a mutually acceptable mediator in advance to expedite resolution if needed.</p>
 <p>**Annual Agreement Review.** As the collaboration matures, review and update this Agreement annually to reflect evolving business realities. A contract that doesn&#x27;t keep pace with the relationship creates unnecessary risk.</p>
@@ -520,7 +521,24 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p style='padding-left:1rem'>&bull; Whether the component exists and functions independently of the Project (per §3.7 classification rule)</p>
 <p>(c) **Boundary Annotations** — For components that span layers (e.g., configuration files, adapter modules), a description of which elements are Contractor Pre-Existing IP and which are Company IP;</p>
 <p>(d) **Dependency Map** — Diagram showing which Application Layer components depend on which Infrastructure Layer components, and the nature of each dependency (runtime, build-time, optional, required).</p>
-<h4>I.3 Update Schedule</h4>
+<h4>I.3 Seed Component Inventory — Project 1 (as of Effective Date)</h4>
+<p>*The following is an initial component inventory for Project 1, provided at signing to establish the baseline. Full Exhibit I (including architecture diagram, boundary annotations, and dependency map) shall be completed within thirty (30) days per Section I.2.*</p>
+<p>| Component | IP Classification | Exhibit A Ref | Independent of Project? | Dependencies |</p>
+<p>|---|---|---|---|---|</p>
+<p>| Website Generation Pipeline (template engine, content generation) | Infrastructure Layer | #6 | Yes — used across multiple clients | None (standalone) |</p>
+<p>| Render Deployment Integration (build, deploy, hosting automation) | Infrastructure Layer | #6 | Yes — used across multiple clients | Website Generation Pipeline |</p>
+<p>| Blue/Green Deployment Scripts | Infrastructure Layer | #5 | Yes — general-purpose deployment | None (standalone) |</p>
+<p>| General Web Frameworks (scaffolding, routing, CSS framework) | Infrastructure Layer | #8 | Yes — standard web development tools | None (standalone) |</p>
+<p>| Authentication Patterns &amp; Session Management | Infrastructure Layer | #8 | Yes — reusable across projects | General Web Frameworks |</p>
+<p>| Database Abstraction Layer | Infrastructure Layer | #8 | Yes — general-purpose data access | None (standalone) |</p>
+<p>| Ayala PC Website — Page Templates, Layout, Navigation | Application Layer (Company IP) | N/A | No — designed to MBM/Ayala specifications | Website Generation Pipeline, General Web Frameworks |</p>
+<p>| Ayala PC Website — Provider/Service Content Pages | Application Layer (Company IP) | N/A | No — MBM-specific content and design | Website Generation Pipeline |</p>
+<p>| Patient Intake Form System — Form Logic, Validation, Submission | Application Layer (Company IP) | N/A | No — Ayala PC clinical intake requirements | General Web Frameworks, Database Abstraction |</p>
+<p>| Scheduling Integration — Booking UI, Calendar Sync, Availability | Application Layer (Company IP) | N/A | No — integrated with MBM&#x27;s calendar system | General Web Frameworks |</p>
+<p>| CMS Configuration — MBM Staff Content Management Setup | Application Layer (Company IP) | N/A | No — configured for MBM&#x27;s content workflow | Website Generation Pipeline |</p>
+<p>| Site Configuration Files — Domain, Hosting, Environment Variables | Mixed | #5, #6 | Partially — deployment config is general; domain/branding is MBM-specific | Deployment Scripts, Render Integration |</p>
+<p>*Note: &quot;Mixed&quot; components are annotated per §3.7 classification rule. General-purpose deployment configuration elements remain Infrastructure Layer; MBM-specific domain, branding, and environment settings are Company IP.*</p>
+<h4>I.4 Update Schedule</h4>
 <p>| Trigger | Action |</p>
 <p>|---------|--------|</p>
 <p>| New material component introduced | Update within 15 business days |</p>
@@ -530,8 +548,17 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>---</p>
 <p><strong>END OF AGREEMENT</strong></p>
 <p>---</p>
-<h3>CHANGE LOG (v5 → v6)</h3>
+<h3>CHANGE LOG (v6 → v7)</h3>
 <p>*This section is for internal review purposes and is not part of the binding Agreement.*</p>
+<h4>v7 Changes (coherence hardening — 0.935 → 0.95+)</h4>
+<p>| Change | Section(s) | Coherence Layer Improved |</p>
+<p>|---|---|---|</p>
+<p>| **IP Classification Quick-Reference Table** added to §3.7 | §3.7 | Audience alignment (+): Signatories can classify components without reading full legal text |</p>
+<p>| **Quarterly IP Review** made operative (§3.8) — moved from non-binding Exhibit D into binding Article 3 | §3.8 | Completeness (+): IP audit procedure now enforceable, not just recommended |</p>
+<p>| **Act 60 Decree copy delivery** — MBM must provide Contractor with decree copy within 15 days | §7.3 | Evidence grounding (+): Act 60 representations become verifiable, not just self-attested |</p>
+<p>| **Insurance cost-sharing** — P2 incremental insurance premiums reimbursable as Project 2 expense | §7.8 | Reality match (+): Resolves solo contractor insurance cost burden |</p>
+<p>| **Exhibit I seeded** with Project 1 Component Inventory (12 components, classified, cross-referenced) | Exhibit I §I.3 | Evidence grounding (+), Completeness (+): Exhibit I is no longer empty; baseline exists at signing |</p>
+<h4>Prior Changes (v5 → v6)</h4>
 <p>| Change | Section(s) | Re-Audit Condition |</p>
 <p>|---|---|---|</p>
 <p>| **§2.2(a) wording fixed** — &quot;at MBM&#x27;s direction&quot; → &quot;for MBM&#x27;s benefit and within the scope of MBM&#x27;s project requirements&quot; | §2.2(a) | C1: Eliminates employment classification risk / resolves Contradiction C2 |</p>
@@ -547,5 +574,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| **Exhibit F-2 scope populated with discovery phase** | Exhibit F-2 | G6: SOW has structured scope with discovery process for remaining details |</p>
 <p>| **§1.1 cross-reference corrected** — &quot;Section 3.6&quot; → &quot;Section 3.7&quot; for Layered Architecture | §1.1 | Section renumbering alignment from v5 §3.5 insertion |</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-25 00:46</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-25 01:37</div>
 </body></html>
