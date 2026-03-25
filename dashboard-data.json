@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-25T02:21:08.448066+00:00",
+  "generated_at": "2026-03-25T02:59:36.919617+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-25T02:21:05.320600+00:00",
+      "updated_at": "2026-03-25T02:59:36.615363+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1054,6 +1054,26 @@
           "participants": []
         },
         {
+          "client": "mbm",
+          "call_id": "ip-agreement-v3-proposed-revisions",
+          "title": "ip-agreement-v3-proposed-revisions",
+          "file": "clients/mbm/signals/deal-signals-ip-agreement-v3-proposed-revisions-2026-03-25.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 0,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
+          "participants": []
+        },
+        {
           "client": "gordon-gcc",
           "call_id": "README",
           "title": "README",
@@ -1177,10 +1197,11 @@
       "call_volume": {
         "unknown": 7,
         "omar": 1,
+        "mbm": 1,
         "gordon-gcc": 1,
         "denver-griffin": 5
       },
-      "total_signals": 14,
+      "total_signals": 15,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -1329,6 +1350,20 @@
           "terminal": "ttys138",
           "launched": "2026-03-25T01:47",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "avery",
+          "pid": "67524",
+          "terminal": "ttys140",
+          "launched": "2026-03-25T02:25",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "68695",
+          "terminal": "ttys142",
+          "launched": "2026-03-25T02:25",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
       "daemon_tasks": [
@@ -1452,1569 +1487,27 @@
           }
         ],
         "collected_at": "2026-03-22T20:13:06.987399+00:00",
-        "_stale_warning": "Data is 54 hours old"
+        "_stale_warning": "Data is 55 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-25T02:21:08.330948+00:00",
-      "open_issues": {
-        "total": 50,
-        "by_label": {
-          "sentinel-review:fail": 7,
-          "bug": 2,
-          "grade/B": 20,
-          "enhancement": 3,
-          "grade/C": 6,
-          "cursor-bench": 5,
-          "sentinel-review:pass": 2,
-          "dependencies": 3,
-          "grade/D": 2,
-          "client": 3,
-          "auto-created": 3,
-          "grade/A": 1,
-          "sentinel-review:warn": 1,
-          "mig": 2,
-          "cleanup": 2
-        }
-      },
-      "recent_issues": [
-        {
-          "number": 1715,
-          "title": "feat(#1714): selective outbound email redaction for Telegram/daemon text",
-          "state": "open",
-          "created_at": "2026-03-25T01:49:47Z",
-          "updated_at": "2026-03-25T01:53:57Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1715",
-          "project_slug": null
-        },
-        {
-          "number": 1714,
-          "title": "fix(sanitizer): Telegram relay over-redacts public email addresses",
-          "state": "open",
-          "created_at": "2026-03-25T01:15:48Z",
-          "updated_at": "2026-03-25T01:30:17Z",
-          "labels": [
-            "bug",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1714",
-          "project_slug": null
-        },
-        {
-          "number": 1713,
-          "title": "Secret hygiene: stop redacting external email addresses",
-          "state": "open",
-          "created_at": "2026-03-25T01:15:41Z",
-          "updated_at": "2026-03-25T01:30:31Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1713",
-          "project_slug": null
-        },
-        {
-          "number": 1710,
-          "title": "feat: Cortex \u2192 NotebookLM training pipeline \u2014 modular MERIDIAN course catalog",
-          "state": "open",
-          "created_at": "2026-03-24T11:46:13Z",
-          "updated_at": "2026-03-24T12:00:23Z",
-          "labels": [
-            "enhancement",
-            "grade/C",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1710",
-          "project_slug": null
-        },
-        {
-          "number": 1709,
-          "title": "feat(#1708): activate cortex refresh pipeline for architecture and MIG projects",
-          "state": "open",
-          "created_at": "2026-03-24T11:08:05Z",
-          "updated_at": "2026-03-24T11:09:39Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1709",
-          "project_slug": null
-        },
-        {
-          "number": 1708,
-          "title": "feat(cortex): Activate cortex pipeline \u2014 wire MERIDIAN Architecture & MIG Office Claude Projects",
-          "state": "open",
-          "created_at": "2026-03-24T10:54:56Z",
-          "updated_at": "2026-03-24T11:00:16Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1708",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1707,
-          "title": "feat(#1703): virtual team ingest patterns and persona informed-by linking",
-          "state": "open",
-          "created_at": "2026-03-24T10:42:42Z",
-          "updated_at": "2026-03-24T10:44:54Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1707",
-          "project_slug": null
-        },
-        {
-          "number": 1704,
-          "title": "fix: MIG edge quality cleanup arc",
-          "state": "open",
-          "created_at": "2026-03-24T10:34:36Z",
-          "updated_at": "2026-03-24T10:45:31Z",
-          "labels": [
-            "bug",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1704",
-          "project_slug": null
-        },
-        {
-          "number": 1702,
-          "title": "Wire virtual teams & core personas to knowledge via targeted research ingest",
-          "state": "open",
-          "created_at": "2026-03-24T10:08:05Z",
-          "updated_at": "2026-03-24T10:15:30Z",
-          "labels": [
-            "enhancement",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1702",
-          "project_slug": null
-        },
-        {
-          "number": 1701,
-          "title": "Arc C: End-to-End Smoke Test (Backup + Forge)",
-          "state": "open",
-          "created_at": "2026-03-23T14:17:10Z",
-          "updated_at": "2026-03-23T14:30:12Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1701",
-          "project_slug": null
-        },
-        {
-          "number": 1700,
-          "title": "Arc B: Forge Worker Activation on M1",
-          "state": "open",
-          "created_at": "2026-03-23T14:17:05Z",
-          "updated_at": "2026-03-23T14:30:21Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1700",
-          "project_slug": null
-        },
-        {
-          "number": 1699,
-          "title": "Arc A: Backup Validation & Recovery",
-          "state": "open",
-          "created_at": "2026-03-23T14:16:58Z",
-          "updated_at": "2026-03-23T14:30:31Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1699",
-          "project_slug": null
-        },
-        {
-          "number": 1697,
-          "title": "ci: bump dorny/test-reporter from 2 to 3",
-          "state": "open",
-          "created_at": "2026-03-23T13:20:57Z",
-          "updated_at": "2026-03-23T13:26:35Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1697",
-          "project_slug": null
-        },
-        {
-          "number": 1696,
-          "title": "ci: bump actions/setup-python from 5 to 6",
-          "state": "open",
-          "created_at": "2026-03-23T13:20:53Z",
-          "updated_at": "2026-03-23T18:56:57Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1696",
-          "project_slug": null
-        },
-        {
-          "number": 1695,
-          "title": "ci: bump actions/upload-pages-artifact from 3 to 4",
-          "state": "open",
-          "created_at": "2026-03-23T13:20:45Z",
-          "updated_at": "2026-03-23T13:20:46Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1695",
-          "project_slug": null
-        },
-        {
-          "number": 1694,
-          "title": "refactor(tracing): wire 4 complex claude call sites to traced_llm_call",
-          "state": "open",
-          "created_at": "2026-03-22T22:11:36Z",
-          "updated_at": "2026-03-22T22:11:36Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1694",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1693,
-          "title": "refactor(tracing): wire 5 claude -p call sites to traced_llm_call",
-          "state": "open",
-          "created_at": "2026-03-22T22:08:57Z",
-          "updated_at": "2026-03-22T22:08:57Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1693",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1692,
-          "title": "feat(sentinel): recall_test sentinel for retrieval quality regression",
-          "state": "open",
-          "created_at": "2026-03-22T21:58:53Z",
-          "updated_at": "2026-03-22T21:58:53Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1692",
-          "project_slug": "pulse-sentinels"
-        },
-        {
-          "number": 1691,
-          "title": "feat(work-queue): per-task execution budget via asyncio.wait_for",
-          "state": "open",
-          "created_at": "2026-03-22T21:58:46Z",
-          "updated_at": "2026-03-22T21:58:46Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1691",
-          "project_slug": "conductor"
-        },
-        {
-          "number": 1690,
-          "title": "feat(mig): enhance mig_hybrid_search MCP tool",
-          "state": "open",
-          "created_at": "2026-03-22T21:58:38Z",
-          "updated_at": "2026-03-22T21:58:38Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1690",
-          "project_slug": "graph-intelligence"
-        },
-        {
-          "number": 1689,
-          "title": "feat(cortex): Claude Project bundle refresh sentinel",
-          "state": "open",
-          "created_at": "2026-03-22T16:46:18Z",
-          "updated_at": "2026-03-22T17:00:14Z",
-          "labels": [
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1689",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1686,
-          "title": "test(#1665): align pytest with config and Claude CLI digest path",
-          "state": "open",
-          "created_at": "2026-03-22T06:39:54Z",
-          "updated_at": "2026-03-23T19:54:02Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1686",
-          "project_slug": null
-        },
-        {
-          "number": 1684,
-          "title": "feat(#1667): policy manifest, Neo4j bundle sync, write_validator gate",
-          "state": "open",
-          "created_at": "2026-03-22T05:57:42Z",
-          "updated_at": "2026-03-23T19:30:15Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1684",
-          "project_slug": null
-        },
-        {
-          "number": 1683,
-          "title": "feat(#1670): Cost router telemetry and test coverage",
-          "state": "open",
-          "created_at": "2026-03-22T05:12:47Z",
-          "updated_at": "2026-03-22T05:14:35Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1683",
-          "project_slug": null
-        },
-        {
-          "number": 1682,
-          "title": "fix(idle-dispatch): guard dispatch() for synthetic issue #99999",
-          "state": "open",
-          "created_at": "2026-03-22T04:47:29Z",
-          "updated_at": "2026-03-22T04:57:14Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1682",
-          "project_slug": "conductor"
-        },
-        {
-          "number": 1680,
-          "title": "test(idle-dispatch): pick_next skips synthetic GitHub issue #99999",
-          "state": "open",
-          "created_at": "2026-03-22T04:24:40Z",
-          "updated_at": "2026-03-23T02:00:13Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1680",
-          "project_slug": null
-        },
-        {
-          "number": 1679,
-          "title": "fix(idle-dispatch): enforce exclusion in dispatch() for #99999",
-          "state": "open",
-          "created_at": "2026-03-22T04:19:08Z",
-          "updated_at": "2026-03-22T04:19:54Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1679",
-          "project_slug": "conductor"
-        },
-        {
-          "number": 1677,
-          "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-          "state": "open",
-          "created_at": "2026-03-22T03:44:56Z",
-          "updated_at": "2026-03-22T03:45:13Z",
-          "labels": [
-            "grade/D",
-            "client"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1677",
-          "project_slug": "stretchmed"
-        },
-        {
-          "number": 1676,
-          "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-          "state": "open",
-          "created_at": "2026-03-22T03:44:50Z",
-          "updated_at": "2026-03-22T03:45:26Z",
-          "labels": [
-            "grade/D",
-            "client"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1676",
-          "project_slug": "ehr"
-        },
-        {
-          "number": 1675,
-          "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-          "state": "open",
-          "created_at": "2026-03-22T03:44:34Z",
-          "updated_at": "2026-03-22T03:45:38Z",
-          "labels": [
-            "grade/B",
-            "client"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1675",
-          "project_slug": "shepherd"
-        },
-        {
-          "number": 1674,
-          "title": "feat(hardening-10): Compliance Export \u2014 SOC 2 + GDPR report generator",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:44Z",
-          "updated_at": "2026-03-22T03:45:51Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1674",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1673,
-          "title": "feat(hardening-09): Customer Policy Templates \u2014 minimal/standard/enterprise",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:43Z",
-          "updated_at": "2026-03-22T03:46:04Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1673",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1672,
-          "title": "feat(hardening-08): Process Isolation \u2014 service user + hardened templates",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:42Z",
-          "updated_at": "2026-03-22T03:46:16Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1672",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1670,
-          "title": "feat(hardening-06): Cost Router \u2014 budget-aware model tier routing",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:40Z",
-          "updated_at": "2026-03-22T03:46:39Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1670",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1669,
-          "title": "feat(hardening-05): Egress Gate \u2014 deny-by-default network allowlist",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:39Z",
-          "updated_at": "2026-03-22T03:46:51Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1669",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1668,
-          "title": "feat(hardening-04): Privacy Router \u2014 PII stripping for inference calls",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:38Z",
-          "updated_at": "2026-03-22T03:47:03Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1668",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1667,
-          "title": "feat(hardening-03): Policy Engine \u2014 unified deny-by-default manifest",
-          "state": "open",
-          "created_at": "2026-03-22T03:32:37Z",
-          "updated_at": "2026-03-22T03:47:15Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1667",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1654,
-          "title": "Metric below target: Research Ingestion Rate (7d) (0.0)",
-          "state": "open",
-          "created_at": "2026-03-22T00:01:50Z",
-          "updated_at": "2026-03-22T00:01:50Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1654",
-          "project_slug": null
-        },
-        {
-          "number": 1653,
-          "title": "feat(cortex): scheduled auto-refresh based on domain TTL",
-          "state": "open",
-          "created_at": "2026-03-21T16:06:10Z",
-          "updated_at": "2026-03-21T16:15:16Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1653",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1652,
-          "title": "feat(cortex): cross-domain cortex status dashboard CLI",
-          "state": "open",
-          "created_at": "2026-03-21T16:06:03Z",
-          "updated_at": "2026-03-21T16:15:29Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1652",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1651,
-          "title": "fix(ontology): deduplicate cortex_builder enforcement entry + fix pack reference",
-          "state": "open",
-          "created_at": "2026-03-21T16:05:38Z",
-          "updated_at": "2026-03-21T16:15:41Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1651",
-          "project_slug": null
-        },
-        {
-          "number": 1650,
-          "title": "feat(cortex): create business_operations domain cortex manifest",
-          "state": "open",
-          "created_at": "2026-03-21T16:05:32Z",
-          "updated_at": "2026-03-21T16:15:54Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1650",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1638,
-          "title": "Funnel sync bridge: Neo4j Lead \u2192 Notion Funnel Tracker (one-way)",
-          "state": "open",
-          "created_at": "2026-03-21T12:22:53Z",
-          "updated_at": "2026-03-21T12:30:18Z",
-          "labels": [
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1638",
-          "project_slug": null
-        },
-        {
-          "number": 1637,
-          "title": "OAuth Self-Healing Loop \u2014 Deployed + SOP",
-          "state": "open",
-          "created_at": "2026-03-21T12:02:57Z",
-          "updated_at": "2026-03-21T12:15:23Z",
-          "labels": [
-            "grade/A"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1637",
-          "project_slug": null
-        },
-        {
-          "number": 1636,
-          "title": "Metric below target: Semantic Coverage (0.78)",
-          "state": "open",
-          "created_at": "2026-03-21T00:01:56Z",
-          "updated_at": "2026-03-21T00:15:20Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1636",
-          "project_slug": null
-        },
-        {
-          "number": 1635,
-          "title": "Metric below target: Mean Time To Recovery (18985.0)",
-          "state": "open",
-          "created_at": "2026-03-21T00:01:55Z",
-          "updated_at": "2026-03-22T00:01:50Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1635",
-          "project_slug": null
-        },
-        {
-          "number": 1634,
-          "title": "Metric below target: CI Pass Rate (0.0)",
-          "state": "open",
-          "created_at": "2026-03-21T00:01:54Z",
-          "updated_at": "2026-03-22T00:01:49Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1634",
-          "project_slug": null
-        },
-        {
-          "number": 1631,
-          "title": "feat(#1628): add low-degree memory cleanup worker",
-          "state": "open",
-          "created_at": "2026-03-20T21:29:04Z",
-          "updated_at": "2026-03-20T21:37:46Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1631",
-          "project_slug": null
-        },
-        {
-          "number": 1629,
-          "title": "MIG Cleanup: Fan out over-concentrated hub nodes",
-          "state": "open",
-          "created_at": "2026-03-20T16:35:43Z",
-          "updated_at": "2026-03-20T16:45:20Z",
-          "labels": [
-            "grade/B",
-            "cursor-bench",
-            "mig",
-            "cleanup"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1629",
-          "project_slug": null
-        },
-        {
-          "number": 1628,
-          "title": "MIG Cleanup: Boost low-degree Memory nodes (degree 0-2)",
-          "state": "open",
-          "created_at": "2026-03-20T16:35:39Z",
-          "updated_at": "2026-03-20T16:45:36Z",
-          "labels": [
-            "grade/B",
-            "cursor-bench",
-            "mig",
-            "cleanup"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1628",
-          "project_slug": null
-        }
-      ],
-      "issues_by_project": {
-        "unassigned": [
-          {
-            "number": 1715,
-            "title": "feat(#1714): selective outbound email redaction for Telegram/daemon text",
-            "state": "open",
-            "created_at": "2026-03-25T01:49:47Z",
-            "updated_at": "2026-03-25T01:53:57Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1715",
-            "project_slug": null
-          },
-          {
-            "number": 1714,
-            "title": "fix(sanitizer): Telegram relay over-redacts public email addresses",
-            "state": "open",
-            "created_at": "2026-03-25T01:15:48Z",
-            "updated_at": "2026-03-25T01:30:17Z",
-            "labels": [
-              "bug",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1714",
-            "project_slug": null
-          },
-          {
-            "number": 1713,
-            "title": "Secret hygiene: stop redacting external email addresses",
-            "state": "open",
-            "created_at": "2026-03-25T01:15:41Z",
-            "updated_at": "2026-03-25T01:30:31Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1713",
-            "project_slug": null
-          },
-          {
-            "number": 1710,
-            "title": "feat: Cortex \u2192 NotebookLM training pipeline \u2014 modular MERIDIAN course catalog",
-            "state": "open",
-            "created_at": "2026-03-24T11:46:13Z",
-            "updated_at": "2026-03-24T12:00:23Z",
-            "labels": [
-              "enhancement",
-              "grade/C",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1710",
-            "project_slug": null
-          },
-          {
-            "number": 1709,
-            "title": "feat(#1708): activate cortex refresh pipeline for architecture and MIG projects",
-            "state": "open",
-            "created_at": "2026-03-24T11:08:05Z",
-            "updated_at": "2026-03-24T11:09:39Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1709",
-            "project_slug": null
-          },
-          {
-            "number": 1707,
-            "title": "feat(#1703): virtual team ingest patterns and persona informed-by linking",
-            "state": "open",
-            "created_at": "2026-03-24T10:42:42Z",
-            "updated_at": "2026-03-24T10:44:54Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1707",
-            "project_slug": null
-          },
-          {
-            "number": 1704,
-            "title": "fix: MIG edge quality cleanup arc",
-            "state": "open",
-            "created_at": "2026-03-24T10:34:36Z",
-            "updated_at": "2026-03-24T10:45:31Z",
-            "labels": [
-              "bug",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1704",
-            "project_slug": null
-          },
-          {
-            "number": 1702,
-            "title": "Wire virtual teams & core personas to knowledge via targeted research ingest",
-            "state": "open",
-            "created_at": "2026-03-24T10:08:05Z",
-            "updated_at": "2026-03-24T10:15:30Z",
-            "labels": [
-              "enhancement",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1702",
-            "project_slug": null
-          },
-          {
-            "number": 1701,
-            "title": "Arc C: End-to-End Smoke Test (Backup + Forge)",
-            "state": "open",
-            "created_at": "2026-03-23T14:17:10Z",
-            "updated_at": "2026-03-23T14:30:12Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1701",
-            "project_slug": null
-          },
-          {
-            "number": 1700,
-            "title": "Arc B: Forge Worker Activation on M1",
-            "state": "open",
-            "created_at": "2026-03-23T14:17:05Z",
-            "updated_at": "2026-03-23T14:30:21Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1700",
-            "project_slug": null
-          },
-          {
-            "number": 1699,
-            "title": "Arc A: Backup Validation & Recovery",
-            "state": "open",
-            "created_at": "2026-03-23T14:16:58Z",
-            "updated_at": "2026-03-23T14:30:31Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1699",
-            "project_slug": null
-          },
-          {
-            "number": 1697,
-            "title": "ci: bump dorny/test-reporter from 2 to 3",
-            "state": "open",
-            "created_at": "2026-03-23T13:20:57Z",
-            "updated_at": "2026-03-23T13:26:35Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1697",
-            "project_slug": null
-          },
-          {
-            "number": 1696,
-            "title": "ci: bump actions/setup-python from 5 to 6",
-            "state": "open",
-            "created_at": "2026-03-23T13:20:53Z",
-            "updated_at": "2026-03-23T18:56:57Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1696",
-            "project_slug": null
-          },
-          {
-            "number": 1695,
-            "title": "ci: bump actions/upload-pages-artifact from 3 to 4",
-            "state": "open",
-            "created_at": "2026-03-23T13:20:45Z",
-            "updated_at": "2026-03-23T13:20:46Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1695",
-            "project_slug": null
-          },
-          {
-            "number": 1686,
-            "title": "test(#1665): align pytest with config and Claude CLI digest path",
-            "state": "open",
-            "created_at": "2026-03-22T06:39:54Z",
-            "updated_at": "2026-03-23T19:54:02Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1686",
-            "project_slug": null
-          },
-          {
-            "number": 1684,
-            "title": "feat(#1667): policy manifest, Neo4j bundle sync, write_validator gate",
-            "state": "open",
-            "created_at": "2026-03-22T05:57:42Z",
-            "updated_at": "2026-03-23T19:30:15Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1684",
-            "project_slug": null
-          },
-          {
-            "number": 1683,
-            "title": "feat(#1670): Cost router telemetry and test coverage",
-            "state": "open",
-            "created_at": "2026-03-22T05:12:47Z",
-            "updated_at": "2026-03-22T05:14:35Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1683",
-            "project_slug": null
-          },
-          {
-            "number": 1680,
-            "title": "test(idle-dispatch): pick_next skips synthetic GitHub issue #99999",
-            "state": "open",
-            "created_at": "2026-03-22T04:24:40Z",
-            "updated_at": "2026-03-23T02:00:13Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1680",
-            "project_slug": null
-          },
-          {
-            "number": 1654,
-            "title": "Metric below target: Research Ingestion Rate (7d) (0.0)",
-            "state": "open",
-            "created_at": "2026-03-22T00:01:50Z",
-            "updated_at": "2026-03-22T00:01:50Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1654",
-            "project_slug": null
-          },
-          {
-            "number": 1651,
-            "title": "fix(ontology): deduplicate cortex_builder enforcement entry + fix pack reference",
-            "state": "open",
-            "created_at": "2026-03-21T16:05:38Z",
-            "updated_at": "2026-03-21T16:15:41Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1651",
-            "project_slug": null
-          },
-          {
-            "number": 1638,
-            "title": "Funnel sync bridge: Neo4j Lead \u2192 Notion Funnel Tracker (one-way)",
-            "state": "open",
-            "created_at": "2026-03-21T12:22:53Z",
-            "updated_at": "2026-03-21T12:30:18Z",
-            "labels": [
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1638",
-            "project_slug": null
-          },
-          {
-            "number": 1637,
-            "title": "OAuth Self-Healing Loop \u2014 Deployed + SOP",
-            "state": "open",
-            "created_at": "2026-03-21T12:02:57Z",
-            "updated_at": "2026-03-21T12:15:23Z",
-            "labels": [
-              "grade/A"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1637",
-            "project_slug": null
-          },
-          {
-            "number": 1636,
-            "title": "Metric below target: Semantic Coverage (0.78)",
-            "state": "open",
-            "created_at": "2026-03-21T00:01:56Z",
-            "updated_at": "2026-03-21T00:15:20Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1636",
-            "project_slug": null
-          },
-          {
-            "number": 1635,
-            "title": "Metric below target: Mean Time To Recovery (18985.0)",
-            "state": "open",
-            "created_at": "2026-03-21T00:01:55Z",
-            "updated_at": "2026-03-22T00:01:50Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1635",
-            "project_slug": null
-          },
-          {
-            "number": 1634,
-            "title": "Metric below target: CI Pass Rate (0.0)",
-            "state": "open",
-            "created_at": "2026-03-21T00:01:54Z",
-            "updated_at": "2026-03-22T00:01:49Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1634",
-            "project_slug": null
-          },
-          {
-            "number": 1631,
-            "title": "feat(#1628): add low-degree memory cleanup worker",
-            "state": "open",
-            "created_at": "2026-03-20T21:29:04Z",
-            "updated_at": "2026-03-20T21:37:46Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1631",
-            "project_slug": null
-          },
-          {
-            "number": 1629,
-            "title": "MIG Cleanup: Fan out over-concentrated hub nodes",
-            "state": "open",
-            "created_at": "2026-03-20T16:35:43Z",
-            "updated_at": "2026-03-20T16:45:20Z",
-            "labels": [
-              "grade/B",
-              "cursor-bench",
-              "mig",
-              "cleanup"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1629",
-            "project_slug": null
-          },
-          {
-            "number": 1628,
-            "title": "MIG Cleanup: Boost low-degree Memory nodes (degree 0-2)",
-            "state": "open",
-            "created_at": "2026-03-20T16:35:39Z",
-            "updated_at": "2026-03-20T16:45:36Z",
-            "labels": [
-              "grade/B",
-              "cursor-bench",
-              "mig",
-              "cleanup"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1628",
-            "project_slug": null
-          }
-        ],
-        "openclaw": [
-          {
-            "number": 1708,
-            "title": "feat(cortex): Activate cortex pipeline \u2014 wire MERIDIAN Architecture & MIG Office Claude Projects",
-            "state": "open",
-            "created_at": "2026-03-24T10:54:56Z",
-            "updated_at": "2026-03-24T11:00:16Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1708",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1689,
-            "title": "feat(cortex): Claude Project bundle refresh sentinel",
-            "state": "open",
-            "created_at": "2026-03-22T16:46:18Z",
-            "updated_at": "2026-03-22T17:00:14Z",
-            "labels": [
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1689",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1674,
-            "title": "feat(hardening-10): Compliance Export \u2014 SOC 2 + GDPR report generator",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:44Z",
-            "updated_at": "2026-03-22T03:45:51Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1674",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1673,
-            "title": "feat(hardening-09): Customer Policy Templates \u2014 minimal/standard/enterprise",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:43Z",
-            "updated_at": "2026-03-22T03:46:04Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1673",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1672,
-            "title": "feat(hardening-08): Process Isolation \u2014 service user + hardened templates",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:42Z",
-            "updated_at": "2026-03-22T03:46:16Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1672",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1670,
-            "title": "feat(hardening-06): Cost Router \u2014 budget-aware model tier routing",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:40Z",
-            "updated_at": "2026-03-22T03:46:39Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1670",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1669,
-            "title": "feat(hardening-05): Egress Gate \u2014 deny-by-default network allowlist",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:39Z",
-            "updated_at": "2026-03-22T03:46:51Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1669",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1668,
-            "title": "feat(hardening-04): Privacy Router \u2014 PII stripping for inference calls",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:38Z",
-            "updated_at": "2026-03-22T03:47:03Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1668",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1667,
-            "title": "feat(hardening-03): Policy Engine \u2014 unified deny-by-default manifest",
-            "state": "open",
-            "created_at": "2026-03-22T03:32:37Z",
-            "updated_at": "2026-03-22T03:47:15Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1667",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1653,
-            "title": "feat(cortex): scheduled auto-refresh based on domain TTL",
-            "state": "open",
-            "created_at": "2026-03-21T16:06:10Z",
-            "updated_at": "2026-03-21T16:15:16Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1653",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1652,
-            "title": "feat(cortex): cross-domain cortex status dashboard CLI",
-            "state": "open",
-            "created_at": "2026-03-21T16:06:03Z",
-            "updated_at": "2026-03-21T16:15:29Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1652",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 1650,
-            "title": "feat(cortex): create business_operations domain cortex manifest",
-            "state": "open",
-            "created_at": "2026-03-21T16:05:32Z",
-            "updated_at": "2026-03-21T16:15:54Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1650",
-            "project_slug": "openclaw"
-          }
-        ],
-        "agent-vox": [
-          {
-            "number": 1694,
-            "title": "refactor(tracing): wire 4 complex claude call sites to traced_llm_call",
-            "state": "open",
-            "created_at": "2026-03-22T22:11:36Z",
-            "updated_at": "2026-03-22T22:11:36Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1694",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 1693,
-            "title": "refactor(tracing): wire 5 claude -p call sites to traced_llm_call",
-            "state": "open",
-            "created_at": "2026-03-22T22:08:57Z",
-            "updated_at": "2026-03-22T22:08:57Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1693",
-            "project_slug": "agent-vox"
-          }
-        ],
-        "pulse-sentinels": [
-          {
-            "number": 1692,
-            "title": "feat(sentinel): recall_test sentinel for retrieval quality regression",
-            "state": "open",
-            "created_at": "2026-03-22T21:58:53Z",
-            "updated_at": "2026-03-22T21:58:53Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1692",
-            "project_slug": "pulse-sentinels"
-          }
-        ],
-        "conductor": [
-          {
-            "number": 1691,
-            "title": "feat(work-queue): per-task execution budget via asyncio.wait_for",
-            "state": "open",
-            "created_at": "2026-03-22T21:58:46Z",
-            "updated_at": "2026-03-22T21:58:46Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1691",
-            "project_slug": "conductor"
-          },
-          {
-            "number": 1682,
-            "title": "fix(idle-dispatch): guard dispatch() for synthetic issue #99999",
-            "state": "open",
-            "created_at": "2026-03-22T04:47:29Z",
-            "updated_at": "2026-03-22T04:57:14Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1682",
-            "project_slug": "conductor"
-          },
-          {
-            "number": 1679,
-            "title": "fix(idle-dispatch): enforce exclusion in dispatch() for #99999",
-            "state": "open",
-            "created_at": "2026-03-22T04:19:08Z",
-            "updated_at": "2026-03-22T04:19:54Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1679",
-            "project_slug": "conductor"
-          }
-        ],
-        "graph-intelligence": [
-          {
-            "number": 1690,
-            "title": "feat(mig): enhance mig_hybrid_search MCP tool",
-            "state": "open",
-            "created_at": "2026-03-22T21:58:38Z",
-            "updated_at": "2026-03-22T21:58:38Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1690",
-            "project_slug": "graph-intelligence"
-          }
-        ],
-        "stretchmed": [
-          {
-            "number": 1677,
-            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-            "state": "open",
-            "created_at": "2026-03-22T03:44:56Z",
-            "updated_at": "2026-03-22T03:45:13Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1677",
-            "project_slug": "stretchmed"
-          }
-        ],
-        "ehr": [
-          {
-            "number": 1676,
-            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-            "state": "open",
-            "created_at": "2026-03-22T03:44:50Z",
-            "updated_at": "2026-03-22T03:45:26Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1676",
-            "project_slug": "ehr"
-          }
-        ],
-        "shepherd": [
-          {
-            "number": 1675,
-            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-            "state": "open",
-            "created_at": "2026-03-22T03:44:34Z",
-            "updated_at": "2026-03-22T03:45:38Z",
-            "labels": [
-              "grade/B",
-              "client"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1675",
-            "project_slug": "shepherd"
-          }
-        ]
-      },
+      "updated_at": "2026-03-25T02:59:36.629302+00:00",
+      "open_issues": "GitHub issues query failed or gh CLI unavailable",
+      "recent_issues": [],
+      "issues_by_project": {},
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-03-25T02:09:47Z",
-        "head_sha": "e4d54d7e"
+        "error": "GitHub CI query failed or gh CLI unavailable",
+        "updated_at": null
       },
-      "ci_recent_runs": [
-        {
-          "id": 23521535543,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-03-25T02:09:47Z",
-          "updated_at": "2026-03-25T02:09:48Z",
-          "head_sha": "e4d54d7e",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521535543"
-        },
-        {
-          "id": 23521515252,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-03-25T02:09:00Z",
-          "updated_at": "2026-03-25T02:09:48Z",
-          "head_sha": "b11948bd",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521515252"
-        },
-        {
-          "id": 23521285706,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-03-25T02:00:15Z",
-          "updated_at": "2026-03-25T02:00:16Z",
-          "head_sha": "52ac696a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23521285706"
-        },
-        {
-          "id": 23520537036,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-03-25T01:30:33Z",
-          "updated_at": "2026-03-25T01:30:34Z",
-          "head_sha": "25a35781",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23520537036"
-        },
-        {
-          "id": 23520531856,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-03-25T01:30:20Z",
-          "updated_at": "2026-03-25T01:30:22Z",
-          "head_sha": "25a35781",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23520531856"
-        }
-      ],
-      "recent_commits": [
-        {
-          "sha": "275a77dd",
-          "message": "docs(sales): Rankona Mazon deep audit \u2014 technical forensics + attack surface & quick wins",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:16:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/275a77dd1c5a4996984cef7f8c2fb4e7ea7af77a"
-        },
-        {
-          "sha": "0834fdf8",
-          "message": "docs(agentvox): Wave 10 \u2014 mark P0 complete, update priorities",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:15:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0834fdf89e74936920e8edb06d4ad36818b1b277"
-        },
-        {
-          "sha": "e858f946",
-          "message": "feat(sales): comprehensive rankonamazon.com prospect audit \u2014 7-file deep dive",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:09:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e858f946db1c44b9559710b682d9deb357b3a489"
-        },
-        {
-          "sha": "e4d54d7e",
-          "message": "feat(agentvox): seed scripts \u2014 5 agents, 25 contacts, 3 knowledge bases",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:09:43Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e4d54d7e4c0e3d01fef289080bfaea8ca2591566"
-        },
-        {
-          "sha": "b11948bd",
-          "message": "feat(agentvox): workflow execution engine \u2014 triggers on call events",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:08:56Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b11948bd78209a97007ec79c5d86be5d5b5b23dc"
-        },
-        {
-          "sha": "df1b515e",
-          "message": "docs: research extraction pipeline \u2014 what was built, what's next, how to use",
-          "author": "covaultxyz",
-          "date": "2026-03-25T02:08:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/df1b515e7097a01320c6b5563d1b103ccc3173ff"
-        },
-        {
-          "sha": "52ac696a",
-          "message": "feat(sales): add MERIDIAN x StretchMed engagement proposal \u2014 phased engagement with ROI projections, compliance notes, and next steps",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:52:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/52ac696a0a76760c91e455b1fe6b76215e6afe7d"
-        },
-        {
-          "sha": "90f4bf84",
-          "message": "docs(sales): Rankona Mazon full audit \u2014 6-file series (company profile, services, digital audit, competitive landscape, MERIDIAN opportunities, discovery questions)",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:49:57Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/90f4bf844d28b4767479909def068f5e4eee86a1"
-        },
-        {
-          "sha": "b141d160",
-          "message": "docs(agentvox): Wave 9 \u2014 workflow backend, auth fix, PC deployment, docs",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:48:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b141d160c350f192cd4cf9e38e27fc8c1efc3663"
-        },
-        {
-          "sha": "e8722394",
-          "message": "chore: update boot-state.md \u2014 deployed 25a35781",
-          "author": "covaultxyz",
-          "date": "2026-03-25T01:39:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e87223948ac2d89f2cc591a91c58cb00510856d0"
-        }
-      ],
+      "ci_recent_runs": [],
+      "recent_commits": [],
       "github_project": {
-        "updated_at": "2026-03-25T02:21:06.102316+00:00",
-        "source": "github_project_13",
-        "deals": [
-          {
-            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-            "number": 1675,
-            "url": "https://github.com/covaultxyz/meridian/issues/1675",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:34Z",
-            "labels": [
-              "grade/B",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-              "Status": "In Progress",
-              "Client": "Denver Griffin",
-              "Stage": "Engaged",
-              "Revenue": "$2K retainer (invoiced) + $5K/mo proposed",
-              "Next Action": "Confirm payment; follow up data handoff; P1 phone tests",
-              "Deadline": "2026-04-04",
-              "Owner": "Joint",
-              "Risk": "Data handoff blocked; scope doc not written"
-            }
-          },
-          {
-            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-            "number": 1676,
-            "url": "https://github.com/covaultxyz/meridian/issues/1676",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:50Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-              "Status": "Todo",
-              "Client": "Gordon (GCC)",
-              "Stage": "Lead",
-              "Next Action": "Deep research EHR needs; schedule meeting after Gordon returns ~Mar 28",
-              "Deadline": "2026-03-28",
-              "Owner": "Bitler"
-            }
-          },
-          {
-            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-            "number": 1677,
-            "url": "https://github.com/covaultxyz/meridian/issues/1677",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:56Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-              "Status": "Todo",
-              "Client": "Brian Cook",
-              "Stage": "Lead",
-              "Next Action": "Re-engage via Bitler after Denver demo ships",
-              "Owner": "Bitler"
-            }
-          }
-        ],
-        "total_items": 3
+        "error": "GitHub Project #13 query failed or gh CLI unavailable",
+        "updated_at": null
       }
     },
     "team": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "members": [
         {
           "id": "alex",
@@ -3085,7 +1578,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "projects": [
         {
           "project": {
@@ -3515,7 +2008,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3627,7 +2120,7 @@
       "this_week": 9
     },
     "decisions": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3724,7 +2217,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -4030,6 +2523,67 @@
           ],
           "detail_page": "calls/2026-03-25-audit1.html",
           "preview": "Legal audit of MBM IP Ownership Agreement V3 identifies critical gaps in Exhibits A-C and overly broad provisions (power of attorney, right of first refusal) requiring negotiation before signing."
+        },
+        {
+          "date": "2026-03-25",
+          "title": "Ip Agreement V3 Proposed Revisions",
+          "type": "external",
+          "file": "clients/mbm/ip-agreement-v3-proposed-revisions.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "Proposed revisions to MBM contractor IP agreement closing ambiguity gaps through detailed definitions, dispute processes, layered architecture codification, and security standards while preserving MBM's absolute company IP ownership.",
+          "decisions": [
+            "Define 'MBM Resources' to exclude general-purpose equipment and infrastructure from IP capture scope",
+            "Implement IP classification dispute fast-track with independent attorney review instead of arbitration (\u00a72.7)",
+            "Codify three-layer architecture model (Infrastructure/Application/Data) as governing framework for IP classification",
+            "Narrow right of first refusal to Project-specific competition only, explicitly excluding Partnership's multi-agent PaaS platform",
+            "Add Phase 2 HIPAA gate requiring executed BAA before any PHI-related work or Project 2 commencement (\u00a75.5)",
+            "Revise attorney-in-fact powers to exclude disputed IP and terminate automatically on agreement end (\u00a72.5)",
+            "Add MBM security standards representation and warranty addressing infrastructure and incident disclosure (\u00a77.6)",
+            "Change Exhibit E transfer pricing framework from unilateral imposition to mutual activation with 30-day review period"
+          ],
+          "commitments": [
+            "Contractor to execute IP assignment documents within 30 business days of MBM request (\u00a72.5)",
+            "Parties to attempt IP classification dispute resolution through good faith discussion within 15 business days (\u00a72.7)",
+            "Independent IP attorney to provide classification recommendation within 30 days of engagement (\u00a72.7)",
+            "MBM to exercise or decline right of first refusal within 30 business days of Contractor notice (\u00a74.3)",
+            "MBM to approve/deny subcontractors within 10 business days with deemed approval if no response (\u00a76.4)",
+            "MBM to disclose all active or recently resolved security incidents prior to Contractor tool deployment (\u00a77.6)",
+            "Either party to provide 60 days written notice before non-renewal (\u00a79.1)",
+            "Activating party to provide minimum 30 days review period for Exhibit E transfer pricing framework before implementation"
+          ],
+          "discoveries": [
+            "Exhibit A was completely unpopulated\u2014single largest risk gap in agreement, enabling IP ownership disputes",
+            "Verbal March 10 IP framework agreement was never codified, creating conflicting interpretations of what constitutes Company IP",
+            "PHI/HIPAA work had no explicit compliance gate, potentially enabling non-compliant clinical work before BAA execution",
+            "Right of first refusal was broad enough to block the Partnership's entire healthcare market addressable market",
+            "MBM infrastructure compromise (active GCP compromise mentioned) exposed contractor tool/credential security risks that agreement previously didn't address"
+          ],
+          "action_items": [
+            {
+              "who": "Both parties",
+              "what": "Complete and populate Exhibit A with 8 pre-existing IP items, including MERIDIAN Daemon Mesh, MIG, Voice Intelligence Pipeline, and deployment tooling\u2014signed and retained by both before agreement execution"
+            },
+            {
+              "who": "Both parties",
+              "what": "Execute Exhibit B (Business Associate Agreement) before any Project 2 or PHI-related work can commence under Phase 2 gate (\u00a75.5)"
+            },
+            {
+              "who": "MBM and legal counsel",
+              "what": "Implement IP classification dispute process per \u00a72.7 including good faith discussion triggers, independent attorney engagement protocol, and binding recommendation procedures"
+            },
+            {
+              "who": "MBM",
+              "what": "Establish and communicate security incident disclosure procedures per \u00a77.6 covering infrastructure access, incident notification timelines, and credential management before Contractor system access"
+            },
+            {
+              "who": "Contractor",
+              "what": "Identify and maintain current inventory of all pre-existing IP and notify MBM of any competitive developments triggering right of first refusal evaluation per \u00a74.3"
+            }
+          ],
+          "detail_page": "calls/2026-03-25-ip-agreement-v3-proposed-revisions.html",
+          "preview": "Proposed revisions to MBM contractor IP agreement closing ambiguity gaps through detailed definitions, dispute processes, layered architecture codification, and security standards while preserving MBM's absolute company IP ownership."
         },
         {
           "date": "2026-03-21",
@@ -6048,15 +4602,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 50,
+        "total_calls": 51,
         "internal_calls": 24,
-        "external_calls": 5,
+        "external_calls": 6,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-03-25T02:21:08.420120+00:00",
+      "updated_at": "2026-03-25T02:59:36.901496+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -7122,7 +5676,7 @@
       "total_docs": 175
     },
     "deals": {
-      "updated_at": "2026-03-25T02:21:08.420218+00:00",
+      "updated_at": "2026-03-25T02:59:36.901615+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7356,7 +5910,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-25T02:21:08.330961+00:00",
+      "updated_at": "2026-03-25T02:59:36.629338+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -8748,6 +7302,476 @@
           },
           "_file": "clients/gordon-gcc/audits/csuite-audit-readme.json",
           "_client": "gordon-gcc"
+        },
+        {
+          "audit_version": "1.0",
+          "audited_at": "2026-03-25T02:59:00.963204+00:00",
+          "transcript_file": "clients/mbm/ip-agreement-v3-proposed-revisions.md",
+          "transcript_length": 17452,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [],
+            "call_topic": ""
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "task": "Identify and document all Contractor Pre-Existing IP tools in Exhibit A",
+                  "owner": "Contractor",
+                  "deadline": "Before agreement execution (or add promptly thereafter per 3.4)",
+                  "status": "BLOCKING \u2014 required to define IP boundaries"
+                },
+                {
+                  "task": "Contractor to notify MBM if developing competitive products/services",
+                  "owner": "Contractor",
+                  "deadline": "At time of development contemplation (4.3)",
+                  "status": "Ongoing obligation"
+                },
+                {
+                  "task": "MBM to exercise or waive right of first refusal",
+                  "owner": "MBM",
+                  "deadline": "30 business days after Contractor's notice (4.3)",
+                  "status": "Response deadline \u2014 silence = waiver"
+                },
+                {
+                  "task": "Implement segregation practices (separate repos, credentials, PM tools)",
+                  "owner": "Both parties (Contractor primary implementer)",
+                  "deadline": "Prior to or concurrent with project start",
+                  "status": "BLOCKING \u2014 prerequisite for clean IP classification"
+                },
+                {
+                  "task": "MBM to provide Contractor with isolated dev environment credentials",
+                  "owner": "MBM",
+                  "deadline": "Before Contractor accesses MBM systems",
+                  "status": "Infrastructure prerequisite"
+                },
+                {
+                  "task": "Contractor to execute IP assignment documents within 30 business days OR MBM appoints attorney-in-fact",
+                  "owner": "Contractor",
+                  "deadline": "30 business days after MBM request (2.5)",
+                  "status": "Default enforcement mechanism if non-responsive"
+                },
+                {
+                  "task": "Complete Article 5 (HIPAA Compliance) \u2014 document cuts off mid-section",
+                  "owner": "Legal counsel",
+                  "deadline": "Before execution",
+                  "status": "CRITICAL GAP \u2014 PHI handling is incomplete"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Exhibit A is referenced but not provided \u2014 no baseline list of Contractor Pre-Existing IP",
+                  "impact": "HIGH \u2014 creates ambiguity in IP boundaries from day one",
+                  "fix_owner": "Legal + Contractor",
+                  "severity": "BLOCKING"
+                },
+                {
+                  "gap": "HIPAA compliance section (5.5) is incomplete \u2014 cuts off mid-sentence",
+                  "impact": "CRITICAL \u2014 if Contractor handles PHI, compliance requirements are undefined",
+                  "fix_owner": "Legal + Contractor + Compliance",
+                  "severity": "BLOCKING"
+                },
+                {
+                  "gap": "No definition of 'commercially reasonable' segregation practices (3.5)",
+                  "impact": "MEDIUM \u2014 creates enforcement ambiguity",
+                  "fix_owner": "Legal + both parties",
+                  "severity": "HIGH"
+                },
+                {
+                  "gap": "No procedure for monitoring segregation or detecting IP boundary violations",
+                  "impact": "MEDIUM \u2014 relies on good faith; no audit mechanism specified",
+                  "fix_owner": "MBM + Contractor",
+                  "severity": "MEDIUM"
+                },
+                {
+                  "gap": "Partnership's multi-agentic PaaS product (mentioned in 4.3 exclusion) is not formally defined in Exhibit A",
+                  "impact": "MEDIUM \u2014 carve-out exists but scope is vague",
+                  "fix_owner": "Contractor + Legal",
+                  "severity": "MEDIUM"
+                },
+                {
+                  "gap": "No procedure for updating Exhibit A as new tools or IP are identified",
+                  "impact": "MEDIUM \u2014 tools added 'promptly' (3.4) but no formal amendment process",
+                  "fix_owner": "Legal + both parties",
+                  "severity": "MEDIUM"
+                },
+                {
+                  "gap": "IP classification dispute resolution relies on mutually agreed independent attorney, but no process for selecting if parties disagree on counsel",
+                  "impact": "LOW-MEDIUM \u2014 could stall dispute resolution",
+                  "fix_owner": "Legal",
+                  "severity": "LOW"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "milestone": "IP classification disputes resolved",
+                  "timeline": "15 business days (good faith discussion) + 30 days (independent attorney review) + 15 days (formal dispute initiation window) = ~60 business days max",
+                  "realistic": true,
+                  "risk": "Assumes parties agree on attorney; if not, timeline extends indefinitely"
+                },
+                {
+                  "milestone": "MBM decision on right of first refusal",
+                  "timeline": "30 business days after Contractor notice",
+                  "realistic": true,
+                  "risk": "Tight for due diligence if deal is complex; consider extending to 45 days"
+                },
+                {
+                  "milestone": "Contractor executes IP assignment documents",
+                  "timeline": "30 business days after MBM request",
+                  "realistic": true,
+                  "risk": "Assumes Contractor is responsive; default mechanism (attorney-in-fact) is enforcement lever"
+                },
+                {
+                  "milestone": "Document copies provided to Contractor (if attorney-in-fact executes)",
+                  "timeline": "5 business days after execution",
+                  "realistic": true,
+                  "risk": "Routine compliance task"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "Independent IP attorney (for dispute classification)",
+                  "need_type": "External counsel",
+                  "trigger": "Activation only if IP classification dispute arises (2.7)",
+                  "cost_model": "Shared equally between parties",
+                  "owner": "Both parties coordinate"
+                },
+                {
+                  "resource": "Dedicated infrastructure access credentials + isolated dev environment",
+                  "need_type": "MBM infrastructure",
+                  "trigger": "Before Contractor accesses MBM systems",
+                  "owner": "MBM infrastructure team",
+                  "dependency": "Must be separate from MBM general business systems (3.5)"
+                },
+                {
+                  "resource": "Legal counsel to complete Article 5 (HIPAA)",
+                  "need_type": "Internal counsel",
+                  "trigger": "Before agreement execution",
+                  "owner": "MBM legal",
+                  "dependency": "BLOCKING \u2014 cannot execute if PHI handling is undefined"
+                },
+                {
+                  "resource": "Exhibit A definition document (Contractor Pre-Existing IP inventory)",
+                  "need_type": "Documentation",
+                  "trigger": "Before execution",
+                  "owner": "Contractor + Legal",
+                  "dependency": "Critical for IP boundary clarity"
+                },
+                {
+                  "resource": "IP segregation monitoring/audit capability",
+                  "need_type": "Process + tooling",
+                  "trigger": "Before project start",
+                  "owner": "MBM + Contractor",
+                  "cost": "TBD based on audit scope"
+                }
+              ],
+              "dependencies": [
+                {
+                  "dependency": "Exhibit A (Contractor Pre-Existing IP list) \u2192 Everything downstream",
+                  "impact": "CRITICAL",
+                  "blocker": "Cannot finalize agreement without baseline IP inventory",
+                  "resolution_owner": "Contractor"
+                },
+                {
+                  "dependency": "Article 5 HIPAA completion \u2192 PHI handling procedures",
+                  "impact": "CRITICAL",
+                  "blocker": "Cannot start if Contractor handles patient data",
+                  "resolution_owner": "MBM legal + compliance"
+                },
+                {
+                  "dependency": "MBM infrastructure credentials \u2192 Contractor can segregate work",
+                  "impact": "HIGH",
+                  "blocker": "Without isolated dev environment, segregation (3.5) becomes impossible",
+                  "resolution_owner": "MBM infrastructure"
+                },
+                {
+                  "dependency": "Partnership PaaS product definition \u2192 Right of First Refusal scope (4.3)",
+                  "impact": "MEDIUM",
+                  "blocker": "Carve-out is vague; conflicts arise if Partnership product overlaps MBM project",
+                  "resolution_owner": "Contractor + Legal"
+                },
+                {
+                  "dependency": "IP classification dispute process \u2192 Active IP disputes can be resolved fairly",
+                  "impact": "MEDIUM",
+                  "blocker": "Without independent attorney selection process, disputes could deadlock",
+                  "resolution_owner": "Legal"
+                },
+                {
+                  "dependency": "Segregation monitoring capability \u2192 Enforcement of IP boundaries",
+                  "impact": "MEDIUM",
+                  "blocker": "Agreement defines segregation obligation but provides no verification mechanism",
+                  "resolution_owner": "MBM + Contractor"
+                }
+              ],
+              "meta": {
+                "analysis_date": "2026-03-24",
+                "document_status": "INCOMPLETE \u2014 Article 5 Section 5.5 cuts off mid-sentence",
+                "critical_blockers": [
+                  "Article 5 (HIPAA) incomplete \u2014 cannot execute if PHI involved",
+                  "Exhibit A missing \u2014 IP boundaries undefined",
+                  "Independent attorney selection process missing \u2014 dispute resolution could deadlock"
+                ],
+                "recommendation": "DO NOT EXECUTE until: (1) Article 5 completed, (2) Exhibit A signed, (3) Independent attorney selection procedure defined"
+              }
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Three-layer architecture (Infrastructure/Application/Data layers with clear boundaries)",
+                "Segregated development environments and code repositories for project isolation",
+                "Isolated development credentials and access controls distinct from MBM's general business systems",
+                "PHI/Protected Health Information handling and storage systems",
+                "Clinical workflow management and practice-specific business logic systems",
+                "Patient data management systems with exclusive MBM ownership",
+                "IP classification and tracking system to manage Company IP vs. Contractor Pre-Existing IP",
+                "API-based integration patterns for embedded Contractor tools (licensing model requires clear interfaces)"
+              ],
+              "integrations": [
+                "Contractor's proprietary tools/platforms/frameworks as Infrastructure Layer (embedded license required)",
+                "Partnership's multi-agentic PaaS API product (explicitly carved out as non-competitive in Section 4.3)",
+                "MBM's proprietary software, datasets, and clinical protocols (as specifications for Application Layer)",
+                "General-purpose cloud hosting, development tools, communication platforms (explicitly NOT MBM Resources)",
+                "Independent IP attorney consultation system (for dispute resolution per Section 2.7)"
+              ],
+              "security_compliance": [
+                "HIPAA compliance framework (Section 5.5, appears incomplete in transcript but clearly required)",
+                "Protected Health Information (PHI) access controls and handling procedures",
+                "Segregated infrastructure access credentials and authentication",
+                "Work segregation practices with separate code repos, documentation, access controls",
+                "IP confidentiality during classification disputes (neither party uses/transfers disputed IP without consent)",
+                "Attorney-in-fact power of authority for IP registration/enforcement (with dispute carveouts)",
+                "Audit trail for documents executed under power of attorney (5-day copy notification required)"
+              ],
+              "build_vs_buy": [
+                {
+                  "decision": "BUILD (MBM)",
+                  "component": "Application Layer - clinical workflows, practice-specific UI, business logic, user interfaces",
+                  "rationale": "Custom to MBM's specific clinical requirements and patient data",
+                  "risk": "Dependent on Contractor's Infrastructure Layer stability"
+                },
+                {
+                  "decision": "BUY/LICENSE (MBM from Contractor)",
+                  "component": "Infrastructure Layer - Contractor's proprietary tools, platforms, frameworks",
+                  "rationale": "Contractor Pre-Existing IP licensed as foundation; non-exclusive, royalty-free, perpetual",
+                  "constraint": "License limited to embedded use in deliverables; cannot build new standalone products from it"
+                },
+                {
+                  "decision": "PARTNER (MBM + Contractor)",
+                  "component": "Partnership's multi-agentic PaaS API product",
+                  "rationale": "General-purpose tool usable across healthcare and other industries; explicitly non-competitive",
+                  "scope": "Explicitly carved out from right of first refusal restriction"
+                },
+                {
+                  "decision": "GENERAL-PURPOSE (both parties)",
+                  "component": "Cloud hosting, development tools, communication platforms, general APIs",
+                  "rationale": "Not proprietary to either party; explicitly NOT considered MBM Resources",
+                  "implication": "Should follow standard vendor selection process"
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Architecture Coupling Dependency",
+                  "severity": "MEDIUM",
+                  "description": "Custom Application Layer is tightly dependent on Contractor's Infrastructure Layer tools. Changes to Infrastructure could cascade to Application.",
+                  "mitigation": "Define clear API boundaries in Exhibit A; version control for Infrastructure interfaces; licensing terms address maintenance obligations"
+                },
+                {
+                  "risk": "IP Classification Disputes Block Development",
+                  "severity": "MEDIUM-HIGH",
+                  "description": "Section 2.7 creates 45-60 day dispute resolution window. During disputes, neither party can use disputed IP without consent, potentially halting feature development.",
+                  "mitigation": "Comprehensive Exhibit A documenting all pre-existing IP upfront; clear architectural boundaries between layers; independent IP attorney pre-engagement"
+                },
+                {
+                  "risk": "PHI/HIPAA Compliance Complexity",
+                  "severity": "HIGH",
+                  "description": "Healthcare data requires strict handling, segregation, and audit trails. Incomplete in transcript (Section 5.5) but critical for system design.",
+                  "mitigation": "Dedicated PHI handling subsystem; encryption at rest/in transit; role-based access controls; audit logging; regular HIPAA compliance audits"
+                },
+                {
+                  "risk": "Vendor Lock-in via Infrastructure Dependency",
+                  "severity": "MEDIUM",
+                  "description": "Section 4.3 right of first refusal on competitive developments + exclusive licensing of Contractor's Infrastructure Layer creates switching costs. If partnership ends, MBM has limited ability to migrate to alternative Infrastructure.",
+                  "mitigation": "Negotiate data portability requirements; API documentation and escrow agreements; evaluate build-vs-partner trade-offs before Architecture Layer lock-in"
+                },
+                {
+                  "risk": "Licensing Constraint on Innovation",
+                  "severity": "MEDIUM",
+                  "description": "Section 3.4 restricts MBM's use of embedded Contractor tools to deliverable-related purposes only. Cannot reuse Infrastructure Layer components for new, standalone products (e.g., adjacent clinical modules).",
+                  "mitigation": "Negotiate expansion clause for related products; define 'unrelated to Project' narrowly; include option to negotiate new licensing terms for emergent use cases"
+                },
+                {
+                  "risk": "Documentation/Specification Debt",
+                  "severity": "MEDIUM",
+                  "description": "Success depends on maintaining clear Exhibit A (tools list), MBM Resources specs, and layered architecture docs. Missing/outdated specs increase dispute likelihood.",
+                  "mitigation": "Version control for Exhibit A; quarterly Exhibit A review/update; architecture document as source of truth; automated validation that code adheres to layer model"
+                },
+                {
+                  "risk": "Segregation Infrastructure Failure",
+                  "severity": "HIGH",
+                  "description": "Section 3.5 requires separate code repos, credentials, and documentation. Single point of failure (e.g., shared authentication system, shared CI/CD pipeline) could leak Contractor's pre-existing IP or MBM's PHI.",
+                  "mitigation": "Isolated CI/CD pipelines; separate VCS access tokens; namespace isolation in shared infrastructure; automated credential rotation; audit trails for cross-layer access"
+                },
+                {
+                  "risk": "Incomplete HIPAA Section (5.5)",
+                  "severity": "CRITICAL",
+                  "description": "Section 5.5 appears cut off in transcript. Full HIPAA requirements unknown; likely includes Business Associate Agreement (BAA) requirements, data breach notification, subprocessor management.",
+                  "mitigation": "OBTAIN FULL SECTION 5.5; Legal review for BAA compliance; ensure technical architecture supports required HIPAA controls before build begins"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "MBM Resources definition narrowly scoped",
+                  "implication": "General-purpose infrastructure explicitly excluded from MBM Resources ownership. Contractor can reuse cloud hosting, dev tools, communication platforms across clients without IP claims.",
+                  "risk_level": "LOW",
+                  "note": "This is a WIN for contractor \u2014 prevents MBM from claiming ownership of generic tools just because they were *used* on MBM project"
+                },
+                {
+                  "decision": "Layered Architecture model formalized (Sec 3.6)",
+                  "implication": "Infrastructure (contractor pre-existing IP) / Application (Company IP) / Data (MBM) separation is now contractually binding. Reduces ambiguity in future disputes.",
+                  "risk_level": "LOW",
+                  "note": "Strategic clarity decision. Prevents disputes about what layer owns what."
+                },
+                {
+                  "decision": "IP Classification Disputes \u2192 Binding Independent Arbitration (Sec 2.7)",
+                  "implication": "Instead of litigation, mutually agreed independent IP attorney makes binding recommendation. Faster, cheaper, lower legal risk.",
+                  "risk_level": "MEDIUM",
+                  "note": "Good for speed, but only works if both parties cooperate. Either party can still initiate formal dispute within 15 days."
+                },
+                {
+                  "decision": "Company IP definition VERY expansive (Sec 1.1)",
+                  "implication": "Includes anything 'based on, derived from, or incorporating MBM's Confidential Information.' This could capture tools/processes contractor built *independently* if they use MBM data.",
+                  "risk_level": "HIGH",
+                  "note": "This definition could be interpreted to claim ownership of contractor's general tools if they're ever used on MBM data. Negotiate tighter boundary."
+                },
+                {
+                  "decision": "Power of Attorney for IP Perfection (Sec 2.5 revised)",
+                  "implication": "MBM can file patents/copyrights on contractor's behalf if contractor doesn't sign off in 30 days. Strong enforcement lever, but limited by IP disputes clause.",
+                  "risk_level": "MEDIUM",
+                  "note": "Reasonable safeguard for MBM, but ensure contractor's counsel reviews all POA uses."
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "Partnership's Multi-Agentic PaaS API product is explicitly carved out from Right of First Refusal",
+                  "details": "Section 4.3 specifically excludes 'Partnership's multi-agentic PaaS API product and related services' from MBM's ROFR. This is a MAJOR win.",
+                  "strategic_value": "Contractor can build and commercialize their own PaaS platform independently, even for healthcare market, without MBM claiming a right to negotiate/acquire it.",
+                  "next_steps": "Confirm Exhibit A clearly identifies what constitutes this 'PaaS API product' and ensure it's maintained as separate IP. This is your independent revenue stream protection."
+                },
+                {
+                  "opportunity": "Contractor Pre-Existing IP license is narrowly scoped (Sec 3.4)",
+                  "details": "MBM gets only 'royalty-free, non-exclusive license to use any such tools solely to the extent embedded in or necessary for operation, maintenance, and modification of Deliverables, but NOT for development of new, standalone products.'",
+                  "strategic_value": "Contractor's tools remain their property. MBM can't fork them into new products without contractor involvement. Protects contractor from being margin-squeezed.",
+                  "next_steps": "Ensure Exhibit A is comprehensive and updated frequently as tools evolve."
+                },
+                {
+                  "opportunity": "Segregation of Work (Sec 3.5) shifts burden to MBM for infrastructure",
+                  "details": "'MBM shall provide Contractor with dedicated infrastructure access credentials and isolated development environments for Project work, distinct from MBM's general business systems.'",
+                  "strategic_value": "MBM is contractually obligated to isolate contractor's work. If they don't, and work gets commingled, contractor has legal defense against broad IP claims.",
+                  "next_steps": "Get written confirmation that isolated environments are in place before work begins. Document the segregation."
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "Company IP definition is over-broad and could capture contractor's independent work",
+                  "details": "Section 1.1(b): 'based on, derived from, or incorporating MBM's Confidential Information' is vague. If contractor builds a tool using MBM clinical data/workflows, is it Company IP even if contractor owns the code?",
+                  "severity": "HIGH",
+                  "mitigation": "Add explicit boundary: 'Contractor IP remains Contractor IP even if created using MBM Confidential Information, provided (i) Contractor does not copy/reuse MBM-specific business logic, and (ii) the tool is generalized for multi-client use.' Without this, contractor is exposed."
+                },
+                {
+                  "threat": "Power of Attorney (Sec 2.5) could be abused for patent/copyright filings contractor doesn't endorse",
+                  "details": "If contractor doesn't sign docs in 30 days, MBM becomes contractor's attorney-in-fact and can file patents/copyrights unilaterally. Even though disputes clause limits this, it creates risk.",
+                  "severity": "MEDIUM",
+                  "mitigation": "Require advance notice and contractor approval for any POA use. Add: 'MBM shall provide Contractor with draft documents 10 days before POA deadline to allow review and objection.'"
+                },
+                {
+                  "threat": "HIPAA Phase 2 compliance requirement is cut off (Sec 5.5 incomplete)",
+                  "details": "Document cuts off mid-Section 5.5 'HIPAA Compliance (revised, with Phase 2 gate)'. We don't see what 'Phase 2' entails. Could be BAA requirements, encryption standards, audit obligations, or liability caps.",
+                  "severity": "CRITICAL",
+                  "mitigation": "Full text required before any PHI work begins. Ensure contractor's infrastructure can meet requirements. HIPAA violations = $100-$50k per violation in fines + state AG enforcement."
+                },
+                {
+                  "threat": "Right of First Refusal could be interpreted broadly despite carve-outs",
+                  "details": "Section 4.3 says ROFR doesn't apply to 'general-purpose tools' or 'services for other clients in healthcare,' but litigation could hinge on what 'substantially similar' means. MBM could claim contractor's work for other health orgs infringes ROFR.",
+                  "severity": "MEDIUM",
+                  "mitigation": "Add explicit examples: 'ROFR does not apply to X, Y, Z [specific tools/services]. Define 'substantially similar' with reference to particular Project SOW features, not broad categories like 'healthcare workflow.'"
+                },
+                {
+                  "threat": "Segregation of Work (Sec 3.5) is unilateral commitment but depends on MBM's infrastructure",
+                  "details": "Contractor must 'maintain commercially reasonable practices to segregate work' but MBM is responsible for 'providing dedicated infrastructure.' If MBM doesn't provide isolated environments and work gets commingled, contractor could still be exposed to broad IP claims.",
+                  "severity": "MEDIUM",
+                  "mitigation": "Make this a pre-condition: 'Work shall not commence until MBM provides documented evidence of isolated dev environments, separate VPCs, distinct access credentials, and quarterly audit certificates.'"
+                }
+              ],
+              "commitments": [
+                {
+                  "commitment": "Execute IP perfection documents on MBM's request (within 30 days or via POA)",
+                  "party": "Contractor",
+                  "scope": "Patents, copyrights, assignments, declarations, powers of attorney for all Company IP",
+                  "enforceability": "STRONG (POA fallback if contractor doesn't sign)"
+                },
+                {
+                  "commitment": "Identify Contractor Pre-Existing IP in Exhibit A (promptly, if new tools added)",
+                  "party": "Contractor",
+                  "scope": "Any contractor tools, frameworks, platforms used on MBM project",
+                  "enforceability": "STRONG (failure to disclose could be interpreted as waiver of contractor IP claim)"
+                },
+                {
+                  "commitment": "Maintain segregation of MBM work from Contractor's other work",
+                  "party": "Both (MBM provides infrastructure, Contractor maintains practices)",
+                  "scope": "Code repos, project mgmt, documentation, access credentials",
+                  "enforceability": "MEDIUM (depends on MBM providing infrastructure)"
+                },
+                {
+                  "commitment": "Notify MBM of competing developments and grant Right of First Refusal (with carve-outs)",
+                  "party": "Contractor",
+                  "scope": "'Substantially similar' products/services directly competitive with Project Deliverables",
+                  "enforceability": "STRONG (but definition of 'substantially similar' is ambiguous)"
+                },
+                {
+                  "commitment": "Comply with HIPAA Phase 2 requirements (details TBD)",
+                  "party": "Contractor",
+                  "scope": "Protection, encryption, audit compliance for any PHI access/processing",
+                  "enforceability": "CRITICAL (federal law + state enforcement + private liability)"
+                }
+              ],
+              "narrative_assessment": {
+                "overall": "Contractor-favorable in specific carve-outs (PaaS API independence, narrow license scope), MBM-favorable in baseline ownership and enforcement mechanisms. NOT balanced \u2014 favors MBM significantly in ambiguous areas.",
+                "strengths": [
+                  "Layered architecture provides clarity and reduces future disputes",
+                  "Binding arbitration is faster/cheaper than litigation",
+                  "PaaS API product is explicitly protected from MBM control",
+                  "General-purpose infrastructure clearly excluded from MBM ownership"
+                ],
+                "weaknesses": [
+                  "Company IP definition is over-broad ('based on, derived from, or incorporating MBM Confidential Information') and could capture contractor's independent tools",
+                  "Power of Attorney for IP perfection is strong enforcement tool; contractor has little recourse if MBM files patents contractor doesn't endorse",
+                  "HIPAA Phase 2 requirements are hidden \u2014 potential liability/infrastructure burden not disclosed",
+                  "Right of First Refusal definition of 'substantially similar' is vague and litigation-prone",
+                  "Segregation of work depends entirely on MBM providing infrastructure; if they don't, contractor's IP is at risk"
+                ],
+                "CEO-level_recommendations": [
+                  "**CRITICAL**: Get full HIPAA Phase 2 text. Ensure infrastructure can meet requirements before signing.",
+                  "**HIGH**: Tighten Company IP definition to exclude contractor's independent tools, even if they analyze MBM data. Add: 'Contractor IP remains Contractor IP even if created using MBM Confidential Information, provided Contractor does not copy MBM-specific business logic and the tool is generalized for multi-client use.'",
+                  "**HIGH**: Define 'substantially similar' in ROFR with explicit examples from SOW. Exclude specific categories (healthcare workflows not identifiable as MBM-specific, general-purpose data processing, etc.).",
+                  "**MEDIUM**: Require advance notice for any POA use. Draft documents 10 days before 30-day deadline to allow contractor review.",
+                  "**MEDIUM**: Make segregation of work a pre-condition to work commencement. Require documented evidence of isolated VPCs, separate credentials, quarterly audit certs.",
+                  "**STRATEGIC**: The PaaS API carve-out is your independence. Ensure Exhibit A is comprehensive and maintained as you evolve. This is your revenue stream protection."
+                ],
+                "representation_quality": "Professional, thorough, contractor-aware. Whoever drafted these revisions (Lens + Prism per header) understood contractor interests and negotiated meaningful protections. However, gaps exist (HIPAA, over-broad definitions) that need fixing before signature.",
+                "fair_bilateral_claim_assessment": "**NOT truly bilateral.** The document is MBM-favorable in ambiguous areas (Company IP definition, ROFR scope, POA enforcement). Contractor protections are narrow and specific (PaaS API, MBM Resources definition, Layered Architecture). A truly bilateral agreement would have equal ambiguity-resolution mechanisms favoring both parties or neither. Here, ambiguities favor MBM. Contractor negotiated well on SPECIFIC items but lost on STRUCTURAL balance."
+              }
+            }
+          },
+          "_file": "clients/mbm/audits/csuite-audit-ip-agreement-v3-proposed-revisions.json",
+          "_client": "mbm"
         },
         {
           "audit_version": "1.0",
@@ -16822,18 +15846,58 @@
           "_client": "unknown"
         }
       ],
-      "total": 38
+      "total": 39
     },
     "call_intelligence": {
-      "updated_at": "2026-03-25T02:21:08.437591+00:00",
+      "updated_at": "2026-03-25T02:59:36.905722+00:00",
       "signal_summary": {
         "total_objections": 22,
         "total_buying_signals": 14,
         "total_competitors": 21,
-        "pricing_discussions": 7,
-        "calls_with_signals": 14
+        "pricing_discussions": 8,
+        "calls_with_signals": 15
       },
       "decisions": [
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Define 'MBM Resources' to exclude general-purpose equipment and infrastructure from IP capture scope"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Implement IP classification dispute fast-track with independent attorney review instead of arbitration (\u00a72.7)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Codify three-layer architecture model (Infrastructure/Application/Data) as governing framework for IP classification"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Narrow right of first refusal to Project-specific competition only, explicitly excluding Partnership's multi-agent PaaS platform"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Add Phase 2 HIPAA gate requiring executed BAA before any PHI-related work or Project 2 commencement (\u00a75.5)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Revise attorney-in-fact powers to exclude disputed IP and terminate automatically on agreement end (\u00a72.5)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Add MBM security standards representation and warranty addressing infrastructure and incident disclosure (\u00a77.6)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "decision": "Change Exhibit E transfer pricing framework from unilateral imposition to mutual activation with 30-day review period"
+        },
         {
           "date": "2026-03-21",
           "call": "Internal debrief on Denver consultation",
@@ -17572,6 +16636,46 @@
           "what": "Alex: Review agreement and discuss with Dr. Omar before signing"
         },
         {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "Contractor to execute IP assignment documents within 30 business days of MBM request (\u00a72.5)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "Parties to attempt IP classification dispute resolution through good faith discussion within 15 business days (\u00a72.7)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "Independent IP attorney to provide classification recommendation within 30 days of engagement (\u00a72.7)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "MBM to exercise or decline right of first refusal within 30 business days of Contractor notice (\u00a74.3)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "MBM to approve/deny subcontractors within 10 business days with deemed approval if no response (\u00a76.4)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "MBM to disclose all active or recently resolved security incidents prior to Contractor tool deployment (\u00a77.6)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "Either party to provide 60 days written notice before non-renewal (\u00a79.1)"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "what": "Activating party to provide minimum 30 days review period for Exhibit E transfer pricing framework before implementation"
+        },
+        {
           "date": "2026-03-21",
           "call": "Internal debrief on Denver consultation",
           "who": "Mike Bitler",
@@ -18079,6 +17183,31 @@
           "date": "2026-03-25",
           "call": "Audit1",
           "discovery": "Section 1.1(c) 'resources' undefined \u2014 could capture personal projects on MBM-provided equipment as Company IP"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "discovery": "Exhibit A was completely unpopulated\u2014single largest risk gap in agreement, enabling IP ownership disputes"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "discovery": "Verbal March 10 IP framework agreement was never codified, creating conflicting interpretations of what constitutes Company IP"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "discovery": "PHI/HIPAA work had no explicit compliance gate, potentially enabling non-compliant clinical work before BAA execution"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "discovery": "Right of first refusal was broad enough to block the Partnership's entire healthcare market addressable market"
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "discovery": "MBM infrastructure compromise (active GCP compromise mentioned) exposed contractor tool/credential security risks that agreement previously didn't address"
         },
         {
           "date": "2026-03-21",
@@ -18906,6 +18035,46 @@
           "action": {
             "who": "Alex",
             "what": "Send refined message to Dr. Omar flagging open exhibits and requesting alignment before execution"
+          }
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "action": {
+            "who": "Both parties",
+            "what": "Complete and populate Exhibit A with 8 pre-existing IP items, including MERIDIAN Daemon Mesh, MIG, Voice Intelligence Pipeline, and deployment tooling\u2014signed and retained by both before agreement execution"
+          }
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "action": {
+            "who": "Both parties",
+            "what": "Execute Exhibit B (Business Associate Agreement) before any Project 2 or PHI-related work can commence under Phase 2 gate (\u00a75.5)"
+          }
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "action": {
+            "who": "MBM and legal counsel",
+            "what": "Implement IP classification dispute process per \u00a72.7 including good faith discussion triggers, independent attorney engagement protocol, and binding recommendation procedures"
+          }
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "action": {
+            "who": "MBM",
+            "what": "Establish and communicate security incident disclosure procedures per \u00a77.6 covering infrastructure access, incident notification timelines, and credential management before Contractor system access"
+          }
+        },
+        {
+          "date": "2026-03-25",
+          "call": "Ip Agreement V3 Proposed Revisions",
+          "action": {
+            "who": "Contractor",
+            "what": "Identify and maintain current inventory of all pre-existing IP and notify MBM of any competitive developments triggering right of first refusal evaluation per \u00a74.3"
           }
         },
         {
@@ -20458,6 +19627,11 @@
         {
           "date": "",
           "sentiment": "neutral",
+          "client": "mbm"
+        },
+        {
+          "date": "",
+          "sentiment": "neutral",
           "client": "gordon-gcc"
         },
         {
@@ -20486,13 +19660,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 146,
-      "total_commitments": 96,
-      "total_discoveries": 159,
-      "total_action_items": 200
+      "total_decisions": 154,
+      "total_commitments": 104,
+      "total_discoveries": 164,
+      "total_action_items": 205
     },
     "attention": {
-      "updated_at": "2026-03-25T02:21:08.448021+00:00",
+      "updated_at": "2026-03-25T02:59:36.919539+00:00",
       "items": [
         {
           "type": "blocked",
@@ -20567,68 +19741,8 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-25T02:21:08.448055+00:00",
+      "updated_at": "2026-03-25T02:59:36.919593+00:00",
       "events": [
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:16:19Z",
-          "title": "docs(sales): Rankona Mazon deep audit \u2014 technical forensics + attack surface & q",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:15:48Z",
-          "title": "docs(agentvox): Wave 10 \u2014 mark P0 complete, update priorities",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:09:43Z",
-          "title": "feat(agentvox): seed scripts \u2014 5 agents, 25 contacts, 3 knowledge bases",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:09:18Z",
-          "title": "feat(sales): comprehensive rankonamazon.com prospect audit \u2014 7-file deep dive",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:08:56Z",
-          "title": "feat(agentvox): workflow execution engine \u2014 triggers on call events",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T02:08:21Z",
-          "title": "docs: research extraction pipeline \u2014 what was built, what's next, how to use",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:52:23Z",
-          "title": "feat(sales): add MERIDIAN x StretchMed engagement proposal \u2014 phased engagement w",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:49:57Z",
-          "title": "docs(sales): Rankona Mazon full audit \u2014 6-file series (company profile, services",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:48:34Z",
-          "title": "docs(agentvox): Wave 9 \u2014 workflow backend, auth fix, PC deployment, docs",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-25T01:39:24Z",
-          "title": "chore: update boot-state.md \u2014 deployed 25a35781",
-          "detail": "covaultxyz"
-        },
         {
           "type": "call",
           "date": "2026-03-25",
@@ -20636,61 +19750,91 @@
           "detail": "external \u2014 alex"
         },
         {
-          "type": "issue",
+          "type": "call",
           "date": "2026-03-25",
-          "title": "#1715 feat(#1714): selective outbound email redaction for Telegram",
-          "detail": "open"
+          "title": "Ip Agreement V3 Proposed Revisions",
+          "detail": "external \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-03-25",
-          "title": "#1714 fix(sanitizer): Telegram relay over-redacts public email add",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-21",
+          "title": "Internal debrief on Denver consultation",
+          "detail": "external \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-25",
-          "title": "#1713 Secret hygiene: stop redacting external email addresses",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-21",
+          "title": "At Ely Beckman's location \u2014 setup + strategy",
+          "detail": "external \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1710 feat: Cortex \u2192 NotebookLM training pipeline \u2014 modular MERIDI",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-21",
+          "title": "At Mike Bitler's house \u2014 Denver review",
+          "detail": "external \u2014 alex, Mike Bitler, denver"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1709 feat(#1708): activate cortex refresh pipeline for architectu",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Master War Room",
+          "detail": "notes \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1708 feat(cortex): Activate cortex pipeline \u2014 wire MERIDIAN Archi",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Mike Bitler Profile",
+          "detail": "notes \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1707 feat(#1703): virtual team ingest patterns and persona inform",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Ely Beckman Profile",
+          "detail": "notes \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1704 fix: MIG edge quality cleanup arc",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Action Items \u2014 March 18",
+          "detail": "notes \u2014 alex, Mike Bitler"
         },
         {
-          "type": "issue",
-          "date": "2026-03-24",
-          "title": "#1702 Wire virtual teams & core personas to knowledge via targeted",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "March 18 Call Index",
+          "detail": "notes \u2014 alex, Mike Bitler"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "March 18 Executive Summary",
+          "detail": "notes \u2014 alex, Mike Bitler"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "March 18 Ely Beckman Intro Summary",
+          "detail": "notes \u2014 alex, Mike Bitler"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Amazon Review Automation Spec",
+          "detail": "notes \u2014 alex, Mike Bitler"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Business Broker Pitch",
+          "detail": "notes \u2014 alex, Mike Bitler"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-18",
+          "title": "Continuity Check-In Product",
+          "detail": "notes \u2014 alex, Mike Bitler"
         }
       ],
-      "total": 35
+      "total": 15
     }
   }
 }
