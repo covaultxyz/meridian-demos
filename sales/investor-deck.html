@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN | Investor Deck</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            700: '#0e7490',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Cinematic Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Scroll Snap Container */
+        .deck-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* Each slide */
+        .slide {
+            min-height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        /* Slide entrance animation */
+        .slide-content {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .slide-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered children animation */
+        .slide-content.visible .stagger {
+            opacity: 0;
+            animation: staggerIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .slide-content.visible .stagger:nth-child(1) { animation-delay: 0.1s; }
+        .slide-content.visible .stagger:nth-child(2) { animation-delay: 0.2s; }
+        .slide-content.visible .stagger:nth-child(3) { animation-delay: 0.3s; }
+        .slide-content.visible .stagger:nth-child(4) { animation-delay: 0.4s; }
+        .slide-content.visible .stagger:nth-child(5) { animation-delay: 0.5s; }
+        .slide-content.visible .stagger:nth-child(6) { animation-delay: 0.6s; }
+        .slide-content.visible .stagger:nth-child(7) { animation-delay: 0.7s; }
+        .slide-content.visible .stagger:nth-child(8) { animation-delay: 0.8s; }
+        .slide-content.visible .stagger:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes staggerIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slide counter */
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            right: 2.5rem;
+            z-index: 40;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+            font-size: 0.875rem;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.35);
+            transition: color 0.3s;
+        }
+
+        /* Hide scrollbar */
+        .deck-container::-webkit-scrollbar { width: 0px; }
+        .deck-container { scrollbar-width: none; }
+
+        /* Glow effect for MERIDIAN quadrant */
+        .quadrant-glow {
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.2), inset 0 0 30px rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+        }
+
+        /* Status dot pulse */
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #06b6d4;
+            animation: dotPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+            50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(6, 182, 212, 0.2); }
+        }
+
+        /* Thin divider line */
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+        }
+
+        /* Tab buttons */
+        .tab-btn {
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            color: #06b6d4;
+            border-bottom-color: #06b6d4;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black">
+
+    <!-- Film Grain Overlay -->
+    <div class="film-grain"></div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter" id="slideCounter">01 / 12</div>
+
+    <!-- Deck Container -->
+    <div class="deck-container" id="deck">
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 1: Title -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="1">
+            <div class="slide-content text-center max-w-4xl mx-auto">
+                <h1 class="font-display font-900 text-7xl sm:text-8xl md:text-9xl tracking-tight leading-none stagger">
+                    MERIDIAN
+                </h1>
+                <div class="divider mx-auto mt-8 mb-6 stagger"></div>
+                <p class="font-display font-200 text-xl sm:text-2xl tracking-widest text-zinc-400 uppercase stagger">
+                    The Intelligence Layer for Business Operations
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 2: The Shift -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="2">
+            <div class="slide-content max-w-4xl mx-auto px-4">
+                <p class="font-display font-700 text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight stagger">
+                    Shopify didn't open a single store.
+                </p>
+                <p class="font-sans font-300 text-lg sm:text-xl text-zinc-400 mt-6 max-w-3xl leading-relaxed stagger">
+                    It built the software layer every store ran on &mdash; and became a $120 billion company.
+                </p>
+                <div class="mt-16 stagger">
+                    <div class="divider mb-8"></div>
+                    <p class="font-display font-700 text-2xl sm:text-3xl md:text-4xl leading-tight tracking-tight text-brand-500">
+                        The same shift is happening in business intelligence.
+                    </p>
+                    <p class="font-sans font-300 text-lg text-zinc-500 mt-4">
+                        Every company will run an AI operating layer. The question is who builds it.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 3: The Problem -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="3">
+            <div class="slide-content max-w-4xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">The Problem</p>
+                <h2 class="font-display font-700 text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight stagger">
+                    AI tools are reactive.<br>
+                    <span class="text-zinc-500">Business doesn't wait.</span>
+                </h2>
+                <div class="mt-14 space-y-8">
+                    <div class="flex items-start gap-5 stagger">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+                            <i data-lucide="clock" class="w-5 h-5 text-zinc-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">Intelligence arrives after you needed it</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-1">Insights generated post-hoc can't inform the decision they were meant to support.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5 stagger">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+                            <i data-lucide="eraser" class="w-5 h-5 text-zinc-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">Every session starts from zero</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-1">No persistent memory. No accumulated context. You re-explain everything, every time.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5 stagger">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center">
+                            <i data-lucide="volume-2" class="w-5 h-5 text-zinc-500"></i>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">AI generates noise, not clarity</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-1">Teams spend as much time managing AI output as it saves them.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 4: The Solution -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="4">
+            <div class="slide-content max-w-5xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">The Solution</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-16 stagger">
+                    A multi-agent intelligence mesh that<br>
+                    <span class="text-brand-500">orders your day</span> instead of automating it.
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="stagger rounded-2xl bg-zinc-900/50 border border-zinc-800/60 p-6 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-brand-500/50 to-transparent"></div>
+                        <p class="font-display font-700 text-brand-500 text-sm tracking-[0.2em] uppercase mb-3">Overnight</p>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">5 specialized daemons research, extract, and correlate across your data.</p>
+                    </div>
+                    <div class="stagger rounded-2xl bg-zinc-900/50 border border-zinc-800/60 p-6 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-brand-500/50 to-transparent"></div>
+                        <p class="font-display font-700 text-brand-500 text-sm tracking-[0.2em] uppercase mb-3">Morning</p>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">Coherent briefing assembled before your first meeting.</p>
+                    </div>
+                    <div class="stagger rounded-2xl bg-zinc-900/50 border border-zinc-800/60 p-6 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-brand-500/50 to-transparent"></div>
+                        <p class="font-display font-700 text-brand-500 text-sm tracking-[0.2em] uppercase mb-3">All Day</p>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">Context prepared for conversations you haven't had yet.</p>
+                    </div>
+                    <div class="stagger rounded-2xl bg-zinc-900/50 border border-zinc-800/60 p-6 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-brand-500/50 to-transparent"></div>
+                        <p class="font-display font-700 text-brand-500 text-sm tracking-[0.2em] uppercase mb-3">Continuous</p>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">System measures its own noise ratio &mdash; gets quieter over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 5: What's Already Built -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="5">
+            <div class="slide-content max-w-5xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">What's Already Built</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-12 stagger">
+                    No roadmap. <span class="text-brand-500">Only production.</span>
+                </h2>
+                <div class="overflow-hidden rounded-2xl border border-zinc-800/60">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="border-b border-zinc-800/60">
+                                <th class="font-display font-400 text-xs tracking-[0.2em] uppercase text-zinc-500 px-6 py-4">Component</th>
+                                <th class="font-display font-400 text-xs tracking-[0.2em] uppercase text-zinc-500 px-6 py-4">Metric</th>
+                                <th class="font-display font-400 text-xs tracking-[0.2em] uppercase text-zinc-500 px-6 py-4 text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Knowledge Graph</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">17,900+ nodes, 5,135 concepts</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Live</span></td>
+                            </tr>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Research Index</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">472+ documents, 7 domains</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Searchable</span></td>
+                            </tr>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Agent Coordination</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">5 daemons, distributed</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Production</span></td>
+                            </tr>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Monitoring</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">49 sentinels, 4 cadences</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Active</span></td>
+                            </tr>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Infrastructure</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">&lt;$50/month, 3 VPS</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Operational</span></td>
+                            </tr>
+                            <tr class="border-b border-zinc-800/30 stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">KaaS PoC</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">1,133 TaxSection nodes, 5,478 edges</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Queryable</span></td>
+                            </tr>
+                            <tr class="stagger">
+                                <td class="font-sans font-400 text-sm text-zinc-200 px-6 py-4">Quality Gate</td>
+                                <td class="font-sans font-300 text-sm text-zinc-400 px-6 py-4">Lens/Prism evidence-gating</td>
+                                <td class="px-6 py-4 text-right"><span class="inline-flex items-center gap-2 text-xs font-sans font-600 text-brand-500"><span class="status-dot"></span>Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 6: The Moat (Graph vs Vector) -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="6">
+            <div class="slide-content max-w-5xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">The Moat</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-14 stagger">
+                    Graph-native architecture.<br>
+                    <span class="text-zinc-500">Not bolted on after.</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Vector Search Column -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-8">
+                        <p class="font-display font-700 text-sm tracking-[0.2em] uppercase text-zinc-500 mb-8">Vector Search (RAG)</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-zinc-600"></div>
+                                <p class="font-sans font-300 text-zinc-400">Matches keywords</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-zinc-600"></div>
+                                <p class="font-sans font-300 text-zinc-400">Returns similarity scores</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-zinc-600"></div>
+                                <p class="font-sans font-300 text-zinc-400">Forgets between queries</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-zinc-600"></div>
+                                <p class="font-sans font-300 text-zinc-400">Degrades with scale</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MERIDIAN Graph Column -->
+                    <div class="stagger rounded-2xl border border-brand-500/30 bg-brand-500/5 p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-brand-500/60 to-transparent"></div>
+                        <p class="font-display font-700 text-sm tracking-[0.2em] uppercase text-brand-500 mb-8">MERIDIAN Graph</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-500"></div>
+                                <p class="font-sans font-400 text-zinc-200">Traverses relationships</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-500"></div>
+                                <p class="font-sans font-400 text-zinc-200">Returns causal connections</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-500"></div>
+                                <p class="font-sans font-400 text-zinc-200">Persistent, growing memory</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-1.5 h-1.5 rounded-full bg-brand-500"></div>
+                                <p class="font-sans font-400 text-zinc-200">Improves with scale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 7: Revenue Model -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="7">
+            <div class="slide-content max-w-6xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">Revenue Model</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-12 stagger">
+                    Two engines. <span class="text-brand-500">They compound.</span>
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Engine 1: KaaS API -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 sm:p-8">
+                        <p class="font-display font-700 text-xs tracking-[0.2em] uppercase text-brand-500 mb-6">Engine 1 &mdash; KaaS API</p>
+                        <div class="space-y-0">
+                            <div class="flex items-center justify-between py-3 border-b border-zinc-800/40">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Tax Code Intelligence</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">Q2 2026</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$300 &ndash; $1K<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                            <div class="flex items-center justify-between py-3 border-b border-zinc-800/40">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Compliance &amp; Regulatory</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">Q3 2026</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$500 &ndash; $3K<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                            <div class="flex items-center justify-between py-3 border-b border-zinc-800/40">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Business Valuation</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">Q3 2026</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$500 &ndash; $2K<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                            <div class="flex items-center justify-between py-3">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">E-Commerce CI</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">Q4 2026+</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$1K &ndash; $4K<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Engine 2: Meridian Terminal -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 sm:p-8">
+                        <p class="font-display font-700 text-xs tracking-[0.2em] uppercase text-brand-500 mb-6">Engine 2 &mdash; Meridian Terminal</p>
+                        <div class="space-y-0">
+                            <div class="flex items-center justify-between py-3 border-b border-zinc-800/40">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Starter</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">2 agents, 1 voice line, shared infra</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$1,500<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                            <div class="flex items-center justify-between py-3 border-b border-zinc-800/40">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Professional</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">4-6 agents, full dashboard, dedicated infra</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$3,000<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                            <div class="flex items-center justify-between py-3">
+                                <div>
+                                    <p class="font-sans font-400 text-sm text-zinc-200">Enterprise</p>
+                                    <p class="font-sans font-300 text-xs text-zinc-500 mt-0.5">Unlimited agents, multi-location, your hardware</p>
+                                </div>
+                                <p class="font-display font-400 text-sm text-zinc-300">$5,000+<span class="text-zinc-600">/mo</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="font-sans font-300 text-xs text-zinc-600 mt-8 text-center max-w-2xl mx-auto stagger">
+                    Each Terminal deployment enriches the graph, making Engine 1 more valuable. The two engines compound.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 8: Competitive Landscape -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="8">
+            <div class="slide-content max-w-5xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">Competitive Landscape</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-14 stagger">
+                    The bottom-right quadrant is <span class="text-brand-500">empty.</span>
+                </h2>
+                <!-- 2x2 Matrix -->
+                <div class="stagger relative">
+                    <!-- Axis Labels -->
+                    <div class="flex justify-between mb-3 px-2">
+                        <span class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600">Stateless</span>
+                        <span class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600">Persistent Memory</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                        <!-- Reactive + Stateless -->
+                        <div class="rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-5 sm:p-6 min-h-[160px] flex flex-col justify-between">
+                            <p class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600 mb-4">Reactive</p>
+                            <div>
+                                <p class="font-sans font-400 text-sm text-zinc-400">ChatGPT</p>
+                                <p class="font-sans font-400 text-sm text-zinc-400">Claude</p>
+                                <p class="font-sans font-400 text-sm text-zinc-400">Gemini</p>
+                            </div>
+                        </div>
+                        <!-- Reactive + Persistent -->
+                        <div class="rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-5 sm:p-6 min-h-[160px] flex flex-col justify-between">
+                            <p class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600 mb-4">Reactive</p>
+                            <div>
+                                <p class="font-sans font-400 text-sm text-zinc-400">Notion AI</p>
+                                <p class="font-sans font-400 text-sm text-zinc-400">Mem.ai</p>
+                            </div>
+                        </div>
+                        <!-- Proactive + Stateless -->
+                        <div class="rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-5 sm:p-6 min-h-[160px] flex flex-col justify-between">
+                            <p class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600 mb-4">Proactive</p>
+                            <div>
+                                <p class="font-sans font-400 text-sm text-zinc-400">Zapier AI</p>
+                                <p class="font-sans font-400 text-sm text-zinc-400">GoHighLevel</p>
+                            </div>
+                        </div>
+                        <!-- Proactive + Persistent = MERIDIAN -->
+                        <div class="rounded-2xl p-5 sm:p-6 min-h-[160px] flex flex-col justify-between quadrant-glow bg-brand-500/5">
+                            <p class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-brand-500/60 mb-4">Proactive</p>
+                            <div>
+                                <p class="font-display font-700 text-lg text-brand-500 tracking-tight">MERIDIAN</p>
+                                <p class="font-sans font-300 text-xs text-zinc-400 mt-1">Graph-native. Evidence-gated. Self-quieting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Y-axis label -->
+                    <div class="absolute -left-2 top-1/2 -translate-y-1/2 -translate-x-full hidden lg:block">
+                        <div class="flex flex-col items-center gap-12">
+                            <span class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600 -rotate-90 whitespace-nowrap">Reactive</span>
+                            <span class="font-display font-200 text-[10px] tracking-[0.2em] uppercase text-zinc-600 -rotate-90 whitespace-nowrap">Proactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 9: Partnership Model -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="9">
+            <div class="slide-content max-w-4xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">Partnership Model</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-14 stagger">
+                    We don't just sell software.<br>
+                    <span class="text-brand-500">We take equity in outcomes.</span>
+                </h2>
+                <div class="space-y-10">
+                    <div class="stagger flex items-start gap-6">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center">
+                            <span class="font-display font-700 text-sm text-brand-500">1</span>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">Equity-for-services</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-2 leading-relaxed">Deploy MERIDIAN into a client's operations in exchange for an equity stake. Board seat or observer rights included.</p>
+                        </div>
+                    </div>
+                    <div class="stagger flex items-start gap-6">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center">
+                            <span class="font-display font-700 text-sm text-brand-500">2</span>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">Market precedent</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-2 leading-relaxed">Palantir accepted $6M in equity from Surf Air Mobility for a 5-year exclusive platform buildout (November 2025). The pattern is normalizing at institutional scale.</p>
+                        </div>
+                    </div>
+                    <div class="stagger flex items-start gap-6">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center">
+                            <span class="font-display font-700 text-sm text-brand-500">3</span>
+                        </div>
+                        <div>
+                            <p class="font-sans font-600 text-lg text-zinc-200">Why it works for us</p>
+                            <p class="font-sans font-300 text-sm text-zinc-500 mt-2 leading-relaxed">We know the client's operations because we built the intelligence layer. The service becomes the investment thesis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 10: Team -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="10">
+            <div class="slide-content max-w-5xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">Team</p>
+                <h2 class="font-display font-700 text-2xl sm:text-3xl md:text-4xl tracking-tight leading-tight mb-14 stagger">
+                    Three people. Sub-$50 infrastructure.<br>
+                    <span class="text-brand-500">17,900+ knowledge nodes.</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center mb-5">
+                            <span class="font-display font-700 text-xl text-brand-500">AM</span>
+                        </div>
+                        <p class="font-display font-700 text-lg text-zinc-100 tracking-tight">Alexander Mazzei</p>
+                        <p class="font-sans font-300 text-xs text-zinc-500 mt-2 leading-relaxed">Infrastructure, Deployment, Audits</p>
+                        <div class="divider mx-auto mt-4 mb-3"></div>
+                        <p class="font-sans font-300 text-xs text-zinc-600">Systems architecture</p>
+                    </div>
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center mb-5">
+                            <span class="font-display font-700 text-xl text-brand-500">EB</span>
+                        </div>
+                        <p class="font-display font-700 text-lg text-zinc-100 tracking-tight">Ely Beckman</p>
+                        <p class="font-sans font-300 text-xs text-zinc-500 mt-2 leading-relaxed">Core Engineering, Brain, Orchestrator</p>
+                        <div class="divider mx-auto mt-4 mb-3"></div>
+                        <p class="font-sans font-300 text-xs text-zinc-600">Knowledge graph &amp; AI coordination</p>
+                    </div>
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center mb-5">
+                            <span class="font-display font-700 text-xl text-brand-500">MB</span>
+                        </div>
+                        <p class="font-display font-700 text-lg text-zinc-100 tracking-tight">Michael Bitler</p>
+                        <p class="font-sans font-300 text-xs text-zinc-500 mt-2 leading-relaxed">Channel Partner, AgentVox Co-founder</p>
+                        <div class="divider mx-auto mt-4 mb-3"></div>
+                        <p class="font-sans font-300 text-xs text-zinc-600">Distribution &amp; partnerships</p>
+                    </div>
+                </div>
+                <p class="font-sans font-300 text-sm text-zinc-600 text-center mt-10 max-w-2xl mx-auto stagger">
+                    This is the team that ships.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 11: The Ask -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="11">
+            <div class="slide-content max-w-4xl mx-auto px-4">
+                <p class="font-display font-200 text-sm tracking-[0.3em] uppercase text-zinc-600 mb-4 stagger">The Ask</p>
+                <div class="space-y-8">
+                    <!-- Investor -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 sm:p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                            <p class="font-display font-700 text-sm tracking-[0.15em] uppercase text-brand-500">For Investors</p>
+                        </div>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">
+                            We're raising to scale KaaS API distribution and Terminal deployments. First paying KaaS customers targeted Q2 2026. The infrastructure is built. The graph is live. We need distribution.
+                        </p>
+                    </div>
+                    <!-- Partner -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 sm:p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                            <p class="font-display font-700 text-sm tracking-[0.15em] uppercase text-brand-500">For Strategic Partners</p>
+                        </div>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">
+                            We're offering equity-for-exclusivity to 1&ndash;2 vertical partners who want to embed MERIDIAN intelligence into their platform. Scope defined. Board observer rights included.
+                        </p>
+                    </div>
+                    <!-- Client -->
+                    <div class="stagger rounded-2xl border border-zinc-800/60 bg-zinc-900/30 p-6 sm:p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                            <p class="font-display font-700 text-sm tracking-[0.15em] uppercase text-brand-500">For Clients</p>
+                        </div>
+                        <p class="font-sans font-300 text-sm text-zinc-400 leading-relaxed">
+                            Book a 60-minute discovery call. We'll map your operations, demo the intelligence mesh on your data, and deliver a written assessment within 48 hours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SLIDE 12: Close -->
+        <!-- ============================================================ -->
+        <section class="slide" data-slide="12">
+            <div class="slide-content text-center max-w-3xl mx-auto px-4">
+                <div class="stagger">
+                    <div class="divider mx-auto mb-12"></div>
+                    <blockquote class="font-display font-700 text-3xl sm:text-4xl md:text-5xl tracking-tight leading-tight">
+                        Other AI tools give you more.<br>
+                        <span class="text-brand-500">MERIDIAN gives you clarity.</span>
+                    </blockquote>
+                    <div class="divider mx-auto mt-12 mb-10"></div>
+                </div>
+                <p class="stagger font-sans font-400 text-sm text-zinc-400 tracking-widest">
+                    <a href="mailto:contact@covault.xyz" class="hover:text-brand-500 transition-colors">contact@covault.xyz</a>
+                </p>
+                <p class="stagger font-sans font-300 text-xs text-zinc-700 mt-8">
+                    &copy; 2026 Covault
+                </p>
+            </div>
+        </section>
+
+    </div><!-- /deck -->
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        const deck = document.getElementById('deck');
+        const counter = document.getElementById('slideCounter');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // ── Slide Counter ──
+        function updateCounter() {
+            let currentSlide = 1;
+            const scrollTop = deck.scrollTop;
+            const viewportHeight = deck.clientHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                if (scrollTop >= slideTop - viewportHeight * 0.5) {
+                    currentSlide = index + 1;
+                }
+            });
+
+            const current = String(currentSlide).padStart(2, '0');
+            const total = String(totalSlides).padStart(2, '0');
+            counter.textContent = `${current} / ${total}`;
+        }
+
+        // ── Intersection Observer for slide entrance animations ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.slide-content').classList.add('visible');
+                }
+            });
+        }, {
+            root: deck,
+            threshold: 0.25
+        });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        // ── Keyboard Navigation ──
+        document.addEventListener('keydown', (e) => {
+            const scrollTop = deck.scrollTop;
+            const viewportHeight = deck.clientHeight;
+
+            let currentIndex = 0;
+            slides.forEach((slide, index) => {
+                if (scrollTop >= slide.offsetTop - viewportHeight * 0.5) {
+                    currentIndex = index;
+                }
+            });
+
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                const nextIndex = Math.min(currentIndex + 1, totalSlides - 1);
+                slides[nextIndex].scrollIntoView({ behavior: 'smooth' });
+            }
+
+            if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prevIndex = Math.max(currentIndex - 1, 0);
+                slides[prevIndex].scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // ── Scroll listener for counter updates ──
+        deck.addEventListener('scroll', updateCounter, { passive: true });
+
+        // ── Initial state ──
+        updateCounter();
+        // Trigger first slide animation
+        setTimeout(() => {
+            slides[0].querySelector('.slide-content').classList.add('visible');
+        }, 100);
+    </script>
+
+</body>
+</html>
