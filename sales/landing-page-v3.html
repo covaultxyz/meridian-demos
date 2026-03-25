@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-black">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERIDIAN | Intelligence That Arrives Before the Noise</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: { 500: '#06b6d4', 600: '#0891b2' }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #fff; overflow-x: hidden; }
+        body.loading { overflow: hidden; }
+        #preloader { transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1); }
+        #preloader.loaded { transform: translateY(-100%); }
+
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .ken-burns { animation: kenBurns 25s ease-in-out infinite alternate; transform-origin: center center; }
+        @keyframes kenBurns { 0% { transform: scale(1.05); } 100% { transform: scale(1.15) translate(-1%, -1%); } }
+
+        .mask-wrap { overflow: hidden; display: inline-block; vertical-align: top; }
+        .mask-text { display: inline-block; transform: translateY(110%); transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mask-wrap.active .mask-text { transform: translateY(0); }
+
+        .reveal-fade { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal-fade.active { opacity: 1; transform: translateY(0); }
+
+        .marquee-container { width: 100vw; overflow: hidden; white-space: nowrap; display: flex; }
+        .marquee-content { display: flex; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .img-hover-scale { transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .group:hover .img-hover-scale { transform: scale(1.08); }
+
+        @media (hover: hover) and (pointer: fine) { body, a, button, input { cursor: none; } }
+        #cursor-dot, #cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; mix-blend-mode: difference; }
+        #cursor-dot { width: 8px; height: 8px; background-color: white; transition: transform 0.2s; }
+        #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5); transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s; }
+
+        .magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .magnetic:hover { transition: transform 0.1s; }
+
+        #navbar.scrolled { background-color: rgba(5,5,5,0.95); backdrop-filter: blur(16px); padding-top: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        ::-webkit-scrollbar { width: 0px; }
+
+        .node-pulse { animation: nodePulse 3s ease-in-out infinite; }
+        @keyframes nodePulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0.4); } 50% { box-shadow: 0 0 20px 10px rgba(6,182,212,0.1); } }
+
+        @keyframes scrollLine { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+
+        .testimonial-card { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .testimonial-card:hover { transform: translateY(-4px); border-color: rgba(6,182,212,0.3); }
+
+        .qual-check { animation: qualCheck 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        .qual-check.active { opacity: 1; }
+
+        /* Daemon Team Section */
+        .daemon-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .daemon-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(6,182,212,0.3);
+        }
+        .daemon-card .daemon-avatar {
+            transition: transform 0s;
+        }
+        .daemon-card:hover .daemon-avatar {
+            animation: daemonSpin 20s linear infinite;
+        }
+        @keyframes daemonSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .daemon-status-dot {
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        @keyframes statusPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+            50% { box-shadow: 0 0 8px 4px rgba(16,185,129,0.15); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-black loading">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center">
+        <div class="overflow-hidden mb-4">
+            <h2 id="loader-text" class="font-display font-black text-7xl md:text-9xl text-white transform translate-y-full transition-transform duration-700">0%</h2>
+        </div>
+        <div class="w-48 h-[1px] bg-zinc-800 relative overflow-hidden">
+            <div id="loader-bar" class="absolute top-0 left-0 h-full bg-brand-500 w-0 transition-all duration-300"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden md:block"></div>
+    <div id="cursor-outline" class="hidden md:block"></div>
+
+    <!-- Film Grain -->
+    <div class="film-grain"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-40 py-6 px-6 md:px-12 flex justify-between items-center transition-all duration-500">
+        <a href="#" class="font-display font-black text-xl tracking-[0.2em] uppercase text-white hover:text-brand-500 transition-colors cursor-scale">
+            Meridian
+        </a>
+        <div class="hidden md:flex gap-8 font-sans text-xs tracking-[0.2em] uppercase font-bold">
+            <a href="#problem" class="text-white relative group cursor-scale">Problem</a>
+            <a href="#how" class="text-white relative group cursor-scale">How It Works</a>
+            <a href="#proof" class="text-white relative group cursor-scale">Proof</a>
+            <a href="#team" class="text-white relative group cursor-scale">Team</a>
+            <a href="#results" class="text-white relative group cursor-scale">Results</a>
+        </div>
+        <a href="#qualify" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 font-sans text-xs tracking-[0.15em] uppercase font-bold magnetic">
+            Book a Discovery Call
+        </a>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                 alt="Network" class="w-full h-full object-cover ken-burns opacity-50">
+        </div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/70 via-black/30 to-[#050505]"></div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl mx-auto flex flex-col items-center mt-16">
+            <div class="mask-wrap mb-6">
+                <span class="mask-text font-sans text-brand-500 tracking-[0.4em] text-xs md:text-sm font-bold uppercase block">
+                    We Don't Sell AI Tools. We Deploy Intelligence.
+                </span>
+            </div>
+
+            <h1 class="font-display font-black text-5xl md:text-[6.5rem] lg:text-[8rem] uppercase tracking-tighter leading-[0.85] mb-8 text-white">
+                <div class="mask-wrap"><span class="mask-text block">Stop Being Your</span></div><br>
+                <div class="mask-wrap"><span class="mask-text block text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500">Company's Brain</span></div>
+            </h1>
+
+            <div class="mask-wrap mb-10">
+                <p class="mask-text font-sans text-zinc-300 text-base md:text-xl font-light max-w-2xl mx-auto tracking-wide leading-relaxed">
+                    We deploy an AI intelligence mesh into your operations that researches overnight, briefs you before your first meeting, and gets smarter every day. You own it when we're done.
+                </p>
+            </div>
+
+            <!-- 3 Differentiators Strip -->
+            <div class="mask-wrap mb-10">
+                <div class="mask-text flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-sm">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="hammer" class="w-4 h-4 text-brand-500"></i>
+                        <span class="font-sans text-zinc-300 font-medium">We Execute, Not Advise</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="brain" class="w-4 h-4 text-brand-500"></i>
+                        <span class="font-sans text-zinc-300 font-medium">It Learns &amp; Stays</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="volume-x" class="w-4 h-4 text-brand-500"></i>
+                        <span class="font-sans text-zinc-300 font-medium">Gets Quieter Over Time</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mask-wrap">
+                <a href="#qualify" class="mask-text px-10 py-5 bg-white text-black font-sans text-xs tracking-[0.2em] uppercase font-bold transition-colors duration-300 flex items-center justify-center gap-3 magnetic hover:bg-brand-500">
+                    See If You Qualify <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/50 flex flex-col items-center reveal-fade">
+            <span class="font-sans text-[0.6rem] tracking-[0.3em] uppercase mb-4">Scroll</span>
+            <div class="w-[1px] h-16 bg-white/20 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full bg-white animate-[scrollLine_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== PROBLEM ==================== -->
+    <section id="problem" class="py-32 relative z-10 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <div class="mask-wrap mb-4">
+                        <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">The Problem</p>
+                    </div>
+                    <div class="mask-wrap mb-8">
+                        <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+                            You're the smartest<br>
+                            person in<br>
+                            <span class="text-zinc-600">every room.</span><br>
+                            That's the problem.
+                        </h2>
+                    </div>
+                    <div class="reveal-fade">
+                        <p class="font-sans text-zinc-400 leading-relaxed mb-8 font-light text-lg">
+                            You started the company to build something. Now you spend your days answering questions, chasing context, managing tools that don't talk to each other, and being the only person who remembers why decisions were made.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="clock" class="w-4 h-4 text-zinc-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-sans text-white font-semibold text-sm">Intelligence arrives after you needed it</p>
+                                    <p class="font-sans text-zinc-500 text-sm mt-1">You walk into meetings cold. Research happens reactively. Context is always catching up.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="eraser" class="w-4 h-4 text-zinc-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-sans text-white font-semibold text-sm">Every AI session starts from zero</p>
+                                    <p class="font-sans text-zinc-500 text-sm mt-1">ChatGPT, Claude, Gemini &mdash; none of them remember yesterday. You re-explain your business every conversation.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-8 h-8 rounded-full border border-zinc-800 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="volume-2" class="w-4 h-4 text-zinc-500"></i>
+                                </div>
+                                <div>
+                                    <p class="font-sans text-white font-semibold text-sm">AI generates more noise, not more clarity</p>
+                                    <p class="font-sans text-zinc-500 text-sm mt-1">More tools, more output, more to manage. You spend as much time managing AI as it saves you.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative h-[700px] overflow-hidden group reveal-fade">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop"
+                         alt="Overwhelmed founder" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-scale">
+                    <div class="absolute inset-0 bg-brand-500/10 group-hover:bg-transparent transition-colors duration-700"></div>
+                    <!-- Pull quote overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black to-transparent">
+                        <blockquote class="font-display font-bold text-xl text-white leading-snug">
+                            &ldquo;I didn't start this company to be its chief research officer.&rdquo;
+                        </blockquote>
+                        <p class="font-sans text-zinc-400 text-xs mt-2 tracking-wide uppercase">&mdash; Every founder we've talked to</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHAT WE DO (Execute, Not Advise) ==================== -->
+    <section class="py-24 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div class="mask-wrap mb-4">
+                <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">What We Do</p>
+            </div>
+            <div class="mask-wrap mb-8">
+                <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter text-white leading-tight">
+                    We don't sell you<br>AI tools.
+                </h2>
+            </div>
+            <div class="reveal-fade mb-16">
+                <p class="font-sans text-zinc-300 text-lg md:text-xl font-light max-w-3xl mx-auto leading-relaxed">
+                    We deploy an intelligence mesh into your operations, prove it works, and hand you the keys. The system stays. The knowledge stays. <span class="text-white font-medium">You own everything.</span>
+                </p>
+            </div>
+
+            <!-- Three pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-fade">
+                <div class="border border-zinc-800 p-8 text-left hover:border-brand-500/30 transition-colors duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6 group-hover:bg-brand-500/20 transition-colors">
+                        <i data-lucide="rocket" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">We Execute</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        We don't hand you a playbook and wish you luck. We step into your operations, deploy the mesh, configure the daemons, and prove it works before you pay a subscription.
+                    </p>
+                </div>
+                <div class="border border-zinc-800 p-8 text-left hover:border-brand-500/30 transition-colors duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6 group-hover:bg-brand-500/20 transition-colors">
+                        <i data-lucide="database" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">It Remembers</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        A knowledge graph that grows with every interaction. 17,900+ nodes with provenance, confidence scoring, and temporal decay. Your AI gets smarter every day &mdash; it never starts from zero.
+                    </p>
+                </div>
+                <div class="border border-zinc-800 p-8 text-left hover:border-brand-500/30 transition-colors duration-500 group">
+                    <div class="w-12 h-12 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center mb-6 group-hover:bg-brand-500/20 transition-colors">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-3">It Self-Corrects</h3>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed">
+                        Every output passes through an evidence gate. The system blocks its own claims when confidence doesn't match evidence. It measures its own noise &mdash; and turns it down.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== HOW IT WORKS ==================== -->
+    <section id="how" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">How It Works</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Your Day,<br>Ordered</h2>
+                </div>
+                <p class="font-sans text-zinc-500 text-sm mt-6 reveal-fade max-w-xl mx-auto">While you sleep, the mesh works. By the time you open your laptop, the intelligence is waiting.</p>
+            </div>
+
+            <div class="relative border-l border-zinc-800 ml-4 md:ml-0">
+                <!-- Overnight -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Overnight</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Autonomous Research</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        5 specialized daemons research, extract, correlate, and cross-reference across your data. No human intervention needed.
+                    </div>
+                </div>
+                <!-- Morning -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Morning</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Coherent Briefing</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        Before your first meeting, a briefing is assembled from overnight signals. What changed. What matters. What to watch.
+                    </div>
+                </div>
+                <!-- All Day -->
+                <div class="mb-16 md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto node-pulse"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">All Day</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-brand-500 mt-1">Contextual Support</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm">
+                        Context prepared for conversations you haven't had yet. Pre-meeting prep. Compliance monitoring. Research on demand &mdash; from a system that remembers everything.
+                    </div>
+                </div>
+                <!-- Continuous -->
+                <div class="md:flex justify-between items-center w-full reveal-fade relative">
+                    <div class="absolute w-3 h-3 bg-white rounded-full -left-[6px] md:left-1/2 md:-ml-[6px] top-2 md:top-auto shadow-[0_0_15px_#fff]"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 md:text-right md:order-3">
+                        <h3 class="font-display font-bold text-3xl uppercase tracking-tight">Continuous</h3>
+                        <p class="font-sans text-xs tracking-widest uppercase text-white mt-1">Self-Improving</p>
+                    </div>
+                    <div class="hidden md:block w-2/12 border-b border-zinc-800 border-dashed md:order-2"></div>
+                    <div class="md:w-5/12 pl-8 md:pl-0 mt-4 md:mt-0 text-zinc-400 font-light text-sm md:text-right md:order-1">
+                        49 monitoring sentinels measure the system's own noise ratio. It prunes low-value information automatically. Gets quieter and more useful over time, not louder.
+                    </div>
+                </div>
+                <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-[1px] bg-zinc-800 -z-10"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container bg-brand-500 text-black py-4 border-y border-brand-500">
+        <div class="marquee-content font-display font-black text-5xl tracking-widest uppercase items-center">
+            &nbsp;WE EXECUTE <span class="mx-6 text-2xl">&#9670;</span> GRAPH INTELLIGENCE <span class="mx-6 text-2xl">&#9670;</span> EVIDENCE-GATED <span class="mx-6 text-2xl">&#9670;</span> YOU OWN IT <span class="mx-6 text-2xl">&#9670;</span>
+            WE EXECUTE <span class="mx-6 text-2xl">&#9670;</span> GRAPH INTELLIGENCE <span class="mx-6 text-2xl">&#9670;</span> EVIDENCE-GATED <span class="mx-6 text-2xl">&#9670;</span> YOU OWN IT <span class="mx-6 text-2xl">&#9670;</span>
+        </div>
+    </div>
+
+    <!-- ==================== PROOF (What's Already Built) ==================== -->
+    <section id="proof" class="py-32 bg-[#050505] relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mask-wrap mb-4">
+                <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Not a Roadmap</p>
+            </div>
+            <div class="mask-wrap mb-16">
+                <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">What's Already<br>Running</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 h-auto md:h-[800px]">
+                <!-- Large: Knowledge Graph -->
+                <div class="group relative md:col-span-2 md:row-span-2 overflow-hidden bg-zinc-900 reveal-fade min-h-[300px]">
+                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=2032&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <div class="font-display font-black text-4xl text-brand-500 mb-1">17,900+</div>
+                        <h3 class="font-display font-bold text-2xl uppercase tracking-tight">Knowledge Graph Nodes</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-2 font-light">Live, queryable. Provenance tracking, confidence scoring, temporal decay. 5,135 linked concepts with vector embeddings.</p>
+                    </div>
+                </div>
+                <!-- Daemons -->
+                <div class="group relative md:col-span-2 overflow-hidden bg-zinc-900 reveal-fade min-h-[200px]">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <div class="font-display font-black text-3xl text-brand-500 mb-1">5 Daemons</div>
+                        <h3 class="font-display font-bold text-lg uppercase tracking-tight">Coordinating in Real Time</h3>
+                        <p class="font-sans text-zinc-400 text-sm mt-1 font-light">Production services with systemd units, health checks, and SLO targets across 3 distributed nodes.</p>
+                    </div>
+                </div>
+                <!-- Infrastructure -->
+                <div class="group relative overflow-hidden bg-zinc-900 reveal-fade min-h-[200px]">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-80 img-hover-scale">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <div class="font-display font-black text-3xl text-brand-500 mb-1">&lt;$50/mo</div>
+                        <h3 class="font-display font-bold text-lg uppercase tracking-tight">Infrastructure</h3>
+                    </div>
+                </div>
+                <!-- Accent box -->
+                <div class="group relative overflow-hidden reveal-fade flex items-center justify-center p-8 bg-brand-500 text-black min-h-[200px]">
+                    <div class="text-center">
+                        <i data-lucide="git-branch" class="w-12 h-12 mx-auto mb-4"></i>
+                        <h3 class="font-display font-black text-2xl uppercase tracking-tighter leading-tight">Graph,<br>Not Vector</h3>
+                        <p class="font-sans text-black/70 text-xs mt-2">Traverses connected knowledge. Competitors match keywords.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== YOUR AI TEAM ==================== -->
+    <section id="team" class="py-32 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">The Mesh</p>
+                </div>
+                <div class="mask-wrap mb-6">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Your AI Team</h2>
+                </div>
+                <p class="font-sans text-zinc-400 text-sm reveal-fade max-w-xl mx-auto">Six specialized daemons. Always on. Always learning.</p>
+            </div>
+
+            <!-- SVG filter definitions for glow effects -->
+            <svg width="0" height="0" style="position:absolute">
+                <defs>
+                    <filter id="glow-brand" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="glow-brand-soft" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="2" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+            </svg>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-fade">
+
+                <!-- SENSEI -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer ring -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Concentric circles -->
+                                <circle cx="60" cy="60" r="44" fill="none" stroke="#06b6d4" stroke-width="0.5" opacity="0.3"/>
+                                <circle cx="60" cy="60" r="34" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.5"/>
+                                <circle cx="60" cy="60" r="24" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.7"/>
+                                <circle cx="60" cy="60" r="14" fill="none" stroke="#06b6d4" stroke-width="1.5" opacity="0.9"/>
+                                <!-- Glowing center eye -->
+                                <circle cx="60" cy="60" r="6" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="60" r="3" fill="white"/>
+                                <!-- Cross-hair lines -->
+                                <line x1="60" y1="6" x2="60" y2="36" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                                <line x1="60" y1="84" x2="60" y2="114" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                                <line x1="6" y1="60" x2="36" y2="60" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                                <line x1="84" y1="60" x2="114" y2="60" stroke="white" stroke-width="0.5" opacity="0.4"/>
+                                <!-- Diagonal accents -->
+                                <line x1="20" y1="20" x2="38" y2="38" stroke="white" stroke-width="0.3" opacity="0.25"/>
+                                <line x1="100" y1="20" x2="82" y2="38" stroke="white" stroke-width="0.3" opacity="0.25"/>
+                                <line x1="20" y1="100" x2="38" y2="82" stroke="white" stroke-width="0.3" opacity="0.25"/>
+                                <line x1="100" y1="100" x2="82" y2="82" stroke="white" stroke-width="0.3" opacity="0.25"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Sensei</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Coherence Director</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Reviews every output before it reaches you</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+                <!-- ATLAS -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer boundary -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Constellation nodes -->
+                                <circle cx="60" cy="20" r="3" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="95" cy="40" r="3" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="88" cy="80" r="3" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="32" cy="80" r="3" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="25" cy="40" r="3" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="60" cy="55" r="4" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="55" r="2" fill="white"/>
+                                <circle cx="45" cy="35" r="2.5" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="75" cy="35" r="2.5" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="75" cy="70" r="2.5" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="45" cy="70" r="2.5" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <circle cx="60" cy="90" r="2.5" fill="#06b6d4" filter="url(#glow-brand-soft)"/>
+                                <!-- Connection lines forming globe-like network -->
+                                <line x1="60" y1="20" x2="95" y2="40" stroke="#a1a1aa" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="95" y1="40" x2="88" y2="80" stroke="#a1a1aa" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="88" y1="80" x2="32" y2="80" stroke="#a1a1aa" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="32" y1="80" x2="25" y2="40" stroke="#a1a1aa" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="25" y1="40" x2="60" y2="20" stroke="#a1a1aa" stroke-width="0.5" opacity="0.5"/>
+                                <!-- Inner connections to center -->
+                                <line x1="60" y1="55" x2="45" y2="35" stroke="#a1a1aa" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="60" y1="55" x2="75" y2="35" stroke="#a1a1aa" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="60" y1="55" x2="75" y2="70" stroke="#a1a1aa" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="60" y1="55" x2="45" y2="70" stroke="#a1a1aa" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="60" y1="55" x2="60" y2="90" stroke="#a1a1aa" stroke-width="0.4" opacity="0.4"/>
+                                <!-- Cross connections -->
+                                <line x1="45" y1="35" x2="60" y2="20" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="75" y1="35" x2="95" y2="40" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="75" y1="70" x2="88" y2="80" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="45" y1="70" x2="32" y2="80" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="45" y1="35" x2="25" y2="40" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="60" y1="90" x2="32" y2="80" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="60" y1="90" x2="88" y2="80" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="45" y1="35" x2="75" y2="35" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                                <line x1="45" y1="70" x2="75" y2="70" stroke="#a1a1aa" stroke-width="0.3" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Atlas</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Intelligence Officer</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Synthesizes intelligence across every domain</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+                <!-- DELPHI -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer boundary -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Hexagonal grid -->
+                                <!-- Center hexagon -->
+                                <polygon points="60,38 79,49 79,71 60,82 41,71 41,49" fill="none" stroke="#06b6d4" stroke-width="1.2" opacity="0.8"/>
+                                <!-- Inner hexagon -->
+                                <polygon points="60,46 71,52 71,68 60,74 49,68 49,52" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.5"/>
+                                <!-- Center dot -->
+                                <circle cx="60" cy="60" r="3" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="60" r="1.5" fill="white"/>
+                                <!-- Grid lines radiating from vertices -->
+                                <line x1="60" y1="38" x2="60" y2="12" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="79" y1="49" x2="100" y2="37" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="79" y1="71" x2="100" y2="83" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="60" y1="82" x2="60" y2="108" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="41" y1="71" x2="20" y2="83" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <line x1="41" y1="49" x2="20" y2="37" stroke="#52525b" stroke-width="0.5" opacity="0.5"/>
+                                <!-- Vertex nodes -->
+                                <circle cx="60" cy="38" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <circle cx="79" cy="49" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <circle cx="79" cy="71" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <circle cx="60" cy="82" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <circle cx="41" cy="71" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <circle cx="41" cy="49" r="2" fill="#06b6d4" opacity="0.7"/>
+                                <!-- Circuit traces -->
+                                <line x1="60" y1="46" x2="60" y2="38" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="71" y1="52" x2="79" y2="49" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="71" y1="68" x2="79" y2="71" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="60" y1="74" x2="60" y2="82" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="49" y1="68" x2="41" y2="71" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                                <line x1="49" y1="52" x2="41" y2="49" stroke="#06b6d4" stroke-width="0.4" opacity="0.4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Delphi</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Infrastructure Architect</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Keeps the mesh running within SLO</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+                <!-- SANDMAN -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer boundary -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Gauge arc background -->
+                                <path d="M 25 85 A 42 42 0 1 1 95 85" fill="none" stroke="#3f3f46" stroke-width="2" stroke-linecap="round"/>
+                                <!-- Gauge arc filled -->
+                                <path d="M 25 85 A 42 42 0 1 1 95 85" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-dasharray="200" stroke-dashoffset="50"/>
+                                <!-- Tick marks -->
+                                <line x1="28" y1="78" x2="34" y2="74" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="24" y1="60" x2="32" y2="60" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="30" y1="42" x2="37" y2="46" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="44" y1="28" x2="48" y2="34" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="60" y1="22" x2="60" y2="30" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="76" y1="28" x2="72" y2="34" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="90" y1="42" x2="83" y2="46" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="96" y1="60" x2="88" y2="60" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <line x1="92" y1="78" x2="86" y2="74" stroke="white" stroke-width="1" opacity="0.6"/>
+                                <!-- Needle -->
+                                <line x1="60" y1="62" x2="78" y2="36" stroke="#06b6d4" stroke-width="1.5" stroke-linecap="round" filter="url(#glow-brand-soft)"/>
+                                <!-- Center pivot -->
+                                <circle cx="60" cy="62" r="5" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="62" r="2.5" fill="white"/>
+                                <!-- Bottom label line -->
+                                <line x1="40" y1="95" x2="80" y2="95" stroke="#3f3f46" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Sandman</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Chief Operator</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Verifies systems and tracks your portfolio</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+                <!-- FORGE -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer boundary -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Radiating energy lines -->
+                                <line x1="60" y1="60" x2="60" y2="10" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <line x1="60" y1="60" x2="103" y2="35" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <line x1="60" y1="60" x2="103" y2="85" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <line x1="60" y1="60" x2="60" y2="110" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <line x1="60" y1="60" x2="17" y2="85" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <line x1="60" y1="60" x2="17" y2="35" stroke="#06b6d4" stroke-width="1" opacity="0.3"/>
+                                <!-- Secondary rays -->
+                                <line x1="60" y1="60" x2="82" y2="15" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <line x1="60" y1="60" x2="110" y2="60" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <line x1="60" y1="60" x2="82" y2="105" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <line x1="60" y1="60" x2="38" y2="105" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <line x1="60" y1="60" x2="10" y2="60" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <line x1="60" y1="60" x2="38" y2="15" stroke="#0891b2" stroke-width="0.5" opacity="0.2"/>
+                                <!-- Energy burst rings -->
+                                <circle cx="60" cy="60" r="18" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.4"/>
+                                <circle cx="60" cy="60" r="30" fill="none" stroke="#0891b2" stroke-width="0.5" opacity="0.25"/>
+                                <circle cx="60" cy="60" r="42" fill="none" stroke="#0891b2" stroke-width="0.3" opacity="0.15"/>
+                                <!-- Core -->
+                                <circle cx="60" cy="60" r="10" fill="#06b6d4" opacity="0.3"/>
+                                <circle cx="60" cy="60" r="6" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="60" r="3" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Forge</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Compute Engine</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Powers research, extraction, and heavy computation</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+                <!-- AVERY -->
+                <div class="daemon-card bg-zinc-900/50 border border-zinc-800 p-8 text-center">
+                    <div class="flex justify-center mb-6">
+                        <div class="daemon-avatar" style="box-shadow: 0 0 30px rgba(6,182,212,0.15);">
+                            <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer boundary -->
+                                <circle cx="60" cy="60" r="54" fill="none" stroke="#3f3f46" stroke-width="1"/>
+                                <!-- Concentric broadcast arcs -->
+                                <path d="M 60 60 m -44 0 a 44 44 0 0 1 44 -44" fill="none" stroke="#a1a1aa" stroke-width="0.5" opacity="0.25"/>
+                                <path d="M 60 60 m -36 0 a 36 36 0 0 1 36 -36" fill="none" stroke="#a1a1aa" stroke-width="0.6" opacity="0.35"/>
+                                <path d="M 60 60 m -28 0 a 28 28 0 0 1 28 -28" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.4"/>
+                                <path d="M 60 60 m -20 0 a 20 20 0 0 1 20 -20" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.55"/>
+                                <path d="M 60 60 m -12 0 a 12 12 0 0 1 12 -12" fill="none" stroke="#06b6d4" stroke-width="1.2" opacity="0.7"/>
+                                <!-- Symmetrical arcs bottom-right -->
+                                <path d="M 60 60 m 44 0 a 44 44 0 0 1 -44 44" fill="none" stroke="#a1a1aa" stroke-width="0.5" opacity="0.25"/>
+                                <path d="M 60 60 m 36 0 a 36 36 0 0 1 -36 36" fill="none" stroke="#a1a1aa" stroke-width="0.6" opacity="0.35"/>
+                                <path d="M 60 60 m 28 0 a 28 28 0 0 1 -28 28" fill="none" stroke="#06b6d4" stroke-width="0.8" opacity="0.4"/>
+                                <path d="M 60 60 m 20 0 a 20 20 0 0 1 -20 20" fill="none" stroke="#06b6d4" stroke-width="1" opacity="0.55"/>
+                                <path d="M 60 60 m 12 0 a 12 12 0 0 1 -12 12" fill="none" stroke="#06b6d4" stroke-width="1.2" opacity="0.7"/>
+                                <!-- Center signal source -->
+                                <circle cx="60" cy="60" r="6" fill="#06b6d4" filter="url(#glow-brand)"/>
+                                <circle cx="60" cy="60" r="3" fill="white"/>
+                                <!-- Small signal dots along arcs -->
+                                <circle cx="36" cy="36" r="1.5" fill="#06b6d4" opacity="0.6"/>
+                                <circle cx="84" cy="84" r="1.5" fill="#06b6d4" opacity="0.6"/>
+                                <circle cx="28" cy="48" r="1" fill="#06b6d4" opacity="0.4"/>
+                                <circle cx="92" cy="72" r="1" fill="#06b6d4" opacity="0.4"/>
+                                <circle cx="42" cy="26" r="1" fill="#a1a1aa" opacity="0.3"/>
+                                <circle cx="78" cy="94" r="1" fill="#a1a1aa" opacity="0.3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display font-bold text-xl uppercase tracking-tight text-white mb-2">Avery</h3>
+                    <span class="inline-block border border-brand-500/30 text-brand-500 rounded-full px-3 py-0.5 text-xs font-sans font-semibold tracking-wider uppercase mb-4">Deal Director</span>
+                    <p class="font-sans text-zinc-400 text-sm leading-relaxed mb-5">Manages pipeline, outreach, and partnerships</p>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 daemon-status-dot"></div>
+                        <span class="font-sans text-xs text-zinc-500">Active 24/7</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom line -->
+            <div class="text-center mt-16 reveal-fade">
+                <p class="font-sans text-zinc-400 text-base font-light max-w-3xl mx-auto leading-relaxed">
+                    Unlike a consulting team, the mesh never takes a day off, never loses context, and never walks out the door. And it costs less than a single junior hire.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== RESULTS / TESTIMONIALS ==================== -->
+    <section id="results" class="py-32 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Results</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">What Changes</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="testimonial-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="font-display font-black text-4xl text-brand-500 mb-4">4hrs &rarr; 12min</div>
+                    <p class="font-sans text-zinc-300 text-sm leading-relaxed mb-6">
+                        &ldquo;Research that used to take half a morning now arrives before I open my laptop. The briefing is waiting. Context for every meeting, pre-assembled.&rdquo;
+                    </p>
+                    <div class="border-t border-zinc-800 pt-4">
+                        <p class="font-sans text-white text-sm font-semibold">Overnight Research Synthesis</p>
+                        <p class="font-sans text-zinc-500 text-xs mt-1">Internal team operations</p>
+                    </div>
+                </div>
+                <div class="testimonial-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="font-display font-black text-4xl text-brand-500 mb-4">10x</div>
+                    <p class="font-sans text-zinc-300 text-sm leading-relaxed mb-6">
+                        &ldquo;We went from $500+/month on enterprise AI tools to sub-$50 running the same coordination on three $6 servers. The system is more capable now, not less.&rdquo;
+                    </p>
+                    <div class="border-t border-zinc-800 pt-4">
+                        <p class="font-sans text-white text-sm font-semibold">Infrastructure Cost Reduction</p>
+                        <p class="font-sans text-zinc-500 text-xs mt-1">Same capability, 10x cheaper</p>
+                    </div>
+                </div>
+                <div class="testimonial-card border border-zinc-800 p-8 reveal-fade">
+                    <div class="font-display font-black text-4xl text-brand-500 mb-4">24/7</div>
+                    <p class="font-sans text-zinc-300 text-sm leading-relaxed mb-6">
+                        &ldquo;49 sentinels monitor everything from node health to knowledge graph density. The system caught a NATS auth hemorrhage at 3am and flagged it before anyone woke up.&rdquo;
+                    </p>
+                    <div class="border-t border-zinc-800 pt-4">
+                        <p class="font-sans text-white text-sm font-semibold">Autonomous Monitoring</p>
+                        <p class="font-sans text-zinc-500 text-xs mt-1">Self-healing mesh operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== COMPARISON ==================== -->
+    <section class="py-24 bg-[#050505] relative z-10">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-4xl md:text-6xl uppercase tracking-tighter text-white">
+                        Consultants vs.<br>
+                        <span class="text-brand-500">The Mesh</span>
+                    </h2>
+                </div>
+                <p class="font-sans text-zinc-500 text-sm mt-4 reveal-fade">A great ops team walks out the door. The mesh stays.</p>
+            </div>
+
+            <div class="reveal-fade overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b border-zinc-800">
+                            <th class="text-left font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-500 py-4 pr-6 w-1/3"></th>
+                            <th class="text-left font-sans text-[0.65rem] tracking-[0.2em] uppercase text-zinc-500 py-4 pr-6 w-1/3">Traditional Ops Team</th>
+                            <th class="text-left font-sans text-[0.65rem] tracking-[0.2em] uppercase text-brand-500 py-4 w-1/3">Meridian</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-sans text-sm">
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">Scales by</td>
+                            <td class="py-4 pr-6 text-zinc-500">Hiring more people</td>
+                            <td class="py-4 text-white">Growing the knowledge graph</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">When they leave</td>
+                            <td class="py-4 pr-6 text-zinc-500">Knowledge walks out the door</td>
+                            <td class="py-4 text-white">Intelligence layer stays &mdash; you own it</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">Memory</td>
+                            <td class="py-4 pr-6 text-zinc-500">People's heads + scattered docs</td>
+                            <td class="py-4 text-white">17,900+ nodes with provenance</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">Availability</td>
+                            <td class="py-4 pr-6 text-zinc-500">Business hours, time zones</td>
+                            <td class="py-4 text-white">24/7 autonomous operations</td>
+                        </tr>
+                        <tr class="border-b border-zinc-900/50">
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">Quality control</td>
+                            <td class="py-4 pr-6 text-zinc-500">Depends on the person</td>
+                            <td class="py-4 text-white">Evidence-gated &mdash; blocks unsubstantiated claims</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 pr-6 text-zinc-400 font-medium">Cost trajectory</td>
+                            <td class="py-4 pr-6 text-zinc-500">Scales with headcount</td>
+                            <td class="py-4 text-white">Gets cheaper as the graph grows</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== BIG QUOTE ==================== -->
+    <section class="py-24 bg-zinc-950 border-y border-zinc-900 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal-fade">
+            <blockquote class="font-display font-black text-3xl md:text-5xl uppercase tracking-tight text-white leading-snug">
+                &ldquo;Other AI tools give you more.<br>
+                <span class="text-brand-500">Meridian gives you clarity.&rdquo;</span>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- ==================== QUALIFICATION GATE ==================== -->
+    <section id="qualify" class="py-32 bg-[#050505] relative overflow-hidden z-10">
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none"
+             style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 12px);"></div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <div class="mask-wrap mb-4">
+                    <p class="mask-text font-sans text-brand-500 text-xs tracking-[0.3em] uppercase font-bold">Before You Book</p>
+                </div>
+                <div class="mask-wrap">
+                    <h2 class="mask-text font-display font-black text-5xl md:text-7xl uppercase tracking-tighter text-white">Are We<br>Right For You?</h2>
+                </div>
+                <p class="font-sans text-zinc-400 text-sm mt-6 reveal-fade max-w-xl mx-auto">
+                    We're not for everyone. We work best with founders who meet these criteria.
+                </p>
+            </div>
+
+            <!-- Qualification Criteria -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 reveal-fade">
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">You Have Data Worth Remembering</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">Research, client history, operational knowledge &mdash; scattered across tools that don't talk to each other.</p>
+                </div>
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">You're Spending $500+/Mo on AI Tools</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">Multiple subscriptions, none of them connected, each starting from zero every session.</p>
+                </div>
+                <div class="border border-zinc-800 p-6 text-center hover:border-brand-500/30 transition-colors">
+                    <div class="w-10 h-10 mx-auto mb-4 rounded-full border border-brand-500/30 flex items-center justify-center">
+                        <i data-lucide="check" class="w-5 h-5 text-brand-500"></i>
+                    </div>
+                    <h3 class="font-sans text-white text-sm font-semibold mb-2">You Want to Own the System</h3>
+                    <p class="font-sans text-zinc-500 text-xs leading-relaxed">Not rent another SaaS that holds your data hostage. Your infrastructure, your knowledge, your IP.</p>
+                </div>
+            </div>
+
+            <!-- Lead Form -->
+            <form id="lead-form" class="bg-black/40 backdrop-blur-md border border-zinc-800 p-8 md:p-16 text-left space-y-8 reveal-fade max-w-2xl mx-auto">
+                <div class="text-center mb-4">
+                    <h3 class="font-display font-bold text-2xl uppercase tracking-tight text-white">Book a Discovery Call</h3>
+                    <p class="font-sans text-zinc-500 text-sm mt-2">60 minutes. Written assessment within 48 hours. No commitment.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Full Name</label>
+                        <input type="text" id="lead-name" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                    <div class="space-y-2 relative group">
+                        <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">Email Address</label>
+                        <input type="email" id="lead-email" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale">
+                    </div>
+                </div>
+                <div class="space-y-2 relative group">
+                    <label class="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-zinc-500 transition-colors group-focus-within:text-brand-500">What's Your Biggest Operational Bottleneck?</label>
+                    <input type="text" id="lead-building" class="w-full bg-transparent border-b border-zinc-700 focus:border-brand-500 text-white py-2 outline-none transition-colors font-sans text-lg cursor-scale" placeholder="e.g. I'm the only person who remembers why we made decisions">
+                </div>
+                <input type="text" name="website" id="lead-honeypot" style="display:none" tabindex="-1" autocomplete="off">
+                <div class="flex items-start gap-3 mt-4">
+                    <input type="checkbox" id="lead-consent" class="mt-1 accent-brand-500 cursor-scale">
+                    <label for="lead-consent" class="font-sans text-[0.6rem] tracking-[0.1em] uppercase text-zinc-500 leading-relaxed">
+                        I consent to Covault processing my data to evaluate fit for Meridian. <a href="#" class="text-brand-500 hover:text-white transition-colors">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-white text-black font-sans font-bold uppercase tracking-[0.2em] text-xs py-5 hover:bg-brand-500 transition-colors duration-300 mt-8 magnetic cursor-scale">
+                    Book Your Discovery Call
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-black pt-32 pb-12 relative z-10 overflow-hidden border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Connect</h4>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="send" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-white hover:text-brand-500 transition-colors cursor-scale"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-500 mb-6">Stay Updated</h4>
+                    <p class="font-sans text-sm text-zinc-400 mb-4 font-light">Get notified when new capabilities ship.</p>
+                    <div class="flex border-b border-zinc-700 focus-within:border-white transition-colors">
+                        <input type="email" placeholder="Enter email" class="w-full bg-transparent py-2 text-white outline-none font-sans text-sm">
+                        <button class="text-brand-500 hover:text-white transition-colors uppercase text-xs tracking-widest font-bold px-2">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full text-center border-b border-zinc-900 pb-12 mb-12">
+                <h1 class="font-display font-black text-[12vw] leading-none uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-zinc-800 to-black select-none pointer-events-none">
+                    MERIDIAN
+                </h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 font-sans text-[0.65rem] tracking-widest uppercase text-zinc-600">
+                <p>&copy; 2026 Covault. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        lucide.createIcons();
+
+        // Preloader
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        const loaderText = document.getElementById('loader-text');
+        setTimeout(() => { loaderText.style.transform = 'translateY(0)'; }, 100);
+        let progress = 0;
+        const duration = 2000, interval = 20, step = 100 / (duration / interval);
+        const counter = setInterval(() => {
+            progress += step;
+            if (progress >= 100) { progress = 100; clearInterval(counter); finishLoading(); }
+            loaderBar.style.width = `${progress}%`;
+            loaderText.innerText = `${Math.floor(progress)}%`;
+        }, interval);
+        function finishLoading() {
+            setTimeout(() => {
+                preloader.classList.add('loaded');
+                document.body.classList.remove('loading');
+                setTimeout(() => {
+                    document.querySelectorAll('header .mask-wrap, header .reveal-fade').forEach(el => el.classList.add('active'));
+                }, 400);
+            }, 500);
+        }
+
+        // Scroll Observers
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        setTimeout(() => {
+            document.querySelectorAll('section .mask-wrap, section .reveal-fade').forEach(el => observer.observe(el));
+        }, 2500);
+
+        // Navbar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Cursor + Magnetic
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursorDot = document.getElementById('cursor-dot');
+            const cursorOutline = document.getElementById('cursor-outline');
+            let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
+            function animate() {
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+                requestAnimationFrame(animate);
+            }
+            animate();
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
+            });
+            document.querySelectorAll('.cursor-scale, a, button, input').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
+                    cursorOutline.style.backgroundColor = 'white';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px';
+                    cursorOutline.style.backgroundColor = 'transparent';
+                    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
+            document.querySelectorAll('.magnetic').forEach(magnet => {
+                magnet.addEventListener('mousemove', (e) => {
+                    const rect = magnet.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                magnet.addEventListener('mouseleave', () => { magnet.style.transform = 'translate(0px, 0px)'; });
+            });
+        }
+
+        // Lead Form
+        const leadForm = document.getElementById('lead-form');
+        if (leadForm) {
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Submitting...'; btn.disabled = true;
+                const consent = document.getElementById('lead-consent');
+                if (!consent.checked) { btn.textContent = 'Please accept the consent checkbox'; btn.disabled = false; return; }
+                try {
+                    const res = await fetch('https://meridian.covault.xyz/api/leads', {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            name: document.getElementById('lead-name').value.trim(),
+                            email: document.getElementById('lead-email').value.trim(),
+                            building: document.getElementById('lead-building').value.trim(),
+                            gdpr_consent: consent.checked,
+                            website: document.getElementById('lead-honeypot').value,
+                        }),
+                    });
+                    if (res.ok) {
+                        leadForm.innerHTML = `
+                            <div class="text-center space-y-4">
+                                <div class="w-16 h-16 mx-auto mb-6 rounded-full border border-brand-500 flex items-center justify-center">
+                                    <i data-lucide="check" class="w-8 h-8 text-brand-500"></i>
+                                </div>
+                                <h3 class="font-display font-bold text-2xl uppercase tracking-tight text-white">Request Received</h3>
+                                <p class="font-sans text-zinc-400 font-light">We'll review your application and reach out within 48 hours.</p>
+                            </div>`;
+                        lucide.createIcons();
+                    } else { btn.textContent = 'Error — please try again'; btn.disabled = false; }
+                } catch (err) { btn.textContent = 'Connection error'; btn.disabled = false; }
+            });
+        }
+    </script>
+</body>
+</html>
