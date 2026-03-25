@@ -908,9 +908,11 @@
           }
         }
 
-        // Move the cyan indicator line
-        if(navIndicator) {
-          navIndicator.style.transform = `translateY(${activeIndex * 32}px)`;
+        // Move the cyan indicator line to match the active button's position
+        if(navIndicator && navButtons[activeIndex]) {
+          const btnTop = navButtons[activeIndex].offsetTop - navButtons[0].offsetTop;
+          navIndicator.style.transform = `translateY(${btnTop}px)`;
+          navIndicator.style.height = `${navButtons[activeIndex].offsetHeight}px`;
         }
 
         // Apply dynamic classes based on active state
