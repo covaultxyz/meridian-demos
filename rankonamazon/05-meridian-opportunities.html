@@ -1,114 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>05 — MERIDIAN Opportunities | Rank On Amazon Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        bg: '#0c1222',
-                        card: '#1e293b',
-                        border: '#334155',
-                        primary: '#e2e8f0',
-                        secondary: '#94a3b8',
-                        muted: '#64748b',
-                        cyan: '#06b6d4',
-                        success: '#10b981',
-                        warning: '#f59e0b',
-                        error: '#ef4444',
-                        info: '#3b82f6',
-                    },
-                    fontFamily: {
-                        body: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #0c1222; font-family: 'Inter', sans-serif; color: #e2e8f0; scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(6,182,212,0.1); }
-        @media print { body { background: white; color: black; } .no-print { display: none; } }
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .pain-grid{display:grid;grid-template-columns:1fr;gap:16px}
+        @media(min-width:768px){.pain-grid{grid-template-columns:1fr 1fr 1fr}}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Header -->
-    <header class="border-b border-border">
-        <div class="max-w-5xl mx-auto px-6 py-6">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="no-print flex items-center gap-2 text-secondary hover:text-cyan transition-colors text-sm">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        Back to Index
-                    </a>
-                    <span class="text-border">|</span>
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-info/10 text-info text-xs font-bold">05</span>
-                        <h1 class="font-display text-2xl font-700 text-primary">MERIDIAN Opportunities</h1>
-                    </div>
+
+    <!-- Fixed Nav -->
+    <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+                <div class="w-px h-5 bg-white/10"></div>
+                <div class="icon-box w-9 h-9 flex items-center justify-center">
+                    <i data-lucide="rocket" class="w-4 h-4 text-blue-400"></i>
                 </div>
-                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-error/10 border border-error/30 text-error text-xs font-semibold tracking-wide">
-                    <i data-lucide="shield-alert" class="w-3 h-3"></i>
-                    INTERNAL
-                </span>
+                <span class="text-white font-semibold text-sm tracking-wide">Rank On Amazon</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#painpoints" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Pain Points</a>
+                <a href="#engagement" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Engagement</a>
+                <a href="#risk" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Risk</a>
+                <a href="#quickwins" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Quick Wins</a>
+            </div>
+            <div class="badge border border-purple-500/30 text-purple-400 bg-purple-500/10">
+                <i data-lucide="lock" class="w-3 h-3"></i>
+                Internal
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 px-6 overflow-hidden">
+        <div class="glow-orb w-[500px] h-[500px] bg-blue-500/15 -top-40 left-1/2 -translate-x-1/2" style="position:absolute"></div>
+        <div class="glow-orb w-[300px] h-[300px] bg-purple-500/10 top-20 -right-20" style="position:absolute"></div>
 
-        <!-- Executive Summary -->
-        <section class="bg-cyan/5 border border-cyan/20 rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="zap" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-cyan">Executive Summary</h2>
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <div class="reveal">
+                <div class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10 mx-auto mb-8">
+                    <i data-lucide="rocket" class="w-3 h-3"></i>
+                    MERIDIAN Opportunities
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gradient-white mb-6">
+                    MERIDIAN Opportunities
+                </h1>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    Pain points, AI solutions, engagement models, conversation starters, and risk assessment
+                </p>
             </div>
-            <p class="text-secondary leading-relaxed">
-                Rank On Amazon has <strong class="text-primary">expert-grade Amazon knowledge running on intern-grade infrastructure</strong>.
-                MERIDIAN bridges that gap &mdash; delivering AI-powered operational infrastructure that multiplies their practitioner expertise without replacing it.
-            </p>
-            <p class="text-secondary leading-relaxed mt-3">
-                Estimated impact: <strong class="text-cyan">3-5x operational efficiency gain</strong>, significant new client acquisition capability, and a competitive moat vs. AI-native competitors entering the space.
-            </p>
-        </section>
 
-        <!-- 7 Pain Points with Solutions -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="puzzle" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Pain Points &amp; MERIDIAN Solutions</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 reveal">
+                <div class="glass-card p-5 text-center">
+                    <p class="text-white text-2xl font-bold">7</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Pain Points</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-blue-400 text-2xl font-bold">3-5x</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Efficiency Gain</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-emerald-400 text-2xl font-bold">3</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Engagement Models</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-amber-400 text-2xl font-bold">10</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Quick Wins</p>
+                </div>
             </div>
-            <div class="space-y-6">
+        </div>
+    </section>
 
-                <!-- Pain Point 1 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Executive Summary -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="glass-card p-6 md:p-8" style="border-color:rgba(59,130,246,0.2)">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">1</span>
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-blue-400"></i>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">AI-Powered Listing Optimization Engine</h3>
+                        <h2 class="text-2xl font-bold text-gradient-blue">Executive Summary</h2>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">Manual listing creation across 7 marketplaces. Each "Perfect Listing" takes hours of human work for localized copy, keyword research, and A9 algorithm compliance.</p>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Rank On Amazon has <strong class="text-white">expert-grade Amazon knowledge running on intern-grade infrastructure</strong>.
+                        MERIDIAN bridges that gap &mdash; delivering AI-powered operational infrastructure that multiplies their practitioner expertise without replacing it.
+                    </p>
+                    <p class="text-zinc-400 leading-relaxed mt-3">
+                        Estimated impact: <strong class="text-blue-400">3-5x operational efficiency gain</strong>, significant new client acquisition capability, and a competitive moat vs. AI-native competitors entering the space.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Pain Points -->
+    <section id="painpoints" class="py-24 px-6 relative">
+        <div class="glow-orb w-[400px] h-[400px] bg-blue-500/8 bottom-0 right-0" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="puzzle" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Pain Points &amp; MERIDIAN Solutions</h2>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Pain Point 1 -->
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">1</span>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <h3 class="text-lg font-bold text-white">AI-Powered Listing Optimization Engine</h3>
+                    </div>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">Manual listing creation across 7 marketplaces. Each "Perfect Listing" takes hours of human work for localized copy, keyword research, and A9 algorithm compliance.</p>
+                        </div>
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>LLM-powered listing generator trained on A9/A10 signals</li>
                                 <li>Multi-language creation (EN, SE, DE, FR, ES, IT, NL)</li>
                                 <li>Automated keyword harvesting from competitor ASINs</li>
@@ -116,30 +177,30 @@
                                 <li>Backend search term optimization with char limits</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">10x listing speed</p>
-                            <p class="text-secondary text-sm">Staff shifts from creation to quality review and strategic decisions.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">10x listing speed</p>
+                            <p class="text-zinc-400 text-sm">Staff shifts from creation to quality review and strategic decisions.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 2 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">2</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">2</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">Competitive Intelligence &amp; Monitoring</h3>
+                        <h3 class="text-lg font-bold text-white">Competitive Intelligence &amp; Monitoring</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">No automated competitor tracking. Changes in competitor pricing, listings, reviews, and ad positioning discovered manually &mdash; or not at all.</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">No automated competitor tracking. Changes in competitor pricing, listings, reviews, and ad positioning discovered manually &mdash; or not at all.</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Automated ASIN monitoring across competitors</li>
                                 <li>Price change alerts with margin impact</li>
                                 <li>Listing change detection (title, bullets, A+)</li>
@@ -148,30 +209,30 @@
                                 <li>Weekly auto-generated intelligence briefing</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">Reactive to Proactive</p>
-                            <p class="text-secondary text-sm">Clients see Rank On Amazon as having "eyes everywhere" &mdash; a capability only tech-enabled agencies deliver.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">Reactive to Proactive</p>
+                            <p class="text-zinc-400 text-sm">Clients see Rank On Amazon as having "eyes everywhere" &mdash; a capability only tech-enabled agencies deliver.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 3 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">3</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">3</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">Client Dashboard &amp; Reporting Platform</h3>
+                        <h3 class="text-lg font-bold text-white">Client Dashboard &amp; Reporting Platform</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">No client-facing dashboard. Reporting is manual &mdash; presumably slide decks or PDFs delivered periodically. Clients can't see value continuously.</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">No client-facing dashboard. Reporting is manual &mdash; presumably slide decks or PDFs delivered periodically. Clients can't see value continuously.</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Real-time dashboard via Seller Central API</li>
                                 <li>KPI tracking: revenue, ACoS, TACoS, organic rank</li>
                                 <li>Automated weekly/monthly reports with AI insights</li>
@@ -180,30 +241,30 @@
                                 <li>White-labeled under Rank On Amazon branding</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">80%+ less reporting work</p>
-                            <p class="text-secondary text-sm">Client retention increases. They see value continuously, not just at monthly reviews.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">80%+ less reporting work</p>
+                            <p class="text-zinc-400 text-sm">Client retention increases. They see value continuously, not just at monthly reviews.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 4 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">4</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">4</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">CRM &amp; Lead Pipeline Automation</h3>
+                        <h3 class="text-lg font-bold text-white">CRM &amp; Lead Pipeline Automation</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">No visible CRM. Leads from Calendly, Contact Form 7, Tawk.to, podcast, and conferences likely flow into email or spreadsheets.</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">No visible CRM. Leads from Calendly, Contact Form 7, Tawk.to, podcast, and conferences likely flow into email or spreadsheets.</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Unified lead capture across all touchpoints</li>
                                 <li>Automated nurture sequences post-inquiry</li>
                                 <li>Lead scoring (company size, category, presence)</li>
@@ -212,30 +273,30 @@
                                 <li>Automated follow-ups for stale leads</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">No lead falls through</p>
-                            <p class="text-secondary text-sm">Conversion rate from inquiry to client increases significantly. Training-to-agency pipeline systematized.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">No lead falls through</p>
+                            <p class="text-zinc-400 text-sm">Conversion rate from inquiry to client increases significantly. Training-to-agency pipeline systematized.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 5 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">5</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">5</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">Content Marketing Engine</h3>
+                        <h3 class="text-lg font-bold text-white">Content Marketing Engine</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">Zero content marketing. No blog, no articles, no SEO-optimized content despite having deep Amazon expertise. Invisible online.</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">Zero content marketing. No blog, no articles, no SEO-optimized content despite having deep Amazon expertise. Invisible online.</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Podcast episode to transcript to blog to social</li>
                                 <li>Amazon marketplace update monitoring</li>
                                 <li>SEO-optimized article generation</li>
@@ -243,30 +304,30 @@
                                 <li>Multilingual content (English + Swedish)</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">Invisible to Discoverable</p>
-                            <p class="text-secondary text-sm">Inbound leads become a real channel. Podcast content (already exists) multiplied across formats.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">Invisible to Discoverable</p>
+                            <p class="text-zinc-400 text-sm">Inbound leads become a real channel. Podcast content (already exists) multiplied across formats.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 6 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">6</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">6</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">Website &amp; SEO Remediation</h3>
+                        <h3 class="text-lg font-bold text-white">Website &amp; SEO Remediation</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">Missing meta descriptions, no Schema.org, no OG tags, stale copyright, security vulnerabilities (XML-RPC, REST API exposed).</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">Missing meta descriptions, no Schema.org, no OG tags, stale copyright, security vulnerabilities (XML-RPC, REST API exposed).</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Full technical SEO audit and remediation</li>
                                 <li>Schema.org implementation (Organization, Service, FAQ)</li>
                                 <li>Open Graph and Twitter Card meta tags</li>
@@ -274,30 +335,30 @@
                                 <li>Performance and CRO optimization</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">Foundation Unlocked</p>
-                            <p class="text-secondary text-sm">Without this, content marketing and inbound lead generation can't work. This enables everything else.</p>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">Foundation Unlocked</p>
+                            <p class="text-zinc-400 text-sm">Without this, content marketing and inbound lead generation can't work. This enables everything else.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Pain Point 7 -->
-                <div class="bg-card border border-border rounded-2xl p-6 md:p-8 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center">
-                            <span class="text-error font-bold">7</span>
+                <div class="glass-card p-6 md:p-8 reveal">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                            <span class="text-red-400 font-bold">7</span>
                         </div>
-                        <h3 class="font-display text-lg font-700 text-primary">Amazon Advertising Intelligence</h3>
+                        <h3 class="text-lg font-bold text-white">Amazon Advertising Intelligence</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-error/5 border border-error/20 rounded-xl p-4">
-                            <h4 class="text-error text-xs font-semibold uppercase tracking-wider mb-2">Problem</h4>
-                            <p class="text-secondary text-sm">Manual PPC management. No automated bid optimization, no predictive budget allocation. Strategists spend time on bid spreadsheets.</p>
+                    <div class="pain-grid">
+                        <div class="glass-card p-5" style="border-color:rgba(248,113,113,0.15)">
+                            <h4 class="text-red-400 text-xs font-semibold uppercase tracking-wider mb-3">Problem</h4>
+                            <p class="text-zinc-400 text-sm">Manual PPC management. No automated bid optimization, no predictive budget allocation. Strategists spend time on bid spreadsheets.</p>
                         </div>
-                        <div class="bg-cyan/5 border border-cyan/20 rounded-xl p-4">
-                            <h4 class="text-cyan text-xs font-semibold uppercase tracking-wider mb-2">MERIDIAN Solution</h4>
-                            <ul class="text-secondary text-sm space-y-1">
+                        <div class="glass-card p-5" style="border-color:rgba(59,130,246,0.15)">
+                            <h4 class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">MERIDIAN Solution</h4>
+                            <ul class="text-zinc-400 text-sm space-y-1">
                                 <li>Automated bid adjustment (ACoS, TACoS, ROAS targets)</li>
                                 <li>Dayparting optimization</li>
                                 <li>Search term harvesting pipeline</li>
@@ -306,290 +367,261 @@
                                 <li>AI-generated Sponsored Brand headlines</li>
                             </ul>
                         </div>
-                        <div class="bg-success/5 border border-success/20 rounded-xl p-4">
-                            <h4 class="text-success text-xs font-semibold uppercase tracking-wider mb-2">Impact</h4>
-                            <p class="text-success text-lg font-bold mb-1">Strategy over Spreadsheets</p>
-                            <p class="text-secondary text-sm">Better ad performance with less manual management. Strategists focus on strategy, not bid management.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Engagement Models -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="handshake" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Engagement Model Recommendations</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Option A -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-2.5 py-0.5 rounded-full bg-info/10 text-info text-xs font-bold">Option A</span>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-2">Infrastructure Build</h3>
-                    <p class="text-muted text-xs uppercase tracking-wider mb-2">Project-Based</p>
-                    <p class="text-secondary text-sm mb-3">Build core systems (dashboard, CRM, monitoring) as a one-time project. Hand off to their team to operate.</p>
-                    <div class="space-y-2 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-muted">Timeline</span>
-                            <span class="text-primary font-medium">8-12 weeks</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-muted">Best for</span>
-                            <span class="text-primary font-medium">If they hire tech staff</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Option B -->
-                <div class="bg-bg rounded-xl p-5 border-2 border-cyan/30 card-hover relative">
-                    <div class="absolute -top-2 right-4">
-                        <span class="px-2 py-0.5 rounded-full bg-cyan text-bg text-xs font-bold">RECOMMENDED</span>
-                    </div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-2.5 py-0.5 rounded-full bg-cyan/10 text-cyan text-xs font-bold">Option B</span>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-2">Managed AI Operations</h3>
-                    <p class="text-muted text-xs uppercase tracking-wider mb-2">Ongoing Service</p>
-                    <p class="text-secondary text-sm mb-3">MERIDIAN builds and operates the AI layer. Rank On Amazon focuses on client strategy; we handle the technology.</p>
-                    <div class="space-y-2 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-muted">Timeline</span>
-                            <span class="text-primary font-medium">4-week pilot, ongoing</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-muted">Best for</span>
-                            <span class="text-primary font-medium">They stay lean</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Option C -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="px-2.5 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-bold">Option C</span>
-                    </div>
-                    <h3 class="font-semibold text-primary mb-2">Sweat Equity Mirror</h3>
-                    <p class="text-muted text-xs uppercase tracking-wider mb-2">Partnership</p>
-                    <p class="text-secondary text-sm mb-3">Mirror their own model &mdash; MERIDIAN takes equity in exchange for building the complete technology stack. Aligned incentives.</p>
-                    <div class="space-y-2 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-muted">Timeline</span>
-                            <span class="text-primary font-medium">6-month buildout</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-muted">Best for</span>
-                            <span class="text-primary font-medium">Deep integration</span>
+                        <div class="glass-card p-5" style="border-color:rgba(52,211,153,0.15)">
+                            <h4 class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3">Impact</h4>
+                            <p class="text-emerald-400 text-lg font-bold mb-1">Strategy over Spreadsheets</p>
+                            <p class="text-zinc-400 text-sm">Better ad performance with less manual management. Strategists focus on strategy, not bid management.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Conversation Starters -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="message-circle" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Conversation Starters</h2>
-            </div>
-            <div class="space-y-3">
-                <div class="bg-bg rounded-xl p-4 border border-border/50">
-                    <div class="flex items-start gap-3">
-                        <span class="text-cyan font-bold text-sm mt-0.5">1</span>
-                        <div>
-                            <p class="text-primary text-sm font-medium">"What prompted you to reach out now?"</p>
-                            <p class="text-muted text-xs mt-1">Reveals the trigger &mdash; whatever he says first is the real priority</p>
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Engagement Models -->
+    <section id="engagement" class="py-24 px-6 relative">
+        <div class="glow-orb w-[300px] h-[300px] bg-blue-500/10 top-0 -left-20" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="handshake" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Engagement Model Recommendations</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Option A -->
+                    <div class="glass-card p-6">
+                        <div class="mb-4">
+                            <span class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10">Option A</span>
+                        </div>
+                        <h3 class="font-semibold text-white text-lg mb-2">Infrastructure Build</h3>
+                        <p class="text-zinc-600 text-xs uppercase tracking-wider mb-3">Project-Based</p>
+                        <p class="text-zinc-400 text-sm mb-4">Build core systems (dashboard, CRM, monitoring) as a one-time project. Hand off to their team to operate.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-zinc-600">Timeline</span><span class="text-white font-medium">8-12 weeks</span></div>
+                            <div class="flex justify-between"><span class="text-zinc-600">Best for</span><span class="text-white font-medium">If they hire tech staff</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Option B - Recommended -->
+                    <div class="glass-card p-6 relative" style="border-color:rgba(59,130,246,0.3)">
+                        <div class="absolute -top-3 right-4">
+                            <span class="badge bg-blue-500 text-black font-bold border-0">Recommended</span>
+                        </div>
+                        <div class="mb-4">
+                            <span class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10">Option B</span>
+                        </div>
+                        <h3 class="font-semibold text-white text-lg mb-2">Managed AI Operations</h3>
+                        <p class="text-zinc-600 text-xs uppercase tracking-wider mb-3">Ongoing Service</p>
+                        <p class="text-zinc-400 text-sm mb-4">MERIDIAN builds and operates the AI layer. Rank On Amazon focuses on client strategy; we handle the technology.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-zinc-600">Timeline</span><span class="text-white font-medium">4-week pilot, ongoing</span></div>
+                            <div class="flex justify-between"><span class="text-zinc-600">Best for</span><span class="text-white font-medium">They stay lean</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Option C -->
+                    <div class="glass-card p-6">
+                        <div class="mb-4">
+                            <span class="badge border border-amber-500/30 text-amber-400 bg-amber-500/10">Option C</span>
+                        </div>
+                        <h3 class="font-semibold text-white text-lg mb-2">Sweat Equity Mirror</h3>
+                        <p class="text-zinc-600 text-xs uppercase tracking-wider mb-3">Partnership</p>
+                        <p class="text-zinc-400 text-sm mb-4">Mirror their own model &mdash; MERIDIAN takes equity in exchange for building the complete technology stack. Aligned incentives.</p>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-zinc-600">Timeline</span><span class="text-white font-medium">6-month buildout</span></div>
+                            <div class="flex justify-between"><span class="text-zinc-600">Best for</span><span class="text-white font-medium">Deep integration</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-bg rounded-xl p-4 border border-border/50">
-                    <div class="flex items-start gap-3">
-                        <span class="text-cyan font-bold text-sm mt-0.5">2</span>
-                        <div>
-                            <p class="text-primary text-sm font-medium">"How are you managing client reporting today?"</p>
-                            <p class="text-muted text-xs mt-1">If slide decks/PDFs, dashboard is the wedge</p>
-                        </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Conversation Starters -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Conversation Starters</h2>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="glass-card p-5 flex items-start gap-4">
+                        <span class="text-blue-400 font-bold text-sm mt-0.5">1</span>
+                        <div><p class="text-white text-sm font-medium">"What prompted you to reach out now?"</p><p class="text-zinc-600 text-xs mt-1">Reveals the trigger &mdash; whatever he says first is the real priority</p></div>
+                    </div>
+                    <div class="glass-card p-5 flex items-start gap-4">
+                        <span class="text-blue-400 font-bold text-sm mt-0.5">2</span>
+                        <div><p class="text-white text-sm font-medium">"How are you managing client reporting today?"</p><p class="text-zinc-600 text-xs mt-1">If slide decks/PDFs, dashboard is the wedge</p></div>
+                    </div>
+                    <div class="glass-card p-5 flex items-start gap-4">
+                        <span class="text-blue-400 font-bold text-sm mt-0.5">3</span>
+                        <div><p class="text-white text-sm font-medium">"What's your biggest bottleneck to taking on more clients?"</p><p class="text-zinc-600 text-xs mt-1">Capacity (tech solves) vs. pipeline (marketing solves)</p></div>
+                    </div>
+                    <div class="glass-card p-5 flex items-start gap-4">
+                        <span class="text-blue-400 font-bold text-sm mt-0.5">4</span>
+                        <div><p class="text-white text-sm font-medium">"Have you looked at what AI-native agencies are offering?"</p><p class="text-zinc-600 text-xs mt-1">Whether competitive threat is on his radar</p></div>
+                    </div>
+                    <div class="glass-card p-5 flex items-start gap-4">
+                        <span class="text-blue-400 font-bold text-sm mt-0.5">5</span>
+                        <div><p class="text-white text-sm font-medium">"What would make this a great use of your time today?"</p><p class="text-zinc-600 text-xs mt-1">Let him define the meeting &mdash; reduces builder's bias</p></div>
                     </div>
                 </div>
-                <div class="bg-bg rounded-xl p-4 border border-border/50">
-                    <div class="flex items-start gap-3">
-                        <span class="text-cyan font-bold text-sm mt-0.5">3</span>
-                        <div>
-                            <p class="text-primary text-sm font-medium">"What's your biggest bottleneck to taking on more clients?"</p>
-                            <p class="text-muted text-xs mt-1">Capacity (tech solves) vs. pipeline (marketing solves)</p>
-                        </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Risk Assessment -->
+    <section id="risk" class="py-24 px-6 relative">
+        <div class="glow-orb w-[300px] h-[300px] bg-amber-500/8 bottom-0 right-0" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                        <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
                     </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Risk Assessment</h2>
                 </div>
-                <div class="bg-bg rounded-xl p-4 border border-border/50">
-                    <div class="flex items-start gap-3">
-                        <span class="text-cyan font-bold text-sm mt-0.5">4</span>
-                        <div>
-                            <p class="text-primary text-sm font-medium">"Have you looked at what AI-native agencies are offering?"</p>
-                            <p class="text-muted text-xs mt-1">Whether competitive threat is on his radar</p>
+
+                <div class="glass-card p-6 md:p-8 overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Risk</th>
+                                <th>Severity</th>
+                                <th>Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-white font-medium">Sub-$5M revenue limits budget for tech investment</td>
+                                <td><span class="badge border border-red-500/30 text-red-400 bg-red-500/10">High</span></td>
+                                <td class="text-zinc-400">Start with quick wins (free), build trust, then right-size proposal to their actual budget</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white font-medium">Founder dependency means one decision maker</td>
+                                <td><span class="badge border border-amber-500/30 text-amber-400 bg-amber-500/10">Medium</span></td>
+                                <td class="text-zinc-400">Build relationship with Carl directly; he is the entire buying committee</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white font-medium">Swedish business culture is relationship-first</td>
+                                <td><span class="badge border border-amber-500/30 text-amber-400 bg-amber-500/10">Medium</span></td>
+                                <td class="text-zinc-400">Don't rush to close. Build trust over transactions. Lead with respect, not critique.</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white font-medium">No internal tech team to hand off to</td>
+                                <td><span class="badge border border-amber-500/30 text-amber-400 bg-amber-500/10">Medium</span></td>
+                                <td class="text-zinc-400">Option B (managed operations) is likely the right model, not project-based</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white font-medium">They may not perceive the tech gap as urgent</td>
+                                <td><span class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10">Low</span></td>
+                                <td class="text-zinc-400">He came to us (inbound). Don't present problems &mdash; ask what he's trying to solve.</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white font-medium">Competitive info may feel invasive if presented poorly</td>
+                                <td><span class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10">Low</span></td>
+                                <td class="text-zinc-400">Use data points only if conversation calls for them. Never present as a list of failures.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- The Pitch -->
+    <section class="py-24 px-6 relative">
+        <div class="glow-orb w-[400px] h-[400px] bg-blue-500/10 top-0 left-1/2 -translate-x-1/2" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="glass-card p-6 md:p-8" style="border-color:rgba(59,130,246,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="megaphone" class="w-5 h-5 text-blue-400"></i>
                         </div>
+                        <h2 class="text-2xl font-bold text-gradient-blue">The Pitch (One Paragraph)</h2>
                     </div>
-                </div>
-                <div class="bg-bg rounded-xl p-4 border border-border/50">
-                    <div class="flex items-start gap-3">
-                        <span class="text-cyan font-bold text-sm mt-0.5">5</span>
-                        <div>
-                            <p class="text-primary text-sm font-medium">"What would make this a great use of your time today?"</p>
-                            <p class="text-muted text-xs mt-1">Let him define the meeting &mdash; reduces builder's bias</p>
-                        </div>
-                    </div>
+                    <blockquote class="text-zinc-400 leading-relaxed text-sm border-l-4 border-blue-500/30 pl-4">
+                        Rank On Amazon has something most Amazon agencies fake &mdash; real seller experience. But in 2026, expertise without technology is a knife at a gunfight. Your competitors are deploying AI for listing optimization, automated competitive monitoring, and real-time client dashboards while your team does everything manually. MERIDIAN doesn't replace your Amazon knowledge &mdash; it multiplies it. We build the AI infrastructure that lets your 20-person team operate like a 100-person agency: automated reporting, intelligent monitoring, LLM-powered listings, and a content engine that turns your podcast expertise into inbound leads. Your methodology is proven. Let us give it the technology it deserves.
+                    </blockquote>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Risk Assessment -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Risk Assessment</h2>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="border-b border-border">
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Risk</th>
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider w-24">Severity</th>
-                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">Mitigation</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-border/50">
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">Sub-$5M revenue limits budget for tech investment</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-xs font-semibold">HIGH</span></td>
-                            <td class="py-3 text-secondary">Start with quick wins (free), build trust, then right-size proposal to their actual budget</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">Founder dependency means one decision maker</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-semibold">MEDIUM</span></td>
-                            <td class="py-3 text-secondary">Build relationship with Carl directly; he is the entire buying committee</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">Swedish business culture is relationship-first</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-semibold">MEDIUM</span></td>
-                            <td class="py-3 text-secondary">Don't rush to close. Build trust over transactions. Lead with respect, not critique.</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No internal tech team to hand off to</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-semibold">MEDIUM</span></td>
-                            <td class="py-3 text-secondary">Option B (managed operations) is likely the right model, not project-based</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">They may not perceive the tech gap as urgent</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-info/10 text-info text-xs font-semibold">LOW</span></td>
-                            <td class="py-3 text-secondary">He came to us (inbound). Don't present problems &mdash; ask what he's trying to solve.</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">Competitive info may feel invasive if presented poorly</td>
-                            <td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full bg-info/10 text-info text-xs font-semibold">LOW</span></td>
-                            <td class="py-3 text-secondary">Use data points only if conversation calls for them. Never present as a list of failures.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <div class="section-divider max-w-5xl mx-auto"></div>
 
-        <!-- The Pitch -->
-        <section class="bg-cyan/5 border border-cyan/20 rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="megaphone" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-cyan">The Pitch (One Paragraph)</h2>
-            </div>
-            <blockquote class="text-secondary leading-relaxed text-sm border-l-4 border-cyan pl-4">
-                Rank On Amazon has something most Amazon agencies fake &mdash; real seller experience. But in 2026, expertise without technology is a knife at a gunfight. Your competitors are deploying AI for listing optimization, automated competitive monitoring, and real-time client dashboards while your team does everything manually. MERIDIAN doesn't replace your Amazon knowledge &mdash; it multiplies it. We build the AI infrastructure that lets your 20-person team operate like a 100-person agency: automated reporting, intelligent monitoring, LLM-powered listings, and a content engine that turns your podcast expertise into inbound leads. Your methodology is proven. Let us give it the technology it deserves.
-            </blockquote>
-        </section>
+    <!-- Quick Wins -->
+    <section id="quickwins" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                        <i data-lucide="timer" class="w-5 h-5 text-emerald-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Quick Wins (&lt; 1 Week Each)</h2>
+                </div>
 
-        <!-- Quick Wins -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="timer" class="w-5 h-5 text-success"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Quick Wins (&lt; 1 Week Each)</h2>
+                <div class="glass-card p-6 md:p-8 overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Quick Win</th>
+                                <th>Effort</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white">Add meta descriptions to all 10 pages</td><td class="text-zinc-400">2 hours</td><td class="text-emerald-400">Immediate SEO improvement</td></tr>
+                            <tr><td class="text-white">Add Schema.org Organization markup</td><td class="text-zinc-400">2 hours</td><td class="text-emerald-400">Rich snippets in search</td></tr>
+                            <tr><td class="text-white">Disable XML-RPC</td><td class="text-zinc-400">30 min</td><td class="text-emerald-400">Security hardening</td></tr>
+                            <tr><td class="text-white">Add OG tags for social sharing</td><td class="text-zinc-400">1 hour</td><td class="text-emerald-400">Better social previews</td></tr>
+                            <tr><td class="text-white">Update copyright to 2026</td><td class="text-zinc-400">5 min</td><td class="text-zinc-400">Credibility signal</td></tr>
+                            <tr><td class="text-white">Fix cookie policy (remove unrelated sites)</td><td class="text-zinc-400">15 min</td><td class="text-zinc-400">Professional appearance</td></tr>
+                            <tr><td class="text-white">Add social media links / create profiles</td><td class="text-zinc-400">1 day</td><td class="text-emerald-400">Digital presence foundation</td></tr>
+                            <tr><td class="text-white">Set up Trustpilot profile</td><td class="text-zinc-400">1 hour</td><td class="text-emerald-400">Begin collecting reviews</td></tr>
+                            <tr><td class="text-white">Create LinkedIn content calendar</td><td class="text-zinc-400">1 day</td><td class="text-zinc-400">Start social presence</td></tr>
+                            <tr><td class="text-white">Transcribe 5 podcast episodes to blog posts</td><td class="text-zinc-400">3 days</td><td class="text-emerald-400">Instant content marketing</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="border-b border-border">
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Quick Win</th>
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider w-20">Effort</th>
-                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-border/50">
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Add meta descriptions to all 10 pages</td>
-                            <td class="py-3 pr-4 text-secondary">2 hours</td>
-                            <td class="py-3 text-success">Immediate SEO improvement</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Add Schema.org Organization markup</td>
-                            <td class="py-3 pr-4 text-secondary">2 hours</td>
-                            <td class="py-3 text-success">Rich snippets in search</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Disable XML-RPC</td>
-                            <td class="py-3 pr-4 text-secondary">30 min</td>
-                            <td class="py-3 text-success">Security hardening</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Add OG tags for social sharing</td>
-                            <td class="py-3 pr-4 text-secondary">1 hour</td>
-                            <td class="py-3 text-success">Better social previews</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Update copyright to 2026</td>
-                            <td class="py-3 pr-4 text-secondary">5 min</td>
-                            <td class="py-3 text-secondary">Credibility signal</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Fix cookie policy (remove unrelated sites)</td>
-                            <td class="py-3 pr-4 text-secondary">15 min</td>
-                            <td class="py-3 text-secondary">Professional appearance</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Add social media links / create profiles</td>
-                            <td class="py-3 pr-4 text-secondary">1 day</td>
-                            <td class="py-3 text-success">Digital presence foundation</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Set up Trustpilot profile</td>
-                            <td class="py-3 pr-4 text-secondary">1 hour</td>
-                            <td class="py-3 text-success">Begin collecting reviews</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Create LinkedIn content calendar</td>
-                            <td class="py-3 pr-4 text-secondary">1 day</td>
-                            <td class="py-3 text-secondary">Start social presence</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary">Transcribe 5 podcast episodes to blog posts</td>
-                            <td class="py-3 pr-4 text-secondary">3 days</td>
-                            <td class="py-3 text-success">Instant content marketing</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="border-t border-border mt-16">
-        <div class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-            <p class="text-muted text-sm"><span class="text-cyan font-medium">MERIDIAN</span> &mdash; Internal Intelligence</p>
-            <a href="index.html" class="no-print text-secondary hover:text-cyan text-sm transition-colors flex items-center gap-1">
+    <div class="section-divider max-w-5xl mx-auto"></div>
+    <footer class="py-8 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <p class="text-zinc-600 text-sm"><span class="text-blue-400 font-medium">MERIDIAN</span> &mdash; Internal Intelligence</p>
+            <a href="index.html" class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-2">
                 <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
                 Back to Index
             </a>
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
