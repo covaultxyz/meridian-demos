@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 — Competitive Landscape | Rank On Amazon Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0c1222',
+                        card: '#1e293b',
+                        border: '#334155',
+                        primary: '#e2e8f0',
+                        secondary: '#94a3b8',
+                        muted: '#64748b',
+                        cyan: '#06b6d4',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        error: '#ef4444',
+                        info: '#3b82f6',
+                    },
+                    fontFamily: {
+                        body: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0c1222; font-family: 'Inter', sans-serif; color: #e2e8f0; scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(6,182,212,0.1); }
+        @media print { body { background: white; color: black; } .no-print { display: none; } }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-border">
+        <div class="max-w-5xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="no-print flex items-center gap-2 text-secondary hover:text-cyan transition-colors text-sm">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        Back to Index
+                    </a>
+                    <span class="text-border">|</span>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-info/10 text-info text-xs font-bold">04</span>
+                        <h1 class="font-display text-2xl font-700 text-primary">Competitive Landscape</h1>
+                    </div>
+                </div>
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-error/10 border border-error/30 text-error text-xs font-semibold tracking-wide">
+                    <i data-lucide="shield-alert" class="w-3 h-3"></i>
+                    INTERNAL
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+
+        <!-- Market Overview -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="globe" class="w-5 h-5 text-cyan"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Market Position</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-bg rounded-xl p-4 border border-border/50 text-center">
+                    <p class="text-2xl font-bold text-cyan">$2.6B</p>
+                    <p class="text-muted text-xs mt-1">Market Size by 2033</p>
+                </div>
+                <div class="bg-bg rounded-xl p-4 border border-border/50 text-center">
+                    <p class="text-2xl font-bold text-warning">9.5%</p>
+                    <p class="text-muted text-xs mt-1">CAGR</p>
+                </div>
+                <div class="bg-bg rounded-xl p-4 border border-border/50 text-center">
+                    <p class="text-2xl font-bold text-error">1.65M</p>
+                    <p class="text-muted text-xs mt-1">Active Sellers (down from 2.4M)</p>
+                </div>
+            </div>
+            <p class="text-secondary text-sm leading-relaxed">
+                Active Amazon sellers dropped from 2.4M (2021) to 1.65M (end 2025) &mdash; consolidation is accelerating.
+                Remaining sellers are more sophisticated, more likely to hire agencies, and more demanding of results.
+                <strong class="text-primary">Most top-performing sellers now partner with agencies.</strong> The DIY era is ending for serious brands.
+            </p>
+        </section>
+
+        <!-- Tier 1 Competitors -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="swords" class="w-5 h-5 text-cyan"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Tier 1 &mdash; Large Agencies</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Agency</th>
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Scale</th>
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Differentiation</th>
+                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider w-24">Threat</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border/50">
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">My Amazon Guy</td>
+                            <td class="py-3 pr-4 text-secondary">$6B+ in client sales claimed</td>
+                            <td class="py-3 pr-4 text-secondary">Content marketing machine (YouTube), large team</td>
+                            <td class="py-3"><span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-xs font-semibold">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Canopy Management</td>
+                            <td class="py-3 pr-4 text-secondary">Premium tier</td>
+                            <td class="py-3 pr-4 text-secondary">White-glove service, enterprise clients</td>
+                            <td class="py-3"><span class="px-2 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-semibold">MEDIUM</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Acadia (fka Bobsled)</td>
+                            <td class="py-3 pr-4 text-secondary">~150 staff, 6 acquisitions</td>
+                            <td class="py-3 pr-4 text-secondary">Roll-up strategy, institutional backing</td>
+                            <td class="py-3"><span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-xs font-semibold">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">SalesDuo</td>
+                            <td class="py-3 pr-4 text-secondary">AI-powered, 85% ex-Amazon staff</td>
+                            <td class="py-3 pr-4 text-secondary">AI differentiation, insider knowledge</td>
+                            <td class="py-3"><span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-xs font-semibold">HIGH</span></td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">9AM</td>
+                            <td class="py-3 pr-4 text-secondary">$250M+ in managed ad spend</td>
+                            <td class="py-3 pr-4 text-secondary">PPC specialization at scale</td>
+                            <td class="py-3"><span class="px-2 py-0.5 rounded-full bg-warning/10 text-warning text-xs font-semibold">MEDIUM</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tier 2 Competitors -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="users" class="w-5 h-5 text-cyan"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Tier 2 &mdash; Mid-Size / Specialized</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Agency</th>
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Niche</th>
+                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">Overlap</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border/50">
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Rank N Bank (James Hyatt)</td>
+                            <td class="py-3 pr-4 text-secondary">Amazon PPC, San Diego</td>
+                            <td class="py-3 text-warning text-sm">Similar name confusion risk</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">ANavigator</td>
+                            <td class="py-3 pr-4 text-secondary">8-figure client growth</td>
+                            <td class="py-3 text-secondary text-sm">Similar positioning</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Amazon Growth Lab</td>
+                            <td class="py-3 pr-4 text-secondary">Operator-creative hybrid</td>
+                            <td class="py-3 text-secondary text-sm">Similar practitioner angle</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">WebFX</td>
+                            <td class="py-3 pr-4 text-secondary">Large digital agency with Amazon division</td>
+                            <td class="py-3 text-secondary text-sm">Scale advantage</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">OuterBox</td>
+                            <td class="py-3 pr-4 text-secondary">Amazon SEO specialist</td>
+                            <td class="py-3 text-secondary text-sm">Direct service overlap</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tier 3 Tool Competitors -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="wrench" class="w-5 h-5 text-cyan"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Tier 3 &mdash; Tool Competitors (Self-Serve)</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Tool</th>
+                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Price</th>
+                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">What It Replaces</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border/50">
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Helium 10</td>
+                            <td class="py-3 pr-4 text-secondary">From $29/mo</td>
+                            <td class="py-3 text-secondary">Keyword research, listing optimization, competitor tracking</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Jungle Scout</td>
+                            <td class="py-3 pr-4 text-secondary">From $29/mo</td>
+                            <td class="py-3 text-secondary">Product research, market analysis</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">AMZScout</td>
+                            <td class="py-3 pr-4 text-secondary">Budget tier</td>
+                            <td class="py-3 text-secondary">Basic product/keyword research</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">Perpetua</td>
+                            <td class="py-3 pr-4 text-secondary">Mid-tier</td>
+                            <td class="py-3 text-secondary">Amazon SEO automation</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 pr-4 text-primary font-medium">DataHawk</td>
+                            <td class="py-3 pr-4 text-secondary">Enterprise</td>
+                            <td class="py-3 text-secondary">Analytics and monitoring</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 p-3 rounded-lg bg-warning/5 border border-warning/20">
+                <p class="text-warning text-xs">
+                    <strong>Threat from tools:</strong> Self-serve tools increasingly replace the analysis and keyword research phases that agencies charge thousands for. Agencies that don't offer value beyond what Helium 10 provides are losing relevance.
+                </p>
+            </div>
+        </section>
+
+        <!-- Strengths vs Competitors -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="shield-check" class="w-5 h-5 text-success"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Where Rank On Amazon Wins</h2>
+            </div>
+            <div class="space-y-3">
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm mt-0.5">1</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Nordic market ownership</p>
+                        <p class="text-muted text-xs">Carl Helgesson owns the Nordic Amazon narrative via podcast + conference + training</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm mt-0.5">2</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Practitioner credibility</p>
+                        <p class="text-muted text-xs">75% of staff have run their own Amazon brands (most agencies can't claim this)</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm mt-0.5">3</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Sweat equity model</p>
+                        <p class="text-muted text-xs">Unique offering that aligns incentives with smaller brands</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm mt-0.5">4</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Due diligence service</p>
+                        <p class="text-muted text-xs">Niche offering for Amazon brand acquisitions (growing M&amp;A market)</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm mt-0.5">5</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">European marketplace expertise</p>
+                        <p class="text-muted text-xs">Deep knowledge of EU VAT, cross-border logistics, pan-European FBA</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weaknesses vs Competitors -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="shield-off" class="w-5 h-5 text-error"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Where Rank On Amazon Loses</h2>
+            </div>
+            <div class="space-y-3">
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">1</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">No technology moat</p>
+                        <p class="text-muted text-xs">Zero proprietary tools, no AI, no automation</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">2</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">No content marketing</p>
+                        <p class="text-muted text-xs">Competitors like My Amazon Guy produce hundreds of YouTube videos</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">3</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">No social proof at scale</p>
+                        <p class="text-muted text-xs">2 case studies vs. competitors with 50+ testimonials</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">4</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">No third-party validation</p>
+                        <p class="text-muted text-xs">Zero reviews on any platform</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">5</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Team size limits throughput</p>
+                        <p class="text-muted text-xs">11-50 people can only serve so many clients manually</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">6</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">Invisible online</p>
+                        <p class="text-muted text-xs">Below SimilarWeb tracking threshold</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">7</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">English-language web presence is weak</p>
+                        <p class="text-muted text-xs">Strongest content is in Swedish</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-error/5 border border-error/10">
+                    <span class="text-error font-bold text-sm mt-0.5">8</span>
+                    <div>
+                        <p class="text-primary text-sm font-medium">No US physical presence</p>
+                        <p class="text-muted text-xs">Wyoming LLC is a mailbox</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emerging Threats -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="zap" class="w-5 h-5 text-warning"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Emerging Threats</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- AI-Native -->
+                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-error/10 flex items-center justify-center">
+                            <i data-lucide="brain" class="w-4 h-4 text-error"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary text-sm">AI-Native Agencies</h3>
+                    </div>
+                    <ul class="space-y-1 text-xs text-secondary">
+                        <li>Automated listing optimization using LLMs</li>
+                        <li>Real-time competitor monitoring with alerts</li>
+                        <li>Predictive analytics for inventory/pricing</li>
+                        <li>Automated PPC bid management</li>
+                        <li>AI-generated A+ Content</li>
+                    </ul>
+                    <p class="text-error text-xs mt-3 font-semibold">Rank On Amazon has zero AI capabilities.</p>
+                </div>
+
+                <!-- Amazon's Tools -->
+                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-warning/10 flex items-center justify-center">
+                            <i data-lucide="package" class="w-4 h-4 text-warning"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary text-sm">Amazon's Own Tools</h3>
+                    </div>
+                    <ul class="space-y-1 text-xs text-secondary">
+                        <li>Brand Analytics</li>
+                        <li>A+ Content manager</li>
+                        <li>Automated campaign suggestions</li>
+                        <li>Product Opportunity Explorer</li>
+                        <li>FBA Revenue Calculator improvements</li>
+                    </ul>
+                    <p class="text-warning text-xs mt-3">Erodes value of basic agency services.</p>
+                </div>
+
+                <!-- Consolidation -->
+                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center">
+                            <i data-lucide="git-merge" class="w-4 h-4 text-info"></i>
+                        </div>
+                        <h3 class="font-semibold text-primary text-sm">Marketplace Consolidation</h3>
+                    </div>
+                    <p class="text-xs text-secondary leading-relaxed">
+                        The Acadia model &mdash; acquiring smaller agencies &mdash; is a direct threat. Well-funded roll-ups offer broader services, deeper tech, and more competitive pricing through economies of scale.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Positioning Map -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="map" class="w-5 h-5 text-cyan"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Competitive Positioning Map</h2>
+            </div>
+            <div class="bg-bg rounded-xl border border-border/50 p-6 relative" style="min-height: 340px">
+                <!-- Axes -->
+                <div class="absolute left-1/2 top-6 bottom-12 w-px bg-border/50"></div>
+                <div class="absolute left-6 right-6 top-1/2 h-px bg-border/50"></div>
+                <!-- Labels -->
+                <p class="absolute top-2 left-1/2 -translate-x-1/2 text-muted text-xs uppercase tracking-wider">High Tech Capability</p>
+                <p class="absolute bottom-2 left-1/2 -translate-x-1/2 text-muted text-xs uppercase tracking-wider">Low Tech Capability</p>
+                <p class="absolute left-2 top-1/2 -translate-y-1/2 text-muted text-xs uppercase tracking-wider" style="writing-mode: vertical-lr; transform: rotate(180deg) translateY(50%)">Large Scale</p>
+                <p class="absolute right-2 top-1/2 -translate-y-1/2 text-muted text-xs uppercase tracking-wider" style="writing-mode: vertical-lr">Small / Niche</p>
+                <!-- Dots -->
+                <div class="absolute" style="top: 22%; left: 35%">
+                    <div class="w-3 h-3 rounded-full bg-error"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">SalesDuo</span>
+                </div>
+                <div class="absolute" style="top: 22%; left: 68%">
+                    <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">Helium 10</span>
+                </div>
+                <div class="absolute" style="top: 32%; left: 28%">
+                    <div class="w-3 h-3 rounded-full bg-error"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">Acadia</span>
+                </div>
+                <div class="absolute" style="top: 32%; left: 72%">
+                    <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">Perpetua</span>
+                </div>
+                <div class="absolute" style="top: 58%; left: 30%">
+                    <div class="w-3 h-3 rounded-full bg-warning"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">My Amazon Guy</span>
+                </div>
+                <div class="absolute" style="top: 65%; left: 65%">
+                    <div class="w-4 h-4 rounded-full bg-cyan ring-2 ring-cyan/30"></div>
+                    <span class="text-xs text-cyan font-bold ml-1 whitespace-nowrap">Rank On Amazon (HERE)</span>
+                </div>
+                <div class="absolute" style="top: 62%; left: 28%">
+                    <div class="w-3 h-3 rounded-full bg-warning"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">Canopy</span>
+                </div>
+                <div class="absolute" style="top: 72%; left: 68%">
+                    <div class="w-3 h-3 rounded-full bg-secondary"></div>
+                    <span class="text-xs text-secondary ml-1 whitespace-nowrap">Amazon Growth Lab</span>
+                </div>
+            </div>
+            <div class="mt-4 p-4 rounded-lg bg-warning/5 border border-warning/20">
+                <p class="text-secondary text-sm leading-relaxed">
+                    <strong class="text-warning">Rank On Amazon sits in the bottom-right quadrant</strong> &mdash; small scale, low tech. This is the most vulnerable position.
+                    They survive on practitioner credibility and Nordic market lock-in. Without tech investment, they will be squeezed by
+                    both tool companies (from above) and larger agencies (from the left).
+                </p>
+            </div>
+        </section>
+
+        <!-- Opportunities -->
+        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6">
+                <i data-lucide="trending-up" class="w-5 h-5 text-success"></i>
+                <h2 class="font-display text-xl font-700 text-primary">Market Opportunity</h2>
+            </div>
+            <p class="text-secondary text-sm mb-4">Despite the threats, the timing is actually favorable for Rank On Amazon <strong class="text-primary">IF they invest in technology</strong>:</p>
+            <div class="space-y-3">
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm">1</span>
+                    <p class="text-secondary text-sm"><strong class="text-primary">Seller count declining</strong> = remaining sellers are bigger, higher-value clients</p>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm">2</span>
+                    <p class="text-secondary text-sm"><strong class="text-primary">Nordic e-commerce growing</strong> = their home market is expanding</p>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm">3</span>
+                    <p class="text-secondary text-sm"><strong class="text-primary">Amazon expanding to new EU markets</strong> = more brands need marketplace guidance</p>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm">4</span>
+                    <p class="text-secondary text-sm"><strong class="text-primary">AI tools are accessible</strong> = don't need to build from scratch, can integrate existing capabilities</p>
+                </div>
+                <div class="flex gap-3 items-start p-3 rounded-lg bg-success/5 border border-success/10">
+                    <span class="text-success font-bold text-sm">5</span>
+                    <p class="text-secondary text-sm"><strong class="text-primary">Practitioner credibility is hard to fake</strong> = their genuine experience is a durable moat</p>
+                </div>
+            </div>
+            <p class="text-muted text-sm mt-4 italic">The question is whether they invest in tech before the window closes.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border mt-16">
+        <div class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
+            <p class="text-muted text-sm"><span class="text-cyan font-medium">MERIDIAN</span> &mdash; Internal Intelligence</p>
+            <a href="index.html" class="no-print text-secondary hover:text-cyan text-sm transition-colors flex items-center gap-1">
+                <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                Back to Index
+            </a>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
