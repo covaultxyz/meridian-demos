@@ -2746,14 +2746,20 @@ var VoiceView = function(props) {
 
   useEffect(function() {
     var params = new URLSearchParams(window.location.search);
-    var baseUrl = params.get('voice_api') || localStorage.getItem('mrd_voice_api') || 'http://127.0.0.1:8100';
+    var isRemote = location.hostname.includes('speedoftrust.ai') || location.hostname.includes('pages.dev');
+    var defaultBase = isRemote
+      ? 'https://atm-inline-curtis-shopzilla.trycloudflare.com/analytics'
+      : 'http://127.0.0.1:8100/api/v1/analytics';
+    var baseUrl = params.get('voice_api') || localStorage.getItem('mrd_voice_api') || defaultBase;
     var wsHeader = { 'X-Workspace-Id': 'd6574870-0529-4015-aeeb-a25c202d7436' };
-    var fetchOpts = { headers: wsHeader, signal: AbortSignal.timeout(5000) };
+    var fetchOpts = { headers: wsHeader, signal: AbortSignal.timeout(10000) };
 
+    // Local: baseUrl = http://127.0.0.1:8100/api/v1/analytics → /overview
+    // Remote: baseUrl = tunnel/analytics → /overview (proxy strips /analytics prefix)
     Promise.all([
-      fetch(baseUrl + '/api/v1/analytics/overview?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-      fetch(baseUrl + '/api/v1/analytics/costs?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-      fetch(baseUrl + '/api/v1/analytics/agents', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      fetch(baseUrl + '/overview?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      fetch(baseUrl + '/costs?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      fetch(baseUrl + '/agents', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     ]).then(function(results) {
       setOverview(results[0]);
       setCosts(results[1]);
@@ -3029,7 +3035,7 @@ var App = function() {
     setTimeout(function() { setRefreshing(false); }, 1000);
   };
 
-  var canLoad = authed || CONFIG.mode === 'mike';
+  var canLoad = authed || CONFIG.mode === 'mike' || CONFIG.mode === 'internal';
   useEffect(function() {
     if (canLoad) loadData();
   }, [canLoad, loadData]);
@@ -3057,7 +3063,7 @@ var App = function() {
     window.location.hash = id;
   }
 
-  if (!authed && CONFIG.mode !== 'mike' && !CONFIG.clientSlug) {
+  if (!authed && CONFIG.mode !== 'mike' && CONFIG.mode !== 'internal' && !CONFIG.clientSlug) {
     return React.createElement(AuthGate, { onAuth: function() { setAuthed(true); } });
   }
   if (CONFIG.clientSlug && !clientAuthed) {
