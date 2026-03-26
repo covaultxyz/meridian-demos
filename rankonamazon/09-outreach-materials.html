@@ -1,164 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>09 — Cold Outreach Materials | Rank On Amazon Audit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { bg:'#0c1222',card:'#1e293b',border:'#334155',primary:'#e2e8f0',secondary:'#94a3b8',muted:'#64748b',cyan:'#06b6d4',success:'#10b981',warning:'#f59e0b',error:'#ef4444',info:'#3b82f6' }, fontFamily: { body:['Inter','sans-serif'], display:['Montserrat','sans-serif'] } } } }
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } } } }
+        }
     </script>
     <style>
-        body{background:#0c1222;font-family:'Inter',sans-serif}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}.card-hover{transition:transform .2s,box-shadow .2s}.card-hover:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
-        .message-card{background:linear-gradient(135deg,#1e293b 0%,#1a2332 100%);border:1px solid #334155;border-radius:16px;padding:24px;position:relative}
-        .message-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
-        .message-linkedin::before{background:#0077b5}.message-email::before{background:#06b6d4}.message-phone::before{background:#f59e0b}
-        .objection-card{border-left:3px solid #334155;padding-left:16px;margin-bottom:16px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .glass-card-static{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .message-card{position:relative;overflow:hidden}
+        .message-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0}
+        .message-linkedin::before{background:#0077b5}
+        .message-email::before{background:#3b82f6}
+        .message-phone::before{background:#fbbf24}
+        .objection-card{border-left:3px solid rgba(255,255,255,0.08);padding-left:16px;margin-bottom:16px}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
     </style>
 </head>
-<body class="text-primary min-h-screen">
-    <header class="border-b border-border sticky top-0 z-50 bg-bg/95 backdrop-blur-sm">
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="nav-glass fixed top-0 w-full z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-4"><a href="index.html" class="text-secondary hover:text-cyan transition-colors flex items-center gap-2 text-sm"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Index</a><div class="h-5 w-px bg-border"></div><h1 class="font-display font-bold text-lg text-primary">Cold Outreach Materials</h1></div>
-            <span class="bg-cyan/15 text-cyan text-xs font-semibold px-3 py-1 rounded-full border border-cyan/30">PAGE 09</span>
+            <div class="flex items-center gap-3">
+                <div class="icon-box p-2">
+                    <i data-lucide="send" class="w-4 h-4 text-blue-400"></i>
+                </div>
+                <span class="text-white font-semibold text-sm">Rank On Amazon</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#linkedin" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">LINKEDIN</a>
+                <a href="#email" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">EMAIL</a>
+                <a href="#phone" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">PHONE</a>
+                <a href="#brief" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">PRE-MEETING</a>
+                <a href="#notes" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">NOTES</a>
+            </div>
+            <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20">Internal</span>
         </div>
-    </header>
-    <main class="max-w-6xl mx-auto px-6 py-10 space-y-12">
-        <div class="text-center space-y-3">
-            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-primary">Cold Outreach Materials</h2>
-            <p class="text-secondary text-lg">LinkedIn, Email, Phone scripts for Carl Helgesson / Rank On Amazon</p>
-            <div class="bg-info/10 border border-info/30 rounded-xl px-4 py-2 inline-block"><p class="text-info text-sm"><strong>Note:</strong> Carl requested this meeting — these are backup/reference materials.</p></div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 px-6">
+        <div class="glow-orb w-[500px] h-[500px] bg-blue-500/10 -top-40 right-0" style="position:absolute"></div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <span class="badge bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-6">Page 09 &mdash; Outreach</span>
+                <h1 class="text-gradient-white text-5xl md:text-6xl font-extrabold tracking-tight mt-4 mb-4">Cold Outreach Materials</h1>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto mb-4">LinkedIn, Email, Phone scripts for Carl Helgesson / Rank On Amazon</p>
+                <div class="glass-card-static px-5 py-3 inline-block" style="border-radius:16px;border-color:rgba(59,130,246,0.2)">
+                    <p class="text-blue-400 text-sm"><strong>Note:</strong> Carl requested this meeting — these are backup/reference materials.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- LinkedIn Connection Request -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-[#0077b5]/20 rounded-xl p-2.5"><i data-lucide="linkedin" class="w-5 h-5 text-[#0077b5]"></i></div><h3 class="font-display font-bold text-xl text-primary">LinkedIn Connection Request Note</h3></div>
-            <div class="message-card message-linkedin card-hover">
-                <div class="flex items-center justify-between mb-4"><span class="text-muted text-xs uppercase tracking-wider font-semibold">Connection Request</span><span class="bg-[#0077b5]/15 text-[#0077b5] text-xs font-semibold px-3 py-1 rounded-full border border-[#0077b5]/30">289 / 300 chars</span></div>
-                <div class="bg-bg/50 rounded-xl p-5 border border-border"><p class="text-primary text-sm leading-relaxed">Hi Carl — congrats on the Tier 1 Platinum Partner status. I work with Amazon agencies on AI-powered content pipelines and client dashboards. Your 44 podcast episodes are an untapped content engine — I have ideas on how to turn them into English-language blog traffic. Worth a quick chat?</p></div>
-                <p class="text-muted text-xs mt-3">Opens with their achievement. References specific asset. Offers concrete value. Under 300 chars.</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- LinkedIn Connection Request -->
+    <section id="linkedin" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(0,119,181,0.08);border-color:rgba(0,119,181,0.15)">
+                    <i data-lucide="linkedin" class="w-5 h-5 text-[#0077b5]"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">LinkedIn Connection Request Note</h2>
             </div>
-        </section>
+            <div class="glass-card-static p-6 message-card message-linkedin reveal">
+                <div class="flex items-center justify-between mb-5">
+                    <span class="text-zinc-500 text-xs uppercase tracking-wider font-semibold">Connection Request</span>
+                    <span class="badge bg-[#0077b5]/10 text-[#0077b5] border border-[#0077b5]/20">289 / 300 chars</span>
+                </div>
+                <div class="glass-card-static rounded-xl p-5">
+                    <p class="text-white text-sm leading-relaxed">Hi Carl — congrats on the Tier 1 Platinum Partner status. I work with Amazon agencies on AI-powered content pipelines and client dashboards. Your 44 podcast episodes are an untapped content engine — I have ideas on how to turn them into English-language blog traffic. Worth a quick chat?</p>
+                </div>
+                <p class="text-zinc-500 text-xs mt-3">Opens with their achievement. References specific asset. Offers concrete value. Under 300 chars.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- LinkedIn Follow-Up -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-[#0077b5]/20 rounded-xl p-2.5"><i data-lucide="message-square" class="w-5 h-5 text-[#0077b5]"></i></div><h3 class="font-display font-bold text-xl text-primary">LinkedIn Follow-Up Message</h3></div>
-            <div class="message-card message-linkedin card-hover">
-                <p class="text-muted text-xs uppercase tracking-wider font-semibold mb-4">3-5 days after connection accepted</p>
-                <div class="bg-bg/50 rounded-xl p-5 border border-border space-y-4">
-                    <p class="text-primary text-sm leading-relaxed">Thanks for connecting, Carl.</p>
-                    <p class="text-primary text-sm leading-relaxed">I spent some time looking at rankonamazon.com and your broader ecosystem (KNAA, amaNordic, Amazonpodden). You've built something most agencies can't replicate — real practitioner experience at every level.</p>
-                    <p class="text-primary text-sm leading-relaxed">One thing I noticed: you have 44 podcast episodes of expert Amazon content in Swedish, but none of it exists as written content on your site. We've built pipelines that turn podcast audio into SEO-optimized blog posts — transcribed, translated, keyword-optimized, and published. For your catalog, that's potentially 100+ English articles from content that already exists.</p>
-                    <p class="text-primary text-sm leading-relaxed">I also noticed a few quick technical fixes on the site (missing meta descriptions, broken download button, outdated copyright) that we could handle in an afternoon as a free demo.</p>
-                    <p class="text-primary text-sm leading-relaxed">Would you be open to a 30-minute call to explore whether this is useful? Happy to show you a sample output from one of your episodes first.</p>
-                    <p class="text-primary text-sm leading-relaxed">Best,<br>Alexander</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- LinkedIn Follow-Up -->
+    <section class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(0,119,181,0.08);border-color:rgba(0,119,181,0.15)">
+                    <i data-lucide="message-square" class="w-5 h-5 text-[#0077b5]"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">LinkedIn Follow-Up Message</h2>
+            </div>
+            <div class="glass-card-static p-6 message-card message-linkedin reveal">
+                <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-5">3-5 days after connection accepted</p>
+                <div class="glass-card-static rounded-xl p-5 space-y-4">
+                    <p class="text-white text-sm leading-relaxed">Thanks for connecting, Carl.</p>
+                    <p class="text-white text-sm leading-relaxed">I spent some time looking at rankonamazon.com and your broader ecosystem (KNAA, amaNordic, Amazonpodden). You've built something most agencies can't replicate — real practitioner experience at every level.</p>
+                    <p class="text-white text-sm leading-relaxed">One thing I noticed: you have 44 podcast episodes of expert Amazon content in Swedish, but none of it exists as written content on your site. We've built pipelines that turn podcast audio into SEO-optimized blog posts — transcribed, translated, keyword-optimized, and published. For your catalog, that's potentially 100+ English articles from content that already exists.</p>
+                    <p class="text-white text-sm leading-relaxed">I also noticed a few quick technical fixes on the site (missing meta descriptions, broken download button, outdated copyright) that we could handle in an afternoon as a free demo.</p>
+                    <p class="text-white text-sm leading-relaxed">Would you be open to a 30-minute call to explore whether this is useful? Happy to show you a sample output from one of your episodes first.</p>
+                    <p class="text-white text-sm leading-relaxed">Best,<br>Alexander</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Cold Email -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="mail" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Cold Email</h3></div>
-            <div class="message-card message-email card-hover">
-                <div class="bg-cyan/10 border border-cyan/30 rounded-xl px-5 py-3 mb-4"><p class="text-muted text-xs uppercase tracking-wider font-semibold mb-1">Subject Line</p><p class="text-cyan font-semibold text-lg">44 podcast episodes = 100+ English blog posts (for free, almost)</p></div>
-                <div class="flex items-center gap-4 text-muted text-xs mb-4"><span><strong>To:</strong> hello@amanordic.com</span><span><strong>From:</strong> alexander@meridian.dev</span></div>
-                <div class="bg-bg/50 rounded-xl p-5 border border-border space-y-4">
-                    <p class="text-primary text-sm leading-relaxed">Hi Carl,</p>
-                    <p class="text-primary text-sm leading-relaxed">Congratulations on the Amazon EU Tier 1 Platinum Partner status — that's the highest agency credential Amazon gives, and your team earned it.</p>
-                    <p class="text-primary text-sm leading-relaxed">I've been studying your ecosystem: Rank On Amazon, KNAA, amaNordic, Amazonpodden. Most agencies either have expertise or marketing. You clearly have the expertise — 75% of your team has launched their own brands, your case studies speak for themselves, and your podcast has 44 episodes of genuine Amazon intelligence.</p>
-                    <p class="text-primary text-sm leading-relaxed">Here's what I noticed: none of that podcast content exists in written form on your website. That's 25+ hours of expert content sitting exclusively in Swedish audio. We build AI-powered content pipelines that turn podcast episodes into SEO-optimized blog posts — transcribed, translated, keyword-optimized, and published. For your catalog, that's roughly 100+ English articles from content you've already created.</p>
-                    <p class="text-primary text-sm leading-relaxed">We also found a handful of quick fixes on rankonamazon.com (missing meta descriptions, a broken eGuide download button, outdated cookie policy) that we'd be happy to fix for free as a demonstration.</p>
-                    <p class="text-primary text-sm leading-relaxed">Would a 30-minute call make sense? I can show you a sample blog post from one of your episodes before the call.</p>
-                    <p class="text-primary text-sm leading-relaxed">Best,<br>Alexander Mazzei<br>MERIDIAN</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Cold Email -->
+    <section id="email" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="mail" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Cold Email</h2>
+            </div>
+            <div class="glass-card-static p-6 message-card message-email reveal">
+                <div class="glass-card-static rounded-xl px-5 py-3 mb-5" style="border-color:rgba(59,130,246,0.2);background:rgba(59,130,246,0.04)">
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-1">Subject Line</p>
+                    <p class="text-blue-400 font-semibold text-lg">44 podcast episodes = 100+ English blog posts (for free, almost)</p>
+                </div>
+                <div class="flex items-center gap-4 text-zinc-500 text-xs mb-5">
+                    <span><strong>To:</strong> hello@amanordic.com</span>
+                    <span><strong>From:</strong> alexander@meridian.dev</span>
+                </div>
+                <div class="glass-card-static rounded-xl p-5 space-y-4">
+                    <p class="text-white text-sm leading-relaxed">Hi Carl,</p>
+                    <p class="text-white text-sm leading-relaxed">Congratulations on the Amazon EU Tier 1 Platinum Partner status — that's the highest agency credential Amazon gives, and your team earned it.</p>
+                    <p class="text-white text-sm leading-relaxed">I've been studying your ecosystem: Rank On Amazon, KNAA, amaNordic, Amazonpodden. Most agencies either have expertise or marketing. You clearly have the expertise — 75% of your team has launched their own brands, your case studies speak for themselves, and your podcast has 44 episodes of genuine Amazon intelligence.</p>
+                    <p class="text-white text-sm leading-relaxed">Here's what I noticed: none of that podcast content exists in written form on your website. That's 25+ hours of expert content sitting exclusively in Swedish audio. We build AI-powered content pipelines that turn podcast episodes into SEO-optimized blog posts — transcribed, translated, keyword-optimized, and published. For your catalog, that's roughly 100+ English articles from content you've already created.</p>
+                    <p class="text-white text-sm leading-relaxed">We also found a handful of quick fixes on rankonamazon.com (missing meta descriptions, a broken eGuide download button, outdated cookie policy) that we'd be happy to fix for free as a demonstration.</p>
+                    <p class="text-white text-sm leading-relaxed">Would a 30-minute call make sense? I can show you a sample blog post from one of your episodes before the call.</p>
+                    <p class="text-white text-sm leading-relaxed">Best,<br>Alexander Mazzei<br>MERIDIAN</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Follow-Up Email -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="mail-plus" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Follow-Up Email</h3></div>
-            <div class="message-card message-email card-hover">
-                <div class="bg-cyan/10 border border-cyan/30 rounded-xl px-5 py-3 mb-4"><p class="text-muted text-xs uppercase tracking-wider font-semibold mb-1">Subject Line</p><p class="text-cyan font-semibold text-lg">Re: 44 podcast episodes = 100+ English blog posts (for free, almost)</p></div>
-                <p class="text-muted text-xs mb-4">5-7 days after initial email, if no response</p>
-                <div class="bg-bg/50 rounded-xl p-5 border border-border space-y-4">
-                    <p class="text-primary text-sm leading-relaxed">Hi Carl,</p>
-                    <p class="text-primary text-sm leading-relaxed">Quick follow-up. I went ahead and processed one of your Amazonpodden episodes through our content pipeline — here's what came out:</p>
-                    <p class="text-primary text-sm leading-relaxed">[ATTACH: Sample blog post generated from Episode X]</p>
-                    <p class="text-primary text-sm leading-relaxed">Fully automated: audio transcription, Swedish-to-English translation, SEO keyword optimization, and formatting. We can do this for all 44 episodes.</p>
-                    <p class="text-primary text-sm leading-relaxed">No pressure — but if this is interesting, I'd love 20 minutes to walk through how it works.</p>
-                    <p class="text-primary text-sm leading-relaxed">Best,<br>Alexander</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Follow-Up Email -->
+    <section class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="mail-plus" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Follow-Up Email</h2>
+            </div>
+            <div class="glass-card-static p-6 message-card message-email reveal">
+                <div class="glass-card-static rounded-xl px-5 py-3 mb-5" style="border-color:rgba(59,130,246,0.2);background:rgba(59,130,246,0.04)">
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-1">Subject Line</p>
+                    <p class="text-blue-400 font-semibold text-lg">Re: 44 podcast episodes = 100+ English blog posts (for free, almost)</p>
+                </div>
+                <p class="text-zinc-500 text-xs mb-5">5-7 days after initial email, if no response</p>
+                <div class="glass-card-static rounded-xl p-5 space-y-4">
+                    <p class="text-white text-sm leading-relaxed">Hi Carl,</p>
+                    <p class="text-white text-sm leading-relaxed">Quick follow-up. I went ahead and processed one of your Amazonpodden episodes through our content pipeline — here's what came out:</p>
+                    <p class="text-white text-sm leading-relaxed">[ATTACH: Sample blog post generated from Episode X]</p>
+                    <p class="text-white text-sm leading-relaxed">Fully automated: audio transcription, Swedish-to-English translation, SEO keyword optimization, and formatting. We can do this for all 44 episodes.</p>
+                    <p class="text-white text-sm leading-relaxed">No pressure — but if this is interesting, I'd love 20 minutes to walk through how it works.</p>
+                    <p class="text-white text-sm leading-relaxed">Best,<br>Alexander</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Phone Script -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-warning/20 rounded-xl p-2.5"><i data-lucide="phone" class="w-5 h-5 text-warning"></i></div><h3 class="font-display font-bold text-xl text-primary">Phone Script</h3></div>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Phone Script -->
+    <section id="phone" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                    <i data-lucide="phone" class="w-5 h-5 text-amber-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Phone Script</h2>
+            </div>
             <div class="space-y-6">
-                <div class="message-card message-phone card-hover"><span class="bg-warning/15 text-warning text-xs font-semibold px-3 py-1 rounded-full border border-warning/30">OPENING</span><div class="bg-bg/50 rounded-xl p-5 border border-border mt-4"><p class="text-primary text-sm leading-relaxed italic">"Hi, this is Alexander Mazzei from MERIDIAN. I sent Carl an email last week about turning his podcast episodes into English blog content. Is he available for a quick two-minute conversation?"</p></div></div>
+                <div class="glass-card-static p-6 message-card message-phone reveal">
+                    <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20">Opening</span>
+                    <div class="glass-card-static rounded-xl p-5 mt-4">
+                        <p class="text-white text-sm leading-relaxed italic">"Hi, this is Alexander Mazzei from MERIDIAN. I sent Carl an email last week about turning his podcast episodes into English blog content. Is he available for a quick two-minute conversation?"</p>
+                    </div>
+                </div>
 
-                <div class="message-card message-phone card-hover"><span class="bg-warning/15 text-warning text-xs font-semibold px-3 py-1 rounded-full border border-warning/30">GATEKEEPER</span><div class="bg-bg/50 rounded-xl p-5 border border-border mt-4 space-y-4"><p class="text-muted text-xs uppercase font-semibold">If asked "What's this regarding?"</p><p class="text-primary text-sm leading-relaxed italic">"We work with Amazon agencies on AI-powered content and client reporting tools. I noticed Rank On Amazon has a strong podcast but no written content — we build pipelines that convert audio into SEO articles."</p><p class="text-muted text-xs uppercase font-semibold mt-3">If unavailable:</p><p class="text-primary text-sm leading-relaxed italic">"No problem. Could you let him know I called? What's the best time to reach him?"</p></div></div>
+                <div class="glass-card-static p-6 message-card message-phone reveal">
+                    <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20">Gatekeeper</span>
+                    <div class="glass-card-static rounded-xl p-5 mt-4 space-y-4">
+                        <p class="text-zinc-500 text-xs uppercase font-semibold">If asked "What's this regarding?"</p>
+                        <p class="text-white text-sm leading-relaxed italic">"We work with Amazon agencies on AI-powered content and client reporting tools. I noticed Rank On Amazon has a strong podcast but no written content — we build pipelines that convert audio into SEO articles."</p>
+                        <p class="text-zinc-500 text-xs uppercase font-semibold mt-3">If unavailable:</p>
+                        <p class="text-white text-sm leading-relaxed italic">"No problem. Could you let him know I called? What's the best time to reach him?"</p>
+                    </div>
+                </div>
 
-                <div class="message-card message-phone card-hover"><span class="bg-warning/15 text-warning text-xs font-semibold px-3 py-1 rounded-full border border-warning/30">CARL SCRIPT</span><div class="bg-bg/50 rounded-xl p-5 border border-border mt-4 space-y-4"><p class="text-primary text-sm leading-relaxed italic">"Hi Carl — Alexander Mazzei from MERIDIAN. Congratulations on the Tier 1 Platinum status, by the way — that's a big deal."</p><p class="text-primary text-sm leading-relaxed italic">"Quick reason for the call: we work with Amazon agencies on content pipelines and client dashboards. I noticed you have 44 podcast episodes that are a goldmine of expertise, but none of it exists as written content on your site."</p><p class="text-primary text-sm leading-relaxed italic">"We've built a pipeline that takes podcast audio, transcribes it, translates it to English, optimizes for SEO, and publishes. For your catalog, that's roughly 100 blog posts from content you've already created."</p><p class="text-primary text-sm leading-relaxed italic">"Is that something that's been on your mind, or is the podcast serving a different purpose for you?"</p><p class="text-muted text-xs mt-2">[Then listen. His response determines everything.]</p></div></div>
+                <div class="glass-card-static p-6 message-card message-phone reveal">
+                    <span class="badge bg-amber-500/10 text-amber-400 border border-amber-500/20">Carl Script</span>
+                    <div class="glass-card-static rounded-xl p-5 mt-4 space-y-4">
+                        <p class="text-white text-sm leading-relaxed italic">"Hi Carl — Alexander Mazzei from MERIDIAN. Congratulations on the Tier 1 Platinum status, by the way — that's a big deal."</p>
+                        <p class="text-white text-sm leading-relaxed italic">"Quick reason for the call: we work with Amazon agencies on content pipelines and client dashboards. I noticed you have 44 podcast episodes that are a goldmine of expertise, but none of it exists as written content on your site."</p>
+                        <p class="text-white text-sm leading-relaxed italic">"We've built a pipeline that takes podcast audio, transcribes it, translates it to English, optimizes for SEO, and publishes. For your catalog, that's roughly 100 blog posts from content you've already created."</p>
+                        <p class="text-white text-sm leading-relaxed italic">"Is that something that's been on your mind, or is the podcast serving a different purpose for you?"</p>
+                        <p class="text-zinc-500 text-xs mt-2">[Then listen. His response determines everything.]</p>
+                    </div>
+                </div>
 
-                <div class="bg-card border border-border rounded-2xl p-6">
-                    <h4 class="text-primary font-semibold text-lg mb-6 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5 text-warning"></i>Handling Objections</h4>
+                <!-- Objection Handling -->
+                <div class="glass-card-static p-6 reveal">
+                    <h4 class="text-white font-semibold text-lg mb-6 flex items-center gap-2"><i data-lucide="shield" class="w-5 h-5 text-amber-400"></i>Handling Objections</h4>
                     <div class="space-y-6">
-                        <div class="objection-card"><p class="text-warning text-sm font-semibold mb-2">1. "We're not focused on our website right now"</p><p class="text-secondary text-sm"><strong class="text-primary">Response:</strong> "Totally understand. This isn't about the website specifically — it's about taking content you've already created and making it work harder in English-speaking markets. The blog posts live on the site, but the real value is showing up on Google when someone searches 'how to sell on Amazon in Europe.'"</p></div>
-                        <div class="objection-card"><p class="text-warning text-sm font-semibold mb-2">2. "We've tried tech partners before and it didn't go well"</p><p class="text-secondary text-sm"><strong class="text-primary">Response:</strong> "That's usually because the tech company built what they wanted, not what the agency needed. That's why we start small — pick one episode, run it through the pipeline, and you judge the output. No commitment beyond a single test."</p></div>
-                        <div class="objection-card"><p class="text-warning text-sm font-semibold mb-2">3. "What does this cost?"</p><p class="text-secondary text-sm"><strong class="text-primary">Response:</strong> "The quick fixes — meta descriptions, broken buttons, copyright update — we'd do for free. For the content pipeline, it depends on scope. But the first episode is on us — we want you to see the output quality before any money conversation."</p></div>
-                        <div class="objection-card"><p class="text-warning text-sm font-semibold mb-2">4. "Translation quality won't be good enough"</p><p class="text-secondary text-sm"><strong class="text-primary">Response:</strong> "Fair concern. We use AI that understands Amazon terminology specifically. But that's exactly why we offer the first episode free — you review the output and decide if the quality meets your standards."</p></div>
-                        <div class="objection-card"><p class="text-warning text-sm font-semibold mb-2">5. "Too busy with Humble Group partnership"</p><p class="text-secondary text-sm"><strong class="text-primary">Response:</strong> "That's actually related. If you're scaling to 40+ brands, your team's time is the most constrained resource. The content pipeline runs without your team doing anything — we process the audio, you review the output."</p></div>
+                        <div class="objection-card">
+                            <p class="text-amber-400 text-sm font-semibold mb-2">1. "We're not focused on our website right now"</p>
+                            <p class="text-zinc-400 text-sm"><strong class="text-white">Response:</strong> "Totally understand. This isn't about the website specifically — it's about taking content you've already created and making it work harder in English-speaking markets. The blog posts live on the site, but the real value is showing up on Google when someone searches 'how to sell on Amazon in Europe.'"</p>
+                        </div>
+                        <div class="objection-card">
+                            <p class="text-amber-400 text-sm font-semibold mb-2">2. "We've tried tech partners before and it didn't go well"</p>
+                            <p class="text-zinc-400 text-sm"><strong class="text-white">Response:</strong> "That's usually because the tech company built what they wanted, not what the agency needed. That's why we start small — pick one episode, run it through the pipeline, and you judge the output. No commitment beyond a single test."</p>
+                        </div>
+                        <div class="objection-card">
+                            <p class="text-amber-400 text-sm font-semibold mb-2">3. "What does this cost?"</p>
+                            <p class="text-zinc-400 text-sm"><strong class="text-white">Response:</strong> "The quick fixes — meta descriptions, broken buttons, copyright update — we'd do for free. For the content pipeline, it depends on scope. But the first episode is on us — we want you to see the output quality before any money conversation."</p>
+                        </div>
+                        <div class="objection-card">
+                            <p class="text-amber-400 text-sm font-semibold mb-2">4. "Translation quality won't be good enough"</p>
+                            <p class="text-zinc-400 text-sm"><strong class="text-white">Response:</strong> "Fair concern. We use AI that understands Amazon terminology specifically. But that's exactly why we offer the first episode free — you review the output and decide if the quality meets your standards."</p>
+                        </div>
+                        <div class="objection-card">
+                            <p class="text-amber-400 text-sm font-semibold mb-2">5. "Too busy with Humble Group partnership"</p>
+                            <p class="text-zinc-400 text-sm"><strong class="text-white">Response:</strong> "That's actually related. If you're scaling to 40+ brands, your team's time is the most constrained resource. The content pipeline runs without your team doing anything — we process the audio, you review the output."</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Calendly Pre-Meeting Brief -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-purple-500/20 rounded-xl p-2.5"><i data-lucide="calendar-check" class="w-5 h-5 text-purple-400"></i></div><h3 class="font-display font-bold text-xl text-primary">Calendly Pre-Meeting Brief</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden">
-                <div class="bg-bg/50 px-6 py-4 border-b border-border"><p class="text-primary font-semibold">Meeting Prep: What We'll Cover</p><p class="text-muted text-sm">30-minute discovery — MERIDIAN + Rank On Amazon</p></div>
-                <table class="w-full"><thead><tr class="border-b border-border"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Topic</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">What We've Found</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">What We'll Discuss</th></tr></thead><tbody class="divide-y divide-border">
-                    <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-primary text-sm font-medium">Podcast Content</td><td class="px-6 py-4 text-secondary text-sm">44 episodes in Swedish, none in written English</td><td class="px-6 py-4 text-secondary text-sm">Automated pipeline: audio to English blog posts</td></tr>
-                    <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-primary text-sm font-medium">Website Technical</td><td class="px-6 py-4 text-secondary text-sm">Missing SEO fundamentals, broken lead magnet</td><td class="px-6 py-4 text-secondary text-sm">Quick fixes we can do for free</td></tr>
-                    <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-primary text-sm font-medium">Client Operations</td><td class="px-6 py-4 text-secondary text-sm">Manual reporting, no dashboard</td><td class="px-6 py-4 text-secondary text-sm">Real-time dashboard and automation</td></tr>
-                    <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-primary text-sm font-medium">Competitive Position</td><td class="px-6 py-4 text-secondary text-sm">Strong expertise, emerging AI threats</td><td class="px-6 py-4 text-secondary text-sm">AI integration for competitive edge</td></tr>
-                    <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-primary text-sm font-medium">Growth</td><td class="px-6 py-4 text-secondary text-sm">Humble Group (40+ brands), KNAA pipeline</td><td class="px-6 py-4 text-secondary text-sm">Scaling through automation</td></tr>
-                </tbody></table>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Calendly Pre-Meeting Brief -->
+    <section id="brief" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15)">
+                    <i data-lucide="calendar-check" class="w-5 h-5 text-purple-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Calendly Pre-Meeting Brief</h2>
             </div>
-        </section>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="p-6 border-b" style="border-color:rgba(255,255,255,0.06)">
+                    <p class="text-white font-semibold">Meeting Prep: What We'll Cover</p>
+                    <p class="text-zinc-500 text-sm">30-minute discovery — MERIDIAN + Rank On Amazon</p>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Topic</th><th>What We've Found</th><th>What We'll Discuss</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Podcast Content</td><td>44 episodes in Swedish, none in written English</td><td>Automated pipeline: audio to English blog posts</td></tr>
+                            <tr><td class="text-white font-medium">Website Technical</td><td>Missing SEO fundamentals, broken lead magnet</td><td>Quick fixes we can do for free</td></tr>
+                            <tr><td class="text-white font-medium">Client Operations</td><td>Manual reporting, no dashboard</td><td>Real-time dashboard and automation</td></tr>
+                            <tr><td class="text-white font-medium">Competitive Position</td><td>Strong expertise, emerging AI threats</td><td>AI integration for competitive edge</td></tr>
+                            <tr><td class="text-white font-medium">Growth</td><td>Humble Group (40+ brands), KNAA pipeline</td><td>Scaling through automation</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Usage Notes -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="clipboard-list" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Usage Notes</h3></div>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Usage Notes -->
+    <section id="notes" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="clipboard-list" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Usage Notes</h2>
+            </div>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-card border border-border rounded-2xl p-6">
-                    <h4 class="text-primary font-semibold mb-4 flex items-center gap-2"><i data-lucide="list-ordered" class="w-4 h-4 text-cyan"></i>Sequencing</h4>
+                <div class="glass-card-static p-6 reveal">
+                    <h4 class="text-white font-semibold mb-5 flex items-center gap-2"><i data-lucide="list-ordered" class="w-4 h-4 text-blue-400"></i>Sequencing</h4>
                     <div class="space-y-4">
-                        <div class="flex items-start gap-3"><span class="bg-cyan/20 text-cyan rounded-full w-7 h-7 flex items-center justify-center font-bold text-xs shrink-0">1</span><div><p class="text-primary text-sm font-medium">LinkedIn Connection Request</p><p class="text-muted text-xs">Day 1</p></div></div>
-                        <div class="flex items-start gap-3"><span class="bg-cyan/20 text-cyan rounded-full w-7 h-7 flex items-center justify-center font-bold text-xs shrink-0">2</span><div><p class="text-primary text-sm font-medium">LinkedIn Follow-Up</p><p class="text-muted text-xs">Day 3-5 (after accepted)</p></div></div>
-                        <div class="flex items-start gap-3"><span class="bg-cyan/20 text-cyan rounded-full w-7 h-7 flex items-center justify-center font-bold text-xs shrink-0">3</span><div><p class="text-primary text-sm font-medium">Cold Email</p><p class="text-muted text-xs">Day 5-7</p></div></div>
-                        <div class="flex items-start gap-3"><span class="bg-cyan/20 text-cyan rounded-full w-7 h-7 flex items-center justify-center font-bold text-xs shrink-0">4</span><div><p class="text-primary text-sm font-medium">Follow-Up Email (with sample)</p><p class="text-muted text-xs">Day 10-12</p></div></div>
-                        <div class="flex items-start gap-3"><span class="bg-cyan/20 text-cyan rounded-full w-7 h-7 flex items-center justify-center font-bold text-xs shrink-0">5</span><div><p class="text-primary text-sm font-medium">Phone Call</p><p class="text-muted text-xs">Day 14+ (last resort)</p></div></div>
+                        <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">1</span><div><p class="text-white text-sm font-medium">LinkedIn Connection Request</p><p class="text-zinc-500 text-xs">Day 1</p></div></div>
+                        <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">2</span><div><p class="text-white text-sm font-medium">LinkedIn Follow-Up</p><p class="text-zinc-500 text-xs">Day 3-5 (after accepted)</p></div></div>
+                        <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">3</span><div><p class="text-white text-sm font-medium">Cold Email</p><p class="text-zinc-500 text-xs">Day 5-7</p></div></div>
+                        <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">4</span><div><p class="text-white text-sm font-medium">Follow-Up Email (with sample)</p><p class="text-zinc-500 text-xs">Day 10-12</p></div></div>
+                        <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs shrink-0">5</span><div><p class="text-white text-sm font-medium">Phone Call</p><p class="text-zinc-500 text-xs">Day 14+ (last resort)</p></div></div>
                     </div>
                 </div>
                 <div class="space-y-6">
-                    <div class="bg-card border border-border rounded-2xl p-6">
-                        <h4 class="text-primary font-semibold mb-4 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-success"></i>Key Principles</h4>
-                        <ul class="space-y-3"><li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary"><strong class="text-primary">Lead with their wins,</strong> not problems. Platinum. Humble Group. Case studies.</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary"><strong class="text-primary">Offer a free sample</strong> before asking for anything.</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary"><strong class="text-primary">Match his pace.</strong> Swedish business culture is relationship-first.</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary"><strong class="text-primary">Be specific.</strong> "44 episodes" beats "content strategy improvement."</span></li></ul>
+                    <div class="glass-card-static p-6 reveal">
+                        <h4 class="text-white font-semibold mb-5 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>Key Principles</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400"><strong class="text-white">Lead with their wins,</strong> not problems. Platinum. Humble Group. Case studies.</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400"><strong class="text-white">Offer a free sample</strong> before asking for anything.</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400"><strong class="text-white">Match his pace.</strong> Swedish business culture is relationship-first.</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400"><strong class="text-white">Be specific.</strong> "44 episodes" beats "content strategy improvement."</span></li>
+                        </ul>
                     </div>
-                    <div class="bg-error/5 border border-error/30 rounded-2xl p-6">
-                        <h4 class="text-primary font-semibold mb-4 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-error"></i>What NOT to Say</h4>
-                        <ul class="space-y-3"><li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Never mention the admin email leak — feels invasive</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Never cite the EUR 1.06B number — methodology unclear</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Never say "your website is broken" — frame as "untapped potential"</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Never mention 85 vs 100 years in outreach</span></li><li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Never promise all 8 solutions — right-size to 2 max</span></li></ul>
+                    <div class="glass-card-static p-6 reveal" style="border-color:rgba(248,113,113,0.15);background:rgba(248,113,113,0.02)">
+                        <h4 class="text-white font-semibold mb-5 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i>What NOT to Say</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Never mention the admin email leak — feels invasive</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Never cite the EUR 1.06B number — methodology unclear</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Never say "your website is broken" — frame as "untapped potential"</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Never mention 85 vs 100 years in outreach</span></li>
+                            <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Never promise all 8 solutions — right-size to 2 max</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <footer class="border-t border-border mt-16"><div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between"><p class="text-muted text-sm">MERIDIAN — Internal Intelligence</p><p class="text-muted text-sm">Rank On Amazon Audit &middot; March 2026</p></div></footer>
-    <script>lucide.createIcons();</script>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="section-divider max-w-6xl mx-auto"></div>
+    <footer class="py-8 px-6">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <p class="text-zinc-600 text-sm">MERIDIAN &mdash; Internal Intelligence</p>
+            <p class="text-zinc-600 text-sm">Rank On Amazon Audit &middot; March 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
