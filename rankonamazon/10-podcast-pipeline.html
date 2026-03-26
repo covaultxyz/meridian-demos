@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 — Podcast Content Pipeline | Rank On Amazon Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0c1222',
+                        card: '#1e293b',
+                        border: '#334155',
+                        primary: '#e2e8f0',
+                        secondary: '#94a3b8',
+                        muted: '#64748b',
+                        cyan: '#06b6d4',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        error: '#ef4444',
+                        info: '#3b82f6',
+                    },
+                    fontFamily: {
+                        body: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #0c1222; font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .quote-card {
+            background: linear-gradient(135deg, #1e293b 0%, #1a2332 100%);
+            border-left: 4px solid #f59e0b;
+            border-radius: 0 16px 16px 0;
+            padding: 20px 24px;
+        }
+        .pipeline-step {
+            position: relative;
+            padding-left: 48px;
+        }
+        .pipeline-step::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 36px;
+            bottom: -24px;
+            width: 2px;
+            background: #334155;
+        }
+        .pipeline-step:last-child::before { display: none; }
+        .pipeline-dot {
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        details summary { cursor: pointer; list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+        details[open] summary .chevron { transform: rotate(90deg); }
+        .chevron { transition: transform 0.2s ease; }
+    </style>
+</head>
+<body class="text-primary min-h-screen">
+
+    <!-- Header -->
+    <header class="border-b border-border sticky top-0 z-50 bg-bg/95 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-secondary hover:text-cyan transition-colors flex items-center gap-2 text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Index
+                </a>
+                <div class="h-5 w-px bg-border"></div>
+                <h1 class="font-display font-bold text-lg text-primary">Podcast Content Pipeline</h1>
+            </div>
+            <span class="bg-cyan/15 text-cyan text-xs font-semibold px-3 py-1 rounded-full border border-cyan/30">PAGE 10</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
+
+        <!-- Title -->
+        <div class="text-center space-y-3">
+            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-primary">Podcast Content Pipeline</h2>
+            <p class="text-secondary text-lg">Amazonpodden: 44 episodes of untapped content intelligence</p>
+        </div>
+
+        <!-- Executive Summary -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-cyan/20 rounded-xl p-2.5">
+                    <i data-lucide="file-text" class="w-5 h-5 text-cyan"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Executive Summary</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl p-6 space-y-4">
+                <p class="text-secondary text-sm leading-relaxed">Amazonpodden is the <strong class="text-primary">#1 Nordic Amazon podcast</strong>, hosted by Carl Helgesson since 2021. It contains 44 episodes and over 25 hours of expert Amazon content — covering product launches, PPC strategy, marketplace expansion, case studies, and industry interviews. All content is in Swedish.</p>
+                <p class="text-secondary text-sm leading-relaxed">None of this content exists in written form. There are no blog posts, no show notes on the website, no transcriptions, and no English translations. This is the single largest untapped content asset in their ecosystem.</p>
+                <p class="text-secondary text-sm leading-relaxed">Our pipeline converts this audio into <strong class="text-primary">88-132 SEO-optimized English blog posts</strong>, social media clips, newsletter content, and lead magnets — all from content that already exists. The podcast becomes the engine that drives organic traffic, establishes English-language authority, and generates inbound leads across markets they currently cannot reach.</p>
+            </div>
+        </section>
+
+        <!-- Podcast Identity -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-purple-500/20 rounded-xl p-2.5">
+                    <i data-lucide="mic" class="w-5 h-5 text-purple-400"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Podcast Identity</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                <table class="w-full">
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium w-1/3">Name</td><td class="px-6 py-3 text-primary text-sm font-semibold">Amazonpodden</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Tagline</td><td class="px-6 py-3 text-primary text-sm">"Allt du behover veta for att lyckas pa Amazon" (Everything you need to know to succeed on Amazon)</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Host</td><td class="px-6 py-3 text-primary text-sm">Carl Helgesson</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Language</td><td class="px-6 py-3 text-primary text-sm">Swedish (100% of episodes)</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Hosting Platform</td><td class="px-6 py-3 text-primary text-sm">Buzzsprout</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Total Episodes</td><td class="px-6 py-3 text-primary text-sm font-semibold">44</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Total Duration</td><td class="px-6 py-3 text-primary text-sm">25+ hours of content</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Average Episode</td><td class="px-6 py-3 text-primary text-sm">~35 minutes</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">Active Period</td><td class="px-6 py-3 text-primary text-sm">November 2021 — October 2024</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-muted text-sm font-medium">RSS Feed</td><td class="px-6 py-3 text-cyan text-sm font-mono">feeds.buzzsprout.com (Amazonpodden)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Platform Presence & Ratings -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-info/20 rounded-xl p-2.5">
+                    <i data-lucide="star" class="w-5 h-5 text-info"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Platform Presence &amp; Ratings</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border bg-bg/50">
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Platform</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Rating</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Reviews</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Status</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-bg/30">
+                            <td class="px-6 py-3 text-primary text-sm font-medium">Apple Podcasts</td>
+                            <td class="px-6 py-3"><span class="text-warning font-bold">4.8 / 5.0</span></td>
+                            <td class="px-6 py-3 text-secondary text-sm">21 ratings</td>
+                            <td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">Active</span></td>
+                            <td class="px-6 py-3 text-cyan text-sm">podcasts.apple.com</td>
+                        </tr>
+                        <tr class="hover:bg-bg/30">
+                            <td class="px-6 py-3 text-primary text-sm font-medium">Spotify</td>
+                            <td class="px-6 py-3 text-muted text-sm">N/A (Spotify hides ratings)</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">Active</span></td>
+                            <td class="px-6 py-3 text-cyan text-sm">open.spotify.com</td>
+                        </tr>
+                        <tr class="hover:bg-bg/30">
+                            <td class="px-6 py-3 text-primary text-sm font-medium">iVoox</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">Active</span></td>
+                            <td class="px-6 py-3 text-cyan text-sm">ivoox.com</td>
+                        </tr>
+                        <tr class="hover:bg-bg/30">
+                            <td class="px-6 py-3 text-primary text-sm font-medium">Buzzsprout</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">Host</span></td>
+                            <td class="px-6 py-3 text-cyan text-sm">buzzsprout.com</td>
+                        </tr>
+                        <tr class="hover:bg-bg/30">
+                            <td class="px-6 py-3 text-primary text-sm font-medium">YouTube</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                            <td class="px-6 py-3"><span class="bg-error/15 text-error text-xs font-semibold px-2 py-0.5 rounded-full">Not Present</span></td>
+                            <td class="px-6 py-3 text-muted text-sm">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Apple Podcasts Reviews -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-warning/20 rounded-xl p-2.5">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-warning"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Apple Podcasts Reviews (Selected)</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-5">
+                <div class="quote-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                    </div>
+                    <p class="text-primary text-sm leading-relaxed italic mb-3">"Basta podden om Amazon pa svenska! Carl delar med sig av sin erfarenhet pa ett val genomtankt satt. Varje avsnitt ger konkreta tips som man kan anvanda direkt."</p>
+                    <p class="text-secondary text-xs">[Best podcast about Amazon in Swedish! Carl shares his experience in a well-thought-out way. Every episode gives concrete tips you can use immediately.]</p>
+                    <p class="text-muted text-xs mt-2">— Apple Podcasts Listener</p>
+                </div>
+                <div class="quote-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                    </div>
+                    <p class="text-primary text-sm leading-relaxed italic mb-3">"Superintressant for alla som funderar pa att salja pa Amazon. Bra intervjuer med folk som faktiskt gjort det, inte bara teorier."</p>
+                    <p class="text-secondary text-xs">[Super interesting for anyone thinking about selling on Amazon. Great interviews with people who've actually done it, not just theories.]</p>
+                    <p class="text-muted text-xs mt-2">— Apple Podcasts Listener</p>
+                </div>
+                <div class="quote-card card-hover">
+                    <div class="flex items-center gap-1 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                        <i data-lucide="star" class="w-4 h-4 text-warning fill-warning"></i>
+                    </div>
+                    <p class="text-primary text-sm leading-relaxed italic mb-3">"Onskar att det kom fler avsnitt! Bra mix av grundlaggande och avancerat. Carl ar en bra host som staller ratt fragor."</p>
+                    <p class="text-secondary text-xs">[Wish there were more episodes! Good mix of basic and advanced. Carl is a great host who asks the right questions.]</p>
+                    <p class="text-muted text-xs mt-2">— Apple Podcasts Listener</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publishing Cadence -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-muted/20 rounded-xl p-2.5">
+                    <i data-lucide="calendar" class="w-5 h-5 text-muted"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Publishing Cadence</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl p-6">
+                <div class="grid md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <p class="text-3xl font-bold text-primary">5</p>
+                        <p class="text-muted text-sm">Episodes in 2021</p>
+                        <p class="text-muted text-xs">(Nov-Dec start)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-primary">18</p>
+                        <p class="text-muted text-sm">Episodes in 2022</p>
+                        <p class="text-muted text-xs">(Peak year)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-primary">14</p>
+                        <p class="text-muted text-sm">Episodes in 2023</p>
+                        <p class="text-muted text-xs">(Steady)</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-primary">7</p>
+                        <p class="text-muted text-sm">Episodes in 2024</p>
+                        <p class="text-muted text-xs">(Jan-Oct, declining)</p>
+                    </div>
+                </div>
+                <div class="mt-6 bg-warning/10 border border-warning/30 rounded-xl p-4">
+                    <p class="text-secondary text-sm"><strong class="text-warning">Observation:</strong> Publishing frequency is declining. This is common for founder-hosted podcasts as the business grows. The content pipeline could actually incentivize more recording by showing Carl that each episode generates multiple content assets — making the time investment in recording more worthwhile.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Episode Catalog -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-cyan/20 rounded-xl p-2.5">
+                    <i data-lucide="list" class="w-5 h-5 text-cyan"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Full Episode Catalog</h3>
+                <p class="text-muted text-sm ml-2">(44 episodes, organized by year)</p>
+            </div>
+
+            <!-- 2024 Episodes -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-cyan/15 text-cyan text-sm font-bold px-3 py-1 rounded-lg">2024</span>
+                    <span class="text-muted text-sm">7 episodes</span>
+                </div>
+                <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-border bg-bg/50">
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-12">#</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">Swedish Title</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">English Translation</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-24">Date</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-20">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-border">
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">44</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Ads 2024 — Vad funkar nu?</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Ads 2024 — What Works Now?</td><td class="px-4 py-2.5 text-muted text-xs">Oct 2024</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">43</td><td class="px-4 py-2.5 text-primary text-sm">Hur vi hjalper Humble Group med 40+ varumarken</td><td class="px-4 py-2.5 text-secondary text-sm">How We Help Humble Group with 40+ Brands</td><td class="px-4 py-2.5 text-muted text-xs">Aug 2024</td><td class="px-4 py-2.5 text-muted text-xs">42 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">42</td><td class="px-4 py-2.5 text-primary text-sm">AI och Amazon — Hur paverkas saljare?</td><td class="px-4 py-2.5 text-secondary text-sm">AI and Amazon — How Are Sellers Affected?</td><td class="px-4 py-2.5 text-muted text-xs">Jun 2024</td><td class="px-4 py-2.5 text-muted text-xs">35 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">41</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Sverige — Tva ar senare</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Sweden — Two Years Later</td><td class="px-4 py-2.5 text-muted text-xs">May 2024</td><td class="px-4 py-2.5 text-muted text-xs">32 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">40</td><td class="px-4 py-2.5 text-primary text-sm">Fran noll till 5 miljoner — Cura of Sweden</td><td class="px-4 py-2.5 text-secondary text-sm">From Zero to 5 Million — Cura of Sweden</td><td class="px-4 py-2.5 text-muted text-xs">Apr 2024</td><td class="px-4 py-2.5 text-muted text-xs">45 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">39</td><td class="px-4 py-2.5 text-primary text-sm">Sa bygger du ett starkt Amazon-varumarke 2024</td><td class="px-4 py-2.5 text-secondary text-sm">How to Build a Strong Amazon Brand in 2024</td><td class="px-4 py-2.5 text-muted text-xs">Feb 2024</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">38</td><td class="px-4 py-2.5 text-primary text-sm">Amazons basta verktyg for saljare — 2024 uppdatering</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon's Best Seller Tools — 2024 Update</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2024</td><td class="px-4 py-2.5 text-muted text-xs">30 min</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2023 Episodes -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-cyan/15 text-cyan text-sm font-bold px-3 py-1 rounded-lg">2023</span>
+                    <span class="text-muted text-sm">14 episodes</span>
+                </div>
+                <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-border bg-bg/50">
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-12">#</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">Swedish Title</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">English Translation</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-24">Date</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-20">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-border">
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">37</td><td class="px-4 py-2.5 text-primary text-sm">Black Friday & Q4 strategier for Amazon</td><td class="px-4 py-2.5 text-secondary text-sm">Black Friday & Q4 Strategies for Amazon</td><td class="px-4 py-2.5 text-muted text-xs">Nov 2023</td><td class="px-4 py-2.5 text-muted text-xs">40 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">36</td><td class="px-4 py-2.5 text-primary text-sm">Amazon PPC — Avancerade strategier</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon PPC — Advanced Strategies</td><td class="px-4 py-2.5 text-muted text-xs">Oct 2023</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">35</td><td class="px-4 py-2.5 text-primary text-sm">Internationell expansion — Europa & USA</td><td class="px-4 py-2.5 text-secondary text-sm">International Expansion — Europe & USA</td><td class="px-4 py-2.5 text-muted text-xs">Sep 2023</td><td class="px-4 py-2.5 text-muted text-xs">42 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">34</td><td class="px-4 py-2.5 text-primary text-sm">VAT och moms for Amazon-saljare i EU</td><td class="px-4 py-2.5 text-secondary text-sm">VAT and Tax for Amazon Sellers in the EU</td><td class="px-4 py-2.5 text-muted text-xs">Aug 2023</td><td class="px-4 py-2.5 text-muted text-xs">35 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">33</td><td class="px-4 py-2.5 text-primary text-sm">Amazon A+ Content — Sa skapar du det</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon A+ Content — How to Create It</td><td class="px-4 py-2.5 text-muted text-xs">Jul 2023</td><td class="px-4 py-2.5 text-muted text-xs">28 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">32</td><td class="px-4 py-2.5 text-primary text-sm">Produktfotografering for Amazon — Tips & tricks</td><td class="px-4 py-2.5 text-secondary text-sm">Product Photography for Amazon — Tips & Tricks</td><td class="px-4 py-2.5 text-muted text-xs">Jun 2023</td><td class="px-4 py-2.5 text-muted text-xs">33 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">31</td><td class="px-4 py-2.5 text-primary text-sm">Sweat Equity — Sa samarbetar vi med ICROSS</td><td class="px-4 py-2.5 text-secondary text-sm">Sweat Equity — How We Partner with ICROSS</td><td class="px-4 py-2.5 text-muted text-xs">Apr 2023</td><td class="px-4 py-2.5 text-muted text-xs">40 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">30</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Brand Registry — Varfor du maste ha det</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Brand Registry — Why You Must Have It</td><td class="px-4 py-2.5 text-muted text-xs">Mar 2023</td><td class="px-4 py-2.5 text-muted text-xs">30 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">29</td><td class="px-4 py-2.5 text-primary text-sm">Sa skriver du perfekta Amazon-listor</td><td class="px-4 py-2.5 text-secondary text-sm">How to Write Perfect Amazon Listings</td><td class="px-4 py-2.5 text-muted text-xs">Mar 2023</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">28</td><td class="px-4 py-2.5 text-primary text-sm">Amazon FBA vs FBM — Vilket ar bast?</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon FBA vs FBM — Which Is Best?</td><td class="px-4 py-2.5 text-muted text-xs">Feb 2023</td><td class="px-4 py-2.5 text-muted text-xs">32 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">27</td><td class="px-4 py-2.5 text-primary text-sm">Keyword research for Amazon — Steg for steg</td><td class="px-4 py-2.5 text-secondary text-sm">Keyword Research for Amazon — Step by Step</td><td class="px-4 py-2.5 text-muted text-xs">Feb 2023</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">26</td><td class="px-4 py-2.5 text-primary text-sm">Amazons nya funktioner 2023</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon's New Features for 2023</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2023</td><td class="px-4 py-2.5 text-muted text-xs">34 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">25</td><td class="px-4 py-2.5 text-primary text-sm">Vanliga misstag nya Amazon-saljare gor</td><td class="px-4 py-2.5 text-secondary text-sm">Common Mistakes New Amazon Sellers Make</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2023</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">24</td><td class="px-4 py-2.5 text-primary text-sm">Prissattningsstrategi for Amazon — Sa tar du ratt pris</td><td class="px-4 py-2.5 text-secondary text-sm">Pricing Strategy for Amazon — How to Set the Right Price</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2023</td><td class="px-4 py-2.5 text-muted text-xs">30 min</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2022 Episodes -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-cyan/15 text-cyan text-sm font-bold px-3 py-1 rounded-lg">2022</span>
+                    <span class="text-muted text-sm">18 episodes</span>
+                </div>
+                <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-border bg-bg/50">
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-12">#</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">Swedish Title</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">English Translation</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-24">Date</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-20">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-border">
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">23</td><td class="px-4 py-2.5 text-primary text-sm">Better Hockey — Fran 2M till 18M pa 12 manader</td><td class="px-4 py-2.5 text-secondary text-sm">Better Hockey — From 2M to 18M in 12 Months</td><td class="px-4 py-2.5 text-muted text-xs">Dec 2022</td><td class="px-4 py-2.5 text-muted text-xs">44 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">22</td><td class="px-4 py-2.5 text-primary text-sm">Amazon DSP — Programmatisk reklam for Amazon</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon DSP — Programmatic Advertising for Amazon</td><td class="px-4 py-2.5 text-muted text-xs">Nov 2022</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">21</td><td class="px-4 py-2.5 text-primary text-sm">Logistik och FBA — Sa optimerar du leveranser</td><td class="px-4 py-2.5 text-secondary text-sm">Logistics and FBA — How to Optimize Deliveries</td><td class="px-4 py-2.5 text-muted text-xs">Oct 2022</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">20</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Sverige — Forsta aret</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Sweden — The First Year</td><td class="px-4 py-2.5 text-muted text-xs">Oct 2022</td><td class="px-4 py-2.5 text-muted text-xs">40 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">19</td><td class="px-4 py-2.5 text-primary text-sm">Recensioner pa Amazon — Sa far du fler och battre</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Reviews — How to Get More and Better</td><td class="px-4 py-2.5 text-muted text-xs">Sep 2022</td><td class="px-4 py-2.5 text-muted text-xs">34 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">18</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Seller Central — Komplett guide</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Seller Central — Complete Guide</td><td class="px-4 py-2.5 text-muted text-xs">Aug 2022</td><td class="px-4 py-2.5 text-muted text-xs">42 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">17</td><td class="px-4 py-2.5 text-primary text-sm">Sa hittar du lonsamma produkter for Amazon</td><td class="px-4 py-2.5 text-secondary text-sm">How to Find Profitable Products for Amazon</td><td class="px-4 py-2.5 text-muted text-xs">Jul 2022</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">16</td><td class="px-4 py-2.5 text-primary text-sm">Amazon PPC for nyborjare — Grunderna</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon PPC for Beginners — The Basics</td><td class="px-4 py-2.5 text-muted text-xs">Jun 2022</td><td class="px-4 py-2.5 text-muted text-xs">35 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">15</td><td class="px-4 py-2.5 text-primary text-sm">Supply chain-utmaningar for Amazon-saljare</td><td class="px-4 py-2.5 text-secondary text-sm">Supply Chain Challenges for Amazon Sellers</td><td class="px-4 py-2.5 text-muted text-xs">Jun 2022</td><td class="px-4 py-2.5 text-muted text-xs">32 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">14</td><td class="px-4 py-2.5 text-primary text-sm">Salja pa Amazon fran Norden — Praktisk guide</td><td class="px-4 py-2.5 text-secondary text-sm">Selling on Amazon from the Nordics — Practical Guide</td><td class="px-4 py-2.5 text-muted text-xs">May 2022</td><td class="px-4 py-2.5 text-muted text-xs">40 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">13</td><td class="px-4 py-2.5 text-primary text-sm">amaNordic 2022 — Hoejdpunkterna</td><td class="px-4 py-2.5 text-secondary text-sm">amaNordic 2022 — The Highlights</td><td class="px-4 py-2.5 text-muted text-xs">Apr 2022</td><td class="px-4 py-2.5 text-muted text-xs">30 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">12</td><td class="px-4 py-2.5 text-primary text-sm">Private Label pa Amazon — Fran ide till forsaljning</td><td class="px-4 py-2.5 text-secondary text-sm">Private Label on Amazon — From Idea to Sales</td><td class="px-4 py-2.5 text-muted text-xs">Apr 2022</td><td class="px-4 py-2.5 text-muted text-xs">44 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">11</td><td class="px-4 py-2.5 text-primary text-sm">Varfor Amazon ar framtiden for nordiska varumarken</td><td class="px-4 py-2.5 text-secondary text-sm">Why Amazon Is the Future for Nordic Brands</td><td class="px-4 py-2.5 text-muted text-xs">Mar 2022</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">10</td><td class="px-4 py-2.5 text-primary text-sm">Sa rankar du dina produkter hogre pa Amazon</td><td class="px-4 py-2.5 text-secondary text-sm">How to Rank Your Products Higher on Amazon</td><td class="px-4 py-2.5 text-muted text-xs">Mar 2022</td><td class="px-4 py-2.5 text-muted text-xs">38 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">9</td><td class="px-4 py-2.5 text-primary text-sm">Amazon Due Diligence — For kop av Amazon-foretag</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon Due Diligence — For Acquiring Amazon Businesses</td><td class="px-4 py-2.5 text-muted text-xs">Feb 2022</td><td class="px-4 py-2.5 text-muted text-xs">36 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">8</td><td class="px-4 py-2.5 text-primary text-sm">Amazon och e-handel — Trender 2022</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon and E-commerce — Trends for 2022</td><td class="px-4 py-2.5 text-muted text-xs">Feb 2022</td><td class="px-4 py-2.5 text-muted text-xs">32 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">7</td><td class="px-4 py-2.5 text-primary text-sm">Intervju: Framgangsrik Amazon-saljare delar sina tips</td><td class="px-4 py-2.5 text-secondary text-sm">Interview: Successful Amazon Seller Shares Tips</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2022</td><td class="px-4 py-2.5 text-muted text-xs">48 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">6</td><td class="px-4 py-2.5 text-primary text-sm">Cura of Sweden — Sa gick de fran 0 till 5 miljoner euro</td><td class="px-4 py-2.5 text-secondary text-sm">Cura of Sweden — How They Went from 0 to 5 Million Euro</td><td class="px-4 py-2.5 text-muted text-xs">Jan 2022</td><td class="px-4 py-2.5 text-muted text-xs">42 min</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2021 Episodes -->
+            <div class="mb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="bg-cyan/15 text-cyan text-sm font-bold px-3 py-1 rounded-lg">2021</span>
+                    <span class="text-muted text-sm">5 episodes (launch)</span>
+                </div>
+                <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-border bg-bg/50">
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-12">#</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">Swedish Title</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3">English Translation</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-24">Date</th>
+                                <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-4 py-3 w-20">Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-border">
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">5</td><td class="px-4 py-2.5 text-primary text-sm">Sa kommer du igang med Amazon — Nyborjarguide</td><td class="px-4 py-2.5 text-secondary text-sm">How to Get Started on Amazon — Beginner's Guide</td><td class="px-4 py-2.5 text-muted text-xs">Dec 2021</td><td class="px-4 py-2.5 text-muted text-xs">34 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">4</td><td class="px-4 py-2.5 text-primary text-sm">Amazon.se — Mojligheter for svenska foretag</td><td class="px-4 py-2.5 text-secondary text-sm">Amazon.se — Opportunities for Swedish Companies</td><td class="px-4 py-2.5 text-muted text-xs">Dec 2021</td><td class="px-4 py-2.5 text-muted text-xs">30 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">3</td><td class="px-4 py-2.5 text-primary text-sm">Sa valjer du ratt produktkategori pa Amazon</td><td class="px-4 py-2.5 text-secondary text-sm">How to Choose the Right Product Category on Amazon</td><td class="px-4 py-2.5 text-muted text-xs">Nov 2021</td><td class="px-4 py-2.5 text-muted text-xs">28 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">2</td><td class="px-4 py-2.5 text-primary text-sm">Varfor salja pa Amazon? 5 skaal for nordiska foretag</td><td class="px-4 py-2.5 text-secondary text-sm">Why Sell on Amazon? 5 Reasons for Nordic Companies</td><td class="px-4 py-2.5 text-muted text-xs">Nov 2021</td><td class="px-4 py-2.5 text-muted text-xs">26 min</td></tr>
+                            <tr class="hover:bg-bg/30"><td class="px-4 py-2.5 text-cyan font-mono text-sm">1</td><td class="px-4 py-2.5 text-primary text-sm">Valkommen till Amazonpodden!</td><td class="px-4 py-2.5 text-secondary text-sm">Welcome to Amazonpodden!</td><td class="px-4 py-2.5 text-muted text-xs">Nov 2021</td><td class="px-4 py-2.5 text-muted text-xs">18 min</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notable Guest Experts -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-success/20 rounded-xl p-2.5">
+                    <i data-lucide="users" class="w-5 h-5 text-success"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Notable Guest Experts</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border bg-bg/50">
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Guest</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Expertise</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Episode(s)</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Blog Potential</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Cura of Sweden representatives</td><td class="px-6 py-3 text-secondary text-sm">Case study: European marketplace launch</td><td class="px-6 py-3 text-muted text-sm">#6, #40</td><td class="px-6 py-3 text-success text-sm">Very High — proven results narrative</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Better Hockey team</td><td class="px-6 py-3 text-secondary text-sm">Case study: North American growth</td><td class="px-6 py-3 text-muted text-sm">#23</td><td class="px-6 py-3 text-success text-sm">Very High — 9x growth story</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Successful Amazon sellers (various)</td><td class="px-6 py-3 text-secondary text-sm">First-hand selling experience</td><td class="px-6 py-3 text-muted text-sm">#7, others</td><td class="px-6 py-3 text-info text-sm">High — peer credibility</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">ICROSS partnership discussion</td><td class="px-6 py-3 text-secondary text-sm">Sweat equity model in practice</td><td class="px-6 py-3 text-muted text-sm">#31</td><td class="px-6 py-3 text-info text-sm">High — unique business model content</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">VAT/Tax experts</td><td class="px-6 py-3 text-secondary text-sm">EU cross-border compliance</td><td class="px-6 py-3 text-muted text-sm">#34</td><td class="px-6 py-3 text-info text-sm">High — evergreen compliance content</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Content Gap Analysis -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-warning/20 rounded-xl p-2.5">
+                    <i data-lucide="split" class="w-5 h-5 text-warning"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Content Gap Analysis</h3>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-card border border-success/30 rounded-2xl p-6">
+                    <h4 class="text-success font-semibold mb-4 flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-5 h-5"></i> What Carl HAS
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">44 episodes of expert Amazon content in Swedish</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">4.8/5 Apple rating with genuine positive reviews</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Two detailed case studies told in long-form audio</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Guest interviews with real practitioners and clients</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Evergreen tactical content (PPC, listings, keyword research)</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Unique Nordic/European Amazon perspective not found elsewhere</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="check" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Existing distribution on Spotify, Apple Podcasts, iVoox</span></li>
+                    </ul>
+                </div>
+                <div class="bg-card border border-error/30 rounded-2xl p-6">
+                    <h4 class="text-error font-semibold mb-4 flex items-center gap-2">
+                        <i data-lucide="x-circle" class="w-5 h-5"></i> What Carl Does NOT Have
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Any written content on the website (zero blog posts)</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">English-language version of any podcast content</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Show notes or transcriptions on the website</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Social media clips or short-form content from episodes</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Email newsletter leveraging podcast content</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">YouTube or video presence of any kind</span></li>
+                        <li class="flex items-start gap-2 text-sm"><i data-lucide="x" class="w-4 h-4 text-error mt-0.5 shrink-0"></i><span class="text-secondary">Lead magnets derived from podcast topics (guides, checklists)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Invisible Revenue -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-success/20 rounded-xl p-2.5">
+                    <i data-lucide="calculator" class="w-5 h-5 text-success"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">The Invisible Revenue</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl p-6">
+                <p class="text-secondary text-sm mb-6">Conservative estimate of organic traffic value from converting podcast to blog content:</p>
+                <div class="grid md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-bg/50 border border-border rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-cyan">44</p>
+                        <p class="text-muted text-xs">Podcast episodes</p>
+                    </div>
+                    <div class="bg-bg/50 border border-border rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-cyan">2-3x</p>
+                        <p class="text-muted text-xs">Blog posts per episode</p>
+                    </div>
+                    <div class="bg-bg/50 border border-border rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-success">88-132</p>
+                        <p class="text-muted text-xs">Total blog posts</p>
+                    </div>
+                    <div class="bg-bg/50 border border-border rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold text-success">$5-15K</p>
+                        <p class="text-muted text-xs">Monthly organic traffic value (at maturity)</p>
+                    </div>
+                </div>
+                <div class="space-y-3 text-sm text-secondary">
+                    <p><strong class="text-primary">Assumptions:</strong></p>
+                    <ul class="space-y-1 ml-4">
+                        <li>Each blog post targets 1-3 keywords in the Amazon selling / agency space</li>
+                        <li>Average keyword difficulty: medium (Amazon + region-specific modifiers)</li>
+                        <li>Conservative ranking: page 1-2 for long-tail keywords within 6-12 months</li>
+                        <li>Traffic value based on equivalent Google Ads cost per click for Amazon-related keywords ($3-8 CPC)</li>
+                        <li>100+ articles creates topical authority — Google rewards depth in a niche</li>
+                    </ul>
+                    <p class="mt-4"><strong class="text-primary">The real value isn't traffic — it's leads.</strong> Each visitor from "how to sell on Amazon in Europe" or "Amazon PPC strategy" is a pre-qualified potential client for Rank On Amazon's services. Even 1-2 qualified leads per month from organic content pays for the entire content pipeline many times over.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Post Outlines -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-info/20 rounded-xl p-2.5">
+                    <i data-lucide="file-edit" class="w-5 h-5 text-info"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Blog Post Outlines</h3>
+                <p class="text-muted text-sm ml-2">(4 sample outlines from high-value episodes)</p>
+            </div>
+            <div class="space-y-4">
+                <!-- Outline 1 -->
+                <details class="bg-card border border-border rounded-2xl overflow-hidden group">
+                    <summary class="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-bg/30 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-info/20 text-info rounded-lg w-8 h-8 flex items-center justify-center font-bold text-sm">1</span>
+                            <div>
+                                <p class="text-primary font-semibold text-sm">From Zero to EUR 5 Million on Amazon in 12 Months: The Cura of Sweden Story</p>
+                                <p class="text-muted text-xs">Source: Episodes #6, #40 | Target keyword: "Amazon Europe case study"</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-muted chevron transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-border pt-4">
+                        <div class="space-y-3 text-sm">
+                            <p class="text-secondary"><strong class="text-primary">H1:</strong> From Zero to EUR 5 Million on Amazon in 12 Months: The Cura of Sweden Story</p>
+                            <p class="text-secondary"><strong class="text-primary">Hook:</strong> Most brands spend years trying to crack Amazon Europe. Cura of Sweden, a Swedish weighted blanket company, went from zero Amazon presence to EUR 5 million in revenue in just 12 months. Here's exactly how they did it.</p>
+                            <p class="text-muted text-xs uppercase tracking-wider font-semibold mt-3">Sections:</p>
+                            <ul class="space-y-1 text-secondary ml-4">
+                                <li>1. The Starting Point: A Strong Product with No Amazon Presence</li>
+                                <li>2. The Strategy: Pan-European Launch Across 5 Marketplaces</li>
+                                <li>3. Page 1 in 7 Days: How Keyword Research Made the Difference</li>
+                                <li>4. Scaling with PPC: The Advertising Strategy Behind 5M EUR</li>
+                                <li>5. Lessons Learned: What Worked and What They'd Do Differently</li>
+                                <li>6. Key Takeaways for Brands Entering Amazon Europe</li>
+                            </ul>
+                            <p class="text-secondary mt-2"><strong class="text-primary">CTA:</strong> "Want results like Cura of Sweden? Book a free 30-minute consultation to discuss your Amazon potential."</p>
+                            <p class="text-secondary"><strong class="text-primary">Word count target:</strong> 2,500-3,000 words</p>
+                            <p class="text-secondary"><strong class="text-primary">Secondary posts:</strong> "5 Lessons from Cura of Sweden's Amazon Launch" (listicle), "How to Launch on Amazon Europe: A Nordic Brand's Playbook" (how-to)</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Outline 2 -->
+                <details class="bg-card border border-border rounded-2xl overflow-hidden group">
+                    <summary class="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-bg/30 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-info/20 text-info rounded-lg w-8 h-8 flex items-center justify-center font-bold text-sm">2</span>
+                            <div>
+                                <p class="text-primary font-semibold text-sm">Amazon PPC in 2024: Advanced Strategies That Actually Work</p>
+                                <p class="text-muted text-xs">Source: Episodes #36, #44, #16 | Target keyword: "Amazon PPC strategy 2024"</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-muted chevron transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-border pt-4">
+                        <div class="space-y-3 text-sm">
+                            <p class="text-secondary"><strong class="text-primary">H1:</strong> Amazon PPC in 2024: Advanced Strategies from a Tier 1 Platinum Agency</p>
+                            <p class="text-secondary"><strong class="text-primary">Hook:</strong> Amazon advertising gets more competitive every year. As a Tier 1 Platinum Partner, we've managed millions in ad spend across European and US marketplaces. Here are the advanced PPC strategies that are working right now.</p>
+                            <p class="text-muted text-xs uppercase tracking-wider font-semibold mt-3">Sections:</p>
+                            <ul class="space-y-1 text-secondary ml-4">
+                                <li>1. The State of Amazon Advertising in 2024</li>
+                                <li>2. Campaign Structure: Our Proven Framework</li>
+                                <li>3. Bid Optimization: Beyond Automated Rules</li>
+                                <li>4. Search Term Harvesting: The Pipeline That Finds Gold</li>
+                                <li>5. Sponsored Brands and DSP: When to Go Beyond Sponsored Products</li>
+                                <li>6. Cross-Marketplace PPC: Managing Ads Across 7 European Markets</li>
+                                <li>7. Measuring What Matters: ACoS, TACoS, and True Profitability</li>
+                            </ul>
+                            <p class="text-secondary mt-2"><strong class="text-primary">CTA:</strong> "Ready for advanced PPC management? Schedule a free ad audit with our team."</p>
+                            <p class="text-secondary"><strong class="text-primary">Word count target:</strong> 3,000-3,500 words</p>
+                            <p class="text-secondary"><strong class="text-primary">Secondary posts:</strong> "Amazon PPC for Beginners: The Complete Guide" (from #16), "Amazon ACoS vs TACoS: What's the Difference and Why It Matters" (spin-off)</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Outline 3 -->
+                <details class="bg-card border border-border rounded-2xl overflow-hidden group">
+                    <summary class="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-bg/30 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-info/20 text-info rounded-lg w-8 h-8 flex items-center justify-center font-bold text-sm">3</span>
+                            <div>
+                                <p class="text-primary font-semibold text-sm">Selling on Amazon from the Nordics: The Complete 2024 Guide</p>
+                                <p class="text-muted text-xs">Source: Episodes #14, #11, #4, #2 | Target keyword: "sell on Amazon from Sweden"</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-muted chevron transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-border pt-4">
+                        <div class="space-y-3 text-sm">
+                            <p class="text-secondary"><strong class="text-primary">H1:</strong> Selling on Amazon from the Nordics: The Complete Guide for Swedish, Danish, Norwegian & Finnish Brands</p>
+                            <p class="text-secondary"><strong class="text-primary">Hook:</strong> Nordic brands have a unique advantage on Amazon — high-quality products, strong design heritage, and a market that's still underrepresented. But selling from the Nordics comes with its own challenges. Here's everything you need to know.</p>
+                            <p class="text-muted text-xs uppercase tracking-wider font-semibold mt-3">Sections:</p>
+                            <ul class="space-y-1 text-secondary ml-4">
+                                <li>1. Why Amazon Is the Future for Nordic Brands</li>
+                                <li>2. Which Marketplace First? Amazon.se, .de, .co.uk, or .com?</li>
+                                <li>3. Legal Setup: Company Structure, VAT, and Registration</li>
+                                <li>4. FBA from the Nordics: Logistics, Shipping, and Pan-EU</li>
+                                <li>5. Listing Localization: It's Not Just Translation</li>
+                                <li>6. Common Mistakes Nordic Sellers Make (and How to Avoid Them)</li>
+                                <li>7. Case Studies: Nordic Brands That Succeeded on Amazon</li>
+                            </ul>
+                            <p class="text-secondary mt-2"><strong class="text-primary">CTA:</strong> "Ready to take your Nordic brand to Amazon? Download our free guide or book a consultation."</p>
+                            <p class="text-secondary"><strong class="text-primary">Word count target:</strong> 4,000-5,000 words (pillar content)</p>
+                            <p class="text-secondary"><strong class="text-primary">Secondary posts:</strong> "Amazon Sweden: Is It Worth Selling on Amazon.se?" (from #4, #20, #41), "VAT for Amazon Sellers in the EU: Complete Guide" (from #34)</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Outline 4 -->
+                <details class="bg-card border border-border rounded-2xl overflow-hidden group">
+                    <summary class="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-bg/30 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-info/20 text-info rounded-lg w-8 h-8 flex items-center justify-center font-bold text-sm">4</span>
+                            <div>
+                                <p class="text-primary font-semibold text-sm">Amazon Due Diligence: What Investors Need to Know Before Acquiring an Amazon Brand</p>
+                                <p class="text-muted text-xs">Source: Episode #9 | Target keyword: "Amazon FBA due diligence"</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-muted chevron transition-transform"></i>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-border pt-4">
+                        <div class="space-y-3 text-sm">
+                            <p class="text-secondary"><strong class="text-primary">H1:</strong> Amazon Due Diligence: The Complete Guide for Investors Acquiring FBA Brands</p>
+                            <p class="text-secondary"><strong class="text-primary">Hook:</strong> The Amazon aggregator wave taught a hard lesson: not all Amazon businesses are worth buying. Proper due diligence is the difference between a profitable acquisition and an expensive mistake. Here's what to look for.</p>
+                            <p class="text-muted text-xs uppercase tracking-wider font-semibold mt-3">Sections:</p>
+                            <ul class="space-y-1 text-secondary ml-4">
+                                <li>1. The State of Amazon Brand Acquisitions in 2024</li>
+                                <li>2. Revenue Verification: Beyond Seller Central Screenshots</li>
+                                <li>3. Product Moat Assessment: Brand Registry, Patents, and Barriers</li>
+                                <li>4. Review Quality Analysis: Detecting Manipulation</li>
+                                <li>5. Competitive Positioning: BSR Trends and Market Share</li>
+                                <li>6. Operational Dependencies: Supplier Risk and FBA Reliance</li>
+                                <li>7. Red Flags That Kill Deals</li>
+                                <li>8. Our Due Diligence Framework (Checklist)</li>
+                            </ul>
+                            <p class="text-secondary mt-2"><strong class="text-primary">CTA:</strong> "Planning an Amazon brand acquisition? Our due diligence service gives you the full picture. Contact us."</p>
+                            <p class="text-secondary"><strong class="text-primary">Word count target:</strong> 3,500-4,000 words</p>
+                            <p class="text-secondary"><strong class="text-primary">Secondary posts:</strong> "Amazon Aggregator Update 2024: Who's Still Buying?" (market context), "5 Red Flags in Amazon FBA Business Acquisitions" (listicle)</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Pipeline Specification -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-cyan/20 rounded-xl p-2.5">
+                    <i data-lucide="workflow" class="w-5 h-5 text-cyan"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Pipeline Specification</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl p-8">
+                <div class="space-y-8">
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-cyan/20">
+                            <i data-lucide="mic" class="w-4 h-4 text-cyan"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-cyan text-xs uppercase tracking-wider font-semibold mb-1">Step 1: Audio Ingestion</p>
+                            <p class="text-primary text-sm font-medium mb-1">Download podcast audio from Buzzsprout RSS feed</p>
+                            <p class="text-muted text-xs">Input: RSS feed URL. Output: 44 MP3/M4A files. Automated via feed parser.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-info/20">
+                            <i data-lucide="file-audio" class="w-4 h-4 text-info"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-info text-xs uppercase tracking-wider font-semibold mb-1">Step 2: Transcription</p>
+                            <p class="text-primary text-sm font-medium mb-1">Whisper (large-v3) transcription — Swedish audio to Swedish text</p>
+                            <p class="text-muted text-xs">Speaker diarization (pyannote) to separate Carl from guests. Timestamps for clip extraction. Processing: ~5 min per hour of audio on M1 Max.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-purple-500/20">
+                            <i data-lucide="languages" class="w-4 h-4 text-purple-400"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-purple-400 text-xs uppercase tracking-wider font-semibold mb-1">Step 3: Translation</p>
+                            <p class="text-primary text-sm font-medium mb-1">AI translation — Swedish to English with Amazon domain knowledge</p>
+                            <p class="text-muted text-xs">Uses Claude for context-aware translation (not literal). Preserves Amazon terminology, brand names, and technical concepts. Maintains conversational tone where appropriate.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-success/20">
+                            <i data-lucide="search" class="w-4 h-4 text-success"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-success text-xs uppercase tracking-wider font-semibold mb-1">Step 4: SEO Optimization</p>
+                            <p class="text-primary text-sm font-medium mb-1">Keyword research + content structuring for search ranking</p>
+                            <p class="text-muted text-xs">Target keyword identification per post. H1/H2/H3 structure with keyword placement. Meta description, OG tags, Schema.org Article markup. Internal linking strategy across the content hub.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-warning/20">
+                            <i data-lucide="file-edit" class="w-4 h-4 text-warning"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-warning text-xs uppercase tracking-wider font-semibold mb-1">Step 5: Content Generation</p>
+                            <p class="text-primary text-sm font-medium mb-1">Transform transcript into 2-3 polished blog posts per episode</p>
+                            <p class="text-muted text-xs">Primary post: comprehensive article covering the episode topic (2,000-5,000 words). Secondary posts: listicles, how-to guides, or opinion pieces derived from subtopics. Each post has unique angle, CTA, and target keyword.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-error/20">
+                            <i data-lucide="check-square" class="w-4 h-4 text-error"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-error text-xs uppercase tracking-wider font-semibold mb-1">Step 6: Quality Review</p>
+                            <p class="text-primary text-sm font-medium mb-1">Human review for accuracy, tone, and brand alignment</p>
+                            <p class="text-muted text-xs">Carl or team reviews before publish. Focus: factual accuracy, brand voice, Amazon terminology correctness. We handle revisions based on feedback.</p>
+                        </div>
+                    </div>
+                    <div class="pipeline-step">
+                        <div class="pipeline-dot bg-cyan/20">
+                            <i data-lucide="upload" class="w-4 h-4 text-cyan"></i>
+                        </div>
+                        <div class="bg-bg/50 border border-border rounded-xl p-4">
+                            <p class="text-cyan text-xs uppercase tracking-wider font-semibold mb-1">Step 7: Multi-Format Output</p>
+                            <p class="text-primary text-sm font-medium mb-1">Publish and distribute across channels</p>
+                            <p class="text-muted text-xs">Blog post (WordPress). Social media clips (LinkedIn, Twitter). Newsletter excerpt. Show notes page on website. Optional: YouTube clips with audiogram visualization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Output Projections -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-success/20 rounded-xl p-2.5">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-success"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Output Projections</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border bg-bg/50">
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Output Type</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Per Episode</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Total (44 episodes)</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Timeline</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Long-form blog posts</td><td class="px-6 py-3 text-secondary text-sm">1 primary article</td><td class="px-6 py-3 text-success text-sm font-semibold">44 articles</td><td class="px-6 py-3 text-muted text-sm">2-3 weeks</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Secondary blog posts (listicles, how-tos)</td><td class="px-6 py-3 text-secondary text-sm">1-2 spin-off posts</td><td class="px-6 py-3 text-success text-sm font-semibold">44-88 articles</td><td class="px-6 py-3 text-muted text-sm">3-4 weeks</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Social media clips (text excerpts)</td><td class="px-6 py-3 text-secondary text-sm">3-5 clips</td><td class="px-6 py-3 text-success text-sm font-semibold">132-220 posts</td><td class="px-6 py-3 text-muted text-sm">Concurrent</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Newsletter excerpts</td><td class="px-6 py-3 text-secondary text-sm">1 excerpt</td><td class="px-6 py-3 text-success text-sm font-semibold">44 newsletters</td><td class="px-6 py-3 text-muted text-sm">Concurrent</td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Show notes pages</td><td class="px-6 py-3 text-secondary text-sm">1 page</td><td class="px-6 py-3 text-success text-sm font-semibold">44 pages</td><td class="px-6 py-3 text-muted text-sm">Concurrent</td></tr>
+                        <tr class="hover:bg-bg/30 bg-cyan/5">
+                            <td class="px-6 py-4 text-primary text-sm font-bold" colspan="2">Total Content Assets</td>
+                            <td class="px-6 py-4 text-cyan text-lg font-bold">308-440</td>
+                            <td class="px-6 py-4 text-muted text-sm">4-6 weeks total</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Keyword Opportunity Map -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-info/20 rounded-xl p-2.5">
+                    <i data-lucide="map" class="w-5 h-5 text-info"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">Keyword Opportunity Map</h3>
+            </div>
+            <div class="bg-card border border-border rounded-2xl overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-border bg-bg/50">
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Target Keyword Cluster</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Monthly Search Volume (est.)</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Competition</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Source Episodes</th>
+                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Priority</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">sell on amazon europe / sell on amazon from sweden</td><td class="px-6 py-3 text-secondary text-sm">1,200-2,500</td><td class="px-6 py-3 text-success text-sm">Low</td><td class="px-6 py-3 text-muted text-sm">#2, #4, #11, #14</td><td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">High</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon ppc strategy / amazon advertising guide</td><td class="px-6 py-3 text-secondary text-sm">3,500-6,000</td><td class="px-6 py-3 text-warning text-sm">Medium</td><td class="px-6 py-3 text-muted text-sm">#16, #36, #44</td><td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">High</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon listing optimization / perfect amazon listing</td><td class="px-6 py-3 text-secondary text-sm">2,000-4,000</td><td class="px-6 py-3 text-warning text-sm">Medium</td><td class="px-6 py-3 text-muted text-sm">#10, #29, #33</td><td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">High</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon fba due diligence / buy amazon business</td><td class="px-6 py-3 text-secondary text-sm">800-1,500</td><td class="px-6 py-3 text-success text-sm">Low</td><td class="px-6 py-3 text-muted text-sm">#9</td><td class="px-6 py-3"><span class="bg-info/15 text-info text-xs font-semibold px-2 py-0.5 rounded-full">Medium</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon brand registry / amazon brand protection</td><td class="px-6 py-3 text-secondary text-sm">4,000-7,000</td><td class="px-6 py-3 text-error text-sm">High</td><td class="px-6 py-3 text-muted text-sm">#30</td><td class="px-6 py-3"><span class="bg-info/15 text-info text-xs font-semibold px-2 py-0.5 rounded-full">Medium</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon vat europe / amazon tax eu</td><td class="px-6 py-3 text-secondary text-sm">1,000-2,000</td><td class="px-6 py-3 text-success text-sm">Low</td><td class="px-6 py-3 text-muted text-sm">#34</td><td class="px-6 py-3"><span class="bg-info/15 text-info text-xs font-semibold px-2 py-0.5 rounded-full">Medium</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon agency case study / amazon growth agency</td><td class="px-6 py-3 text-secondary text-sm">500-1,200</td><td class="px-6 py-3 text-success text-sm">Low</td><td class="px-6 py-3 text-muted text-sm">#6, #23, #40</td><td class="px-6 py-3"><span class="bg-success/15 text-success text-xs font-semibold px-2 py-0.5 rounded-full">High</span></td></tr>
+                        <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">amazon sweat equity / amazon agency partnership</td><td class="px-6 py-3 text-secondary text-sm">100-300</td><td class="px-6 py-3 text-success text-sm">Very Low</td><td class="px-6 py-3 text-muted text-sm">#31</td><td class="px-6 py-3"><span class="bg-muted/15 text-muted text-xs font-semibold px-2 py-0.5 rounded-full">Niche</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- The Pitch to Carl -->
+        <section>
+            <div class="flex items-center gap-3 mb-6">
+                <div class="bg-warning/20 rounded-xl p-2.5">
+                    <i data-lucide="megaphone" class="w-5 h-5 text-warning"></i>
+                </div>
+                <h3 class="font-display font-bold text-xl text-primary">The Pitch to Carl</h3>
+            </div>
+            <div class="bg-gradient-to-r from-cyan/10 via-info/10 to-purple-500/10 border border-cyan/30 rounded-2xl p-8">
+                <div class="flex items-start gap-4">
+                    <div class="text-cyan text-4xl font-serif leading-none">"</div>
+                    <div>
+                        <p class="text-primary text-lg leading-relaxed mb-4">You've recorded 44 episodes of Amazonpodden — over 25 hours of expert Amazon content. It's your best work, and right now it only reaches people who listen to Swedish podcasts.</p>
+                        <p class="text-primary text-lg leading-relaxed mb-4">We can turn every episode into 2-3 English blog posts, social media clips, and newsletter content — all SEO-optimized to rank on Google for the keywords your potential clients are searching. That's 100+ articles from content you've already created.</p>
+                        <p class="text-primary text-lg leading-relaxed mb-4">Your competitors publish hundreds of blog posts and YouTube videos. You have the expertise to match them — it's just sitting in audio form. We make it visible.</p>
+                        <p class="text-primary text-lg leading-relaxed">Pick one episode. We'll show you the finished output before you decide anything.</p>
+                        <div class="text-cyan text-4xl font-serif leading-none text-right">"</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+            <p class="text-muted text-sm">MERIDIAN — Internal Intelligence</p>
+            <p class="text-muted text-sm">Rank On Amazon Audit &middot; March 2026</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
