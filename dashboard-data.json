@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26T03:22:51.428986+00:00",
+  "generated_at": "2026-03-26T03:48:48.588582+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-26T03:22:48.878942+00:00",
+      "updated_at": "2026-03-26T03:48:45.965510+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1573,11 +1573,11 @@
           }
         ],
         "collected_at": "2026-03-22T20:13:06.987399+00:00",
-        "_stale_warning": "Data is 79 hours old"
+        "_stale_warning": "Data is 80 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-26T03:22:51.309063+00:00",
+      "updated_at": "2026-03-26T03:48:48.468426+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -2924,13 +2924,23 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-03-26T03:12:55Z",
-        "head_sha": "a7b48fcf"
+        "status": "completed",
+        "conclusion": "failure",
+        "name": "Deploy Dashboard to GitHub Pages",
+        "created_at": "2026-03-26T03:23:01Z",
+        "head_sha": "8caae834"
       },
       "ci_recent_runs": [
+        {
+          "id": 23575908426,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-03-26T03:23:01Z",
+          "updated_at": "2026-03-26T03:23:04Z",
+          "head_sha": "8caae834",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23575908426"
+        },
         {
           "id": 23575654672,
           "name": "CI",
@@ -2970,19 +2980,44 @@
           "updated_at": "2026-03-26T03:12:56Z",
           "head_sha": "b4c0e043",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/23574662721"
-        },
-        {
-          "id": 23572754268,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-03-26T01:22:13Z",
-          "updated_at": "2026-03-26T02:34:45Z",
-          "head_sha": "fca880f7",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23572754268"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "bdcd215b",
+          "message": "fix(voice-demo): consistent voice, transcript logging, no fabrication",
+          "author": "covaultxyz",
+          "date": "2026-03-26T03:45:12Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bdcd215bea3f3dc386f3c867089a7cf73b8ad537"
+        },
+        {
+          "sha": "041dcc56",
+          "message": "fix(autoinstall): awk field index \u2014 $4 not $2 for EFI start block",
+          "author": "covaultxyz",
+          "date": "2026-03-26T03:43:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/041dcc56c871622da44305a363c259c4513ae623"
+        },
+        {
+          "sha": "ca263432",
+          "message": "fix(autoinstall): extract EFI partition via dd to real file \u2014 fixes 'Cannot open data file'",
+          "author": "covaultxyz",
+          "date": "2026-03-26T03:41:59Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ca263432b970147f044e9b1a6185d787496bbf39"
+        },
+        {
+          "sha": "8fade1e5",
+          "message": "audit(infra): Lens & Prism audit of activation plan \u2014 0.52 coherence, 5/14 claims contradicted",
+          "author": "covaultxyz",
+          "date": "2026-03-26T03:22:21Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8fade1e5a26b6d1d382d50d4ae3a78df90c7f034"
+        },
+        {
+          "sha": "8caae834",
+          "message": "feat(voice-demo): NEPQ conversation framework + product knowledge + voice consistency",
+          "author": "covaultxyz",
+          "date": "2026-03-26T03:22:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8caae834ec1cb7677bd088fb1f43c36ae8e927a1"
+        },
         {
           "sha": "d0d878da",
           "message": "fix(autoinstall): extract EFI partition from original ISO for UEFI boot",
@@ -3017,45 +3052,10 @@
           "author": "covaultxyz",
           "date": "2026-03-26T02:53:56Z",
           "url": "https://github.com/covaultxyz/meridian/commit/8e1f5b6fd1c724b451ef554b4956047b8b40592e"
-        },
-        {
-          "sha": "c8da4b5c",
-          "message": "fix(autoinstall): chmod extracted ISO writable before GRUB patching",
-          "author": "covaultxyz",
-          "date": "2026-03-26T02:51:50Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c8da4b5c8fca791f34adf68946cc6979ad683396"
-        },
-        {
-          "sha": "c26e1549",
-          "message": "fix(autoinstall): sed can't handle multi-line WIFI_BLOCK \u2014 use bash line-by-line substitution",
-          "author": "covaultxyz",
-          "date": "2026-03-26T02:46:39Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c26e1549b5f34117606a076eef7d448c83a2bd73"
-        },
-        {
-          "sha": "becd6f09",
-          "message": "docs(research): Linux OS for AI extraction \u2014 5 strategies for infrastructure + agent architecture",
-          "author": "covaultxyz",
-          "date": "2026-03-26T02:42:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/becd6f091e092c01be796c90fabb65835b92d9a7"
-        },
-        {
-          "sha": "b4c0e043",
-          "message": "fix(autoinstall): 3 critical bugs \u2014 GRUB tab matching, wpasupplicant, WiFi interface naming",
-          "author": "covaultxyz",
-          "date": "2026-03-26T02:34:30Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b4c0e043490bf542a5244502297d3b6cdfe4c909"
-        },
-        {
-          "sha": "31db826e",
-          "message": "fix(merge): resolve pre-existing conflicts from crash \u2014 accept remote versions",
-          "author": "covaultxyz",
-          "date": "2026-03-26T02:34:05Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/31db826e02e33b8b4e721e7c0bff6355032be4d3"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-26T03:22:49.437408+00:00",
+        "updated_at": "2026-03-26T03:48:46.777162+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -3124,7 +3124,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "members": [
         {
           "id": "alex",
@@ -3195,7 +3195,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "projects": [
         {
           "project": {
@@ -3625,7 +3625,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3737,7 +3737,7 @@
       "this_week": 5
     },
     "decisions": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3834,7 +3834,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6382,7 +6382,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-26T03:22:51.409069+00:00",
+      "updated_at": "2026-03-26T03:48:48.561617+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -7616,7 +7616,7 @@
       "total_docs": 203
     },
     "deals": {
-      "updated_at": "2026-03-26T03:22:51.409164+00:00",
+      "updated_at": "2026-03-26T03:48:48.561698+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7850,7 +7850,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-26T03:22:51.309082+00:00",
+      "updated_at": "2026-03-26T03:48:48.468439+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -19313,7 +19313,7 @@
       "total": 45
     },
     "call_intelligence": {
-      "updated_at": "2026-03-26T03:22:51.414735+00:00",
+      "updated_at": "2026-03-26T03:48:48.577638+00:00",
       "signal_summary": {
         "total_objections": 23,
         "total_buying_signals": 14,
@@ -23336,7 +23336,7 @@
       "total_action_items": 217
     },
     "attention": {
-      "updated_at": "2026-03-26T03:22:51.428931+00:00",
+      "updated_at": "2026-03-26T03:48:48.588541+00:00",
       "items": [
         {
           "type": "blocked",
@@ -23411,8 +23411,38 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-26T03:22:51.428971+00:00",
+      "updated_at": "2026-03-26T03:48:48.588573+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-03-26T03:45:12Z",
+          "title": "fix(voice-demo): consistent voice, transcript logging, no fabrication",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-26T03:43:32Z",
+          "title": "fix(autoinstall): awk field index \u2014 $4 not $2 for EFI start block",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-26T03:41:59Z",
+          "title": "fix(autoinstall): extract EFI partition via dd to real file \u2014 fixes 'Cannot open",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-26T03:22:44Z",
+          "title": "feat(voice-demo): NEPQ conversation framework + product knowledge + voice consis",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-26T03:22:21Z",
+          "title": "audit(infra): Lens & Prism audit of activation plan \u2014 0.52 coherence, 5/14 claim",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-03-26T03:21:48Z",
@@ -23441,36 +23471,6 @@
           "type": "commit",
           "date": "2026-03-26T02:52:46Z",
           "title": "feat(pressure): cognitive pressure framework \u2014 3-level prompt escalation system",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-26T02:51:50Z",
-          "title": "fix(autoinstall): chmod extracted ISO writable before GRUB patching",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-26T02:46:39Z",
-          "title": "fix(autoinstall): sed can't handle multi-line WIFI_BLOCK \u2014 use bash line-by-line",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-26T02:42:04Z",
-          "title": "docs(research): Linux OS for AI extraction \u2014 5 strategies for infrastructure + a",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-26T02:34:30Z",
-          "title": "fix(autoinstall): 3 critical bugs \u2014 GRUB tab matching, wpasupplicant, WiFi inter",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-26T02:34:05Z",
-          "title": "fix(merge): resolve pre-existing conflicts from crash \u2014 accept remote versions",
           "detail": "covaultxyz"
         },
         {
