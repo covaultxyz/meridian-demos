@@ -2736,6 +2736,184 @@ var StalenessFooter = function(props) {
   );
 };
 
+/* VIEW: VOICE ANALYTICS */
+var VoiceView = function(props) {
+  var _overview = useState(null), overview = _overview[0], setOverview = _overview[1];
+  var _costs = useState(null), costs = _costs[0], setCosts = _costs[1];
+  var _agents = useState(null), agents = _agents[0], setAgents = _agents[1];
+  var _loading = useState(true), loading = _loading[0], setLoading = _loading[1];
+  var _error = useState(null), error = _error[0], setError = _error[1];
+
+  useEffect(function() {
+    var params = new URLSearchParams(window.location.search);
+    var baseUrl = params.get('voice_api') || localStorage.getItem('mrd_voice_api') || 'http://127.0.0.1:8100';
+    var wsHeader = { 'X-Workspace-Id': 'd6574870-0529-4015-aeeb-a25c202d7436' };
+    var fetchOpts = { headers: wsHeader, signal: AbortSignal.timeout(5000) };
+
+    Promise.all([
+      fetch(baseUrl + '/api/v1/analytics/overview?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      fetch(baseUrl + '/api/v1/analytics/costs?days=30', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      fetch(baseUrl + '/api/v1/analytics/agents', fetchOpts).then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    ]).then(function(results) {
+      setOverview(results[0]);
+      setCosts(results[1]);
+      setAgents(results[2]);
+      setLoading(false);
+    }).catch(function(err) {
+      setError(err.message || 'Unknown error');
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return React.createElement('div', { className: 'p-8 text-center text-[#8899aa]' },
+      React.createElement('div', { className: 'inline-block w-6 h-6 border-2 border-[#38bdf8] border-t-transparent rounded-full mb-3', style: { animation: 'spin 1s linear infinite' } }),
+      React.createElement('div', null, 'Loading voice analytics...')
+    );
+  }
+
+  if (error) {
+    return React.createElement('div', { className: 'p-8 text-center' },
+      React.createElement('div', { className: 'text-[#ef4444] text-lg font-bold mb-2' }, 'Voice analytics unavailable'),
+      React.createElement('div', { className: 'text-[#8899aa] text-sm' }, 'Is the API running on :8100?'),
+      React.createElement('div', { className: 'text-[#8899aa] text-xs mt-2 font-mono' }, error)
+    );
+  }
+
+  var ov = overview || {};
+  var co = costs || {};
+  var ag = agents || [];
+  if (Array.isArray(agents) === false && agents && agents.agents) ag = agents.agents;
+  var totals = co.totals || {};
+
+  var totalCalls = ov.totalConversations != null ? ov.totalConversations : '--';
+  var automationRate = ov.automationRate != null ? (ov.automationRate > 1 ? ov.automationRate.toFixed(1) + '%' : (ov.automationRate * 100).toFixed(1) + '%') : '--';
+  var totalCost = totals.totalCost != null ? '$' + Number(totals.totalCost).toFixed(2) : '--';
+  var avgCost = co.avgCostPerCall != null ? '$' + Number(co.avgCostPerCall).toFixed(2) : '--';
+
+  var sttCost = totals.sttCost || 0;
+  var llmCost = totals.llmCost || 0;
+  var ttsCost = totals.ttsCost || 0;
+  var costTotal = sttCost + llmCost + ttsCost;
+
+  var callVolume = ov.callVolumeByHour || [];
+  var recentActivity = ov.recentActivity || [];
+
+  return React.createElement('div', { className: 'space-y-6' },
+    React.createElement(SectionHeader, { title: 'Voice Analytics', source: 'live' }),
+
+    /* KPI row */
+    React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 gap-3' },
+      React.createElement(KPICard, { label: 'Total Calls', value: totalCalls, color: '#38bdf8' }),
+      React.createElement(KPICard, { label: 'Automation Rate', value: automationRate, color: '#22c55e' }),
+      React.createElement(KPICard, { label: 'Total Cost', value: totalCost, color: '#a78bfa' }),
+      React.createElement(KPICard, { label: 'Avg Cost/Call', value: avgCost, color: '#06b6d4' })
+    ),
+
+    /* Cost breakdown */
+    costTotal > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Cost Breakdown'),
+      React.createElement('div', { className: 'space-y-2' },
+        [
+          { label: 'STT (Speech-to-Text)', value: sttCost, color: '#38bdf8' },
+          { label: 'LLM (Language Model)', value: llmCost, color: '#a78bfa' },
+          { label: 'TTS (Text-to-Speech)', value: ttsCost, color: '#22c55e' }
+        ].map(function(item) {
+          var pct = costTotal > 0 ? (item.value / costTotal * 100) : 0;
+          return React.createElement('div', { key: item.label, className: 'flex items-center gap-3' },
+            React.createElement('span', { className: 'text-xs text-[#8899aa] w-36 shrink-0' }, item.label),
+            React.createElement('div', { className: 'flex-1 h-3 bg-[#1a2234] rounded-full overflow-hidden' },
+              React.createElement('div', {
+                className: 'h-full rounded-full transition-all',
+                style: { width: pct.toFixed(1) + '%', background: item.color }
+              })
+            ),
+            React.createElement('span', { className: 'text-xs font-semibold shrink-0 w-16 text-right', style: { color: item.color } }, '$' + item.value.toFixed(2)),
+            React.createElement('span', { className: 'text-[10px] text-[#8899aa] w-10 text-right shrink-0' }, pct.toFixed(0) + '%')
+          );
+        })
+      )
+    ) : null,
+
+    /* Agent cards */
+    ag.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Agents'),
+      React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3' },
+        ag.map(function(a, i) {
+          var name = a.name || a.agentName || a.id || 'Agent ' + (i + 1);
+          var calls = a.totalCalls != null ? a.totalCalls : (a.total_calls || '--');
+          var bookRate = a.bookingRate != null ? a.bookingRate : a.booking_rate;
+          var bookRateStr = bookRate != null ? (bookRate > 1 ? bookRate.toFixed(1) + '%' : (bookRate * 100).toFixed(1) + '%') : '--';
+          return React.createElement(GlassCard, { key: i, className: 'p-3' },
+            React.createElement('div', { className: 'text-sm font-semibold text-white mb-2 truncate' }, name),
+            React.createElement('div', { className: 'flex items-center justify-between text-xs' },
+              React.createElement('span', { className: 'text-[#8899aa]' }, 'Calls'),
+              React.createElement('span', { className: 'font-bold text-[#38bdf8]' }, calls)
+            ),
+            React.createElement('div', { className: 'flex items-center justify-between text-xs mt-1' },
+              React.createElement('span', { className: 'text-[#8899aa]' }, 'Booking Rate'),
+              React.createElement('span', { className: 'font-bold text-[#22c55e]' }, bookRateStr)
+            )
+          );
+        })
+      )
+    ) : null,
+
+    /* Call volume by hour */
+    callVolume.length > 0 ? React.createElement(GlassCard, { className: 'p-4' },
+      React.createElement('h3', { className: 'text-xs font-bold text-[#8899aa] uppercase tracking-widest mb-3' }, 'Call Volume by Hour'),
+      React.createElement('div', { className: 'flex items-end gap-px', style: { height: '100px' } },
+        (function() {
+          var maxVal = 1;
+          callVolume.forEach(function(h) { var v = typeof h === 'object' ? (h.count || h.value || 0) : (h || 0); if (v > maxVal) maxVal = v; });
+          return callVolume.map(function(h, i) {
+            var v = typeof h === 'object' ? (h.count || h.value || 0) : (h || 0);
+            var pct = (v / maxVal * 100);
+            var hourLabel = typeof h === 'object' ? (h.hour != null ? h.hour : i) : i;
+            return React.createElement('div', {
+              key: i,
+              className: 'flex-1 relative group cursor-default',
+              style: { height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }
+            },
+              React.createElement('div', {
+                className: 'w-full rounded-t transition-all',
+                style: { height: Math.max(pct, 2) + '%', background: v > 0 ? '#38bdf8' : '#1a2234', minHeight: '2px' },
+                title: hourLabel + ':00 - ' + v + ' calls'
+              }),
+              i % 4 === 0 ? React.createElement('span', { className: 'text-[8px] text-[#8899aa] text-center mt-1 block' }, String(hourLabel).padStart(2, '0')) : null
+            );
+          });
+        })()
+      )
+    ) : null,
+
+    /* Recent activity */
+    recentActivity.length > 0 ? React.createElement(GlassCard, { className: 'overflow-hidden' },
+      React.createElement('div', { className: 'px-4 py-3 border-b border-[#1e2d4a]' },
+        React.createElement('h3', { className: 'text-xs font-bold text-[#38bdf8] uppercase tracking-widest' }, 'Recent Activity')
+      ),
+      React.createElement('div', { className: 'divide-y divide-[#1e2d4a]/40 max-h-[400px] overflow-y-auto' },
+        recentActivity.slice(0, 20).map(function(item, i) {
+          var ts = item.timestamp || item.created_at || item.time || '';
+          var agentName = item.agent || item.agentName || item.agent_name || '';
+          var outcome = item.outcome || item.status || item.result || '';
+          var outcomeColor = outcome === 'booked' || outcome === 'success' ? '#22c55e' : (outcome === 'failed' || outcome === 'error' ? '#ef4444' : '#8899aa');
+          return React.createElement('div', { key: i, className: 'px-4 py-2.5 flex items-center justify-between gap-2' },
+            React.createElement('div', { className: 'flex items-center gap-3 min-w-0' },
+              React.createElement('span', { className: 'text-[10px] text-[#8899aa] shrink-0 w-14' }, relativeTime(ts)),
+              React.createElement('span', { className: 'text-xs text-white font-semibold truncate' }, agentName || 'Unknown Agent')
+            ),
+            React.createElement('span', {
+              className: 'text-[10px] font-bold uppercase px-2 py-0.5 rounded shrink-0',
+              style: { color: outcomeColor, background: outcomeColor + '15' }
+            }, outcome || 'unknown')
+          );
+        })
+      )
+    ) : null
+  );
+};
+
 /* MAIN APP */
 var App = function() {
   var _auth = useState(checkAuthSync());
@@ -2785,6 +2963,7 @@ var App = function() {
     { id: 'work', label: 'WORK' },
     { id: 'health', label: 'HEALTH' },
     { id: 'calls', label: 'CALLS' },
+    { id: 'voice', label: 'VOICE' },
     { id: 'tasks', label: 'TASKS' }
   ];
 
@@ -2928,6 +3107,7 @@ var App = function() {
       case 'work': return React.createElement(WorkView, { data: data, source: dataSource });
       case 'health': return React.createElement(HealthView, { data: data, source: dataSource });
       case 'calls': return React.createElement(CallsView, { data: data, source: dataSource });
+      case 'voice': return React.createElement(VoiceView, { data: data, source: dataSource });
       case 'tasks': return React.createElement(TasksView, { data: data, source: dataSource });
       case 'myagent': return React.createElement(MyAgentView, { data: data, source: dataSource });
       case 'mydata': return React.createElement(MyDataView, { data: data, source: dataSource });
