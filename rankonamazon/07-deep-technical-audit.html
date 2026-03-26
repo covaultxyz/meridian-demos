@@ -1,261 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>07 — Deep Technical &amp; Intelligence Audit | Rank On Amazon Audit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: '#0c1222', card: '#1e293b', border: '#334155',
-                        primary: '#e2e8f0', secondary: '#94a3b8', muted: '#64748b',
-                        cyan: '#06b6d4', success: '#10b981', warning: '#f59e0b',
-                        error: '#ef4444', info: '#3b82f6',
-                    },
-                    fontFamily: { body: ['Inter', 'sans-serif'], display: ['Montserrat', 'sans-serif'] }
-                }
-            }
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } } } }
         }
     </script>
     <style>
-        body { background: #0c1222; font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .badge { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-        .badge-critical { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-        .badge-high { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
-        .badge-medium { background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
-        .badge-low { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
-        .badge-stale { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
-        .badge-frozen { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-        .badge-active { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .glass-card-static{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .badge-critical{background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.2)}
+        .badge-high{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.2)}
+        .badge-medium{background:rgba(59,130,246,0.1);color:#60a5fa;border:1px solid rgba(59,130,246,0.2)}
+        .badge-low{background:rgba(161,161,170,0.1);color:#a1a1aa;border:1px solid rgba(161,161,170,0.2)}
+        .badge-frozen{background:rgba(248,113,113,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.2)}
+        .badge-stale{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.2)}
+        .badge-active{background:rgba(52,211,153,0.1);color:#34d399;border:1px solid rgba(52,211,153,0.2)}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
     </style>
 </head>
-<body class="text-primary min-h-screen">
-    <header class="border-b border-border sticky top-0 z-50 bg-bg/95 backdrop-blur-sm">
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="nav-glass fixed top-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="text-secondary hover:text-cyan transition-colors flex items-center gap-2 text-sm"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Index</a>
-                <div class="h-5 w-px bg-border"></div>
-                <h1 class="font-display font-bold text-lg text-primary">Deep Technical &amp; Intelligence Audit</h1>
-            </div>
-            <span class="bg-cyan/15 text-cyan text-xs font-semibold px-3 py-1 rounded-full border border-cyan/30">PAGE 07</span>
-        </div>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
-        <div class="text-center space-y-3">
-            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-primary">Deep Technical &amp; Intelligence Audit</h2>
-            <p class="text-secondary text-lg">rankonamazon.com &mdash; Complete infrastructure, security, and intelligence analysis</p>
-        </div>
-
-        <!-- Domain Migration Trail -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="route" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Domain Migration Trail</h3></div>
-            <div class="bg-card border border-border rounded-2xl p-6 space-y-6">
-                <div class="flex items-center gap-4 flex-wrap">
-                    <div class="bg-bg border border-border rounded-xl px-5 py-3 text-center"><p class="text-muted text-xs uppercase tracking-wider mb-1">Origin</p><p class="text-primary font-mono font-semibold">amanordic.com</p></div>
-                    <i data-lucide="arrow-right" class="w-5 h-5 text-cyan"></i>
-                    <div class="bg-cyan/10 border border-cyan/30 rounded-xl px-5 py-3 text-center"><p class="text-cyan text-xs uppercase tracking-wider mb-1">Current</p><p class="text-primary font-mono font-semibold">rankonamazon.com</p></div>
-                    <span class="text-muted text-sm ml-2">Migrated January 2023</span>
+            <div class="flex items-center gap-3">
+                <div class="icon-box p-2">
+                    <i data-lucide="scan-search" class="w-4 h-4 text-blue-400"></i>
                 </div>
-                <ul class="space-y-2">
-                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">WordPress page GUIDs in wp-json API still reference <code class="text-cyan bg-cyan/10 px-1.5 py-0.5 rounded text-xs">amanordic.com/?page_id=XX</code></span></li>
-                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Contact email remains <code class="text-cyan bg-cyan/10 px-1.5 py-0.5 rounded text-xs">hello@amanordic.com</code> — not updated to rankonamazon.com</span></li>
-                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">Cookie policy references external domains (helenethituson.com, superchargeyourblog.com)</span></li>
-                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">All page modification dates cluster around January 2023 — consistent with bulk migration</span></li>
-                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0"></i><span class="text-secondary">About page has 151 revisions — heavy editing during migration, nothing since</span></li>
+                <span class="text-white font-semibold text-sm">Rank On Amazon</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#migration" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">MIGRATION</a>
+                <a href="#hosting" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">HOSTING</a>
+                <a href="#security" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">SECURITY</a>
+                <a href="#seo" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">SEO</a>
+                <a href="#intel" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">INTEL</a>
+            </div>
+            <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20">Internal</span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 px-6">
+        <div class="glow-orb w-[600px] h-[600px] bg-red-500/8 -top-60 -left-40" style="position:absolute"></div>
+        <div class="glow-orb w-[400px] h-[400px] bg-blue-500/8 top-20 right-0" style="position:absolute"></div>
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <span class="badge bg-red-500/10 text-red-400 border border-red-500/20 mb-6">Page 07 &mdash; Deep Technical Audit</span>
+                <h1 class="text-gradient-white text-5xl md:text-6xl font-extrabold tracking-tight mt-4 mb-4">Deep Technical &amp; Intelligence Audit</h1>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto">rankonamazon.com &mdash; Complete infrastructure, security, and intelligence analysis</p>
+            </div>
+            <div class="grid grid-cols-4 gap-4 max-w-2xl mx-auto mt-10 reveal">
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-red-400">2</p>
+                    <p class="text-zinc-500 text-xs mt-1">Users Leaked</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-amber-400">6</p>
+                    <p class="text-zinc-500 text-xs mt-1">SEO Failures</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-red-400">5</p>
+                    <p class="text-zinc-500 text-xs mt-1">Security Issues</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-blue-400">7</p>
+                    <p class="text-zinc-500 text-xs mt-1">Intel Points</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Domain Migration Trail -->
+    <section id="migration" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="route" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Domain Migration Trail</h2>
+            </div>
+            <div class="glass-card-static p-8 space-y-6 reveal">
+                <div class="flex items-center gap-4 flex-wrap">
+                    <div class="glass-card p-4 text-center" style="border-radius:16px">
+                        <p class="text-zinc-500 text-xs uppercase tracking-wider mb-1">Origin</p>
+                        <p class="text-white font-mono font-semibold">amanordic.com</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-blue-400"></i>
+                    <div class="glass-card p-4 text-center" style="border-radius:16px;border-color:rgba(59,130,246,0.2)">
+                        <p class="text-blue-400 text-xs uppercase tracking-wider mb-1">Current</p>
+                        <p class="text-white font-mono font-semibold">rankonamazon.com</p>
+                    </div>
+                    <span class="text-zinc-500 text-sm ml-2">Migrated January 2023</span>
+                </div>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">WordPress page GUIDs in wp-json API still reference <code class="text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded text-xs">amanordic.com/?page_id=XX</code></span></li>
+                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Contact email remains <code class="text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded text-xs">hello@amanordic.com</code> — not updated to rankonamazon.com</span></li>
+                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">Cookie policy references external domains (helenethituson.com, superchargeyourblog.com)</span></li>
+                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">All page modification dates cluster around January 2023 — consistent with bulk migration</span></li>
+                    <li class="flex items-start gap-3 text-sm"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i><span class="text-zinc-400">About page has 151 revisions — heavy editing during migration, nothing since</span></li>
                 </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Hosting & Infrastructure -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-info/20 rounded-xl p-2.5"><i data-lucide="server" class="w-5 h-5 text-info"></i></div><h3 class="font-display font-bold text-xl text-primary">Hosting &amp; Infrastructure</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Component</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Details</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Evidence</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">CMS</td><td class="px-6 py-3 text-secondary text-sm">WordPress 6.9.4</td><td class="px-6 py-3 text-muted text-sm">HTML meta generator tag</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Theme</td><td class="px-6 py-3 text-secondary text-sm">Divi 4.22.2 (Elegant Themes)</td><td class="px-6 py-3 text-muted text-sm">Stylesheet references</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Hosting Provider</td><td class="px-6 py-3 text-secondary text-sm">SiteGround (on GCP infrastructure)</td><td class="px-6 py-3 text-muted text-sm">sg-security/v1, siteground-settings/v1 REST API namespaces; IP 35.209.58.72</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Web Server</td><td class="px-6 py-3 text-secondary text-sm">nginx</td><td class="px-6 py-3 text-muted text-sm">HTTP response headers</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Analytics</td><td class="px-6 py-3 text-secondary text-sm">Google Analytics 4 (G-P76L0ZJZQ3)</td><td class="px-6 py-3 text-muted text-sm">gtag.js script in source</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">SSL</td><td class="px-6 py-3 text-secondary text-sm">Active (Let's Encrypt via SiteGround)</td><td class="px-6 py-3 text-muted text-sm">Certificate inspection</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">CDN</td><td class="px-6 py-3 text-secondary text-sm">SiteGround SG Optimizer (basic)</td><td class="px-6 py-3 text-muted text-sm">REST API namespaces</td></tr>
-            </tbody></table></div>
-        </section>
+    <div class="section-divider max-w-7xl mx-auto"></div>
 
-        <!-- WordPress Users -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-error/20 rounded-xl p-2.5"><i data-lucide="shield-alert" class="w-5 h-5 text-error"></i></div><h3 class="font-display font-bold text-xl text-primary">WordPress Users (Leaked via REST API)</h3></div>
-            <div class="bg-error/5 border border-error/30 rounded-2xl p-5 mb-4 flex items-start gap-4">
-                <i data-lucide="alert-triangle" class="w-5 h-5 text-error mt-0.5 shrink-0"></i>
-                <div><p class="text-error font-semibold text-sm">Security Warning</p><p class="text-secondary text-sm">The WordPress REST API (<code class="text-error/80 bg-error/10 px-1.5 py-0.5 rounded text-xs">/wp-json/wp/v2/users</code>) is publicly exposed without authentication. This leaks admin usernames and email addresses, enabling targeted phishing and brute force attacks.</p></div>
+    <!-- Hosting & Infrastructure -->
+    <section id="hosting" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="server" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Hosting &amp; Infrastructure</h2>
             </div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">ID</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Username / Slug</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Display Name</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Leaked Info</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Role Evidence</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">1</td><td class="px-6 py-3 text-primary text-sm font-mono">helenethitusongmail-com</td><td class="px-6 py-3 text-secondary text-sm">Helene Thituson</td><td class="px-6 py-3 text-error text-sm">Email exposed in slug</td><td class="px-6 py-3 text-muted text-sm">Author ID 1 = site creator/admin</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">2</td><td class="px-6 py-3 text-primary text-sm font-mono">rankonamazon</td><td class="px-6 py-3 text-secondary text-sm">Rank On Amazon</td><td class="px-6 py-3 text-secondary text-sm">Generic account</td><td class="px-6 py-3 text-muted text-sm">Content editor or API publishing account</td></tr>
-            </tbody></table></div>
-        </section>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Component</th><th>Details</th><th>Evidence</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">CMS</td><td>WordPress 6.9.4</td><td class="text-zinc-500">HTML meta generator tag</td></tr>
+                            <tr><td class="text-white font-medium">Theme</td><td>Divi 4.22.2 (Elegant Themes)</td><td class="text-zinc-500">Stylesheet references</td></tr>
+                            <tr><td class="text-white font-medium">Hosting Provider</td><td>SiteGround (on GCP infrastructure)</td><td class="text-zinc-500">sg-security/v1, siteground-settings/v1 REST API namespaces; IP 35.209.58.72</td></tr>
+                            <tr><td class="text-white font-medium">Web Server</td><td>nginx</td><td class="text-zinc-500">HTTP response headers</td></tr>
+                            <tr><td class="text-white font-medium">Analytics</td><td>Google Analytics 4 (G-P76L0ZJZQ3)</td><td class="text-zinc-500">gtag.js script in source</td></tr>
+                            <tr><td class="text-white font-medium">SSL</td><td>Active (Let's Encrypt via SiteGround)</td><td class="text-zinc-500">Certificate inspection</td></tr>
+                            <tr><td class="text-white font-medium">CDN</td><td>SiteGround SG Optimizer (basic)</td><td class="text-zinc-500">REST API namespaces</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Page Modification Timeline -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-warning/20 rounded-xl p-2.5"><i data-lucide="clock" class="w-5 h-5 text-warning"></i></div><h3 class="font-display font-bold text-xl text-primary">Page Modification Timeline</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Page</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">URL Path</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Last Modified</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Revisions</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Status</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Homepage</td><td class="px-6 py-3 text-cyan font-mono text-sm">/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">About</td><td class="px-6 py-3 text-cyan font-mono text-sm">/about/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-warning text-sm font-semibold">151</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Our Services</td><td class="px-6 py-3 text-cyan font-mono text-sm">/our-services/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Why Us</td><td class="px-6 py-3 text-cyan font-mono text-sm">/why-us/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Why Amazon</td><td class="px-6 py-3 text-cyan font-mono text-sm">/why-amazon/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Our Work</td><td class="px-6 py-3 text-cyan font-mono text-sm">/our-work/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Careers</td><td class="px-6 py-3 text-cyan font-mono text-sm">/careers/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Contact</td><td class="px-6 py-3 text-cyan font-mono text-sm">/contact/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-frozen">Frozen</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">GDPR</td><td class="px-6 py-3 text-cyan font-mono text-sm">/gdpr/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-stale">Stale</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Cookie Policy</td><td class="px-6 py-3 text-cyan font-mono text-sm">/cookie-policy/</td><td class="px-6 py-3 text-secondary text-sm">Jan 18, 2023</td><td class="px-6 py-3 text-muted text-sm">--</td><td class="px-6 py-3"><span class="badge badge-stale">Stale</span></td></tr>
-            </tbody></table></div>
-            <p class="text-muted text-sm mt-3 flex items-center gap-2"><i data-lucide="info" class="w-4 h-4"></i>Every page was last modified on January 18, 2023 — the migration date from amanordic.com. No updates in over 3 years.</p>
-        </section>
+    <div class="section-divider max-w-7xl mx-auto"></div>
 
-        <!-- Third-Party Services -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-purple-500/20 rounded-xl p-2.5"><i data-lucide="puzzle" class="w-5 h-5 text-purple-400"></i></div><h3 class="font-display font-bold text-xl text-primary">All Third-Party Services</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Service</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Purpose</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Identifier</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Status</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Google Analytics 4</td><td class="px-6 py-3 text-secondary text-sm">Site analytics</td><td class="px-6 py-3 text-muted text-sm font-mono">G-P76L0ZJZQ3</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Tawk.to</td><td class="px-6 py-3 text-secondary text-sm">Live chat widget</td><td class="px-6 py-3 text-muted text-sm font-mono">63c71a9ac2f1...</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Calendly</td><td class="px-6 py-3 text-secondary text-sm">Meeting scheduling</td><td class="px-6 py-3 text-muted text-sm font-mono">calendly.com/rankona-mazon</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Google Fonts</td><td class="px-6 py-3 text-secondary text-sm">Typography (Raleway, Mukta)</td><td class="px-6 py-3 text-muted text-sm">CSS @import</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Elegant Themes</td><td class="px-6 py-3 text-secondary text-sm">Divi theme license</td><td class="px-6 py-3 text-muted text-sm">Theme stylesheet</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">SiteGround</td><td class="px-6 py-3 text-secondary text-sm">Hosting + CDN + SSL</td><td class="px-6 py-3 text-muted text-sm">REST API namespaces</td><td class="px-6 py-3"><span class="badge badge-active">Active</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Facebook Pixel</td><td class="px-6 py-3 text-secondary text-sm">Ad retargeting</td><td class="px-6 py-3 text-muted text-sm">Referenced in GDPR, no script found</td><td class="px-6 py-3"><span class="badge badge-frozen">Missing</span></td></tr>
-            </tbody></table></div>
-        </section>
+    <!-- WordPress Users -->
+    <section id="security" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                    <i data-lucide="shield-alert" class="w-5 h-5 text-red-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">WordPress Users (Leaked via REST API)</h2>
+            </div>
+            <!-- Red Warning Callout -->
+            <div class="glass-card-static p-5 mb-6 flex items-start gap-4 reveal" style="border-color:rgba(248,113,113,0.2);background:rgba(248,113,113,0.04)">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-400 mt-0.5 shrink-0"></i>
+                <div>
+                    <p class="text-red-400 font-semibold text-sm">Security Warning</p>
+                    <p class="text-zinc-400 text-sm">The WordPress REST API (<code class="text-red-400/80 bg-red-500/10 px-1.5 py-0.5 rounded text-xs">/wp-json/wp/v2/users</code>) is publicly exposed without authentication. This leaks admin usernames and email addresses, enabling targeted phishing and brute force attacks.</p>
+                </div>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Username / Slug</th><th>Display Name</th><th>Leaked Info</th><th>Role Evidence</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-blue-400 font-mono">1</td><td class="text-white font-mono">helenethitusongmail-com</td><td>Helene Thituson</td><td class="text-red-400">Email exposed in slug</td><td class="text-zinc-500">Author ID 1 = site creator/admin</td></tr>
+                            <tr><td class="text-blue-400 font-mono">2</td><td class="text-white font-mono">rankonamazon</td><td>Rank On Amazon</td><td>Generic account</td><td class="text-zinc-500">Content editor or API publishing account</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Plugins -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-info/20 rounded-xl p-2.5"><i data-lucide="blocks" class="w-5 h-5 text-info"></i></div><h3 class="font-display font-bold text-xl text-primary">All Plugins (8 Detected)</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Plugin</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Version</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Purpose</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Notes</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Divi Builder</td><td class="px-6 py-3 text-secondary text-sm">4.22.2</td><td class="px-6 py-3 text-secondary text-sm">Page builder</td><td class="px-6 py-3 text-muted text-sm">Core dependency</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Contact Form 7</td><td class="px-6 py-3 text-secondary text-sm">6.1.5</td><td class="px-6 py-3 text-secondary text-sm">Contact forms</td><td class="px-6 py-3 text-muted text-sm">Used on /contact/</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Popup Maker</td><td class="px-6 py-3 text-secondary text-sm">1.21.5</td><td class="px-6 py-3 text-secondary text-sm">Modal popups</td><td class="px-6 py-3 text-muted text-sm">Sweat equity + career forms</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">SG Security</td><td class="px-6 py-3 text-secondary text-sm">--</td><td class="px-6 py-3 text-secondary text-sm">Security plugin</td><td class="px-6 py-3 text-muted text-sm">SiteGround bundled</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">SG Optimizer</td><td class="px-6 py-3 text-secondary text-sm">--</td><td class="px-6 py-3 text-secondary text-sm">Performance/caching</td><td class="px-6 py-3 text-muted text-sm">SiteGround bundled</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Starter Templates</td><td class="px-6 py-3 text-secondary text-sm">--</td><td class="px-6 py-3 text-secondary text-sm">Template library</td><td class="px-6 py-3 text-muted text-sm">May be unused</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">WP REST API</td><td class="px-6 py-3 text-secondary text-sm">Core</td><td class="px-6 py-3 text-secondary text-sm">API endpoints</td><td class="px-6 py-3 text-error text-sm font-medium">Unauthenticated</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">jQuery</td><td class="px-6 py-3 text-secondary text-sm">Deferred</td><td class="px-6 py-3 text-secondary text-sm">JS library</td><td class="px-6 py-3 text-muted text-sm">Version unknown</td></tr>
-            </tbody></table></div>
-        </section>
+    <div class="section-divider max-w-7xl mx-auto"></div>
 
-        <!-- Forms Inventory -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-success/20 rounded-xl p-2.5"><i data-lucide="file-input" class="w-5 h-5 text-success"></i></div><h3 class="font-display font-bold text-xl text-primary">All Forms Inventory</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">#</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Form</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Location</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Type</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Status</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">1</td><td class="px-6 py-3 text-primary text-sm font-medium">Contact Form</td><td class="px-6 py-3 text-secondary text-sm">/contact/</td><td class="px-6 py-3 text-muted text-sm">Contact Form 7</td><td class="px-6 py-3"><span class="badge badge-active">Working</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">2</td><td class="px-6 py-3 text-primary text-sm font-medium">Newsletter / Lead Capture</td><td class="px-6 py-3 text-secondary text-sm">/about/</td><td class="px-6 py-3 text-muted text-sm">Divi form</td><td class="px-6 py-3"><span class="badge badge-active">Working</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">3</td><td class="px-6 py-3 text-primary text-sm font-medium">Sweat Equity Application</td><td class="px-6 py-3 text-secondary text-sm">Popup</td><td class="px-6 py-3 text-muted text-sm">Popup Maker</td><td class="px-6 py-3"><span class="badge badge-stale">Unverified</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">4</td><td class="px-6 py-3 text-primary text-sm font-medium">Career Application</td><td class="px-6 py-3 text-secondary text-sm">Popup (/careers/)</td><td class="px-6 py-3 text-muted text-sm">Popup Maker</td><td class="px-6 py-3"><span class="badge badge-stale">Unverified</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">5</td><td class="px-6 py-3 text-primary text-sm font-medium">Calendly (30-min consultation)</td><td class="px-6 py-3 text-secondary text-sm">Multiple pages</td><td class="px-6 py-3 text-muted text-sm">Calendly embed</td><td class="px-6 py-3"><span class="badge badge-active">Working</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">6</td><td class="px-6 py-3 text-primary text-sm font-medium">eGuide Download Button</td><td class="px-6 py-3 text-secondary text-sm">/about/</td><td class="px-6 py-3 text-muted text-sm">span.smeeting (no href)</td><td class="px-6 py-3"><span class="badge badge-frozen">Broken</span></td></tr>
-            </tbody></table></div>
-        </section>
+    <!-- Page Modification Timeline -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                    <i data-lucide="clock" class="w-5 h-5 text-amber-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Page Modification Timeline</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Page</th><th>URL Path</th><th>Last Modified</th><th>Revisions</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Homepage</td><td class="text-blue-400 font-mono">/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">About</td><td class="text-blue-400 font-mono">/about/</td><td>Jan 18, 2023</td><td class="text-amber-400 font-semibold">151</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Our Services</td><td class="text-blue-400 font-mono">/our-services/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Why Us</td><td class="text-blue-400 font-mono">/why-us/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Why Amazon</td><td class="text-blue-400 font-mono">/why-amazon/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Our Work</td><td class="text-blue-400 font-mono">/our-work/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Careers</td><td class="text-blue-400 font-mono">/careers/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">Contact</td><td class="text-blue-400 font-mono">/contact/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-frozen">Frozen</span></td></tr>
+                            <tr><td class="text-white font-medium">GDPR</td><td class="text-blue-400 font-mono">/gdpr/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-stale">Stale</span></td></tr>
+                            <tr><td class="text-white font-medium">Cookie Policy</td><td class="text-blue-400 font-mono">/cookie-policy/</td><td>Jan 18, 2023</td><td class="text-zinc-500">--</td><td><span class="badge badge-stale">Stale</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="text-zinc-500 text-sm mt-4 flex items-center gap-2 reveal"><i data-lucide="info" class="w-4 h-4"></i>Every page was last modified on January 18, 2023 — the migration date from amanordic.com. No updates in over 3 years.</p>
+        </div>
+    </section>
 
-        <!-- SEO Failures -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-error/20 rounded-xl p-2.5"><i data-lucide="search-x" class="w-5 h-5 text-error"></i></div><h3 class="font-display font-bold text-xl text-primary">SEO Failures</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Issue</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Severity</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Impact</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Fix Effort</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Meta descriptions missing on ALL pages</td><td class="px-6 py-3"><span class="badge badge-critical">Critical</span></td><td class="px-6 py-3 text-secondary text-sm">Google generates random snippets</td><td class="px-6 py-3 text-success text-sm">2 hours</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">No Schema.org / JSON-LD</td><td class="px-6 py-3"><span class="badge badge-critical">Critical</span></td><td class="px-6 py-3 text-secondary text-sm">No rich snippets in search</td><td class="px-6 py-3 text-success text-sm">3 hours</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">No Open Graph tags</td><td class="px-6 py-3"><span class="badge badge-high">High</span></td><td class="px-6 py-3 text-secondary text-sm">Social shares show no preview</td><td class="px-6 py-3 text-success text-sm">1 hour</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">No blog / zero content</td><td class="px-6 py-3"><span class="badge badge-critical">Critical</span></td><td class="px-6 py-3 text-secondary text-sm">No organic search footprint. Blog is Lorem ipsum since 2018.</td><td class="px-6 py-3 text-warning text-sm">Ongoing</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Multiple 404 pages</td><td class="px-6 py-3"><span class="badge badge-medium">Medium</span></td><td class="px-6 py-3 text-secondary text-sm">/about-us, /services, /pricing, /blog, /case-studies, /faq all 404</td><td class="px-6 py-3 text-success text-sm">1 hour</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Copyright stuck at 2023</td><td class="px-6 py-3"><span class="badge badge-low">Low</span></td><td class="px-6 py-3 text-secondary text-sm">Signals neglect</td><td class="px-6 py-3 text-success text-sm">5 min</td></tr>
-            </tbody></table></div>
-            <div class="bg-warning/10 border border-warning/30 rounded-2xl p-5 mt-4 flex items-start gap-4"><i data-lucide="alert-triangle" class="w-5 h-5 text-warning mt-0.5 shrink-0"></i><p class="text-secondary text-sm"><strong class="text-warning">The Irony:</strong> An Amazon SEO agency that doesn't do SEO on their own website. No meta descriptions, no structured data, no blog, no content strategy, and traffic below SimilarWeb's 5K/month threshold.</p></div>
-        </section>
+    <div class="section-divider max-w-7xl mx-auto"></div>
 
-        <!-- Security Issues -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-error/20 rounded-xl p-2.5"><i data-lucide="shield-x" class="w-5 h-5 text-error"></i></div><h3 class="font-display font-bold text-xl text-primary">Security &amp; Privacy Issues</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Issue</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Risk</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Details</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">REST API user enumeration</td><td class="px-6 py-3"><span class="badge badge-critical">Critical</span></td><td class="px-6 py-3 text-secondary text-sm">Admin username and email exposed without authentication</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">XML-RPC enabled</td><td class="px-6 py-3"><span class="badge badge-high">High</span></td><td class="px-6 py-3 text-secondary text-sm">Brute force and DDoS amplification vector</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Pingback enabled</td><td class="px-6 py-3"><span class="badge badge-medium">Medium</span></td><td class="px-6 py-3 text-secondary text-sm">DDoS amplification against third parties</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">GDPR references Facebook Pixel</td><td class="px-6 py-3"><span class="badge badge-medium">Medium</span></td><td class="px-6 py-3 text-secondary text-sm">GDPR mentions FB data collection, but no Pixel is installed</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Cookie policy wrong domains</td><td class="px-6 py-3"><span class="badge badge-low">Low</span></td><td class="px-6 py-3 text-secondary text-sm">References helenethituson.com and superchargeyourblog.com</td></tr>
-            </tbody></table></div>
-        </section>
+    <!-- Third-Party Services -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15)">
+                    <i data-lucide="puzzle" class="w-5 h-5 text-purple-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">All Third-Party Services</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Service</th><th>Purpose</th><th>Identifier</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Google Analytics 4</td><td>Site analytics</td><td class="font-mono text-zinc-500">G-P76L0ZJZQ3</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">Tawk.to</td><td>Live chat widget</td><td class="font-mono text-zinc-500">63c71a9ac2f1...</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">Calendly</td><td>Meeting scheduling</td><td class="font-mono text-zinc-500">calendly.com/rankona-mazon</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">Google Fonts</td><td>Typography (Raleway, Mukta)</td><td class="text-zinc-500">CSS @import</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">Elegant Themes</td><td>Divi theme license</td><td class="text-zinc-500">Theme stylesheet</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">SiteGround</td><td>Hosting + CDN + SSL</td><td class="text-zinc-500">REST API namespaces</td><td><span class="badge badge-active">Active</span></td></tr>
+                            <tr><td class="text-white font-medium">Facebook Pixel</td><td>Ad retargeting</td><td class="text-zinc-500">Referenced in GDPR, no script found</td><td><span class="badge badge-frozen">Missing</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Inconsistencies -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-warning/20 rounded-xl p-2.5"><i data-lucide="git-compare" class="w-5 h-5 text-warning"></i></div><h3 class="font-display font-bold text-xl text-primary">Inconsistencies Found</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">#</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">What</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Location A</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Location B</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Severity</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">1</td><td class="px-6 py-3 text-primary text-sm font-medium">"85+" vs "100+" years experience</td><td class="px-6 py-3 text-secondary text-sm">/why-us/: "85+ years"</td><td class="px-6 py-3 text-secondary text-sm">/about/: "100+ years"</td><td class="px-6 py-3"><span class="badge badge-high">High</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">2</td><td class="px-6 py-3 text-primary text-sm font-medium">Email domain mismatch</td><td class="px-6 py-3 text-secondary text-sm">Contact: hello@amanordic.com</td><td class="px-6 py-3 text-secondary text-sm">Domain: rankonamazon.com</td><td class="px-6 py-3"><span class="badge badge-medium">Medium</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">3</td><td class="px-6 py-3 text-primary text-sm font-medium">Calendly CSS color bug</td><td class="px-6 py-3 text-secondary text-sm">textColor: "white"</td><td class="px-6 py-3 text-secondary text-sm">Should be "#ffffff"</td><td class="px-6 py-3"><span class="badge badge-low">Low</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">4</td><td class="px-6 py-3 text-primary text-sm font-medium">GDPR claims FB tracking</td><td class="px-6 py-3 text-secondary text-sm">/gdpr/ describes FB data collection</td><td class="px-6 py-3 text-secondary text-sm">No FB Pixel script found</td><td class="px-6 py-3"><span class="badge badge-medium">Medium</span></td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-cyan font-mono text-sm">5</td><td class="px-6 py-3 text-primary text-sm font-medium">EUR 1.06B precision vs no analytics</td><td class="px-6 py-3 text-secondary text-sm">Homepage: exact "1,060,283,321"</td><td class="px-6 py-3 text-secondary text-sm">No tracking infrastructure visible</td><td class="px-6 py-3"><span class="badge badge-high">High</span></td></tr>
-            </tbody></table></div>
-        </section>
+    <div class="section-divider max-w-7xl mx-auto"></div>
 
-        <!-- Unused Features -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-muted/20 rounded-xl p-2.5"><i data-lucide="ghost" class="w-5 h-5 text-muted"></i></div><h3 class="font-display font-bold text-xl text-primary">Unused / Dead Features</h3></div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden"><table class="w-full"><thead><tr class="border-b border-border bg-bg/50"><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Feature</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Evidence</th><th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Impact</th></tr></thead><tbody class="divide-y divide-border">
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Blog (Lorem ipsum since 2018)</td><td class="px-6 py-3 text-secondary text-sm">RSS feed shows placeholder posts</td><td class="px-6 py-3 text-error text-sm">Active damage — thin content penalty risk</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">eGuide download button</td><td class="px-6 py-3 text-secondary text-sm">span.smeeting, no href</td><td class="px-6 py-3 text-warning text-sm">Lost lead captures</td></tr>
-                <tr class="hover:bg-bg/30"><td class="px-6 py-3 text-primary text-sm font-medium">Social media integration</td><td class="px-6 py-3 text-secondary text-sm">Zero social links on site</td><td class="px-6 py-3 text-warning text-sm">No cross-channel traffic</td></tr>
-            </tbody></table></div>
-        </section>
+    <!-- Plugins -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="blocks" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">All Plugins (8 Detected)</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Plugin</th><th>Version</th><th>Purpose</th><th>Notes</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Divi Builder</td><td>4.22.2</td><td>Page builder</td><td class="text-zinc-500">Core dependency</td></tr>
+                            <tr><td class="text-white font-medium">Contact Form 7</td><td>6.1.5</td><td>Contact forms</td><td class="text-zinc-500">Used on /contact/</td></tr>
+                            <tr><td class="text-white font-medium">Popup Maker</td><td>1.21.5</td><td>Modal popups</td><td class="text-zinc-500">Sweat equity + career forms</td></tr>
+                            <tr><td class="text-white font-medium">SG Security</td><td>--</td><td>Security plugin</td><td class="text-zinc-500">SiteGround bundled</td></tr>
+                            <tr><td class="text-white font-medium">SG Optimizer</td><td>--</td><td>Performance/caching</td><td class="text-zinc-500">SiteGround bundled</td></tr>
+                            <tr><td class="text-white font-medium">Starter Templates</td><td>--</td><td>Template library</td><td class="text-zinc-500">May be unused</td></tr>
+                            <tr><td class="text-white font-medium">WP REST API</td><td>Core</td><td>API endpoints</td><td class="text-red-400 font-medium">Unauthenticated</td></tr>
+                            <tr><td class="text-white font-medium">jQuery</td><td>Deferred</td><td>JS library</td><td class="text-zinc-500">Version unknown</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Brand Assets -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="palette" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Brand Assets Inventory</h3></div>
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Forms Inventory -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                    <i data-lucide="file-input" class="w-5 h-5 text-emerald-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">All Forms Inventory</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>#</th><th>Form</th><th>Location</th><th>Type</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-blue-400 font-mono">1</td><td class="text-white font-medium">Contact Form</td><td>/contact/</td><td class="text-zinc-500">Contact Form 7</td><td><span class="badge badge-active">Working</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">2</td><td class="text-white font-medium">Newsletter / Lead Capture</td><td>/about/</td><td class="text-zinc-500">Divi form</td><td><span class="badge badge-active">Working</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">3</td><td class="text-white font-medium">Sweat Equity Application</td><td>Popup</td><td class="text-zinc-500">Popup Maker</td><td><span class="badge badge-stale">Unverified</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">4</td><td class="text-white font-medium">Career Application</td><td>Popup (/careers/)</td><td class="text-zinc-500">Popup Maker</td><td><span class="badge badge-stale">Unverified</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">5</td><td class="text-white font-medium">Calendly (30-min consultation)</td><td>Multiple pages</td><td class="text-zinc-500">Calendly embed</td><td><span class="badge badge-active">Working</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">6</td><td class="text-white font-medium">eGuide Download Button</td><td>/about/</td><td class="text-zinc-500">span.smeeting (no href)</td><td><span class="badge badge-frozen">Broken</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- SEO Failures -->
+    <section id="seo" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                    <i data-lucide="search-x" class="w-5 h-5 text-red-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">SEO Failures</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Issue</th><th>Severity</th><th>Impact</th><th>Fix Effort</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Meta descriptions missing on ALL pages</td><td><span class="badge badge-critical">Critical</span></td><td>Google generates random snippets</td><td class="text-emerald-400">2 hours</td></tr>
+                            <tr><td class="text-white font-medium">No Schema.org / JSON-LD</td><td><span class="badge badge-critical">Critical</span></td><td>No rich snippets in search</td><td class="text-emerald-400">3 hours</td></tr>
+                            <tr><td class="text-white font-medium">No Open Graph tags</td><td><span class="badge badge-high">High</span></td><td>Social shares show no preview</td><td class="text-emerald-400">1 hour</td></tr>
+                            <tr><td class="text-white font-medium">No blog / zero content</td><td><span class="badge badge-critical">Critical</span></td><td>No organic search footprint. Blog is Lorem ipsum since 2018.</td><td class="text-amber-400">Ongoing</td></tr>
+                            <tr><td class="text-white font-medium">Multiple 404 pages</td><td><span class="badge badge-medium">Medium</span></td><td>/about-us, /services, /pricing, /blog, /case-studies, /faq all 404</td><td class="text-emerald-400">1 hour</td></tr>
+                            <tr><td class="text-white font-medium">Copyright stuck at 2023</td><td><span class="badge badge-low">Low</span></td><td>Signals neglect</td><td class="text-emerald-400">5 min</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="glass-card-static p-5 mt-6 flex items-start gap-4 reveal" style="border-color:rgba(251,191,36,0.2);background:rgba(251,191,36,0.03)">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400 mt-0.5 shrink-0"></i>
+                <p class="text-zinc-400 text-sm"><strong class="text-amber-400">The Irony:</strong> An Amazon SEO agency that doesn't do SEO on their own website. No meta descriptions, no structured data, no blog, no content strategy, and traffic below SimilarWeb's 5K/month threshold.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Security Issues -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(248,113,113,0.08);border-color:rgba(248,113,113,0.15)">
+                    <i data-lucide="shield-x" class="w-5 h-5 text-red-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Security &amp; Privacy Issues</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Issue</th><th>Risk</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">REST API user enumeration</td><td><span class="badge badge-critical">Critical</span></td><td>Admin username and email exposed without authentication</td></tr>
+                            <tr><td class="text-white font-medium">XML-RPC enabled</td><td><span class="badge badge-high">High</span></td><td>Brute force and DDoS amplification vector</td></tr>
+                            <tr><td class="text-white font-medium">Pingback enabled</td><td><span class="badge badge-medium">Medium</span></td><td>DDoS amplification against third parties</td></tr>
+                            <tr><td class="text-white font-medium">GDPR references Facebook Pixel</td><td><span class="badge badge-medium">Medium</span></td><td>GDPR mentions FB data collection, but no Pixel is installed</td></tr>
+                            <tr><td class="text-white font-medium">Cookie policy wrong domains</td><td><span class="badge badge-low">Low</span></td><td>References helenethituson.com and superchargeyourblog.com</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Inconsistencies -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                    <i data-lucide="git-compare" class="w-5 h-5 text-amber-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Inconsistencies Found</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>#</th><th>What</th><th>Location A</th><th>Location B</th><th>Severity</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-blue-400 font-mono">1</td><td class="text-white font-medium">"85+" vs "100+" years experience</td><td>/why-us/: "85+ years"</td><td>/about/: "100+ years"</td><td><span class="badge badge-high">High</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">2</td><td class="text-white font-medium">Email domain mismatch</td><td>Contact: hello@amanordic.com</td><td>Domain: rankonamazon.com</td><td><span class="badge badge-medium">Medium</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">3</td><td class="text-white font-medium">Calendly CSS color bug</td><td>textColor: "white"</td><td>Should be "#ffffff"</td><td><span class="badge badge-low">Low</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">4</td><td class="text-white font-medium">GDPR claims FB tracking</td><td>/gdpr/ describes FB data collection</td><td>No FB Pixel script found</td><td><span class="badge badge-medium">Medium</span></td></tr>
+                            <tr><td class="text-blue-400 font-mono">5</td><td class="text-white font-medium">EUR 1.06B precision vs no analytics</td><td>Homepage: exact "1,060,283,321"</td><td>No tracking infrastructure visible</td><td><span class="badge badge-high">High</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Unused Features -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(161,161,170,0.08);border-color:rgba(161,161,170,0.15)">
+                    <i data-lucide="ghost" class="w-5 h-5 text-zinc-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Unused / Dead Features</h2>
+            </div>
+            <div class="glass-card-static overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Feature</th><th>Evidence</th><th>Impact</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">Blog (Lorem ipsum since 2018)</td><td>RSS feed shows placeholder posts</td><td class="text-red-400">Active damage — thin content penalty risk</td></tr>
+                            <tr><td class="text-white font-medium">eGuide download button</td><td>span.smeeting, no href</td><td class="text-amber-400">Lost lead captures</td></tr>
+                            <tr><td class="text-white font-medium">Social media integration</td><td>Zero social links on site</td><td class="text-amber-400">No cross-channel traffic</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Brand Assets -->
+    <section class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="palette" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Brand Assets Inventory</h2>
+            </div>
             <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover">
-                    <p class="text-muted text-xs uppercase tracking-wider font-semibold mb-4">Brand Colors</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg" style="background:#f6aa22"></div><div><p class="text-primary text-sm font-mono">#f6aa22</p><p class="text-muted text-xs">Primary Gold</p></div></div>
-                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg" style="background:#1a1717"></div><div><p class="text-primary text-sm font-mono">#1a1717</p><p class="text-muted text-xs">Dark / Text</p></div></div>
-                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg border border-border" style="background:#fff"></div><div><p class="text-primary text-sm font-mono">#ffffff</p><p class="text-muted text-xs">White</p></div></div>
+                <div class="glass-card p-6 reveal">
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-5">Brand Colors</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg" style="background:#f6aa22"></div><div><p class="text-white text-sm font-mono">#f6aa22</p><p class="text-zinc-500 text-xs">Primary Gold</p></div></div>
+                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg" style="background:#1a1717"></div><div><p class="text-white text-sm font-mono">#1a1717</p><p class="text-zinc-500 text-xs">Dark / Text</p></div></div>
+                        <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg border border-zinc-700" style="background:#fff"></div><div><p class="text-white text-sm font-mono">#ffffff</p><p class="text-zinc-500 text-xs">White</p></div></div>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover">
-                    <p class="text-muted text-xs uppercase tracking-wider font-semibold mb-4">Typography</p>
-                    <div class="space-y-4"><div><p class="text-primary text-lg">Raleway</p><p class="text-muted text-xs">Primary heading font</p></div><div><p class="text-primary text-lg">Mukta</p><p class="text-muted text-xs">Body text font</p></div></div>
+                <div class="glass-card p-6 reveal">
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-5">Typography</p>
+                    <div class="space-y-4">
+                        <div><p class="text-white text-lg">Raleway</p><p class="text-zinc-500 text-xs">Primary heading font</p></div>
+                        <div><p class="text-white text-lg">Mukta</p><p class="text-zinc-500 text-xs">Body text font</p></div>
+                    </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover">
-                    <p class="text-muted text-xs uppercase tracking-wider font-semibold mb-4">Visual Identity</p>
+                <div class="glass-card p-6 reveal">
+                    <p class="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-5">Visual Identity</p>
                     <div class="space-y-3">
-                        <div class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-success"></i><p class="text-secondary text-sm">Logo in header</p></div>
-                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-error"></i><p class="text-secondary text-sm">No favicon</p></div>
-                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-error"></i><p class="text-secondary text-sm">No OG image</p></div>
-                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-error"></i><p class="text-secondary text-sm">No brand guidelines</p></div>
+                        <div class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><p class="text-zinc-400 text-sm">Logo in header</p></div>
+                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i><p class="text-zinc-400 text-sm">No favicon</p></div>
+                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i><p class="text-zinc-400 text-sm">No OG image</p></div>
+                        <div class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i><p class="text-zinc-400 text-sm">No brand guidelines</p></div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Intelligence Summary -->
-        <section>
-            <div class="flex items-center gap-3 mb-6"><div class="bg-cyan/20 rounded-xl p-2.5"><i data-lucide="brain" class="w-5 h-5 text-cyan"></i></div><h3 class="font-display font-bold text-xl text-primary">Intelligence Summary</h3></div>
+    <div class="section-divider max-w-7xl mx-auto"></div>
+
+    <!-- Intelligence Summary -->
+    <section id="intel" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="brain" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <h2 class="text-gradient-white text-2xl font-bold">Intelligence Summary</h2>
+            </div>
             <div class="grid md:grid-cols-2 gap-5">
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">1</div><div><p class="text-primary font-semibold mb-2">The site is a migration artifact, not a built website</p><p class="text-secondary text-sm leading-relaxed">Everything traces back to January 2023 migration from amanordic.com. GUIDs, emails, cookie policies still reference the old domain.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">2</div><div><p class="text-primary font-semibold mb-2">Helene Thituson built the site and still has admin access</p><p class="text-secondary text-sm leading-relaxed">User ID 1 is her email. Cookie policy references her other sites. External contractor with admin access is a security concern.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">3</div><div><p class="text-primary font-semibold mb-2">Zero content marketing despite 44 podcast episodes</p><p class="text-secondary text-sm leading-relaxed">25+ hours of expert content sitting on Buzzsprout. None transcribed, translated, or published as written content. Blog is Lorem ipsum from 2018.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">4</div><div><p class="text-primary font-semibold mb-2">The "85 vs 100" proves no one reviews the site</p><p class="text-secondary text-sm leading-relaxed">Two contradicting experience claims on two live pages. No content QA process exists.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">5</div><div><p class="text-primary font-semibold mb-2">Their lead magnet is broken and they don't know</p><p class="text-secondary text-sm leading-relaxed">The eGuide download button does nothing. Every visitor who tries to download their lead magnet leaves empty-handed. Broken since migration.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">6</div><div><p class="text-primary font-semibold mb-2">They achieved Tier 1 Platinum despite all of this</p><p class="text-secondary text-sm leading-relaxed">Amazon EU's highest credential, Humble Group (40+ brands), SAS — all with a 2.5/10 digital presence. The business runs on relationships.</p></div></div></div>
-                <div class="bg-card border border-border rounded-2xl p-6 card-hover md:col-span-2"><div class="flex items-start gap-4"><div class="bg-cyan/20 text-cyan rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm shrink-0">7</div><div><p class="text-primary font-semibold mb-2">Expert-grade knowledge on intern-grade infrastructure</p><p class="text-secondary text-sm leading-relaxed">The defining characterization. Everything about their Amazon expertise is real. Everything about their digital infrastructure is broken. The gap is the largest we've seen in any prospect audit. This is solvable.</p></div></div></div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">1</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">The site is a migration artifact, not a built website</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Everything traces back to January 2023 migration from amanordic.com. GUIDs, emails, cookie policies still reference the old domain.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">2</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">Helene Thituson built the site and still has admin access</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">User ID 1 is her email. Cookie policy references her other sites. External contractor with admin access is a security concern.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">3</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">Zero content marketing despite 44 podcast episodes</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">25+ hours of expert content sitting on Buzzsprout. None transcribed, translated, or published as written content. Blog is Lorem ipsum from 2018.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">4</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">The "85 vs 100" proves no one reviews the site</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Two contradicting experience claims on two live pages. No content QA process exists.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">5</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">Their lead magnet is broken and they don't know</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">The eGuide download button does nothing. Every visitor who tries to download their lead magnet leaves empty-handed. Broken since migration.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">6</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">They achieved Tier 1 Platinum despite all of this</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Amazon EU's highest credential, Humble Group (40+ brands), SAS — all with a 2.5/10 digital presence. The business runs on relationships.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card p-6 md:col-span-2 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-sm shrink-0">7</div>
+                        <div>
+                            <p class="text-white font-semibold mb-2">Expert-grade knowledge on intern-grade infrastructure</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">The defining characterization. Everything about their Amazon expertise is real. Everything about their digital infrastructure is broken. The gap is the largest we've seen in any prospect audit. This is solvable.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="border-t border-border mt-16"><div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between"><p class="text-muted text-sm">MERIDIAN — Internal Intelligence</p><p class="text-muted text-sm">Rank On Amazon Audit &middot; March 2026</p></div></footer>
-    <script>lucide.createIcons();</script>
+    <!-- Footer -->
+    <div class="section-divider max-w-7xl mx-auto"></div>
+    <footer class="py-8 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <p class="text-zinc-600 text-sm">MERIDIAN &mdash; Internal Intelligence</p>
+            <p class="text-zinc-600 text-sm">Rank On Amazon Audit &middot; March 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
