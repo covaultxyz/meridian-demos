@@ -1,390 +1,447 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>06 — Discovery Call Questions | Rank On Amazon Audit</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: '#0c1222',
-                        card: '#1e293b',
-                        border: '#334155',
-                        primary: '#e2e8f0',
-                        secondary: '#94a3b8',
-                        muted: '#64748b',
-                        cyan: '#06b6d4',
-                        success: '#10b981',
-                        warning: '#f59e0b',
-                        error: '#ef4444',
-                        info: '#3b82f6',
-                    },
-                    fontFamily: {
-                        body: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                    }
-                }
-            }
+            darkMode: 'class',
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } } } }
         }
     </script>
     <style>
-        body { background: #0c1222; font-family: 'Inter', sans-serif; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .question-number {
-            width: 32px; height: 32px; min-width: 32px;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; font-weight: 700; font-size: 14px;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        .question-number{width:36px;height:36px;min-width:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-weight:700;font-size:14px}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px}
     </style>
 </head>
-<body class="text-primary min-h-screen">
+<body class="min-h-screen">
 
-    <!-- Header -->
-    <header class="border-b border-border sticky top-0 z-50 bg-bg/95 backdrop-blur-sm">
+    <!-- Navigation -->
+    <nav class="nav-glass fixed top-0 w-full z-50">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="text-secondary hover:text-cyan transition-colors flex items-center gap-2 text-sm">
-                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Index
-                </a>
-                <div class="h-5 w-px bg-border"></div>
-                <h1 class="font-display font-bold text-lg text-primary">Discovery Call Questions</h1>
+            <div class="flex items-center gap-3">
+                <div class="icon-box p-2">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-blue-400"></i>
+                </div>
+                <span class="text-white font-semibold text-sm">Rank On Amazon</span>
             </div>
-            <span class="bg-cyan/15 text-cyan text-xs font-semibold px-3 py-1 rounded-full border border-cyan/30">PAGE 06</span>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#opening" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">OPENING</a>
+                <a href="#tech" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">TECH & OPS</a>
+                <a href="#content" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">CONTENT</a>
+                <a href="#pain" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">PAIN POINTS</a>
+                <a href="#growth" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">GROWTH</a>
+                <a href="#budget" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">BUDGET</a>
+                <a href="#hypotheses" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">HYPOTHESES</a>
+            </div>
+            <span class="badge bg-purple-500/10 text-purple-400 border border-purple-500/20">Internal</span>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-6xl mx-auto px-6 py-10 space-y-10">
-
-        <!-- Title Section -->
-        <div class="text-center space-y-3">
-            <h2 class="font-display font-extrabold text-3xl md:text-4xl text-primary">Discovery Call Questions</h2>
-            <p class="text-secondary text-lg">Prepared for meeting with <strong class="text-primary">Carl Helgesson</strong> — Rank On Amazon</p>
-            <p class="text-muted text-sm">24 questions across 6 categories + key hypotheses to validate</p>
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 px-6">
+        <div class="glow-orb w-[500px] h-[500px] bg-blue-500/10 -top-40 -right-40" style="position:absolute"></div>
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <span class="badge bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-6">Page 06 &mdash; Discovery Call</span>
+                <h1 class="text-gradient-white text-5xl md:text-6xl font-extrabold tracking-tight mt-4 mb-4">Discovery Call Questions</h1>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto mb-4">Prepared for meeting with <strong class="text-white">Carl Helgesson</strong> &mdash; Rank On Amazon</p>
+                <p class="text-zinc-500 text-sm">24 questions across 6 categories + key hypotheses to validate</p>
+            </div>
+            <div class="grid grid-cols-3 gap-4 max-w-xl mx-auto mt-10 reveal">
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-white">24</p>
+                    <p class="text-zinc-500 text-xs mt-1">Questions</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-white">6</p>
+                    <p class="text-zinc-500 text-xs mt-1">Categories</p>
+                </div>
+                <div class="glass-card p-4 text-center">
+                    <p class="text-2xl font-bold text-white">8</p>
+                    <p class="text-zinc-500 text-xs mt-1">Hypotheses</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Context Banner -->
-        <div class="bg-cyan/10 border border-cyan/30 rounded-2xl p-6 flex items-start gap-4">
-            <div class="bg-cyan/20 rounded-full p-2 mt-0.5">
-                <i data-lucide="info" class="w-5 h-5 text-cyan"></i>
-            </div>
-            <div>
-                <p class="text-primary font-semibold mb-1">Important Context</p>
-                <p class="text-secondary text-sm leading-relaxed">Carl requested this meeting. Posture shifts from "pitch" to "diagnose." Don't present problems. Ask what he's trying to solve. Lead with curiosity and respect — he built a profitable business, won Tier 1 Platinum Partner status, and landed a publicly traded client (Humble Group) all with minimal digital infrastructure.</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Context Banner -->
+    <section class="py-16 px-6">
+        <div class="max-w-6xl mx-auto reveal">
+            <div class="glass-card p-6 flex items-start gap-4" style="border-color:rgba(59,130,246,0.2)">
+                <div class="icon-box p-3 shrink-0">
+                    <i data-lucide="info" class="w-5 h-5 text-blue-400"></i>
+                </div>
+                <div>
+                    <p class="text-white font-semibold mb-1">Important Context</p>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Carl requested this meeting. Posture shifts from "pitch" to "diagnose." Don't present problems. Ask what he's trying to solve. Lead with curiosity and respect — he built a profitable business, won Tier 1 Platinum Partner status, and landed a publicly traded client (Humble Group) all with minimal digital infrastructure.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Section 1: Opening -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-cyan/20 rounded-xl p-2.5">
-                    <i data-lucide="message-circle" class="w-5 h-5 text-cyan"></i>
+    <!-- Section 1: Opening -->
+    <section id="opening" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-blue-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Opening</h3>
-                    <p class="text-muted text-sm">Establish context and rapport</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Opening</h2>
+                    <p class="text-zinc-500 text-sm">Establish context and rapport</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-cyan/20 text-cyan">1</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">1</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"What prompted you to reach out to us now?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> The trigger event. Whatever he says first is the real priority. Listen for whether it's competitive pressure, client demand, growth ambition, or a specific pain point.</p>
+                        <p class="text-white font-medium">"What prompted you to reach out to us now?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> The trigger event. Whatever he says first is the real priority. Listen for whether it's competitive pressure, client demand, growth ambition, or a specific pain point.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-cyan/20 text-cyan">2</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">2</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Can you walk us through how Rank On Amazon, KNAA, amaNordic, and Amazonpodden all connect? We see the ecosystem but want to hear how you think about it."</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> How he sees the flywheel. Whether entities are separate businesses or one integrated operation. Which entity drives revenue vs. lead gen.</p>
+                        <p class="text-white font-medium">"Can you walk us through how Rank On Amazon, KNAA, amaNordic, and Amazonpodden all connect? We see the ecosystem but want to hear how you think about it."</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> How he sees the flywheel. Whether entities are separate businesses or one integrated operation. Which entity drives revenue vs. lead gen.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-cyan/20 text-cyan">3</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">3</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"What would make this a great use of your time today?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> His definition of success for this meeting. Reduces our builder's bias by letting him set the agenda. Also signals respect for his time.</p>
+                        <p class="text-white font-medium">"What would make this a great use of your time today?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> His definition of success for this meeting. Reduces our builder's bias by letting him set the agenda. Also signals respect for his time.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 2: Technology & Operations -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-info/20 rounded-xl p-2.5">
-                    <i data-lucide="server" class="w-5 h-5 text-info"></i>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Section 2: Technology & Operations -->
+    <section id="tech" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="server" class="w-5 h-5 text-blue-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Technology & Operations</h3>
-                    <p class="text-muted text-sm">Understand their current stack and workflows</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Technology &amp; Operations</h2>
+                    <p class="text-zinc-500 text-sm">Understand their current stack and workflows</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-info/20 text-info">4</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">4</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"What tools does your team use day-to-day for Amazon operations — keyword research, listing creation, PPC management?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether they use Helium 10, Jungle Scout, manual methods, or a mix. Establishes the baseline for automation potential.</p>
+                        <p class="text-white font-medium">"What tools does your team use day-to-day for Amazon operations — keyword research, listing creation, PPC management?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether they use Helium 10, Jungle Scout, manual methods, or a mix. Establishes the baseline for automation potential.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-info/20 text-info">5</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">5</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"How are you managing client reporting today? What does a client receive from you on a weekly or monthly basis?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> If it's slide decks or PDFs, the dashboard is the wedge. If they already have tooling, understand what they're using.</p>
+                        <p class="text-white font-medium">"How are you managing client reporting today? What does a client receive from you on a weekly or monthly basis?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> If it's slide decks or PDFs, the dashboard is the wedge. If they already have tooling, understand what they're using.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-info/20 text-info">6</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">6</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"We noticed you use Asana and Calendly. What's your full project management flow from client onboarding to ongoing operations?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Process maturity. Whether they have systematized ops or if each strategist runs their own workflow. Integration opportunities.</p>
+                        <p class="text-white font-medium">"We noticed you use Asana and Calendly. What's your full project management flow from client onboarding to ongoing operations?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Process maturity. Whether they have systematized ops or if each strategist runs their own workflow. Integration opportunities.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-info/20 text-info">7</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">7</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"How long does it take your team to produce a 'Perfect Listing' for a new product across multiple marketplaces?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Time-per-deliverable baseline. If it's hours per listing across 7 marketplaces, the AI optimization engine becomes immediately compelling.</p>
+                        <p class="text-white font-medium">"How long does it take your team to produce a 'Perfect Listing' for a new product across multiple marketplaces?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Time-per-deliverable baseline. If it's hours per listing across 7 marketplaces, the AI optimization engine becomes immediately compelling.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-info/20 text-info">8</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-blue-500/10 text-blue-400 border border-blue-500/20 shrink-0">8</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Have you explored any AI tools for Amazon operations? What's your take on AI in this space?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether the AI threat is on his radar. Whether he's excited, skeptical, or worried. Calibrates how aggressively to position AI solutions.</p>
+                        <p class="text-white font-medium">"Have you explored any AI tools for Amazon operations? What's your take on AI in this space?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether the AI threat is on his radar. Whether he's excited, skeptical, or worried. Calibrates how aggressively to position AI solutions.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 3: Content & Marketing -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-success/20 rounded-xl p-2.5">
-                    <i data-lucide="pen-tool" class="w-5 h-5 text-success"></i>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Section 3: Content & Marketing -->
+    <section id="content" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                    <i data-lucide="pen-tool" class="w-5 h-5 text-emerald-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Content & Marketing</h3>
-                    <p class="text-muted text-sm">Explore content strategy and lead generation</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Content &amp; Marketing</h2>
+                    <p class="text-zinc-500 text-sm">Explore content strategy and lead generation</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-success/20 text-success">9</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">9</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Amazonpodden clearly has a dedicated audience. Have you ever considered turning those episodes into written content — blog posts, guides, social clips?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether he's thought about content repurposing. If yes — what stopped him? If no — this is our opening for the content pipeline pitch.</p>
+                        <p class="text-white font-medium">"Amazonpodden clearly has a dedicated audience. Have you ever considered turning those episodes into written content — blog posts, guides, social clips?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether he's thought about content repurposing. If yes — what stopped him? If no — this is our opening for the content pipeline pitch.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-success/20 text-success">10</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">10</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Where do most of your new clients come from today? Is it the podcast, conferences, referrals, or the website?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> The actual client acquisition channel mix. If it's 90% referral/podcast, the website gap might be intentional. If he says "I wish we got more inbound," that's the entry point.</p>
+                        <p class="text-white font-medium">"Where do most of your new clients come from today? Is it the podcast, conferences, referrals, or the website?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> The actual client acquisition channel mix. If it's 90% referral/podcast, the website gap might be intentional. If he says "I wish we got more inbound," that's the entry point.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-success/20 text-success">11</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">11</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"We noticed the website doesn't have a blog or much content beyond the core pages. Is that a deliberate choice, or something that just hasn't gotten attention?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether the content gap is strategic or neglect. His answer determines whether we frame the content pipeline as "new initiative" or "we'll handle what you've been meaning to do."</p>
+                        <p class="text-white font-medium">"We noticed the website doesn't have a blog or much content beyond the core pages. Is that a deliberate choice, or something that just hasn't gotten attention?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether the content gap is strategic or neglect. His answer determines whether we frame the content pipeline as "new initiative" or "we'll handle what you've been meaning to do."</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-success/20 text-success">12</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">12</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Are you targeting English-speaking markets for new client acquisition, or is the focus primarily Nordic brands?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Market expansion ambitions. If English is a target, the content pipeline (Swedish podcast to English blog) becomes a must-have.</p>
+                        <p class="text-white font-medium">"Are you targeting English-speaking markets for new client acquisition, or is the focus primarily Nordic brands?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Market expansion ambitions. If English is a target, the content pipeline (Swedish podcast to English blog) becomes a must-have.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 4: Pain Points -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-warning/20 rounded-xl p-2.5">
-                    <i data-lucide="alert-triangle" class="w-5 h-5 text-warning"></i>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Section 4: Pain Points -->
+    <section id="pain" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Pain Points</h3>
-                    <p class="text-muted text-sm">Validate assumptions from our audit</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Pain Points</h2>
+                    <p class="text-zinc-500 text-sm">Validate assumptions from our audit</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-warning/20 text-warning">13</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">13</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"What's your biggest bottleneck to taking on more clients right now?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether the constraint is capacity (tech solves), pipeline (marketing solves), talent (hiring solves), or by design (he doesn't want more clients). This single answer determines our proposal direction.</p>
+                        <p class="text-white font-medium">"What's your biggest bottleneck to taking on more clients right now?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether the constraint is capacity (tech solves), pipeline (marketing solves), talent (hiring solves), or by design (he doesn't want more clients). This single answer determines our proposal direction.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-warning/20 text-warning">14</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">14</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"If you could wave a magic wand and fix one thing about your operations tomorrow, what would it be?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> His top-of-mind pain. May not match what we found in the audit. His answer overrides our assumptions.</p>
+                        <p class="text-white font-medium">"If you could wave a magic wand and fix one thing about your operations tomorrow, what would it be?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> His top-of-mind pain. May not match what we found in the audit. His answer overrides our assumptions.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-warning/20 text-warning">15</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">15</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"When you onboard a new client, what's the most time-consuming part of the process?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Where manual effort concentrates in the 7-phase process. If it's the analysis phase — our AI research tools are the wedge. If it's listing creation — the LLM listing engine.</p>
+                        <p class="text-white font-medium">"When you onboard a new client, what's the most time-consuming part of the process?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Where manual effort concentrates in the 7-phase process. If it's the analysis phase — our AI research tools are the wedge. If it's listing creation — the LLM listing engine.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-warning/20 text-warning">16</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">16</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"What are your clients asking for that you can't currently deliver?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Unmet client demand. If clients want real-time dashboards and they can't deliver, that's our opening. This frames our solution as client-demand-driven, not tech-push.</p>
+                        <p class="text-white font-medium">"What are your clients asking for that you can't currently deliver?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Unmet client demand. If clients want real-time dashboards and they can't deliver, that's our opening. This frames our solution as client-demand-driven, not tech-push.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 5: Growth & Strategy -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-purple-500/20 rounded-xl p-2.5">
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Section 5: Growth & Strategy -->
+    <section id="growth" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15)">
                     <i data-lucide="trending-up" class="w-5 h-5 text-purple-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Growth & Strategy</h3>
-                    <p class="text-muted text-sm">Understand ambition and direction</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Growth &amp; Strategy</h2>
+                    <p class="text-zinc-500 text-sm">Understand ambition and direction</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-purple-500/20 text-purple-400">17</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">17</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Where do you see Rank On Amazon in 2-3 years? More clients, bigger clients, new markets, or something else entirely?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Growth vision. Scale ambitions determine solution scope. If he wants to double, it's a different conversation than if he wants to maintain.</p>
+                        <p class="text-white font-medium">"Where do you see Rank On Amazon in 2-3 years? More clients, bigger clients, new markets, or something else entirely?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Growth vision. Scale ambitions determine solution scope. If he wants to double, it's a different conversation than if he wants to maintain.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-purple-500/20 text-purple-400">18</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">18</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"The Humble Group partnership sounds significant — 40+ brands is a lot. How are you planning to scale operations to handle that volume?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Whether the Humble Group deal is straining current capacity. If yes — this is the most urgent use case for automation.</p>
+                        <p class="text-white font-medium">"The Humble Group partnership sounds significant — 40+ brands is a lot. How are you planning to scale operations to handle that volume?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Whether the Humble Group deal is straining current capacity. If yes — this is the most urgent use case for automation.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-purple-500/20 text-purple-400">19</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">19</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Are you seeing new competitors entering the Nordic Amazon agency space — especially any that are leading with AI or technology?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Competitive awareness. If he names specific threats, we learn what he's worried about. If he's not aware, we can share market intelligence.</p>
+                        <p class="text-white font-medium">"Are you seeing new competitors entering the Nordic Amazon agency space — especially any that are leading with AI or technology?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Competitive awareness. If he names specific threats, we learn what he's worried about. If he's not aware, we can share market intelligence.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-purple-500/20 text-purple-400">20</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-purple-500/10 text-purple-400 border border-purple-500/20 shrink-0">20</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"The KNAA training program has 100+ graduates. How many of them go on to use Rank On Amazon's agency services?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Training-to-agency conversion rate. If it's low, there's a CRM/automation play. If it's high, understand why and how we can amplify it.</p>
+                        <p class="text-white font-medium">"The KNAA training program has 100+ graduates. How many of them go on to use Rank On Amazon's agency services?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Training-to-agency conversion rate. If it's low, there's a CRM/automation play. If it's high, understand why and how we can amplify it.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section 6: Budget & Decision-Making -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-emerald-500/20 rounded-xl p-2.5">
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Section 6: Budget & Decision-Making -->
+    <section id="budget" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
                     <i data-lucide="wallet" class="w-5 h-5 text-emerald-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Budget & Decision-Making</h3>
-                    <p class="text-muted text-sm">Understand buying process and constraints</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Budget &amp; Decision-Making</h2>
+                    <p class="text-zinc-500 text-sm">Understand buying process and constraints</p>
                 </div>
             </div>
             <div class="space-y-4">
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-emerald-500/20 text-emerald-400">21</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">21</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Have you worked with a technology partner or development agency before? What was that experience like?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Prior experience with tech vendors. Past bad experiences create objections we need to address.</p>
+                        <p class="text-white font-medium">"Have you worked with a technology partner or development agency before? What was that experience like?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Prior experience with tech vendors. Past bad experiences create objections we need to address.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-emerald-500/20 text-emerald-400">22</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">22</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"If we found a good fit here, what does your decision process look like? Is it just you, or are there other stakeholders?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Decision authority and timeline. Founder-led likely means Carl decides alone. But there may be a COO, CFO, or board for the Swedish AB.</p>
+                        <p class="text-white font-medium">"If we found a good fit here, what does your decision process look like? Is it just you, or are there other stakeholders?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Decision authority and timeline. Founder-led likely means Carl decides alone. But there may be a COO, CFO, or board for the Swedish AB.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-emerald-500/20 text-emerald-400">23</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">23</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Have you allocated budget for technology or marketing infrastructure this year, or is this more exploratory?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Budget reality. At sub-$5M revenue, large tech investments are significant. If exploratory, we lead with free quick wins to build trust.</p>
+                        <p class="text-white font-medium">"Have you allocated budget for technology or marketing infrastructure this year, or is this more exploratory?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Budget reality. At sub-$5M revenue, large tech investments are significant. If exploratory, we lead with free quick wins to build trust.</p>
                     </div>
                 </div>
-                <div class="bg-card border border-border rounded-2xl p-5 card-hover flex items-start gap-4">
-                    <div class="question-number bg-emerald-500/20 text-emerald-400">24</div>
+                <div class="glass-card p-6 flex items-start gap-4 reveal">
+                    <div class="question-number bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">24</div>
                     <div class="space-y-2">
-                        <p class="text-primary font-medium">"Would you be open to starting with a small proof-of-concept — say, turning a couple podcast episodes into optimized English blog posts — so you can evaluate our work before any commitment?"</p>
-                        <p class="text-muted text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1"></i><strong>Reveals:</strong> Willingness to trial. This is our close — a low-risk next step that demonstrates capability.</p>
+                        <p class="text-white font-medium">"Would you be open to starting with a small proof-of-concept — say, turning a couple podcast episodes into optimized English blog posts — so you can evaluate our work before any commitment?"</p>
+                        <p class="text-zinc-500 text-sm"><i data-lucide="target" class="w-3.5 h-3.5 inline mr-1 text-zinc-600"></i><strong class="text-zinc-400">Reveals:</strong> Willingness to trial. This is our close — a low-risk next step that demonstrates capability.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Key Hypotheses to Validate -->
-        <section>
-            <div class="flex items-center gap-3 mb-6">
-                <div class="bg-cyan/20 rounded-xl p-2.5">
-                    <i data-lucide="flask-conical" class="w-5 h-5 text-cyan"></i>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- Key Hypotheses to Validate -->
+    <section id="hypotheses" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10 reveal">
+                <div class="icon-box p-3" style="background:rgba(59,130,246,0.08);border-color:rgba(59,130,246,0.15)">
+                    <i data-lucide="flask-conical" class="w-5 h-5 text-blue-400"></i>
                 </div>
                 <div>
-                    <h3 class="font-display font-bold text-xl text-primary">Key Hypotheses to Validate</h3>
-                    <p class="text-muted text-sm">What we believe based on our audit — and how to confirm or disprove</p>
+                    <h2 class="text-gradient-white text-2xl font-bold">Key Hypotheses to Validate</h2>
+                    <p class="text-zinc-500 text-sm">What we believe based on our audit — and how to confirm or disprove</p>
                 </div>
             </div>
-            <div class="bg-card border border-border rounded-2xl overflow-hidden">
-                <table class="w-full">
-                    <thead>
-                        <tr class="border-b border-border bg-bg/50">
-                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4 w-8">#</th>
-                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">Hypothesis</th>
-                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4">How to Validate</th>
-                            <th class="text-left text-xs text-muted uppercase tracking-wider font-semibold px-6 py-4 w-28">Question #</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-border">
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H1</td><td class="px-6 py-4 text-primary text-sm">Their operations are entirely manual — no AI, no automation, no proprietary tools</td><td class="px-6 py-4 text-secondary text-sm">Questions 4, 7, 8 will reveal their actual tooling. If they use Helium 10 or similar, this hypothesis weakens.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q4, Q7, Q8</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H2</td><td class="px-6 py-4 text-primary text-sm">Client reporting is manual slide decks or PDFs, not real-time dashboards</td><td class="px-6 py-4 text-secondary text-sm">Question 5 directly asks this. Watch for mentions of specific reporting tools or platforms.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q5</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H3</td><td class="px-6 py-4 text-primary text-sm">The website content gap is neglect, not strategy</td><td class="px-6 py-4 text-secondary text-sm">Question 11 asks directly. If he says "deliberate," drop the content pitch. If "we just haven't gotten to it," that's our opening.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q9, Q11</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H4</td><td class="px-6 py-4 text-primary text-sm">Client acquisition is 90%+ relationship-driven with nearly zero website inbound</td><td class="px-6 py-4 text-secondary text-sm">Question 10 asks for the channel mix. If confirmed, position as "amplifying what already works."</td><td class="px-6 py-4 text-muted text-sm font-mono">Q10</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H5</td><td class="px-6 py-4 text-primary text-sm">The Humble Group deal (40+ brands) is creating scaling pressure beyond current capacity</td><td class="px-6 py-4 text-secondary text-sm">Question 18 probes this directly. If they're struggling with volume, automation becomes urgently compelling.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q13, Q18</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H6</td><td class="px-6 py-4 text-primary text-sm">Carl is the sole decision-maker with no board gating the purchase</td><td class="px-6 py-4 text-secondary text-sm">Question 22 asks about decision process. The Swedish AB may have a board we don't know about.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q22</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H7</td><td class="px-6 py-4 text-primary text-sm">Minimal budget for technology but receptive to phased or equity-based engagement</td><td class="px-6 py-4 text-secondary text-sm">Question 23 gauges budget reality. If no budget, pivot to free proof-of-concept (Q24) or sweat equity model.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q23, Q24</td></tr>
-                        <tr class="hover:bg-bg/30"><td class="px-6 py-4 text-cyan font-semibold">H8</td><td class="px-6 py-4 text-primary text-sm">KNAA is an underutilized lead source — low conversion from graduate to agency client</td><td class="px-6 py-4 text-secondary text-sm">Question 20 asks directly. Low rate = CRM automation opportunity. High rate = understand why and amplify.</td><td class="px-6 py-4 text-muted text-sm font-mono">Q20</td></tr>
-                    </tbody>
-                </table>
+            <div class="glass-card overflow-hidden reveal">
+                <div class="overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="w-12">#</th>
+                                <th>Hypothesis</th>
+                                <th>How to Validate</th>
+                                <th class="w-28">Question #</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-blue-400 font-semibold">H1</td><td class="text-white text-sm">Their operations are entirely manual — no AI, no automation, no proprietary tools</td><td class="text-zinc-400 text-sm">Questions 4, 7, 8 will reveal their actual tooling. If they use Helium 10 or similar, this hypothesis weakens.</td><td class="text-zinc-500 text-sm font-mono">Q4, Q7, Q8</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H2</td><td class="text-white text-sm">Client reporting is manual slide decks or PDFs, not real-time dashboards</td><td class="text-zinc-400 text-sm">Question 5 directly asks this. Watch for mentions of specific reporting tools or platforms.</td><td class="text-zinc-500 text-sm font-mono">Q5</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H3</td><td class="text-white text-sm">The website content gap is neglect, not strategy</td><td class="text-zinc-400 text-sm">Question 11 asks directly. If he says "deliberate," drop the content pitch. If "we just haven't gotten to it," that's our opening.</td><td class="text-zinc-500 text-sm font-mono">Q9, Q11</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H4</td><td class="text-white text-sm">Client acquisition is 90%+ relationship-driven with nearly zero website inbound</td><td class="text-zinc-400 text-sm">Question 10 asks for the channel mix. If confirmed, position as "amplifying what already works."</td><td class="text-zinc-500 text-sm font-mono">Q10</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H5</td><td class="text-white text-sm">The Humble Group deal (40+ brands) is creating scaling pressure beyond current capacity</td><td class="text-zinc-400 text-sm">Question 18 probes this directly. If they're struggling with volume, automation becomes urgently compelling.</td><td class="text-zinc-500 text-sm font-mono">Q13, Q18</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H6</td><td class="text-white text-sm">Carl is the sole decision-maker with no board gating the purchase</td><td class="text-zinc-400 text-sm">Question 22 asks about decision process. The Swedish AB may have a board we don't know about.</td><td class="text-zinc-500 text-sm font-mono">Q22</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H7</td><td class="text-white text-sm">Minimal budget for technology but receptive to phased or equity-based engagement</td><td class="text-zinc-400 text-sm">Question 23 gauges budget reality. If no budget, pivot to free proof-of-concept (Q24) or sweat equity model.</td><td class="text-zinc-500 text-sm font-mono">Q23, Q24</td></tr>
+                            <tr><td class="text-blue-400 font-semibold">H8</td><td class="text-white text-sm">KNAA is an underutilized lead source — low conversion from graduate to agency client</td><td class="text-zinc-400 text-sm">Question 20 asks directly. Low rate = CRM automation opportunity. High rate = understand why and amplify.</td><td class="text-zinc-500 text-sm font-mono">Q20</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </section>
-
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="border-t border-border mt-16">
-        <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-            <p class="text-muted text-sm">MERIDIAN — Internal Intelligence</p>
-            <p class="text-muted text-sm">Rank On Amazon Audit &middot; March 2026</p>
+    <div class="section-divider max-w-6xl mx-auto"></div>
+    <footer class="py-8 px-6">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <p class="text-zinc-600 text-sm">MERIDIAN &mdash; Internal Intelligence</p>
+            <p class="text-zinc-600 text-sm">Rank On Amazon Audit &middot; March 2026</p>
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
