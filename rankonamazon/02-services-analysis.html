@@ -1,506 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>02 — Services Analysis | Rank On Amazon Audit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        bg: '#0c1222',
-                        card: '#1e293b',
-                        border: '#334155',
-                        primary: '#e2e8f0',
-                        secondary: '#94a3b8',
-                        muted: '#64748b',
-                        cyan: '#06b6d4',
-                        success: '#10b981',
-                        warning: '#f59e0b',
-                        error: '#ef4444',
-                        info: '#3b82f6',
-                    },
-                    fontFamily: {
-                        body: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif'],
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#3b82f6', dark: '#2563eb' } }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #0c1222; font-family: 'Inter', sans-serif; color: #e2e8f0; scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(6,182,212,0.1); }
-        @media print { body { background: white; color: black; } .no-print { display: none; } }
+        body{background:#000;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+        .glass-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.08);border-radius:24px;transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .glass-card:hover{border-color:rgba(59,130,246,0.25);background:rgba(255,255,255,0.06);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 40px rgba(59,130,246,0.08)}
+        .nav-glass{background:rgba(0,0,0,0.4);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.06)}
+        .glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px)}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .text-gradient-white{background:linear-gradient(135deg,#fff 0%,#a1a1aa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .text-gradient-blue{background:linear-gradient(135deg,#60a5fa 0%,#3b82f6 50%,#2563eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .icon-box{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:16px;transition:all .3s ease}
+        .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:9999px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+        .section-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.06) 20%,rgba(255,255,255,0.06) 80%,transparent 100%)}
+        .data-table{width:100%;border-collapse:separate;border-spacing:0}
+        .data-table thead th{padding:14px 16px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#71717a;text-align:left;border-bottom:1px solid rgba(255,255,255,0.06)}
+        .data-table tbody td{padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+        .data-table tbody tr{transition:background .2s ease}
+        .data-table tbody tr:hover{background:rgba(255,255,255,0.02)}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
     </style>
 </head>
 <body class="min-h-screen">
-    <!-- Header -->
-    <header class="border-b border-border">
-        <div class="max-w-5xl mx-auto px-6 py-6">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="no-print flex items-center gap-2 text-secondary hover:text-cyan transition-colors text-sm">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-                        Back to Index
-                    </a>
-                    <span class="text-border">|</span>
-                    <div class="flex items-center gap-2">
-                        <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-info/10 text-info text-xs font-bold">02</span>
-                        <h1 class="font-display text-2xl font-700 text-primary">Services Analysis</h1>
-                    </div>
+
+    <!-- Fixed Nav -->
+    <nav class="nav-glass fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                </a>
+                <div class="w-px h-5 bg-white/10"></div>
+                <div class="icon-box w-9 h-9 flex items-center justify-center">
+                    <i data-lucide="layers" class="w-4 h-4 text-blue-400"></i>
                 </div>
-                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-error/10 border border-error/30 text-error text-xs font-semibold tracking-wide">
-                    <i data-lucide="shield-alert" class="w-3 h-3"></i>
-                    INTERNAL
-                </span>
+                <span class="text-white font-semibold text-sm tracking-wide">Rank On Amazon</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#core" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Core</a>
+                <a href="#phases" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">7 Phases</a>
+                <a href="#specialized" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Specialized</a>
+                <a href="#cases" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Cases</a>
+                <a href="#gaps" class="text-zinc-500 hover:text-white text-xs font-medium tracking-wide transition-colors">Gaps</a>
+            </div>
+            <div class="badge border border-purple-500/30 text-purple-400 bg-purple-500/10">
+                <i data-lucide="lock" class="w-3 h-3"></i>
+                Internal
             </div>
         </div>
-    </header>
+    </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+    <!-- Hero -->
+    <section class="relative pt-32 pb-24 px-6 overflow-hidden">
+        <div class="glow-orb w-[500px] h-[500px] bg-blue-500/15 -top-40 left-1/2 -translate-x-1/2" style="position:absolute"></div>
 
-        <!-- Core Offering -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="target" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Core Offering</h2>
-            </div>
-            <blockquote class="border-l-4 border-cyan pl-4 mb-4">
-                <p class="text-secondary italic">"Strategic full-service agency with a holistic Amazon approach."</p>
-            </blockquote>
-            <p class="text-secondary leading-relaxed">
-                They position themselves not as a tools company or PPC-only agency, but as <strong class="text-primary">strategic partners</strong> who have "been there, done that" as Amazon sellers themselves.
-                The core value prop: <em class="text-cyan">"We do what we are called &mdash; we rank your products on Amazon."</em>
-            </p>
-        </section>
-
-        <!-- 7-Phase Amazon Success Formula -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="workflow" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">7-Phase Amazon Success Formula</h2>
-            </div>
-            <div class="space-y-4">
-                <!-- Phase 1 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">1</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Deep Amazon Analysis</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Demand analysis</li>
-                        <li>Sales volume assessment</li>
-                        <li>Competition mapping</li>
-                        <li>Opportunity identification</li>
-                        <li>Current situation audit (for existing sellers)</li>
-                    </ul>
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <div class="reveal">
+                <div class="badge border border-blue-500/30 text-blue-400 bg-blue-500/10 mx-auto mb-8">
+                    <i data-lucide="layers" class="w-3 h-3"></i>
+                    Services Analysis
                 </div>
-
-                <!-- Phase 2 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">2</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Selections</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Marketplace selection (which Amazon marketplaces to target)</li>
-                        <li>Product selection optimization</li>
-                        <li>Price point strategy</li>
-                        <li>Margin analysis</li>
-                    </ul>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">3</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Listing Creation ("Perfect Listings")</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Maximizing indexation (backend keyword optimization)</li>
-                        <li>Ranking signal optimization</li>
-                        <li>Traffic generation through listing quality</li>
-                        <li>Conversion rate optimization via copy/imagery</li>
-                    </ul>
-                </div>
-
-                <!-- Phase 4 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">4</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Launch &amp; Rank</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Ranking to best organic positions (new products)</li>
-                        <li>Re-ranking campaigns (existing products losing position)</li>
-                        <li class="text-muted italic">"70-80% of all Amazon sales come from product-related keyword searches"</li>
-                    </ul>
-                </div>
-
-                <!-- Phase 5 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">5</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Amazon Ads (PPC)</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Supports ranking campaign velocity</li>
-                        <li>Data collection in early weeks for optimization</li>
-                        <li>Sponsored Products, Brands, Display</li>
-                        <li class="text-muted italic">Positioned as "one of many tools in the toolbox"</li>
-                    </ul>
-                </div>
-
-                <!-- Phase 6 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">6</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Optimization</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>Listing conversion optimization</li>
-                        <li>Ad campaign refinement</li>
-                        <li>Sales velocity optimization</li>
-                        <li>Profit margin improvement</li>
-                    </ul>
-                </div>
-
-                <!-- Phase 7 -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-cyan/10 flex items-center justify-center">
-                            <span class="text-cyan text-sm font-bold">7</span>
-                        </div>
-                        <h3 class="font-semibold text-primary">Expansion</h3>
-                    </div>
-                    <ul class="ml-11 space-y-1 text-sm text-secondary">
-                        <li>New marketplace rollouts</li>
-                        <li>Product portfolio expansion</li>
-                        <li>Bundle creation</li>
-                        <li>Amazon DSP (programmatic advertising)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- A La Carte Menu -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="list" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">A La Carte Menu</h2>
-            </div>
-            <p class="text-secondary text-sm mb-4">Individual services available outside the full-service engagement:</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                <div class="bg-bg rounded-lg p-3 border border-border/50 text-sm text-secondary flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i>
-                    Standalone analysis
-                </div>
-                <div class="bg-bg rounded-lg p-3 border border-border/50 text-sm text-secondary flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i>
-                    Strategy consulting
-                </div>
-                <div class="bg-bg rounded-lg p-3 border border-border/50 text-sm text-secondary flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i>
-                    Perfect Listings (optimization only)
-                </div>
-                <div class="bg-bg rounded-lg p-3 border border-border/50 text-sm text-secondary flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i>
-                    PPC management only
-                </div>
-                <div class="bg-bg rounded-lg p-3 border border-border/50 text-sm text-secondary flex items-center gap-2">
-                    <i data-lucide="check" class="w-4 h-4 text-success flex-shrink-0"></i>
-                    Specific marketplace launch
-                </div>
-            </div>
-        </section>
-
-        <!-- Specialized Services -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="sparkles" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Specialized Services</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Due Diligence -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center">
-                            <i data-lucide="shield-check" class="w-4 h-4 text-info"></i>
-                        </div>
-                        <h3 class="font-semibold text-primary">Amazon Due Diligence</h3>
-                    </div>
-                    <p class="text-muted text-xs uppercase tracking-wider mb-2">Target: VC firms and conglomerates acquiring Amazon PL brands</p>
-                    <ul class="space-y-1 text-sm text-secondary">
-                        <li>Market analysis and validation</li>
-                        <li>Brand/product assessment</li>
-                        <li>Red flag identification</li>
-                        <li>Performance history audit</li>
-                        <li>Forward-looking recommendations</li>
-                    </ul>
-                    <div class="mt-3 p-2 rounded-lg bg-cyan/5 border border-cyan/20">
-                        <p class="text-cyan text-xs"><strong>MERIDIAN relevance:</strong> High-value, data-intensive service that could benefit enormously from AI-powered analysis and automated reporting.</p>
-                    </div>
-                </div>
-
-                <!-- Sweat Equity -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-8 h-8 rounded-lg bg-warning/10 flex items-center justify-center">
-                            <i data-lucide="hand-coins" class="w-4 h-4 text-warning"></i>
-                        </div>
-                        <h3 class="font-semibold text-primary">Sweat Equity Program</h3>
-                    </div>
-                    <p class="text-muted text-xs uppercase tracking-wider mb-2">Target: Smaller brands with great products but limited funds</p>
-                    <ul class="space-y-1 text-sm text-secondary">
-                        <li>Rank On Amazon runs the entire Amazon business</li>
-                        <li>Payment is company equity instead of cash fees</li>
-                        <li>Partnership model &mdash; aligned incentives</li>
-                    </ul>
-                    <p class="text-muted text-xs mt-2">Known partner: ICROSS (Swedish Lapland fishing watercraft, Apr 2023)</p>
-                    <div class="mt-3 p-2 rounded-lg bg-cyan/5 border border-cyan/20">
-                        <p class="text-cyan text-xs"><strong>MERIDIAN relevance:</strong> Creates long-term recurring engagement &mdash; exactly the type of client that benefits from automated monitoring and optimization.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pricing Model -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="receipt" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Pricing Model</h2>
-            </div>
-            <div class="bg-warning/5 border border-warning/20 rounded-xl p-4 mb-4">
-                <p class="text-warning text-sm flex items-center gap-2">
-                    <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
-                    <strong>No pricing published anywhere on the site.</strong> Everything is consultation-based.
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gradient-white mb-6">
+                    Services Analysis
+                </h1>
+                <p class="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    7-phase methodology, specialty services, pricing model, case studies, and operational gaps
                 </p>
             </div>
-            <p class="text-secondary text-sm mb-4">Free 30-minute initial consultation, then presumably custom quotes based on scope.</p>
-            <h3 class="text-sm font-semibold text-muted uppercase tracking-wider mb-3">Market Context for Reference</h3>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="border-b border-border">
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Service Tier</th>
-                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">Typical Range</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-border/50">
-                        <tr>
-                            <td class="py-3 pr-4 text-secondary">Basic Amazon PPC management</td>
-                            <td class="py-3 text-primary">$1,000 &ndash; $2,000/month</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-secondary">Full-service Amazon agency</td>
-                            <td class="py-3 text-primary">$5,000 &ndash; $15,000/month</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-secondary">Premium/enterprise</td>
-                            <td class="py-3 text-primary">$15,000 &ndash; $25,000+/month</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-secondary">Percentage of ad spend model</td>
-                            <td class="py-3 text-primary">15 &ndash; 25%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
 
-        <!-- Case Studies -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Case Studies</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 reveal">
+                <div class="glass-card p-5 text-center">
+                    <p class="text-white text-2xl font-bold">7</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Phase Formula</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-white text-2xl font-bold">5+</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">A La Carte Services</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-amber-400 text-2xl font-bold">$0</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Published Pricing</p>
+                </div>
+                <div class="glass-card p-5 text-center">
+                    <p class="text-emerald-400 text-2xl font-bold">2</p>
+                    <p class="text-zinc-500 text-xs mt-1 uppercase tracking-wider">Case Studies</p>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Cura of Sweden -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
-                            <i data-lucide="trending-up" class="w-5 h-5 text-success"></i>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Core Offering -->
+    <section id="core" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="target" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Core Offering</h2>
+                </div>
+
+                <div class="glass-card p-6 md:p-8">
+                    <blockquote class="border-l-4 border-blue-500/30 pl-4 mb-4">
+                        <p class="text-zinc-400 italic">"Strategic full-service agency with a holistic Amazon approach."</p>
+                    </blockquote>
+                    <p class="text-zinc-400 leading-relaxed">
+                        They position themselves not as a tools company or PPC-only agency, but as <strong class="text-white">strategic partners</strong> who have "been there, done that" as Amazon sellers themselves.
+                        The core value prop: <em class="text-blue-400">"We do what we are called &mdash; we rank your products on Amazon."</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- 7-Phase Formula -->
+    <section id="phases" class="py-24 px-6 relative">
+        <div class="glow-orb w-[400px] h-[400px] bg-blue-500/8 bottom-0 right-0" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="workflow" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">7-Phase Amazon Success Formula</h2>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">1</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Deep Amazon Analysis</h3>
                         </div>
-                        <div>
-                            <h3 class="font-semibold text-primary">Cura of Sweden</h3>
-                            <p class="text-muted text-xs">Home &amp; Kitchen (Weighted Blankets)</p>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Demand analysis</li>
+                            <li>Sales volume assessment</li>
+                            <li>Competition mapping</li>
+                            <li>Opportunity identification</li>
+                            <li>Current situation audit (for existing sellers)</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">2</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Selections</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Marketplace selection (which Amazon marketplaces to target)</li>
+                            <li>Product selection optimization</li>
+                            <li>Price point strategy</li>
+                            <li>Margin analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">3</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Listing Creation ("Perfect Listings")</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Maximizing indexation (backend keyword optimization)</li>
+                            <li>Ranking signal optimization</li>
+                            <li>Traffic generation through listing quality</li>
+                            <li>Conversion rate optimization via copy/imagery</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">4</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Launch &amp; Rank</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Ranking to best organic positions (new products)</li>
+                            <li>Re-ranking campaigns (existing products losing position)</li>
+                            <li class="text-zinc-600 italic">"70-80% of all Amazon sales come from product-related keyword searches"</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">5</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Amazon Ads (PPC)</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Supports ranking campaign velocity</li>
+                            <li>Data collection in early weeks for optimization</li>
+                            <li>Sponsored Products, Brands, Display</li>
+                            <li class="text-zinc-600 italic">Positioned as "one of many tools in the toolbox"</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">6</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Optimization</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>Listing conversion optimization</li>
+                            <li>Ad campaign refinement</li>
+                            <li>Sales velocity optimization</li>
+                            <li>Profit margin improvement</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <span class="text-blue-400 text-sm font-bold">7</span>
+                            </div>
+                            <h3 class="font-semibold text-white">Expansion</h3>
+                        </div>
+                        <ul class="ml-[52px] space-y-1 text-sm text-zinc-400">
+                            <li>New marketplace rollouts</li>
+                            <li>Product portfolio expansion</li>
+                            <li>Bundle creation</li>
+                            <li>Amazon DSP (programmatic advertising)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- A La Carte Menu -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="list" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">A La Carte Menu</h2>
+                </div>
+
+                <div class="glass-card p-6 md:p-8">
+                    <p class="text-zinc-400 text-sm mb-6">Individual services available outside the full-service engagement:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="glass-card p-4 text-sm text-zinc-400 flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                            Standalone analysis
+                        </div>
+                        <div class="glass-card p-4 text-sm text-zinc-400 flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                            Strategy consulting
+                        </div>
+                        <div class="glass-card p-4 text-sm text-zinc-400 flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                            Perfect Listings (optimization only)
+                        </div>
+                        <div class="glass-card p-4 text-sm text-zinc-400 flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                            PPC management only
+                        </div>
+                        <div class="glass-card p-4 text-sm text-zinc-400 flex items-center gap-3">
+                            <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
+                            Specific marketplace launch
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Specialized Services -->
+    <section id="specialized" class="py-24 px-6 relative">
+        <div class="glow-orb w-[300px] h-[300px] bg-purple-500/10 top-0 -left-20" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(168,85,247,0.08);border-color:rgba(168,85,247,0.15)">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-purple-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Specialized Services</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Due Diligence -->
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-blue-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Amazon Due Diligence</h3>
+                        </div>
+                        <p class="text-zinc-600 text-xs uppercase tracking-wider mb-3">Target: VC firms and conglomerates acquiring Amazon PL brands</p>
+                        <ul class="space-y-1 text-sm text-zinc-400">
+                            <li>Market analysis and validation</li>
+                            <li>Brand/product assessment</li>
+                            <li>Red flag identification</li>
+                            <li>Performance history audit</li>
+                            <li>Forward-looking recommendations</li>
+                        </ul>
+                        <div class="mt-4 p-3 rounded-2xl bg-blue-500/5 border border-blue-500/15">
+                            <p class="text-blue-400 text-xs"><strong>MERIDIAN relevance:</strong> High-value, data-intensive service that could benefit enormously from AI-powered analysis and automated reporting.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sweat Equity -->
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                                <i data-lucide="hand-coins" class="w-4 h-4 text-amber-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-white">Sweat Equity Program</h3>
+                        </div>
+                        <p class="text-zinc-600 text-xs uppercase tracking-wider mb-3">Target: Smaller brands with great products but limited funds</p>
+                        <ul class="space-y-1 text-sm text-zinc-400">
+                            <li>Rank On Amazon runs the entire Amazon business</li>
+                            <li>Payment is company equity instead of cash fees</li>
+                            <li>Partnership model &mdash; aligned incentives</li>
+                        </ul>
+                        <p class="text-zinc-600 text-xs mt-3">Known partner: ICROSS (Swedish Lapland fishing watercraft, Apr 2023)</p>
+                        <div class="mt-4 p-3 rounded-2xl bg-blue-500/5 border border-blue-500/15">
+                            <p class="text-blue-400 text-xs"><strong>MERIDIAN relevance:</strong> Creates long-term recurring engagement &mdash; exactly the type of client that benefits from automated monitoring and optimization.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Pricing Model -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="receipt" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Pricing Model</h2>
+                </div>
+
+                <div class="glass-card p-6 md:p-8">
+                    <div class="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/15 mb-6">
+                        <p class="text-amber-400 text-sm flex items-center gap-2">
+                            <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
+                            <strong>No pricing published anywhere on the site.</strong> Everything is consultation-based.
+                        </p>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-6">Free 30-minute initial consultation, then presumably custom quotes based on scope.</p>
+
+                    <h3 class="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-4">Market Context for Reference</h3>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <tbody class="divide-y divide-border/50">
+                        <table class="data-table">
+                            <thead>
                                 <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium w-28">Markets</td>
-                                    <td class="py-2 text-secondary">Europe &amp; UK</td>
+                                    <th>Service Tier</th>
+                                    <th>Typical Range</th>
                                 </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Starting Point</td>
-                                    <td class="py-2 text-secondary">EUR 0 Amazon revenue</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Result</td>
-                                    <td class="py-2 text-success font-semibold">EUR 5M+ in 12 months</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Timeframe</td>
-                                    <td class="py-2 text-secondary">12 months</td>
-                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="text-zinc-400">Basic Amazon PPC management</td><td class="text-white">$1,000 &ndash; $2,000/month</td></tr>
+                                <tr><td class="text-zinc-400">Full-service Amazon agency</td><td class="text-white">$5,000 &ndash; $15,000/month</td></tr>
+                                <tr><td class="text-zinc-400">Premium/enterprise</td><td class="text-white">$15,000 &ndash; $25,000+/month</td></tr>
+                                <tr><td class="text-zinc-400">Percentage of ad spend model</td><td class="text-white">15 &ndash; 25%</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Better Hockey -->
-                <div class="bg-bg rounded-xl p-5 border border-border/50 card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
-                            <i data-lucide="trending-up" class="w-5 h-5 text-success"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-primary">Better Hockey</h3>
-                            <p class="text-muted text-xs">Sports &amp; Outdoors (Off-ice training)</p>
-                        </div>
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Case Studies -->
+    <section id="cases" class="py-24 px-6 relative">
+        <div class="glow-orb w-[300px] h-[300px] bg-emerald-500/8 bottom-20 right-0" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 text-emerald-400"></i>
                     </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm">
-                            <tbody class="divide-y divide-border/50">
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium w-28">Markets</td>
-                                    <td class="py-2 text-secondary">USA &amp; Canada</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Starting Point</td>
-                                    <td class="py-2 text-secondary">2M SEK annual</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Result</td>
-                                    <td class="py-2 text-success font-semibold">18M SEK (9x growth)</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-2 pr-4 text-muted font-medium">Timeframe</td>
-                                    <td class="py-2 text-secondary">12 months</td>
-                                </tr>
+                    <h2 class="text-2xl font-bold text-gradient-white">Case Studies</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Cura of Sweden -->
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Cura of Sweden</h3>
+                                <p class="text-zinc-600 text-xs">Home &amp; Kitchen (Weighted Blankets)</p>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <tbody>
+                                <tr><td class="text-zinc-500 font-medium w-28">Markets</td><td class="text-zinc-400">Europe &amp; UK</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Starting Point</td><td class="text-zinc-400">EUR 0 Amazon revenue</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Result</td><td class="text-emerald-400 font-semibold">EUR 5M+ in 12 months</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Timeframe</td><td class="text-zinc-400">12 months</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Better Hockey -->
+                    <div class="glass-card p-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="icon-box w-10 h-10 flex items-center justify-center" style="background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.15)">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Better Hockey</h3>
+                                <p class="text-zinc-600 text-xs">Sports &amp; Outdoors (Off-ice training)</p>
+                            </div>
+                        </div>
+                        <table class="data-table">
+                            <tbody>
+                                <tr><td class="text-zinc-500 font-medium w-28">Markets</td><td class="text-zinc-400">USA &amp; Canada</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Starting Point</td><td class="text-zinc-400">2M SEK annual</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Result</td><td class="text-emerald-400 font-semibold">18M SEK (9x growth)</td></tr>
+                                <tr><td class="text-zinc-500 font-medium">Timeframe</td><td class="text-zinc-400">12 months</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Named Clients -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="users" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-primary">Named Clients</h2>
-            </div>
-            <div class="flex flex-wrap gap-3">
-                <span class="px-4 py-2 rounded-lg bg-bg border border-border/50 text-primary text-sm font-medium">Cura of Sweden</span>
-                <span class="px-4 py-2 rounded-lg bg-bg border border-border/50 text-primary text-sm font-medium">Better Hockey</span>
-                <span class="px-4 py-2 rounded-lg bg-bg border border-border/50 text-primary text-sm font-medium">ICROSS</span>
-                <span class="px-4 py-2 rounded-lg bg-bg border border-border/50 text-primary text-sm font-medium">Humble Group</span>
-            </div>
-        </section>
+    <div class="section-divider max-w-5xl mx-auto"></div>
 
-        <!-- What's Missing -->
-        <section class="bg-card border border-border rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-6">
-                <i data-lucide="alert-circle" class="w-5 h-5 text-warning"></i>
-                <h2 class="font-display text-xl font-700 text-primary">What's Missing</h2>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="border-b border-border">
-                            <th class="py-3 pr-4 text-left text-muted font-medium text-xs uppercase tracking-wider">Gap</th>
-                            <th class="py-3 text-left text-muted font-medium text-xs uppercase tracking-wider">Impact</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-border/50">
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No self-serve tools</td>
-                            <td class="py-3 text-secondary">Can't scale beyond headcount</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No client dashboard</td>
-                            <td class="py-3 text-secondary">Clients can't see performance in real-time</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No automated reporting</td>
-                            <td class="py-3 text-secondary">Manual report creation for each client</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No AI-powered optimization</td>
-                            <td class="py-3 text-secondary">All keyword research, listing optimization is manual</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No competitive monitoring</td>
-                            <td class="py-3 text-secondary">No automated alerts when competitors change listings/pricing</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No content pipeline</td>
-                            <td class="py-3 text-secondary">No blog, no thought leadership engine beyond podcast</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No CRM visible</td>
-                            <td class="py-3 text-secondary">Lead management likely in spreadsheets or basic tools</td>
-                        </tr>
-                        <tr>
-                            <td class="py-3 pr-4 text-primary font-medium">No case study depth</td>
-                            <td class="py-3 text-secondary">Only 2 case studies, no video testimonials, no detailed metrics</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <!-- Named Clients -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center">
+                        <i data-lucide="users" class="w-5 h-5 text-blue-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">Named Clients</h2>
+                </div>
 
-        <!-- Key Insight -->
-        <section class="bg-cyan/5 border border-cyan/20 rounded-2xl p-6 md:p-8">
-            <div class="flex items-center gap-3 mb-4">
-                <i data-lucide="lightbulb" class="w-5 h-5 text-cyan"></i>
-                <h2 class="font-display text-xl font-700 text-cyan">Key Insight</h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="glass-card px-5 py-3 text-white text-sm font-medium">Cura of Sweden</span>
+                    <span class="glass-card px-5 py-3 text-white text-sm font-medium">Better Hockey</span>
+                    <span class="glass-card px-5 py-3 text-white text-sm font-medium">ICROSS</span>
+                    <span class="glass-card px-5 py-3 text-white text-sm font-medium">Humble Group</span>
+                </div>
             </div>
-            <p class="text-secondary leading-relaxed">
-                Their methodology is <strong class="text-primary">sound but manual</strong>. Every phase of their 7-step process has well-understood AI/automation solutions available today that they aren't using.
-                A competitor with the same methodology but AI-augmented execution would operate at <strong class="text-cyan">5-10x their throughput</strong> with fewer staff.
-            </p>
-        </section>
+        </div>
+    </section>
 
-    </main>
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- What's Missing -->
+    <section id="gaps" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="icon-box w-12 h-12 flex items-center justify-center" style="background:rgba(251,191,36,0.08);border-color:rgba(251,191,36,0.15)">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-amber-400"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gradient-white">What's Missing</h2>
+                </div>
+
+                <div class="glass-card p-6 md:p-8 overflow-x-auto">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Gap</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="text-white font-medium">No self-serve tools</td><td class="text-zinc-400">Can't scale beyond headcount</td></tr>
+                            <tr><td class="text-white font-medium">No client dashboard</td><td class="text-zinc-400">Clients can't see performance in real-time</td></tr>
+                            <tr><td class="text-white font-medium">No automated reporting</td><td class="text-zinc-400">Manual report creation for each client</td></tr>
+                            <tr><td class="text-white font-medium">No AI-powered optimization</td><td class="text-zinc-400">All keyword research, listing optimization is manual</td></tr>
+                            <tr><td class="text-white font-medium">No competitive monitoring</td><td class="text-zinc-400">No automated alerts when competitors change listings/pricing</td></tr>
+                            <tr><td class="text-white font-medium">No content pipeline</td><td class="text-zinc-400">No blog, no thought leadership engine beyond podcast</td></tr>
+                            <tr><td class="text-white font-medium">No CRM visible</td><td class="text-zinc-400">Lead management likely in spreadsheets or basic tools</td></tr>
+                            <tr><td class="text-white font-medium">No case study depth</td><td class="text-zinc-400">Only 2 case studies, no video testimonials, no detailed metrics</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Key Insight -->
+    <section class="py-24 px-6 relative">
+        <div class="glow-orb w-[400px] h-[400px] bg-blue-500/10 top-0 left-1/2 -translate-x-1/2" style="position:absolute"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <div class="reveal">
+                <div class="glass-card p-6 md:p-8" style="border-color:rgba(59,130,246,0.2)">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="icon-box w-12 h-12 flex items-center justify-center">
+                            <i data-lucide="lightbulb" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gradient-blue">Key Insight</h2>
+                    </div>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Their methodology is <strong class="text-white">sound but manual</strong>. Every phase of their 7-step process has well-understood AI/automation solutions available today that they aren't using.
+                        A competitor with the same methodology but AI-augmented execution would operate at <strong class="text-blue-400">5-10x their throughput</strong> with fewer staff.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="border-t border-border mt-16">
-        <div class="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-            <p class="text-muted text-sm"><span class="text-cyan font-medium">MERIDIAN</span> &mdash; Internal Intelligence</p>
-            <a href="index.html" class="no-print text-secondary hover:text-cyan text-sm transition-colors flex items-center gap-1">
+    <div class="section-divider max-w-5xl mx-auto"></div>
+    <footer class="py-8 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <p class="text-zinc-600 text-sm"><span class="text-blue-400 font-medium">MERIDIAN</span> &mdash; Internal Intelligence</p>
+            <a href="index.html" class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-2">
                 <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
                 Back to Index
             </a>
         </div>
     </footer>
 
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
