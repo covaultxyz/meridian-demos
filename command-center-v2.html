@@ -2748,7 +2748,7 @@ var VoiceView = function(props) {
     var params = new URLSearchParams(window.location.search);
     var isRemote = location.hostname.includes('speedoftrust.ai') || location.hostname.includes('pages.dev');
     var defaultBase = isRemote
-      ? 'https://atm-inline-curtis-shopzilla.trycloudflare.com/analytics'
+      ? 'https://agentvox.covault.xyz/analytics'
       : 'http://127.0.0.1:8100/api/v1/analytics';
     var baseUrl = params.get('voice_api') || localStorage.getItem('mrd_voice_api') || defaultBase;
     var wsHeader = { 'X-Workspace-Id': 'd6574870-0529-4015-aeeb-a25c202d7436' };
