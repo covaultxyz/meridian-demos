@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T19:56:00.557202+00:00",
+  "generated_at": "2026-03-28T20:05:14.805856+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-28T19:56:00.425972+00:00",
+      "updated_at": "2026-03-28T20:05:14.669205+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1355,6 +1355,26 @@
         },
         {
           "client": "mbm",
+          "call_id": "bacherman-martin-legal-review-v4",
+          "title": "bacherman-martin-legal-review-v4",
+          "file": "clients/mbm/signals/deal-signals-bacherman-martin-legal-review-v4-2026-03-28.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 11,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "evaluation"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "mbm",
           "call_id": "MBM_IP_Agreement_v6",
           "title": "MBM_IP_Agreement_v6",
           "file": "clients/mbm/signals/deal-signals-MBM_IP_Agreement_v6-2026-03-25.json",
@@ -1619,11 +1639,11 @@
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 7,
-        "mbm": 12,
+        "mbm": 13,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 36,
+      "total_signals": 37,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -2184,7 +2204,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-03-28T19:56:00.437996+00:00",
+      "updated_at": "2026-03-28T20:05:14.682395+00:00",
       "open_issues": "GitHub issues query failed or gh CLI unavailable",
       "recent_issues": [],
       "issues_by_project": {},
@@ -2200,7 +2220,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "members": [
         {
           "id": "alex",
@@ -2271,7 +2291,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "projects": [
         {
           "project": {
@@ -2701,7 +2721,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -2813,7 +2833,7 @@
       "this_week": 5
     },
     "decisions": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -2910,7 +2930,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -3302,6 +3322,74 @@
           ],
           "detail_page": "calls/2026-03-28-ip-agreement-v3-proposed-revisions-v4.html",
           "preview": "Final revision of MBM IP Agreement v3 addressing hybrid components, HIPAA compliance gates, IP classification disputes, bilateral segregation, and security/insurance requirements\u2014codifying absolute MBM ownership of Application and Data layers while preserving Contractor's pre-existing tools under license."
+        },
+        {
+          "date": "2026-03-28",
+          "title": "Bacherman Martin Legal Review V4",
+          "type": "external",
+          "file": "clients/mbm/audits/bacherman-martin-legal-review-v4.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "Comprehensive institutional-grade legal review of IP Agreement v4 counter-proposal, assessing enforceability, regulatory compliance, and commercial terms with overall composite score of 0.84/1.0.",
+          "decisions": [
+            "Counter-proposal corrects genuine v3 vulnerabilities (moral rights enforceability, undefined resources trigger, absent BAA gate) while introducing bilateral protections that strengthen the agreement",
+            "BAA gate should prevent main agreement execution without simultaneous BAA signing or explicit representation that Project 1 involves no PHI",
+            "Moral rights approach using non-exercise covenant is best-available mitigation under Puerto Rico Act 55-2012 but remains untested in PR courts",
+            "ROFR scope reduction is more enforceable under PR law, which disfavors overly broad restraints on trade",
+            "Exhibit E mutual activation creates transfer pricing deadlock risk and requires mandatory activation trigger for tax authority inquiries"
+          ],
+          "discoveries": [
+            "Section 3.6 language 'shall serve as a guide' is precatory and vulnerable to argument that layered model has no operative force",
+            "Exhibit A expanded from 2 pre-existing IP items (v3) to 8 items (v4), creating substantially broader Pre-Existing IP footprint and potentially broader Company IP coverage via MERIDIAN Daemon Mesh perpetual license",
+            "The revised agreement's narrowed moral rights approach is more durable and likely enforceable than the original blanket waiver despite being more restrictive",
+            "Missing standard provisions include force majeure, SOW template, acceptance testing procedure, warranty period, change order process, and adequate insurance verification mechanisms",
+            "Act 60 tax advantages benefit Contractor's after-tax income but do not reduce arm's-length transfer pricing rates under IRC Section 482"
+          ],
+          "action_items": [
+            {
+              "who": "MBM's counsel",
+              "what": "REC-1: Add mandatory Exhibit E transfer pricing activation trigger if either party receives IRS/Hacienda audit notice relating to transfer pricing or Act 60 compliance"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-2: Require simultaneous BAA execution with main agreement OR add explicit representation that Project 1 involves no PHI access/processing"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-3: Strengthen Section 3.6 layered architecture language from 'shall serve as a guide' to 'shall govern'"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-4: Define 'estimated commercial value' methodology in Section 2.7(c) using fair market value determination criteria"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-5: Replace subjective competitor test in Section 10.7(b) with objective criteria or mutual-agreement-plus-arbitration fallback"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-6: Add force majeure clause covering natural disasters, pandemics, government actions, utility failures with 90-day termination right"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-7: Add acceptance testing procedure with 10-business-day review period and deemed-acceptance mechanism, or include SOW template as Exhibit D"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-8: Add floor to Section 8.3(ii) liability cap at minimum $250,000 for new engagements with limited fee history"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-9: Require annual certificate delivery, name MBM as additional insured, specify aggregate limits, and require 30-day cancellation notice"
+            },
+            {
+              "who": "MBM's counsel",
+              "what": "REC-10: Add Contractor Act 60 decree representation and requirement to notify of decree status changes"
+            }
+          ],
+          "detail_page": "calls/2026-03-28-bacherman-martin-legal-review-v4.html",
+          "preview": "Comprehensive institutional-grade legal review of IP Agreement v4 counter-proposal, assessing enforceability, regulatory compliance, and commercial terms with overall composite score of 0.84/1.0."
         },
         {
           "date": "2026-03-26",
@@ -5588,15 +5676,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 60,
+        "total_calls": 61,
         "internal_calls": 24,
-        "external_calls": 15,
+        "external_calls": 16,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-03-28T19:56:00.539935+00:00",
+      "updated_at": "2026-03-28T20:05:14.786918+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -6884,7 +6972,7 @@
       "total_docs": 212
     },
     "deals": {
-      "updated_at": "2026-03-28T19:56:00.540023+00:00",
+      "updated_at": "2026-03-28T20:05:14.787025+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7118,7 +7206,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-28T19:56:00.438014+00:00",
+      "updated_at": "2026-03-28T20:05:14.682421+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -9209,6 +9297,117 @@
             }
           },
           "_file": "clients/mbm/audits/csuite-audit-9-phase-coherence-audit-ip-agreement-v3-revisions.json",
+          "_client": "mbm"
+        },
+        {
+          "audit_version": "1.0",
+          "audited_at": "2026-03-28T20:04:52.523353+00:00",
+          "transcript_file": "clients/mbm/audits/bacherman-martin-legal-review-v4.md",
+          "transcript_length": 46369,
+          "classification": {
+            "call_type": "customer_success",
+            "our_participants": [
+              "Alexander Mazzei"
+            ],
+            "their_participants": [
+              "Millennial Behavioral Management, LLC",
+              "Einhardt Bacherman (Bacherman Martin)"
+            ],
+            "call_topic": "Institutional legal review of IP agreement counter-proposal (v4 revisions) between MBM and contractor"
+          },
+          "personas_run": [
+            "CSO",
+            "CPO",
+            "CFO",
+            "CTO"
+          ],
+          "persona_insights": {
+            "CSO": {
+              "qualification": {
+                "budget": "NOT DISCUSSED \u2014 legal engagement only",
+                "authority": "Attorney counsel engaged (Bacherman Martin); decision-maker authority unclear",
+                "need": "IP ownership & assignment protection for independent contractor relationship (behavioral management services)",
+                "timeline": "Document date: 2026-03-28; no closure or signature timeline stated"
+              },
+              "objections": [],
+              "competitors": [],
+              "stage": "LEGAL REVIEW \u2014 Counter-proposal (v4) under institutional counsel review. Not yet in sales qualification phase.",
+              "next_steps": [
+                "Consolidate redline/annotations into clean restated agreement (per Section 2.1 recommendation)",
+                "Address structural gaps: Exhibit D SOW template, Section 3.6 'shall serve as guide' language clarification",
+                "Resolve material position shifts flagged in Executive Summary (Exhibit E bilateral activation, Section 10.7 termination right, Section 4.3 ROFR scope)",
+                "Execute BAA execution gate (Section 5.5) if HIPAA-regulated services commence",
+                "No next step dates provided in document"
+              ]
+            },
+            "CPO": {
+              "feature_requests": [],
+              "usage_patterns": [],
+              "surprise_use_cases": [],
+              "competitive_features": [],
+              "success_metrics": []
+            },
+            "CFO": {
+              "dollar_amounts": [],
+              "payment_terms": "Not specified in provided excerpt",
+              "scope_creep_signals": [
+                "Hybrid Component definitions (Section 1.9) create ambiguity in IP ownership boundaries \u2014 could expand what MBM claims as 'Company IP'",
+                "Exhibit F (layered classification framework) is marked as a 'guide' rather than binding rule \u2014 potential for re-interpretation of component ownership post-execution",
+                "HIPAA/BAA compliance requirement (Section 5.5) added as gate \u2014 implies healthcare data handling scope not clearly defined elsewhere"
+              ],
+              "cost_implications": [
+                "HIPAA BAA execution requirement (Section 5.5) creates compliance and audit burden \u2014 legal + technical cost to implement healthcare data safeguards",
+                "Audit rights (Section 3.7) obligate Contractor to provide access and records \u2014 operational cost to maintain audit trail and respond to reviews",
+                "Exhibit B (HIPAA BAA draft, 705 lines) \u2014 separate legal review and negotiation required; BAA non-execution blocks services delivery"
+              ],
+              "revenue_timeline": "Not provided \u2014 this is an IP ownership/contractor agreement, not a revenue-sharing or delivery contract. Compensation structure not included in excerpt."
+            },
+            "CTO": {
+              "tech_requirements": [
+                "HIPAA-compliant data handling and storage system for healthcare information",
+                "IP classification and tracking system with support for Company IP, Contractor Pre-Existing IP, and Hybrid Components",
+                "Audit logging and trail system for IP usage tracking (Section 3.7 audit requirement)",
+                "BAA (Business Associate Agreement) execution gating system before services delivery",
+                "Data classification and segregation system (distinguish Company IP from Contractor IP from General Knowledge)",
+                "Moral rights management system for Puerto Rico Act 55-2012 compliance",
+                "Puerto Rico Act 60-2019 export services compliance tracking",
+                "Statement of Work (SOW) template system and version control",
+                "IP ownership assignment and transfer tracking system"
+              ],
+              "integrations": [
+                "HIPAA BAA integration (Exhibit B - Business Associate Agreement required)",
+                "42 CFR Part 2 compliance system (substance abuse treatment data)",
+                "Healthcare data systems (implied by HIPAA/BAA requirements)",
+                "Puerto Rico regulatory reporting systems (Act 55-2012, Act 60-2019)",
+                "Audit trail integration with IP management system"
+              ],
+              "security_compliance": [
+                "HIPAA 42 CFR Part 2 (substance abuse treatment information protection)",
+                "Puerto Rico Act 55-2012 (moral rights - cannot be waived completely)",
+                "Puerto Rico Act 60-2019 (export services decrees for both MBM and Contractor)",
+                "BAA execution gate before handling protected health information (Section 5.5)",
+                "Contractor IP disclosure and Exhibit A maintenance requirements",
+                "Data classification controls for Hybrid Components",
+                "Audit rights for MBM (Section 3.7) with defined audit scope and frequency"
+              ],
+              "build_vs_buy": [
+                "BUILD: Custom IP classification and hybrid component tracking system (no off-the-shelf solution fits Hybrid Component definition with MBM Resources + Contractor work layering)",
+                "BUILD: Puerto Rico Act 60 compliance tracking (jurisdiction-specific, rare external tool support)",
+                "BUILD/INTEGRATE: HIPAA BAA gating system (many platforms offer this but requires custom integration with IP agreement workflow)",
+                "BUY/INTEGRATE: Standard audit logging infrastructure (CloudTrail, Datadog, or similar for compliance audit trail)"
+              ],
+              "tech_risks": [
+                "RISK: Missing Exhibit D (SOW template) - agreement references exhibits A-F but D is undefined. Creates ambiguity about service scope definition mechanism.",
+                "RISK: Previously undefined 'resources' trigger in Company IP (1.1(c)) - NOW FIXED but indicates prior lack of rigor. Hybrid Component definition depends on precise MBM Resources enumeration.",
+                "RISK: Section 3.6 ambiguity - 'serve as a guide' language conflicts with operative requirement. Classification system must be binding, not advisory, for audit compliance.",
+                "RISK: Moral rights provision complexity - Puerto Rico Act 55-2012 does not allow complete waiver. System must support partial moral rights retention (paternity/integrity rights) even if ownership is transferred.",
+                "RISK: BAA was missing execution gate in v3 - now corrected in Section 5.5. Any healthcare data handling requires BAA before processing. Technical systems must enforce this gate before data access.",
+                "RISK: Hybrid Component classification requires runtime determination - 'Contractor work using MBM Resources' must be tracked at execution time, not at creation time. Audit system must capture resource usage metadata.",
+                "RISK: Cross-jurisdictional enforcement - Puerto Rico (mixed common/civil law) + New Jersey operations nexus. Systems must support multi-jurisdiction legal holds and audit requirements."
+              ]
+            }
+          },
+          "_file": "clients/mbm/audits/csuite-audit-bacherman-martin-legal-review-v4.json",
           "_client": "mbm"
         },
         {
@@ -18380,16 +18579,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 44
+      "total": 45
     },
     "call_intelligence": {
-      "updated_at": "2026-03-28T19:56:00.544578+00:00",
+      "updated_at": "2026-03-28T20:05:14.792044+00:00",
       "signal_summary": {
         "total_objections": 45,
         "total_buying_signals": 28,
-        "total_competitors": 83,
-        "pricing_discussions": 29,
-        "calls_with_signals": 36
+        "total_competitors": 94,
+        "pricing_discussions": 30,
+        "calls_with_signals": 37
       },
       "decisions": [
         {
@@ -18481,6 +18680,31 @@
           "date": "2026-03-28",
           "call": "Ip Agreement V3 Proposed Revisions V4",
           "decision": "Added bilateral annual audit rights to verify segregation compliance and Exhibit A completeness"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "decision": "Counter-proposal corrects genuine v3 vulnerabilities (moral rights enforceability, undefined resources trigger, absent BAA gate) while introducing bilateral protections that strengthen the agreement"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "decision": "BAA gate should prevent main agreement execution without simultaneous BAA signing or explicit representation that Project 1 involves no PHI"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "decision": "Moral rights approach using non-exercise covenant is best-available mitigation under Puerto Rico Act 55-2012 but remains untested in PR courts"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "decision": "ROFR scope reduction is more enforceable under PR law, which disfavors overly broad restraints on trade"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "decision": "Exhibit E mutual activation creates transfer pricing deadlock risk and requires mandatory activation trigger for tax authority inquiries"
         },
         {
           "date": "2026-03-25",
@@ -19949,6 +20173,31 @@
           "discovery": "January 2025 NPRM alignment: encryption, MFA, and penetration testing treated as mandatory (not addressable) in BAA, anticipating OCR enforcement shift"
         },
         {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "discovery": "Section 3.6 language 'shall serve as a guide' is precatory and vulnerable to argument that layered model has no operative force"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "discovery": "Exhibit A expanded from 2 pre-existing IP items (v3) to 8 items (v4), creating substantially broader Pre-Existing IP footprint and potentially broader Company IP coverage via MERIDIAN Daemon Mesh perpetual license"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "discovery": "The revised agreement's narrowed moral rights approach is more durable and likely enforceable than the original blanket waiver despite being more restrictive"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "discovery": "Missing standard provisions include force majeure, SOW template, acceptance testing procedure, warranty period, change order process, and adequate insurance verification mechanisms"
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "discovery": "Act 60 tax advantages benefit Contractor's after-tax income but do not reduce arm's-length transfer pricing rates under IRC Section 482"
+        },
+        {
           "date": "2026-03-26",
           "call": "Report",
           "discovery": "2 subjects achieved RICH profile classification, 2 MODERATE, 5 THIN"
@@ -20896,6 +21145,86 @@
           "action": {
             "who": "Contractor",
             "what": "Notify MBM of any security incident affecting Contractor's systems that may impact Deliverables, Company IP, or MBM data within 72 hours of discovery per Section 7.7"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-1: Add mandatory Exhibit E transfer pricing activation trigger if either party receives IRS/Hacienda audit notice relating to transfer pricing or Act 60 compliance"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-2: Require simultaneous BAA execution with main agreement OR add explicit representation that Project 1 involves no PHI access/processing"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-3: Strengthen Section 3.6 layered architecture language from 'shall serve as a guide' to 'shall govern'"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-4: Define 'estimated commercial value' methodology in Section 2.7(c) using fair market value determination criteria"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-5: Replace subjective competitor test in Section 10.7(b) with objective criteria or mutual-agreement-plus-arbitration fallback"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-6: Add force majeure clause covering natural disasters, pandemics, government actions, utility failures with 90-day termination right"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-7: Add acceptance testing procedure with 10-business-day review period and deemed-acceptance mechanism, or include SOW template as Exhibit D"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-8: Add floor to Section 8.3(ii) liability cap at minimum $250,000 for new engagements with limited fee history"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-9: Require annual certificate delivery, name MBM as additional insured, specify aggregate limits, and require 30-day cancellation notice"
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "call": "Bacherman Martin Legal Review V4",
+          "action": {
+            "who": "MBM's counsel",
+            "what": "REC-10: Add Contractor Act 60 decree representation and requirement to notify of decree status changes"
           }
         },
         {
@@ -22714,6 +23043,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "mbm"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "mbm"
         },
@@ -22778,13 +23112,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 176,
+      "total_decisions": 181,
       "total_commitments": 122,
-      "total_discoveries": 183,
-      "total_action_items": 228
+      "total_discoveries": 188,
+      "total_action_items": 238
     },
     "attention": {
-      "updated_at": "2026-03-28T19:56:00.557168+00:00",
+      "updated_at": "2026-03-28T20:05:14.805822+00:00",
       "items": [
         {
           "type": "blocked",
@@ -22865,7 +23199,7 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-28T19:56:00.557192+00:00",
+      "updated_at": "2026-03-28T20:05:14.805846+00:00",
       "events": [
         {
           "type": "call",
@@ -22883,6 +23217,12 @@
           "type": "call",
           "date": "2026-03-28",
           "title": "Ip Agreement V3 Proposed Revisions V4",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-28",
+          "title": "Bacherman Martin Legal Review V4",
           "detail": "external \u2014 alex"
         },
         {
@@ -22950,12 +23290,6 @@
           "date": "2026-03-21",
           "title": "At Mike Bitler's house \u2014 Denver review",
           "detail": "external \u2014 alex, Mike Bitler, denver"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-18",
-          "title": "Master War Room",
-          "detail": "notes \u2014 alex, Mike Bitler"
         }
       ],
       "total": 15
