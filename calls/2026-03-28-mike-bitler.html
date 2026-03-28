@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike Bitler — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Mike Bitler</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-03-28</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Completed 95% of agent box system and discussed automating Amazon review removal service for customers, with plans to document processes via video and launch API-based business model.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>API black-box model (similar to ChatGPT) — customers access agents via API calls, no access to underlying code or private keys</li><li>Basic receptionist agent included; advanced agents priced per API call</li><li>Use Meridian master node with federated mesh nodes for customer deployments with data quarantine</li><li>Continue $25/review incentive for Jean while improving automation to 50+ reviews/month</li><li>Create customer proposals with pricing and ROI breakdown</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Jean: Record detailed screen-capture videos of review removal process with explicit narration, breaking into sections (obtaining reviews, spreadsheet work, ChatGPT, case submission, tracking, invoicing, follow-ups) — ASAP</li><li>Contact Lamba to schedule meeting, preferably tomorrow, available 1 PM–4 PM</li><li>Extract documentation from shared folder and create customer proposal materials by next check-in</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Amazon enforces 6–7 case submission limit per seller account per day</li><li>Video transcription-based SOPs are more effective than written documentation</li><li>Human-AI co-processing in focused 3–4 hour blocks outperforms context-switching across meetings</li><li>Pricing must be high enough that customers respect and engage with the service, not so low it&#x27;s dismissed as optional</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Jean/Josie&#x27;, &#x27;what&#x27;: &#x27;Record screen videos with explicit narration explaining each step of review removal workflow; transcription will drive SOP creation&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex/Caller&#x27;, &#x27;what&#x27;: &#x27;Contact Lamba to schedule meeting (target: tomorrow afternoon after 1 PM)&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Caller&#x27;, &#x27;what&#x27;: &#x27;Create customer proposal with pricing, cost-benefit analysis, and timeline based on Brian proposal template&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Both&#x27;, &#x27;what&#x27;: &#x27;Validate Amazon API rate limits per account vs. per Helium 10 account to determine if parallel accounts needed&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>What&#x27;s up buddy, how you doing?</p>
+<p>(...)</p>
+<p>Uh, uh, doing alright. I got, uh, post your everything I can to gain.</p>
+<p>(...)</p>
+<p>Fuck your team up. The demo&#x27;s right now, you can get the taxes.</p>
+<p>(...)</p>
+<p>Alright. Well, I got this agent box about 95% done. There&#x27;s a few things that have to happen before we do everything. One is connecting it to all the APIs.</p>
+<p>(...)</p>
+<p>Like, um,</p>
+<p>(...)</p>
+<p>11 labs if you want to use 11 labs for the voice. And putting it on a server somewhere and doing everything. So, uh, I don&#x27;t know how you want to move forward with that. But I got most of everything pretty much dialed and buttoned up as much as I possibly could. I was running around 20 terminal windows for the last three days just pushing through this.</p>
+<p>(...)</p>
+<p>So there&#x27;s a front end and a back end now.(...) Um, I ran the, I think I sent it to you, the difference between Netzo and agent box.(...) I also did a massive data dump from the call that we had earlier and put a whole bunch of different things together. Including a dashboard that&#x27;s tracking all of the different potential people that we spoke to and identify where they are on their journey at discovery. If they&#x27;re ready for an email follow up or whatever else.</p>
+<p>(...)</p>
+<p>I&#x27;m building out these tools as I go to just kind of visually see things so you&#x27;re not looking at markdown files all the time. Um, to make it more, um, I like that</p>
+<p>because the markdown files are, they&#x27;re massive and they&#x27;re hard to, uh, you know, go through and read them and all that. But yeah, that&#x27;s, that&#x27;s awesome.</p>
+<p>(...) Yeah.</p>
+<p>So this way,</p>
+<p>everything&#x27;s coming together. Um, I got a few things that are still open. But most of my, my terminal windows are closed. I got that 56 or 59 gigs of data that, um, I don&#x27;t have a paid account, uh, for Google. So it caught me at 15 gigs.(...) So I don&#x27;t know if you want to, or if you have another Gmail account that&#x27;s able to just push that stuff in. It&#x27;s going to take a really long time because those things are slow. I don&#x27;t know if it&#x27;s different if you&#x27;re paying for it, but my experience trying to do Dropbox in the past, all those things take way too long to upload stuff like this.</p>
+<p>(...)</p>
+<p>What do you think is a better option?</p>
+<p>I don&#x27;t know. Cause I never tried to do it with a Gmail account that you, you&#x27;re like, you have space on. I don&#x27;t know if they rate limit you if you&#x27;re on a free account or whatever. I don&#x27;t know.</p>
+<p>I&#x27;ve got like 12 terabytes total. And I use,</p>
+<p>well, if you have a extra username and login for an account that you&#x27;re not using, I could just upload it with that email address and then, um, anything that I&#x27;m putting that&#x27;s relevant, we could just put it there and save it. Or I could just, when I see you just put it on a hard drive and transfer it, that would take 30 seconds, maybe about 10 minutes, but way faster than the amount of time. But if it&#x27;s doing it overnight, I don&#x27;t care. You know what I mean?</p>
+<p>(...)</p>
+<p>Yeah. I don&#x27;t mind. Yeah. I don&#x27;t mind putting it over here either. Um,</p>
+<p>(...)</p>
+<p>let me, uh, take a look here.</p>
+<p>(...)</p>
+<p>And then you sent me some stuff with a login and username for this other thing. How do you want me to use this? Do you want me to build this out as a separate product?</p>
+<p>(...)</p>
+<p>Yeah. So that&#x27;s for my review business.</p>
+<p>(...)</p>
+<p>Is there an existing, any?</p>
+<p>Uh, everything in that Google Drive.</p>
+<p>(...)</p>
+<p>I&#x27;m sorry. Go ahead.</p>
+<p>Do you have anything existing face forward for clients to see or is it just those documents in that drive? No.</p>
+<p>No. I don&#x27;t have anything. I don&#x27;t, I need, I&#x27;m going to need a website to expand. I don&#x27;t have anything currently because, um, Amazon now is going to require that. But I, I know I need a front facing website, so I don&#x27;t have anything right now. So there&#x27;s nothing to even replace yet.</p>
+<p>(...)</p>
+<p>Um,</p>
+<p>(...)</p>
+<p>I run that under, um, jam holdings, LLC, but we could probably get an EVA with some type of a review name. So we probably want to look at what we want to call it from a brand new standpoint.(...) So I would look for, um, names that we could use.</p>
+<p>(...)</p>
+<p>Uh,</p>
+<p>(...)</p>
+<p>you know, for Amazon reviewer mules, we have to look and see what options are available where we could get a dot com. Um,</p>
+<p>(...)</p>
+<p>but the folder I sent you includes all her setup files, everything that she did from an instruction standpoint. Um, and for the bonds, the GPT, um, you know, I would say what these lots to learn from, you know, from what gets removed or what doesn&#x27;t work. A lot of times they have to resubmit these things as much as, you know, 10 or 11 times to actually get it removed.(...) Um, but, you know, there&#x27;s, there&#x27;s all the cases are in here. Um, invoices. I mean, it&#x27;s the entire folder of everything she&#x27;s got.</p>
+<p>(...)</p>
+<p>And figure this out pretty quick.(...) I just</p>
+<p>tried to do the thing. I got the code verification from the app. So if you know what that is, I can.</p>
+<p>(...)</p>
+<p>For the, uh, for healing, can hold on a second. Right now. Um,</p>
+<p>(...)</p>
+<p>Oh, yeah. Hold on.</p>
+<p>(...)</p>
+<p>It&#x27;s gonna reset in a second.</p>
+<p>(...)</p>
+<p>One five nine eight nine three.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>All right. So this is the platform that you&#x27;re using to remove.</p>
+<p>(...)</p>
+<p>That&#x27;s a platform that we download.</p>
+<p>(...)</p>
+<p>Or the ASIN, they have the part number and Amazon. Right. It&#x27;s like the standard part number.(...) And every product has its own ASIN number. But each, uh, each ASIN right now, we, uh, we can download reviews specifically for that ASIN. And then she puts them in that spreadsheet.</p>
+<p>(...)</p>
+<p>And then the spreadsheet is tracking them all.</p>
+<p>(...)</p>
+<p>So like, if I went to like, uh,(...) JRS.</p>
+<p>(...)</p>
+<p>Um, looks like.</p>
+<p>(...)</p>
+<p>I don&#x27;t know if she&#x27;s done this lately, but it looks like she had them downloaded through September 15th. And the all review exports age 10. And then it looks like she has, um,(...) cases for, for filing and appeals. And it looks like maybe that&#x27;s where, uh, the previous ones might&#x27;ve come from,</p>
+<p>(...)</p>
+<p>but it could be she&#x27;s done. She may not even be looking at it for the new reviews yet.</p>
+<p>(...)</p>
+<p>But what I would like for this to do is I would like for it to go through and download all the new reviews on a, you know, maybe buy some of my monthly basis or something like that. I&#x27;d then analyze the reviews and see which ones are most likely to be in violation file those case reviews first, because we&#x27;re only allowed. I think we&#x27;re pushing it. If we do more than like six or seven, um, case removals in a day at some point, Amazon, like, no, fuck you. You can&#x27;t submit all these cases.(...) So you can&#x27;t just submit them all at once. You have to do them on a daily basis.</p>
+<p>(...)</p>
+<p>But then I think, um, so I think she&#x27;s doing like cases of file.</p>
+<p>(...)</p>
+<p>So she&#x27;s got like a case IDs out here and when she files it, it&#x27;ll tell you where it&#x27;s at in the case ID, how many times she&#x27;s filed the case.(...) Um, I think she&#x27;s doing a lot of things. Um, I think she&#x27;s doing a lot of things. Um, And they call the, uh, but you know, a lot of these are, are yet to be submitted.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>I think, I think, I think honestly, Brady probably goes through and analyzes this whole thing. It probably comes back. Um,</p>
+<p>(...)</p>
+<p>Very quickly with what we&#x27;re doing and what&#x27;s going on.</p>
+<p>(...)</p>
+<p>Um, how to enhance this thing to make it more automatic,(...) um, get a website, um, analyze for the, which ones are most likely to get removed right away. And we would obviously be working on, um, you know, we classify them like, you know, these are A&#x27;s. These are definitely, uh, should get removed. And then, you know, B&#x27;s and you know, works its way down the list on too many cases, but it&#x27;s always working on the highest probability of removal first.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>And then it tracks, and then it tracks when it gets removed, it tracks the cases.</p>
+<p>(...)</p>
+<p>Now, I think ideally, um, I think right now, um,</p>
+<p>(...)</p>
+<p>we, right now it&#x27;s set up that, uh, Jean who&#x27;s our virtual assistant has, uh, an Amazon account. She&#x27;s basically on each of our customers for, uh, the removals.(...) And so we would have to set it up that we could get access to our customers back end to be able to make cases and then track those cases. So submit and track cases would be a feature we would need so that we could tell, obviously we could submit the ones for removal and then we could track them when they were removed and then start to, uh, build the invoices and build a customer.</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>And she&#x27;s doing that, you know,(...) partially with, you know, with GPT and partially by hand right now. Now</p>
+<p>you&#x27;re saying she, this is your wife?</p>
+<p>(...)</p>
+<p>No, this is our virtual assistant Jean.</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>Josie oversees her monitors her, uh, and Josie set the system up.</p>
+<p>(...)</p>
+<p>But, you know, Jean does all the, uh, all the back end work.</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>And I&#x27;d like to get it to the point where, you know, we could, as much as this is we can automate and then bring on more customers and then it would be whatever interaction G would have to have, would be very simple, very minimal, but very effective.</p>
+<p>Okay.</p>
+<p>So I</p>
+<p>want you to think about this because this is what a lot of these other companies are going to have to do. And they probably haven&#x27;t documented it nearly as well as what I think you have, but getting your screen shares of their work, of stuff that they&#x27;re doing to kind of visually see and have them walk through all the different things. And I&#x27;m clicking this button. Why am I clicking this button? This is what&#x27;s happening. And you&#x27;re basically having them just do a video walkthrough. And then with that video walkthrough becomes the basis for the SOP, if that makes sense.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So I should have her basically, uh, record, do a screen, screen recording of what she&#x27;s doing and what her, her normal process is so we can, uh, basically put it into an SOP.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>And basically what you want to do is just say, look, um, what you need to have her explain every single thing, cause the best way to do is through the transcription. So if she&#x27;s walking a human being through it, like that&#x27;s watching it, it&#x27;s different than if she&#x27;s just trying to do it in a vacuum. But the idea is, is I, I&#x27;m going to go to this website. This is the name of the website. And she&#x27;s saying every single piece because the transcription is what we&#x27;re using to pretty much run everything through. So if, if she just says, go to this website and we don&#x27;t know what website she went to, we don&#x27;t have that data because it&#x27;s just picking it up off the audio.(...) We can provide screenshots to help it give it more context, but the more is in the transcription, the better.</p>
+<p>(...)</p>
+<p>And once we have that, um, the way I would frame it from the employee&#x27;s point of view is we want to see what you&#x27;re doing and find ways to do it more efficiently. But in order for us to find efficiencies, we need to understand the process. So that&#x27;s the pre-frame.</p>
+<p>We want to scale and see right now I give her an incentive. I give her $25 for every, uh, we re review removed. So she would stay in that.</p>
+<p>(...)</p>
+<p>Yeah, I would continue to pay her $25, but now instead of five or six reviews a month, maybe she can make 50 reviews a month.</p>
+<p>Yeah.</p>
+<p>So this is another observation.</p>
+<p>That I was making in my head. I don&#x27;t know what your rate limits are if it&#x27;s per account or if it&#x27;s per Amazon account, but if it&#x27;s per account of helium 10, then the move might be to get multiple helium 10 accounts and then run them in parallel. So you&#x27;re able to do more.</p>
+<p>Helium 10 is not the issue. Helium 10 is simply downloading reviews, uh, from each agent. And so that there&#x27;s no throttling there. There&#x27;s no loading. Okay. The, uh, the limitation is you have to have, uh, on every, but on every seller&#x27;s Amazon account, they have to have the user, uh, connected, you know, that allows that to happen on the backend.</p>
+<p>(...)</p>
+<p>For so many cases.</p>
+<p>(...)</p>
+<p>And so right now, every, every one of those accounts has gene on there as a user. And then she could submit the review. And then she can submit the review. Uh,</p>
+<p>(...)</p>
+<p>that need to be, uh, pulled down.</p>
+<p>(...) Okay.</p>
+<p>(...)</p>
+<p>But that, that would be the step that we would need to, uh, if we&#x27;re going to do those automatically, we would need, um, we would need another email or an email approved or some type of API or whatever that allowed it to, uh, view and submit cases. Okay.</p>
+<p>(...)</p>
+<p>Yeah. Yeah. Okay.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>Yeah. Okay. Okay. Let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s, let&#x27;s send her a note now.</p>
+<p>(...)</p>
+<p>Is she in the same timeline as us or different part of the world?</p>
+<p>(...) No, she&#x27;s 12 hours. She&#x27;s in the Philippines. Okay. Okay. No, I&#x27;m just. Okay. Okay. Okay. Okay. Okay. Okay. 12 hours, she&#x27;s in the Philippines.</p>
+<p>(...)</p>
+<p>But I don&#x27;t know what her working hours are. Sometimes, you know, she&#x27;s up this time of day and working, sometimes she&#x27;ll be becoming a little bit later. But I always just send it to her and I&#x27;ll usually get it back real quickly.(...) Okay.</p>
+<p>(...)</p>
+<p>Everything you do for ABC, I went to document the entire process by video.</p>
+<p>(...)</p>
+<p>And then I can have SOPs made from the videos.</p>
+<p>(...)</p>
+<p>I need you to be very explicit</p>
+<p>(...)</p>
+<p>and explain where you are going,</p>
+<p>(...)</p>
+<p>going, why,</p>
+<p>(...)</p>
+<p>and what that does.</p>
+<p>(...)</p>
+<p>And just let her know that the transcription is the main part of what&#x27;s being used. So whatever is being spoken is the most important part in addition to seeing the video as,</p>
+<p>(...)</p>
+<p>just so she knows that it&#x27;s the transcription that&#x27;s driving it.</p>
+<p>(...)</p>
+<p>Okay, let&#x27;s look at an opportunity</p>
+<p>(...)</p>
+<p>to scale, set up a new website,</p>
+<p>(...)</p>
+<p>and hopefully get you many more new levels much faster</p>
+<p>(...)</p>
+<p>and make more money.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>All right, so I&#x27;ll have her,</p>
+<p>(...)</p>
+<p>please work this in as quickly as you can.</p>
+<p>(...)</p>
+<p>And it doesn&#x27;t have to be the one video.</p>
+<p>(...)</p>
+<p>You can break down, break down different,</p>
+<p>(...)</p>
+<p>sections,</p>
+<p>(...)</p>
+<p>obtaining reviews,</p>
+<p>(...)</p>
+<p>working in spreadsheet,</p>
+<p>(...)</p>
+<p>working in chat GPT, submitting cases, tracking Amazon,</p>
+<p>(...)</p>
+<p>updating spreadsheets,</p>
+<p>(...)</p>
+<p>invoicing,</p>
+<p>(...)</p>
+<p>and follow-ups. Okay, so I&#x27;m going to go ahead and do that.</p>
+<p>(...)</p>
+<p>(Keyboard Clicking)</p>
+<p>(...)</p>
+<p>I am looking to upgrade the systems</p>
+<p>(...)</p>
+<p>so we can begin to scale.</p>
+<p>(...)</p>
+<p>All right.</p>
+<p>(...)</p>
+<p>Okay, cool.</p>
+<p>(...)</p>
+<p>That would be great.</p>
+<p>(...)</p>
+<p>So I&#x27;m going to reach out to Lamba, and see what is a good time for him to come over and sit down with us.</p>
+<p>(...)</p>
+<p>I don&#x27;t want to do it today, but I&#x27;m wondering maybe tomorrow, does that work for you?</p>
+<p>(...)</p>
+<p>What time? Well, you have to find out what time.</p>
+<p>(...)</p>
+<p>I don&#x27;t have a time in mind right now.</p>
+<p>(...)</p>
+<p>Is there a time you can&#x27;t do it?</p>
+<p>(...)</p>
+<p>I&#x27;m waiting for a meeting to confirm they wanted to do it, possibly 9.30 to 10.30. I got a hard stop at 10.30. I have another meeting at 11 to probably 12.30, and then one o&#x27;clock to four o&#x27;clock, I&#x27;m free.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>I should probably be on for like a half an hour,</p>
+<p>(...)</p>
+<p>but then you&#x27;re only free until four?</p>
+<p>(...) No, one o&#x27;clock on to four.</p>
+<p>(...)</p>
+<p>Until four, and then you&#x27;re tied up again to four?</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>All right, so I will send him a message and see if he&#x27;s performing.</p>
+<p>(...)</p>
+<p>All right, and then another thing that I&#x27;m in the process of doing is, I understand that you&#x27;re chomping at the bit and you want to start bringing these customers in.</p>
+<p>(...)</p>
+<p>What materials do you need to feel comfortable to either A, share with the potential person we&#x27;re working with?</p>
+<p>(...)</p>
+<p>How do we equip you with what you need to be able to do your closing?</p>
+<p>(...)</p>
+<p>Well, I think part of what we did with Brian,</p>
+<p>(...)</p>
+<p>on that laying out that proposal,(...) I think that would be a part of what we need. And then I think it&#x27;s just identifying, okay,</p>
+<p>(...)</p>
+<p>what those costs are going to be, how we break it down.</p>
+<p>All right, so--</p>
+<p>Like the other proposal, is that proposals--</p>
+<p>(...)</p>
+<p>So one other thing I wanna-- Yeah, because the textbook as well, if you notebook out.(...) Your audio&#x27;s kind of cutting in and out. I don&#x27;t know if you&#x27;re in a bad service area.</p>
+<p>(...)</p>
+<p>Oh, shoot, my Wi-Fi&#x27;s not on. Hold on, let me change that.</p>
+<p>(...)</p>
+<p>Okay,</p>
+<p>(...)</p>
+<p>all right, hopefully I should be better.</p>
+<p>(...)</p>
+<p>Yeah, I think the big thing is if I understand, if I&#x27;ve got, like we can put it into notebook LM and make a slide presentation,(...) and we can have a layout or timeline what needs to be done, pricing and all that, I think that would be probably the easiest.</p>
+<p>(...)</p>
+<p>Okay,</p>
+<p>(...)</p>
+<p>the other thing I wanna be transparent with is what I built for our internal use that we&#x27;re using as Meridian is like the master node, but it&#x27;s more of a sandbox where we&#x27;re constantly building and changing and doing everything. The second one that we&#x27;re building is called a federated node or federated mesh node. And what that is is going to be a standalone,</p>
+<p>(...)</p>
+<p>think of it like this. You got two circles or two containers(...) and each container has their own inner circle, but you can&#x27;t be sharing your data with your private keys and your API keys and your passwords and everything else. So there&#x27;s a bridge that clusters connect to where they&#x27;re able to have information shared.</p>
+<p>(...)</p>
+<p>There&#x27;s a quarantine section that is quarantining information before it goes into the inner circle to make sure there&#x27;s no prompt injections.</p>
+<p>(...)</p>
+<p>And then those federated meshes are pretty much the master node for their company. So we don&#x27;t necessarily need access to their private keys and all this other stuff, unless they&#x27;re paying us to be developers in addition to selling them to the platform.</p>
+<p>(...)</p>
+<p>But what we&#x27;re looking at doing is based on the information that you asked yesterday about protecting the software and the build and not being able to backwards engineer it and everything else, we might wanna just take on the...</p>
+<p>(...)</p>
+<p>We&#x27;re basically doing what ChachiTP does and selling a black box and they don&#x27;t understand how it works, but they&#x27;re just buying access to it. And that might be just through APIs.(...) So if they wanna use our agents that we&#x27;ve super highly developed, it&#x27;s an API call. We&#x27;ll install basic receptionist type thing. So they have that and then maybe one or two others that are a little bit more developed than what you would get out of the ChachiTP. But anything that&#x27;s beyond that would be a hard cost per API call.</p>
+<p>(...)</p>
+<p>I mean, that sounds reasonable to me. Let&#x27;s just make sure it works, that we&#x27;ve got a model, we all make some money and the customer gets value.(...) And if they got more usage, then obviously we make sure they&#x27;re paying for the additional usage.</p>
+<p>(...) Yeah.</p>
+<p>(...)</p>
+<p>And this way they&#x27;re not getting pushed into a position where the price is so high that they can&#x27;t feel comfortable even going through it. I do think it needs to be high enough that they respect what it is that it is. So they&#x27;re actually engaging and participating in it. And if it&#x27;s not cost properly, then it&#x27;s kind of like they don&#x27;t give a shit enough about it.</p>
+<p>(...)</p>
+<p>So it has to be a little bit outside of their comfort zone as far as like, oh, okay, it&#x27;s 20 bucks a month. Who gives a shit if I don&#x27;t use it like that membership? It needs to be a little bit more than that. I know you&#x27;re thinking bigger numbers, but it needs to be a position that we&#x27;re giving them something that they value and they wanna get the value out of it and then get their employees using it so they can get the value of it. And then as the employees are using it, we&#x27;re extracting the knowledge from them to make the virtual versions of them better(...) so they can do other things and get retrained on things that are actually gonna make the needle move as a human.</p>
+<p>(...)</p>
+<p>Yeah, the big thing is explaining the value added and the cost benefit analysis.(...) And yeah, if you spend $20 a month, is it really gonna save you any money in your business? Or are you just spending 20 bucks? If we&#x27;re doing $5,000 a month,</p>
+<p>(...)</p>
+<p>but we&#x27;re saving you $25,000 a month, okay, now here&#x27;s the cost savings. We have to explain it, but then we have to be able to perform and actually, A, it&#x27;s gonna do.(...) They should be able to identify that pretty quickly.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>(Beeping)</p>
+<p>(...)</p>
+<p>Okay, so with the folder that I sent you on the review removal, do you think you have enough there or will we need all the videos for the SOPs?</p>
+<p>No, I&#x27;m gonna do everything I can to extract what I can from what you shared, but I&#x27;m just saying, I want you to go through this process to see what it&#x27;s like trying to talk to another human being to get them to give you what we need to do this so you can understand when you&#x27;re explaining it to another person, A, this is something that we did for our own internal use, and this is the results that we were able to get from it, and basically have that as experience to talk from not something that I&#x27;m just showing you when you&#x27;re like wowing, pizowing. Until you go through these experiences, you don&#x27;t understand the pain points that a CEO&#x27;s gonna have trying to explain this to a...</p>
+<p>(...)</p>
+<p>If you&#x27;re paying a virtual assistant and they&#x27;re pretty consistent with their output, then they do it. I work with companies and they push everything back every week, every week. I&#x27;ll have it ready next week, next week, and I never get anything from them. I&#x27;m like, dude, how do you have all these meetings all day long and nobody gets anything done? How do you do anything?</p>
+<p>(...)</p>
+<p>I know.</p>
+<p>(...)</p>
+<p>I feel that way sometimes.</p>
+<p>(...)</p>
+<p>Yeah, so one of the other observations I was making is if these employees are paired with another human being and they&#x27;re co-processing and working with the AI, or it&#x27;s a human and an AI,</p>
+<p>(...)</p>
+<p>instead of having meetings with different people all the time, you&#x27;re having just a long three, four hour window where you&#x27;re just parallel processing and just knocking shit out, and the bot is tracking all the progress and giving all the reports to the higher ups so they can see what&#x27;s happening.</p>
+<p>(...)</p>
+<p>So you have your reporting done naturally in default where you&#x27;re not even trying to sit there and juggle all these projects at the same time. The AI is focusing and harnessing your attention and energy until things are getting complete and then you move on to what the next thing is. Instead of juggling 30 balls and none of them get delivered.</p>
+<p>(...)</p>
+<p>And the AI makes the report and reports what was done from the employee without the employee taking half a day to write a weekly report telling him what he did for the week.</p>
+<p>Yeah, it&#x27;s just as things are getting done, it&#x27;s getting added to their log.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>Nope, that makes sense to me.</p>
+<p>(...)</p>
+<p>So these are the type of things that I&#x27;m trying to plan out a little bit more and make it more comprehensive and more automated, but the idea is we&#x27;re not selling them just a terminal where they&#x27;re talking to something. It&#x27;s something that&#x27;s gonna actually help them run their business and see things that they currently don&#x27;t have anything available for them to see.</p>
+<p>(...)</p>
+<p>Nope, I gave you that.</p>
+<p>(...)</p>
+<p>(Phone Ringing)</p>
+<p>All right, I gotta jump. I got another call in five minutes.</p>
+<p>(...)</p>
+<p>Okay, sounds good, thanks Alex.</p>
+<p>All right buddy, have a great day.(...) Okay, bye. All right, bye.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-28 01:19</div>
+</body></html>
