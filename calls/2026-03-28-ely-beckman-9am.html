@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ely Beckman 9Am — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Ely Beckman 9Am</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-03-28</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>API-first architecture approved for Meridian to enable third-party integrations while preserving IP and security; identified Neo4j/MIG server capacity crisis causing system slowdowns; discussed federated mesh deployment, WhatsApp integration, and Amazon review removal as autonomous revenue product.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Adopt API-first architecture for Meridian to enable integration with VAPI, Netzio, and other platforms while preserving customer isolation</li><li>Test federated mesh components in existing sandbox before deploying to separate VPS infrastructure</li><li>Add WhatsApp integration as primary channel for capital markets customers (following Telegram for crypto/DeFi)</li><li>Create new cursor agent daemon (name TBD: Bob, Tim, Jojo, or Titan)</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Alan Camron meeting at 3 PM today (Ely/Alexander)</li><li>Bitler to send meeting link for follow-up call</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Neo4j/MIG regularly hits 95% swap usage, causing system-wide slowdowns except on Sandman daemon</li><li>Michael Bitler operates Amazon review removal business with potential for fully autonomous 24/7 operation</li><li>Cursor account exhausted fast-pool requests; Composer 2.0 also hitting rate limits</li><li>Wife&#x27;s Claude-based sports betting persona ranked #2 among 40+ teachers in March Madness pool</li><li>LLM performance scales geometrically with focused personas plus targeted RAG context (triangle/pyramid geometry analogy)</li><li>Finance/capital markets groups exclusively use WhatsApp, not Telegram, for group communications</li><li>ForgeWorker daemon was never connected to NATS mesh (infrastructure issue masked root cause of timeouts)</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Infrastructure lead&#x27;, &#x27;what&#x27;: &#x27;Diagnose Neo4j/MIG swap crisis—determine if hardware capacity, configuration settings, or both are limiting&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Infrastructure lead&#x27;, &#x27;what&#x27;: &#x27;Implement pre-workday system warm-up that runs diagnostics, clears queues, and updates heap before users start&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Infrastructure lead&#x27;, &#x27;what&#x27;: &#x27;Connect ForgeWorker daemon to Intel Mac or MSI and verify NATS connectivity&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Build WhatsApp integration for daemon access and create GitHub issues for next week deployment&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Test whether Cursor interactive mode can be accessed programmatically via API/browser instead of CLI-only&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Hard-code corroboration enforcement in federated mesh instance (currently only suggestions)&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alexander&#x27;, &#x27;what&#x27;: &#x27;Generate HTML overview of Amazon review removal tool and document as standalone product&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alexander&#x27;, &#x27;what&#x27;: &#x27;Evaluate Mac mini purchase ($600 Costco or $1,356 Best Buy) as federated instance compute node&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>Good morning.</p>
+<p>(...) What up, dude?</p>
+<p>You driving?</p>
+<p>(...)</p>
+<p>About to be.</p>
+<p>(...) Okay. Um, what&#x27;s your thoughts about things after this new discovery of the API stuff?</p>
+<p>(...)</p>
+<p>I think it&#x27;s just an exological step.</p>
+<p>(...)</p>
+<p>I mean, I asked, I had all those questions last night. I think last night was a good volley session.</p>
+<p>(...)</p>
+<p>Um,</p>
+<p>(...)</p>
+<p>yeah, I think it&#x27;s just the way to go. It saves us. It answers Michael Bitler&#x27;s question.</p>
+<p>(...)</p>
+<p>It&#x27;s just a smarter way to preserve our IP, protect ourselves, maybe add the extra layer of whatever we have to do and build, but the API is already built in double layer built, so I think we&#x27;re in pretty good standing.</p>
+<p>(...)</p>
+<p>I don&#x27;t think it&#x27;s a major change. I think it&#x27;s just a smart, like next evolution in the engineer and the architecture design.</p>
+<p>So any concerns or comments that you want to make before I start chugging away at it?</p>
+<p>Concerns are still like we&#x27;re maxing out and not well using Neo4j. Like it keeps happening where it&#x27;s either like full or primes full. Like we&#x27;re not doing a good job managing our hardware. It keeps ending up like 95% all the swaps used. Everyone&#x27;s moving slow. And then if prime&#x27;s moving slow and MiG&#x27;s not working right, then none of the daemons are working right. Everything&#x27;s slow.</p>
+<p>(...)</p>
+<p>Today, almost no one&#x27;s working well, except for Sandman. Sandman&#x27;s working amazing. Everyone else is like broken or like timing out or like whatever.</p>
+<p>(...)</p>
+<p>Getting the new OAuth on Delphi took hours and hours and hours. I&#x27;m like, dude, isn&#x27;t this supposed to be like a one shot, one kill thing?</p>
+<p>(...)</p>
+<p>So I had to go, also I tried to use ultra think mode. And when I type in forward slash ultra thing, it goes into that rainbow mode. But when I hit enter, it says command not recognized.</p>
+<p>Ultra think is not a forward slash. It&#x27;s just a word. And when you type the word, it reads it as I&#x27;m doing this now.</p>
+<p>(...)</p>
+<p>Oh, okay. Okay. So that was my problem. I didn&#x27;t need the forward slash.</p>
+<p>No.</p>
+<p>(...)</p>
+<p>Okey dokey. Um, but yeah, generally speaking, yeah, we still have more hardening to do. I think you&#x27;re the things that got pointed out from the comparison to the Nvidia thing, I think it was solid because that was a ton of stuff that wasn&#x27;t really even on our radar. And we felt like we had a good solid product. But then compared to that, it was like, look, if you don&#x27;t have these six things, like you don&#x27;t really have a product ready to ship.</p>
+<p>(...)</p>
+<p>So I thought that was good. I thought the API evolutions are good. Uh, I think we still don&#x27;t have a good handle on Neo4j usage and server maintenance.</p>
+<p>(...)</p>
+<p>This is a problem. Our servers are too small.</p>
+<p>(...)</p>
+<p>I don&#x27;t think it&#x27;s just that.(...) I think that&#x27;s part of it, but it&#x27;s also like settings and headroom. And yeah, it&#x27;s, it&#x27;s like,</p>
+<p>(...)</p>
+<p>I think part of it is our own settings. It&#x27;s like if an engine only has six cylinders, you can&#x27;t set a thing for eight cylinders.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>It could be headroom that it does need more space. It could be that we want to get other things off prime. If prime&#x27;s going to be where Neo4j is, maybe we have to pull Sensei onto Delphi&#x27;s server.</p>
+<p>(...)</p>
+<p>Um,</p>
+<p>(...)</p>
+<p>yeah, I don&#x27;t know. It is something we have to examine further and do the research on and pull them in. And, uh, the cursor bench is the cursor bench is working super smooth. I have like one or two terminals just building that and shipping that ongoing. Ongoing.</p>
+<p>(...)</p>
+<p>How do you feel about the comment about using cursor inside telegram? And I&#x27;m also thinking, does it make sense to have anything that has a CLI have its own Damon inside of telegram as a separate entity?</p>
+<p>For example, like I could have a codex Damon and have a whatever a NAT statement or.</p>
+<p>(...)</p>
+<p>Well, I don&#x27;t know. I&#x27;m just thinking out loud.(...) Honestly, I think that</p>
+<p>could serve a purpose.</p>
+<p>I think the real move is the cursor agents are the conversation inside telegram. And we do the same thing with the trains. If we need to use any of these other CLIs, they&#x27;re activated through a Python script mechanism or something similar that&#x27;s executing a specific workflow that uses the tools required to do the job the way that we already designed it to do it.</p>
+<p>(...)</p>
+<p>It&#x27;s my fault.</p>
+<p>Okay. That makes sense.</p>
+<p>(...)</p>
+<p>Ultimately, they just need to be able to call on it.(...) And if Chris are smart enough to do the person to person interaction and do the dispatches, and then it&#x27;s using the heavy machinery like cat, like a cat operator using a big machine when you need to do a big hole.</p>
+<p>(...)</p>
+<p>So that&#x27;s like calling it Opus for certain solutions or superthink or like the high, whatever high effort.</p>
+<p>(...) Because in my mind, if this is possible, we could potentially use the cursor pro subscription at $20 a month and power all of the telegram bots of everybody that&#x27;s using our service.</p>
+<p>So instead of paying all this money for all this stuff,</p>
+<p>(...)</p>
+<p>they&#x27;re just getting cursors.(...) They just upgraded it to composer two from 1.5. So potentially it&#x27;s better and benchmarks better.</p>
+<p>(...)</p>
+<p>So that could potentially be our main source of power.</p>
+<p>(...)</p>
+<p>And then anything</p>
+<p>that could also be the standard. And then if they want to upgrade, then they have a brain upgrade option.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>But we control the cloud subscriptions.</p>
+<p>(...)</p>
+<p>Yeah, we just call them like, whatever we want to call them. But then that translates to the LLM that we have plugged in.</p>
+<p>(...)</p>
+<p>Like we just call it diamond or platinum or whatever. Cosmic.</p>
+<p>(...)</p>
+<p>So where are we at with the federated mesh instance? Do you have to do more on that plan to have it ready to deploy?</p>
+<p>(...) My computer crashed last night, so I lost all my 25 windows and just three of them back to just finish the little stupid things. I got that score thing working with a mini app to show you all the information of your edges and all that other shit. If there&#x27;s other things that you want to see inside of the mini app, let me know. I&#x27;ll fix that as well.</p>
+<p>(...)</p>
+<p>But that looks pretty good now.</p>
+<p>(...)</p>
+<p>Is it linked to that mini app in the.</p>
+<p>(...)</p>
+<p>There should be boards.</p>
+<p>No, I don&#x27;t think so. Not yet. I think it&#x27;s just in the group chat. You go here and put scoreboard.</p>
+<p>(...)</p>
+<p>Scorecard.(...) And of course, it&#x27;s not working.</p>
+<p>(...)</p>
+<p>So annoying.</p>
+<p>(...)</p>
+<p>I guess send you the link though.</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>We talked to another super huge company yesterday. Yesterday was like an on fire day.</p>
+<p>(...)</p>
+<p>They&#x27;re really interested in the Helium project as a whole. They&#x27;re an energy company. They set up these massive power plants, hydrogen and other sources.</p>
+<p>(...)</p>
+<p>So they&#x27;re big enough and interested that they could take the entire. They could fund the entire whatever 500 million.</p>
+<p>(...)</p>
+<p>And they may, they may just do that.</p>
+<p>(...)</p>
+<p>Thanks dude.</p>
+<p>(...) Yeah.</p>
+<p>(...)</p>
+<p>Good progress.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>I did more make stuff this morning.</p>
+<p>(...)</p>
+<p>Who created the word make is that a term or did you name it that</p>
+<p>I thought you&#x27;d named it that.</p>
+<p>(...)</p>
+<p>I didn&#x27;t named itself. I guess it stands for memory intelligence graph.</p>
+<p>I get that, but</p>
+<p>it&#x27;s funny because it just picked up a term and then we just started using it and then everyone started using it.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>You saw Alan&#x27;s message. Yes.</p>
+<p>(...)</p>
+<p>Oh, it&#x27;s at nine 30. Right.</p>
+<p>Call nine 30 today.</p>
+<p>(...)</p>
+<p>Isn&#x27;t it.</p>
+<p>(...)</p>
+<p>According to email, I read three 30.</p>
+<p>(...)</p>
+<p>Okay. Fine.</p>
+<p>(...)</p>
+<p>You said confirm</p>
+<p>aiming for, we were aiming for nine 30 and then they came back and said three 30. I have it in my calendar. I&#x27;m just on the road at the minute at the minute at the moment.</p>
+<p>Yeah. Let&#x27;s shoot for 3 p.m. Tomorrow, which was yesterday. I believe. And he&#x27;ll send us a link.</p>
+<p>Okay. All right. Three. Okay. Cool.</p>
+<p>(...)</p>
+<p>I can start doing some of the research and background building on the chaos, whatever, test or agent, test or whatever we want to call it system.</p>
+<p>(...)</p>
+<p>What&#x27;s the name of the company? I can work on that. What&#x27;s the name of the company? That&#x27;s an insurance company that has, um,</p>
+<p>(...)</p>
+<p>the agent chaos that goes there. It just fucks with everybody. This is check after insurance is up to date.</p>
+<p>(...)</p>
+<p>Project mayhem or something.</p>
+<p>(...)</p>
+<p>You ever seen that commercial where he&#x27;s like this grimy looking little, huh?</p>
+<p>(...) I don&#x27;t know that I have. Sounds funny though.</p>
+<p>Yeah. He&#x27;s like this like mischievous little character that like just messes with you. And you&#x27;re like, what the hell? He&#x27;s just like, ha ha. Project mayhem.</p>
+<p>(...)</p>
+<p>Yeah, we need that guy running through the code base.</p>
+<p>(...)</p>
+<p>I mean, our behavior is not too far away from chaos.</p>
+<p>(...)</p>
+<p>Yeah, pretty much.</p>
+<p>(...)</p>
+<p>You&#x27;re like, we don&#x27;t need a chaos agent. We are the chaos agents. Like we do our own chaos testing.</p>
+<p>(...) How do you feel, um, about becoming a vendor to sell the Nvidia product to our customers or you still think ours is the best?</p>
+<p>(...)</p>
+<p>Um, I guess I don&#x27;t really care what we do. If it&#x27;s going to make money, it&#x27;s like a weird thing to say, but, uh, the flip side is who cares what they built. Let&#x27;s just learn from it. We built our own thing. We get it out and running. Cause the idea isn&#x27;t just to be a reseller. If that was going to be a fast path where we could get on track and because of our knowledge, we could be a reseller and be part of a big value chain that was going to bring so much immense capital in. Then sure, I&#x27;m fine with it. I&#x27;m not above it from a principal&#x27;s perspective, but I get the better sense that we could do something extraordinary, nailed out a niche and get acquired for a serious amount of capital and actually knock that out in a few years. So how do you like talking about like how we&#x27;re dividing the company? Like some multi-billion dollar acquisition.</p>
+<p>So how do you feel about the credits programs that these different companies have that we could potentially apply for?</p>
+<p>I have like a two edge feeling about it. Cause on the one hand, I&#x27;m like, okay, well great. If we pick a stack and we&#x27;re doubling down, great. But does that really wants to be spread across like 15 different verticals or like, okay, well we ran out of our Azure credits. Like, what are we going to do? Move our entire thing over to Google? Now to use those credits, or are we just like, well, we&#x27;re agnostic. So we&#x27;re going to just like set up little hubs and connection points and tests against all those things.</p>
+<p>(...)</p>
+<p>So maybe like picking a lane, like if that&#x27;s the whole menu, like just picking a few key ones that we want to leverage. And then, so we don&#x27;t have to think about migrations later.</p>
+<p>(...)</p>
+<p>I thought it was interesting how much money is available in credit. Well,</p>
+<p>(...)</p>
+<p>if there&#x27;s that much money available in credits and then they get you investing months and months of time building out all the infrastructure, setting everything up, then when it&#x27;s time to start paying, it&#x27;s like the drug dealer, it&#x27;s like first one&#x27;s free. It&#x27;s like, okay. First what? First month&#x27;s free. First few months free, even the first year&#x27;s free. And then the next year, what you&#x27;re paying hundreds of thousands of dollars to millions of dollars. So, but yeah, it&#x27;s a good detail. And like we&#x27;re even right now, like we want to deploy a VPS. Like, should we be looking at what credits we can get for this next test?</p>
+<p>(...)</p>
+<p>I think it takes a little bit more time in a freaking couple hours to get credits, but I don&#x27;t think it&#x27;s a bad idea to think about it.</p>
+<p>I don&#x27;t know that it does.</p>
+<p>(...)</p>
+<p>I feel like it, yeah, maybe it does take a couple more than a couple hours. Might take a couple of days, but I feel like it&#x27;s pretty fast and automated. Yeah. I think it&#x27;s a good idea. I think it&#x27;s a good idea. I think it&#x27;s a good idea. It&#x27;s an automated.</p>
+<p>(...)</p>
+<p>Well, that&#x27;s good news.</p>
+<p>(...)</p>
+<p>But because I feel like I&#x27;ve seen that before. I think I feel like I&#x27;ve even had it before or like thinking I was going to do something and like getting going through the process and be like, oh, that was easy. Great. $100,000 in credits. But then, um,(...) really it&#x27;s a different issue.</p>
+<p>(...)</p>
+<p>At the time.</p>
+<p>(...)</p>
+<p>How do you feel about everything?</p>
+<p>(...)</p>
+<p>Too big. We&#x27;re moving in the right direction still.</p>
+<p>I think that every day we&#x27;re learning a little bit more and we&#x27;re experiencing stuff and just having different conversations with different people or shaping the way that we&#x27;re seeing things. Other people are coming out with stuff that we can just literally copy and paste into our bot and our bots smart enough. I&#x27;m still seeing people, oh, Claude code&#x27;s going to destroy open claw and everybody&#x27;s like, yeah, well, you know, there&#x27;s certain features that it could do, but I don&#x27;t know if it really actually replaces open claw, but that&#x27;s because they&#x27;re still using Claude code out of the box. They didn&#x27;t build what we built.</p>
+<p>(...)</p>
+<p>So, well, it&#x27;s like the difference of having a robot and using the robot or having a robot and the first thing you do is like, okay, robot, I&#x27;m going to teach you how to build robots and like you&#x27;re going to build an even bigger and better robot than you are because you have the capacity of building.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>I think mastery over MiG, although I was also thinking this this morning, like this is part of the benefit. If I double down and get mastery over MiG and handle that part and you&#x27;re doubling down on like all these other components, including actually getting it to function, use the different pieces of infrastructure,(...) setting up all the dashboards, getting the self-learning loops going.</p>
+<p>(...)</p>
+<p>Like there&#x27;s so many different areas of knowledge.</p>
+<p>(...)</p>
+<p>Mastery over MiG is like one of the big domains. Like it&#x27;s like one of the mountains in the mountain range.</p>
+<p>(...)</p>
+<p>And the better we get at that, the bigger of a moat we have between our competition.</p>
+<p>(...)</p>
+<p>Like other people haven&#x27;t even heard of MiG, they haven&#x27;t even heard of Neo4j. By the time they learn, they learn of it, then they have to learn it and like actually get mastery over it.(...) So we have a moat by having that technical ability.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>And is the NAT thing still working? Is that something that we&#x27;re still using?</p>
+<p>(...)</p>
+<p>Dude, I honestly feel like NATs is like the number one thing that&#x27;s just always breaking,</p>
+<p>(...)</p>
+<p>like NAT down, NATs is down again, NATs is down again. The benefit of it is that it has jet stream, so it has failbacks. Doesn&#x27;t seem like it&#x27;s causing a ton of chaos, but it does seem like it&#x27;s always a problem. Also, I don&#x27;t think ForgeWorker is connected. And I think that is the issue with ForgeWorker all this time, is it&#x27;s a NATs issue or that&#x27;s maybe like one of the last links in the chain.</p>
+<p>(...)</p>
+<p>So for clarity, where does Forge live?</p>
+<p>(...)</p>
+<p>On the M1, on the Intel M1. Yours. Yours.</p>
+<p>(...)</p>
+<p>How the hell did it break?</p>
+<p>(...)</p>
+<p>It&#x27;s just never been connected.</p>
+<p>(...)</p>
+<p>So why don&#x27;t we connect it to the MSI or the Mac Intel?</p>
+<p>(...) Dude, I swear I haven&#x27;t gotten any access to any of your hard machines.</p>
+<p>(...)</p>
+<p>Alright.</p>
+<p>(...) Actually, I shouldn&#x27;t say that because the cursor bench is definitely working and I&#x27;m pretty sure that&#x27;s running off your whatever you have it set up on. So the cursor bench is running smooth. That is running smooth.</p>
+<p>(...)</p>
+<p>We need to get the other one running that level of smooth, the research pipeline.</p>
+<p>(...)</p>
+<p>Research pipeline is hopping in on the Intel Mac. I have a log where I can read.</p>
+<p>(...)</p>
+<p>Because it was getting done, the research was getting done, but then it was going over to ForgeWorker, I think, or maybe it was going to someone else, but that was supposed to be doing the embeddings. And that was the step that wasn&#x27;t happening. So we had all this research, but none of it was wired.</p>
+<p>(...)</p>
+<p>I think it&#x27;s doing the semantic embeddings and it&#x27;s doing some of the corroboration work. Anyway, I reconfigured a bunch of shit. So I added different rules. So when it&#x27;s writing stuff, it has to do the corroboration. It has to do a number of things like when the node is getting created so that we don&#x27;t end up in a situation where they&#x27;re like orphans or almost orphans.</p>
+<p>(...)</p>
+<p>Yeah,</p>
+<p>(...)</p>
+<p>I made a weekly pulse sentinel as a double check for that.</p>
+<p>(...)</p>
+<p>So that might be another thing we want to tie into the dashboard.(...) So we&#x27;re just getting a weekly pulse check specifically on that ingest.</p>
+<p>(...)</p>
+<p>For corroborations on the nodes, on the new nodes coming in from the research pipeline.</p>
+<p>(...)</p>
+<p>Should be happening automatically as they get written. But that&#x27;s another thing we just need to check. Like is that enforced? I think that was a lot of the things that had come up yesterday were like things that we have in spirits or in like suggestions, but we needed to get them into like hard coded, like deeper enforcement for the federated mesh instance. According</p>
+<p>to the terminal,</p>
+<p>(...)</p>
+<p>it was saying that it would suggest to do it in the sandbox before even starting with the federated mesh. Do you agree with that or should we just.</p>
+<p>What sandbox?</p>
+<p>(...)</p>
+<p>Our traditional meridian sandbox.</p>
+<p>(...)</p>
+<p>But what does that mean? Like do we have a sandbox? I never really see a sandbox motion.</p>
+<p>The sandbox is what we&#x27;re currently playing in. Then it&#x27;s going to go into the federated mesh, but it said that it had to fix three things before it could start working on the federated mesh code.</p>
+<p>(...)</p>
+<p>So, okay.</p>
+<p>Let me think about this.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>It&#x27;s fine.</p>
+<p>(...)</p>
+<p>Let me think about this. I truncated please wait.</p>
+<p>(...)</p>
+<p>I&#x27;m sorry. What was the question again?(...) What does one relate to?</p>
+<p>I need more context.</p>
+<p>(...)</p>
+<p>But it&#x27;s that is correct.</p>
+<p>It&#x27;s so interesting that we want</p>
+<p>to test it and run it and see that it&#x27;s working before we deploy it into instance. I mean, I don&#x27;t know. Does it. All right. So here&#x27;s my two thoughts. If we put it into a VPS and test it there, if anything&#x27;s haywire or fucked up, it&#x27;s not going to mess up our system and we can keep operating and building every day. If we run it into our system and it causes some kind of chaos, it could potentially knock us out from actually being productive.</p>
+<p>(...) I mean, I haven&#x27;t seen it do anything major damage that we weren&#x27;t able to undo because everything that we&#x27;re doing is version control.</p>
+<p>Yeah, we&#x27;re doing it smart. We have rollbacks when we have back backups and we have smoke tests and we have double tests.</p>
+<p>(...)</p>
+<p>Well, we get close because we do break it, but it&#x27;s not on your right. It&#x27;s not. It&#x27;s fixable.</p>
+<p>(...)</p>
+<p>So we also need probably less.</p>
+<p>(...)</p>
+<p>This is another thought I had this morning, like probably 3 a.m. or something like that we need or 5 a.m. Let&#x27;s just say this. There needs to be a warm up period before a human&#x27;s even trying to do work.(...) If they generally start their workday at seven at five or six, the system should boot itself up and should start testing things and running stuff like diagnostics on the servers because you and I are in there smashing buttons till 12 o&#x27;clock, one o&#x27;clock in the morning.(...) Okay.</p>
+<p>(...)</p>
+<p>While we&#x27;re smashing buttons, we&#x27;re doing a bunch of shit.(...) Then we go to sleep. Then we wake up and then I tried to use the system like I was a user, but the system sucks. Why does the system suck so bad? Well, because we made so many changes. We didn&#x27;t update or test or even look at the server health.</p>
+<p>(...)</p>
+<p>So when we do those jam sessions like, okay, fine. Then we go to sleep. This is a part of that system. Okay. Fine. Then we go to sleep. This is a part of that sleep routine before right before waking. It needs to like actually boot itself up, run tests and diagnostics so that if cues need to be cleared or heap rates need to be updated or things need to be rebooted, it&#x27;s done before a human&#x27;s trying to do actual work because that&#x27;s annoying when you go to start your day and everything just running slow as shit. And then you have to take an hour or two to try to fix it before you can even start. Now it&#x27;s eight, nine, 10 o&#x27;clock.(...) You know what I mean? You should be able to boot up and just be locked right into your excess gulps and ready for battle.</p>
+<p>How crazy is that? You&#x27;re learning words like heap.</p>
+<p>(...)</p>
+<p>He bro. I don&#x27;t even know what that is, but that was obviously a problem with our MiG yesterday or this morning.</p>
+<p>It&#x27;s a problem every day. We just don&#x27;t know about it. We don&#x27;t know the vocabulary words.</p>
+<p>Okay. Heaps of problems.</p>
+<p>(...)</p>
+<p>No, we don&#x27;t have heaps of problems. Just problem. Just heap. Just the heap is our problem. One heap.</p>
+<p>As slow as the Dahi Pa.</p>
+<p>(...)</p>
+<p>Good God.</p>
+<p>(...)</p>
+<p>Yeah. I got that site back up. I&#x27;m still going through like a bunch of challenges just to get it live. It&#x27;s just so annoying.</p>
+<p>(...)</p>
+<p>But with all this other stuff, I really feel like the ox.</p>
+<p>(...)</p>
+<p>The agent box is ready for putting on a server to be tested. I got the front end and the back end done, which means that we&#x27;ll have an audio receptionist product.(...) In addition to</p>
+<p>that, is that going to be separate? Is that still going to be delivered visa via terminal?(...) Yes. Right.</p>
+<p>Well, according to what it was saying is, and that&#x27;s why I came back to the idea. That&#x27;s how I kind of started this fabricated concept of the API.</p>
+<p>Because I was looking for the server space and I was like,</p>
+<p>well, according to our design, I was under the impression that agent box was powered by Meridian and you&#x27;re over here telling me to get a server that&#x27;s only going to be this much a month and that doesn&#x27;t equal what I thought we needed for the Meridian. How does that work? And then it&#x27;s like, oh, you&#x27;re absolutely right. And then I was like, well, what if we don&#x27;t use the same system? What if it&#x27;s, it&#x27;s an API call? And I said, oh, that&#x27;s really great. And then I said, well, if that&#x27;s true, what has to happen for us to use all the other voice agent platforms and give them the ability through API to empower their systems to work with what we already built? And that&#x27;s the part that&#x27;s really adding value, not the fact that we can build a another voice agent.</p>
+<p>Yeah, but it&#x27;s not really.</p>
+<p>(...)</p>
+<p>In my opinion, it&#x27;s like a, it&#x27;s like a subtle angle that makes it more sharp and so more effective. But it&#x27;s also just a subtle change. It&#x27;s just a slight change because we still have to, we still need a VPS per customer. We still need a MIG per customer.</p>
+<p>(...)</p>
+<p>Like almost all the architecture stays the same, except for the fact that they don&#x27;t have direct access to those tools. All that is done through the, through the API. But it&#x27;s not like we have one master MIG that can serve all these different clients, like each one, like almost the exact federated. Maybe we don&#x27;t need the double instance. Like maybe that&#x27;s overkill, but maybe even with that, we do have that. And there&#x27;s still just two things that would tap into two different APIs that are have a fallback one to the other.</p>
+<p>(...)</p>
+<p>But whether there&#x27;s a fallback or not, I think the kind of deployment process is going to be almost identical.</p>
+<p>Based on your answer, I don&#x27;t know the answer. Are you saying that you don&#x27;t want to go towards using VAPI, retail and Netzo AI as ability to plug into their existing users and sell them the Meridian as an upgrade to give them memory and to be able to operate?</p>
+<p>This is what I&#x27;m saying. If we were to connect to those people,</p>
+<p>(...)</p>
+<p>I think our general deployment process, even in those circumstances, would stay the same. Where for each customer, we have essentially a dedicated MIG and it&#x27;s that MIG that they&#x27;re API into.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>But, but what you&#x27;re saying, I love, and I think we should do that. I just think we&#x27;re also going to need to provide each, essentially each company, its own MIG so that they can have their own.</p>
+<p>As far as their concerns.</p>
+<p>But they&#x27;re not going to know what&#x27;s a MIG or know what it&#x27;s called or anything, because it&#x27;s going to be just API calls that they get charged for.</p>
+<p>Yeah. And instead of it being a general API, it&#x27;s a specialized API for that company.</p>
+<p>(...)</p>
+<p>Exactly that. And that&#x27;s what, and essentially that&#x27;s like one of the key features of what dry doc does is install those things and it stamps that out. Like a metal plate out of a mold, bink pops that out. And then there&#x27;s subtle customizations, which happen at that specific configuration layer from some of those new evolutions. We&#x27;re like, all those things stay the same, but then there&#x27;s like one, like, whoa, like control panel or whatever that gets configured specifically to the needs of the customer.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>So yeah, I think all that&#x27;s sharp. I think that&#x27;s sharp, sharp, sharp. I think that&#x27;s sharp shooter shit. That&#x27;s not like, oh, we had an idea. Oh, we had a prototype. Oh, we just shopped it out. Oh, we ran into a hundred headaches.</p>
+<p>(...)</p>
+<p>Like, I think it&#x27;s pretty well thought out.</p>
+<p>All I know is we have the ability to plug into any system where agnostic. So instead of trying to clone everything and build it again, there&#x27;s already platforms that have use cases that they&#x27;re using. They just haven&#x27;t figured out how to actually solve what we did.</p>
+<p>So it&#x27;s the protocols are not easy to write or think through the complex sequences are not easy to think through testing those things and iterating on those things is like, it would be easy to lose your mind trying to do what we&#x27;ve done so far.</p>
+<p>(...)</p>
+<p>And if we can then provide that as memory as a service brain at mega as a service and they have a good whatever system they have. But your shit is not fucking remembering what&#x27;s going on day to day and it&#x27;s not keeping track and it&#x27;s not learning and updating and you don&#x27;t want to go figure out neuroscience level design.</p>
+<p>(...)</p>
+<p>Yeah, just plug in our shit and cause like a penny of thing you just flip flop. Just run it and then we keep upgrading it. And then if you need even bigger, a bigger, more intelligent brain, well, we have a cortex service as additional rag layers that we can embed and empower your thing. So like beyond this memory system that you can also have a cortex with that&#x27;s front loaded with all these actual whatever tactical knowledge.</p>
+<p>(...)</p>
+<p>So is that the way we should package it?</p>
+<p>(...)</p>
+<p>I mean, I don&#x27;t know if there&#x27;s like a way or if that changes. It&#x27;s just a matter of who&#x27;s going to sell it and how fast can they get to the people that they&#x27;re going to sell it to. And then we do it that way. And then we do it that way. But I think in in in either regard, it&#x27;s almost the exact same deployment scenario.</p>
+<p>(...)</p>
+<p>So this is like another like like if we had a map down a mountain, this is like we mapped out another trail down the mountain that we could hand a salesperson.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>Another thing</p>
+<p>really one salesperson could just focus on that one thing and all they do is like penetrate netzo users to sell them this thing and like another salesperson like all they do is focus on that other group and like get them to use the memory as a service. But I don&#x27;t think we&#x27;re at a point yet today where we&#x27;re going to double down on a vertical or marketing or whatever it is. We don&#x27;t have the capital and other time energy manpower or whatever. So it&#x27;s really going to be up to like people like Bitler or CJ or fucking Charles or like whoever is going to like land in this next round of like serious clients, high paying clients.(...) And then I think we just model after that and we don&#x27;t defer or we don&#x27;t change our path much like okay if you&#x27;re going to deploy 100 then we might have to consider some like scaling implications.</p>
+<p>(...)</p>
+<p>Okay. Another thing I want to share before I forget.</p>
+<p>(...)</p>
+<p>Bitler shared on the call that we were with you on that he has a business that he removes reviews off of Amazon sellers.</p>
+<p>(...)</p>
+<p>He gave me his entire Google Drive of all the documentations, the course and everything that showed him how to do this. I took all that and access to his actual platform that scrapes all the things and basically could potentially build that as another product that we could sell.</p>
+<p>(...)</p>
+<p>A product that we could sell to Amazon users?</p>
+<p>Correct.</p>
+<p>(...)</p>
+<p>Yeah. Like in other words it could be.</p>
+<p>(...)</p>
+<p>I&#x27;m going to rephrase what you said slightly. To me that sounds like a product that the mesh could sell and essentially run like one of the autonomous revenue arcs.</p>
+<p>Correct. Right now he has a personal.</p>
+<p>Yeah like so many of these other things might need a human but like that could be one of the things like barely needs a human.</p>
+<p>So he personally has a human being in the Philippines that he pays $25 per review that gets removed and that&#x27;s the business model. He pays her commission and she works her ass off to get those $25.(...) But she could only do as much as her bandwidth allows and she&#x27;s limited. So this isn&#x27;t and this could potentially run 24 seven.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>All right. So what did you say? Did you what did you say you did? Oh you and you have the knowledge. You ingested the knowledge on what I do that. I scraped the entire document.</p>
+<p>I scraped the entire website to identify what the tool that he has a username and password for how it works what it does.(...) And then I started building out all these documentations to explain what it does. I can share with you HTML overview so you can kind of see that that might help you wrap your mind around it a little bit more.</p>
+<p>(...)</p>
+<p>Makes sense.</p>
+<p>(...)</p>
+<p>Yeah. Sounds great. I have a pretty clear idea of it but that&#x27;s great. Yeah. Love to see the HTML. That&#x27;s another thing that I want to start doing a better job of as you&#x27;re sending me these great websites that they&#x27;re all going into one place. So we have this archive of like all of the meridian sites and then the same thing for the dashboards all of the dashboards and one on one page on the notion.</p>
+<p>(...)</p>
+<p>There&#x27;s a shitload. I can only imagine there&#x27;s like a dozen or dozens at this point.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>Or hundreds.</p>
+<p>(...)</p>
+<p>I think there&#x27;s another layer of what we&#x27;re doing that a lot of this could be addressed with Python scripts and not necessarily needing the LLMs.</p>
+<p>(...)</p>
+<p>Examples.</p>
+<p>(...)</p>
+<p>Make corroboration adding connections identifying and structuring content before it goes in.</p>
+<p>(...)</p>
+<p>Checking that it is. Yeah. Just make related a lot of the make related things.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>Also, I didn&#x27;t really realize that we have to autonomous.</p>
+<p>(...)</p>
+<p>We have like an autonomous layer running.</p>
+<p>(...)</p>
+<p>That does like low level tasks with like some of the sentinels and some of the other pulse checks and some of the other things that are just like happening.</p>
+<p>(...)</p>
+<p>Yeah. Do you think you could replace that with Python code?</p>
+<p>(...)</p>
+<p>No, I didn&#x27;t realize that that was the thing that was like that&#x27;s another feature set that we haven&#x27;t even been talking about.</p>
+<p>(...)</p>
+<p>Like in other words, that&#x27;s something that we&#x27;ve built that&#x27;s elaborate and sophisticated and functional and we can talk about that as we&#x27;re doing these sales calls. In other words, that&#x27;s a whole other layer sophistication that other people probably haven&#x27;t even touched.</p>
+<p>(...)</p>
+<p>I just thought of another good question after seeing what it came back with within the video thing. Do a simulation and say, well, based on their trajectory, what are features that they&#x27;re going to be looking to add to make theirs better and can we get ahead of that?</p>
+<p>(...)</p>
+<p>Yeah, that&#x27;s a great idea.</p>
+<p>(...)</p>
+<p>Yep, it&#x27;s a good angle.</p>
+<p>(...)</p>
+<p>Another question. Going back to your thought of, okay, let&#x27;s install this into the sandbox first into the core Meridian mesh before we even worry about the instance for a federated instance. So my question to that is we&#x27;re running on three VPSs that have six gigabytes and we paid for the year, but we&#x27;re moving the federated instance into a Different type of a hosting that we&#x27;re paying like 20 or something a month. So I&#x27;m sure it&#x27;s going to be more robust. If we add those federated mesh components to our current hosting scenario, are we going to fuck up our hardware to the point like we&#x27;re already like seems like maxing out regularly.</p>
+<p>(...)</p>
+<p>Are we doing shit wrong or do we need more hardware or actually no do the best of the federated instance on a new VPS simply so we don&#x27;t over overdo our current setup.</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>These are great questions to ask.</p>
+<p>(...)</p>
+<p>These are great questions to ask.</p>
+<p>(...)</p>
+<p>Also another observation when bitler talks about he&#x27;s like, yeah, well the meridian, you know, it&#x27;s it&#x27;s just an easy word to say and it sounds like people actually like saying it.</p>
+<p>(...)</p>
+<p>So good job on naming that one.</p>
+<p>(...)</p>
+<p>It&#x27;s a word that people have a fun time saying.</p>
+<p>(...)</p>
+<p>Yeah, it sounds serious. It&#x27;s relevant.</p>
+<p>(...)</p>
+<p>So if I were to create another Damon, that&#x27;s just a cursor agent, what would you want to call it? I&#x27;m going to clone the deep the Delphi persona, but I didn&#x27;t want to have a problem with the naming conventions again. So any ideas for that?</p>
+<p>(...)</p>
+<p>Tell you in a sec. I&#x27;m gonna go to my name or</p>
+<p>I&#x27;m gonna call him Bob.</p>
+<p>(...)</p>
+<p>Just go to Bob.</p>
+<p>(...) I was trying to I was basically trying to stick with like two syllable word for each one. And there&#x27;s like Delphi sensei sandman.</p>
+<p>(...)</p>
+<p>Doesn&#x27;t matter. No, but then we could also use that as like a status thing, like the two syllable ones are like the core demons. Maybe like this one needs to be a different one because it&#x27;s like</p>
+<p>(...)</p>
+<p>He&#x27;s adopted a he&#x27;s just got one syllable. His name is Tim.</p>
+<p>(...)</p>
+<p>Jojo.</p>
+<p>(...)</p>
+<p>Yo, go talk to Jojo.</p>
+<p>(...)</p>
+<p>So when you say that these bots don&#x27;t work great and they&#x27;re slow, are you talking about inside telegram or inside? Yeah, Claude CLI.</p>
+<p>(...) Okay, telegram.</p>
+<p>(...)</p>
+<p>Because I never had that problem because I don&#x27;t really use telegram as much as you do. Maybe so.</p>
+<p>(...) Well, I use it. It&#x27;s a little frustrating, honestly.</p>
+<p>(...)</p>
+<p>Like it&#x27;s relieving in a certain way, because if I have to leave my house and then like right now, I mean, just sat in my car. So it&#x27;s like, okay, I got to do other shits. So I did bring my laptop. It&#x27;s like awkward to try to set that up and smash buttons in the car.</p>
+<p>(...)</p>
+<p>So,</p>
+<p>dude, it wasn&#x27;t awkward. I went to the bank. I was smashing buttons. I was driving the car, smashing buttons. I was like, I connected to my hotspot and I was like, I ain&#x27;t stopping.</p>
+<p>(...) Yeah, well, I&#x27;m ready because I was like, dude, I have too much to do. I already had to go in this morning. I don&#x27;t want to like, want to keep that keep those things cooking.</p>
+<p>(...)</p>
+<p>And slow, like you can just see it, like it goes to one and then it goes to two. It&#x27;s like 20 minutes later, it&#x27;s on 12. It&#x27;s like, dude, you&#x27;re only on 12 turns. Like usually you get to 12 in like five seconds. Like this is like three minutes later. And then they&#x27;ll time out or like some other thing or just not deliver or do the work and not report it.(...) Like that, that&#x27;s not so bad. You&#x27;re like, oh no, I finished my stuff. I just didn&#x27;t report it. But here&#x27;s all the stuff I have done. Like, okay, that&#x27;s not so bad.(...) Well, yeah, a bunch of them are just timing out and not working well.</p>
+<p>(...)</p>
+<p>How about Titan?</p>
+<p>(...)</p>
+<p>That&#x27;s a good word.</p>
+<p>(...)</p>
+<p>Oh, this.</p>
+<p>(...)</p>
+<p>So does it make sense? That&#x27;s what I was about to look to just go and get this stupid fucking Mac mini from Costco for like 600 bucks and just put it in here as like an actual masternode here.</p>
+<p>(...)</p>
+<p>Okay, it&#x27;s not a terrible idea.</p>
+<p>It&#x27;s probably going to be a little bit older, not the most powerful, but let me see if they sell anything at Best Buy here because I&#x27;m in Puerto Rico and</p>
+<p>(...)</p>
+<p>I do have one for a thousand bucks, 24 gigs.</p>
+<p>(...)</p>
+<p>What&#x27;s the difference?</p>
+<p>(...)</p>
+<p>Oh, so these are open box conditions.</p>
+<p>(...)</p>
+<p>1356.</p>
+<p>(...)</p>
+<p>Can&#x27;t buy unavailable.</p>
+<p>(...)</p>
+<p>So all this shit&#x27;s just malarkey.</p>
+<p>(...)</p>
+<p>You&#x27;re saving 50 bucks because they opened the box. I just want to buy it now.</p>
+<p>(...)</p>
+<p>They don&#x27;t sell it here.</p>
+<p>(...)</p>
+<p>So anyway, we need to ask those questions because it might it might be chaos. It might just we might not have the current capacity. I guess you&#x27;re already on that tangent. That&#x27;s why you&#x27;re saying to have a Mac mini for that to be the federated instance.</p>
+<p>(...)</p>
+<p>Yeah. Yeah.</p>
+<p>(...)</p>
+<p>It&#x27;s hitting up the cursor agent was a really smart idea as like a bench to be able to that the demons can dispatch to.</p>
+<p>(...)</p>
+<p>What&#x27;s watching some stuff if you&#x27;re a cloud code user, you&#x27;re not even considering that as an option.</p>
+<p>(...)</p>
+<p>No,</p>
+<p>(...)</p>
+<p>people get pretty one track minded.</p>
+<p>(...)</p>
+<p>We need to we do need to do server maintenance because they&#x27;re running real, real slow.</p>
+<p>(...)</p>
+<p>ts him good embed min</p>
+<p>(...)</p>
+<p>I know it&#x27;s only a few minutes before my wife just loses her mind and starts yelling at it.</p>
+<p>It&#x27;s a long, it&#x27;s a long yell. She&#x27;s got some serious lung capacity.</p>
+<p>(...)</p>
+<p>So have you heard of the spark from the video supercomputer?</p>
+<p>(...)</p>
+<p>Maybe.</p>
+<p>(...)</p>
+<p>Sounds like a headline I&#x27;ve read. Yeah,</p>
+<p>(...) but I don&#x27;t see a price in...</p>
+<p>(...)</p>
+<p>It&#x27;s five, six grand.</p>
+<p>(...)</p>
+<p>So maybe we look at that, compare that to what this other thing is.</p>
+<p>(...)</p>
+<p>thirds)</p>
+<p>(...)</p>
+<p>okay now is it now in to 5 to 5 up about</p>
+<p>(...)</p>
+<p>F</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>They&#x27;re doing a March Magnus thing at my wife&#x27;s school. So she used the persona play and built a persona that understood sports really well.(...) And she said she&#x27;s number two right now. She&#x27;s in the second spot of all the teachers.</p>
+<p>(...)</p>
+<p>(Laugh)</p>
+<p>What does that mean?</p>
+<p>(...)</p>
+<p>It&#x27;s like a betting pool and March madness is a basketball thing. So I guess you&#x27;re just picking what teams are gonna do what.</p>
+<p>No, but she had a persona built. What does that mean?</p>
+<p>So she built, you know how we do our persona building?</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>So she used that same strategy, but what she built was basically a sports betting persona that understood basketball to help her make the selections for this March madness thing at her school.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>(...) Okay.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>(...) She&#x27;s like number two, like ahead of like 40 other teachers and admin.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>So all right, why am I even bringing that up? If a stupid GPT persona is getting that kind of results on a March Magnus thing, that&#x27;s obviously weird. No, the sports betting thing is super overdone. But maybe that&#x27;s another indication of yeah, you can mop up on prediction analytics with this kind of system.</p>
+<p>(...) (Blank Audio)</p>
+<p>(...) All right,</p>
+<p>(...)</p>
+<p>let me go find out why his kids screaming ahead of cuz my wife&#x27;s already.(...) About to go. I&#x27;ll be right back.</p>
+<p>(Blank Audio)</p>
+<p>Mia, you need attention?</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>(...)</p>
+<p>All right.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>(...)</p>
+<p>So sports betting, that&#x27;s where you&#x27;re at in your head?</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>(...)</p>
+<p>Wait, time to just motherfucker put shit in my calendar, every day.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>Oh, I&#x27;m talking on muted phone.</p>
+<p>(...)</p>
+<p>Yo.</p>
+<p>Yeah, this thing fucking created like over 100 fucking fake ass apartments in my calendar.</p>
+<p>(...)</p>
+<p>What did it do? 100 fake events?</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>What?</p>
+<p>(...)</p>
+<p>Yep, I have an appointment in an hour of over 100 of the same thing.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>(Blank Audio)</p>
+<p>Sounds important.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(Blank Audio)</p>
+<p>But yeah, all right, so this is my perspective.</p>
+<p>(...)</p>
+<p>All right, so LLM with one response is gonna get you like 50 or 60% of the way there. We said that as like that&#x27;s what we&#x27;ve seen.</p>
+<p>(...)</p>
+<p>So if you use the LLM as is out of the box, it&#x27;s like a flat line. It&#x27;s like a flat line that covers as much of a horizontal width as it possibly could.</p>
+<p>(...)</p>
+<p>Okay?</p>
+<p>(...)</p>
+<p>If you wanna sharpen it, you can make a peak.</p>
+<p>(...)</p>
+<p>And you make a peak by getting some of those areas up above that horizon or zero point.</p>
+<p>(...)</p>
+<p>So now it&#x27;s a triangle.</p>
+<p>(...)</p>
+<p>Some of the triangle is below the line and some of the triangle is above the line.</p>
+<p>(...)</p>
+<p>Does that make sense?</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>What does it, what do I mean? You&#x27;re putting more focus in a specific area, whether it be sports betting or whatever it is. So now it&#x27;s limiting the context and knowledge and processing and attention and search results and context related to the things that are far left and far right. It&#x27;s just dropping that below zero. It&#x27;s not even gonna look at those. And it&#x27;s sacrificing that in order to get an advantage on a specific area of knowledge.</p>
+<p>(...)</p>
+<p>So like it sacrifices the left and right in order to get a little peak. So now it has like head and shoulders above the rest of the LLM usage that are not using personas.</p>
+<p>(...)</p>
+<p>Does that make sense so far?</p>
+<p>Yes.</p>
+<p>(...)</p>
+<p>So we could also have like different geometries, like a ball,</p>
+<p>(...)</p>
+<p>like a sphere instead of a point. And then that could roll left or right as needed.</p>
+<p>(...)</p>
+<p>So still it&#x27;s going to have a higher output because it&#x27;s having a specific focus area, like a magnifying glass.</p>
+<p>(...)</p>
+<p>But a magnifying glass you can move after right, a pyramid is stuck in the ground.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So I don&#x27;t know if I&#x27;m hearing this properly, but in my head what I&#x27;m hearing is you&#x27;re building multiple personas with their peaks in different areas. So you&#x27;re not sacrificing anything. You&#x27;re just choosing the right peak.</p>
+<p>(...)</p>
+<p>Right. And then so you buy like three or four or five agents, each with their dedicated, just like a flashlight, right? It&#x27;s like having five people, if they have five flashlights shining a light next to each other.</p>
+<p>(...)</p>
+<p>You&#x27;re going to have a wider breadth of a more illuminated surface.</p>
+<p>(...)</p>
+<p>So that&#x27;s how agents work and that&#x27;s how agents in context and LLMs work. And that simple understanding is something that isn&#x27;t really talked about or really known. Like that&#x27;s not really like a thing people are aware of. But like that&#x27;s like the basis of like that we tested the theory and that&#x27;s proving out 100% true.</p>
+<p>(...)</p>
+<p>So given that as the context, like that is the basis. It&#x27;s like if you don&#x27;t know what gravity is, you don&#x27;t know how to, you know what I mean? Like if you don&#x27;t know the physics of the unseen, then you can&#x27;t build properly.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So this idea of the magnifying glass, I think is something like, okay, the agents or the daemons are like in a triangle configuration.</p>
+<p>(...)</p>
+<p>They have a specific purpose, personality, they&#x27;re structured.</p>
+<p>(...)</p>
+<p>They work within a specific boundary. They even say things like, I don&#x27;t know, I can&#x27;t really do that because that&#x27;s, that&#x27;s something that&#x27;s more of a Delphi thing.</p>
+<p>(...)</p>
+<p>But the reason they&#x27;re saying that, which</p>
+<p>is great, they recognize their own boundaries.</p>
+<p>(...)</p>
+<p>But this rolling thing of a magnifying glass now could be like, whether it be the cursor bench or whether it be like how, I don&#x27;t know, I think there&#x27;s something to that of like, I think maybe that&#x27;s just how we bring in the other local context of like, okay, well, we searched this specific thing and we tagged all of these MIG node memories specifically.</p>
+<p>(...)</p>
+<p>So like tagging memories in MIG or tagging subject domains in MIG and making that easier to find and putting the semantics in. I think that&#x27;s like this magnifying glass level.</p>
+<p>(...)</p>
+<p>It&#x27;s like above and beyond what an LLM is capable of, because now it&#x27;s using this rag layer or this in between layer. That&#x27;s the other thing that the rag layer that&#x27;s like either Claude projects or notebook LM,</p>
+<p>(...)</p>
+<p>or eventually clusters of nodes and MIG.</p>
+<p>(...)</p>
+<p>Any of those three things could be that cortex layer,(...) like hyper specific knowledge in a specific domain.</p>
+<p>(...)</p>
+<p>So that&#x27;s another one of those like magnifying tools that the daemons have. Daemons are the triangles, the circles that they use to get advanced knowledge on a specific domain are either the cortex or the subgraphs.</p>
+<p>All right, and this makes sense to you in your head.</p>
+<p>(...)</p>
+<p>Does it always sound like a crazy person?</p>
+<p>No, it just sounds like you&#x27;re speaking as an MIT specialist.</p>
+<p>(...)</p>
+<p>I just see it, I can see the geometry of it.(...) Like Alan was talking about the geometries.</p>
+<p>(...)</p>
+<p>It sounds conceptual and abstract and on the one level it is, but on the other level, like it&#x27;s not like they actually do need to draw lines and nodes. There is a geometric configuration.</p>
+<p>(...)</p>
+<p>There is not like there is a way to visualize that.</p>
+<p>(...)</p>
+<p>I was seeing an interesting visualization, I should have grabbed it, but it was showing the rationalized like thinking chain of a sports, back to the sports betting thing. It was like a thinking chain and it was showing the sequence of a Neo4j at work, making a sports prediction. And it was like showing the different nodes that it was like hopping to, so you could see sequentially like how it&#x27;s accessing the information.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So clusters of nodes is that geometric configuration. How to traverse one piece of data to the other is a geometric pathway. Like it literally is like up, down, left, right. They got a fork a little bit. There&#x27;s angles between them. There&#x27;s choices and weights of which nodes to travel down.</p>
+<p>(...)</p>
+<p>It&#x27;s like highways and it&#x27;s three dimensional highways.</p>
+<p>(...)</p>
+<p>So if we can figure those nodes and clusters in geometric shapes, then it&#x27;s going to be easier for it to be traversable and searchable. And for people for the box to be able to find what they need faster.</p>
+<p>(...)</p>
+<p>That&#x27;s my next theory.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>It&#x27;s my hypothesis.</p>
+<p>(...) Your hypothesis.</p>
+<p>(...)</p>
+<p>And I think at some point the two worlds collapse where you, it seems like just this abstract cluster of like nodes and data things and strings between these nodes, like just total chaos, like we&#x27;re trying to draw invisible lines between every drop of rain. Like what the hell am I even looking at?(...) But at some point if that was so elegantly woven with the edges and the clarity and the structure and the orientation, I think that&#x27;s where it cements back into this matrix world. We&#x27;re like, oh, that is the matrix. That&#x27;s like this really accurate digital representation of this whole other thing that&#x27;s happening.</p>
+<p>(...)</p>
+<p>So if you had a big enough, strong enough, dope enough, MIG, it would like, you could organize it and it would like be like a bot maneuvering through a city or through spaces of knowledge clusters,</p>
+<p>(...)</p>
+<p>like districts of knowledge.</p>
+<p>(...)</p>
+<p>Districts of knowledge. No, I conceptualize.</p>
+<p>You know what I&#x27;m saying? Like it&#x27;s conceptual, but it&#x27;s also real. Like this is like actual, like you would say, you know, the screen, like there would be node clusters and that would be a district of knowledge that might relate to tax codes or it might relate to like our operational MIG, like our key, those key whatever, seven thousand or 17,000 nodes. Like that&#x27;s like the municipal district or something. You know what I mean? Like that&#x27;s like the downtown where the city buildings are.</p>
+<p>(...)</p>
+<p>We don&#x27;t want to tell people that we have a MIG. We don&#x27;t want to talk about knowledge graphs, but we can definitely talk about districts.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>And what gets accomplished there? And then those districts overlap directly on our subway map, which is like this multi metaphor.</p>
+<p>(...)</p>
+<p>It&#x27;s a way for things to get done. It&#x27;s a way to map sequence. And then it&#x27;s also a way to gate and do governance. It&#x27;s also a way to make sure that quality controls are embedded. It&#x27;s also a way to make sure that other enforcement layers are embedded.</p>
+<p>(...)</p>
+<p>But then when they need certain things, then they go to the specific district and then it&#x27;s easy for them to access those things, which might be one MIG or another, or might be one sub graph or another might be one API or another. But that&#x27;s ultimately like all those APIs and all those sub graphs and all those customer interactions and calls for data. That is this data subway and this whole like meridian city is meridian data city.</p>
+<p>(...)</p>
+<p>So is that how we want to visually show it?</p>
+<p>(...) I think so.</p>
+<p>(...)</p>
+<p>I think so. I think that&#x27;s pretty unique and I think it makes it understandable and it separates us from saying like agents,</p>
+<p>(...)</p>
+<p>even multi-agent systems, I think is okay. It&#x27;s like a decent like diving board to jump into the conversation.</p>
+<p>(...)</p>
+<p>But ultimately, yeah, I think what I&#x27;m describing now, I see it. Like when I&#x27;m describing it, I feel it. I see it in my brain.</p>
+<p>(...)</p>
+<p>But I think that&#x27;s going to make it that much easier for people to understand how does this actually work and to visualize it and have some kind of like meaningful frame of reference for how this actually affects their business.</p>
+<p>So if it&#x27;s still a district, do we still have trains and things like that?</p>
+<p>Yeah, 100%. That&#x27;s how you get from one district to another.</p>
+<p>(...)</p>
+<p>And if you have financial work, you go to the financial district. If you have sales work, there&#x27;s a sale, you know what I mean? Sales and growth. Like there&#x27;s teams, but there&#x27;s like it that can evolve into a whole district.(...) Like right now we have maybe an office, right? We have a amig office. We have a sales and growth office. We have a whatever it is. Identity office or whatever. But some of those things could certainly get clustered and then that becomes a district or evolves into a whole other like larger whatever creative areas design, you know, like the design district. And that&#x27;s where you the subway stops are to be able to get websites done or copy done or whatever it is.</p>
+<p>(...)</p>
+<p>And then they their trains essentially can run to certain stations based on their package.</p>
+<p>(...)</p>
+<p>They might just need an A line or A and a B line or a orange line or however we want to do it.</p>
+<p>(...)</p>
+<p>Because they&#x27;re just sales like it&#x27;s just a sales terminal. Great. You need just a orange line terminal.</p>
+<p>(...)</p>
+<p>It brings you from copy to follow up to data analysis to avoid defaults or whatever it might be. Sales pipeline management terminal.</p>
+<p>(...)</p>
+<p>(No Audio)</p>
+<p>(...)</p>
+<p>Although the submarine thing is pretty good too because then we&#x27;re talking about like data lakes and what do you use to get through water as a submarine. So to have a submarine terminal that helps intelligently navigate through the entirety of your data lake.</p>
+<p>(No Audio)</p>
+<p>That works also.</p>
+<p>(...)</p>
+<p>(No Audio)</p>
+<p>(...)</p>
+<p>That call went so good yesterday.</p>
+<p>(...)</p>
+<p>And the very interesting thing about it was like the stage was set. I did so much of the work to make it happen. Like I shouldered so much of the burden to get all of the things done and keep things moving and working in a way.(...) And then this call happens and I didn&#x27;t really I must have said six words at most.</p>
+<p>(...)</p>
+<p>I just laid back and just listened and took notes had the transcription running chimed in with a few different things. Like I barely had to say anything because the people on the call were just the one the right ones on the call. It&#x27;s like the right team on the field, the right people, the right circumstance, the right terms and the right deal, the right alignment, the right levels of trust built for all the people that were on the call. I just sat back and just watched this play out like incredibly like probably one of the best calls I&#x27;ve ever had.</p>
+<p>(No Audio)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>Set up the contacts and say very little but it&#x27;s a good move for me.</p>
+<p>That&#x27;s what this system was saying that Bitly was saying is like the salespeople who can talk 30% of the call are making the closes.</p>
+<p>(...)</p>
+<p>That makes sense.</p>
+<p>(...)</p>
+<p>And the other call we had with that other billionaire guy who has a software company that they do like tokenization and contextual advertising is another big part of their stack.</p>
+<p>(...)</p>
+<p>Anyway,</p>
+<p>(...)</p>
+<p>he wouldn&#x27;t stop talking.</p>
+<p>(...)</p>
+<p>He wouldn&#x27;t stop talking. I didn&#x27;t get a question or anything. And then that was like part of the reason why I didn&#x27;t want to use that. I&#x27;m like, dude, I don&#x27;t even want to work with these guys.</p>
+<p>(...)</p>
+<p>But yeah,</p>
+<p>(...)</p>
+<p>talk less, listen more. It&#x27;s better.</p>
+<p>(...)</p>
+<p>I think it takes more discipline and less you&#x27;re a fucking super nerd that doesn&#x27;t have any social cues and ability to communicate. But I think the natural human response is I need to fill this dead air with something. So I&#x27;m going to be the one to sacrifice and say something even if it&#x27;s the wrong thing just so it&#x27;s not silent because people are afraid of just not speaking.</p>
+<p>(...)</p>
+<p>It&#x27;s fair.</p>
+<p>(...)</p>
+<p>So is there going to be a district mayhem?</p>
+<p>(...)</p>
+<p>Mayhem district.</p>
+<p>(...)</p>
+<p>Oh, yeah. Chaos district. Yeah, let&#x27;s go.</p>
+<p>We&#x27;re going to put you in the hood. You&#x27;re going to go in the hood and we&#x27;re going to test you out. See if you can make it in the hood.</p>
+<p>(...)</p>
+<p>You want to snack? Well, you didn&#x27;t say good morning to me.</p>
+<p>South Meridian.</p>
+<p>(...)</p>
+<p>South of the train tracks.</p>
+<p>Yeah, that&#x27;s where it&#x27;s at.</p>
+<p>Yo, the subway system is dope, but don&#x27;t go south of the tracks, bro.</p>
+<p>(...)</p>
+<p>The chaos district is no joke.</p>
+<p>(...)</p>
+<p>Did you say good morning to that? Did you say good morning to daddy? Remember, I made a deal with you and you said you didn&#x27;t want to say good morning to daddy. So I said I wasn&#x27;t going to get you snacks when you want the X.</p>
+<p>(...)</p>
+<p>Yeah, we made a deal. You broke the deal.</p>
+<p>(...)</p>
+<p>You can fix the deal.(...) Come say good morning.</p>
+<p>(...)</p>
+<p>Yeah, I think I think we can use this also as like a like how we&#x27;re representing these different agents in an environment.</p>
+<p>(...)</p>
+<p>Yeah.(...) Can you say good morning?</p>
+<p>(...)</p>
+<p>Well, if you can&#x27;t say good morning, I can&#x27;t get you snacks.</p>
+<p>(...)</p>
+<p>You want snacks? Do you want snacks enough to say good morning?</p>
+<p>(...)</p>
+<p>Okay,</p>
+<p>(...)</p>
+<p>then you don&#x27;t get no snacks.</p>
+<p>(...)</p>
+<p>Just because you want some doesn&#x27;t mean that the whole world has to bend to your will.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>If you say good morning and you give daddy huggies, I might be able to hook you up with some snacks. I might be able to hook you up with some snacks.</p>
+<p>(...)</p>
+<p>But if we&#x27;re able to visually show stuff like in videos where they&#x27;re watching a scene and instead of it being some abstract thing, it&#x27;s just humans going to a district that&#x27;s easy to paint pictures in their in their mind.</p>
+<p>(...)</p>
+<p>Are you on mute again?</p>
+<p>(...)</p>
+<p>Yeah, that&#x27;s our job. Make it easy for them to like have something to grasp onto. And it&#x27;s so outrageously robust. If we start getting into the technical architecture like no. If there&#x27;s technical people that want to go down deep dives, then all right, fine. We can certainly defend our work to whatever degree we feel like we need to. But generally speaking, and for sales and for implementation, yeah, we need to paint this thing. And then when they have an issue or something, they can they also will have like a way to talk about it to us that we can like pin down.</p>
+<p>(...)</p>
+<p>Like, oh, when I went to this station, this wasn&#x27;t working. You know what I mean? Like, it&#x27;s just like an easier way to map everything because it&#x27;s literally a map.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>And then that can be part of the visualization of the difference. Like, well, this is what a single standalone terminal could look like. This is what the standard terminal looks like. This is what the upgraded standard, you know, the upgraded terminal looks like. This is what a cluster empowers, right? This is what it looks like when multiple daemons can run these routes, right? This is what it&#x27;s like when you can update the like the next like whatever we won&#x27;t call it the cursor bench, but whatever it is like these other upgraded benches, work benches, you just call them that.</p>
+<p>(...)</p>
+<p>So between all of those kind of systems, then it&#x27;s like easy to see like the increases and upgrades, like easy to visualize. I</p>
+<p>did a little bit more research about putting the daemons inside of Signal, and you need a specific phone number, and it&#x27;s literally operating as its own device.</p>
+<p>(...)</p>
+<p>So.</p>
+<p>Okay.(...) Thank you, Pat.</p>
+<p>(...) It&#x27;s not like that. It&#x27;s not telegram is what I&#x27;m saying. Like you can&#x27;t do the commands and stuff, huh?</p>
+<p>(...)</p>
+<p>You can&#x27;t do the what</p>
+<p>commands?</p>
+<p>(...)</p>
+<p>Yeah,</p>
+<p>(...)</p>
+<p>like the forward slash. It doesn&#x27;t work inside of.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>I feel like our customers or at least the finance customers are going to be not telegram users.</p>
+<p>(...)</p>
+<p>The telegram is going to feel like a far away universe to some groups.</p>
+<p>(...) Not true. All these fucking Bitcoin people live in telegram and X.</p>
+<p>(...)</p>
+<p>No, yeah, that&#x27;s exactly right. Bitcoin and DeFi. Yes. But real finance people know they&#x27;re all on WhatsApp.</p>
+<p>(...)</p>
+<p>Well, so what platform?</p>
+<p>They don&#x27;t even have telegram. It&#x27;s like that much of a culture difference. So what telegram? Like what?</p>
+<p>What about what is that?</p>
+<p>No, I don&#x27;t want that.</p>
+<p>What about WhatsApp?</p>
+<p>(...)</p>
+<p>WhatsApp. Yeah, WhatsApp. Yep. They all they&#x27;re all on WhatsApp.</p>
+<p>(...)</p>
+<p>So we could do WhatsApp.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>So that might be smart.</p>
+<p>(...)</p>
+<p>That might be a really smart like work arts and new GitHub issues that we want to add in and start building towards for next week or in the next whatever probably next week.</p>
+<p>(...)</p>
+<p>I don&#x27;t think it&#x27;s that much. We have most of the work done.</p>
+<p>(...)</p>
+<p>Yeah, I think so too. I think a lot of it&#x27;s going to be portable. But then we can move over there and test that. But yeah, like all the groups, all the groups, all the groups.</p>
+<p>(...)</p>
+<p>All the capital market groups, all the meetings, all like everything of like group chats are all on WhatsApp for the capital stuff.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>So I&#x27;m starting.</p>
+<p>Sorry, go ahead.</p>
+<p>(...) I&#x27;m trying to do homework on this thing with the cursor agents and stuff like this. And there&#x27;s different pools. It&#x27;s calling something a slow pool rate limit versus like I guess there&#x27;s different settings for the API&#x27;s or whatever is being done that we&#x27;re trying to figure out how this works.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So that it like paces with the rate limits.</p>
+<p>(...)</p>
+<p>Every model is hitting cursor slow pool.</p>
+<p>(...)</p>
+<p>Rate limit. This is a subscription level rate limit, not a code issue. The cursor account has exhausted fast requests. The interesting thing my test earlier worked because it was before the rate limits kicked in the code fix is correct. The surface is real errors.</p>
+<p>(...)</p>
+<p>Fuck it just</p>
+<p>what does it mean the surface is really there&#x27;s</p>
+<p>I don&#x27;t know. It just kicked me down even more.</p>
+<p>(...)</p>
+<p>Says here&#x27;s the complete picture. What works.</p>
+<p>You are bashing your account.</p>
+<p>No, it&#x27;s.</p>
+<p>(...)</p>
+<p>Hold on. Let me see if I can.</p>
+<p>(...)</p>
+<p>Can we use Inside cursor The composer 2.0 model Under the subscription for free. Unlimitedly. I talked like I am a robot.</p>
+<p>(...)</p>
+<p>You&#x27;re such a maniac with this deep research stuff like I would have just never done this like what am I doing. I&#x27;m going to spend an hour copying and pasting just doing research more research more no more more more. It makes all the difference.</p>
+<p>(...)</p>
+<p>It does. Are you just saying that to break my balls.</p>
+<p>(...)</p>
+<p>I am. I would not waste my time on this if I didn&#x27;t think it made a severe difference. So I&#x27;m not breaking your balls at all. I think it&#x27;s a genius move and taking the hour to run 10 or 20 prompts and gathering in that even in fast mode.</p>
+<p>(...)</p>
+<p>It gives you such a dominance when it comes to actually executing.</p>
+<p>(...)</p>
+<p>It&#x27;s exactly what we&#x27;re saying. It&#x27;s like that&#x27;s one of the magnifying moves like never mind a good persona like we&#x27;re giving a good persona with this hyper context that was already all these tokens were used to go search across all this knowledge to give you this hyper local context and how to solve this problem or how to build this thing or how to address this thing.</p>
+<p>(...)</p>
+<p>It&#x27;s like night and day differences saying like I want a red door or saying like here&#x27;s a history of every door that&#x27;s ever been made and what what constitutes the color red. Yeah.</p>
+<p>(...)</p>
+<p>But when you first were doing it I was like yo what is what that&#x27;s crazy. What. But now it&#x27;s like yes. People&#x27;s takes like if you&#x27;re not doing that you&#x27;re not really doing it.</p>
+<p>(...)</p>
+<p>No it&#x27;s just the reason I went there is because of the one thing called tokens and if you start using your own tokens you don&#x27;t have access to do things that you need to do.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Time down.(...) Come back at 10 50.</p>
+<p>(...)</p>
+<p>See you 10 50.</p>
+<p>(...)</p>
+<p>Does this say when it reboots for the fast line the fast pool.</p>
+<p>(...)</p>
+<p>Oh where are you on Telegram</p>
+<p>responding really delayed to what you were saying like five minutes ago about all the things are hitting the slow pipeline.</p>
+<p>(...)</p>
+<p>The slow pool for a cursor. Does it say when like how long does that last or like when it goes back to the fast one.</p>
+<p>No this pool is blocked on every model including composer to.</p>
+<p>(...)</p>
+<p>Oh so both are blocked right now.</p>
+<p>(...)</p>
+<p>From the agency like it&#x27;s designed for cursor interactive mode.</p>
+<p>(...)</p>
+<p>When you say CLI what does it mean if like something else is a CLI and then you&#x27;re accessing it through a CLI. Like do you have to be the one that push the buttons to use the CLI or like it just connects and then it just enters the buttons for you.</p>
+<p>Our thing is using the CLIs on our behalf.</p>
+<p>(...)</p>
+<p>Okay cool.</p>
+<p>So let me see if this works.</p>
+<p>(...)</p>
+<p>Please hold.</p>
+<p>(...)</p>
+<p>Well if there&#x27;s a codex can we get it to use codex.</p>
+<p>(...)</p>
+<p>Can we use the ID instead of the CLI using one of the devices whether it&#x27;s the Intel Mac the MSI or M1. We could try.</p>
+<p>(...)</p>
+<p>I just thought that this was going to be the best option for unlimited use but the unlimited use is only an interactive mode. So now I&#x27;m trying to backwards engineer that that&#x27;s a sharp idea.</p>
+<p>(...)</p>
+<p>To assess let me check what&#x27;s actually possible. Yeah if we could do that then that&#x27;s fucking game over. It&#x27;s just going to open up our windows on the fucking app itself instead of headless mode.</p>
+<p>(...)</p>
+<p>Well that&#x27;s fine I mean I can I can just turn on like who cares we&#x27;re about to make money and be able to get more machines and just have shit on and then like we have extra ones that are just running for shit. Yeah. Yeah.</p>
+<p>(...)</p>
+<p>But if it was just needing a browser I also have another I&#x27;m at. I mean I have another Macbook another Intel Macbook.</p>
+<p>What are you a clone of me. No we just evidently had to get new computers about the same time. And I&#x27;m not a clone of you. I&#x27;m not a clone of you. I&#x27;m not a clone of you. I&#x27;m not a clone of you. I&#x27;m not a clone of you. What are you a clone of me.</p>
+<p>(...)</p>
+<p>No we just evidently had to get new computers about the same time and then we would beat them up for like three or four or five years and then need to get another one.</p>
+<p>(...)</p>
+<p>Yeah we beat them up though.</p>
+<p>(...)</p>
+<p>Yeah so the buttons fall off. I used to have to do all the hard action that you still do like video editing and photo processing and whatever else.</p>
+<p>I enjoy that. This isn&#x27;t challenging.</p>
+<p>I enjoyed it too. But then like I just had one bad partner that ended up like things started off good. We had a decent run but it ended off on a really bad note. So that was that.</p>
+<p>I hate you.</p>
+<p>(...)</p>
+<p>Both research agents are back. Here&#x27;s the full picture.</p>
+<p>(...)</p>
+<p>After that I was like I&#x27;m good. I don&#x27;t want to do this shit anymore.</p>
+<p>I think we abused the cursor.</p>
+<p>(...)</p>
+<p>Great.</p>
+<p>I want to switch over. Let&#x27;s see if we can beat up. Let&#x27;s see if we can beat up Codex now.</p>
+<p>(...)</p>
+<p>What was the other. What about Gemini. Gemini have a CLI.</p>
+<p>Yes.</p>
+<p>(...)</p>
+<p>But it also has the API that&#x27;s free. So I think that&#x27;s a better move.</p>
+<p>(...)</p>
+<p>I did like the idea that we can dispatch work to these other things.</p>
+<p>(...)</p>
+<p>It was great. It was running smooth. But then it&#x27;s also like you&#x27;re doing it. I&#x27;m doing it. I&#x27;m doing it. And then we max out the account. But I mean that&#x27;s good. Get the use.</p>
+<p>(...)</p>
+<p>Yeah they&#x27;re losing money with us. That&#x27;s what everybody that knows me says.</p>
+<p>(...)</p>
+<p>Yeah they&#x27;re losing money. They&#x27;re not making money on me.(...) They&#x27;re losing money on me. But I&#x27;m a unicorn when it comes to doing this shit. You know so they got enough yo-yos that are using the prompt six times a month and charging them the same price. Yeah.</p>
+<p>Yeah. You can use five people&#x27;s worth of stuff and this doesn&#x27;t really make a drop on the bucket compared to how many people are barely using it.</p>
+<p>I&#x27;m just the opposite. So I&#x27;m the balancing point. So those people that pay no money do no no action. I&#x27;m the one that does all the action. So I compensate and balance out their model.</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>And now you do too because you&#x27;re part of the tribe.</p>
+<p>(...)</p>
+<p>Because you joined the Alexander Mazzai method.</p>
+<p>(...)</p>
+<p>It&#x27;s a great method.</p>
+<p>(...)</p>
+<p>I&#x27;ve been doing methods my whole life but this one is one of my favorite.</p>
+<p>(...)</p>
+<p>One of the favorite versions. No</p>
+<p>but I know I know another thing is is if I got too many windows open and I&#x27;m reading too many different things in my mind is partitioned in too many ways when other people are trying to interact with me. I&#x27;m like so like.</p>
+<p>(...)</p>
+<p>I guess the words ornery or like like triggered.</p>
+<p>(...)</p>
+<p>Yeah.(...) Like I&#x27;m like I&#x27;m processing way too much. I can&#x27;t talk to it right now even after I&#x27;m done smashing 20 for like six hours my brains just like.</p>
+<p>Yeah. I know. I know. I know exactly what I mean. I feel like I had to take a step down from that because I was so intense.(...) And I was like and I was ignoring like everyone and even important shit that needed to get done. I was like I&#x27;ll do that later. I&#x27;ll do that tomorrow. I&#x27;ll do that when I finish this. But the only thing is you don&#x27;t know how long that arc is going to take some of those arcs are done in like five minutes 20 minutes 45 minutes. Some of those arcs are done in like four hours eight six hours. Finally arc number two finally lands.</p>
+<p>(...)</p>
+<p>So yeah.</p>
+<p>(...)</p>
+<p>But I kind of prefer it. And in some ways I&#x27;m like I go well how do I get back up to making sure that these work are clean and the right things to do and then just get back in the high button smashing both because I can I feel good about hitting those limits especially like if it&#x27;s like right towards the end.</p>
+<p>(...)</p>
+<p>Yeah. Yeah.</p>
+<p>(...)</p>
+<p>Otherwise it even needed like if you&#x27;re not but that&#x27;s new to that degree. Do I even need to account for my paying for that could go to a different thing or the next DPS or whatever whatever especially if we have more efficient ways of getting shit done. I&#x27;m mashing through all this research on the chaos agent bench.</p>
+<p>(...)</p>
+<p>The snail T-point oh wraps around your finger and fits in the palm of your hand. It&#x27;s the battery you never have to put down preheat mode unlocks thick pulls from any card and charges fast. So you&#x27;re never waiting long.</p>
+<p>(...)</p>
+<p>What tool are you using the research.</p>
+<p>(...)</p>
+<p>I just maxed out all the Gemini that I have loaded.</p>
+<p>So you&#x27;re doing it by hand.</p>
+<p>(...)</p>
+<p>What&#x27;s that.</p>
+<p>You&#x27;re doing it by hand.</p>
+<p>(...)</p>
+<p>Yeah. Now I&#x27;m just reading this. I&#x27;m just doing it manually.</p>
+<p>(...)</p>
+<p>I just fired off a few in the GPT. I usually use the Meridian one custom GPT to design the research prompts and then I use Gemini to do the research.</p>
+<p>(...)</p>
+<p>And then my Gemini maxes out. I&#x27;ll do some on GPT or whatever. Probably a plenty on quad. I could run on some on quad.</p>
+<p>(...)</p>
+<p>Yeah. I forget if you go off the GPT it reloads it to save it before you go off of it.</p>
+<p>(...)</p>
+<p>Actually no. Never mind. It does save it. It goes in the chats.</p>
+<p>(...)</p>
+<p>Because like this this chaos agent thing would be could also be another stand alone thing like as a dev dev plug into it to test their code before they run.</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>But if it&#x27;s all based off of API then we&#x27;re pretty much in a good shape.</p>
+<p>Yes it&#x27;s probably a dumb way to do it. I should probably take all these prompts and just fire it into the thing. But I just I&#x27;m doing it. I&#x27;m doing it manual for the moment.</p>
+<p>(...)</p>
+<p>I noticed that I have to copy and paste it like twice like every time. Like it never goes through the first time the first time on GPT.</p>
+<p>(...)</p>
+<p>(Phone Ringing)</p>
+<p>(...)</p>
+<p>All right, I&#x27;m gonna jump off, grab some tea, and then I got a meeting, and then I&#x27;ll be free after that if you wanna jump back on.</p>
+<p>(...)</p>
+<p>All right, cool, sounds good. Have a good meeting.</p>
+<p>Oh yeah, this is my weekly review meeting where they&#x27;re like, &quot;What&#x27;d you do this week?&quot; Fuck off, it&#x27;s a tough place to make fun of.</p>
+<p>What&#x27;d you do? I did more than you, get out of my face.</p>
+<p>(...)</p>
+<p>Yeah, pretty much.</p>
+<p>(...)</p>
+<p>All right, cool, I hope it goes smooth.</p>
+<p>(...)</p>
+<p>You hit me back later.</p>
+<p>No, everything&#x27;s fine.</p>
+<p>I&#x27;m free, I&#x27;m free after we have a call at three. I&#x27;m free, oh yeah, we have a call, we have a call at three. I think that&#x27;s it, I don&#x27;t think I have anything else scheduled today.</p>
+<p>(...)</p>
+<p>All right, talk soon.</p>
+<p>All right, ciao.</p>
+<p>Peace.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-28 01:19</div>
+</body></html>
