@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T12:35:27.931270+00:00",
+  "generated_at": "2026-03-29T12:41:47.531739+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -780,8 +780,23 @@
         }
       ],
       "mig_live": {
-        "status": "error",
-        "error": "Couldn't connect to 100.112.130.22:7750 (resolved to ('100.112.130.22:7750',)):\nFailed to establish connection to ResolvedIPv4Address(('100.112.130.22', 7750)) (reason [Errno 111] Connection refused)"
+        "memory_count": 21225,
+        "concept_count": 5894,
+        "edge_count": 1007940,
+        "avg_importance": 8.34,
+        "domains": {
+          "agent_architecture": 6708,
+          "market_intelligence": 3518,
+          "infrastructure": 2399,
+          "security_compliance": 1375,
+          "business_operations": 1201,
+          "ai_capabilities": 1123,
+          "intelligence": 395,
+          "capital_markets": 89,
+          "research": 29,
+          "agent-architecture": 26
+        },
+        "status": "connected"
       }
     },
     "pipeline": {
@@ -876,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-29T12:35:27.027925+00:00",
+      "updated_at": "2026-03-29T12:41:47.341054+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1216,6 +1231,26 @@
           "buying_signal_count": 0,
           "sentiment": "neutral",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "mbm",
+          "call_id": "meridian-msla-v2",
+          "title": "meridian-msla-v2",
+          "file": "clients/mbm/signals/deal-signals-meridian-msla-v2-2026-03-29.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -1844,11 +1879,11 @@
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 7,
-        "mbm": 24,
+        "mbm": 25,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 48,
+      "total_signals": 49,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -2423,21 +2458,21 @@
       "mesh_live": {
         "system": {
           "hostname": "racknerd-c0be9f6",
-          "cpu_load_1m": 3.08,
-          "cpu_load_5m": 2.08,
+          "cpu_load_1m": 1.12,
+          "cpu_load_5m": 0.78,
           "memory_total_mb": 5925,
-          "memory_available_mb": 3479,
-          "swap_used_mb": 1886,
+          "memory_available_mb": 2390,
+          "swap_used_mb": 2902,
           "swap_total_mb": 3071,
           "disk_total_gb": 135.0,
-          "disk_used_gb": 76.0,
-          "uptime_days": 13.9
+          "disk_used_gb": 84.0,
+          "uptime_days": 13.1
         },
         "nats": {
           "streams": {
             "WORK_QUEUE": {
-              "messages": 3418,
-              "bytes": 1796938,
+              "messages": 3128,
+              "bytes": 1643479,
               "consumers": 21,
               "consumer_lag": [
                 {
@@ -2472,17 +2507,17 @@
                 },
                 {
                   "name": "forge_claude_docs_monitor",
-                  "pending": 43,
+                  "pending": 29,
                   "level": "ok"
                 },
                 {
                   "name": "forge_corroboration_discovery",
-                  "pending": 549,
+                  "pending": 580,
                   "level": "critical"
                 },
                 {
                   "name": "forge_fact_extraction",
-                  "pending": 123,
+                  "pending": 119,
                   "level": "warning"
                 },
                 {
@@ -2502,7 +2537,7 @@
                 },
                 {
                   "name": "forge_swarm_subtask",
-                  "pending": 1137,
+                  "pending": 1121,
                   "level": "critical"
                 },
                 {
@@ -2512,7 +2547,7 @@
                 },
                 {
                   "name": "forge_youtube_transcript",
-                  "pending": 51,
+                  "pending": 0,
                   "level": "ok"
                 },
                 {
@@ -2532,8 +2567,8 @@
                 },
                 {
                   "name": "research-worker_deep_research",
-                  "pending": 274,
-                  "level": "warning"
+                  "pending": 77,
+                  "level": "ok"
                 },
                 {
                   "name": "swarm-manual-test",
@@ -2548,20 +2583,20 @@
               ]
             },
             "MESH_DLQ": {
-              "messages": 345,
-              "bytes": 739244,
+              "messages": 334,
+              "bytes": 734153,
               "consumers": 1,
               "consumer_lag": [
                 {
-                  "name": "E6ThCknw",
+                  "name": "6LIub9LD",
                   "pending": 0,
                   "level": "ok"
                 }
               ]
             },
             "PULSE": {
-              "messages": 5,
-              "bytes": 1200,
+              "messages": 1,
+              "bytes": 234,
               "consumers": 4,
               "consumer_lag": [
                 {
@@ -2615,11 +2650,12 @@
             "reachable": true
           }
         ],
-        "collected_at": "2026-03-29T12:00:44.007907+00:00"
+        "collected_at": "2026-03-28T18:00:27.712379+00:00",
+        "_stale_warning": "Data is 19 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-29T12:35:27.049348+00:00",
+      "updated_at": "2026-03-29T12:41:47.359508+00:00",
       "open_issues": "GitHub issues query failed or gh CLI unavailable",
       "recent_issues": [],
       "issues_by_project": {},
@@ -2635,7 +2671,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "members": [
         {
           "id": "alex",
@@ -2706,7 +2742,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "projects": [
         {
           "project": {
@@ -3136,7 +3172,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3248,7 +3284,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3345,7 +3381,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -3622,115 +3658,73 @@
         },
         {
           "date": "2026-03-29",
-          "title": "Meridian Msla V1",
+          "title": "Meridian Msla V2",
           "type": "external",
-          "file": "clients/mbm/meridian-msla-v1.md",
+          "file": "clients/mbm/meridian-msla-v2.md",
           "participants": [
             "alex"
           ],
-          "summary": "This is not a call transcript but a Master Services & Licensing Agreement (MSLA v1.0) template restructuring how Meridian licenses IP to clients: Meridian retains ownership and sells access through tiered licenses (Standard/Extended/Enterprise/Buyout) rather than assigning ownership.",
+          "summary": "Master Services & Licensing Agreement (v2.0) template for Meridian Mesh LLC establishing tiered IP licensing framework, service delivery terms, payment structure, and ownership guardrails\u2014Meridian retains background IP ownership; clients receive limited tier-based licenses to Client Deliverables only.",
           "decisions": [
-            "Invert IP model from assignment with carve-outs to retention with tiered licensing",
-            "Require explicit SOW identification for all Client Deliverables",
-            "Four license tiers with progressive rights (non-exclusive, affiliates, sublicense, buyout)",
-            "Puerto Rico jurisdiction under Act 55-2012 and Act 60-2019",
-            "90-day warranty period post-acceptance; latent defects and security vulnerabilities included",
-            "Binding arbitration in San Juan for dispute resolution",
-            "Major releases require express written acceptance (deemed acceptance does not apply)"
+            "Meridian retains all background IP ownership; transfers only expressly-identified Client Deliverables by license tier",
+            "Four license tiers established: Tier 1 (Standard, non-exclusive internal use), Tier 2 (Extended, affiliate/contractor use), Tier 3 (Enterprise, sublicense to customers), Tier 4 (Buyout, separate agreement required)",
+            "Puerto Rico law governs; binding arbitration in San Juan per Act 60-2019",
+            "PHI classification required in every SOW; BAA (Exhibit B) mandatory before any PHI-related work begins",
+            "90-day warranty period includes latent defects and security vulnerabilities in Meridian-written code",
+            "Termination: 60-day notice or immediate for uncured material breach (30-day cure window)",
+            "Client Deliverables must be expressly identified in SOW with specificity; absent identification defaults to Meridian Background IP"
+          ],
+          "commitments": [
+            "Meridian: Maintain continuous access to source code, build instructions, deployment scripts, admin credentials, and dependency inventory throughout term",
+            "Meridian: Correct material/latent defects and security vulnerabilities at no cost within 90 days of acceptance",
+            "Meridian: Provide minimum 40-hour knowledge transfer and 90-day transition assistance post-termination at Tier 1 rates ($165/hr)",
+            "Meridian: Update dependency inventory within 10 business days of material change",
+            "Client: Execute SOW before Services commence (non-negotiable prerequisite)",
+            "Client: Pay 50% deposit or first milestone upon SOW execution before work begins",
+            "Client: Review deliverables within 20 business days; accept/reject or provide written deficiency notice (deemed acceptance applies except Major Releases)",
+            "Both Parties: Maintain commercially reasonable insurance; provide certificates annually; maintain 24-month tail coverage post-termination"
           ],
           "discoveries": [
-            "Previous contract versions (v3-v6) negotiated from wrong premise (carving exceptions from blanket transfer)",
-            "New structure allows Meridian to sell four distinct products: Services labor + three license tiers + buyout",
-            "Puerto Rico Act 55 recognizes non-waivable moral rights; partial integrity waiver permitted for Client Deliverable modifications"
+            "Document explicitly disclaims this is NOT work-for-hire, IP assignment, buyout, or blanket rights transfer",
+            "Embedded Meridian Background IP in Client Deliverables licensed only per tier scope; extraction, reverse engineering, and independent use prohibited",
+            "Pre-SOW or informal work defaults to Meridian Background IP unless retroactively ratified in signed writing",
+            "Improvements and derivatives of Meridian Background IP remain Meridian property even when developed during engagement with Client Data",
+            "Pricing model inverted from 'absolute assignment + carve-outs' to 'Meridian owns everything + Client buys defined access tiers'",
+            "Major Releases require express written acceptance; deemed acceptance (automatic after 20-day review) does not apply",
+            "Competitor clause: if Client acquired by Meridian's direct competitor in multi-agentic PaaS, Meridian may terminate with 180-day transition period (all paid licenses survive)"
           ],
           "action_items": [
             {
-              "who": "Meridian / Legal",
-              "what": "Populate Exhibit A (Background IP Registry) with module-level inventory before execution"
+              "who": "Client and Meridian",
+              "what": "Execute Statement of Work identifying scope, specific deliverables, license tier (1-4), pricing model, and PHI classification\u2014no work begins without signed SOW"
+            },
+            {
+              "who": "Client and Meridian",
+              "what": "Execute Business Associate Agreement (Exhibit B) before any work involving Protected Health Information; immediately suspend PHI work if discovered mid-engagement without BAA"
             },
             {
               "who": "Client",
-              "what": "Execute separate Business Associate Agreement (Exhibit B) before any engagement involving Protected Health Information"
+              "what": "Remit 50% deposit or first milestone payment upon SOW execution before Services commence"
+            },
+            {
+              "who": "Client",
+              "what": "Review each deliverable within 20 business days and provide written acceptance or specific deficiency notice; Major Releases require express written acceptance"
+            },
+            {
+              "who": "Meridian",
+              "what": "Correct all material defects, latent defects, and security vulnerabilities at no additional cost within 90 days of acceptance"
+            },
+            {
+              "who": "Meridian",
+              "what": "Maintain continuous access throughout term to current source code, build scripts, deployment instructions, credentials, and dependency inventory; update within 10 business days of changes"
             },
             {
               "who": "Both Parties",
-              "what": "Review document with licensed counsel in applicable jurisdictions before execution"
+              "what": "Maintain commercially reasonable insurance (CGL, E&O, Cyber Liability per Exhibit E); provide annual certificates; maintain 24-month tail coverage post-termination"
             }
           ],
-          "detail_page": "calls/2026-03-29-meridian-msla-v1.html",
-          "preview": "This is not a call transcript but a Master Services & Licensing Agreement (MSLA v1.0) template restructuring how Meridian licenses IP to clients: Meridian retains ownership and sells access through tiered licenses (Standard/Extended/Enterprise/Buyout) rather than assigning ownership."
-        },
-        {
-          "date": "2026-03-29",
-          "title": "Meridian Msla V1 Simple Explainer",
-          "type": "external",
-          "file": "clients/mbm/meridian-msla-v1-simple-explainer.md",
-          "participants": [
-            "alex"
-          ],
-          "summary": "Explanation of Meridian Master Services Agreement (MSLA v1) framework that clarifies ownership of Meridian's underlying technology versus client-specific deliverables through a four-tier licensing model.",
-          "commitments": [
-            "Meridian owns background IP, platform, and tools\u2014client owns only explicitly defined deliverables listed in signed SOW",
-            "Client can choose one of four license tiers: Standard (internal use only), Extended (affiliates and third-party maintenance), Enterprise (sublicense and resale), or Tier 4 Buyout (separate agreement and pricing)",
-            "All project work requires signed Statement of Work before initiation; work done before SOW signing belongs to Meridian",
-            "Meridian provides 90-day warranty covering bugs, security holes, and deliverables not matching specifications",
-            "Client receives source code, documentation, and build instructions throughout project, not just at completion",
-            "Either party can terminate with 60 days' notice; breaches can be remedied within 30 days before termination",
-            "HIPAA Business Associate Agreement (BAA) required before any work involving patient data",
-            "Meridian provides 90 days of handover support and at least 40 hours of training if client switches vendors"
-          ],
-          "detail_page": "calls/2026-03-29-meridian-msla-v1-simple-explainer.html",
-          "preview": "Explanation of Meridian Master Services Agreement (MSLA v1) framework that clarifies ownership of Meridian's underlying technology versus client-specific deliverables through a four-tier licensing model."
-        },
-        {
-          "date": "2026-03-29",
-          "title": "Bacherman Martin 9 Phase Audit Msla V1",
-          "type": "external",
-          "file": "clients/mbm/audits/bacherman-martin-9-phase-audit-msla-v1.md",
-          "participants": [
-            "alex"
-          ],
-          "summary": "Legal audit of MSLA v1 confirms strong IP ownership framework with tiered licensing model but identifies three critical gaps (undefined Services, empty Exhibits, no SOW template) and adversarial internal commentary blocking client deployment.",
-          "decisions": [
-            "The MSLA v1 correctly inverts ownership from v3-v6 to 'Meridian owns everything, Client buys access'",
-            "Tier system (1-4) with escalating rights is structurally sound but requires separate pricing framework"
-          ],
-          "commitments": [
-            "Populate Exhibit A (Meridian Background IP Registry) before client negotiation",
-            "Create Exhibit D (SOW template with 9 required elements) before client deployment",
-            "Remove internal strategy section ('WHY THIS STRUCTURE IS DIFFERENT') from client-facing agreement"
-          ],
-          "discoveries": [
-            "PR law tension: licenses cannot be both 'irrevocable' and 'suspendable for nonpayment' without clarification",
-            "Agreement assumes Meridian has bargaining power that may not exist with sophisticated clients",
-            "43 of 48 claims verified; four unverified are minor (industry-norm, deposit benchmark, rate sources, Act 60 ambiguity)",
-            "Tier pricing undefined\u2014commercial framework exists but has no price signals for negotiation",
-            "Obligations to Client are thin compared to IP retention provisions, creating tonal imbalance"
-          ],
-          "action_items": [
-            {
-              "who": "Meridian Legal/Principals",
-              "what": "Add definition of 'Services' to Article 1 (CRITICAL \u2014 blocks SOW requirement)"
-            },
-            {
-              "who": "Bacherman Martin/Meridian",
-              "what": "Resolve irrevocable-license dissonance: clarify license vests upon full payment, suspension applies only during cure period"
-            },
-            {
-              "who": "Meridian",
-              "what": "Add Confidential Information definition and subcontracting provision with Client approval rights for PHI access"
-            },
-            {
-              "who": "Meridian",
-              "what": "Define tier pricing or reference as 'per applicable SOW' to anchor 50% deposit calculation"
-            },
-            {
-              "who": "Meridian",
-              "what": "Move 'WHY THIS STRUCTURE IS DIFFERENT' section to internal strategy brief, replace with neutral Purpose summary"
-            }
-          ],
-          "detail_page": "calls/2026-03-29-bacherman-martin-9-phase-audit-msla-v1.html",
-          "preview": "Legal audit of MSLA v1 confirms strong IP ownership framework with tiered licensing model but identifies three critical gaps (undefined Services, empty Exhibits, no SOW template) and adversarial internal commentary blocking client deployment."
+          "detail_page": "calls/2026-03-29-meridian-msla-v2.html",
+          "preview": "Master Services & Licensing Agreement (v2.0) template for Meridian Mesh LLC establishing tiered IP licensing framework, service delivery terms, payment structure, and ownership guardrails\u2014Meridian retains background IP ownership; clients receive limited tier-based licenses to Client Deliverables only."
         },
         {
           "date": "2026-03-28",
@@ -6223,15 +6217,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 65,
+        "total_calls": 63,
         "internal_calls": 24,
-        "external_calls": 20,
+        "external_calls": 18,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-03-29T12:35:27.874479+00:00",
+      "updated_at": "2026-03-29T12:41:47.505753+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -7651,7 +7645,7 @@
       "total_docs": 234
     },
     "deals": {
-      "updated_at": "2026-03-29T12:35:27.874584+00:00",
+      "updated_at": "2026-03-29T12:41:47.505874+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7885,7 +7879,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-29T12:35:27.049370+00:00",
+      "updated_at": "2026-03-29T12:41:47.359582+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -12666,6 +12660,219 @@
             }
           },
           "_file": "clients/mbm/audits/csuite-audit-meridian-msla-v1.json",
+          "_client": "mbm"
+        },
+        {
+          "audit_version": "1.0",
+          "audited_at": "2026-03-29T12:41:10.056547+00:00",
+          "transcript_file": "clients/mbm/meridian-msla-v2.md",
+          "transcript_length": 30842,
+          "classification": {
+            "error": "Input is not a call transcript",
+            "document_type": "Legal Agreement (MSLA)",
+            "note": "The provided text is a Master Services & Licensing Agreement document, not a call transcript. Cannot classify call type without actual dialogue between participants."
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [],
+              "process_gaps": [],
+              "delivery_timelines": [],
+              "resource_needs": [],
+              "dependencies": []
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Software development and custom application logic (client-specific configurations)",
+                "Architecture and system design consulting services",
+                "Integration services (Client Deliverables can interface with Meridian platform)",
+                "Clinical workflows and practice-specific business rules (healthcare domain)",
+                "User interfaces and client-facing application logic",
+                "Deployment and orchestration capabilities (referenced as Meridian platform component)",
+                "Data models and schema design for client-specific use cases"
+              ],
+              "integrations": [
+                "Meridian Background IP integration \u2014 Client Deliverables must interface with Meridian's underlying platform, frameworks, and libraries",
+                "APIs and frameworks (Meridian exposes APIs; clients integrate with them)",
+                "Healthcare system integration (clinical workflows, patient data handling implied)",
+                "Client Data ingestion and processing (healthcare/business operations data)",
+                "Reusable modules and components from Meridian platform (integration points not transfer)",
+                "Data format compatibility between Client Deliverables and Meridian infrastructure"
+              ],
+              "security_compliance": [
+                "Client Data ownership and protection \u2014 Client retains exclusive ownership of all patient/customer/business data",
+                "Enterprise-grade security posture (SOC2-level from project context)",
+                "Zero-trust architecture principles (from MERIDIAN CLAUDE.md)",
+                "Puerto Rico jurisdictional compliance (Act 55-2012, Act 60-2019, PR Civil Code)",
+                "Data handling agreements for healthcare client data (clinical workflows mention suggests HIPAA-like requirements)",
+                "Proprietary information protection for Meridian Background IP (non-disclosure, non-reverse-engineering)",
+                "Audit trail requirements for work product classification (Deliverable vs. Background IP)"
+              ],
+              "build_vs_buy": [
+                "BUILD \u2014 Core Meridian platform: frameworks, libraries, orchestration systems, deployment tooling, infrastructure, reusable modules (explicitly retained by Meridian)",
+                "BUILD \u2014 Custom Client Deliverables: clinical workflows, practice-specific rules, client-configured UIs, client-specific logic (built by Meridian, owned by Client per SOW)",
+                "BUY/LICENSE \u2014 Implies Meridian uses or may acquire third-party components within its platform (non-exclusive to Client)",
+                "HYBRID \u2014 Client Deliverables built ON TOP of Meridian Background IP (build custom logic, buy/use Meridian infrastructure)"
+              ],
+              "tech_risks": [
+                "IP boundary disputes \u2014 scope creep risk of what counts as 'Client Deliverable' vs. 'Meridian Background IP' (mitigated by signed SOWs, but complex when Deliverables embed Background IP)",
+                "Incomplete agreement document \u2014 transcript ends mid-sentence at 'Meridian' (risk: final terms may differ from draft reviewed)",
+                "Derivative works ambiguity \u2014 if Client Deliverables substantially improve Meridian Background IP, ownership of improvements unclear without explicit SOW language",
+                "Dependency management \u2014 Client Deliverables depend on Meridian Background IP; updates/deprecation of Background IP could break Client systems",
+                "Multi-client reuse tension \u2014 if Meridian improves a pattern discovered during Client work, can it reuse across clients? Agreement allows it, but may create data leakage risk if client-specific logic embedded",
+                "Reverse engineering risk \u2014 agreement prohibits it, but enforcement weak if Client Deliverable source code leaks or Client employees depart",
+                "Integration coupling \u2014 if Client Deliverables tightly couple to Meridian APIs/infrastructure, client lock-in and migration risk",
+                "Healthcare compliance debt \u2014 'clinical workflows' and 'patient data' imply HIPAA/healthcare regulations not explicitly addressed in legal agreement (legal covers IP, not compliance)"
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "Meridian-ownership-first IP architecture adopted",
+                  "strategic_impact": "Platform, not consulting. Meridian retains all framework, orchestration, libraries, and improvements. Only expressly-identified custom work (UI, workflows, business rules) licensed to clients. This enables multi-client amortization and protects core moat.",
+                  "risk_level": "HIGH \u2014 conflicts with enterprise client expectations. Most clients demand IP ownership or exclusive perpetual licenses. This MSLA will face pushback in negotiation."
+                },
+                {
+                  "decision": "SOW-first operating model required",
+                  "strategic_impact": "Every engagement must have signed SOW identifying Client Deliverables by name. Pre-SOW work defaults to Meridian IP. This creates operational discipline but also friction \u2014 clients see this as bureaucratic.",
+                  "risk_level": "MEDIUM \u2014 requires airtight SOW process. Vague SOWs create disputes."
+                },
+                {
+                  "decision": "Puerto Rico jurisdiction (Act 55-2012, Act 60-2019)",
+                  "strategic_impact": "Tax-efficient structure for export services. Signals we're scaling with sophistication. But limits enforcement to PR courts \u2014 may concern clients in other jurisdictions.",
+                  "risk_level": "LOW if properly structured. Requires registered agent + PR entity."
+                },
+                {
+                  "decision": "Improvements = Meridian IP automatically",
+                  "strategic_impact": "Customers fund R&D but don't own platform enhancements. Aligns incentives \u2014 their work makes platform better for everyone. This is ambitious and smart, but requires trust that Meridian will reinvest.",
+                  "risk_level": "MEDIUM \u2014 clients may see this as one-sided. Competitive clients may demand they own 'their' improvements."
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "Multi-client platform leverage",
+                  "why_now": "By protecting reusable components (Section 2.1), Meridian can amortize R&D across customer base. Each new client = incremental revenue, not new R&D cost. This is SaaS economics.",
+                  "action": "Build pricing model that reflects this: custom work (expensive, 1:1 ratio), platform licensing (cheap, scales to N clients). Currently MSLA doesn't articulate tiered pricing."
+                },
+                {
+                  "opportunity": "Enterprise positioning via legal clarity",
+                  "why_now": "The MSLA reads as SOC2-grade (precise definitions, non-implication language, governance structure). Enterprise buyers pay 3-5x for mature legal/compliance. Lean into this.",
+                  "action": "Market MSLA as proof of maturity. In RFP responses, lead with 'Meridian is ISO-ready, SOC2-aligned, PR-anchored for enterprise deployment.'"
+                },
+                {
+                  "opportunity": "Platform-as-a-Service revenue model",
+                  "why_now": "The MSLA structure assumes platform licensing (Section 2.1 carve-out for 'reusable modules'). This is closer to SaaS than consulting. Can we model recurring platform revenue separately from custom work?",
+                  "action": "Design tiered platform license: basic (free/bundled), professional ($X/mo), enterprise (custom). Let custom work stand alone."
+                },
+                {
+                  "opportunity": "Derivative work IP as differentiation",
+                  "why_now": "Section 2.4 says improvements stay Meridian's. If Meridian's improvements are visible and valuable, clients will trust that their investment funds platform growth. This builds network effects.",
+                  "action": "Publish quarterly 'improvements log' \u2014 show clients what enhancements their work funded. Build goodwill through transparency."
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "Client IP pushback during negotiation",
+                  "severity": "HIGH",
+                  "why": "Enterprise clients typically demand: (a) ownership of custom work, or (b) exclusive perpetual license, or (c) buyout of platform IP. This MSLA grants none of that. Expect contract cycles to extend 6-12 months with negotiated amendments.",
+                  "mitigation": "Prepare negotiation playbook with 3-4 IP grant tiers. Be willing to offer exclusive licenses for higher fees, but never cede platform ownership."
+                },
+                {
+                  "threat": "Competitive reuse of customer workflows",
+                  "severity": "HIGH",
+                  "why": "MSLA allows Meridian to reuse custom workflows (clinical, practice, business logic) across customers. If Client A finds out their proprietary workflow was licensed to Client B (competitor), reputational damage is severe. MSLA is silent on this.",
+                  "mitigation": "Add confidentiality carve-out: 'Meridian may use Client's methodology to improve platform, but will not license Client's specific workflow to direct competitors without consent.' Define 'direct competitor' clearly."
+                },
+                {
+                  "threat": "Pre-SOW work disputes",
+                  "severity": "MEDIUM",
+                  "why": "Section 2.5 says informal pre-SOW work = Meridian IP 'unless Parties later agree otherwise.' But if there's no written ratification, clients may later claim they assumed pre-SOW exploratory work was theirs. Creates he-said-she-said disputes.",
+                  "mitigation": "Process: After exploratory work, send written memo to client: 'Our exploration on [dates] identified the following: [list]. Per MSLA Section 2.5, this remains Meridian IP unless you execute a written amendment. Do you wish to amend?' This creates paper trail."
+                },
+                {
+                  "threat": "Missing SaaS/platform operational terms",
+                  "severity": "MEDIUM",
+                  "why": "The MSLA establishes IP ownership but doesn't address: data residency, uptime SLAs, update cycles, security responsibilities, disaster recovery, or incident response. Clients will ask 'where is this in the contract?' It's not.",
+                  "mitigation": "MSLA should reference a separate 'Platform Services Addendum' (PSA) covering operations, SLAs, security, and infrastructure. The IP framework needs operational support."
+                },
+                {
+                  "threat": "Scope creep buried in 'Client Deliverables' definition",
+                  "severity": "MEDIUM",
+                  "why": "Section 2.2 says Client Deliverables include 'custom clinical workflows, practice-specific business rules, user interfaces designed to Client's specifications.' These are vague. Is a custom API a 'Client Deliverable' or Meridian IP (because it uses Meridian framework)? Disputes will follow.",
+                  "mitigation": "SOW template must list deliverables at granular level (e.g., 'Patient Dashboard UI v1.0 = Client Deliverable; underlying reporting library = Meridian IP'). No vague categories."
+                },
+                {
+                  "threat": "Perceived unfairness may damage partnerships",
+                  "severity": "MEDIUM",
+                  "why": "The MSLA is written to maximize Meridian's IP retention. Reading it as a client, I see: 'They keep everything, I get limited rights.' This creates a tone of 'we don't trust you.' Clients want partnership language.",
+                  "mitigation": "Reframe narrative. Add preamble: 'Meridian partners with clients to improve shared platform. Your custom work funds R&D. Your improvements benefit all customers. This alignment ensures long-term value.' Make it collaborative, not extractive."
+                }
+              ],
+              "commitments": [
+                {
+                  "commitment": "Meridian Background IP remains Meridian's in perpetuity",
+                  "who_needs_to_know": "CEO, CFO, all client-facing teams",
+                  "operational_impact": "This is non-negotiable. Every SOW must reinforce this. Cannot be compromised without C-level approval.",
+                  "enforcement": "Pre-SOW checklist: SOW signed? Client Deliverables identified by name? Yes/no? If no, escalate to legal."
+                },
+                {
+                  "commitment": "All improvements from customer work benefit Meridian platform",
+                  "who_needs_to_know": "Product, Engineering, Customers (via transparency report)",
+                  "operational_impact": "Customer work must feed back to platform. R&D team should review customer customizations quarterly and extract generalizable improvements.",
+                  "enforcement": "Product roadmap should include 'improvements from Customer X, Y, Z' each quarter. Show customers their investment in action."
+                },
+                {
+                  "commitment": "No IP assignment without separate consideration and separate writing",
+                  "who_needs_to_know": "Legal, Sales, CEO",
+                  "operational_impact": "If a customer demands IP buyout or exclusive license, this requires separate negotiation (not bundled into services contract), separate payment, and separate document. Cannot be a throwaway concession.",
+                  "enforcement": "Sales escalation: any IP buyout request \u2192 CEO approval required. Not delegated."
+                },
+                {
+                  "commitment": "Pre-SOW work classified in writing before SOW signing",
+                  "who_needs_to_know": "Project Managers, Sales, Customers",
+                  "operational_impact": "If exploratory work happens before SOW, must send written memo classifying it: 'This work is Meridian IP (platform investment) / Customer IP (your custom deliverable) / [hybrid]. Do you agree?' Get signature or written agreement. Prevents disputes.",
+                  "enforcement": "PM checklist: exploratory work done? Send classification memo. If not acknowledged in writing, default to Meridian IP (per Section 2.5)."
+                },
+                {
+                  "commitment": "Competitive safeguards for customer workflows",
+                  "who_needs_to_know": "CEO, Product, Sales (for disclosure to customers)",
+                  "operational_impact": "While MSLA allows Meridian to reuse customer work, competitive reuse will damage trust. Recommend confidentiality addendum: 'Meridian may use Customer's methodology to improve platform, but will not license Customer's specific workflows or business logic to direct competitors [define competitor class] for [12-24] months without consent.'",
+                  "enforcement": "Standard customer addendum (not in MSLA, but negotiated separately). Shows good faith while protecting Meridian's right to platform reuse."
+                }
+              ],
+              "narrative_assessment": {
+                "overall_grade": "STRONG LEGAL POSTURE, WEAK CUSTOMER NARRATIVE",
+                "strengths": [
+                  "IP ownership is crystal clear \u2014 no ambiguity, no implication traps. This is excellent legal drafting.",
+                  "Enterprise-grade tone \u2014 precise definitions, non-implication language, governance structure. Clients will perceive Meridian as mature and SOC2-aligned.",
+                  "Platform thinking \u2014 the entire structure assumes SaaS/multi-client model, not consulting. This is forward-looking and ambitious for an early-stage company.",
+                  "Improvements clause is brilliant \u2014 customer work funds R&D, and improvements stay Meridian's. Aligns incentives for long-term platform value.",
+                  "Puerto Rico jurisdiction signals tax efficiency and structural sophistication."
+                ],
+                "weaknesses": [
+                  "TONE: Reads as 'we keep everything, you get limited rights.' Clients feel contractually constrained, not partnered.",
+                  "COMPETITIVE: No safeguards against reuse of customer workflows in competing verticals. Clients will ask 'can Meridian reuse my work for my competitors?' Answer: 'Yes.' This is a trust-killer.",
+                  "PROCEDURAL: SOW-first model is operationally heavy. Clients see bureaucracy, not agility.",
+                  "INCOMPLETE: Missing SaaS/platform operational terms (SLAs, uptime, data residency, incident response). IP framework needs operational backing.",
+                  "SCOPE CREEP RISK: 'Client Deliverables' definition is vague. Will generate disputes about what counts as 'custom' vs 'platform'."
+                ],
+                "how_clients_will_perceive_this": "Mixed. Enterprise clients will respect the legal clarity but will immediately negotiate for stronger IP grants. Early-stage or SMB clients will find it too restrictive and may walk to competitors. Meridian will win contracts with clients who trust the platform strategy (multi-client leverage) but lose contracts with clients who prioritize IP ownership.",
+                "what_we_should_do_now": [
+                  "Add NARRATIVE PREAMBLE to MSLA: Position as partnership, not extraction. 'Meridian partners with clients to improve shared platform. Your custom work funds R&D that benefits all customers. This alignment ensures long-term value.'",
+                  "ADD COMPETITIVE SAFEGUARDS: Offer confidentiality carve-out in negotiation. 'We won't license your specific workflows to direct competitors for [12-24] months without consent.' Shows good faith.",
+                  "PREPARE NEGOTIATION PLAYBOOK: 3-4 IP grant tiers, with pricing for each (e.g., 'Basic: non-exclusive license; Professional: 12-month exclusivity in vertical; Enterprise: buyout + exclusive license'). Be ready to negotiate.",
+                  "BUILD SaaS ADDENDUM: Add 'Platform Services Addendum' covering operations, SLAs, security, data residency, incident response. IP framework needs operational backing.",
+                  "TIGHTEN SOW TEMPLATE: Make 'Client Deliverables' granular, not vague. Each deliverable should be listed with granular scope (e.g., 'Patient Dashboard UI v1.0' not 'custom interfaces').",
+                  "PROCESS: Pre-SOW work classification memo required before SOW signing. Creates paper trail, prevents disputes."
+                ]
+              }
+            }
+          },
+          "_file": "clients/mbm/audits/csuite-audit-meridian-msla-v2.json",
           "_client": "mbm"
         },
         {
@@ -21203,62 +21410,52 @@
           "_client": "unknown"
         }
       ],
-      "total": 56
+      "total": 57
     },
     "call_intelligence": {
-      "updated_at": "2026-03-29T12:35:27.885487+00:00",
+      "updated_at": "2026-03-29T12:41:47.515161+00:00",
       "signal_summary": {
         "total_objections": 46,
         "total_buying_signals": 28,
-        "total_competitors": 153,
-        "pricing_discussions": 40,
-        "calls_with_signals": 48
+        "total_competitors": 154,
+        "pricing_discussions": 41,
+        "calls_with_signals": 49
       },
       "decisions": [
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Invert IP model from assignment with carve-outs to retention with tiered licensing"
+          "call": "Meridian Msla V2",
+          "decision": "Meridian retains all background IP ownership; transfers only expressly-identified Client Deliverables by license tier"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Require explicit SOW identification for all Client Deliverables"
+          "call": "Meridian Msla V2",
+          "decision": "Four license tiers established: Tier 1 (Standard, non-exclusive internal use), Tier 2 (Extended, affiliate/contractor use), Tier 3 (Enterprise, sublicense to customers), Tier 4 (Buyout, separate agreement required)"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Four license tiers with progressive rights (non-exclusive, affiliates, sublicense, buyout)"
+          "call": "Meridian Msla V2",
+          "decision": "Puerto Rico law governs; binding arbitration in San Juan per Act 60-2019"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Puerto Rico jurisdiction under Act 55-2012 and Act 60-2019"
+          "call": "Meridian Msla V2",
+          "decision": "PHI classification required in every SOW; BAA (Exhibit B) mandatory before any PHI-related work begins"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "90-day warranty period post-acceptance; latent defects and security vulnerabilities included"
+          "call": "Meridian Msla V2",
+          "decision": "90-day warranty period includes latent defects and security vulnerabilities in Meridian-written code"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Binding arbitration in San Juan for dispute resolution"
+          "call": "Meridian Msla V2",
+          "decision": "Termination: 60-day notice or immediate for uncured material breach (30-day cure window)"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "decision": "Major releases require express written acceptance (deemed acceptance does not apply)"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "decision": "The MSLA v1 correctly inverts ownership from v3-v6 to 'Meridian owns everything, Client buys access'"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "decision": "Tier system (1-4) with escalating rights is structurally sound but requires separate pricing framework"
+          "call": "Meridian Msla V2",
+          "decision": "Client Deliverables must be expressly identified in SOW with specificity; absent identification defaults to Meridian Background IP"
         },
         {
           "date": "2026-03-28",
@@ -22199,58 +22396,43 @@
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Meridian owns background IP, platform, and tools\u2014client owns only explicitly defined deliverables listed in signed SOW"
+          "call": "Meridian Msla V2",
+          "what": "Meridian: Maintain continuous access to source code, build instructions, deployment scripts, admin credentials, and dependency inventory throughout term"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Client can choose one of four license tiers: Standard (internal use only), Extended (affiliates and third-party maintenance), Enterprise (sublicense and resale), or Tier 4 Buyout (separate agreement and pricing)"
+          "call": "Meridian Msla V2",
+          "what": "Meridian: Correct material/latent defects and security vulnerabilities at no cost within 90 days of acceptance"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "All project work requires signed Statement of Work before initiation; work done before SOW signing belongs to Meridian"
+          "call": "Meridian Msla V2",
+          "what": "Meridian: Provide minimum 40-hour knowledge transfer and 90-day transition assistance post-termination at Tier 1 rates ($165/hr)"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Meridian provides 90-day warranty covering bugs, security holes, and deliverables not matching specifications"
+          "call": "Meridian Msla V2",
+          "what": "Meridian: Update dependency inventory within 10 business days of material change"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Client receives source code, documentation, and build instructions throughout project, not just at completion"
+          "call": "Meridian Msla V2",
+          "what": "Client: Execute SOW before Services commence (non-negotiable prerequisite)"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Either party can terminate with 60 days' notice; breaches can be remedied within 30 days before termination"
+          "call": "Meridian Msla V2",
+          "what": "Client: Pay 50% deposit or first milestone upon SOW execution before work begins"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "HIPAA Business Associate Agreement (BAA) required before any work involving patient data"
+          "call": "Meridian Msla V2",
+          "what": "Client: Review deliverables within 20 business days; accept/reject or provide written deficiency notice (deemed acceptance applies except Major Releases)"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1 Simple Explainer",
-          "what": "Meridian provides 90 days of handover support and at least 40 hours of training if client switches vendors"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "what": "Populate Exhibit A (Meridian Background IP Registry) before client negotiation"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "what": "Create Exhibit D (SOW template with 9 required elements) before client deployment"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "what": "Remove internal strategy section ('WHY THIS STRUCTURE IS DIFFERENT') from client-facing agreement"
+          "call": "Meridian Msla V2",
+          "what": "Both Parties: Maintain commercially reasonable insurance; provide certificates annually; maintain 24-month tail coverage post-termination"
         },
         {
           "date": "2026-03-28",
@@ -22873,43 +23055,38 @@
       "discoveries": [
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "discovery": "Previous contract versions (v3-v6) negotiated from wrong premise (carving exceptions from blanket transfer)"
+          "call": "Meridian Msla V2",
+          "discovery": "Document explicitly disclaims this is NOT work-for-hire, IP assignment, buyout, or blanket rights transfer"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "discovery": "New structure allows Meridian to sell four distinct products: Services labor + three license tiers + buyout"
+          "call": "Meridian Msla V2",
+          "discovery": "Embedded Meridian Background IP in Client Deliverables licensed only per tier scope; extraction, reverse engineering, and independent use prohibited"
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
-          "discovery": "Puerto Rico Act 55 recognizes non-waivable moral rights; partial integrity waiver permitted for Client Deliverable modifications"
+          "call": "Meridian Msla V2",
+          "discovery": "Pre-SOW or informal work defaults to Meridian Background IP unless retroactively ratified in signed writing"
         },
         {
           "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "discovery": "PR law tension: licenses cannot be both 'irrevocable' and 'suspendable for nonpayment' without clarification"
+          "call": "Meridian Msla V2",
+          "discovery": "Improvements and derivatives of Meridian Background IP remain Meridian property even when developed during engagement with Client Data"
         },
         {
           "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "discovery": "Agreement assumes Meridian has bargaining power that may not exist with sophisticated clients"
+          "call": "Meridian Msla V2",
+          "discovery": "Pricing model inverted from 'absolute assignment + carve-outs' to 'Meridian owns everything + Client buys defined access tiers'"
         },
         {
           "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "discovery": "43 of 48 claims verified; four unverified are minor (industry-norm, deposit benchmark, rate sources, Act 60 ambiguity)"
+          "call": "Meridian Msla V2",
+          "discovery": "Major Releases require express written acceptance; deemed acceptance (automatic after 20-day review) does not apply"
         },
         {
           "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "discovery": "Tier pricing undefined\u2014commercial framework exists but has no price signals for negotiation"
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "discovery": "Obligations to Client are thin compared to IP retention provisions, creating tonal imbalance"
+          "call": "Meridian Msla V2",
+          "discovery": "Competitor clause: if Client acquired by Meridian's direct competitor in multi-agentic PaaS, Meridian may terminate with 180-day transition period (all paid licenses survive)"
         },
         {
           "date": "2026-03-28",
@@ -23855,66 +24032,58 @@
       "action_items": [
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
+          "call": "Meridian Msla V2",
           "action": {
-            "who": "Meridian / Legal",
-            "what": "Populate Exhibit A (Background IP Registry) with module-level inventory before execution"
+            "who": "Client and Meridian",
+            "what": "Execute Statement of Work identifying scope, specific deliverables, license tier (1-4), pricing model, and PHI classification\u2014no work begins without signed SOW"
           }
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
+          "call": "Meridian Msla V2",
+          "action": {
+            "who": "Client and Meridian",
+            "what": "Execute Business Associate Agreement (Exhibit B) before any work involving Protected Health Information; immediately suspend PHI work if discovered mid-engagement without BAA"
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "call": "Meridian Msla V2",
           "action": {
             "who": "Client",
-            "what": "Execute separate Business Associate Agreement (Exhibit B) before any engagement involving Protected Health Information"
+            "what": "Remit 50% deposit or first milestone payment upon SOW execution before Services commence"
           }
         },
         {
           "date": "2026-03-29",
-          "call": "Meridian Msla V1",
+          "call": "Meridian Msla V2",
+          "action": {
+            "who": "Client",
+            "what": "Review each deliverable within 20 business days and provide written acceptance or specific deficiency notice; Major Releases require express written acceptance"
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "call": "Meridian Msla V2",
+          "action": {
+            "who": "Meridian",
+            "what": "Correct all material defects, latent defects, and security vulnerabilities at no additional cost within 90 days of acceptance"
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "call": "Meridian Msla V2",
+          "action": {
+            "who": "Meridian",
+            "what": "Maintain continuous access throughout term to current source code, build scripts, deployment instructions, credentials, and dependency inventory; update within 10 business days of changes"
+          }
+        },
+        {
+          "date": "2026-03-29",
+          "call": "Meridian Msla V2",
           "action": {
             "who": "Both Parties",
-            "what": "Review document with licensed counsel in applicable jurisdictions before execution"
-          }
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "action": {
-            "who": "Meridian Legal/Principals",
-            "what": "Add definition of 'Services' to Article 1 (CRITICAL \u2014 blocks SOW requirement)"
-          }
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "action": {
-            "who": "Bacherman Martin/Meridian",
-            "what": "Resolve irrevocable-license dissonance: clarify license vests upon full payment, suspension applies only during cure period"
-          }
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "action": {
-            "who": "Meridian",
-            "what": "Add Confidential Information definition and subcontracting provision with Client approval rights for PHI access"
-          }
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "action": {
-            "who": "Meridian",
-            "what": "Define tier pricing or reference as 'per applicable SOW' to anchor 50% deposit calculation"
-          }
-        },
-        {
-          "date": "2026-03-29",
-          "call": "Bacherman Martin 9 Phase Audit Msla V1",
-          "action": {
-            "who": "Meridian",
-            "what": "Move 'WHY THIS STRUCTURE IS DIFFERENT' section to internal strategy brief, replace with neutral Purpose summary"
+            "what": "Maintain commercially reasonable insurance (CGL, E&O, Cyber Liability per Exhibit E); provide annual certificates; maintain 24-month tail coverage post-termination"
           }
         },
         {
@@ -25871,6 +26040,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "mbm"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "mbm"
         },
@@ -26025,13 +26199,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 190,
-      "total_commitments": 139,
-      "total_discoveries": 196,
-      "total_action_items": 246
+      "total_decisions": 188,
+      "total_commitments": 136,
+      "total_discoveries": 195,
+      "total_action_items": 245
     },
     "attention": {
-      "updated_at": "2026-03-29T12:35:27.931208+00:00",
+      "updated_at": "2026-03-29T12:41:47.531704+00:00",
       "items": [
         {
           "type": "blocked",
@@ -26112,7 +26286,7 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-29T12:35:27.931257+00:00",
+      "updated_at": "2026-03-29T12:41:47.531729+00:00",
       "events": [
         {
           "type": "call",
@@ -26123,19 +26297,7 @@
         {
           "type": "call",
           "date": "2026-03-29",
-          "title": "Meridian Msla V1",
-          "detail": "external \u2014 alex"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-29",
-          "title": "Meridian Msla V1 Simple Explainer",
-          "detail": "external \u2014 alex"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-29",
-          "title": "Bacherman Martin 9 Phase Audit Msla V1",
+          "title": "Meridian Msla V2",
           "detail": "external \u2014 alex"
         },
         {
@@ -26203,6 +26365,18 @@
           "date": "2026-03-25",
           "title": "Ip Agreement V3 Proposed Revisions",
           "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-25",
+          "title": "Ip Agreement V3 Full Coherence Audit",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-21",
+          "title": "Internal debrief on Denver consultation",
+          "detail": "external \u2014 alex, Mike Bitler"
         }
       ],
       "total": 15
