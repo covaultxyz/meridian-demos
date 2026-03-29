@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Msla V5 — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Meridian Msla V5</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-03-29</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>MERIDIAN Master Services &amp; Licensing Agreement v5.0 — Meridian-ownership-first framework with day-one Tier 1 internal use, clean tier escalation (Tier 2-3 via simple Addendum, Tier 4 via separate buyout), and no automatic IP transfer to Client.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Meridian retains all background IP, platform, tools, frameworks, and infrastructure — Client receives licenses only, not ownership</li><li>License tiers (1-4) replace absolute IP assignment model — Tier 1 at no extra cost, Tier 2-3 with defined fees, Tier 4 requires separate Buyout Agreement</li><li>Client contributions limited to requirements and data, not intellectual property — no co-ownership or joint-work status</li><li>Tier escalation via simple one-page Addendum without requiring full SOW renegotiation — upgrade effective upon execution and payment</li><li>Non-exclusive licensing default; field-limited exclusivity available as separate monthly/annual fee reflecting Meridian&#x27;s opportunity cost</li><li>Tier 3 sublicensing includes 4% gross revenue share or 2% success fee (exits within 36 months), capped at 60 months or 200% of SOW value</li><li>Tier 4 buyout minimum floor: 3x documented development cost or $50,000 per asset, whichever greater</li><li>Exclusivity breach remedy capped at 2x exclusivity fees paid — no consequential damages or business-destruction claims permitted</li><li>PHI classification required pre-execution; mid-engagement PHI discovery halts work until BAA executed</li><li>Competitor assignment (25%+ revenue in multi-agentic PaaS) triggers optional Meridian termination with 180-day transition period</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Meridian: provide 90-day post-acceptance warranty; correct material defects, latent defects, and security vulnerabilities at no cost</li><li>Meridian: provide 90-day transition assistance post-termination including 40+ hours knowledge transfer and replacement contractor cooperation</li><li>Meridian: provide 12-month critical incident support for Tier 1 code defects (up to 15 hrs/quarter) at Tier 3 rates if Client acquired by competitor</li><li>Meridian: maintain continuous access to source code, build instructions, deployment scripts, and admin credentials throughout term; update within 10 business days of material change</li><li>Client: pay 50% deposit upon SOW execution before Services commence; pay undisputed invoices within 30 days (late fees 1.5%/month thereafter)</li><li>Client: provide PHI classification on all SOWs; execute BAA before any PHI-related work begins</li><li>Both Parties: maintain commercially reasonable insurance (CGL, E&amp;O, Cyber Liability) per Exhibit E; provide certificates annually; maintain tail coverage 24 months post-term</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Tier escalation model designed to avoid upfront overcommitment — Client pays for rights when needed, not all possible rights on day one</li><li>Exclusivity priced separately by scope (narrow $2-4k/month, medium $4-8k/month, broad $8-15k/month) to quantify Meridian&#x27;s opportunity cost of declining competing work</li><li>Meridian license-back retained on all Tier 4 buyouts by default; exclusivity premium (2x base price) required if Meridian waives license-back</li><li>Embedded Meridian Background IP in Client Deliverables licensed only for the scope of the applicable tier — no extraction, reverse engineering, or standalone commercialization permitted</li><li>Revenue share and success fee for Tier 3 auto-terminate after 60 months or 200% of SOW value, whichever earlier — thereafter Tier 3 is fully paid perpetual license</li><li>Mixed assets (Client Deliverable code + Meridian Background IP in single module) require valuation methodology in Buyout Agreement (proportional allocation by LOC, dev hours, or appraisal)</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Meridian&#x27;, &#x27;what&#x27;: &#x27;Execute SOW with all 9 required elements (scope, pricing, deliverables, acceptance criteria, license tier, PHI classification, Background IP transparency, timeline, milestones) before commencing Services&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Client&#x27;, &#x27;what&#x27;: &#x27;Provide PHI classification on all SOWs and execute Business Associate Agreement (Exhibit B) before any Protected Health Information work begins&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Meridian&#x27;, &#x27;what&#x27;: &#x27;Maintain living Exhibit A (Background IP Registry) and update with each new module developed; Exhibit F (Architecture Reference) for each active SOW showing Client Deliverables and embedded Background IP&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Meridian&#x27;, &#x27;what&#x27;: &#x27;Provide Client with continuous access to current source code, build instructions, deployment scripts, dependency inventories, and administrative credentials throughout engagement; update within 10 business days of material change&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Client&#x27;, &#x27;what&#x27;: &#x27;Request Tier Upgrade Addendum if business needs expand (affiliates, sublicensing, acquisition planning) — Meridian shall respond with upgrade terms within 10 business days&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Both Parties&#x27;, &#x27;what&#x27;: &#x27;Execute written Change Order for any scope, timeline, or pricing modification — no oral modifications permitted&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Meridian&#x27;, &#x27;what&#x27;: &#x27;Respond to Client disputes in good faith (15 business days), escalate to independent expert determination if unresolved, then binding arbitration if necessary&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>MERIDIAN — Master Services &amp; Licensing Agreement (MSLA v5.0)</h2>
+<p>**Date**: 2026-03-29</p>
+<p>**Revision**: v5.0 — Final commercial structure: no client IP contribution, clean tier escalation, day-one simplicity</p>
+<p>**Parties**: Meridian Mesh LLC (&quot;Meridian&quot;) and [Client] (&quot;Client&quot;)</p>
+<p>**Prepared by**: Bacherman Martin — Virtual Legal Team, Structural &amp; Securities Counsel</p>
+<p>**Anchoring Jurisdiction**: Puerto Rico (Act 55-2012, Act 60-2019, PR Civil Code)</p>
+<p>**Architecture**: Meridian-ownership-first. Client receives defined rights through executed SOWs and license grants. No implied transfer. Client is a service customer, not an IP contributor.</p>
+<p>---</p>
+<h3>PREAMBLE — INTENT AND OWNERSHIP FRAMEWORK</h3>
+<h4>Section 1.1 Purpose and Intent</h4>
+<p>The purpose of this Agreement is to define the terms under which Meridian will provide certain software development, architecture, consulting, integration, and related services to Client, while preserving Meridian&#x27;s ownership of its intellectual property and clearly identifying any limited rights Client may receive in specifically contracted deliverables.</p>
+<p>The Parties acknowledge and agree that Meridian owns and shall retain all right, title, and interest in and to its pre-existing and independently developed intellectual property, including without limitation all software, source code, object code, tools, frameworks, libraries, infrastructure, architectures, methods, workflows, know-how, documentation, templates, automations, models, systems, trade secrets, improvements, modifications, and derivative works created, owned, or controlled by Meridian before, outside of, or independently from the specific Services performed under an executed Statement of Work.</p>
+<p>Nothing in this Agreement is intended to assign, transfer, convey, encumber, or license Meridian&#x27;s core technology, reusable systems, platform components, general development assets, methods, or know-how to Client except to the limited extent expressly stated in a fully executed Statement of Work or other written amendment signed by both Parties and supported by separately negotiated consideration where applicable.</p>
+<p>The Parties further acknowledge that Meridian is not entering into this Agreement for the purpose of making an absolute or unconditional transfer of all intellectual property rights. Any ownership transfer, exclusive license, perpetual license, buyout, or other extraordinary grant of rights must be expressly described in a written agreement signed by both Parties, must identify the specific intellectual property covered, and must be supported by clearly stated commercial terms.</p>
+<p>For the avoidance of doubt, payment for Services, collaboration on a project, access to Client systems, use of Client data, use of Client specifications, or delivery of work product shall not by itself operate to transfer ownership of Meridian&#x27;s background technology, reusable components, platform assets, general tools, methodologies, or independently valuable systems.</p>
+<h4>Section 1.2 Definitions</h4>
+<p>**&quot;Services&quot;** means the software development, architecture, consulting, integration, deployment, maintenance, support, and related professional services to be performed by Meridian for Client as described in an executed Statement of Work.</p>
+<p>**&quot;Confidential Information&quot;** means any and all non-public information disclosed by one Party (&quot;Disclosing Party&quot;) to the other Party (&quot;Receiving Party&quot;), whether orally, in writing, electronically, or through observation, including but not limited to: business plans, strategies, financial data, pricing, customer lists, technical specifications, source code, algorithms, trade secrets, product roadmaps, marketing strategies, and any information designated as confidential or that a reasonable person would understand to be confidential given the nature of the information and circumstances of disclosure. Confidential Information does not include information that: (a) is or becomes publicly available through no fault of the Receiving Party; (b) was rightfully in the Receiving Party&#x27;s possession before disclosure; (c) is independently developed by the Receiving Party without use of the Disclosing Party&#x27;s Confidential Information; or (d) is rightfully received from a third party without restriction on disclosure.</p>
+<h4>Section 1.3 IP Contribution Acknowledgment (v5)</h4>
+<p>The Parties acknowledge that under this Agreement:</p>
+<p>(a) **Meridian is the sole creator of all technology.** All software, code, systems, tools, frameworks, and deliverables are conceived, designed, developed, and built by Meridian. Client does not contribute intellectual property to the development process.</p>
+<p>(b) **Client contributes requirements, not IP.** Client provides business requirements, clinical specifications, workflow descriptions, practice protocols, and operational data. These inputs inform the design of Client Deliverables but do not constitute intellectual property contributions by Client. Client&#x27;s contribution of requirements does not create co-ownership, joint-work status, or any IP interest in Meridian&#x27;s work product.</p>
+<p>(c) **Client Data is not IP contribution.** Client Data (including patient records, practice data, and operational information) remains Client&#x27;s exclusive property per Section 2.6, but the provision of Client Data for Meridian to build against does not constitute an IP contribution that creates co-ownership or joint-work status in the resulting software.</p>
+<p>(d) **No royalties or revenue sharing to Client.** Because Client does not contribute IP, Meridian owes no royalties, revenue share, success fees, or other compensation to Client for Meridian&#x27;s use of its own technology, platform, tools, or independently developed components with other clients or in its own operations. The consideration flows one direction: Client pays Meridian for Services and license rights.</p>
+<h4>Section 1.4 What This Agreement Is NOT</h4>
+<p>This Agreement is not:</p>
+<p style='padding-left:1rem'>&bull; An IP assignment agreement — Meridian does not assign its core technology</p>
+<p style='padding-left:1rem'>&bull; A work-for-hire arrangement — Meridian is an independent technology company, not an employee</p>
+<p style='padding-left:1rem'>&bull; A blanket transfer of rights — nothing passes by implication, estoppel, or course of dealing</p>
+<p style='padding-left:1rem'>&bull; A buyout — acquisition of Meridian&#x27;s platform or technology requires separate negotiation and separate consideration</p>
+<p style='padding-left:1rem'>&bull; A joint venture, partnership, or co-development agreement — Client is a service customer, not a co-developer or IP contributor</p>
+<p style='padding-left:1rem'>&bull; A revenue-sharing arrangement — Client pays for services and defined license rights; Meridian does not owe Client any share of revenue from other clients or operations</p>
+<p>---</p>
+<h3>ARTICLE 2 — INTELLECTUAL PROPERTY OWNERSHIP</h3>
+<h4>Section 2.1 Meridian Background IP</h4>
+<p>&quot;Meridian Background IP&quot; means all intellectual property, technology, materials, and proprietary rights owned, developed, conceived, reduced to practice, authored, or controlled by Meridian or its personnel, whether alone or with others, other than expressly identified Client Deliverables created exclusively under an executed Statement of Work. Meridian Background IP includes, without limitation, all pre-existing and independently developed software, code, libraries, APIs, frameworks, infrastructure, deployment systems, orchestration systems, security tooling, reusable modules, data models, designs, documentation, methods, processes, techniques, architectures, general know-how, and all improvements, modifications, updates, and derivatives thereof.</p>
+<p>Meridian Background IP shall remain the exclusive property of Meridian. Client acquires no ownership interest in Meridian Background IP by implication, estoppel, course of dealing, access, payment, integration, embedding, customization, or otherwise.</p>
+<h4>Section 2.2 Client Deliverables</h4>
+<p>&quot;Client Deliverables&quot; means only those specific deliverables that are expressly identified as Client Deliverables in an executed Statement of Work and that are created by Meridian specifically and exclusively for Client in the course of performing the Services under that Statement of Work.</p>
+<p>No work product shall be deemed a Client Deliverable unless the applicable Statement of Work expressly identifies it with reasonable specificity. In the absence of such identification, the work product shall be deemed Meridian Background IP or Meridian work product licensed on a non-exclusive basis, as applicable.</p>
+<p>Client Deliverables may include: custom clinical workflows, practice-specific business rules, user interfaces designed to Client&#x27;s specifications, client-specific configurations, and client-facing application logic. Client Deliverables do not include: Meridian&#x27;s underlying platform, frameworks, libraries, orchestration systems, deployment tooling, reusable code, general-purpose modules, or any component that Meridian uses or intends to use across multiple clients or projects.</p>
+<h4>Section 2.3 No Implied Assignment</h4>
+<p>Except as expressly stated in a signed writing, nothing in this Agreement shall be construed as:</p>
+<p>(a) an assignment of Meridian Background IP;</p>
+<p>(b) an assignment of any improvements, modifications, or derivative works of Meridian Background IP;</p>
+<p>(c) a transfer of ownership in any architecture, framework, library, integration method, deployment method, or reusable component used in performing the Services; or</p>
+<p>(d) an exclusive, perpetual, irrevocable, or transferable grant of rights in favor of Client.</p>
+<p>Any rights granted to Client in Meridian technology shall be by license only, shall be limited to the scope expressly stated in the applicable Statement of Work, and shall not include the right to resell, sublicense, reverse engineer, extract, reuse outside the project scope, or claim ownership of Meridian Background IP unless expressly agreed in writing.</p>
+<h4>Section 2.4 Improvements and Derivatives</h4>
+<p>Any and all improvements, enhancements, updates, modifications, adaptations, derivative works, and extensions of Meridian Background IP, whether developed before, during, or after the term of this Agreement, shall remain Meridian Background IP unless a specific item is expressly designated in a signed writing as a Client-owned Deliverable.</p>
+<p>To the extent any Client Deliverable incorporates, interfaces with, depends on, or is built upon Meridian Background IP, Client shall receive only the limited rights expressly granted in the applicable Statement of Work, and Meridian shall retain ownership of all underlying and reusable technology.</p>
+<h4>Section 2.5 Pre-SOW and Informal Work</h4>
+<p>If Services are performed before a Statement of Work is signed, or if work is performed outside the scope of an executed Statement of Work, all resulting work product shall be deemed Meridian Background IP unless and until the Parties later agree otherwise in a signed writing that specifically identifies the work product and the rights being granted.</p>
+<p>If Client later incorporates pre-SOW work into a project governed by an executed Statement of Work, the Parties may execute a written ratification identifying the specific pre-SOW work product and its classification as either a Client Deliverable or Meridian Background IP licensed to Client.</p>
+<h4>Section 2.6 Client Data</h4>
+<p>All data provided by Client, generated by Client&#x27;s operations, or relating to Client&#x27;s patients, customers, or business (&quot;Client Data&quot;) shall remain Client&#x27;s exclusive property at all times. Meridian shall not use Client Data for any purpose other than performing the Services under an executed Statement of Work. Upon termination, Meridian shall return or destroy Client Data in accordance with Article 9.</p>
+<p>To the extent Client Data includes Protected Health Information (&quot;PHI&quot;), the handling of such data shall be governed by a separately executed Business Associate Agreement (Exhibit B).</p>
+<p>---</p>
+<h3>ARTICLE 3 — LICENSE GRANTS</h3>
+<h4>Section 3.1 License Tiers</h4>
+<p>The rights Client receives in Meridian technology are determined by the license tier specified in the applicable Statement of Work. Unless a SOW specifies otherwise, Client receives a Standard License (Tier 1).</p>
+<p>| Tier | Name | What Client Gets | What Client Does NOT Get |</p>
+<p>|------|------|-----------------|------------------------|</p>
+<p>| **Tier 1** | Standard License | Non-exclusive, non-transferable, internal-use-only license to use Client Deliverables and embedded Meridian Background IP solely for Client&#x27;s own internal business operations. | No sublicensing, no resale, no white-labeling, no modification of Meridian Background IP, no use outside Client&#x27;s organization. |</p>
+<p>| **Tier 2** | Extended License | Everything in Tier 1, plus: right to allow affiliates to use, right to engage third-party contractors to maintain/modify Client Deliverables (including embedded Meridian Background IP), right to migrate to replacement infrastructure. | No sublicensing to unrelated third parties, no resale, no white-labeling. |</p>
+<p>| **Tier 3** | Enterprise License | Everything in Tier 2, plus: right to sublicense to Client&#x27;s customers solely as part of Client&#x27;s own branded offering, right to create derivative works of Client Deliverables, right to assign to acquirers/successors. Subject to sublicense reporting, audit, and attribution obligations in Section 3.1A. | No independent commercialization of Meridian Background IP. No right to sell, license, or distribute Meridian&#x27;s platform, tools, or frameworks as standalone products. No right to expose, repurpose, benchmark, or separately commercialize embedded Meridian components. No sublicensing except as part of Client&#x27;s branded offering. |</p>
+<p>| **Tier 4** | Buyout / Assignment | Transfer of ownership of specifically identified Client Deliverables. Requires a separate Buyout Agreement (Exhibit G) with separately negotiated consideration. Meridian retains a non-exclusive license to use any transferred technology in its own operations and for other clients unless expressly waived. | Scope limited to specifically identified items in the Buyout Agreement. Does NOT include Meridian Background IP unless expressly listed and separately priced. |</p>
+<p>&gt; **How this works**: The SOW says &quot;License Tier: 2&quot; (or whatever is negotiated). The pricing reflects the tier — broader rights cost more. This replaces the old model of &quot;absolute assignment with carve-outs&quot; with &quot;Meridian keeps everything, Client buys defined access.&quot;</p>
+<h4>Section 3.1A Tier 3 Sublicensing Obligations (v4)</h4>
+<p>If Client holds a Tier 3 Enterprise License for any SOW, the following additional obligations apply:</p>
+<p>(a) **Sublicense reporting**: Client shall provide Meridian with a quarterly report (within thirty (30) days of each calendar quarter end) listing: (i) each sublicensee; (ii) the Client Deliverables sublicensed; (iii) the revenue received from each sublicensee during the quarter; and (iv) the basis on which revenue was calculated (per-seat, subscription, flat fee, or other model).</p>
+<p>(b) **Revenue audit**: Meridian shall have the right, upon thirty (30) days&#x27; written notice and no more than once per calendar year, to audit Client&#x27;s sublicensing records to verify the accuracy of revenue reports and the corresponding revenue share or success fee payments under Section 3.5. The audit shall be conducted by an independent auditor mutually agreed upon by the Parties (or, if the Parties cannot agree, appointed by JAMS). If the audit reveals an underpayment of more than five percent (5%) for any reporting period, Client shall (i) pay the underpayment within fifteen (15) days, (ii) pay interest on the underpayment at the rate specified in Section 4.2(d), and (iii) reimburse Meridian&#x27;s reasonable audit costs.</p>
+<p>(c) **Attribution**: Client shall include in any sublicensed offering a reasonable attribution notice (e.g., &quot;Powered by Meridian&quot; or equivalent), in a form and placement mutually agreed upon by the Parties. If the Parties cannot agree, the attribution shall be no less prominent than other third-party attribution in Client&#x27;s offering.</p>
+<p>(d) **Sublicense terms flow-down**: Each sublicense granted by Client must include terms that: (i) prohibit the sublicensee from further sublicensing, reverse engineering, extracting, or independently using Meridian Background IP; (ii) limit the sublicensee&#x27;s use to the scope of Client&#x27;s Tier 3 license; and (iii) require the sublicensee to comply with applicable data protection and security obligations. Client is responsible for its sublicensees&#x27; compliance.</p>
+<p>(e) **Sublicense termination cascade**: If Client&#x27;s Tier 3 license for a particular SOW is terminated or downgraded, all sublicenses granted under that SOW shall terminate within ninety (90) days, and Client shall be responsible for managing the wind-down of sublicensee access.</p>
+<h4>Section 3.2 License Terms Common to All Tiers</h4>
+<p>All licenses granted under this Agreement are:</p>
+<p>(a) **Perpetual** — the license does not expire upon termination of this Agreement, provided Client has paid all fees due under the applicable Statement of Work;</p>
+<p>(b) **Royalty-free** — no ongoing royalty payments are required after payment of the fees specified in the applicable Statement of Work (except for Tier 4, which may include ongoing royalties as specified in the Buyout Agreement);</p>
+<p>(c) **Non-exclusive** (Tiers 1-3) — Meridian retains the right to use the same technology, methods, and approaches for other clients and its own operations;</p>
+<p>(d) **Irrevocable upon full payment** — once Client has paid all fees due under the applicable Statement of Work in full, the license granted under that SOW becomes fully vested and irrevocable, and cannot be suspended or revoked by Meridian except in the event of Client&#x27;s material breach of the IP ownership provisions (Article 2) or confidentiality obligations (Article 6) that is not cured within thirty (30) days of written notice;</p>
+<p>(e) **Conditional during payment period** — prior to full payment of all fees due under an applicable SOW, license rights are conditioned on Client&#x27;s continued payment. If Client fails to pay fees due and does not cure within thirty (30) days of written notice, Meridian may suspend the license until payment is received. For the avoidance of doubt, suspension under this subsection is a temporary remedy during the cure period — it does not constitute revocation.</p>
+<h4>Section 3.3 Embedded Meridian Background IP (revised v4)</h4>
+<p>To the extent Client Deliverables incorporate, interface with, or depend on Meridian Background IP, Client receives a license to use that embedded Meridian Background IP solely to the extent necessary to exercise the rights granted under the applicable license tier. This license does not extend to:</p>
+<p>(a) use of the embedded Meridian Background IP independently of the Client Deliverables;</p>
+<p>(b) extraction, reverse engineering, isolation, decompilation, or disassembly of Meridian Background IP from the Client Deliverables;</p>
+<p>(c) any use beyond the scope of the applicable license tier;</p>
+<p>(d) exposing, publishing, or making available Meridian Background IP&#x27;s source code, APIs, interfaces, or internal architecture to any third party except as permitted under Tier 2 (third-party contractors bound by confidentiality) or Tier 3 (sublicensees receiving only compiled/binary access);</p>
+<p>(e) benchmarking, performance-testing, or competitive analysis of Meridian Background IP for the purpose of developing or assisting in the development of a competing product;</p>
+<p>(f) separately commercializing, marketing, or licensing embedded Meridian Background IP as a standalone product, service, API, or component independent of Client&#x27;s own branded offering.</p>
+<p>**Tier 3 commercialization clarification**: Where Client holds a Tier 3 Enterprise License, Client may market and sublicense the combined solution (Client Deliverables + embedded Meridian Background IP) only as part of Client&#x27;s own branded offering. Client shall not expose, repurpose, or separately commercialize Meridian components. Sublicensees shall receive access to the combined solution only in compiled, binary, or SaaS-delivered form — not as source code — unless Meridian expressly agrees otherwise in writing. For the avoidance of doubt, &quot;Client&#x27;s own branded offering&quot; means a product or service marketed under Client&#x27;s name or brand, in which the Client Deliverables constitute the primary value proposition and the embedded Meridian Background IP is a supporting component, not the primary offering.</p>
+<h4>Section 3.4 Separate Buyout or Expanded Rights</h4>
+<p>If Client desires ownership of any intellectual property beyond specifically identified Client Deliverables, or desires an exclusive, perpetual, transferable, or buyout-style grant of rights in any Meridian technology, the Parties shall negotiate a separate Buyout Agreement (Exhibit G) setting forth:</p>
+<p>(i) the exact assets covered;</p>
+<p>(ii) whether the grant is exclusive or non-exclusive;</p>
+<p>(iii) whether derivative works and improvements are included;</p>
+<p>(iv) any field-of-use, territory, or term limitations;</p>
+<p>(v) the separate license fee, assignment fee, or other consideration payable for such rights; and</p>
+<p>(vi) whether Meridian retains a license-back for its own use.</p>
+<p>Unless and until such Buyout Agreement is executed, Meridian retains all right, title, and interest in such intellectual property.</p>
+<p>**Buyout exclusions (v4)**: The following are expressly excluded from any Tier 4 buyout unless each item is individually identified in the Buyout Agreement and separately priced:</p>
+<p>(a) Generalized improvements — enhancements, optimizations, or architectural patterns that Meridian developed while performing the Services but that are applicable beyond the specific Client engagement;</p>
+<p>(b) Tools, scripts, and utilities used across multiple clients — deployment systems, monitoring frameworks, testing harnesses, configuration management tools;</p>
+<p>(c) Training data, model weights, and embeddings — except for Client-specific training data created exclusively from Client Data;</p>
+<p>(d) Derivative business know-how — Meridian&#x27;s accumulated expertise, methods, sales processes, pricing models, and operational playbooks;</p>
+<p>(e) Mixed assets — for components that contain both Client Deliverable code and Meridian Background IP code in a single module, the Buyout Agreement shall specify a valuation methodology for the mixed asset (e.g., proportional allocation based on lines of code, development hours, or independent appraiser determination).</p>
+<h4>Section 3.5 License Tier Pricing Framework</h4>
+<p>License tier fees are separate from and in addition to the hourly service rates in Section 4.3. The applicable license tier fee is specified in the SOW and payable as set forth below.</p>
+<p>#### Tier 1 — Standard License</p>
+<p>No additional license fee. Included in the base service rates. Client receives internal-use rights upon payment of Services fees.</p>
+<p>#### Tier 2 — Extended License</p>
+<p>The Extended License fee shall be specified in the applicable SOW using one of the following structures, as negotiated by the Parties:</p>
+<p>| Pricing Model | Description | When to Use |</p>
+<p>|---|---|---|</p>
+<p>| **Percentage premium** | 20% surcharge on all Services billed under the SOW | Short engagements, hourly billing |</p>
+<p>| **Flat annual fee** | $15,000 - $30,000 per year, payable annually in advance | Ongoing relationships, predictable scope |</p>
+<p>| **One-time license fee** | 25% of total SOW value, payable upon SOW execution or upon delivery of first Client Deliverable | Fixed-scope projects |</p>
+<p>The specific amount within each range shall be negotiated per SOW based on the scope, complexity, and estimated lifetime value of the Client Deliverables. Once paid, the Tier 2 license for the applicable SOW deliverables is perpetual and irrevocable per Section 3.2.</p>
+<p>#### Tier 3 — Enterprise License</p>
+<p>The Enterprise License fee shall be specified in the applicable SOW using one of the following structures:</p>
+<p>| Pricing Model | Description | When to Use |</p>
+<p>|---|---|---|</p>
+<p>| **Percentage premium** | 40% surcharge on all Services billed under the SOW | Short engagements, hourly billing |</p>
+<p>| **Flat annual fee** | $40,000 - $100,000 per year, payable annually in advance | Ongoing platform relationships |</p>
+<p>| **One-time + revenue share** | 30% of total SOW value upfront, plus 4% of gross revenue Client generates from sublicensing or commercializing Client Deliverables, reported and payable quarterly | Client plans to sublicense or resell |</p>
+<p>| **Success fee** | Reduced upfront fee (15% of SOW value) plus 2% of exit/acquisition proceeds attributable to the Client Deliverables if Client is acquired within 36 months | Pre-revenue or early-stage clients |</p>
+<p>Revenue share and success fee obligations terminate after the earlier of: (a) sixty (60) months from the SOW effective date, or (b) the date total revenue share / success fee payments equal 200% of the original SOW value. After that point, the Tier 3 license for the applicable SOW deliverables is fully paid and perpetual.</p>
+<p>#### Tier 4 — Buyout / Assignment</p>
+<p>Buyout pricing is negotiated per asset in the Buyout Agreement (Exhibit G). The following framework applies unless the Parties agree otherwise:</p>
+<p>| Pricing Method | Description |</p>
+<p>|---|---|</p>
+<p>| **Development cost multiplier** | 3x-5x the documented development cost (hours x rate) for each asset being transferred |</p>
+<p>| **Fair market value** | Independent appraiser determines FMV; cost shared equally between the Parties |</p>
+<p>| **Negotiated flat fee** | Parties agree on a per-asset or bundled price |</p>
+<p>Minimum buyout floor: The buyout consideration for any single asset shall not be less than $50,000 or 3x the documented development cost, whichever is greater. This floor does not apply to Client Deliverables that contain no embedded Meridian Background IP.</p>
+<p>Meridian license-back: Unless expressly waived in the Buyout Agreement for separately negotiated additional consideration, Meridian retains a perpetual, irrevocable, royalty-free, non-exclusive, worldwide license to use, modify, and sublicense the transferred technology for its own operations and for other clients.</p>
+<p>Exclusivity premium: If Client requires that the buyout include exclusivity (i.e., Meridian waives its license-back), the buyout price shall include an exclusivity premium of no less than 2x the base buyout price, reflecting the opportunity cost to Meridian of forfeiting the right to use the technology.</p>
+<h4>Section 3.6 Exclusivity Option</h4>
+<p>All licenses granted under this Agreement are **non-exclusive by default**. Meridian retains the right to use the same technology, methods, approaches, and Meridian Background IP for other clients, its own operations, and the Partnership&#x27;s commercial products.</p>
+<p>#### Field-Limited Exclusivity</p>
+<p>Client may request field-limited exclusivity for specific Client Deliverables. Field-limited exclusivity, if granted, means Meridian agrees not to create substantially similar Client Deliverables for a defined set of competitors within a defined field, geography, and time period.</p>
+<p>Exclusivity must be:</p>
+<p>(a) **Field-bounded** — limited to a specific professional specialty, practice type, or market segment (e.g., &quot;outpatient psychiatric practices&quot;), not an entire industry (e.g., not &quot;all healthcare&quot;);</p>
+<p>(b) **Geography-bounded** — limited to a defined geographic area (e.g., &quot;within Puerto Rico,&quot; &quot;within 50 miles of Client&#x27;s primary office,&quot; or &quot;within the United States&quot;);</p>
+<p>(c) **Time-bounded** — limited to a defined term, not to exceed twenty-four (24) months per exclusivity period, renewable by mutual written agreement;</p>
+<p>(d) **Separately priced** — exclusivity is priced as a separate monthly or annual fee, not included in service rates or license tier fees. The exclusivity fee reflects the opportunity cost to Meridian of declining competing engagements within the exclusivity field.</p>
+<p>#### Exclusivity Pricing</p>
+<p>| Scope | Monthly Fee Range | Annual Fee Range |</p>
+<p>|---|---|---|</p>
+<p>| **Narrow** (single specialty + single metro area, e.g., &quot;outpatient psychiatric within San Juan metro&quot;) | $2,000 - $4,000 / month | $20,000 - $40,000 / year |</p>
+<p>| **Medium** (single specialty + territory, e.g., &quot;outpatient psychiatric within Puerto Rico&quot;) | $4,000 - $8,000 / month | $40,000 - $75,000 / year |</p>
+<p>| **Broad** (specialty category + national, e.g., &quot;behavioral health practices within the United States&quot;) | $8,000 - $15,000 / month | $80,000 - $150,000 / year |</p>
+<p>The specific fee within each range shall be negotiated per SOW or Exclusivity Addendum based on: (i) the size and commercial value of the restricted market, (ii) the number of prospective clients Meridian would be declining, (iii) the term of the exclusivity period, and (iv) the specificity of the Client Deliverables being protected.</p>
+<p>#### Exclusivity Terms</p>
+<p>(a) Exclusivity fees are payable in advance (monthly or annually as negotiated) and are non-refundable for the paid period;</p>
+<p>(b) If Client fails to pay an exclusivity fee when due and does not cure within fifteen (15) days of written notice, the exclusivity terminates automatically and Meridian&#x27;s non-exclusive rights are restored;</p>
+<p>(c) Exclusivity applies only to Client Deliverables specifically identified in the Exclusivity Addendum — it does not restrict Meridian&#x27;s right to use Meridian Background IP, general tools, platforms, or frameworks for any client in any market;</p>
+<p>(d) Exclusivity does not restrict the Partnership from commercializing the AgentVox PaaS platform or any other general-purpose product to any customer in any market;</p>
+<p>(e) Exclusivity is personal to Client and does not transfer to assignees, acquirers, or successors unless the Exclusivity Addendum expressly permits transfer and the assignee assumes the exclusivity fee obligations;</p>
+<p>(f) At the end of each exclusivity period, Meridian shall provide Client with thirty (30) days&#x27; advance notice of whether Meridian intends to offer renewal. If neither Party provides notice of renewal or non-renewal at least thirty (30) days before expiration, the exclusivity expires and is not renewed.</p>
+<p>#### Exclusivity Addendum</p>
+<p>Any grant of field-limited exclusivity shall be documented in a written Exclusivity Addendum to the applicable SOW, setting forth:</p>
+<p>(i) the specific Client Deliverables covered;</p>
+<p>(ii) the field (specialty/practice type);</p>
+<p>(iii) the geography;</p>
+<p>(iv) the term (not to exceed 24 months, renewable);</p>
+<p>(v) the monthly or annual exclusivity fee;</p>
+<p>(vi) any named competitors or specific entities within the exclusivity field.</p>
+<p>The Exclusivity Addendum is incorporated into the SOW and governed by this Agreement.</p>
+<p>#### Exclusivity Breach Remedies (v4)</p>
+<p>(a) **Remedy cap**: In the event of Meridian&#x27;s breach of an exclusivity obligation, Client&#x27;s sole and exclusive monetary remedy shall be a refund of the exclusivity fees paid for the period during which the breach occurred, plus direct damages not to exceed two times (2x) the total exclusivity fees paid under the applicable Exclusivity Addendum. This cap does not limit Client&#x27;s right to seek injunctive relief to enforce the exclusivity obligation.</p>
+<p>(b) **No business-destruction claims**: Client expressly waives any claim for consequential, indirect, or speculative damages arising from an exclusivity breach, including but not limited to claims for lost market position, lost competitive advantage, diminished practice valuation, or lost patient volume. The Parties acknowledge that the exclusivity fee is the agreed-upon compensation for the opportunity cost, and the remedy cap in subsection (a) reflects the bargained-for allocation of risk.</p>
+<p>(c) **Platform and Background IP exclusion reinforcement**: For the avoidance of doubt, exclusivity never applies to: (i) Meridian Background IP, including the MERIDIAN platform, MIG, daemon mesh, voice pipeline, deployment tooling, or any current or future component of Meridian&#x27;s core technology stack; (ii) Meridian&#x27;s general methods, processes, know-how, or architectural patterns; (iii) general-purpose features, modules, or capabilities that Meridian develops or enhances, even if inspired by or first implemented during Client&#x27;s engagement; or (iv) the Partnership&#x27;s commercial products (including AgentVox) regardless of market or customer. Exclusivity applies solely to substantially similar Client Deliverables as specifically identified in the Exclusivity Addendum.</p>
+<h4>Section 3.7 Tier Escalation (v5)</h4>
+<p>Client may upgrade to a higher license tier for any active SOW at any time by executing a Tier Upgrade Addendum. Tier upgrades are designed to be simple, fast, and aligned with Client&#x27;s business evolution.</p>
+<p>#### How Escalation Works</p>
+<p>(a) **Upgrade request**: Client submits a written request to upgrade the license tier for a specific SOW (e.g., Tier 1 → Tier 2, or Tier 2 → Tier 3). Meridian shall respond with a Tier Upgrade Addendum within ten (10) business days.</p>
+<p>(b) **Pricing for upgrades**: The upgrade fee is the difference between the original tier fee and the new tier fee, calculated as follows:</p>
+<p>| Upgrade Path | Fee Calculation |</p>
+<p>|---|---|</p>
+<p>| Tier 1 → Tier 2 | Full Tier 2 fee for the applicable SOW (since Tier 1 has no separate fee) |</p>
+<p>| Tier 1 → Tier 3 | Full Tier 3 fee for the applicable SOW |</p>
+<p>| Tier 2 → Tier 3 | Tier 3 fee minus Tier 2 fees already paid for the current period |</p>
+<p>| Any Tier → Tier 4 | Separate Buyout Agreement (Exhibit G) — not handled via Tier Upgrade Addendum |</p>
+<p>(c) **Effective date**: The upgraded tier takes effect upon execution of the Tier Upgrade Addendum and payment of the upgrade fee. The upgrade applies prospectively — it does not retroactively change the terms of work already performed and accepted under the prior tier.</p>
+<p>(d) **No downgrade**: Tier downgrades are not permitted for active SOWs. If Client no longer needs the rights of a higher tier, the higher tier remains in effect for the current SOW but Client may select a lower tier for future SOWs.</p>
+<p>(e) **Upgrade does not require new SOW**: A Tier Upgrade Addendum amends the existing SOW&#x27;s license tier without requiring a complete new SOW, provided the scope of Services and Deliverables remain unchanged. If the upgrade is coupled with a scope change, a Change Order or new SOW is required.</p>
+<p>#### Tier Upgrade Addendum (Form)</p>
+<p><strong>TIER UPGRADE ADDENDUM TO SOW #[___]</strong></p>
+<p>**Under**: MERIDIAN Master Services &amp; Licensing Agreement dated [___]</p>
+<p>**Effective Date**: [___]</p>
+<p>| Field | Value |</p>
+<p>|---|---|</p>
+<p>| Current Tier | [___] |</p>
+<p>| New Tier | [___] |</p>
+<p>| Upgrade Fee | $[___] |</p>
+<p>| Payment Due | [Upon execution / Within 30 days / Other] |</p>
+<p>| Reason for Upgrade | [Client expanding to affiliates / Client planning sublicensing / Client preparing for acquisition / Other] |</p>
+<p>*All other terms of the SOW remain unchanged. The upgraded license tier applies to all Client Deliverables under the SOW from the Effective Date forward.*</p>
+<p>**SIGNATURES**:</p>
+<p>| Meridian | Client |</p>
+<p>|---|---|</p>
+<p>| Signature: _______________ | Signature: _______________ |</p>
+<p>| Name: _______________ | Name: _______________ |</p>
+<p>| Date: _______________ | Date: _______________ |</p>
+<p>#### Why This Matters (v5 Design Note)</p>
+<p>The tier escalation mechanism is designed around a simple principle: **Client pays for what Client needs, when Client needs it.**</p>
+<p>Day one, most clients need Tier 1 (internal use). That&#x27;s included in the service fee — no extra cost. When Client grows (opens new offices, hires contractors, wants to migrate), Client upgrades to Tier 2. When Client starts sublicensing or preparing for acquisition, Client upgrades to Tier 3. Each step has a defined price and a simple one-page addendum.</p>
+<p>This means:</p>
+<p style='padding-left:1rem'>&bull; **No upfront overcommitment** — Client doesn&#x27;t pay for rights they don&#x27;t need yet</p>
+<p style='padding-left:1rem'>&bull; **No renegotiation** — the upgrade path is pre-defined in the MSLA</p>
+<p style='padding-left:1rem'>&bull; **No surprise costs** — each tier&#x27;s pricing is established in Section 3.5</p>
+<p style='padding-left:1rem'>&bull; **No lock-in** — Client chooses when to escalate based on their actual business needs</p>
+<p>The alternative (negotiating broader rights upfront) costs more, creates complexity before it&#x27;s needed, and forces Client to predict their future business model on day one.</p>
+<p>---</p>
+<h3>ARTICLE 4 — COMMERCIAL TERMS</h3>
+<h4>Section 4.1 Statements of Work Required</h4>
+<p>No Services shall begin unless the Parties have executed a Statement of Work describing, at minimum:</p>
+<p>(a) the scope of Services;</p>
+<p>(b) the commercial terms and pricing (hourly rates, fixed fees, milestones, or hybrid);</p>
+<p>(c) the payment terms, including deposit requirements;</p>
+<p>(d) the specific deliverables, identified as Client Deliverables or Meridian work product as applicable;</p>
+<p>(e) the acceptance criteria for each deliverable;</p>
+<p>(f) the license tier (Tier 1-4) applicable to the engagement;</p>
+<p>(g) whether the SOW involves Protected Health Information (and if so, the BAA must be executed first);</p>
+<p>(h) the timeline and milestones;</p>
+<p>(i) any Meridian Background IP expected to be used (for transparency, not transfer).</p>
+<p>**SOW discipline (v4)**: The SOW is the operative commercial instrument under this Agreement. Meridian shall maintain the SOW template (Exhibit D) as a controlled document. No SOW shall be executed unless it includes all elements (a) through (i) above. Any ambiguity in a SOW regarding whether a deliverable is a Client Deliverable or Meridian work product shall be resolved in favor of Meridian Background IP classification unless the SOW expressly states otherwise. Both Parties shall review each SOW for completeness before execution — incomplete SOWs may be rejected by either Party.</p>
+<h4>Section 4.2 Deposits and Payment</h4>
+<p>Client shall pay a deposit as specified in the applicable Statement of Work before Meridian begins Services. Unless otherwise stated in the SOW:</p>
+<p>(a) **Deposit**: Fifty percent (50%) of the estimated total engagement value, or the first milestone payment, whichever is applicable, due upon SOW execution;</p>
+<p>(b) **Progress payments**: Billed monthly at the rates specified in Exhibit C, due within thirty (30) days of invoice;</p>
+<p>(c) **Milestone payments**: If the SOW uses milestone-based pricing, each milestone payment is due upon Meridian&#x27;s delivery and Client&#x27;s acceptance (or deemed acceptance) of the milestone deliverable;</p>
+<p>(d) **Late payments**: Accrue interest at the lesser of one and one-half percent (1.5%) per month or the maximum rate permitted by applicable law, commencing on the thirty-first (31st) day after receipt of a properly submitted invoice;</p>
+<p>(e) **Disputed invoices**: Client must dispute in writing within fifteen (15) days of receipt. Undisputed portions must be paid on time. Deemed acceptance of an invoice is for payment purposes only and does not constitute acceptance of the underlying work product (which is governed by the acceptance criteria in the SOW).</p>
+<h4>Section 4.3 Rate Schedule</h4>
+<p>| Role / Service | Hourly Rate | Notes |</p>
+<p>|---|---|---|</p>
+<p>| Software Development / Engineering | $165 / hr | Tier 1 — implementation, testing, deployment |</p>
+<p>| Architecture / System Design | $200 / hr | Tier 2 — system design, architecture decisions, specifications |</p>
+<p>| Infrastructure / DevOps | $165 / hr | Tier 1 — deployment, monitoring, infrastructure management |</p>
+<p>| Consulting / Advisory | $275 / hr | Tier 3 — strategic advisory, compliance review, expert consultation |</p>
+<p>Rates are benchmarked against 1099 contractor rates for AI/ML + healthcare technology in Puerto Rico. Rate adjustments may be made by mutual written agreement at the beginning of each Renewal Term.</p>
+<p>**Note**: These rates cover Services (labor) only. License tier fees (Section 3.5) and exclusivity fees (Section 3.6) are separate line items specified in the applicable SOW. The total engagement cost = Services fees + license tier fee + exclusivity fee (if applicable).</p>
+<h4>Section 4.4 Change Orders</h4>
+<p>Either Party may propose a change to the scope, timeline, or pricing of Services by submitting a written Change Order Request. No change is effective until both Parties execute a written Change Order. Changes that add or modify Client Deliverables require an updated SOW.</p>
+<h4>Section 4.5 Expenses</h4>
+<p>Pre-approved expenses (cloud infrastructure, third-party licenses, travel) are reimbursed at cost with receipts. Expenses exceeding $500 require Client&#x27;s prior written approval.</p>
+<p>---</p>
+<h3>ARTICLE 5 — DELIVERABLE ACCEPTANCE AND WARRANTY</h3>
+<h4>Section 5.1 Acceptance Testing</h4>
+<p>Client shall have twenty (20) business days following delivery of each deliverable to review and either accept or provide written notice of deficiencies.</p>
+<p>For **Major Releases** (initial platform launches, security-sensitive releases, PHI-handling integrations, or deliverables exceeding 100 hours of billed development), Client&#x27;s express written acceptance is required. Deemed acceptance does not apply to Major Releases.</p>
+<p>For all other deliverables, if Client does not provide written notice of acceptance or deficiency within the review period, the deliverable is deemed accepted. If Client provides notice of deficiencies, Meridian shall cure within ten (10) business days at no additional cost, and Client shall have ten (10) additional business days to re-review.</p>
+<p>If Client is actively conducting acceptance testing at the end of the review period and provides written notice that testing is ongoing, the review period is automatically extended by ten (10) business days.</p>
+<h4>Section 5.2 Warranty</h4>
+<p>For a period of ninety (90) days following acceptance of each deliverable, Meridian shall correct at no additional cost:</p>
+<p>(a) material defects or nonconformities with the applicable acceptance criteria;</p>
+<p>(b) latent defects — defects that could not reasonably have been discovered during acceptance testing through normal testing procedures;</p>
+<p>(c) security vulnerabilities in Meridian-written code discovered through security assessment or penetration testing;</p>
+<p>(d) failures to meet documented specifications that manifest during normal business use.</p>
+<p>The warranty period for defects corrected under this Section shall restart for the corrected component for thirty (30) days from delivery of the correction.</p>
+<h4>Section 5.3 Post-Warranty Support</h4>
+<p>After the warranty period, Meridian may provide ongoing support and maintenance under a separate Support Agreement or as specified in the applicable SOW. Post-warranty support is not included in the base Services fee unless expressly stated.</p>
+<p>---</p>
+<h3>ARTICLE 6 — CONFIDENTIALITY AND DATA PROTECTION</h3>
+<h4>Section 6.1 Confidential Information</h4>
+<p>&quot;Confidential Information&quot; is defined in Section 1.2. Each Party agrees to hold in confidence the other Party&#x27;s Confidential Information and to use it only for the purposes of this Agreement. The Receiving Party shall protect Confidential Information using the same degree of care it uses for its own confidential information, but in no event less than reasonable care. Confidential Information may be disclosed only to personnel and subcontractors who have a need to know and are bound by confidentiality obligations at least as protective as those in this Agreement. The confidentiality obligations under this Section 6.1 shall survive termination of this Agreement for a period of five (5) years from the date of disclosure, except that obligations with respect to trade secrets shall continue for as long as such information qualifies as a trade secret under applicable law.</p>
+<h4>Section 6.2 Client Data and PHI</h4>
+<p>Client Data remains Client&#x27;s exclusive property. If Services involve Protected Health Information, the Parties shall execute a Business Associate Agreement (Exhibit B) before any PHI-related work begins.</p>
+<p>Each Statement of Work shall include a PHI Classification determining whether the engagement involves PHI. If the SOW determines PHI is involved, the BAA is a precondition to commencement. If PHI is discovered mid-engagement despite a negative SOW classification, work involving PHI is immediately suspended until the BAA is executed.</p>
+<h4>Section 6.3 Security</h4>
+<p>Both Parties shall implement commercially reasonable security measures. Each Party shall notify the other in writing within seventy-two (72) hours of discovery of any security incident affecting the other Party&#x27;s data, systems, or technology.</p>
+<p>---</p>
+<h3>ARTICLE 7 — REPRESENTATIONS AND WARRANTIES</h3>
+<h4>Section 7.1 Meridian Representations</h4>
+<p>Meridian represents and warrants that:</p>
+<p>(a) it has the right and authority to enter into this Agreement and perform the Services;</p>
+<p>(b) the Services will be performed in a professional and workmanlike manner consistent with industry standards;</p>
+<p>(c) Client Deliverables will conform to the specifications in the applicable Statement of Work;</p>
+<p>(d) to the best of Meridian&#x27;s knowledge, Client Deliverables will not infringe the intellectual property rights of any third party;</p>
+<p>(e) Meridian Background IP used in performing the Services is owned by or properly licensed to Meridian.</p>
+<h4>Section 7.2 Client Representations</h4>
+<p>Client represents and warrants that:</p>
+<p>(a) it has the right and authority to enter into this Agreement;</p>
+<p>(b) Client Data provided to Meridian is lawfully collected and Client has the right to share it for the purposes of the Services;</p>
+<p>(c) Client will not use Client Deliverables or any licensed Meridian Background IP in violation of applicable law.</p>
+<h4>Section 7.3 Act 60 Compliance (Puerto Rico)</h4>
+<p>Both Parties represent and warrant that they hold valid export services decrees under Act 60-2019 (Puerto Rico Incentives Code) as applicable, and that the engagement structure is consistent with both Parties&#x27; respective decree obligations. Each Party shall promptly notify the other of any change in decree status.</p>
+<h4>Section 7.4 Insurance</h4>
+<p>Each Party shall maintain commercially reasonable insurance coverage (CGL, E&amp;O, Cyber Liability) as specified in Exhibit E. Certificates of insurance shall be provided annually. For claims-made policies, tail coverage shall be maintained for twenty-four (24) months following termination.</p>
+<p>---</p>
+<h3>ARTICLE 8 — LIMITATION OF LIABILITY AND INDEMNIFICATION</h3>
+<h4>Section 8.1 Limitation of Liability</h4>
+<p>EXCEPT FOR (A) INDEMNIFICATION OBLIGATIONS, (B) BREACH OF CONFIDENTIALITY OR HIPAA OBLIGATIONS, (C) BREACH OF IP OWNERSHIP PROVISIONS, (D) WILLFUL MISCONDUCT OR FRAUD, (E) DATA BREACH RESPONSE COSTS, AND (F) EQUITABLE RELIEF:</p>
+<p>(i) NEITHER PARTY SHALL BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES;</p>
+<p>(ii) EACH PARTY&#x27;S TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE GREATER OF (A) TWO TIMES (2x) THE FEES PAID OR PAYABLE UNDER THE APPLICABLE SOW DURING THE TWELVE (12) MONTHS PRECEDING THE CLAIM, OR (B) TWO HUNDRED FIFTY THOUSAND DOLLARS ($250,000).</p>
+<h4>Section 8.2 Indemnification</h4>
+<p>Each Party shall indemnify and hold harmless the other Party from third-party claims arising from (a) the indemnifying Party&#x27;s breach of this Agreement, (b) the indemnifying Party&#x27;s negligence or willful misconduct, or (c) infringement of third-party intellectual property rights by materials provided by the indemnifying Party.</p>
+<p>---</p>
+<h3>ARTICLE 9 — TERM, TERMINATION, AND TRANSITION</h3>
+<h4>Section 9.1 Term</h4>
+<p>This Agreement commences on the Effective Date and continues until terminated. Individual SOWs have their own terms as specified therein.</p>
+<h4>Section 9.2 Termination</h4>
+<p>Either Party may terminate this Agreement upon sixty (60) days&#x27; written notice. Either Party may terminate immediately upon material breach that is not cured within thirty (30) days of written notice.</p>
+<h4>Section 9.3 Effect of Termination</h4>
+<p>Upon termination:</p>
+<p>(a) All licenses granted under executed SOWs that have been fully paid survive termination in accordance with their terms;</p>
+<p>(b) Meridian shall deliver all Client Deliverables and Client Data in a standard, machine-readable format;</p>
+<p>(c) Client&#x27;s license to Meridian Background IP embedded in Client Deliverables survives per the applicable license tier, provided all fees are paid;</p>
+<p>(d) Meridian shall provide transition assistance for ninety (90) days at Tier 1 rates, including knowledge transfer (minimum forty (40) hours) and cooperation with replacement contractors;</p>
+<p>(e) Meridian Background IP remains Meridian&#x27;s exclusive property.</p>
+<h4>Section 9.4 Continuous Access During Term</h4>
+<p>Throughout the term, Meridian shall provide Client with access to:</p>
+<p>(a) current source code for Client Deliverables in a version-controlled repository;</p>
+<p>(b) build instructions, deployment scripts, and dependency inventories sufficient for Client or a third party to independently deploy and operate the Client Deliverables;</p>
+<p>(c) administrative credentials for Client-owned infrastructure;</p>
+<p>(d) a current dependency inventory listing all third-party tools and services required to operate the Client Deliverables.</p>
+<p>Meridian shall update these materials within ten (10) business days of any material change.</p>
+<h4>Section 9.5 Assignment (revised v4)</h4>
+<p>Neither Party may assign this Agreement without the other&#x27;s written consent, except that Client may assign in connection with a merger or acquisition upon thirty (30) days&#x27; notice. If Client assigns to an entity that is a direct competitor of Meridian in the multi-agentic PaaS API market, Meridian may provide notice of intent to terminate, subject to the following:</p>
+<p>(a) **Competitor determination**: A &quot;direct competitor&quot; means an entity that, at the time of assignment, derives more than twenty-five percent (25%) of its revenue from the development, licensing, or sale of multi-agentic AI orchestration platforms or services substantially similar to Meridian&#x27;s commercial products (as identified in Exhibit A). If the Parties cannot agree on whether the assignee meets this definition within fifteen (15) business days of Meridian&#x27;s notice, the question shall be determined by an independent expert per Section 10.3. Meridian shall not unreasonably invoke this provision for acquirers whose primary business is outside the multi-agentic PaaS market.</p>
+<p>(b) **Transition Period**: Meridian shall continue Services under all existing SOWs for a minimum of one hundred eighty (180) days following notice of intent to terminate (the &quot;Transition Period&quot;), at Meridian&#x27;s then-current rates. During the Transition Period, Meridian shall provide knowledge transfer (minimum forty (40) hours at Tier 1 rate) and cooperate in good faith with any replacement contractor.</p>
+<p>(c) **Critical incident support**: For a period of twelve (12) months following the end of the Transition Period, Meridian shall make itself available on a reasonable-efforts basis to respond to critical production incidents (severity 1 — system down or data loss) affecting the Client Deliverables, compensated at the Tier 3 (Advisory) rate. This obligation is limited to fifteen (15) hours per calendar quarter and applies only to incidents directly attributable to Meridian-written code or Meridian Background IP embedded in the Client Deliverables.</p>
+<p>(d) **License survival**: All paid licenses survive termination. All continuous access obligations under Section 9.4 survive through the Transition Period and for twelve (12) months thereafter. Meridian Background IP remains Meridian&#x27;s exclusive property.</p>
+<p>---</p>
+<h3>ARTICLE 10 — GENERAL PROVISIONS</h3>
+<h4>Section 10.1 Independent Contractor</h4>
+<p>Meridian is an independent contractor, not an employee, agent, or joint venturer of Client. Meridian controls the manner and means of performing the Services.</p>
+<h4>Section 10.1A Subcontracting</h4>
+<p>Meridian may utilize subcontractors, including personnel from the Partnership (as defined in the applicable SOW), to perform Services under this Agreement, subject to the following conditions: (a) Client&#x27;s prior written approval of each individual who will have access to Client Data or PHI, which shall not be unreasonably withheld and shall be provided or denied within ten (10) business days of Meridian&#x27;s written request — failure to respond within this period shall be deemed approval; (b) each such individual executes a written agreement containing IP assignment (to Meridian) and confidentiality provisions at least as protective as those in this Agreement; (c) for engagements involving PHI, each subcontractor with PHI access shall be bound by the BAA (Exhibit B) or a substantially equivalent agreement; and (d) Meridian remains primarily responsible for the performance of all Services and all obligations under this Agreement.</p>
+<h4>Section 10.2 Governing Law</h4>
+<p>This Agreement shall be governed by the laws of the Commonwealth of Puerto Rico, without regard to conflicts of law principles. Disputes shall be resolved by binding arbitration in San Juan, Puerto Rico under the rules of JAMS.</p>
+<h4>Section 10.3 Dispute Resolution</h4>
+<p>Disputes regarding IP classification, license scope, or deliverable acceptance shall first be subject to good-faith discussion (15 business days), then independent expert determination (binding below $50,000), then formal arbitration. Cost-shifting applies if the escalating party loses on the same grounds as the expert recommendation.</p>
+<h4>Section 10.4 Moral Rights (Puerto Rico)</h4>
+<p>The Parties acknowledge that Puerto Rico Act 55-2012 recognizes moral rights as non-waivable. To the extent Meridian personnel create Client Deliverables, such personnel agree not to exercise moral rights in a manner that would interfere with Client&#x27;s exercise of its licensed rights, including Client&#x27;s rights to modify, adapt, and create derivative works of Client Deliverables as permitted under the applicable license tier. To the extent Act 55-2012 permits a partial written waiver of the right of integrity, Meridian waives the integrity right solely with respect to modifications of Client Deliverables made by Client in furtherance of Client&#x27;s business operations.</p>
+<h4>Section 10.5 Force Majeure</h4>
+<p>Neither Party is liable for failure to perform (except payment) due to circumstances beyond reasonable control. Notification within 48 hours. Mitigation efforts required. Either Party may terminate if force majeure continues beyond 90 days. Paid licenses and confidentiality obligations survive.</p>
+<h4>Section 10.6 Notices</h4>
+<p>Written notices required. Email sufficient for operational matters (disputes, approvals). Certified mail or courier required for termination and formal dispute resolution.</p>
+<h4>Section 10.7 Entire Agreement; Amendment</h4>
+<p>This Agreement, together with all executed SOWs and Exhibits, constitutes the entire agreement. Amendments require written agreement signed by both Parties. No oral modification.</p>
+<h4>Section 10.8 Severability</h4>
+<p>If any provision is held invalid, the remaining provisions continue in effect.</p>
+<h4>Section 10.9 No Waiver</h4>
+<p>Failure to enforce a provision does not waive the right to enforce it later.</p>
+<p>---</p>
+<h3>EXHIBITS</h3>
+<h4>Exhibit A — Meridian Background IP Registry</h4>
+<p>*A living inventory of Meridian&#x27;s pre-existing and independently developed IP. Each item identified with module-level specificity and functional description. This exhibit documents what Meridian owns — it is not a list of things being transferred. Updated by Meridian as new modules are developed.*</p>
+<p>| # | Module | Description | Status |</p>
+<p>|---|--------|-------------|--------|</p>
+<p>| 1 | **Multi-Agentic PaaS API Platform (AgentVox)** | Distributed multi-agent orchestration platform with usage-based pricing model | In development |</p>
+<p>| 2 | **MERIDIAN Daemon Mesh** | Distributed AI daemon system — orchestrator, brain, mesh, collaboration layers; NATS messaging; pulse sentinel system; blue/green deployment | Active |</p>
+<p>| 3 | **Memory Intelligence Graph (MIG)** | Neo4j-based knowledge graph — embedding service, fact extraction pipeline, mutation pipeline, write validation | Active |</p>
+<p>| 4 | **Voice Intelligence Pipeline** | Meeting transcription and speaker diarization (diart + pyannote + mlx-whisper) | Active |</p>
+<p>| 5 | **Deployment &amp; Infrastructure Tooling** | Blue/green deployment scripts, parallel deploy system, rollback tooling, systemd templates, LaunchAgent management | Active |</p>
+<p>| 6 | **Website Generation &amp; Deployment Pipeline** | Autonomous static site creation, Render deployment integration, template system | Active |</p>
+<p>| 7 | **Security &amp; Monitoring Tooling** | Circuit breakers, dead letter queues, metrics collection, health check frameworks, credential relay systems | Active |</p>
+<p>| 8 | **Reusable Code Libraries** | Auth middleware, API rate-limiting, database connection pooling, logging frameworks, configuration management | Active |</p>
+<p>| 9 | **Cursor Persona System** | Virtual team definitions, persona routing, skill composition engine | Active |</p>
+<p>| 10 | **Research Extraction Pipeline** | Document ingestion, entity linking, domain classification, MIG storage | Active |</p>
+<p>| 11 | **Cortex Framework** | Domain-specific knowledge bundle assembly for Claude Projects / NotebookLM | Active |</p>
+<p>| 12 | **Dashboard &amp; Ops Platform** | Command center, ops dashboard, drill-down modals, git feed, alert system | Active |</p>
+<p>*This Exhibit is a living document. Meridian may add entries as new modules are developed. Removal requires mutual written agreement.*</p>
+<h4>Exhibit B — Business Associate Agreement (BAA)</h4>
+<p>*Required before any engagement involving Protected Health Information. Executed separately per Section 6.2.*</p>
+<h4>Exhibit C — Rate Schedule</h4>
+<p>*[As specified in Section 4.3]*</p>
+<h4>Exhibit D — Statement of Work Template</h4>
+<p><strong>STATEMENT OF WORK #[___]</strong></p>
+<p>**Under**: MERIDIAN Master Services &amp; Licensing Agreement dated [___]</p>
+<p>**Effective Date**: [___]</p>
+<p>**1. Project Name**: [___]</p>
+<p>**2. Scope of Services**: [Description of Services to be performed]</p>
+<p>**3. Client Deliverables**: [Each deliverable identified with reasonable specificity]</p>
+<p>| # | Deliverable | Description | Classification | Acceptance Criteria |</p>
+<p>|---|-------------|-------------|----------------|---------------------|</p>
+<p>| 1 | [___] | [___] | Client Deliverable / Meridian Work Product | [___] |</p>
+<p>**4. License Tier**: [ ] Tier 1 (Standard) [ ] Tier 2 (Extended) [ ] Tier 3 (Enterprise) [ ] Tier 4 (Buyout — separate Exhibit G required)</p>
+<p>**5. PHI Classification**: [ ] This SOW involves PHI — BAA (Exhibit B) must be executed before work begins [ ] This SOW does NOT involve PHI</p>
+<p>**6. Meridian Background IP Expected to be Used**: [List Exhibit A items by number — for transparency, not transfer]</p>
+<p>**7. Pricing**:</p>
+<p style='padding-left:1rem'>&bull; Billing model: [ ] Hourly [ ] Fixed fee [ ] Milestone [ ] Hybrid</p>
+<p style='padding-left:1rem'>&bull; Estimated Services total: $[___]</p>
+<p style='padding-left:1rem'>&bull; Deposit: $[___] (due upon SOW execution)</p>
+<p style='padding-left:1rem'>&bull; Rate tier(s): [Per Exhibit C]</p>
+<p>**8. License Tier Fee** (per Section 3.5):</p>
+<p style='padding-left:1rem'>&bull; License Tier: [ ] Tier 1 (no additional fee) [ ] Tier 2 [ ] Tier 3 [ ] Tier 4 (Exhibit G required)</p>
+<p style='padding-left:1rem'>&bull; Pricing model: [ ] Percentage premium (___%) [ ] Flat annual ($___/yr) [ ] One-time ($___) [ ] Revenue share (___% quarterly) [ ] Success fee (___% of exit)</p>
+<p style='padding-left:1rem'>&bull; License tier fee amount: $[___]</p>
+<p style='padding-left:1rem'>&bull; Payment schedule: [___]</p>
+<p>**9. Exclusivity Option** (per Section 3.6):</p>
+<p style='padding-left:1rem'>&bull; [ ] No exclusivity requested (default — non-exclusive)</p>
+<p style='padding-left:1rem'>&bull; [ ] Field-limited exclusivity requested — Exclusivity Addendum attached</p>
+<p style='padding-left:1rem'>&bull; Field: [specialty/practice type]</p>
+<p style='padding-left:1rem'>&bull; Geography: [area]</p>
+<p style='padding-left:1rem'>&bull; Term: [___ months, max 24]</p>
+<p style='padding-left:1rem'>&bull; Monthly/Annual fee: $[___]</p>
+<p style='padding-left:1rem'>&bull; Named competitors (if any): [___]</p>
+<p>**10. Payment Terms**: [Per Section 4.2 unless modified here]</p>
+<p>**11. Timeline &amp; Milestones**:</p>
+<p>| Milestone | Target Date | Deliverable | Payment |</p>
+<p>|-----------|-------------|-------------|---------|</p>
+<p>| [___] | [___] | [___] | $[___] |</p>
+<p>**12. Acceptance Process**: [Per Section 5.1 unless modified here. Major Release designation: Yes/No]</p>
+<p>**SIGNATURES**:</p>
+<p>| Meridian | Client |</p>
+<p>|----------|--------|</p>
+<p>| Signature: _______________ | Signature: _______________ |</p>
+<p>| Name: _______________ | Name: _______________ |</p>
+<p>| Title: _______________ | Title: _______________ |</p>
+<p>| Date: _______________ | Date: _______________ |</p>
+<h4>Exhibit E — Insurance Requirements</h4>
+<p>*Minimum coverage levels, certificate requirements, tail coverage per Section 7.4.*</p>
+<h4>Exhibit F — Architecture Reference</h4>
+<p>*Maps Client Deliverables and embedded Meridian Background IP for each active SOW. Updated with each SOW amendment.*</p>
+<h4>Exhibit G — Buyout Agreement Template (Tier 4)</h4>
+<p>*Template for separate IP acquisition agreements. Required for any ownership transfer beyond Client Deliverables. Includes: specific assets, exclusivity terms, field-of-use limits, consideration, and Meridian license-back provisions.*</p>
+<h4>Exhibit H — Exclusivity Addendum Template</h4>
+<p><strong>EXCLUSIVITY ADDENDUM TO SOW #[___]</strong></p>
+<p>**Under**: MERIDIAN Master Services &amp; Licensing Agreement dated [___]</p>
+<p>**Effective Date**: [___]</p>
+<p>**1. Covered Client Deliverables**: [List by SOW deliverable number]</p>
+<p>**2. Exclusivity Field**: [Specialty or practice type — e.g., &quot;outpatient psychiatric practices&quot;]</p>
+<p>**3. Geographic Scope**: [e.g., &quot;within the San Juan metropolitan area&quot; / &quot;within Puerto Rico&quot; / &quot;within the United States&quot;]</p>
+<p>**4. Term**: [___ months, not to exceed 24] — Renewal: [ ] Automatic upon mutual written agreement [ ] Expires unless renewed</p>
+<p>**5. Exclusivity Fee**: $[___] per [ ] month [ ] year, payable in advance</p>
+<p>**6. Named Competitors** (if any): [List specific entities, or &quot;all entities meeting the field + geography criteria&quot;]</p>
+<p>**7. Excluded from Exclusivity** (per Section 3.6):</p>
+<p style='padding-left:1rem'>&bull; Meridian Background IP, general tools, platforms, and frameworks — unrestricted</p>
+<p style='padding-left:1rem'>&bull; AgentVox PaaS platform and Partnership commercial products — unrestricted</p>
+<p style='padding-left:1rem'>&bull; Services for clients outside the defined field or geography — unrestricted</p>
+<p style='padding-left:1rem'>&bull; Services for clients within the field/geography that do not involve substantially similar Client Deliverables — unrestricted</p>
+<p>**8. Termination**: Exclusivity terminates automatically upon: (a) expiration of the term without renewal; (b) Client&#x27;s failure to pay the exclusivity fee within 15 days of written notice; (c) termination of the underlying MSLA; or (d) mutual written agreement.</p>
+<p>**SIGNATURES**:</p>
+<p>| Meridian | Client |</p>
+<p>|----------|--------|</p>
+<p>| Signature: _______________ | Signature: _______________ |</p>
+<p>| Name: _______________ | Name: _______________ |</p>
+<p>| Date: _______________ | Date: _______________ |</p>
+<p>---</p>
+<p>*This document is a Master Services &amp; Licensing Agreement for review and negotiation. It is not legal advice. Execution requires review by licensed counsel in the applicable jurisdictions.*</p>
+<p><strong>Bacherman Martin — Virtual Legal Team</strong></p>
+<p>Structural &amp; Securities Counsel</p>
+<p>2026-03-29</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-03-29 18:42</div>
+</body></html>
