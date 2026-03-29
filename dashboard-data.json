@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T00:14:46.966330+00:00",
+  "generated_at": "2026-03-29T00:16:38.730847+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -780,20 +780,20 @@
         }
       ],
       "mig_live": {
-        "memory_count": 21225,
-        "concept_count": 5894,
-        "edge_count": 1007940,
-        "avg_importance": 8.34,
+        "memory_count": 21847,
+        "concept_count": 5893,
+        "edge_count": 951846,
+        "avg_importance": 8.3,
         "domains": {
-          "agent_architecture": 6708,
-          "market_intelligence": 3518,
-          "infrastructure": 2399,
-          "security_compliance": 1375,
-          "business_operations": 1201,
-          "ai_capabilities": 1123,
-          "intelligence": 395,
-          "capital_markets": 89,
-          "research": 29,
+          "agent_architecture": 7207,
+          "market_intelligence": 3903,
+          "infrastructure": 2351,
+          "security_compliance": 1344,
+          "business_operations": 1175,
+          "ai_capabilities": 1103,
+          "intelligence": 283,
+          "capital_markets": 88,
+          "research": 27,
           "agent-architecture": 26
         },
         "status": "connected"
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-29T00:14:46.806953+00:00",
+      "updated_at": "2026-03-29T00:16:38.543565+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1211,6 +1211,26 @@
           "buying_signal_count": 2,
           "sentiment": "negative",
           "suggested_stage": "proposal",
+          "participants": []
+        },
+        {
+          "client": "mbm",
+          "call_id": "mbm-index",
+          "title": "mbm-index",
+          "file": "clients/mbm/signals/deal-signals-mbm-index-2026-03-29.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 0,
+            "pricing_discussed": false,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -1679,11 +1699,11 @@
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 7,
-        "mbm": 15,
+        "mbm": 16,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 39,
+      "total_signals": 40,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -2119,6 +2139,13 @@
           "terminal": "ttys141",
           "launched": "2026-03-29T00:07",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "72913",
+          "terminal": "ttys143",
+          "launched": "2026-03-29T00:15",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
       "daemon_tasks": [
@@ -2202,180 +2229,32 @@
       "mesh_live": {
         "system": {
           "hostname": "racknerd-c0be9f6",
-          "cpu_load_1m": 1.12,
-          "cpu_load_5m": 0.78,
+          "cpu_load_1m": 1.22,
+          "cpu_load_5m": 1.17,
           "memory_total_mb": 5925,
-          "memory_available_mb": 2390,
-          "swap_used_mb": 2902,
+          "memory_available_mb": 1401,
+          "swap_used_mb": 2819,
           "swap_total_mb": 3071,
           "disk_total_gb": 135.0,
-          "disk_used_gb": 84.0,
-          "uptime_days": 13.1
+          "disk_used_gb": 60.0,
+          "uptime_days": 7.2
         },
         "nats": {
           "streams": {
             "WORK_QUEUE": {
-              "messages": 3128,
-              "bytes": 1643479,
-              "consumers": 21,
-              "consumer_lag": [
-                {
-                  "name": "audio-interview-consumer",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "cortex-builder-neo4j-browser",
-                  "pending": 2,
-                  "level": "ok"
-                },
-                {
-                  "name": "cortex-builder-neo4j-deep",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "cursor_dispatcher_cursor_agent",
-                  "pending": 17,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_batch_embeddings",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_call_processor",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_claude_docs_monitor",
-                  "pending": 29,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_corroboration_discovery",
-                  "pending": 580,
-                  "level": "critical"
-                },
-                {
-                  "name": "forge_fact_extraction",
-                  "pending": 119,
-                  "level": "warning"
-                },
-                {
-                  "name": "forge_funnel_step",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_memory_gardening",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_send_campaign_email",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_swarm_subtask",
-                  "pending": 1121,
-                  "level": "critical"
-                },
-                {
-                  "name": "forge_swarm_synthesis",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "forge_youtube_transcript",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "image-worker_image_generation",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "imagefx-worker_imagefx",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "research-worker_browser_research",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "research-worker_deep_research",
-                  "pending": 77,
-                  "level": "ok"
-                },
-                {
-                  "name": "swarm-manual-test",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "website-worker_website_generation",
-                  "pending": 2,
-                  "level": "ok"
-                }
-              ]
+              "messages": 941,
+              "bytes": 542402,
+              "consumers": 18
             },
             "MESH_DLQ": {
-              "messages": 334,
-              "bytes": 734153,
-              "consumers": 1,
-              "consumer_lag": [
-                {
-                  "name": "6LIub9LD",
-                  "pending": 0,
-                  "level": "ok"
-                }
-              ]
+              "messages": 258,
+              "bytes": 593532,
+              "consumers": 0
             },
             "PULSE": {
-              "messages": 1,
-              "bytes": 234,
-              "consumers": 4,
-              "consumer_lag": [
-                {
-                  "name": "pulse-consumer-pulse-tick-5m",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "pulse-consumer-pulse-tick-6h",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "pulse-consumer-pulse-tick-daily",
-                  "pending": 0,
-                  "level": "ok"
-                },
-                {
-                  "name": "pulse-consumer-pulse-tick-hourly",
-                  "pending": 0,
-                  "level": "ok"
-                }
-              ]
-            },
-            "FACT_EXTRACT": {
               "messages": 0,
               "bytes": 0,
-              "consumers": 1,
-              "consumer_lag": [
-                {
-                  "name": "brain-extractor",
-                  "pending": 0,
-                  "level": "ok"
-                }
-              ]
+              "consumers": 4
             }
           },
           "connections": null,
@@ -2394,11 +2273,12 @@
             "reachable": true
           }
         ],
-        "collected_at": "2026-03-28T18:00:27.712379+00:00"
+        "collected_at": "2026-03-22T20:13:06.987399+00:00",
+        "_stale_warning": "Data is 148 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-29T00:14:46.822987+00:00",
+      "updated_at": "2026-03-29T00:16:38.558773+00:00",
       "open_issues": "GitHub issues query failed or gh CLI unavailable",
       "recent_issues": [],
       "issues_by_project": {},
@@ -2414,7 +2294,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "members": [
         {
           "id": "alex",
@@ -2485,7 +2365,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "projects": [
         {
           "project": {
@@ -2915,7 +2795,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3027,7 +2907,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3124,7 +3004,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -3398,6 +3278,21 @@
           ],
           "detail_page": "calls/2026-03-29-ip-agreement-v5-simple-explainer.html",
           "preview": "Educational breakdown explaining the MBM IP Agreement between MBM and contractor Alexander Mazzei, covering ownership of code, tools, patient data, and contractual obligations."
+        },
+        {
+          "date": "2026-03-29",
+          "title": "Mbm Index",
+          "type": "external",
+          "file": "clients/mbm/mbm-index.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "IP Agreement v5 documentation completed with Bacherman Martin review certification, including full revisions and simplified stakeholder explainer",
+          "discoveries": [
+            "Composite agreement score: 0.951/1.0"
+          ],
+          "detail_page": "calls/2026-03-29-mbm-index.html",
+          "preview": "IP Agreement v5 documentation completed with Bacherman Martin review certification, including full revisions and simplified stakeholder explainer"
         },
         {
           "date": "2026-03-28",
@@ -5890,15 +5785,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 62,
+        "total_calls": 63,
         "internal_calls": 24,
-        "external_calls": 17,
+        "external_calls": 18,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-03-29T00:14:46.947293+00:00",
+      "updated_at": "2026-03-29T00:16:38.706225+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -7186,7 +7081,7 @@
       "total_docs": 212
     },
     "deals": {
-      "updated_at": "2026-03-29T00:14:46.947389+00:00",
+      "updated_at": "2026-03-29T00:16:38.706321+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -7420,7 +7315,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-29T00:14:46.823015+00:00",
+      "updated_at": "2026-03-29T00:16:38.558794+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -10604,6 +10499,75 @@
             }
           },
           "_file": "clients/mbm/audits/csuite-audit-ip-agreement-v5-simple-explainer.json",
+          "_client": "mbm"
+        },
+        {
+          "audit_version": "1.0",
+          "audited_at": "2026-03-29T00:16:25.223803+00:00",
+          "transcript_file": "clients/mbm/mbm-index.md",
+          "transcript_length": 669,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [],
+            "call_topic": ""
+          },
+          "personas_run": [
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "CTO": {
+              "tech_requirements": [
+                "Document version control and audit trail (v3\u2192v5 progression with annotations)",
+                "Multi-format document generation (HTML production, likely PDF export)",
+                "Document comparison/diff capability (bilateral annotations tracking)",
+                "Reading level conversion/accessibility (5th-grade explainer version from institutional-grade source)"
+              ],
+              "integrations": [
+                "Legal document management system (for IP agreement lifecycle)",
+                "Content delivery (HTML rendering infrastructure)",
+                "PDF generation from source (if PDF versions exist)",
+                "Optional: Legal review/signing platform (Bacherman Martin integration, e-signature capability)"
+              ],
+              "security_compliance": [
+                "Enterprise-grade document storage (institutional-grade counter-proposal language suggests SOC2 compliance)",
+                "Legal attorney work-product privilege protection",
+                "Bilateral annotation tracking without loss of privilege",
+                "Change history and certification chain (Bacherman Martin review certification must be auditable)"
+              ],
+              "build_vs_buy": [
+                "BUY: Legal document management (Ironclad, Airtable, or document platform) rather than custom build",
+                "BUILD: Domain-specific simplification/explanation layer (5th-grade readable versions are MBM-specific, not commodity)",
+                "BUILD: Annotation synchronization between institutional and simplified versions"
+              ],
+              "tech_risks": [
+                "Version skew between institutional-grade agreement and simple explainer versions",
+                "Losing bilateral annotations during format conversion (HTML\u2192PDF)",
+                "Audit trail gaps if document revisions not properly tracked",
+                "Legal privilege loss if collaborative editing platform doesn't preserve attorney-client protection"
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "IP Agreement v5 finalized as institutional counter-proposal (composite score 0.951/1.0)",
+                "Simplified 5th-grade reading level explainer produced for stakeholder accessibility"
+              ],
+              "opportunities": [
+                "Bacherman Martin certification (0.951 score) signals strong legal position \u2014 use this in negotiations",
+                "Accessibility strategy (simplified explainer) removes knowledge gap friction in deal discussions"
+              ],
+              "threats": [
+                "No threat signals in this metadata \u2014 but need actual agreement text to assess risk exposures"
+              ],
+              "commitments": [
+                "Bacherman Martin structural review completed (dated 2026-03-28)",
+                "Counter-proposal ready for delivery to MBM counterparty"
+              ],
+              "narrative_assessment": "GOOD: We're leading with institutional rigor (Bacherman certification + 0.951 score) AND accessibility (simplified explainer). Signals sophisticated operator + stakeholder-focused communication. INCOMPLETE: Need actual meeting notes to assess whether we represented vision/partnership thesis clearly."
+            }
+          },
+          "_file": "clients/mbm/audits/csuite-audit-mbm-index.json",
           "_client": "mbm"
         },
         {
@@ -19045,16 +19009,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 47
+      "total": 48
     },
     "call_intelligence": {
-      "updated_at": "2026-03-29T00:14:46.953184+00:00",
+      "updated_at": "2026-03-29T00:16:38.714676+00:00",
       "signal_summary": {
         "total_objections": 45,
         "total_buying_signals": 28,
         "total_competitors": 103,
         "pricing_discussions": 32,
-        "calls_with_signals": 39
+        "calls_with_signals": 40
       },
       "decisions": [
         {
@@ -20613,6 +20577,11 @@
         }
       ],
       "discoveries": [
+        {
+          "date": "2026-03-29",
+          "call": "Mbm Index",
+          "discovery": "Composite agreement score: 0.951/1.0"
+        },
         {
           "date": "2026-03-28",
           "call": "Ip Agreement V3 Proposed Revisions V2",
@@ -23514,6 +23483,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "mbm"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "mbm"
         },
@@ -23620,11 +23594,11 @@
       ],
       "total_decisions": 181,
       "total_commitments": 128,
-      "total_discoveries": 188,
+      "total_discoveries": 189,
       "total_action_items": 238
     },
     "attention": {
-      "updated_at": "2026-03-29T00:14:46.966298+00:00",
+      "updated_at": "2026-03-29T00:16:38.730809+00:00",
       "items": [
         {
           "type": "blocked",
@@ -23705,12 +23679,18 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-29T00:14:46.966319+00:00",
+      "updated_at": "2026-03-29T00:16:38.730835+00:00",
       "events": [
         {
           "type": "call",
           "date": "2026-03-29",
           "title": "Ip Agreement V5 Simple Explainer",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-29",
+          "title": "Mbm Index",
           "detail": "external \u2014 alex"
         },
         {
@@ -23789,12 +23769,6 @@
           "type": "call",
           "date": "2026-03-21",
           "title": "Internal debrief on Denver consultation",
-          "detail": "external \u2014 alex, Mike Bitler"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-21",
-          "title": "At Ely Beckman's location \u2014 setup + strategy",
           "detail": "external \u2014 alex, Mike Bitler"
         }
       ],
