@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-29T11:50:05.720428+00:00",
+  "generated_at": "2026-03-29T12:10:32.938479+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-29T11:50:02.907020+00:00",
+      "updated_at": "2026-03-29T12:10:29.464463+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1231,6 +1231,26 @@
           "buying_signal_count": 0,
           "sentiment": "neutral",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "mbm",
+          "call_id": "meridian-msla-v1",
+          "title": "meridian-msla-v1",
+          "file": "clients/mbm/signals/deal-signals-meridian-msla-v1-2026-03-29.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -1799,11 +1819,11 @@
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 7,
-        "mbm": 21,
+        "mbm": 22,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 45,
+      "total_signals": 46,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -1893,21 +1913,21 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-03-29-113231",
-          "commit": "00af8b2d",
-          "status": "\u2705 active \u2014 sandman + atlas healthy"
+          "release": "2026-03-29-115530",
+          "commit": "ca675802",
+          "status": "\u2705 active \u2014 sandman + atlas healthy, MIG resilience deployed, connectivity watchdog"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-03-29-113231",
-          "commit": "00af8b2d",
-          "status": "\u2705 active \u2014 delphi healthy, OAuth fixed"
+          "release": "2026-03-29-115530",
+          "commit": "ca675802",
+          "status": "\u2705 active \u2014 delphi healthy, MIG resilience deployed, connectivity watchdog"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-03-29-113231",
-          "commit": "00af8b2d",
-          "status": "\u2705 active \u2014 sensei healthy, autopull updated"
+          "release": "2026-03-29-115530",
+          "commit": "ca675802",
+          "status": "\u2705 active \u2014 sensei healthy, MIG watchdog + self-monitor, index health check"
         }
       ],
       "active_sessions": [
@@ -2561,10 +2581,13 @@
       }
     },
     "development": {
-      "updated_at": "2026-03-29T11:50:05.568569+00:00",
+      "updated_at": "2026-03-29T12:10:32.769466+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "daemon/delphi": 1,
+          "checkpoint": 1,
+          "in-progress": 1,
           "grade/B": 16,
           "image-grader": 5,
           "grade/C": 12,
@@ -2574,7 +2597,7 @@
           "critical": 2,
           "ops": 2,
           "auto-created": 2,
-          "dependencies": 5,
+          "dependencies": 4,
           "python:uv": 2,
           "javascript": 1,
           "sentinel-review:fail": 3,
@@ -2587,6 +2610,21 @@
         }
       },
       "recent_issues": [
+        {
+          "number": 1771,
+          "title": "CHECKPOINT: Checkpoint system build-out and testing",
+          "state": "open",
+          "created_at": "2026-03-29T12:09:27Z",
+          "updated_at": "2026-03-29T12:09:27Z",
+          "labels": [
+            "daemon/delphi",
+            "checkpoint",
+            "in-progress"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1771",
+          "project_slug": "agent-vox"
+        },
         {
           "number": 1769,
           "title": "Image Grader: Migrate API to Render (permanent hosting)",
@@ -3261,22 +3299,26 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/1697",
           "project_slug": null
-        },
-        {
-          "number": 1696,
-          "title": "ci: bump actions/setup-python from 5 to 6",
-          "state": "open",
-          "created_at": "2026-03-23T13:20:53Z",
-          "updated_at": "2026-03-23T18:56:57Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1696",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
+        "agent-vox": [
+          {
+            "number": 1771,
+            "title": "CHECKPOINT: Checkpoint system build-out and testing",
+            "state": "open",
+            "created_at": "2026-03-29T12:09:27Z",
+            "updated_at": "2026-03-29T12:09:27Z",
+            "labels": [
+              "daemon/delphi",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1771",
+            "project_slug": "agent-vox"
+          }
+        ],
         "unassigned": [
           {
             "number": 1769,
@@ -3923,19 +3965,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/1697",
             "project_slug": null
-          },
-          {
-            "number": 1696,
-            "title": "ci: bump actions/setup-python from 5 to 6",
-            "state": "open",
-            "created_at": "2026-03-23T13:20:53Z",
-            "updated_at": "2026-03-23T18:56:57Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1696",
-            "project_slug": null
           }
         ],
         "openclaw": [
@@ -3972,137 +4001,137 @@
       },
       "ci": {
         "status": "completed",
-        "conclusion": "failure",
-        "name": "CodeQL Analysis",
-        "created_at": "2026-03-29T11:46:53Z",
-        "head_sha": "68e13353"
+        "conclusion": "skipped",
+        "name": "Agent HQ \u2192 MERIDIAN Bridge",
+        "created_at": "2026-03-29T12:09:31Z",
+        "head_sha": "54d47a57"
       },
       "ci_recent_runs": [
         {
-          "id": 23708326201,
-          "name": "CodeQL Analysis",
+          "id": 23708705759,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-29T11:46:53Z",
-          "updated_at": "2026-03-29T11:46:58Z",
-          "head_sha": "68e13353",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708326201"
+          "conclusion": "skipped",
+          "created_at": "2026-03-29T12:09:31Z",
+          "updated_at": "2026-03-29T12:09:31Z",
+          "head_sha": "54d47a57",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708705759"
         },
         {
-          "id": 23708326175,
+          "id": 23708705721,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-03-29T12:09:30Z",
+          "updated_at": "2026-03-29T12:09:31Z",
+          "head_sha": "54d47a57",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708705721"
+        },
+        {
+          "id": 23708705712,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-03-29T12:09:30Z",
+          "updated_at": "2026-03-29T12:09:32Z",
+          "head_sha": "54d47a57",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708705712"
+        },
+        {
+          "id": 23708613031,
           "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-29T11:46:53Z",
-          "updated_at": "2026-03-29T11:47:02Z",
-          "head_sha": "68e13353",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708326175"
+          "created_at": "2026-03-29T12:03:52Z",
+          "updated_at": "2026-03-29T12:03:57Z",
+          "head_sha": "54d47a57",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708613031"
         },
         {
-          "id": 23708231721,
-          "name": "CodeQL Analysis",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-29T11:41:10Z",
-          "updated_at": "2026-03-29T11:42:05Z",
-          "head_sha": "d62d828d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708231721"
-        },
-        {
-          "id": 23708231713,
+          "id": 23708470975,
           "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-29T11:41:10Z",
-          "updated_at": "2026-03-29T11:41:54Z",
-          "head_sha": "d62d828d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708231713"
-        },
-        {
-          "id": 23708193919,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-03-29T11:38:54Z",
-          "updated_at": "2026-03-29T11:40:45Z",
-          "head_sha": "25c964cc",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708193919"
+          "created_at": "2026-03-29T11:55:38Z",
+          "updated_at": "2026-03-29T11:55:44Z",
+          "head_sha": "ac44a99c",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23708470975"
         }
       ],
       "recent_commits": [
         {
-          "sha": "e3fd1671",
-          "message": "docs(boardroom): final refresh \u2014 Neo4j auth fix, 13 completed items, troubleshooting",
+          "sha": "54d47a57",
+          "message": "feat(billing): JSONL usage history endpoint + post-restart recovery",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:50:01Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e3fd167147f9c3733e4252da7223c9b6e9ea74e1"
+          "date": "2026-03-29T12:03:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/54d47a5789287a2ee5cc7a3b8e5d8a2313685f80"
         },
         {
-          "sha": "70ed70a6",
-          "message": "fix(plan): correct 6 contradictions + add migration safety + Cloudflare Tunnel spec",
+          "sha": "aab277bb",
+          "message": "docs(autonomous): final state \u2014 all 8 priorities shipped, 3 machines deployed",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:48:30Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/70ed70a6c3568b5ac6c0b166593ecce789784859"
+          "date": "2026-03-29T12:01:52Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/aab277bb89905a05d724778aa0a75eff7c508fbb"
         },
         {
-          "sha": "c13ab2a0",
-          "message": "feat(skills): checkpoint/resume/inventory system \u2014 durable work-state tracking",
+          "sha": "4da1d025",
+          "message": "docs(boardroom): investigation + phased plan \u2014 root route fix, remaining features, architecture",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:45:17Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c13ab2a03381ec4b97be910a53f8f5039e6221f1"
+          "date": "2026-03-29T11:58:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4da1d0257b27f036ba1e6457d9c8f2c1a37a7598"
         },
         {
-          "sha": "68e13353",
-          "message": "fix(autonomous): use sys.executable for MIG task query subprocess",
+          "sha": "278cc13e",
+          "message": "docs: checkpoint system \u2014 done, todo, and usage guides",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:46:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/68e13353fe6821b5376d5f40e3b90b9dc6eb7bf1"
+          "date": "2026-03-29T11:58:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/278cc13ef7852ce1f1a7a33de0c3b32c4a923681"
         },
         {
-          "sha": "62f4f709",
-          "message": "fix(command-center): re-add Human TODO tab entry lost by linter",
+          "sha": "552cd792",
+          "message": "docs: final session record v4 \u2014 complete with fleet deploy + watchdogs",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:44:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/62f4f709d19a5aa156b2cace9cc9684f87e863a5"
+          "date": "2026-03-29T11:57:47Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/552cd79221235c371fca4bd38406d3504b6dbac1"
         },
         {
-          "sha": "7d09e3bf",
-          "message": "feat(mig): connectivity watchdog for remote nodes + credential rotation runbook",
+          "sha": "b79f00a1",
+          "message": "docs: add what-was-done, what-needs-to-be-done, and how-to-use guides for Observer\u2192API-First arc",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:44:50Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7d09e3bf5338cc1d93607aba2ea4c6ac2f7689ee"
+          "date": "2026-03-29T11:56:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b79f00a1455d406c71e2697f47040dd074168c9b"
         },
         {
-          "sha": "d62d828d",
-          "message": "feat(autonomous): add CLI entry point for systemd/launchd/NSSM service",
+          "sha": "a771bd58",
+          "message": "chore: update boot-state files \u2014 deployed ca675802",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:40:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d62d828d6928b3c56077ccb9639fac90e7c9e57f"
+          "date": "2026-03-29T11:55:30Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a771bd589e40f677d6421edfe12124f6573ea43a"
         },
         {
-          "sha": "7e31949e",
-          "message": "feat(command-center): Human TODO tab with 5 action items in React UI",
+          "sha": "ac44a99c",
+          "message": "fix(boardroom): prevent root route collision \u2014 rename index.html, add route contract test",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:40:29Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7e31949e3168f678ccdf8d8279e4b1db3d85a84d"
+          "date": "2026-03-29T11:55:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ac44a99c1af4854071956866cc9224e023a8b679"
         },
         {
-          "sha": "3bfad3d8",
-          "message": "docs: final session report + remaining work (49 test fixes, 12 syntax fixes, CI green pending)",
+          "sha": "ca7e8510",
+          "message": "fix(gateway): add speedoftrust.ai origins to CORS for command-center + terminal",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:40:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3bfad3d88f60f70355adff5630221ebb9ee60d29"
+          "date": "2026-03-29T11:54:40Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ca7e85106ff707c750b4a9c242376c9bb8ab6921"
         },
         {
-          "sha": "25c964cc",
-          "message": "fix(mcp): always refresh Neo4j env on reset + proactive refresh on init",
+          "sha": "ca675802",
+          "message": "fix(auth): resolve env var references in client_keys.yaml",
           "author": "covaultxyz",
-          "date": "2026-03-29T11:38:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/25c964cce7e59d3d538b8e5b1b6745fd4e44bd61"
+          "date": "2026-03-29T11:53:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ca675802429050aa71e1901885b2b8b4a19d3f49"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-29T11:50:03.529997+00:00",
+        "updated_at": "2026-03-29T12:10:30.063391+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4171,7 +4200,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "members": [
         {
           "id": "alex",
@@ -4242,7 +4271,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "projects": [
         {
           "project": {
@@ -4672,7 +4701,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -4784,7 +4813,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -4881,7 +4910,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -7655,7 +7684,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-29T11:50:05.675948+00:00",
+      "updated_at": "2026-03-29T12:10:32.906467+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -8142,7 +8171,7 @@
         {
           "name": "Post Deploy Verify",
           "file": "docs/runbooks/post-deploy-verify.md",
-          "size": 8470,
+          "size": 8912,
           "modified": "2026-03-29"
         },
         {
@@ -8428,6 +8457,24 @@
           "file": "docs/plans/gws-cli-integration-plan.md",
           "size": 16187,
           "modified": "2026-03-27"
+        },
+        {
+          "name": "Observer Api First How To Use",
+          "file": "docs/plans/observer-api-first-how-to-use.md",
+          "size": 10060,
+          "modified": "2026-03-29"
+        },
+        {
+          "name": "Observer Api First What Needs To Be Done",
+          "file": "docs/plans/observer-api-first-what-needs-to-be-done.md",
+          "size": 11521,
+          "modified": "2026-03-29"
+        },
+        {
+          "name": "Observer Api First What Was Done",
+          "file": "docs/plans/observer-api-first-what-was-done.md",
+          "size": 6064,
+          "modified": "2026-03-29"
         },
         {
           "name": "Openclaw Rl Feedback Loop Design",
@@ -9034,12 +9081,12 @@
       ],
       "total_sops": 16,
       "total_runbooks": 94,
-      "total_plans": 111,
+      "total_plans": 114,
       "total_protocols": 7,
-      "total_docs": 228
+      "total_docs": 231
     },
     "deals": {
-      "updated_at": "2026-03-29T11:50:05.676046+00:00",
+      "updated_at": "2026-03-29T12:10:32.906553+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -9273,7 +9320,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-29T11:50:05.568589+00:00",
+      "updated_at": "2026-03-29T12:10:32.769482+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -22176,13 +22223,13 @@
       "total": 53
     },
     "call_intelligence": {
-      "updated_at": "2026-03-29T11:50:05.706007+00:00",
+      "updated_at": "2026-03-29T12:10:32.924944+00:00",
       "signal_summary": {
         "total_objections": 45,
         "total_buying_signals": 28,
-        "total_competitors": 145,
-        "pricing_discussions": 37,
-        "calls_with_signals": 45
+        "total_competitors": 146,
+        "pricing_discussions": 38,
+        "calls_with_signals": 46
       },
       "decisions": [
         {
@@ -26657,6 +26704,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "mbm"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "mbm"
         },
@@ -26782,7 +26834,7 @@
       "total_action_items": 238
     },
     "attention": {
-      "updated_at": "2026-03-29T11:50:05.720375+00:00",
+      "updated_at": "2026-03-29T12:10:32.938423+00:00",
       "items": [
         {
           "type": "blocked",
@@ -26863,66 +26915,66 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-29T11:50:05.720415+00:00",
+      "updated_at": "2026-03-29T12:10:32.938466+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-03-29T11:50:01Z",
-          "title": "docs(boardroom): final refresh \u2014 Neo4j auth fix, 13 completed items, troubleshoo",
+          "date": "2026-03-29T12:03:49Z",
+          "title": "feat(billing): JSONL usage history endpoint + post-restart recovery",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:48:30Z",
-          "title": "fix(plan): correct 6 contradictions + add migration safety + Cloudflare Tunnel s",
+          "date": "2026-03-29T12:01:52Z",
+          "title": "docs(autonomous): final state \u2014 all 8 priorities shipped, 3 machines deployed",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:46:47Z",
-          "title": "fix(autonomous): use sys.executable for MIG task query subprocess",
+          "date": "2026-03-29T11:58:49Z",
+          "title": "docs(boardroom): investigation + phased plan \u2014 root route fix, remaining feature",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:45:17Z",
-          "title": "feat(skills): checkpoint/resume/inventory system \u2014 durable work-state tracking",
+          "date": "2026-03-29T11:58:03Z",
+          "title": "docs: checkpoint system \u2014 done, todo, and usage guides",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:44:55Z",
-          "title": "fix(command-center): re-add Human TODO tab entry lost by linter",
+          "date": "2026-03-29T11:57:47Z",
+          "title": "docs: final session record v4 \u2014 complete with fleet deploy + watchdogs",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:44:50Z",
-          "title": "feat(mig): connectivity watchdog for remote nodes + credential rotation runbook",
+          "date": "2026-03-29T11:56:48Z",
+          "title": "docs: add what-was-done, what-needs-to-be-done, and how-to-use guides for Observ",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:40:55Z",
-          "title": "feat(autonomous): add CLI entry point for systemd/launchd/NSSM service",
+          "date": "2026-03-29T11:55:30Z",
+          "title": "chore: update boot-state files \u2014 deployed ca675802",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:40:29Z",
-          "title": "feat(command-center): Human TODO tab with 5 action items in React UI",
+          "date": "2026-03-29T11:55:28Z",
+          "title": "fix(boardroom): prevent root route collision \u2014 rename index.html, add route cont",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:40:24Z",
-          "title": "docs: final session report + remaining work (49 test fixes, 12 syntax fixes, CI ",
+          "date": "2026-03-29T11:54:40Z",
+          "title": "fix(gateway): add speedoftrust.ai origins to CORS for command-center + terminal",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-29T11:38:34Z",
-          "title": "fix(mcp): always refresh Neo4j env on reset + proactive refresh on init",
+          "date": "2026-03-29T11:53:32Z",
+          "title": "fix(auth): resolve env var references in client_keys.yaml",
           "detail": "covaultxyz"
         },
         {
@@ -26930,6 +26982,12 @@
           "date": "2026-03-29",
           "title": "Ip Agreement V5 Simple Explainer",
           "detail": "external \u2014 alex"
+        },
+        {
+          "type": "issue",
+          "date": "2026-03-29",
+          "title": "#1771 CHECKPOINT: Checkpoint system build-out and testing",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -26977,12 +27035,6 @@
           "type": "call",
           "date": "2026-03-28",
           "title": "Ip Agreement V3 Proposed Revisions V4",
-          "detail": "external \u2014 alex"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-28",
-          "title": "Bacherman Martin Legal Review V4",
           "detail": "external \u2014 alex"
         }
       ],
