@@ -834,6 +834,10 @@ body {
       Sales
       <span class="freshness" id="fresh-sales">--</span>
     </button>
+    <button class="tab-btn" data-tab="human-todo" onclick="switchTab('human-todo')" style="color:var(--orange)">
+      Human TODO
+      <span class="freshness" id="fresh-human-todo" style="color:var(--orange)">5</span>
+    </button>
   </div>
 
   <!-- Loading State -->
@@ -862,6 +866,70 @@ body {
 
     <!-- ═══ SALES ═══ -->
     <div class="tab-panel" id="panel-sales"></div>
+
+    <!-- ═══ HUMAN TODO ═══ -->
+    <div class="tab-panel" id="panel-human-todo">
+      <div class="card" style="border-color:var(--orange);border-width:2px">
+        <h3 style="color:var(--orange);margin-bottom:1rem">Human Action Required — Image Grader</h3>
+        <p style="color:var(--dim);font-size:0.75rem;margin-bottom:1.5rem">These items cannot be automated. Each blocks a specific capability.</p>
+
+        <div style="display:flex;flex-direction:column;gap:1rem">
+
+          <div class="card" style="border-left:3px solid var(--red)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <span style="color:var(--red);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em">CRITICAL</span>
+              <a href="https://github.com/covaultxyz/meridian/issues/1757" target="_blank" style="color:var(--accent);font-size:0.7rem;text-decoration:none">#1757</a>
+            </div>
+            <h4 style="margin-bottom:0.3rem">Source Category Reference Images</h4>
+            <p style="color:var(--dim);font-size:0.75rem">17 categories need 3 real Amazon product photos each (51 total). Download grade-A/C/F images from top Amazon listings. Save to <code>config/references/{category}/</code>. ~3-4 hours.</p>
+            <p style="color:var(--yellow);font-size:0.7rem;margin-top:0.5rem">Blocks: calibrated grading for beauty, kitchen, sports, toys, pets, baby, grocery, clothing, tools, office, garden, auto, crafts, jewelry, health, industrial, phones</p>
+          </div>
+
+          <div class="card" style="border-left:3px solid var(--red)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <span style="color:var(--red);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em">CRITICAL</span>
+              <a href="https://github.com/covaultxyz/meridian/issues/1758" target="_blank" style="color:var(--accent);font-size:0.7rem;text-decoration:none">#1758</a>
+            </div>
+            <h4 style="margin-bottom:0.3rem">Lead Capture & CTA Decision</h4>
+            <p style="color:var(--dim);font-size:0.75rem">Decide: (1) What CTA? Email report / Book call / Both. (2) Booking link URL. (3) Where leads go (MIG / email). (4) Gate advanced features behind email? ~30 min decision.</p>
+            <p style="color:var(--yellow);font-size:0.7rem;margin-top:0.5rem">Blocks: converting free tool usage into sales pipeline</p>
+          </div>
+
+          <div class="card" style="border-left:3px solid var(--orange)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <span style="color:var(--orange);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em">IMPORTANT</span>
+              <a href="https://github.com/covaultxyz/meridian/issues/1760" target="_blank" style="color:var(--accent);font-size:0.7rem;text-decoration:none">#1760</a>
+            </div>
+            <h4 style="margin-bottom:0.3rem">Run Validation Study</h4>
+            <p style="color:var(--dim);font-size:0.75rem">Grade 10-15 images with tool, have 3 humans rank same images 1-10, compute Spearman correlation. Validates AI accuracy claims. ~2-4 hours.</p>
+            <p style="color:var(--yellow);font-size:0.7rem;margin-top:0.5rem">Blocks: marketing claims about AI prediction accuracy</p>
+          </div>
+
+          <div class="card" style="border-left:3px solid var(--dim)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <span style="color:var(--dim);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em">DECISION</span>
+              <a href="https://github.com/covaultxyz/meridian/issues/1768" target="_blank" style="color:var(--accent);font-size:0.7rem;text-decoration:none">#1768</a>
+            </div>
+            <h4 style="margin-bottom:0.3rem">Branding Alignment</h4>
+            <p style="color:var(--dim);font-size:0.75rem">Page says "Persona Lens by Meridian Mesh." Pick brand: Persona Lens / RankOnAmazon / AgentVox / Covault. ~15 min decision.</p>
+          </div>
+
+          <div class="card" style="border-left:3px solid var(--dim)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+              <span style="color:var(--dim);font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em">SECURITY</span>
+            </div>
+            <h4 style="margin-bottom:0.3rem">Rotate Compromised Credentials</h4>
+            <p style="color:var(--dim);font-size:0.75rem">Password <code>Aj061607!</code> in git history. Rotate on nedzo.ai, apexagentpro.com, intellivy.net if still active. ~30 min.</p>
+          </div>
+
+        </div>
+
+        <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+          <p style="color:var(--dim);font-size:0.7rem">Full instructions: <code>docs/audits/2026-03-29-image-grader-human-actions.md</code></p>
+          <p style="color:var(--green);font-size:0.7rem;margin-top:0.3rem">Automated: 10 of 14 issues closed. Live at imagegrader.speedoftrust.ai</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="footer" id="footer"></div>
