@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-30T13:25:56.701078+00:00",
+  "generated_at": "2026-03-30T14:12:57.690425+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -780,8 +780,23 @@
         }
       ],
       "mig_live": {
-        "status": "error",
-        "error": "{neo4j_code: Neo.ClientError.Security.AuthenticationRateLimit} {message: The client has provided incorrect authentication details too many times in a row.} {gql_status: 50N42} {gql_status_description: error: general processing exception - unexpected error. The client has provided incorrect authentic"
+        "memory_count": 21225,
+        "concept_count": 5894,
+        "edge_count": 1007940,
+        "avg_importance": 8.34,
+        "domains": {
+          "agent_architecture": 6708,
+          "market_intelligence": 3518,
+          "infrastructure": 2399,
+          "security_compliance": 1375,
+          "business_operations": 1201,
+          "ai_capabilities": 1123,
+          "intelligence": 395,
+          "capital_markets": 89,
+          "research": 29,
+          "agent-architecture": 26
+        },
+        "status": "connected"
       }
     },
     "pipeline": {
@@ -876,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-03-30T13:25:53.179000+00:00",
+      "updated_at": "2026-03-30T14:12:54.673373+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2118,20 +2133,20 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-03-30-050339",
-          "commit": "80e8d17c",
+          "release": "2026-03-30-133228",
+          "commit": "c669f4ae0",
           "status": "\u2705 active \u2014 sandman + atlas healthy, MIG resilience deployed, connectivity watchdog"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-03-30-050339",
-          "commit": "80e8d17c",
+          "release": "2026-03-30-133228",
+          "commit": "c669f4ae0",
           "status": "\u2705 active \u2014 delphi healthy, MIG resilience deployed, connectivity watchdog"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-03-30-050339",
-          "commit": "80e8d17c",
+          "release": "2026-03-30-133228",
+          "commit": "c669f4ae0",
           "status": "\u2705 active \u2014 sensei healthy, MIG watchdog + self-monitor, index health check"
         }
       ],
@@ -2282,6 +2297,20 @@
           "terminal": "ttys075",
           "launched": "2026-03-30T13:19",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "61031",
+          "terminal": "ttys077",
+          "launched": "2026-03-30T13:52",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "62292",
+          "terminal": "ttys079",
+          "launched": "2026-03-30T13:52",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
       "daemon_tasks": [
@@ -2365,21 +2394,21 @@
       "mesh_live": {
         "system": {
           "hostname": "racknerd-c0be9f6",
-          "cpu_load_1m": 0.65,
-          "cpu_load_5m": 0.68,
+          "cpu_load_1m": 1.12,
+          "cpu_load_5m": 0.78,
           "memory_total_mb": 5925,
-          "memory_available_mb": 2255,
-          "swap_used_mb": 2499,
+          "memory_available_mb": 2390,
+          "swap_used_mb": 2902,
           "swap_total_mb": 3071,
           "disk_total_gb": 135.0,
-          "disk_used_gb": 91.0,
-          "uptime_days": 14.9
+          "disk_used_gb": 84.0,
+          "uptime_days": 13.1
         },
         "nats": {
           "streams": {
             "WORK_QUEUE": {
-              "messages": 4070,
-              "bytes": 2134564,
+              "messages": 3128,
+              "bytes": 1643479,
               "consumers": 21,
               "consumer_lag": [
                 {
@@ -2414,17 +2443,17 @@
                 },
                 {
                   "name": "forge_claude_docs_monitor",
-                  "pending": 65,
+                  "pending": 29,
                   "level": "ok"
                 },
                 {
                   "name": "forge_corroboration_discovery",
-                  "pending": 532,
+                  "pending": 580,
                   "level": "critical"
                 },
                 {
                   "name": "forge_fact_extraction",
-                  "pending": 123,
+                  "pending": 119,
                   "level": "warning"
                 },
                 {
@@ -2444,7 +2473,7 @@
                 },
                 {
                   "name": "forge_swarm_subtask",
-                  "pending": 1137,
+                  "pending": 1121,
                   "level": "critical"
                 },
                 {
@@ -2454,8 +2483,8 @@
                 },
                 {
                   "name": "forge_youtube_transcript",
-                  "pending": 216,
-                  "level": "warning"
+                  "pending": 0,
+                  "level": "ok"
                 },
                 {
                   "name": "image-worker_image_generation",
@@ -2474,8 +2503,8 @@
                 },
                 {
                   "name": "research-worker_deep_research",
-                  "pending": 749,
-                  "level": "critical"
+                  "pending": 77,
+                  "level": "ok"
                 },
                 {
                   "name": "swarm-manual-test",
@@ -2490,20 +2519,20 @@
               ]
             },
             "MESH_DLQ": {
-              "messages": 348,
-              "bytes": 740633,
+              "messages": 334,
+              "bytes": 734153,
               "consumers": 1,
               "consumer_lag": [
                 {
-                  "name": "wZI8PIuT",
+                  "name": "6LIub9LD",
                   "pending": 0,
                   "level": "ok"
                 }
               ]
             },
             "PULSE": {
-              "messages": 0,
-              "bytes": 0,
+              "messages": 1,
+              "bytes": 234,
               "consumers": 4,
               "consumer_lag": [
                 {
@@ -2557,11 +2586,12 @@
             "reachable": true
           }
         ],
-        "collected_at": "2026-03-30T12:00:16.012220+00:00"
+        "collected_at": "2026-03-28T18:00:27.712379+00:00",
+        "_stale_warning": "Data is 44 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-03-30T13:25:56.493955+00:00",
+      "updated_at": "2026-03-30T14:12:57.541484+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -2990,7 +3020,7 @@
           "title": "Pre-seed: Data room setup",
           "state": "open",
           "created_at": "2026-03-27T00:59:20Z",
-          "updated_at": "2026-03-27T01:00:16Z",
+          "updated_at": "2026-03-30T13:57:04Z",
           "labels": [
             "grade/B",
             "fundraise"
@@ -3018,7 +3048,7 @@
           "title": "Pre-seed: Competitive landscape & category positioning",
           "state": "open",
           "created_at": "2026-03-27T00:59:06Z",
-          "updated_at": "2026-03-30T05:51:12Z",
+          "updated_at": "2026-03-30T13:56:56Z",
           "labels": [
             "grade/B",
             "fundraise"
@@ -3675,7 +3705,7 @@
             "title": "Pre-seed: Data room setup",
             "state": "open",
             "created_at": "2026-03-27T00:59:20Z",
-            "updated_at": "2026-03-27T01:00:16Z",
+            "updated_at": "2026-03-30T13:57:04Z",
             "labels": [
               "grade/B",
               "fundraise"
@@ -3703,7 +3733,7 @@
             "title": "Pre-seed: Competitive landscape & category positioning",
             "state": "open",
             "created_at": "2026-03-27T00:59:06Z",
-            "updated_at": "2026-03-30T05:51:12Z",
+            "updated_at": "2026-03-30T13:56:56Z",
             "labels": [
               "grade/B",
               "fundraise"
@@ -3995,138 +4025,138 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "failure",
-        "name": "CI",
-        "created_at": "2026-03-30T13:20:58Z",
-        "head_sha": "37992b7c"
+        "status": "in_progress",
+        "conclusion": null,
+        "name": "pip in /. - Update #1300455936",
+        "created_at": "2026-03-30T14:11:19Z",
+        "head_sha": "e71e6147"
       },
       "ci_recent_runs": [
         {
-          "id": 23746869430,
+          "id": 23749230674,
+          "name": "pip in /. - Update #1300455936",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-03-30T14:11:19Z",
+          "updated_at": "2026-03-30T14:11:24Z",
+          "head_sha": "e71e6147",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23749230674"
+        },
+        {
+          "id": 23748922060,
           "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-30T13:20:58Z",
-          "updated_at": "2026-03-30T13:21:09Z",
-          "head_sha": "37992b7c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23746869430"
+          "created_at": "2026-03-30T14:04:49Z",
+          "updated_at": "2026-03-30T14:04:56Z",
+          "head_sha": "e71e6147",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23748922060"
         },
         {
-          "id": 23746869440,
-          "name": "CodeQL Analysis",
+          "id": 23747873112,
+          "name": "CI Full",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-03-30T13:42:41Z",
+          "updated_at": "2026-03-30T13:42:50Z",
+          "head_sha": "78fbc071",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23747873112"
+        },
+        {
+          "id": 23747242543,
+          "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-03-30T13:20:58Z",
-          "updated_at": "2026-03-30T13:21:13Z",
-          "head_sha": "37992b7c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23746869440"
+          "created_at": "2026-03-30T13:29:08Z",
+          "updated_at": "2026-03-30T13:29:14Z",
+          "head_sha": "c4fb7433",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23747242543"
         },
         {
-          "id": 23746624594,
-          "name": "CI",
+          "id": 23747158313,
+          "name": "CI Full",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-03-30T13:15:42Z",
-          "updated_at": "2026-03-30T13:15:54Z",
-          "head_sha": "9d839faa",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23746624594"
-        },
-        {
-          "id": 23746200632,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-03-30T13:05:25Z",
-          "updated_at": "2026-03-30T13:05:36Z",
-          "head_sha": "6ed240de",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23746200632"
-        },
-        {
-          "id": 23746160556,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-03-30T13:04:28Z",
-          "updated_at": "2026-03-30T13:04:38Z",
-          "head_sha": "9a6bde34",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23746160556"
+          "conclusion": "failure",
+          "created_at": "2026-03-30T13:27:19Z",
+          "updated_at": "2026-03-30T13:28:35Z",
+          "head_sha": "d77e17ee",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23747158313"
         }
       ],
       "recent_commits": [
         {
-          "sha": "d77e17ee",
-          "message": "fix(systemd): correct Claude config path to /root/.claude",
-          "author": "Oracle",
-          "date": "2026-03-30T13:24:44Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d77e17ee7155da82f89e57762bf288b29b527108"
-        },
-        {
-          "sha": "8acdff46",
-          "message": "fix(systemd): grant Claude CLI access to auth config",
-          "author": "Oracle",
-          "date": "2026-03-30T13:21:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8acdff466547f78e9e9875e2693f78428a2c0c90"
-        },
-        {
-          "sha": "37992b7c",
-          "message": "fix(ci): resolve 25 test failures \u2014 missing imports, email sanitization, compliance checks",
+          "sha": "e71e6147",
+          "message": "feat(gateway): workspace isolation \u2014 scope all 17 gateway queries",
           "author": "covaultxyz",
-          "date": "2026-03-30T13:20:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/37992b7c56830d3c8eb9a9b8506ac2a46911c022"
+          "date": "2026-03-30T14:04:34Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e71e6147c31fa5aa077e51640d5c97f9c02b1a07"
         },
         {
-          "sha": "9d839faa",
-          "message": "feat(vox): ICP baseline instrumentation \u2014 4 parallel tracks",
+          "sha": "03a23e2a",
+          "message": "chore: update boot-state files \u2014 deployed 37992b7c5",
           "author": "covaultxyz",
-          "date": "2026-03-30T13:15:31Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9d839faafe0fdd874d3789004dfcf6ec069b87a7"
+          "date": "2026-03-30T13:39:30Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/03a23e2a53dea95733369462870c5f3d0687db69"
         },
         {
-          "sha": "236dbeee",
-          "message": "docs(boardroom): dashboard Board Room tab integration plan \u2014 iframe + native analytics hybrid",
+          "sha": "3b974634",
+          "message": "docs: auto-mode audit + remaining work + how-to-use guide",
           "author": "covaultxyz",
-          "date": "2026-03-30T13:07:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/236dbeeebe5d813bedb388d83f82d943494f2286"
+          "date": "2026-03-30T14:01:36Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/3b97463462424e41529b2f5286eee7be7ddf2161"
         },
         {
-          "sha": "6ed240de",
-          "message": "fix(voice): telephony mu-law transcoding + missing codec functions",
+          "sha": "0b126685",
+          "message": "docs(session): sandman 2026-03-30 \u2014 what was done, what needs doing, how to use",
           "author": "covaultxyz",
-          "date": "2026-03-30T13:05:13Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6ed240de458bed8e1e2dd058039f958715c92706"
+          "date": "2026-03-30T13:49:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0b12668517a7ab4bcd87f10919dc952ab9f60d79"
         },
         {
-          "sha": "9a6bde34",
-          "message": "refactor(boardroom): extract shared SSE parser + add admin auth",
+          "sha": "78fbc071",
+          "message": "deploy(metro): copy METRO tab + data to live speedoftrust.ai path",
           "author": "covaultxyz",
-          "date": "2026-03-30T13:03:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9a6bde3463c805f48ce5b449d742a647bf6cf477"
+          "date": "2026-03-30T13:41:41Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/78fbc071ec604526081d0e0a5afa0b0c49d5e262"
         },
         {
-          "sha": "5a9fcde2",
-          "message": "feat(voice): activate Phase 1 \u2014 Silero VAD + interruption handling",
+          "sha": "d04b404b",
+          "message": "docs: update PDR with execution results \u2014 coherence 0.63 \u2192 0.74",
           "author": "covaultxyz",
-          "date": "2026-03-30T12:57:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/5a9fcde2f9ae16799bac54663fea891b72d48656"
+          "date": "2026-03-30T13:40:46Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d04b404b0d0a14633a5928a57922c9049eed2572"
         },
         {
-          "sha": "574f4101",
-          "message": "audit: 9-phase coherence audit of Deconstruct content pack + action plan",
+          "sha": "0d89c2af",
+          "message": "chore: update boot-state files \u2014 deployed c669f4ae0",
           "author": "covaultxyz",
-          "date": "2026-03-30T06:03:08Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/574f4101fc91adafa056be161740af1db3ec2990"
+          "date": "2026-03-30T13:32:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0d89c2af9f7ea9fcaa77d348c9f1be05e920131e"
         },
         {
-          "sha": "cff2898c",
-          "message": "docs: cinematic design pass instructions for metro tab",
+          "sha": "007be919",
+          "message": "feat(metro): cinematic design pass \u2014 ambient orbs, glass cards, terminal briefing, glow effects",
           "author": "covaultxyz",
-          "date": "2026-03-30T05:59:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cff2898cff1ac3d369bb7a41b814fb2072132044"
+          "date": "2026-03-30T13:33:39Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/007be9193d2ac89fd07cd80f03f541117ad11de7"
+        },
+        {
+          "sha": "c669f4ae",
+          "message": "docs: workspace isolation assessment \u2014 60% done, first customer in 1 day",
+          "author": "covaultxyz",
+          "date": "2026-03-30T13:30:36Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c669f4ae04537d2608f572379a95f09f356235e6"
+        },
+        {
+          "sha": "dce9db5a",
+          "message": "feat(vox-dashboard): Board Room tab \u2014 page.tsx + deploy instructions for Windows PC",
+          "author": "covaultxyz",
+          "date": "2026-03-30T13:29:12Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/dce9db5ab3ef311d9f73dbb0c9c6a32cb6c2f959"
         }
       ],
       "github_project": {
-        "updated_at": "2026-03-30T13:25:54.045941+00:00",
+        "updated_at": "2026-03-30T14:12:55.396621+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4195,7 +4225,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "members": [
         {
           "id": "alex",
@@ -4266,7 +4296,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "projects": [
         {
           "project": {
@@ -4696,7 +4726,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -4808,7 +4838,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -4905,7 +4935,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -5880,7 +5910,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -5906,7 +5936,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -6243,7 +6273,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -6336,7 +6366,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -6399,7 +6429,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -6496,7 +6526,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -6558,7 +6588,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -6618,7 +6648,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -6673,7 +6703,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -6768,7 +6798,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -6810,7 +6840,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -6937,7 +6967,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -7080,7 +7110,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -7253,7 +7283,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -7770,7 +7800,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-03-30T13:25:56.659799+00:00",
+      "updated_at": "2026-03-30T14:12:57.651228+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -8569,6 +8599,12 @@
           "modified": "2026-03-26"
         },
         {
+          "name": "Email Infra Checklist",
+          "file": "docs/plans/email-infra-checklist.md",
+          "size": 7523,
+          "modified": "2026-03-30"
+        },
+        {
           "name": "Github Agent 1 Custom Reviewer",
           "file": "docs/plans/github-agent-plan-1-custom-reviewer.md",
           "size": 5207,
@@ -9043,6 +9079,12 @@
           "modified": "2026-03-25"
         },
         {
+          "name": "Workspace Isolation Assessment",
+          "file": "docs/plans/workspace-isolation-assessment.md",
+          "size": 3416,
+          "modified": "2026-03-30"
+        },
+        {
           "name": "act60formerididan / Act60 Attorney Brief",
           "file": "docs/plans/act60formerididan/act60-attorney-brief.md",
           "size": 7312,
@@ -9419,12 +9461,12 @@
       ],
       "total_sops": 16,
       "total_runbooks": 96,
-      "total_plans": 154,
+      "total_plans": 156,
       "total_protocols": 7,
-      "total_docs": 273
+      "total_docs": 275
     },
     "deals": {
-      "updated_at": "2026-03-30T13:25:56.659878+00:00",
+      "updated_at": "2026-03-30T14:12:57.651324+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -9658,7 +9700,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-03-30T13:25:56.493969+00:00",
+      "updated_at": "2026-03-30T14:12:57.541498+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -26854,7 +26896,7 @@
       "total": 76
     },
     "call_intelligence": {
-      "updated_at": "2026-03-30T13:25:56.684305+00:00",
+      "updated_at": "2026-03-30T14:12:57.675991+00:00",
       "signal_summary": {
         "total_objections": 47,
         "total_buying_signals": 28,
@@ -31711,7 +31753,7 @@
       "total_action_items": 245
     },
     "attention": {
-      "updated_at": "2026-03-30T13:25:56.701031+00:00",
+      "updated_at": "2026-03-30T14:12:57.690321+00:00",
       "items": [
         {
           "type": "blocked",
@@ -31792,66 +31834,66 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-03-30T13:25:56.701068+00:00",
+      "updated_at": "2026-03-30T14:12:57.690404+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-03-30T13:24:44Z",
-          "title": "fix(systemd): correct Claude config path to /root/.claude",
-          "detail": "Oracle"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-30T13:21:18Z",
-          "title": "fix(systemd): grant Claude CLI access to auth config",
-          "detail": "Oracle"
-        },
-        {
-          "type": "commit",
-          "date": "2026-03-30T13:20:47Z",
-          "title": "fix(ci): resolve 25 test failures \u2014 missing imports, email sanitization, complia",
+          "date": "2026-03-30T14:04:34Z",
+          "title": "feat(gateway): workspace isolation \u2014 scope all 17 gateway queries",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T13:15:31Z",
-          "title": "feat(vox): ICP baseline instrumentation \u2014 4 parallel tracks",
+          "date": "2026-03-30T14:01:36Z",
+          "title": "docs: auto-mode audit + remaining work + how-to-use guide",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T13:07:47Z",
-          "title": "docs(boardroom): dashboard Board Room tab integration plan \u2014 iframe + native ana",
+          "date": "2026-03-30T13:49:20Z",
+          "title": "docs(session): sandman 2026-03-30 \u2014 what was done, what needs doing, how to use",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T13:05:13Z",
-          "title": "fix(voice): telephony mu-law transcoding + missing codec functions",
+          "date": "2026-03-30T13:41:41Z",
+          "title": "deploy(metro): copy METRO tab + data to live speedoftrust.ai path",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T13:03:54Z",
-          "title": "refactor(boardroom): extract shared SSE parser + add admin auth",
+          "date": "2026-03-30T13:40:46Z",
+          "title": "docs: update PDR with execution results \u2014 coherence 0.63 \u2192 0.74",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T12:57:11Z",
-          "title": "feat(voice): activate Phase 1 \u2014 Silero VAD + interruption handling",
+          "date": "2026-03-30T13:39:30Z",
+          "title": "chore: update boot-state files \u2014 deployed 37992b7c5",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T06:03:08Z",
-          "title": "audit: 9-phase coherence audit of Deconstruct content pack + action plan",
+          "date": "2026-03-30T13:33:39Z",
+          "title": "feat(metro): cinematic design pass \u2014 ambient orbs, glass cards, terminal briefin",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-03-30T05:59:23Z",
-          "title": "docs: cinematic design pass instructions for metro tab",
+          "date": "2026-03-30T13:32:28Z",
+          "title": "chore: update boot-state files \u2014 deployed c669f4ae0",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-30T13:30:36Z",
+          "title": "docs: workspace isolation assessment \u2014 60% done, first customer in 1 day",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-03-30T13:29:12Z",
+          "title": "feat(vox-dashboard): Board Room tab \u2014 page.tsx + deploy instructions for Windows",
           "detail": "covaultxyz"
         },
         {
