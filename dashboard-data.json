@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-01T09:59:50.274353+00:00",
+  "generated_at": "2026-04-01T15:31:43.317213+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-01T09:59:47.011838+00:00",
+      "updated_at": "2026-04-01T15:31:39.758779+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2381,21 +2381,21 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-04-01-012251",
-          "commit": "516bab8c6",
+          "release": "2026-04-01-150013",
+          "commit": "eeb18c817",
           "status": "\u2705 active \u2014 sandman + atlas healthy"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-04-01-012713",
-          "commit": "516bab8c6",
-          "status": "\u2705 active \u2014 delphi + avery healthy"
+          "release": "2026-04-01-150013",
+          "commit": "eeb18c817",
+          "status": "\u2705 active \u2014 delphi + avery healthy, disk 54%"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-04-01-013330",
-          "commit": "516bab8c6",
-          "status": "\u26a0\ufe0f sensei degraded (no LLM) \u2014 NATS TLS fallback working, needs CLI auth"
+          "release": "2026-04-01-150013",
+          "commit": "eeb18c817",
+          "status": "\u2705 active \u2014 sensei healthy (neo4j+embedding+notion+LLM), NATS degraded"
         }
       ],
       "active_sessions": [
@@ -2517,6 +2517,69 @@
           "terminal": "ttys077",
           "launched": "2026-04-01T01:48",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "30641",
+          "terminal": "ttys081",
+          "launched": "2026-04-01T13:50",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "31436",
+          "terminal": "ttys083",
+          "launched": "2026-04-01T13:50",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sandman",
+          "pid": "32749",
+          "terminal": "ttys085",
+          "launched": "2026-04-01T13:50",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/sandman"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "95178",
+          "terminal": "ttys091",
+          "launched": "2026-04-01T14:34",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "95778",
+          "terminal": "ttys093",
+          "launched": "2026-04-01T14:34",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "81903",
+          "terminal": "ttys095",
+          "launched": "2026-04-01T14:43",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "82860",
+          "terminal": "ttys097",
+          "launched": "2026-04-01T14:43",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "36942",
+          "terminal": "ttys099",
+          "launched": "2026-04-01T14:52",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "37151",
+          "terminal": "ttys101",
+          "launched": "2026-04-01T14:52",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
       "daemon_tasks": [
@@ -2793,11 +2856,11 @@
           }
         ],
         "collected_at": "2026-03-28T18:00:27.712379+00:00",
-        "_stale_warning": "Data is 88 hours old"
+        "_stale_warning": "Data is 94 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-01T09:59:50.094800+00:00",
+      "updated_at": "2026-04-01T15:31:43.162615+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -4319,138 +4382,138 @@
         ]
       },
       "ci": {
-        "status": "in_progress",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-01T09:58:08Z",
-        "head_sha": "6812400b"
+        "status": "completed",
+        "conclusion": "failure",
+        "name": "CI",
+        "created_at": "2026-04-01T15:22:57Z",
+        "head_sha": "433cd302"
       },
       "ci_recent_runs": [
         {
-          "id": 23842986834,
-          "name": "CI Full",
-          "status": "in_progress",
-          "conclusion": null,
-          "created_at": "2026-04-01T09:58:08Z",
-          "updated_at": "2026-04-01T09:59:05Z",
-          "head_sha": "6812400b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23842986834"
-        },
-        {
-          "id": 23838639678,
-          "name": "CI Full",
+          "id": 23856354478,
+          "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-04-01T08:08:35Z",
-          "updated_at": "2026-04-01T08:47:16Z",
-          "head_sha": "6812400b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23838639678"
+          "created_at": "2026-04-01T15:22:57Z",
+          "updated_at": "2026-04-01T15:23:04Z",
+          "head_sha": "433cd302",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23856354478"
         },
         {
-          "id": 23834983598,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-01T06:20:50Z",
-          "updated_at": "2026-04-01T07:05:24Z",
-          "head_sha": "6812400b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23834983598"
-        },
-        {
-          "id": 23832197468,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-01T04:38:52Z",
-          "updated_at": "2026-04-01T05:17:24Z",
-          "head_sha": "6812400b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23832197468"
-        },
-        {
-          "id": 23831445474,
+          "id": 23856202057,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-04-01T04:08:01Z",
-          "updated_at": "2026-04-01T04:08:11Z",
-          "head_sha": "e25e773e",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23831445474"
+          "created_at": "2026-04-01T15:19:36Z",
+          "updated_at": "2026-04-01T15:20:07Z",
+          "head_sha": "d4bfb294",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23856202057"
+        },
+        {
+          "id": 23856128585,
+          "name": "CodeQL Analysis",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-04-01T15:18:00Z",
+          "updated_at": "2026-04-01T15:18:11Z",
+          "head_sha": "e99b898f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23856128585"
+        },
+        {
+          "id": 23856128551,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-04-01T15:18:00Z",
+          "updated_at": "2026-04-01T15:18:08Z",
+          "head_sha": "e99b898f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23856128551"
+        },
+        {
+          "id": 23855946158,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-04-01T15:14:03Z",
+          "updated_at": "2026-04-01T15:14:10Z",
+          "head_sha": "a341c379",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23855946158"
         }
       ],
       "recent_commits": [
         {
-          "sha": "6812400b",
-          "message": "docs(audit): 9-phase coherence audit of Claude Code leak series + corrections",
+          "sha": "7915ee85",
+          "message": "fix(website): plugin pricing \u2014 switch to per-API-call model",
           "author": "covaultxyz",
-          "date": "2026-04-01T04:22:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6812400bb7cb3ccf625b04e9fbaf2ad70b6ea368"
+          "date": "2026-04-01T15:25:10Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7915ee85a481a03b3e6121a4228e97f59b5b4b03"
         },
         {
-          "sha": "e25e773e",
-          "message": "fix(security): enforce workspace isolation on mig_bridge API routes",
+          "sha": "433cd302",
+          "message": "test(pulse): add 8 tests for three-gate gardening trigger sentinel",
           "author": "covaultxyz",
-          "date": "2026-04-01T04:07:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e25e773e566e422c0a9bdb5e0d8fc847a4d4e92e"
+          "date": "2026-04-01T15:22:31Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/433cd30281f6990929d0c002d493d079114a68ae"
         },
         {
-          "sha": "a6290e24",
-          "message": "docs(reference): Claude Code source leak intelligence series \u2014 9 documents",
-          "author": "covaultxyz",
-          "date": "2026-04-01T03:26:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a6290e249373145e68cb643c9ef06bb00ec8cddb"
+          "sha": "b2a75db6",
+          "message": "atlas: intelligence assessment \u2014 Wazo Platform + OpenSCAP compliance architecture analysis",
+          "author": "Glasshaus",
+          "date": "2026-04-01T15:21:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b2a75db65d6ad098bbdc82eca89c07052db757e7"
         },
         {
-          "sha": "092a9fba",
-          "message": "fix(mesh): close NATS connections in finally blocks \u2014 swarm_subtask leak",
+          "sha": "bec77e6b",
+          "message": "docs: mark Twenty CRM Phase 1 deploy complete on 7311420",
           "author": "covaultxyz",
-          "date": "2026-04-01T03:25:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/092a9fbaf9f05bc391d312d8335df368426ddbf6"
+          "date": "2026-04-01T15:20:56Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bec77e6b9aa086359c31407f3a667584f36c9fd0"
         },
         {
-          "sha": "1a0a3341",
-          "message": "fix: remove SOC 2 Ready badge \u2014 not certified, replace with 'Your data stays private'",
+          "sha": "d4bfb294",
+          "message": "feat(products): Amazon Intelligence Pipeline demo page",
           "author": "covaultxyz",
-          "date": "2026-04-01T03:24:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1a0a33414a8d66f5da13e0983dfdd961651e25e6"
+          "date": "2026-04-01T15:19:27Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d4bfb2942804ed3618768250568575b93ad66849"
         },
         {
-          "sha": "d45f3c79",
-          "message": "fix: intake theming only targets accent elements, not page background",
+          "sha": "d0040720",
+          "message": "feat(website): MERIDIAN Plugin product page \u2014 speedoftrust.ai/products/plugin/",
           "author": "covaultxyz",
-          "date": "2026-04-01T03:13:20Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d45f3c79b7d820e0a177a76a0b1093d259e07637"
+          "date": "2026-04-01T15:19:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d00407206cdf7d721149eb5661a46864f7a945b8"
         },
         {
-          "sha": "03c89e63",
-          "message": "fix(security): add token auth to meeting WebSocket endpoint",
+          "sha": "e99b898f",
+          "message": "fix(pulse): gardening trigger uses config thresholds instead of hardcoded defaults",
           "author": "covaultxyz",
-          "date": "2026-04-01T02:33:26Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/03c89e6354bd59ada50f6996241ca5071ff79bed"
+          "date": "2026-04-01T15:17:51Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e99b898f44d729077788cf0d545c21a2cd56d00d"
         },
         {
-          "sha": "1d1c6461",
-          "message": "fix(systemd): migrate all unit file templates from stale root venv to release venv",
+          "sha": "a341c379",
+          "message": "feat(mcp): alwaysLoad meta on 10 core tools \u2014 bypass deferred-tool loading",
           "author": "covaultxyz",
-          "date": "2026-04-01T02:30:45Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1d1c646192459e3ce9416829e08687742bcd960d"
+          "date": "2026-04-01T15:13:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a341c37932ad0be9f68de2402e9cf282bd01c1e4"
         },
         {
-          "sha": "24a9a37e",
-          "message": "feat: intake form adapts brand colors to match referring product page",
+          "sha": "11c5bb80",
+          "message": "chore: update boot-state files \u2014 deployed eeb18c817",
           "author": "covaultxyz",
-          "date": "2026-04-01T02:14:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/24a9a37eed9e2f16b6ea34cc05d2f4657c24526d"
+          "date": "2026-04-01T15:00:13Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/11c5bb80877fd6c1947570e0ee27a5984f7fce8d"
         },
         {
-          "sha": "1fa8fbb4",
-          "message": "docs(runbook): update health sweep with Neo4j auth cascade fix + remaining work status",
-          "author": "covaultxyz",
-          "date": "2026-04-01T02:17:57Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1fa8fbb4fcb2d144aed5bc1ed7278d533a384a44"
+          "sha": "5bd435fe",
+          "message": "feat(cortex): add MERIDIAN DNA layer to Amazon Advertising Cortex",
+          "author": "Glasshaus",
+          "date": "2026-04-01T14:58:26Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5bd435fe9d61a9d65d3a553382d19731b9fe5096"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-01T09:59:47.792833+00:00",
+        "updated_at": "2026-04-01T15:31:40.569064+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4520,7 +4583,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "members": [
         {
           "id": "alex",
@@ -4591,7 +4654,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "projects": [
         {
           "project": {
@@ -5021,7 +5084,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5106,7 +5169,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5203,7 +5266,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6464,7 +6527,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -6490,7 +6553,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -6827,7 +6890,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -6920,7 +6983,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -6983,7 +7046,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -7080,7 +7143,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -7142,7 +7205,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -7202,7 +7265,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7257,7 +7320,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7352,7 +7415,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7394,7 +7457,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -7521,7 +7584,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -7664,7 +7727,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -7837,7 +7900,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -8354,7 +8417,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-01T09:59:50.251390+00:00",
+      "updated_at": "2026-04-01T15:31:43.279726+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -8457,13 +8520,13 @@
         {
           "name": "2026 04 01 Delphi Health Sweep Completed",
           "file": "docs/runbooks/2026-04-01-delphi-health-sweep-completed.md",
-          "size": 12183,
+          "size": 18971,
           "modified": "2026-04-01"
         },
         {
           "name": "2026 04 01 Delphi Remaining Work",
           "file": "docs/runbooks/2026-04-01-delphi-remaining-work.md",
-          "size": 7399,
+          "size": 11172,
           "modified": "2026-04-01"
         },
         {
@@ -9309,6 +9372,18 @@
           "modified": "2026-03-22"
         },
         {
+          "name": "Option A Enhance Buddy",
+          "file": "docs/plans/option-a-enhance-buddy.md",
+          "size": 12943,
+          "modified": "2026-04-01"
+        },
+        {
+          "name": "Option B Meridian Plugin",
+          "file": "docs/plans/option-b-meridian-plugin.md",
+          "size": 23264,
+          "modified": "2026-04-01"
+        },
+        {
           "name": "Agentvox Mig Subgraph Production",
           "file": "docs/plans/plan-agentvox-mig-subgraph-production.md",
           "size": 28369,
@@ -9433,6 +9508,12 @@
           "file": "docs/plans/plan-unified-dashboard.md",
           "size": 10729,
           "modified": "2026-03-22"
+        },
+        {
+          "name": "Plugin Monetization",
+          "file": "docs/plans/plugin-monetization.md",
+          "size": 10568,
+          "modified": "2026-04-01"
         },
         {
           "name": "Precall Intelligence Pipeline Audit",
@@ -10099,12 +10180,12 @@
       ],
       "total_sops": 16,
       "total_runbooks": 105,
-      "total_plans": 161,
+      "total_plans": 164,
       "total_protocols": 7,
-      "total_docs": 289
+      "total_docs": 292
     },
     "deals": {
-      "updated_at": "2026-04-01T09:59:50.251464+00:00",
+      "updated_at": "2026-04-01T15:31:43.279822+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10338,7 +10419,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-01T09:59:50.094809+00:00",
+      "updated_at": "2026-04-01T15:31:43.162626+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -28001,7 +28082,7 @@
       "total": 78
     },
     "call_intelligence": {
-      "updated_at": "2026-04-01T09:59:50.258096+00:00",
+      "updated_at": "2026-04-01T15:31:43.302301+00:00",
       "signal_summary": {
         "total_objections": 52,
         "total_buying_signals": 54,
@@ -33444,7 +33525,7 @@
       "total_action_items": 272
     },
     "attention": {
-      "updated_at": "2026-04-01T09:59:50.274313+00:00",
+      "updated_at": "2026-04-01T15:31:43.317165+00:00",
       "items": [
         {
           "type": "blocked",
@@ -33525,67 +33606,67 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-01T09:59:50.274341+00:00",
+      "updated_at": "2026-04-01T15:31:43.317202+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-01T04:22:48Z",
-          "title": "docs(audit): 9-phase coherence audit of Claude Code leak series + corrections",
+          "date": "2026-04-01T15:25:10Z",
+          "title": "fix(website): plugin pricing \u2014 switch to per-API-call model",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T04:07:09Z",
-          "title": "fix(security): enforce workspace isolation on mig_bridge API routes",
+          "date": "2026-04-01T15:22:31Z",
+          "title": "test(pulse): add 8 tests for three-gate gardening trigger sentinel",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T03:26:41Z",
-          "title": "docs(reference): Claude Code source leak intelligence series \u2014 9 documents",
+          "date": "2026-04-01T15:21:05Z",
+          "title": "atlas: intelligence assessment \u2014 Wazo Platform + OpenSCAP compliance architectur",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-01T15:20:56Z",
+          "title": "docs: mark Twenty CRM Phase 1 deploy complete on 7311420",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T03:25:04Z",
-          "title": "fix(mesh): close NATS connections in finally blocks \u2014 swarm_subtask leak",
+          "date": "2026-04-01T15:19:27Z",
+          "title": "feat(products): Amazon Intelligence Pipeline demo page",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T03:24:24Z",
-          "title": "fix: remove SOC 2 Ready badge \u2014 not certified, replace with 'Your data stays pri",
+          "date": "2026-04-01T15:19:23Z",
+          "title": "feat(website): MERIDIAN Plugin product page \u2014 speedoftrust.ai/products/plugin/",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T03:13:20Z",
-          "title": "fix: intake theming only targets accent elements, not page background",
+          "date": "2026-04-01T15:17:51Z",
+          "title": "fix(pulse): gardening trigger uses config thresholds instead of hardcoded defaul",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T02:33:26Z",
-          "title": "fix(security): add token auth to meeting WebSocket endpoint",
+          "date": "2026-04-01T15:13:54Z",
+          "title": "feat(mcp): alwaysLoad meta on 10 core tools \u2014 bypass deferred-tool loading",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T02:30:45Z",
-          "title": "fix(systemd): migrate all unit file templates from stale root venv to release ve",
+          "date": "2026-04-01T15:00:13Z",
+          "title": "chore: update boot-state files \u2014 deployed eeb18c817",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-01T02:17:57Z",
-          "title": "docs(runbook): update health sweep with Neo4j auth cascade fix + remaining work ",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-01T02:14:23Z",
-          "title": "feat: intake form adapts brand colors to match referring product page",
-          "detail": "covaultxyz"
+          "date": "2026-04-01T14:58:26Z",
+          "title": "feat(cortex): add MERIDIAN DNA layer to Amazon Advertising Cortex",
+          "detail": "Glasshaus"
         },
         {
           "type": "issue",
