@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Intelligence Brief — Rankona Mazon | MERIDIAN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.04;
+    background-image:radial-gradient(circle,rgba(255,255,255,0.5) 1px,transparent 1px);
+    background-size:24px 24px;
+}
+.glass-card{position:relative;background:rgba(255,255,255,0.03);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.06);border-radius:20px;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.glass-card:hover{border-color:rgba(6,182,212,0.25);background:rgba(255,255,255,0.05);box-shadow:0 0 40px -12px rgba(6,182,212,0.15),0 0 80px -20px rgba(6,182,212,0.08);transform:translateY(-2px)}
+.nav-glass{background:rgba(5,5,5,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px);will-change:transform}
+.glow-orb-1{animation:float-orb 20s ease-in-out infinite}
+.glow-orb-2{animation:float-orb 25s ease-in-out infinite reverse}
+.glow-orb-3{animation:float-orb 18s ease-in-out infinite 5s}
+@keyframes float-orb{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.05)}50%{transform:translate(-20px,30px) scale(0.95)}75%{transform:translate(20px,15px) scale(1.02)}}
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.text-gradient-cyan{background:linear-gradient(135deg,#22d3ee 0%,#06b6d4 50%,#0891b2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.shimmer{background:linear-gradient(110deg,#fff 0%,#fff 40%,rgba(6,182,212,0.4) 50%,#fff 60%,#fff 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer-sweep 4s ease-in-out infinite}
+@keyframes shimmer-sweep{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
+.icon-box{background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.12);border-radius:14px;display:flex;align-items:center;justify-content:center;width:44px;height:44px;flex-shrink:0}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:9999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+.toc-link{display:block;padding:6px 12px;border-radius:8px;font-size:11px;color:#52525b;transition:all .25s;border-left:2px solid transparent}
+.toc-link:hover{color:#22d3ee;background:rgba(6,182,212,0.05);border-left-color:rgba(6,182,212,0.3)}
+.toc-link.active{color:#22d3ee;background:rgba(6,182,212,0.08);border-left-color:#06b6d4}
+.gradient-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(6,182,212,0.2) 50%,transparent 100%);margin:0 auto;margin-top:2rem;margin-bottom:2rem}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;z-index:100;background:linear-gradient(90deg,#06b6d4,#3b82f6,#8b5cf6);transform-origin:left;transform:scaleX(0);transition:transform .1s linear}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:3px}
+.score-bar{height:8px;border-radius:4px;background:rgba(255,255,255,0.06);overflow:hidden}
+.score-fill{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.reveal.visible .score-fill{width:var(--w)}
+.gradient-border{position:relative;border:none;overflow:hidden;border-radius:20px}
+.gradient-border::before{content:'';position:absolute;inset:-1px;z-index:-1;border-radius:21px;background:conic-gradient(from var(--angle,0deg),#06b6d4,#3b82f6,#8b5cf6,#06b6d4);animation:rotate-border 6s linear infinite}
+.gradient-border::after{content:'';position:absolute;inset:1px;z-index:-1;border-radius:19px;background:#0a0a0a}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes rotate-border{to{--angle:360deg}}
+@keyframes pulse-green{0%,100%{opacity:1}50%{opacity:0.4}}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse-green 2s ease-in-out infinite}
+.metric-ring{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;border:3px solid rgba(6,182,212,0.3);background:rgba(6,182,212,0.05)}
+@media(max-width:640px){.hero-flex{flex-direction:column;align-items:center;text-align:center}.hero-meta{justify-content:center}}
+@media print{body{background:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}body::before,body::after,.scroll-progress,.nav-glass,aside{display:none}.reveal{opacity:1!important;transform:none!important}.glass-card{break-inside:avoid}}
+</style>
+</head>
+<body class="min-h-screen relative">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="glow-orb glow-orb-1 w-[600px] h-[600px] bg-cyan-500/[0.04] -top-60 -right-60 fixed" style="z-index:0"></div>
+    <div class="glow-orb glow-orb-2 w-[400px] h-[400px] bg-purple-500/[0.03] top-1/3 -left-40 fixed" style="z-index:0"></div>
+    <div class="glow-orb glow-orb-3 w-[500px] h-[500px] bg-blue-500/[0.03] bottom-20 right-10 fixed" style="z-index:0"></div>
+
+    <!-- NAV -->
+    <nav class="nav-glass fixed top-0 w-full z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 text-zinc-600 hover:text-white text-xs transition-colors">
+                <i data-lucide="arrow-left" class="w-3 h-3"></i> Command Center
+            </a>
+            <div class="flex items-center gap-3">
+                <span class="badge bg-green-500/10 text-green-400 border-green-500/20 border"><span class="pulse-dot"></span> LIVE &mdash; Data Received Today</span>
+                <span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border">Internal &mdash; Do Not Share</span>
+                <span class="text-zinc-700 text-xs font-mono">2026-04-02</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="relative pt-28 pb-8 px-6" style="z-index:1">
+        <div class="max-w-6xl mx-auto relative z-10 reveal">
+            <div class="flex items-start gap-6 hero-flex">
+                <div class="metric-ring shrink-0">
+                    <span class="text-cyan-400 text-lg font-bold">&lt;45</span>
+                    <span class="text-zinc-500 text-[9px] uppercase tracking-wider">min</span>
+                </div>
+                <div>
+                    <h1 class="shimmer text-3xl md:text-4xl font-extrabold tracking-tight">Live Intelligence Brief &mdash; Rankona Mazon</h1>
+                    <p class="text-zinc-500 text-sm mt-2 max-w-2xl leading-relaxed">Processed from Carl Helgesson's email attachments &mdash; April 2, 2026</p>
+                    <div class="flex items-center gap-5 mt-4 flex-wrap hero-meta">
+                        <span class="text-zinc-600 text-xs flex items-center gap-1.5"><i data-lucide="mail" class="w-3 h-3 text-cyan-500/60"></i> Email data ingested</span>
+                        <span class="text-zinc-600 text-xs flex items-center gap-1.5"><i data-lucide="file-text" class="w-3 h-3 text-cyan-500/60"></i> 4 source artifacts</span>
+                        <span class="text-zinc-600 text-xs flex items-center gap-1.5"><i data-lucide="clock" class="w-3 h-3 text-cyan-500/60"></i> Data received &rarr; Intelligence: <span class="text-white font-semibold">&lt;45 minutes</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="gradient-divider w-full mt-8"></div>
+        </div>
+    </section>
+
+    <!-- MAIN LAYOUT -->
+    <div class="max-w-6xl mx-auto px-6 pb-24 flex gap-8" style="z-index:1;position:relative">
+        <!-- TOC SIDEBAR -->
+        <aside class="hidden lg:block w-48 shrink-0 sticky top-24 self-start">
+            <p class="text-zinc-700 text-[10px] font-bold uppercase tracking-[.15em] mb-3">Contents</p>
+            <nav class="space-y-0.5">
+                <a href="#org-intel" class="toc-link">Organizational Intel</a>
+                <a href="#brand-performance" class="toc-link">Brand Performance</a>
+                <a href="#proposal-deconstructed" class="toc-link">44-Hour Proposal</a>
+                <a href="#knaa-academy" class="toc-link">KNAA Academy</a>
+                <a href="#new-intel" class="toc-link">New Intelligence</a>
+                <a href="#meridian-overlay" class="toc-link">MERIDIAN Overlay</a>
+            </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <div class="flex-1 space-y-8 min-w-0">
+
+            <!-- SECTION 1: ORGANIZATIONAL INTELLIGENCE -->
+            <section id="org-intel" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="network" class="w-4 h-4 text-cyan-500/60"></i> Organizational Intelligence</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-4">Extracted from Carl's actual org chart (March 2026). This is the real structure of Rankona Mazon &mdash; not inferred, not estimated.</p>
+
+                <!-- Leadership -->
+                <div class="glass-card p-5 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="crown" class="w-4 h-4 text-amber-400/70"></i> Leadership</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="icon-box"><i data-lucide="user" class="w-5 h-5 text-cyan-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Carl Helgesson</p>
+                                <p class="text-zinc-500 text-xs">CEO / Head of Strategies &mdash; Sweden</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <div class="icon-box"><i data-lucide="user" class="w-5 h-5 text-cyan-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold">Vincent</p>
+                                <p class="text-zinc-500 text-xs">CFO &mdash; Sweden</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategist Pods -->
+                <div class="glass-card p-5 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-cyan-400/70"></i> Strategist Pods (Leadership Team)</h3>
+                    <p class="text-zinc-500 text-xs mb-3">Each strategist leads a pod: Strategist &rarr; Project Manager &rarr; 2 Associates</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Pod</th>
+                                    <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Strategist</th>
+                                    <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">PM</th>
+                                    <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Associates</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-white/5">
+                                    <td class="text-white text-xs py-2 pr-4 font-semibold">Pod 1</td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Jennifer <span class="text-zinc-600">(Sweden)</span></td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Nathalie <span class="text-zinc-600">(Sweden)</span></td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Jawad <span class="text-zinc-600">(Pakistan)</span>, Enkela <span class="text-zinc-600">(Albania)</span></td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="text-white text-xs py-2 pr-4 font-semibold">Pod 2</td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Johan <span class="text-zinc-600">(Sweden)</span></td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Elia <span class="text-zinc-600">(Sweden)</span></td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Musawar <span class="text-zinc-600">(Pakistan)</span>, Karen <span class="text-zinc-600">(Ukraine)</span></td>
+                                </tr>
+                                <tr class="border-b border-white/5">
+                                    <td class="text-white text-xs py-2 pr-4 font-semibold">Pod 3</td>
+                                    <td class="text-amber-400/80 text-xs py-2 pr-4 italic">VACANT</td>
+                                    <td class="text-amber-400/80 text-xs py-2 pr-4 italic">VACANT</td>
+                                    <td class="text-zinc-300 text-xs py-2 pr-4">Awais <span class="text-zinc-600">(Pakistan)</span>, <span class="text-amber-400/80 italic">VACANT</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Advertising Team -->
+                <div class="glass-card p-5 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="megaphone" class="w-4 h-4 text-purple-400/70"></i> Advertising Team</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Ad Strategists</p>
+                            <p class="text-zinc-300 text-xs">Sam <span class="text-zinc-600">(US)</span></p>
+                            <p class="text-zinc-300 text-xs">Tim <span class="text-zinc-600">(UK)</span></p>
+                        </div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Ad Project Manager</p>
+                            <p class="text-zinc-300 text-xs">Neil <span class="text-zinc-600">(Philippines)</span></p>
+                        </div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Ads Managers</p>
+                            <p class="text-zinc-300 text-xs">Michael <span class="text-zinc-600">(Philippines)</span></p>
+                            <p class="text-zinc-300 text-xs">Ruhul <span class="text-zinc-600">(Bangladesh)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Functions -->
+                <div class="glass-card p-5 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="wrench" class="w-4 h-4 text-green-400/70"></i> Support Functions</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Copy</p>
+                            <p class="text-zinc-300 text-xs">Tracy <span class="text-zinc-600">(US)</span></p>
+                            <p class="text-zinc-300 text-xs">Lukas <span class="text-zinc-600">(Germany)</span></p>
+                            <p class="text-zinc-300 text-xs">Arabella <span class="text-zinc-600">(UK)</span></p>
+                        </div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Social Media</p>
+                            <p class="text-zinc-300 text-xs">Kaylyn <span class="text-zinc-600">(South Africa)</span></p>
+                        </div>
+                        <div>
+                            <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-2">Research</p>
+                            <p class="text-zinc-300 text-xs">Mussab <span class="text-zinc-600">(Pakistan)</span></p>
+                            <p class="text-zinc-300 text-xs">Ibrahim <span class="text-zinc-600">(Pakistan)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-white text-2xl font-bold">~20</p>
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Total Headcount</p>
+                        <p class="text-zinc-600 text-[10px]">17 filled, 3 vacant</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-white text-2xl font-bold">10</p>
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Countries</p>
+                        <p class="text-zinc-600 text-[10px]">SE, US, UK, DE, PK +5</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-amber-400 text-2xl font-bold">3</p>
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Vacancies</p>
+                        <p class="text-zinc-600 text-[10px]">Active growth signal</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-cyan-400 text-2xl font-bold">3</p>
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mt-1">Strategist Pods</p>
+                        <p class="text-zinc-600 text-[10px]">Atomic unit of work</p>
+                    </div>
+                </div>
+
+                <!-- MERIDIAN Overlay Insight -->
+                <div class="gradient-border glass-card p-5">
+                    <div class="flex items-start gap-3">
+                        <div class="icon-box shrink-0"><i data-lucide="zap" class="w-5 h-5 text-cyan-400"></i></div>
+                        <div>
+                            <p class="text-white text-sm font-semibold mb-1">MERIDIAN Overlay Insight</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Each strategist pod is the atomic unit. Meridian multiplies pod capacity &mdash; proposal automation saves <span class="text-white font-semibold">38 hours per pod per proposal</span>. At 3 pods, that's <span class="text-cyan-400 font-semibold">114 hours reclaimed per proposal cycle</span>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+            <!-- SECTION 2: BRAND PERFORMANCE -->
+            <section id="brand-performance" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4 text-cyan-500/60"></i> Brand Performance Intelligence</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-4">Extracted from Carl's live dashboard screenshots. Revenue data across managed brands.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <!-- Brand 1 -->
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-white text-sm font-semibold">Brand 1 &mdash; Amazon.de Focus</h3>
+                            <span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">Established</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Revenue</span>
+                                <span class="text-white text-sm font-bold">$1,285,100</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Secondary Metric</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$955,098</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Orders</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$330,530</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Units</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$108,195</span>
+                            </div>
+                            <div class="pt-2 border-t border-white/5">
+                                <p class="text-zinc-500 text-[10px] uppercase tracking-wider">Primary Marketplace</p>
+                                <p class="text-zinc-300 text-xs mt-1">Germany (DE), with presence in other EU markets</p>
+                                <p class="text-zinc-400 text-xs mt-1">Status: <span class="text-green-400">Revenue &gt;$1M</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand 2 -->
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-white text-sm font-semibold">Brand 2 &mdash; US + Global</h3>
+                            <span class="badge bg-blue-500/10 text-blue-400 border-blue-500/20 border text-[9px]">Multi-Market</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Revenue</span>
+                                <span class="text-white text-sm font-bold">$1,060,222</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Secondary Metric</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$840,588</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Orders</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$272,725</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-zinc-500 text-xs">Units</span>
+                                <span class="text-zinc-300 text-sm font-semibold">$168,214</span>
+                            </div>
+                            <div class="pt-2 border-t border-white/5">
+                                <p class="text-zinc-500 text-[10px] uppercase tracking-wider">Marketplaces</p>
+                                <p class="text-zinc-300 text-xs mt-1">US, UK, DE, FR, IT, ES, and more</p>
+                                <p class="text-zinc-400 text-xs mt-1">Status: <span class="text-blue-400">Multi-marketplace expansion active</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Revenue Callout -->
+                <div class="gradient-border glass-card p-5 text-center">
+                    <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">Combined Visible Revenue</p>
+                    <p class="text-white text-3xl font-extrabold">~$2.35M</p>
+                    <p class="text-zinc-500 text-xs mt-1">Across just 2 of Carl's managed brands</p>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+            <!-- SECTION 3: THE 44-HOUR PROPOSAL DECONSTRUCTED -->
+            <section id="proposal-deconstructed" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="file-stack" class="w-4 h-4 text-cyan-500/60"></i> The 44-Hour Proposal &mdash; Deconstructed</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-2">Carl sent his <span class="text-white font-semibold">actual proposal deck</span> &mdash; 222 slides for a single client (Humble Group). This is THE artifact that takes 44 hours to produce. We now have the complete structure.</p>
+
+                <!-- Proposal Structure Table -->
+                <div class="glass-card p-5 mb-4 overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Section</th>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Pages</th>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Automation Potential</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Marketplace &amp; Competitor Analysis (DE)</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">4&ndash;20</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Keyword data from Helium 10, competitor scraping</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Marketplace &amp; Competitor Analysis (UK)</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">21&ndash;37</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Same template, different market</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Marketplace &amp; Competitor Analysis (FR)</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">38&ndash;54</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Same template</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Marketplace &amp; Competitor Analysis (IT)</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">55&ndash;71</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Same template</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Marketplace &amp; Competitor Analysis (ES)</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">72&ndash;88</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Same template</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Summary &amp; Recommendations</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">89&ndash;91</td>
+                                <td class="py-2 pr-4"><span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border text-[9px]">MEDIUM</span><span class="text-zinc-500 text-[10px] ml-2">Synthesis requires judgment</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Requirements to Reach Sales Goals</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">92&ndash;96</td>
+                                <td class="py-2 pr-4"><span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border text-[9px]">MEDIUM</span><span class="text-zinc-500 text-[10px] ml-2">Formulaic with custom inputs</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Foundations to Rank on Amazon</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">97&ndash;113</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Templated knowledge</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Business Case: Forecast &amp; P/L</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">118&ndash;121</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Financial model</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Profitability / Margin Improvement</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">122</td>
+                                <td class="py-2 pr-4"><span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border text-[9px]">MEDIUM</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Humble Group Brands on Amazon</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">123&ndash;125</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Data pull</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Light Due Diligence</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">126&ndash;179</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">54 pages of brand analysis</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Suggested Initial Scope</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">180&ndash;182</td>
+                                <td class="py-2 pr-4"><span class="badge bg-red-500/10 text-red-400 border-red-500/20 border text-[9px]">LOW</span><span class="text-zinc-500 text-[10px] ml-2">Strategic judgment</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Team, Process &amp; Timeline</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">183&ndash;204</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Templated</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Why Rankona Mazon</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">207&ndash;216</td>
+                                <td class="py-2 pr-4"><span class="badge bg-green-500/10 text-green-400 border-green-500/20 border text-[9px]">HIGH</span><span class="text-zinc-500 text-[10px] ml-2">Reusable</span></td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-2 pr-4">Proposal</td>
+                                <td class="text-zinc-400 text-xs py-2 pr-4">217&ndash;222</td>
+                                <td class="py-2 pr-4"><span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border text-[9px]">MEDIUM</span><span class="text-zinc-500 text-[10px] ml-2">Custom pricing</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Automation Score Bar -->
+                <div class="glass-card p-5 mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <p class="text-white text-sm font-semibold">Estimated Automatable Content</p>
+                        <p class="text-cyan-400 text-sm font-bold">~70% (155+ pages)</p>
+                    </div>
+                    <div class="score-bar">
+                        <div class="score-fill bg-gradient-to-r from-cyan-500 to-blue-500" style="--w:70%"></div>
+                    </div>
+                    <p class="text-zinc-600 text-[10px] mt-2">Of 222 total slides, approximately 155+ pages can be generated from structured data and templates</p>
+                </div>
+
+                <!-- Key Data Points -->
+                <div class="glass-card p-5">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="database" class="w-4 h-4 text-cyan-400/70"></i> Key Market Data from the Deck</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <p class="text-white text-xs font-semibold">Elektrolyte</p>
+                            <p class="text-zinc-400 text-[11px]">41,566 searches/mo &middot; 561 competitors</p>
+                            <p class="text-cyan-400 text-xs font-semibold mt-1">&euro;2.69M/mo market revenue</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <p class="text-white text-xs font-semibold">Protein Riegel</p>
+                            <p class="text-zinc-400 text-[11px]">60,864 searches/mo &middot; 762 competitors</p>
+                            <p class="text-cyan-400 text-xs font-semibold mt-1">&euro;2.4M/mo market revenue</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <p class="text-white text-xs font-semibold">Kreatin</p>
+                            <p class="text-zinc-400 text-[11px]">61,984 searches/mo &middot; 535 competitors</p>
+                            <p class="text-cyan-400 text-xs font-semibold mt-1">&euro;2.85M/mo (&euro;4M on pages 1&ndash;7)</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5">
+                            <p class="text-white text-xs font-semibold">Melatonin Einschlafspray</p>
+                            <p class="text-zinc-400 text-[11px]">18,960 searches/mo &middot; 149 competitors</p>
+                            <p class="text-cyan-400 text-xs font-semibold mt-1">&euro;509K&ndash;&euro;1M/mo market revenue</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-white/5">
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">Competitors Analyzed Per Keyword</p>
+                        <p class="text-zinc-400 text-xs">Isostad, Raab Vitalfood, Barbells, Premier Protein, ESN, German Elite, Vihado, Natural Elements &mdash; with listing quality, sales data, pricing, and ranking analysis for each.</p>
+                    </div>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+            <!-- SECTION 4: KNAA ACADEMY INTELLIGENCE -->
+            <section id="knaa-academy" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="graduation-cap" class="w-4 h-4 text-cyan-500/60"></i> KNAA Academy Intelligence</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-4">Extracted from Carl's course platform screenshot. First look at real curriculum structure.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">Platform</p>
+                        <p class="text-white text-sm font-semibold">Custom LMS</p>
+                        <p class="text-amber-400 text-[10px]">Migrating to Xperiencify</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">Language</p>
+                        <p class="text-white text-sm font-semibold">Swedish</p>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <p class="text-zinc-500 text-[10px] uppercase tracking-wider mb-1">Structure</p>
+                        <p class="text-white text-sm font-semibold">8 Modules</p>
+                        <p class="text-zinc-500 text-[10px]">+ Webinars + Affiliate</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3 flex items-center gap-2"><i data-lucide="list" class="w-4 h-4 text-cyan-400/70"></i> Module 2 Curriculum &mdash; "S&auml;tten f&ouml;r S&auml;lj &amp; Logistik"</h3>
+                    <p class="text-zinc-500 text-xs mb-3">(Sales &amp; Logistics Methods) &mdash; 13 lessons visible:</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">01</span>
+                            <span class="text-zinc-300 text-xs">V&auml;lkommen till Modul 2 <span class="text-zinc-600">(Welcome)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">02</span>
+                            <span class="text-zinc-300 text-xs">F&ouml;rv&auml;ntningar och M&aring;l <span class="text-zinc-600">(Expectations &amp; Goals)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">03</span>
+                            <span class="text-zinc-300 text-xs">S&auml;tten f&ouml;r S&auml;lj &amp; Logistik <span class="text-zinc-600">(Sales &amp; Logistics)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">04</span>
+                            <span class="text-zinc-300 text-xs">Remote Fulfillment</span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">05</span>
+                            <span class="text-zinc-300 text-xs">FBA och FBM <span class="text-zinc-600">(Fulfillment by Amazon vs. Merchant)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">06</span>
+                            <span class="text-zinc-300 text-xs">FBA och FBM i Europa</span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">07</span>
+                            <span class="text-zinc-300 text-xs">Bygga varum&auml;rken p&aring; Amazon <span class="text-zinc-600">(Building Brands)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">08</span>
+                            <span class="text-zinc-300 text-xs">Olika kanaler f&ouml;r varum&auml;rket <span class="text-zinc-600">(Brand Channels)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">09</span>
+                            <span class="text-zinc-300 text-xs">Varum&auml;rke viktigt p&aring; Amazon <span class="text-zinc-600">(Brand Importance)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">10</span>
+                            <span class="text-zinc-300 text-xs">Kontrollen av varum&auml;rket <span class="text-zinc-600">(Brand Control)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">11</span>
+                            <span class="text-zinc-300 text-xs">S&aring; h&auml;r ser du s&auml;ljarna <span class="text-zinc-600">(How to See Sellers)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">12</span>
+                            <span class="text-zinc-300 text-xs">Hantera o&ouml;nskade s&auml;ljare <span class="text-zinc-600">(Handle Unwanted Sellers)</span></span>
+                        </div>
+                        <div class="flex items-start gap-2 py-1.5">
+                            <span class="text-cyan-400/60 text-xs font-mono shrink-0 w-5 text-right">13</span>
+                            <span class="text-zinc-300 text-xs">Vad &auml;r Brand Registry 2.0?</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gradient-border glass-card p-5">
+                    <div class="flex items-start gap-3">
+                        <div class="icon-box shrink-0"><i data-lucide="bot" class="w-5 h-5 text-cyan-400"></i></div>
+                        <div>
+                            <p class="text-white text-sm font-semibold mb-1">Carl Bot Opportunity</p>
+                            <p class="text-zinc-400 text-sm leading-relaxed">Real curriculum structure now available for knowledge base ingestion. Each module = a domain in the bot's expertise. This is the training data Carl Bot needs to go from generic to authoritative.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+            <!-- SECTION 5: NEW INTELLIGENCE FROM CARL'S EMAIL -->
+            <section id="new-intel" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-500/60"></i> New Intelligence from Carl's Email</h2>
+
+                <div class="space-y-3">
+                    <div class="glass-card p-5">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box shrink-0"><i data-lucide="wrench" class="w-5 h-5 text-cyan-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold mb-1">Tool Stack Update</p>
+                                <p class="text-zinc-400 text-sm leading-relaxed">Uses <span class="text-white font-semibold">Fluvi</span> for reports (previously unknown). Add to tool consolidation story alongside Helium 10, Jungle Scout, Keepa, Seller Central, AMS.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box shrink-0"><i data-lucide="globe" class="w-5 h-5 text-cyan-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold mb-1">Marketplace Footprint</p>
+                                <p class="text-zinc-400 text-sm leading-relaxed">"Pretty much all marketplaces" &mdash; confirms global scope, different brand-by-brand. No marketplace is off the table for Carl's operation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box shrink-0"><i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold mb-1">Suppressed Listing Case</p>
+                                <p class="text-zinc-400 text-sm leading-relaxed">Pending from Carl's team &mdash; <span class="text-white font-semibold">compliance workflow demo opportunity for tomorrow</span>. Live problem + live solution = best possible demonstration scenario.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-5">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box shrink-0"><i data-lucide="refresh-cw" class="w-5 h-5 text-purple-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold mb-1">KNAA Migration Active</p>
+                                <p class="text-zinc-400 text-sm leading-relaxed">Moving to <span class="text-white font-semibold">Xperiencify</span> &mdash; timing window for Carl Bot integration at platform transition. Integration during migration is 10x easier than post-migration retrofit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gradient-border glass-card p-5">
+                        <div class="flex items-start gap-4">
+                            <div class="icon-box shrink-0" style="background:rgba(234,179,8,0.08);border-color:rgba(234,179,8,0.15)"><i data-lucide="shield-check" class="w-5 h-5 text-amber-400"></i></div>
+                            <div>
+                                <p class="text-white text-sm font-semibold mb-1">No Sample Deck &mdash; He Sent the Real Thing</p>
+                                <p class="text-zinc-400 text-sm leading-relaxed"><span class="text-white font-semibold">222 slides.</span> This is not a sample &mdash; this is the actual deliverable for Humble Group. <span class="text-amber-400 font-semibold">Trust signal:</span> Carl is showing us his core IP. He is not testing whether we can help; he has already decided we can. He is showing us the problem in full so we can solve it correctly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+            <!-- SECTION 6: WHERE MERIDIAN FITS -->
+            <section id="meridian-overlay" class="reveal">
+                <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5 flex items-center gap-2"><i data-lucide="target" class="w-4 h-4 text-cyan-500/60"></i> Where MERIDIAN Fits &mdash; Org Overlay</h2>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-4">Mapping MERIDIAN capabilities to Carl's actual team structure. Every row is a real team layer with a real pain point.</p>
+
+                <div class="glass-card p-5 overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-3 pr-4">Team Layer</th>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-3 pr-4">Current Pain</th>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-3 pr-4">MERIDIAN Solution</th>
+                                <th class="text-left text-zinc-500 text-[10px] uppercase pb-3 pr-4">Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Strategists<br><span class="text-zinc-600 font-normal">(Jennifer, Johan)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">44-hr proposals, 6 siloed tools</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Proposal automation, unified intelligence</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">38 hrs saved per proposal</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Project Managers<br><span class="text-zinc-600 font-normal">(Nathalie, Elia)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Manual SKU monitoring, alert fatigue</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Daemon alert triage, prioritized queues</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">1000+ SKUs monitored 24/7</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Associates<br><span class="text-zinc-600 font-normal">(6 people)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Data entry, listing drafts</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Content pipeline, translation memory</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">10x throughput</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Ad Team<br><span class="text-zinc-600 font-normal">(Sam, Tim, Neil)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Manual bid management</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">AI-assisted optimization</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">Real-time bid recommendations</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Copy Team<br><span class="text-zinc-600 font-normal">(Tracy, Lukas, Arabella)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Manual localization</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Translation memory, brand terminology</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">Consistent cross-market content</td>
+                            </tr>
+                            <tr class="border-b border-white/5">
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">Research<br><span class="text-zinc-600 font-normal">(Mussab, Ibrahim)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Manual competitor tracking</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Automated competitive intelligence</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">Continuous monitoring</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white text-xs py-3 pr-4 font-semibold align-top">KNAA<br><span class="text-zinc-600 font-normal">(Carl's academy)</span></td>
+                                <td class="text-zinc-400 text-xs py-3 pr-4 align-top">Student support limited to sessions</td>
+                                <td class="text-zinc-300 text-xs py-3 pr-4 align-top">Carl Bot &mdash; 24/7 AI assistant</td>
+                                <td class="text-cyan-400 text-xs py-3 pr-4 align-top font-semibold">200+ students supported always</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <div class="gradient-divider w-3/4"></div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-10 border-t border-white/5" style="position:relative;z-index:1">
+        <p class="text-zinc-700 text-xs">Processed by MERIDIAN Intelligence Pipeline</p>
+        <p class="text-zinc-800 text-[10px] mt-1">Source: Carl Helgesson email attachments &mdash; April 2, 2026</p>
+        <p class="text-zinc-800 text-[10px] mt-1" id="genTimestamp"></p>
+    </footer>
+
+    <script>
+lucide.createIcons();
+
+/* Reveal on scroll */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* TOC active tracking */
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-link');
+const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            tocLinks.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+        }
+    });
+}, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+sections.forEach(s => tocObserver.observe(s));
+
+/* Scroll progress bar */
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
+}, { passive: true });
+
+/* Timestamp */
+document.getElementById('genTimestamp').textContent = 'Generated ' + new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
+</script>
+</body>
+</html>
