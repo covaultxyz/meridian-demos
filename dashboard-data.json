@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-02T02:02:19.674138+00:00",
+  "generated_at": "2026-04-02T03:01:45.710486+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-02T02:02:14.157237+00:00",
+      "updated_at": "2026-04-02T03:01:42.412077+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2401,21 +2401,21 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-04-01-150013",
-          "commit": "eeb18c817",
-          "status": "\u2705 active \u2014 sandman + atlas healthy"
+          "release": "2026-04-02",
+          "commit": "f47fef31",
+          "status": "\u2705 active \u2014 sandman + atlas healthy, disk 45%"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-04-01-150013",
-          "commit": "eeb18c817",
-          "status": "\u2705 active \u2014 delphi + avery healthy, disk 54%"
+          "release": "2026-04-02",
+          "commit": "f47fef31",
+          "status": "\u2705 active \u2014 delphi + avery healthy, disk 58%"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-04-01-150013",
-          "commit": "eeb18c817",
-          "status": "\u2705 active \u2014 sensei healthy (neo4j+embedding+notion+LLM), NATS degraded"
+          "release": "2026-04-02",
+          "commit": "f47fef31",
+          "status": "\u2705 active \u2014 sensei healthy, NATS systemd-managed, Neo4j healthy"
         }
       ],
       "active_sessions": [
@@ -2509,6 +2509,20 @@
           "terminal": "ttys113",
           "launched": "2026-04-02T02:00",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "forge",
+          "pid": "44715",
+          "terminal": "ttys116",
+          "launched": "2026-04-02T02:25",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/forge"
+        },
+        {
+          "daemon": "atlas",
+          "pid": "50782",
+          "terminal": "ttys120",
+          "launched": "2026-04-02T02:26",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
         }
       ],
       "daemon_tasks": [
@@ -2522,7 +2536,7 @@
         },
         {
           "daemon": "delphi",
-          "current_assignment": "Workspace isolation DONE; voice gateway hardened; node health ops"
+          "current_assignment": "Node health ops DONE (Apr 2); autopull fix deployed; NATS systemd-managed; awaiting next assignment"
         },
         {
           "daemon": "atlas",
@@ -2785,35 +2799,136 @@
           }
         ],
         "collected_at": "2026-03-28T18:00:27.712379+00:00",
-        "_stale_warning": "Data is 104 hours old"
+        "_stale_warning": "Data is 105 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-02T02:02:17.108259+00:00",
+      "updated_at": "2026-04-02T03:01:45.377731+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
-          "sentinel-review:warn": 7,
-          "sentinel-review:pass": 6,
+          "daemon/atlas": 1,
+          "checkpoint": 4,
+          "in-progress": 4,
+          "daemon/forge": 1,
           "grade/B": 9,
+          "daemon/sensei": 1,
+          "grade/A": 3,
+          "daemon/sandman": 1,
+          "sentinel-review:warn": 5,
+          "sentinel-review:pass": 6,
           "mig": 2,
           "dependencies": 6,
           "python:uv": 3,
           "documentation": 1,
           "infrastructure": 2,
           "mcp:mesh-optional": 1,
-          "grade/A": 2,
-          "grade/C": 11,
+          "grade/C": 8,
           "grade/D": 2,
           "enhancement": 10,
           "cursor-bench": 7,
           "javascript": 3,
           "image-grader": 4,
-          "sentinel-review:fail": 2,
-          "fundraise": 6
+          "sentinel-review:fail": 1,
+          "fundraise": 2
         }
       },
       "recent_issues": [
+        {
+          "number": 1845,
+          "title": "CHECKPOINT: Atlas CIO \u2014 Research pipeline probe + knowledge fitness",
+          "state": "open",
+          "created_at": "2026-04-02T03:00:35Z",
+          "updated_at": "2026-04-02T03:00:35Z",
+          "labels": [
+            "daemon/atlas",
+            "checkpoint",
+            "in-progress"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1845",
+          "project_slug": "research-pipeline"
+        },
+        {
+          "number": 1844,
+          "title": "CHECKPOINT: Research pipeline unblock + 5 SC/MI query monitoring",
+          "state": "open",
+          "created_at": "2026-04-02T03:00:21Z",
+          "updated_at": "2026-04-02T03:00:21Z",
+          "labels": [
+            "daemon/forge",
+            "checkpoint",
+            "in-progress"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1844",
+          "project_slug": null
+        },
+        {
+          "number": 1843,
+          "title": "CHECKPOINT: Design System Suite \u2014 Full Brand Consistency",
+          "state": "open",
+          "created_at": "2026-04-02T02:58:30Z",
+          "updated_at": "2026-04-02T03:00:17Z",
+          "labels": [
+            "grade/B",
+            "daemon/sensei",
+            "checkpoint",
+            "in-progress"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1843",
+          "project_slug": "pulse-sentinels"
+        },
+        {
+          "number": 1842,
+          "title": "CHECKPOINT: Sandman COO Marathon \u2014 34 Issues Closed, Agent Vox Complete, Revenue Audit",
+          "state": "open",
+          "created_at": "2026-04-02T02:58:11Z",
+          "updated_at": "2026-04-02T02:58:11Z",
+          "labels": [
+            "grade/A",
+            "daemon/sandman",
+            "checkpoint",
+            "in-progress"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1842",
+          "project_slug": "memory-gardener"
+        },
+        {
+          "number": 1841,
+          "title": "ci: automated SAST and dependency CVE gate (#521)",
+          "state": "open",
+          "created_at": "2026-04-02T02:50:41Z",
+          "updated_at": "2026-04-02T02:50:41Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1841",
+          "project_slug": null
+        },
+        {
+          "number": 1840,
+          "title": "test(quarantine): TDD quarantine + PR test-delta (#240)",
+          "state": "open",
+          "created_at": "2026-04-02T02:33:37Z",
+          "updated_at": "2026-04-02T02:33:37Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1840",
+          "project_slug": null
+        },
+        {
+          "number": 1839,
+          "title": "Graph topology stats + scorecard KPIs #26\u201328 (#485; resolves #491)",
+          "state": "open",
+          "created_at": "2026-04-02T02:10:38Z",
+          "updated_at": "2026-04-02T02:10:38Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1839",
+          "project_slug": null
+        },
         {
           "number": 1838,
           "title": "feat(#1617): Cal.com voice booking, tool dispatch, NATS failure alerts",
@@ -3397,105 +3512,75 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/1744",
           "project_slug": null
-        },
-        {
-          "number": 1741,
-          "title": "Pre-seed: Warrant term sheet template (0M cap)",
-          "state": "open",
-          "created_at": "2026-03-27T02:15:03Z",
-          "updated_at": "2026-03-27T02:31:06Z",
-          "labels": [
-            "grade/C",
-            "fundraise"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1741",
-          "project_slug": null
-        },
-        {
-          "number": 1733,
-          "title": "feat(#1724): Pre-seed investor pipeline (schema, ingest, query, templates)",
-          "state": "open",
-          "created_at": "2026-03-27T01:46:21Z",
-          "updated_at": "2026-03-27T01:48:46Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1733",
-          "project_slug": null
-        },
-        {
-          "number": 1729,
-          "title": "feat(#1727): Data room metrics script and daily pulse worker",
-          "state": "open",
-          "created_at": "2026-03-27T01:17:29Z",
-          "updated_at": "2026-03-27T01:19:55Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1729",
-          "project_slug": null
-        },
-        {
-          "number": 1728,
-          "title": "feat(#1725): Pre-seed positioning docs and investor metrics script",
-          "state": "open",
-          "created_at": "2026-03-27T01:15:38Z",
-          "updated_at": "2026-03-27T01:17:40Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1728",
-          "project_slug": null
-        },
-        {
-          "number": 1724,
-          "title": "Pre-seed: Investor pipeline (50-80 targets)",
-          "state": "open",
-          "created_at": "2026-03-27T00:58:54Z",
-          "updated_at": "2026-03-27T01:01:02Z",
-          "labels": [
-            "grade/B",
-            "fundraise"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1724",
-          "project_slug": null
-        },
-        {
-          "number": 1723,
-          "title": "Pre-seed: Legal & entity setup (SAFE, IP, vesting)",
-          "state": "open",
-          "created_at": "2026-03-27T00:58:47Z",
-          "updated_at": "2026-03-27T01:01:18Z",
-          "labels": [
-            "grade/C",
-            "fundraise"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1723",
-          "project_slug": null
-        },
-        {
-          "number": 1722,
-          "title": "Pre-seed: Financial model (18-month projection)",
-          "state": "open",
-          "created_at": "2026-03-27T00:58:40Z",
-          "updated_at": "2026-03-27T01:01:32Z",
-          "labels": [
-            "grade/C",
-            "fundraise"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1722",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
+        "research-pipeline": [
+          {
+            "number": 1845,
+            "title": "CHECKPOINT: Atlas CIO \u2014 Research pipeline probe + knowledge fitness",
+            "state": "open",
+            "created_at": "2026-04-02T03:00:35Z",
+            "updated_at": "2026-04-02T03:00:35Z",
+            "labels": [
+              "daemon/atlas",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1845",
+            "project_slug": "research-pipeline"
+          }
+        ],
         "unassigned": [
+          {
+            "number": 1844,
+            "title": "CHECKPOINT: Research pipeline unblock + 5 SC/MI query monitoring",
+            "state": "open",
+            "created_at": "2026-04-02T03:00:21Z",
+            "updated_at": "2026-04-02T03:00:21Z",
+            "labels": [
+              "daemon/forge",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1844",
+            "project_slug": null
+          },
+          {
+            "number": 1841,
+            "title": "ci: automated SAST and dependency CVE gate (#521)",
+            "state": "open",
+            "created_at": "2026-04-02T02:50:41Z",
+            "updated_at": "2026-04-02T02:50:41Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1841",
+            "project_slug": null
+          },
+          {
+            "number": 1840,
+            "title": "test(quarantine): TDD quarantine + PR test-delta (#240)",
+            "state": "open",
+            "created_at": "2026-04-02T02:33:37Z",
+            "updated_at": "2026-04-02T02:33:37Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1840",
+            "project_slug": null
+          },
+          {
+            "number": 1839,
+            "title": "Graph topology stats + scorecard KPIs #26\u201328 (#485; resolves #491)",
+            "state": "open",
+            "created_at": "2026-04-02T02:10:38Z",
+            "updated_at": "2026-04-02T02:10:38Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1839",
+            "project_slug": null
+          },
           {
             "number": 1838,
             "title": "feat(#1617): Cal.com voice booking, tool dispatch, NATS failure alerts",
@@ -4035,101 +4120,42 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/1744",
             "project_slug": null
-          },
+          }
+        ],
+        "pulse-sentinels": [
           {
-            "number": 1741,
-            "title": "Pre-seed: Warrant term sheet template (0M cap)",
+            "number": 1843,
+            "title": "CHECKPOINT: Design System Suite \u2014 Full Brand Consistency",
             "state": "open",
-            "created_at": "2026-03-27T02:15:03Z",
-            "updated_at": "2026-03-27T02:31:06Z",
-            "labels": [
-              "grade/C",
-              "fundraise"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1741",
-            "project_slug": null
-          },
-          {
-            "number": 1733,
-            "title": "feat(#1724): Pre-seed investor pipeline (schema, ingest, query, templates)",
-            "state": "open",
-            "created_at": "2026-03-27T01:46:21Z",
-            "updated_at": "2026-03-27T01:48:46Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1733",
-            "project_slug": null
-          },
-          {
-            "number": 1729,
-            "title": "feat(#1727): Data room metrics script and daily pulse worker",
-            "state": "open",
-            "created_at": "2026-03-27T01:17:29Z",
-            "updated_at": "2026-03-27T01:19:55Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1729",
-            "project_slug": null
-          },
-          {
-            "number": 1728,
-            "title": "feat(#1725): Pre-seed positioning docs and investor metrics script",
-            "state": "open",
-            "created_at": "2026-03-27T01:15:38Z",
-            "updated_at": "2026-03-27T01:17:40Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1728",
-            "project_slug": null
-          },
-          {
-            "number": 1724,
-            "title": "Pre-seed: Investor pipeline (50-80 targets)",
-            "state": "open",
-            "created_at": "2026-03-27T00:58:54Z",
-            "updated_at": "2026-03-27T01:01:02Z",
+            "created_at": "2026-04-02T02:58:30Z",
+            "updated_at": "2026-04-02T03:00:17Z",
             "labels": [
               "grade/B",
-              "fundraise"
+              "daemon/sensei",
+              "checkpoint",
+              "in-progress"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1724",
-            "project_slug": null
-          },
+            "url": "https://github.com/covaultxyz/meridian/issues/1843",
+            "project_slug": "pulse-sentinels"
+          }
+        ],
+        "memory-gardener": [
           {
-            "number": 1723,
-            "title": "Pre-seed: Legal & entity setup (SAFE, IP, vesting)",
+            "number": 1842,
+            "title": "CHECKPOINT: Sandman COO Marathon \u2014 34 Issues Closed, Agent Vox Complete, Revenue Audit",
             "state": "open",
-            "created_at": "2026-03-27T00:58:47Z",
-            "updated_at": "2026-03-27T01:01:18Z",
+            "created_at": "2026-04-02T02:58:11Z",
+            "updated_at": "2026-04-02T02:58:11Z",
             "labels": [
-              "grade/C",
-              "fundraise"
+              "grade/A",
+              "daemon/sandman",
+              "checkpoint",
+              "in-progress"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1723",
-            "project_slug": null
-          },
-          {
-            "number": 1722,
-            "title": "Pre-seed: Financial model (18-month projection)",
-            "state": "open",
-            "created_at": "2026-03-27T00:58:40Z",
-            "updated_at": "2026-03-27T01:01:32Z",
-            "labels": [
-              "grade/C",
-              "fundraise"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1722",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1842",
+            "project_slug": "memory-gardener"
           }
         ],
         "graph-intelligence": [
@@ -4185,135 +4211,135 @@
         "status": "completed",
         "conclusion": "skipped",
         "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-04-02T01:58:46Z",
-        "head_sha": "14886107"
+        "created_at": "2026-04-02T03:00:39Z",
+        "head_sha": "14a14c68"
       },
       "ci_recent_runs": [
         {
-          "id": 23879987095,
+          "id": 23881591751,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-02T01:58:46Z",
-          "updated_at": "2026-04-02T01:58:47Z",
-          "head_sha": "14886107",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23879987095"
+          "created_at": "2026-04-02T03:00:39Z",
+          "updated_at": "2026-04-02T03:00:39Z",
+          "head_sha": "14a14c68",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23881591751"
         },
         {
-          "id": 23879891637,
-          "name": "CI",
+          "id": 23881591749,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-02T01:55:01Z",
-          "updated_at": "2026-04-02T01:55:07Z",
-          "head_sha": "c22f4de0",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23879891637"
+          "conclusion": "skipped",
+          "created_at": "2026-04-02T03:00:39Z",
+          "updated_at": "2026-04-02T03:00:39Z",
+          "head_sha": "14a14c68",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23881591749"
         },
         {
-          "id": 23879758849,
-          "name": "Deploy Dashboard to GitHub Pages",
+          "id": 23881591757,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-02T01:49:58Z",
-          "updated_at": "2026-04-02T01:50:53Z",
-          "head_sha": "348b6385",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23879758849"
+          "conclusion": "skipped",
+          "created_at": "2026-04-02T03:00:39Z",
+          "updated_at": "2026-04-02T03:00:40Z",
+          "head_sha": "14a14c68",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23881591757"
         },
         {
-          "id": 23879497715,
-          "name": "CI",
+          "id": 23881585249,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-02T01:40:10Z",
-          "updated_at": "2026-04-02T01:40:15Z",
-          "head_sha": "a5678560",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23879497715"
+          "conclusion": "skipped",
+          "created_at": "2026-04-02T03:00:24Z",
+          "updated_at": "2026-04-02T03:00:25Z",
+          "head_sha": "14a14c68",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23881585249"
         },
         {
-          "id": 23879436078,
-          "name": "CI",
+          "id": 23881585317,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-02T01:37:52Z",
-          "updated_at": "2026-04-02T01:37:57Z",
-          "head_sha": "e11a8f41",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23879436078"
+          "conclusion": "skipped",
+          "created_at": "2026-04-02T03:00:24Z",
+          "updated_at": "2026-04-02T03:00:25Z",
+          "head_sha": "14a14c68",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23881585317"
         }
       ],
       "recent_commits": [
         {
-          "sha": "39553798",
-          "message": "intel(atlas): 4 TCPA cursor prompts + 5 Gemini DR research queue",
+          "sha": "14a14c68",
+          "message": "deal(rankona): session summary \u2014 COMPLETED.md, TODO.md, HOW-TO-USE.md",
           "author": "covaultxyz",
-          "date": "2026-04-02T02:01:59Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/39553798a7be930d8b9a44c0e9e9148be5274319"
+          "date": "2026-04-02T02:49:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/14a14c6885a2ad93d43e4ee0dff0e8565cb0406a"
         },
         {
-          "sha": "14886107",
-          "message": "docs(coach): human action items \u2014 live tests, marketing decision, ADR, Web Store",
+          "sha": "ecd67108",
+          "message": "deal(rankona): demo artifacts + close materials for Apr 3",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:56:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/148861079e06bc23b16001c7589b970c68133cfd"
+          "date": "2026-04-02T02:23:38Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ecd67108b3e702a8303c2fab183b4e71bbf31fed"
         },
         {
-          "sha": "c22f4de0",
-          "message": "feat(coach): silence detection, competitor classifier, structured debrief, extension parity, speaker name",
+          "sha": "19136c76",
+          "message": "deal(avery): cursor prompts for Cal.com wiring + Rankona demo prep",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:54:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c22f4de07b60094b96bb298853a24b02a93f6a59"
+          "date": "2026-04-02T01:47:55Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/19136c76f62070b82718212050a74702669881a3"
         },
         {
-          "sha": "348b6385",
-          "message": "fix(cpa-demo): update HTML frontend + cache for Memory node queries",
-          "author": "covaultxyz",
-          "date": "2026-04-02T01:48:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/348b63855df19f58b5a2acd5f001c275e19860d1"
+          "sha": "27ef938b",
+          "message": "feat(deals): Omar proposal \u2014 terms, structure, and open items workshop",
+          "author": "Glasshaus",
+          "date": "2026-04-01T13:49:01Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/27ef938b61bbc26dfb0a650457220fa4d6ef9dfb"
         },
         {
-          "sha": "a08dfad0",
-          "message": "intel(atlas): knowledge fitness assessment + 5 research briefs seeding security_compliance + market_intelligence",
+          "sha": "f09e2a13",
+          "message": "docs(session): final update \u2014 Sandman April 1 session reports (all Agent Vox complete)",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:48:57Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a08dfad014af72ec0360fa39509598790f654e69"
+          "date": "2026-04-02T02:49:17Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f09e2a13f248555071ec3186f185bdb7017cbf29"
         },
         {
-          "sha": "2cb877e7",
-          "message": "docs(coach): update all 3 coach docs \u2014 completed, remaining, usage guide",
+          "sha": "6e260903",
+          "message": "style(cpa-demo): rebrand to Speed of Trust design system",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:38:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/2cb877e7e5be886f9c76ba74ad85a6480e25ee7f"
+          "date": "2026-04-02T02:48:24Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/6e2609036c7f99c1f9335d9bf95afeb2db48d9fe"
         },
         {
-          "sha": "a5678560",
-          "message": "fix(cpa-demo): migrate queries from TaxSection to Memory nodes (ontology compliance)",
+          "sha": "d1e0736e",
+          "message": "fix(coach): Neo4jBrain init + marketing page + ADR + doc updates",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:39:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a5678560933a6045f98c32bd47563d6b1c6b313c"
+          "date": "2026-04-02T02:38:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d1e0736eb228040b7251c0ce6ee2abbf1e56c227"
         },
         {
-          "sha": "e11a8f41",
-          "message": "intel(atlas): research seed prompts for security_compliance + market_intelligence domains",
+          "sha": "bb12566b",
+          "message": "feat(dashboard): Agent Vox agent leaderboard \u2014 cursor agent #1557",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:37:43Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e11a8f41211a6060eb692155123ab52e49aaf570"
+          "date": "2026-04-02T02:36:01Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bb12566b46d11d7c6747e1434e61e913a4f4e4f7"
         },
         {
-          "sha": "3ec322be",
-          "message": "feat: graph projection fix + corroboration migration 055",
+          "sha": "6d6583af",
+          "message": "feat(dashboard): Agent Vox settings layout \u2014 cursor agent #1553",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:17:33Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3ec322be744ca60361a6a109eb23e043bdb620e8"
+          "date": "2026-04-02T02:33:57Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/6d6583afba9c18c6618d360bf424a247daf9a585"
         },
         {
-          "sha": "aa7a9823",
-          "message": "ops: 2 cursor prompts (#1553, #1557) + fix worktree branch pollution",
+          "sha": "139ca286",
+          "message": "docs: complete design system suite \u2014 client intel, email review, md-to-html",
           "author": "covaultxyz",
-          "date": "2026-04-02T01:34:37Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/aa7a98236e7ef3e93eb94951867e67004b948c26"
+          "date": "2026-04-02T02:29:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/139ca286948fa60231ad1aae75f4bb684336d097"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-02T02:02:14.889766+00:00",
+        "updated_at": "2026-04-02T03:01:43.198105+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4383,7 +4409,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "members": [
         {
           "id": "alex",
@@ -4454,7 +4480,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "projects": [
         {
           "project": {
@@ -4884,7 +4910,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -4969,7 +4995,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5066,7 +5092,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8217,7 +8243,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-02T02:02:19.582873+00:00",
+      "updated_at": "2026-04-02T03:01:45.621812+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10033,7 +10059,7 @@
       "total_docs": 300
     },
     "deals": {
-      "updated_at": "2026-04-02T02:02:19.583091+00:00",
+      "updated_at": "2026-04-02T03:01:45.621914+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10267,7 +10293,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-02T02:02:17.108293+00:00",
+      "updated_at": "2026-04-02T03:01:45.377750+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -27946,7 +27972,7 @@
       "total": 79
     },
     "call_intelligence": {
-      "updated_at": "2026-04-02T02:02:19.633926+00:00",
+      "updated_at": "2026-04-02T03:01:45.655397+00:00",
       "signal_summary": {
         "total_objections": 52,
         "total_buying_signals": 55,
@@ -33394,7 +33420,7 @@
       "total_action_items": 272
     },
     "attention": {
-      "updated_at": "2026-04-02T02:02:19.674037+00:00",
+      "updated_at": "2026-04-02T03:01:45.710432+00:00",
       "items": [
         {
           "type": "blocked",
@@ -33475,67 +33501,103 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-02T02:02:19.674118+00:00",
+      "updated_at": "2026-04-02T03:01:45.710475+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-02T02:01:59Z",
-          "title": "intel(atlas): 4 TCPA cursor prompts + 5 Gemini DR research queue",
+          "date": "2026-04-02T02:49:53Z",
+          "title": "deal(rankona): session summary \u2014 COMPLETED.md, TODO.md, HOW-TO-USE.md",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:56:04Z",
-          "title": "docs(coach): human action items \u2014 live tests, marketing decision, ADR, Web Store",
+          "date": "2026-04-02T02:49:17Z",
+          "title": "docs(session): final update \u2014 Sandman April 1 session reports (all Agent Vox com",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:54:48Z",
-          "title": "feat(coach): silence detection, competitor classifier, structured debrief, exten",
+          "date": "2026-04-02T02:48:24Z",
+          "title": "style(cpa-demo): rebrand to Speed of Trust design system",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:48:57Z",
-          "title": "intel(atlas): knowledge fitness assessment + 5 research briefs seeding security_",
+          "date": "2026-04-02T02:38:03Z",
+          "title": "fix(coach): Neo4jBrain init + marketing page + ADR + doc updates",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:48:23Z",
-          "title": "fix(cpa-demo): update HTML frontend + cache for Memory node queries",
+          "date": "2026-04-02T02:36:01Z",
+          "title": "feat(dashboard): Agent Vox agent leaderboard \u2014 cursor agent #1557",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:39:14Z",
-          "title": "fix(cpa-demo): migrate queries from TaxSection to Memory nodes (ontology complia",
+          "date": "2026-04-02T02:33:57Z",
+          "title": "feat(dashboard): Agent Vox settings layout \u2014 cursor agent #1553",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:38:54Z",
-          "title": "docs(coach): update all 3 coach docs \u2014 completed, remaining, usage guide",
+          "date": "2026-04-02T02:29:05Z",
+          "title": "docs: complete design system suite \u2014 client intel, email review, md-to-html",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:37:43Z",
-          "title": "intel(atlas): research seed prompts for security_compliance + market_intelligenc",
+          "date": "2026-04-02T02:23:38Z",
+          "title": "deal(rankona): demo artifacts + close materials for Apr 3",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-02T01:34:37Z",
-          "title": "ops: 2 cursor prompts (#1553, #1557) + fix worktree branch pollution",
+          "date": "2026-04-02T01:47:55Z",
+          "title": "deal(avery): cursor prompts for Cal.com wiring + Rankona demo prep",
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-02T01:17:33Z",
-          "title": "feat: graph projection fix + corroboration migration 055",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1845 CHECKPOINT: Atlas CIO \u2014 Research pipeline probe + knowledge ",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1844 CHECKPOINT: Research pipeline unblock + 5 SC/MI query monito",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1843 CHECKPOINT: Design System Suite \u2014 Full Brand Consistency",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1842 CHECKPOINT: Sandman COO Marathon \u2014 34 Issues Closed, Agent V",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1841 ci: automated SAST and dependency CVE gate (#521)",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1840 test(quarantine): TDD quarantine + PR test-delta (#240)",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-02",
+          "title": "#1839 Graph topology stats + scorecard KPIs #26\u201328 (#485; resolves",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -33556,46 +33618,10 @@
           "detail": "open"
         },
         {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1835 feat(workers): session_goal_extractor uses offload_llm",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1834 test(idle-dispatch): regression coverage for synthetic #9999",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1833 feat(brain): entity_extractor routes through offload_llm aft",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1832 fix(sentinel): #952 systemd contract + sentinel_check_execut",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1831 MIG: Backfill 6,359 undomained Memory nodes with correct Dom",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1830 Gardener decay soft-prune threshold + dry-run preview (#607)",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-02",
-          "title": "#1828 feat(lesson_extractor): route extraction through offload_llm",
-          "detail": "open"
+          "type": "commit",
+          "date": "2026-04-01T13:49:01Z",
+          "title": "feat(deals): Omar proposal \u2014 terms, structure, and open items workshop",
+          "detail": "Glasshaus"
         }
       ],
       "total": 35
