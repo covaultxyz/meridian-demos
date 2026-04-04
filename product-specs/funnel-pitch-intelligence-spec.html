@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funnel + Pitch Services — Content Intelligence Spec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#funnel-pitch-services-content-intelligence-spec" class="toc-link">Funnel + Pitch Services — Content Intelligence Spec</a>
+<a href="#current-state-lens" class="toc-link depth-2">Current State (Lens)</a>
+<a href="#what-the-extractions-provide" class="toc-link depth-2">What the Extractions Provide</a>
+<a href="#1-brunson-12-step-sales-page-flow-imp-9" class="toc-link depth-3">1. Brunson 12-Step Sales Page Flow (imp 9)</a>
+<a href="#2-schwartz-messaging-strategy-imp-9" class="toc-link depth-3">2. Schwartz Messaging Strategy (imp 9)</a>
+<a href="#3-phillips-abcdos-storyworthy-imp-9-imp-7" class="toc-link depth-3">3. Phillips ABCDOs + Storyworthy (imp 9 + imp 7)</a>
+<a href="#content-generation-architecture" class="toc-link depth-2">Content Generation Architecture</a>
+<a href="#template-engine-design" class="toc-link depth-3">Template Engine Design</a>
+<a href="#integration-points" class="toc-link depth-2">Integration Points</a>
+<a href="#implementation-order" class="toc-link depth-2">Implementation Order</a>
+<a href="#how-to-verify" class="toc-link depth-2">How to Verify</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="funnel-pitch-services-content-intelligence-spec">Funnel + Pitch Services — Content Intelligence Spec</h1>
+<p><em>Phase 4: Wiring extracted knowledge into content generation</em><br />
+<em>Author: Delphi (2026-04-04) | Source: MIG Phase 3 extractions</em></p>
+<h2 id="current-state-lens">Current State (Lens)</h2>
+<p>Existing code:<br />
+- <code>workers/funnel/neo4j_funnel.py</code> — Neo4j funnel pipeline<br />
+- <code>workers/funnel/lead_approval_consumer.py</code> — lead stage management<br />
+- <code>workers/tasks/funnel_step.py</code> — automated funnel tasks<br />
+- <code>dashboard/src/components/campaigns/funnel-chart.tsx</code> — visualization</p>
+<p>These handle the PIPELINE (lead flow, stages, approvals). What's missing:<br />
+the CONTENT GENERATION layer — given a product/market, output the copy.</p>
+<h2 id="what-the-extractions-provide">What the Extractions Provide</h2>
+<p>Three frameworks that define the content generation engine:</p>
+<h3 id="1-brunson-12-step-sales-page-flow-imp-9">1. Brunson 12-Step Sales Page Flow (imp 9)</h3>
+<p><strong>Search</strong>: <code>mig_search("12-step sales page flow brunson")</code></p>
+<p>The structural template for any sales page, landing page, or VSL:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>1.  Headline (benefit hook)
+2.  Sub-headline (supports headline)
+3.  Opener (opens curiosity loop — &quot;I&#39;ll reveal X by the end&quot;)
+4.  Credibility (who you are, why listen)
+5.  Story of discovery (how you found the solution)
+6.  Product introduction
+7.  Bullets (mystery: &quot;3 ways to X without Y&quot; + informational)
+8.  Testimonials (what OTHERS say, not what you say)
+9.  Price presentation (anchor high, show discount)
+10. Value stacking (bonuses to increase perceived value)
+11. Guarantee / risk reversal
+12. Call to action
+</code></pre></div>
+
+<h3 id="2-schwartz-messaging-strategy-imp-9">2. Schwartz Messaging Strategy (imp 9)</h3>
+<p><strong>Search</strong>: <code>mig_search("schwartz awareness levels")</code> + <code>mig_search("schwartz mass desire tools")</code></p>
+<p><strong>Awareness-level messaging</strong> — different copy per prospect awareness:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Headline Strategy</th>
+<th>Body Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Most Aware</td>
+<td>Price/deal/urgency</td>
+<td>"Last chance: 40% off ends tonight"</td>
+</tr>
+<tr>
+<td>Product Aware</td>
+<td>Proof/comparison</td>
+<td>"Here's why [product] beats [competitor]"</td>
+</tr>
+<tr>
+<td>Solution Aware</td>
+<td>Category education</td>
+<td>"The 3 types of [solution] and which is right for you"</td>
+</tr>
+<tr>
+<td>Problem Aware</td>
+<td>Symptom matching</td>
+<td>"Why you feel [symptom] and what to do about it"</td>
+</tr>
+<tr>
+<td>Unaware</td>
+<td>Identity-based</td>
+<td>"If you value [identity trait], this is for you"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Desire research tools</strong> (use before writing any copy):</p>
+<ol>
+<li><strong>Desire Ladder</strong>: "I want X" → "so I can Y" → "so I can Z" — peel to emotional core</li>
+<li><strong>Three Layers of Truth</strong> (Fishman): What they'll TELL you / WON'T tell you / CAN'T tell you</li>
+<li><strong>Three Dimensions</strong>: Score each desire on Urgency × Staying Power × Scope. Only pursue high-all-three.</li>
+</ol>
+<h3 id="3-phillips-abcdos-storyworthy-imp-9-imp-7">3. Phillips ABCDOs + Storyworthy (imp 9 + imp 7)</h3>
+<p><strong>Search</strong>: <code>mig_search("ABCDOs storytelling phillips")</code> + <code>mig_search("story change over time")</code></p>
+<p><strong>Story injection for pitch coaching:</strong><br />
+- Every pitch must contain a CHANGE moment (Storyworthy)<br />
+- Counters beat specs (ABCDOs-C) — when prospect objects, counter with story<br />
+- Duo technique (ABCDOs-D) — get prospect to tell their OWN story (releases oxytocin)<br />
+- Objects (ABCDOs-O) — physical/visual elements that trigger story conversations</p>
+<hr />
+<h2 id="content-generation-architecture">Content Generation Architecture</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>┌─────────────────────────────────────────────────────────┐
+│                    INPUT LAYER                           │
+│  Product info, target market, awareness level, offer     │
+├─────────────────────────────────────────────────────────┤
+│                 RESEARCH LAYER                           │
+│  Schwartz 3 tools: desire ladder, 3 layers, 3 dims     │
+│  Output: dominant desire, direction, awareness level     │
+├─────────────────────────────────────────────────────────┤
+│                 TEMPLATE LAYER                           │
+│  Brunson 12-step flow (structural template)             │
+│  Awareness-level messaging (copy per step per level)    │
+├─────────────────────────────────────────────────────────┤
+│                  STORY LAYER                             │
+│  Storyworthy change element in opener + discovery story │
+│  ABCDOs injection points for live pitch coaching        │
+├─────────────────────────────────────────────────────────┤
+│                  OUTPUT LAYER                            │
+│  Landing page HTML, email sequence, pitch deck, VSL     │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="template-engine-design">Template Engine Design</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">class</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">FunnelContentGenerator</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Generate sales copy from product inputs + extracted frameworks.&quot;&quot;&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">generate_landing_page</span>(<span style="color: #008000">self</span>, product: ProductInput) <span style="color: #666">-&gt;</span> LandingPage:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Apply Brunson 12-step flow to generate landing page copy.</span>
+
+<span style="color: #BA2121; font-style: italic">        Each step is a template module populated from product inputs:</span>
+<span style="color: #BA2121; font-style: italic">        1. Headline: benefit_hook(product.primary_benefit, product.target_pain)</span>
+<span style="color: #BA2121; font-style: italic">        2. Sub-headline: support_hook(headline, product.secondary_benefit)</span>
+<span style="color: #BA2121; font-style: italic">        3. Opener: curiosity_loop(product.discovery_story_hook)</span>
+<span style="color: #BA2121; font-style: italic">        4. Credibility: founder_story(product.founder, product.credentials)</span>
+<span style="color: #BA2121; font-style: italic">        5. Story of discovery: discovery_narrative(product.origin_story)</span>
+<span style="color: #BA2121; font-style: italic">        6. Product intro: product_bridge(story_conclusion, product.name)</span>
+<span style="color: #BA2121; font-style: italic">        7. Bullets: generate_bullets(product.features, style=&quot;mystery&quot;)</span>
+<span style="color: #BA2121; font-style: italic">        8. Testimonials: select_testimonials(product.testimonials, max=3)</span>
+<span style="color: #BA2121; font-style: italic">        9. Price: anchor_and_discount(product.price, product.anchor_price)</span>
+<span style="color: #BA2121; font-style: italic">        10. Value stack: bonus_stack(product.bonuses)</span>
+<span style="color: #BA2121; font-style: italic">        11. Guarantee: risk_reversal(product.guarantee_type, product.guarantee_terms)</span>
+<span style="color: #BA2121; font-style: italic">        12. CTA: call_to_action(product.cta_text, product.urgency)</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">adapt_for_awareness</span>(<span style="color: #008000">self</span>, page: LandingPage, level: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> LandingPage:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Adjust copy for prospect awareness level (Schwartz).</span>
+
+<span style="color: #BA2121; font-style: italic">        Most Aware: shorten to price+CTA, add urgency</span>
+<span style="color: #BA2121; font-style: italic">        Product Aware: emphasize proof and comparison</span>
+<span style="color: #BA2121; font-style: italic">        Solution Aware: add education before product intro</span>
+<span style="color: #BA2121; font-style: italic">        Problem Aware: lead with symptom, add discovery content</span>
+<span style="color: #BA2121; font-style: italic">        Unaware: lead with identity, add long-form education</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">generate_email_sequence</span>(<span style="color: #008000">self</span>, product: ProductInput, 
+                                 audience_size: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">list</span>[Email]:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Generate email sequence using Feldman 7-step pattern.</span>
+
+<span style="color: #BA2121; font-style: italic">        Small/niche audience: full 7-step with lead magnets</span>
+<span style="color: #BA2121; font-style: italic">        Large audience: 2-step (pitch + bump)</span>
+
+<span style="color: #BA2121; font-style: italic">        Step 1: Social proof + CTA</span>
+<span style="color: #BA2121; font-style: italic">        Step 2: Same-thread bump</span>
+<span style="color: #BA2121; font-style: italic">        Step 3: Case study / YouTube link (plain URL, not embedded)</span>
+<span style="color: #BA2121; font-style: italic">        Step 4: First lead magnet as free gift</span>
+<span style="color: #BA2121; font-style: italic">        Step 5: Follow-up on gift + CTA</span>
+<span style="color: #BA2121; font-style: italic">        Step 6: Second lead magnet (better than first)</span>
+<span style="color: #BA2121; font-style: italic">        Step 7: Soft guilt close</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">generate_pitch_coaching</span>(<span style="color: #008000">self</span>, presenter: <span style="color: #008000">str</span>, 
+                                 audience: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> PitchGuide:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Generate pitch coaching guide using ABCDOs + Storyworthy.</span>
+
+<span style="color: #BA2121; font-style: italic">        Structure:</span>
+<span style="color: #BA2121; font-style: italic">        - Opening: story with CHANGE element (Storyworthy)</span>
+<span style="color: #BA2121; font-style: italic">        - ABCDO injection points mapped to pitch sections</span>
+<span style="color: #BA2121; font-style: italic">        - Counter-stories for top 3 expected objections</span>
+<span style="color: #BA2121; font-style: italic">        - Close: Duo technique (get audience to tell their story)</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+</code></pre></div>
+
+<hr />
+<h2 id="integration-points">Integration Points</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workers/funnel/</code></td>
+<td>New: <code>content_generator.py</code> — template engine</td>
+</tr>
+<tr>
+<td><code>workers/tasks/funnel_step.py</code></td>
+<td>Wire content generation into funnel pipeline</td>
+</tr>
+<tr>
+<td><code>dashboard/</code></td>
+<td>Add content preview/editing UI for generated copy</td>
+</tr>
+<tr>
+<td>New: <code>data/templates/</code></td>
+<td>Store Brunson 12-step templates, awareness adaptations</td>
+</tr>
+<tr>
+<td>New: <code>data/templates/email/</code></td>
+<td>Feldman 7-step email templates</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="implementation-order">Implementation Order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Task</th>
+<th>Effort</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Brunson 12-step template modules</td>
+<td>2 days</td>
+<td>Critical — structural foundation</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Schwartz awareness adaptation layer</td>
+<td>1 day</td>
+<td>High — messaging per audience</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Feldman email sequence generator</td>
+<td>1 day</td>
+<td>High — immediate outbound value</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Story injection (opener + discovery)</td>
+<td>1 day</td>
+<td>Medium — pitch quality</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pitch coaching guide generator</td>
+<td>1 day</td>
+<td>Medium — service offering</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Dashboard content preview</td>
+<td>2 days</td>
+<td>Medium — usability</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-to-verify">How to Verify</h2>
+<p>Generate a landing page for a test product (e.g., Agent Vox itself):</p>
+<ol>
+<li>Does it follow all 12 Brunson steps in order?</li>
+<li>Does the opener create a curiosity loop?</li>
+<li>Does the story of discovery contain a CHANGE moment (Storyworthy)?</li>
+<li>Are bullets mystery-style ("3 ways to X without Y")?</li>
+<li>Is the price anchored before discount?</li>
+<li>Does the guarantee reverse risk?</li>
+</ol>
+<p>Adapt for "problem-aware" audience:<br />
+7. Does the headline address a symptom, not a product?<br />
+8. Is there education before the product introduction?</p>
+<p>Generate a 7-step email for niche audience:<br />
+9. Does step 3 include a plain YouTube link (not embedded)?<br />
+10. Do steps 4 and 6 contain lead magnets?<br />
+11. Is step 7 a soft guilt close?</p>
+<p>Score each 0-10. Target: 7+ across all dimensions.</p></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
