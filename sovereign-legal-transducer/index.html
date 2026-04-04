@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Legal Transducer — AI Compliance for Attorneys</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif']},colors:{brand:{50:'#eff6ff',100:'#dbeafe',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8'}}}}}</script>
+    <style>
+        body{font-family:'Inter',sans-serif;background:#0a0f1a;color:#e2e8f0}
+        .glass{background:rgba(30,41,59,.6);backdrop-filter:blur(12px);border:1px solid rgba(51,65,85,.5);border-radius:16px}
+        .glass-hover{transition:all .3s cubic-bezier(.4,0,.2,1)}
+        .glass-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(0,0,0,.5);border-color:rgba(59,130,246,.3)}
+        .marker{display:inline-block;padding:2px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600}
+        .marker-t{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3)}
+        .marker-gap{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+        .marker-q{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+        .marker-g{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3)}
+        .marker-r{background:rgba(100,116,139,.15);color:#94a3b8;border:1px solid rgba(100,116,139,.3)}
+        .flow-line{position:relative}
+        .flow-line::after{content:'';position:absolute;left:50%;top:100%;width:2px;height:32px;background:linear-gradient(to bottom,#3b82f6,transparent)}
+        .glow-blue{box-shadow:0 0 30px rgba(59,130,246,.15)}
+        .glow-emerald{box-shadow:0 0 30px rgba(16,185,129,.15)}
+        .step-num{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.4);color:#60a5fa;font-weight:700;font-size:14px;flex-shrink:0}
+        .wrapper-layer{border-left:3px solid;padding-left:20px;margin-bottom:0}
+        .demo-terminal{background:#0d1117;border:1px solid #30363d;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.7}
+        .demo-terminal .prompt{color:#8b949e}
+        .demo-terminal .response{color:#c9d1d9}
+        .demo-terminal .highlight{color:#58a6ff}
+        .demo-terminal .success{color:#3fb950}
+        .demo-terminal .warning{color:#d29922}
+        .demo-terminal .error{color:#f85149}
+        .honest-table th{text-align:left;padding:12px 16px;font-weight:600;color:#94a3b8;text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+        .honest-table td{padding:12px 16px;border-top:1px solid rgba(51,65,85,.5)}
+        .honest-table tr:hover{background:rgba(59,130,246,.04)}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+        .float{animation:float 6s ease-in-out infinite}
+        section{scroll-margin-top:80px}
+    </style>
+</head>
+<body class="antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 border-b border-slate-800/50" style="background:rgba(10,15,26,.85);backdrop-filter:blur(16px)">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="/" class="text-white font-bold text-lg tracking-tight">Speed of Trust</a>
+        <div class="flex items-center gap-6">
+            <a href="#how-it-works" class="text-slate-400 hover:text-white text-sm transition">How It Works</a>
+            <a href="#architecture" class="text-slate-400 hover:text-white text-sm transition">Architecture</a>
+            <a href="#honest-claims" class="text-slate-400 hover:text-white text-sm transition">Claims Table</a>
+            <a href="#demo" class="text-slate-400 hover:text-white text-sm transition">Demo</a>
+            <a href="mailto:building@speedoftrust.ai" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium rounded-lg transition">Get Access</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="pt-32 pb-20 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-6 tracking-wide">AI COMPLIANCE FOR LEGAL PROFESSIONALS</div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            Sovereign Legal<br>Transducer
+        </h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
+            Every AI claim is source-attributed, cryptographically verified, and audit-ready.
+            What you see is constrained. What you don't see is filtered.
+        </p>
+        <p class="text-base text-slate-500 max-w-xl mx-auto mb-10">
+            The AI makes inferences internally. But before you see any output, the system checks every claim for a source marker, verifies the source exists and matches, and blocks any claim without verifiable source.
+        </p>
+        <div class="flex items-center justify-center gap-4">
+            <a href="mailto:building@speedoftrust.ai" class="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition shadow-lg shadow-blue-600/20">Request Early Access</a>
+            <a href="#demo" class="px-6 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 font-medium rounded-xl transition">See Demo Flow</a>
+        </div>
+    </div>
+</section>
+
+<!-- Problem Statement -->
+<section class="py-16 px-6">
+    <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-6 glass-hover">
+                <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4">
+                    <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Hallucination</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Every legal AI tool risks generating claims that don't exist in your source materials. You can't tell which sentences are sourced and which are fabricated.</p>
+            </div>
+            <div class="glass p-6 glass-hover">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-4">
+                    <svg class="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3 class="text-white font-semibold mb-2">No Provenance</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">AI output arrives as confident prose with no indication of where each claim came from. Line numbers break when documents are edited. No audit trail.</p>
+            </div>
+            <div class="glass p-6 glass-hover">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4">
+                    <svg class="w-5 h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3 class="text-white font-semibold mb-2">Compliance Gap</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">No HIPAA BAA. No attestation chain. No distinction between source material and AI inference. This isn't enterprise-grade for regulated work.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Concept: Transduction -->
+<section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="glass p-8 md:p-12 glow-blue">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-white mb-4">Transduction, Not Recursion</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">The Sovereign Legal Transducer reorients the AI's operating mode from recursion to transduction. This is not a constraint on capability — it's a reorientation of how the AI processes your materials.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-6 rounded-xl bg-red-500/5 border border-red-500/10">
+                    <div class="text-red-400 font-semibold text-sm uppercase tracking-wide mb-3">Recursion (Standard AI)</div>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">x</span> Builds from internal patterns and predictions</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">x</span> Fills gaps with what "should" come next</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">x</span> Infers meaning, completes missing information</li>
+                        <li class="flex items-start gap-2"><span class="text-red-400 mt-0.5">x</span> Output indistinguishable from source</li>
+                    </ul>
+                </div>
+                <div class="p-6 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+                    <div class="text-emerald-400 font-semibold text-sm uppercase tracking-wide mb-3">Transduction (SLT)</div>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-0.5">&#10003;</span> Transmits only what the source contains</li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-0.5">&#10003;</span> Marks gaps explicitly with <span class="marker marker-gap">/</span></li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-0.5">&#10003;</span> Flags ambiguity with <span class="marker marker-q">?</span></li>
+                        <li class="flex items-start gap-2"><span class="text-emerald-400 mt-0.5">&#10003;</span> Every claim carries provenance marker</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Marker Grammar -->
+<section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-white mb-4">Epistemological Marker Grammar</h2>
+        <p class="text-slate-400 mb-10 max-w-2xl mx-auto">Every sentence in the AI's output carries a marker indicating its epistemic status. You always know what's sourced, what's missing, and what's generated.</p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="glass p-4 text-center">
+                <div class="marker marker-t text-lg mb-3">[T]</div>
+                <div class="text-white text-sm font-medium mb-1">Transcribed</div>
+                <div class="text-slate-500 text-xs">Directly from source</div>
+            </div>
+            <div class="glass p-4 text-center">
+                <div class="marker marker-gap text-lg mb-3">/</div>
+                <div class="text-white text-sm font-medium mb-1">Gap</div>
+                <div class="text-slate-500 text-xs">Info absent from source</div>
+            </div>
+            <div class="glass p-4 text-center">
+                <div class="marker marker-q text-lg mb-3">?</div>
+                <div class="text-white text-sm font-medium mb-1">Ambiguous</div>
+                <div class="text-slate-500 text-xs">Contradictory sources</div>
+            </div>
+            <div class="glass p-4 text-center">
+                <div class="marker marker-g text-lg mb-3">[G]</div>
+                <div class="text-white text-sm font-medium mb-1">Generated</div>
+                <div class="text-slate-500 text-xs">With explicit permission</div>
+            </div>
+            <div class="glass p-4 text-center">
+                <div class="marker marker-r text-lg mb-3">[R]</div>
+                <div class="text-white text-sm font-medium mb-1">Redacted</div>
+                <div class="text-slate-500 text-xs">PHI/PII removed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white mb-4">How It Works</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">The attorney configures. The transducer locks. Output is constrained to source-attributable claims. Every step is auditable.</p>
+        </div>
+        <div class="space-y-6">
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">1</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Configure (8 Questions)</h3>
+                    <p class="text-slate-400 text-sm">The transducer asks 8 sequential questions: gap handling mode, required fields, generation permission, source materials, jurisdiction, output verbosity, PHI redaction, and request type. No defaults. No hidden parameters. Every choice is explicit.</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">2</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Lock</h3>
+                    <p class="text-slate-400 text-sm">After all questions are answered, the transducer locks. Configuration is frozen. The system restates your rules with your specific settings applied. No further changes mid-session. This prevents prompt drift.</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">3</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Upload Source Materials</h3>
+                    <p class="text-slate-400 text-sm">Upload contracts, depositions, emails, transcripts. Each document is chunked, hashed with SHA-256, and registered in a source hash registry. These hashes form the cryptographic bindings for verification.</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">4</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Transduce</h3>
+                    <p class="text-slate-400 text-sm">The AI produces output with inline provenance markers on every claim. The system prompt constrains the model to transduction mode — it transmits only what exists in your source materials.</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">5</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Validate</h3>
+                    <p class="text-slate-400 text-sm">Four-stage validation: marker presence check (every sentence), cryptographic hash verification (source binding), gap handling compliance (per your config), and hallucination scan (unsourced claims blocked).</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">6</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Review Omissions</h3>
+                    <p class="text-slate-400 text-sm">The omission detector highlights source content NOT referenced in the AI output. It does not judge significance — the attorney decides. This is assisted review, not automated fact detection.</p>
+                </div>
+            </div>
+            <div class="glass p-6 flex gap-5 glass-hover">
+                <div class="step-num">7</div>
+                <div>
+                    <h3 class="text-white font-semibold mb-1">Attest &amp; Export</h3>
+                    <p class="text-slate-400 text-sm">Create an attestation record: attorney signature, document hash, validation result, complete audit trail. Three signature methods: typed name, digital signature, or wet signature placeholder. SOC2-ready.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Architecture -->
+<section id="architecture" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white mb-4">5-Layer Transduction Wrapper</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">The model does not operate directly. It operates inside a transduction wrapper that constrains, validates, and audits every output.</p>
+        </div>
+        <div class="space-y-0">
+            <div class="wrapper-layer border-blue-500/50 glass p-5 rounded-t-xl">
+                <div class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-1">Layer 1 — Input</div>
+                <p class="text-slate-300 text-sm">Source materials (PDF, DOCX, TXT, transcript) + user query + transducer configuration + source hash registry</p>
+            </div>
+            <div class="wrapper-layer border-indigo-500/50 glass p-5 rounded-none border-t-0">
+                <div class="text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-1">Layer 2 — Prompt Construction</div>
+                <p class="text-slate-300 text-sm">System prompt with transduction rules + full source injection + config injection + few-shot marker examples</p>
+            </div>
+            <div class="wrapper-layer border-violet-500/50 glass p-5 rounded-none border-t-0">
+                <div class="text-violet-400 text-xs font-semibold uppercase tracking-wider mb-1">Layer 3 — Model Inference</div>
+                <p class="text-slate-300 text-sm">Claude API &mdash; temperature 0.0, top P 1.0, max 8192 tokens. Maximum determinism. No creativity.</p>
+            </div>
+            <div class="wrapper-layer border-emerald-500/50 glass p-5 rounded-none border-t-0">
+                <div class="text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-1">Layer 4 — Output Validation</div>
+                <p class="text-slate-300 text-sm">Marker presence check + source hash verification + gap detection + hallucination scan. Block if validation fails.</p>
+            </div>
+            <div class="wrapper-layer border-amber-500/50 glass p-5 rounded-b-xl border-t-0">
+                <div class="text-amber-400 text-xs font-semibold uppercase tracking-wider mb-1">Layer 5 — Post-Processing</div>
+                <p class="text-slate-300 text-sm">Source link resolution (hash match + semantic fallback) + omission highlighting + audit log generation + attestation preparation</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Demo Flow -->
+<section id="demo" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-white mb-4">Demo: Contract Summary</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Watch the transducer process a contract review from configuration through attestation.</p>
+        </div>
+        <div class="demo-terminal p-6 overflow-x-auto">
+            <div class="space-y-4 text-sm">
+                <div>
+                    <div class="prompt">TRANSDUCER &gt; Question 1 of 8: GAP HANDLING MODE</div>
+                    <div class="highlight">Attorney &gt; B (required_fields_only)</div>
+                </div>
+                <div>
+                    <div class="prompt">TRANSDUCER &gt; Question 2 of 8: REQUIRED FIELDS</div>
+                    <div class="highlight">Attorney &gt; parties, effective date, consideration, termination clause</div>
+                </div>
+                <div>
+                    <div class="prompt">TRANSDUCER &gt; Question 3 of 8: GENERATION PERMISSION</div>
+                    <div class="highlight">Attorney &gt; A (never)</div>
+                </div>
+                <div class="text-slate-600">    ... questions 4-8 answered ...</div>
+                <div class="border-t border-slate-800 pt-4">
+                    <div class="success font-bold">TRANSDUCER LOCKED.</div>
+                    <div class="response">Configuration frozen. Now operating as LEGAL TRANSCRIPTION INSTRUMENT.</div>
+                </div>
+                <div class="border-t border-slate-800 pt-4">
+                    <div class="prompt">SOURCE: ServiceAgreement_2026-03-15.pdf (12 pages, 847 chunks, 847 hashes)</div>
+                </div>
+                <div class="border-t border-slate-800 pt-4">
+                    <div class="response font-bold mb-2">CONTRACT SUMMARY</div>
+                    <div class="response">
+                        <strong>Parties:</strong> Acme Corp ("Provider") and Beta LLC ("Client") <span class="marker marker-t">[T:sa.1:a3f8b2c1]</span><br>
+                        <strong>Effective Date:</strong> March 15, 2026 <span class="marker marker-t">[T:sa.1:7e2d91f0]</span><br>
+                        <strong>Term:</strong> 24 months with auto-renewal <span class="marker marker-t">[T:sa.3:c4a7e5b8]</span><br>
+                        <strong>Consideration:</strong> $12,500/month <span class="marker marker-t">[T:sa.4:91d3f6a2]</span><br>
+                        <strong>Termination:</strong> 90 days written notice <span class="marker marker-t">[T:sa.8:b5e1c3d7]</span><br>
+                        <strong>Non-compete:</strong> <span class="marker marker-gap">/</span> <em class="text-amber-400">[Gap: no non-compete clause found in source]</em><br>
+                        <strong>Liability Cap:</strong> "not to exceed aggregate fees paid" <span class="marker marker-q">?</span> <em class="text-red-400">[Ambiguous: Section 7.2 says "12 months of fees" but Section 9.1 says "aggregate fees paid"]</em>
+                    </div>
+                </div>
+                <div class="border-t border-slate-800 pt-4">
+                    <div class="success">VALIDATION: PASSED</div>
+                    <div class="response">Markers found: 7 | Gaps: 1 (non-compete) | Ambiguities: 1 (liability cap) | Hallucinations: 0</div>
+                    <div class="response">Source coverage: 23/847 chunks referenced (2.7%) — <span class="warning">824 chunks unreferenced (assisted review available)</span></div>
+                </div>
+                <div class="border-t border-slate-800 pt-4">
+                    <div class="success">ATTESTATION CREATED</div>
+                    <div class="response">Document hash: sha256:e4a7b3...c91f | Sourced: true | Verifiable: true</div>
+                    <div class="response">Method: typed_name | Attorney: J. Smith, Esq. | 2026-03-15T14:32:07Z</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Honest Claims Table -->
+<section id="honest-claims" class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white mb-4">Honest Claims Table</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Every claim we make about this product comes with its limitation. The disclosure of limitations IS the product.</p>
+        </div>
+        <div class="glass overflow-hidden">
+            <table class="w-full honest-table">
+                <thead>
+                    <tr class="border-b border-slate-700">
+                        <th class="w-1/4">Feature</th>
+                        <th class="w-1/3">Claim</th>
+                        <th class="w-5/12">Limitation</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm">
+                    <tr>
+                        <td class="text-white font-medium">Source Attribution</td>
+                        <td class="text-slate-300">Every factual claim carries an inline provenance marker</td>
+                        <td class="text-slate-400">Marker presence is enforced. Whether the marker points to the RIGHT source depends on model quality. Hash verification catches fabricated markers.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">Hallucination Prevention</td>
+                        <td class="text-slate-300">Output is blocked if claims lack source binding</td>
+                        <td class="text-slate-400">The model still makes inferences internally — we cannot "block access to training data." We constrain the OUTPUT, not the inference process. Disclosure is prominent.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">Omission Detection</td>
+                        <td class="text-slate-300">Unreferenced source content is highlighted for review</td>
+                        <td class="text-slate-400">The system highlights WHAT was omitted. It does NOT judge WHETHER the omission matters. The attorney makes that determination. This is assisted review, not automated analysis.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">Cryptographic Binding</td>
+                        <td class="text-slate-300">SHA-256 hash binds each [T] marker to source chunk</td>
+                        <td class="text-slate-400">8-character hash prefix for readability. Collision probability is negligible at this scale but not zero. Full hash available in audit log.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">Zero-Inference</td>
+                        <td class="text-slate-300"><em>We don't claim this.</em></td>
+                        <td class="text-slate-400">Zero-inference is impossible — the model always infers. We call it "inference-constrained": the model infers, the wrapper filters. What survives is source-attributable.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">PHI Redaction</td>
+                        <td class="text-slate-300">Pattern-based redaction with [R] marker</td>
+                        <td class="text-slate-400">Pattern matching is not reliable for complete de-identification. For actual PHI, use Tier 1 (HIPAA BAA with Anthropic) or Tier 2 (self-hosted, no data leaves firm). DE-IDENTIFY mode was removed.</td>
+                    </tr>
+                    <tr>
+                        <td class="text-white font-medium">Audit Trail</td>
+                        <td class="text-slate-300">Complete session log with attestation</td>
+                        <td class="text-slate-400">In-memory session store for MVP. Production deployment requires PostgreSQL for durable session state and multi-instance support. Schema provided (audit_schema.sql).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Confidentiality Tiers -->
+<section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white mb-4">Confidentiality Gate</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Select your data processing tier before any source material is processed.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-6 glass-hover glow-emerald border-emerald-500/20">
+                <div class="text-emerald-400 font-bold text-sm uppercase tracking-wider mb-3">Tier 1: Production</div>
+                <p class="text-slate-300 text-sm mb-3">HIPAA BAA in place. Data encrypted at rest and in transit. Anthropic API with signed BAA.</p>
+                <p class="text-slate-500 text-xs">Attestation: "I have reviewed the BAA dated [date]"</p>
+            </div>
+            <div class="glass p-6 glass-hover border-blue-500/20">
+                <div class="text-blue-400 font-bold text-sm uppercase tracking-wider mb-3">Tier 2: Local Processing</div>
+                <p class="text-slate-300 text-sm mb-3">No data leaves firm network. Requires self-hosted model (Llama 3.2 90B recommended).</p>
+                <p class="text-slate-500 text-xs">Attestation: "I confirm local deployment"</p>
+            </div>
+            <div class="glass p-6 glass-hover border-slate-500/20">
+                <div class="text-slate-400 font-bold text-sm uppercase tracking-wider mb-3">Tier 3: Test / Synthetic</div>
+                <p class="text-slate-300 text-sm mb-3">No real data. Synthetic documents only. For evaluation, training, and demos.</p>
+                <p class="text-slate-500 text-xs">No attestation required</p>
+            </div>
+        </div>
+        <div class="mt-6 glass p-4 text-center">
+            <p class="text-slate-500 text-sm"><strong class="text-slate-400">DE-IDENTIFY mode has been removed.</strong> Reliable de-identification requires human review. For PHI, use Tier 1 or Tier 2.</p>
+        </div>
+    </div>
+</section>
+
+<!-- API Endpoints -->
+<section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-white mb-4">REST API</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Integrate the transducer into your workflow. The API does NOT call the LLM — it builds prompts and validates output. You bring your own model.</p>
+        </div>
+        <div class="demo-terminal p-6 text-sm space-y-3">
+            <div><span class="success">POST</span> <span class="response">/sessions</span> <span class="prompt">— Create transduction session</span></div>
+            <div><span class="highlight">PUT </span> <span class="response">/sessions/{id}/config</span> <span class="prompt">— Update configuration</span></div>
+            <div><span class="highlight">POST</span> <span class="response">/sessions/{id}/lock</span> <span class="prompt">— Lock transducer (no more config changes)</span></div>
+            <div><span class="success">POST</span> <span class="response">/sessions/{id}/sources</span> <span class="prompt">— Upload source material</span></div>
+            <div><span class="highlight">POST</span> <span class="response">/sessions/{id}/prompt</span> <span class="prompt">— Generate system prompt for your LLM</span></div>
+            <div><span class="warning">POST</span> <span class="response">/sessions/{id}/validate</span> <span class="prompt">— Validate LLM output against sources</span></div>
+            <div><span class="highlight">GET </span> <span class="response">/sessions/{id}/omissions</span> <span class="prompt">— Review unreferenced source content</span></div>
+            <div><span class="success">POST</span> <span class="response">/sessions/{id}/attest</span> <span class="prompt">— Create attestation record</span></div>
+            <div><span class="prompt">GET </span> <span class="response">/sessions/{id}/audit</span> <span class="prompt">— Complete audit trail (SOC2)</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+        <div class="glass p-10 glow-blue">
+            <h2 class="text-3xl font-bold text-white mb-4">The disclosure of limitations IS the competitive moat.</h2>
+            <p class="text-slate-400 mb-8 max-w-xl mx-auto">Every legal AI tool claims accuracy. We show you exactly where accuracy ends and uncertainty begins. That's what makes this tool safe for regulated work.</p>
+            <div class="flex items-center justify-center gap-4">
+                <a href="mailto:building@speedoftrust.ai" class="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition shadow-lg shadow-blue-600/20">Request Early Access</a>
+            </div>
+            <p class="text-slate-600 text-xs mt-6">Tier 3 (synthetic data) available now. Tier 1 (production) requires executed HIPAA BAA.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-slate-800/50 py-8 px-6">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+        <div class="text-slate-600 text-sm">Speed of Trust &mdash; building@speedoftrust.ai</div>
+        <div class="text-slate-600 text-sm">Sovereign Legal Transducer v1.0 &mdash; SLT-FINAL-02</div>
+    </div>
+</footer>
+
+</body>
+</html>
