@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 4 Product Intelligence Suite</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               max-width: 800px; margin: 0 auto; padding: 2rem; line-height: 1.6; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 0.2rem 0.4rem; }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Phase 4 Product Intelligence Suite</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#e0e0e0;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
+.film-grain{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");z-index:9999}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.12;pointer-events:none;z-index:0}
+.orb-1{width:600px;height:600px;background:radial-gradient(circle,#00e5ff,transparent);top:-200px;right:-100px}
+.orb-2{width:500px;height:500px;background:radial-gradient(circle,#7c3aed,transparent);bottom:-150px;left:-100px}
+.orb-3{width:400px;height:400px;background:radial-gradient(circle,#06b6d4,transparent);top:50%;left:50%;transform:translate(-50%,-50%)}
+.container{max-width:1100px;margin:0 auto;padding:40px 24px;position:relative;z-index:1}
+.hero{text-align:center;margin-bottom:60px;padding:60px 0 40px}
+.hero h1{font-size:2.8rem;font-weight:800;background:linear-gradient(135deg,#00e5ff 0%,#fff 50%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px;line-height:1.1}
+.hero .subtitle{font-size:1.15rem;color:#94a3b8;max-width:700px;margin:0 auto 24px;line-height:1.6}
+.hero .stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.stat{text-align:center}
+.stat .num{font-size:2.2rem;font-weight:800;color:#00e5ff}
+.stat .label{font-size:.75rem;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+.section-title{font-size:1.4rem;font-weight:700;color:#fff;margin:48px 0 20px;padding-left:16px;border-left:3px solid #00e5ff}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px;backdrop-filter:blur(12px);transition:all .3s ease;position:relative;overflow:hidden;text-decoration:none;display:block;color:inherit}
+.card:hover{border-color:rgba(0,229,255,.3);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,229,255,.08)}
+.card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,229,255,.03),transparent);transition:left .6s ease}
+.card:hover::after{left:100%}
+.card .product-badge{display:inline-block;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border-radius:20px;margin-bottom:14px}
+.badge-vox{background:rgba(0,229,255,.12);color:#00e5ff}
+.badge-coach{background:rgba(168,85,247,.12);color:#a855f7}
+.badge-funnel{background:rgba(34,197,94,.12);color:#22c55e}
+.badge-leadgen{background:rgba(251,191,36,.12);color:#fbbf24}
+.badge-agency{background:rgba(251,146,60,.12);color:#fb923c}
+.badge-diligence{background:rgba(56,189,248,.12);color:#38bdf8}
+.badge-session{background:rgba(148,163,184,.12);color:#94a3b8}
+.card h3{font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3}
+.card p{font-size:.85rem;color:#94a3b8;line-height:1.6;margin-bottom:14px}
+.card .meta{display:flex;gap:16px;flex-wrap:wrap;font-size:.72rem;color:#64748b}
+.card .meta span{display:flex;align-items:center;gap:4px}
+.imp-10{border-left:3px solid #00e5ff}
+.imp-9{border-left:3px solid #a855f7}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);margin:48px 0}
+.footer{text-align:center;padding:40px 0;color:#475569;font-size:.75rem}
+.footer a{color:#00e5ff;text-decoration:none}
+.stack-visual{display:flex;flex-direction:column;gap:4px;margin:32px auto;max-width:600px}
+.stack-bar{height:36px;border-radius:8px;display:flex;align-items:center;padding:0 16px;font-size:.75rem;font-weight:600;color:#fff;position:relative;overflow:hidden}
+.bar-10{background:linear-gradient(90deg,#00e5ff,#0891b2);width:100%}
+.bar-9{background:linear-gradient(90deg,#7c3aed,#6d28d9);width:85%}
+.bar-8{background:linear-gradient(90deg,#059669,#047857);width:65%}
+.bar-7{background:linear-gradient(90deg,#475569,#334155);width:45%}
+.note{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);border-radius:12px;padding:20px 24px;margin:32px 0;font-size:.9rem;color:#94a3b8;line-height:1.6}
+.note strong{color:#00e5ff}
+.note code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;font-size:.85em}
+@media(max-width:640px){.hero h1{font-size:1.8rem}.card-grid{grid-template-columns:1fr}.hero .stats{gap:20px}}
+</style>
+</head>
+<body>
+<div class="film-grain"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="container">
+  <div class="hero">
+    <h1>Phase 4 Product Intelligence Suite</h1>
+    <p class="subtitle">6 revenue products. 50+ extracted frameworks. 24,000 lines deep-read from source transcripts. Each spec maps MIG memories to implementation-ready blueprints with code paths, architecture diagrams, and verification rubrics.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">6</div><div class="label">Product Specs</div></div>
+      <div class="stat"><div class="num">50+</div><div class="label">MIG Memories</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Importance 10</div></div>
+      <div class="stat"><div class="num">44</div><div class="label">Implementation Tasks</div></div>
+    </div>
+    <div class="stack-visual" style="margin-top:40px">
+      <div class="stack-bar bar-10">IMP 10 — Agent Vox Architecture + Criteria Engine + Language Pipeline</div>
+      <div class="stack-bar bar-9">IMP 9 — 14 structural frameworks (Cleveland, Welch, Schwartz, Phillips, Brunson)</div>
+      <div class="stack-bar bar-8">IMP 8 — 12 operational tools (nested loops, state amplification, cross-encoder)</div>
+      <div class="stack-bar bar-7">IMP 7 — 16 supporting knowledge (graph staleness, ontology, evaluation rubrics)</div>
+    </div>
+  </div>
+  <div class="note"><strong>Full specs with code examples and architecture diagrams:</strong> Pull <code>main</code> and open files in <code>docs/plans/</code> and <code>docs/agent-vox/</code>. This page is the overview.</div>
+  <div class="section-title">Product Specs</div>
+  <div class="card-grid">
+    <div class="card imp-10">
+      <span class="product-badge badge-vox">Agent Vox SaaS</span>
+      <h3>Conversation Intelligence Spec</h3>
+      <p>3-layer architecture: CriteriaEngine + 5-Phase State Machine + LanguageLayer. Phase-specific system prompts for Frame → Diagnose → Redirect → Handle → Discover. Schwartz→stage mapping. The complete conversation engine.</p>
+      <div class="meta"><span>8 tasks</span><span>324 lines</span><span>3 imp-10 memories</span></div>
+    </div>
+    <div class="card imp-9">
+      <span class="product-badge badge-coach">AI Sales Coach</span>
+      <h3>Coaching Intelligence Spec</h3>
+      <p>Replaces generic coaching hints with extraction-informed intelligence per call phase. Welch 16-step diagnostic, 6-dimension evaluation rubric, ScenarioGenerator with configurable difficulty. Maps to existing coaching_engine.py (143 tests).</p>
+      <div class="meta"><span>7 tasks</span><span>230 lines</span><span>Prereq: activation blockers</span></div>
+    </div>
+    <div class="card imp-9">
+      <span class="product-badge badge-funnel">Funnel + Pitch</span>
+      <h3>Content Intelligence Spec</h3>
+      <p>4-layer content generation: input → research → template → story → output. Brunson 12-step landing page, Feldman 7-step email, Schwartz awareness adaptation, ABCDOs pitch coaching guide generator.</p>
+      <div class="meta"><span>6 tasks</span><span>195 lines</span><span>FunnelContentGenerator class</span></div>
+    </div>
+    <div class="card imp-9">
+      <span class="product-badge badge-leadgen">AI Lead Gen</span>
+      <h3>Lead Gen Intelligence Spec</h3>
+      <p>Clay-to-Campaign 10-stage automated pipeline. Client onboarding via Offer One-Sheeter wizard. Customer-mimic subject lines. 7-step cold + nurture + reactivation sequences. Revenue math backward planner.</p>
+      <div class="meta"><span>8 tasks</span><span>240 lines</span><span>19 Feldman techniques</span></div>
+    </div>
+    <div class="card imp-9">
+      <span class="product-badge badge-agency">AI Automation Agency</span>
+      <h3>Agency Playbook Spec</h3>
+      <p>Ryan Stewart 5 Pillars: Positioning → Productization → Service Mastery → Acquisition → Sales. Scorecard Analysis selling tool. Automation template library per vertical. Revenue milestones and plateau diagnosis.</p>
+      <div class="meta"><span>7 tasks</span><span>210 lines</span><span>80% proposal close rate</span></div>
+    </div>
+    <div class="card imp-9">
+      <span class="product-badge badge-diligence">AI Due Diligence</span>
+      <h3>Due Diligence Intelligence Spec</h3>
+      <p>Wires into existing Nate Palmas platform (85% built). VC Return Math calculator, Cap Table 5-flag auto-scorer, SAFE Stacking Analyzer, PE metrics + J-curve visualization, carried interest waterfall model.</p>
+      <div class="meta"><span>8 tasks</span><span>172 lines</span><span>Django/DRF integration</span></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section-title">The Three Load-Bearing Walls (Importance 10)</div>
+  <div class="card-grid">
+    <div class="card imp-10">
+      <h3>1. Agent Vox Conversation Architecture</h3>
+      <p><strong style="color:#00e5ff">Welch diagnose</strong> (what chain is the prospect running?) → <strong style="color:#00e5ff">Cleveland redirect</strong> (chunk up to emotional anchor, down to solution) → <strong style="color:#00e5ff">Unicorn discover</strong> (lead prospect to self-realize). The conversation FLOW.</p>
+      <div class="meta"><span>Sources: Cleveland + Welch + Unicorn synthesis</span></div>
+    </div>
+    <div class="card imp-10">
+      <h3>2. Criteria Elicitation Engine</h3>
+      <p><strong style="color:#00e5ff">"What's important about [X]?"</strong> ×3 to climb meta levels. Each level up controls everything below. Direction detection (towards/away). Softening phrases. The ELICITATION engine that powers discovery.</p>
+      <div class="meta"><span>Source: Cleveland SOT Lesson 1 Criteria (1,120 lines)</span></div>
+    </div>
+    <div class="card imp-10">
+      <h3>3. Language Generation Pipeline</h3>
+      <p><strong style="color:#00e5ff">Write-Then-Layer</strong> two-pass: generate surface content → layer influence architecture (embedded commands, sensory stacking, nested story structure). The OUTPUT pipeline.</p>
+      <div class="meta"><span>Sources: PF Month 14 + DSCH Module 5a + SOT synthesis</span></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section-title">Session Documentation</div>
+  <div class="card-grid">
+    <div class="card">
+      <span class="product-badge badge-session">Session Report</span>
+      <h3>What Was Done</h3>
+      <p>Full session arc: breadth sprint → self-audit via Lens/Prism → depth correction → crown jewel deep reads. 50+ MIG memories. 24,000 lines deep-read. Key lesson: 5 deep > 29 shallow.</p>
+      <div class="meta"><span>File: docs/extractions/SESSION-REPORT-2026-04-03.md</span></div>
+    </div>
+    <div class="card">
+      <span class="product-badge badge-session">Remaining Work</span>
+      <h3>What's Left (Prioritized)</h3>
+      <p>All 6 products have specs. Remaining: additive Cleveland extraction (~340 files), quality gate on 1,442 Batch D files, PE modeling for Due Diligence depth.</p>
+      <div class="meta"><span>File: docs/extractions/REMAINING-WORK.md</span></div>
+    </div>
+    <div class="card">
+      <span class="product-badge badge-session">How to Use</span>
+      <h3>Finding &amp; Applying Extractions</h3>
+      <p>MIG search queries. Agent Vox 9-step call flow. AI Sales Coach 16-step state machine. Product-specific usage. Quality standards.</p>
+      <div class="meta"><span>File: docs/extractions/HOW-TO-USE-EXTRACTIONS.md</span></div>
+    </div>
+  </div>
+  <div class="footer">
+    <p>MERIDIAN — Phase 4 Product Intelligence Suite — Generated 2026-04-04</p>
+    <p style="margin-top:8px">3,062 transcripts → 50+ MIG memories → 6 product specs → 44 implementation tasks</p>
+  </div>
+</div>
+</body>
+</html>
+</body>
+</html>
