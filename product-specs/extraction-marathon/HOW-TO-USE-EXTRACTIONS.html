@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Phase 3 Extractions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#how-to-use-the-phase-3-extractions" class="toc-link">How to Use the Phase 3 Extractions</a>
+<a href="#quick-start" class="toc-link depth-2">Quick Start</a>
+<a href="#the-three-importance-10-memories" class="toc-link depth-2">The Three Importance-10 Memories</a>
+<a href="#1-conversation-architecture-the-flow" class="toc-link depth-3">1. Conversation Architecture (the FLOW)</a>
+<a href="#2-criteria-elicitation-the-engine" class="toc-link depth-3">2. Criteria Elicitation (the ENGINE)</a>
+<a href="#3-language-generation-pipeline-the-output" class="toc-link depth-3">3. Language Generation Pipeline (the OUTPUT)</a>
+<a href="#product-specific-usage" class="toc-link depth-2">Product-Specific Usage</a>
+<a href="#agent-vox-saas" class="toc-link depth-3">Agent Vox SaaS</a>
+<a href="#ai-sales-coach-trainer" class="toc-link depth-3">AI Sales Coach / Trainer</a>
+<a href="#ai-due-diligence-platform" class="toc-link depth-3">AI Due Diligence Platform</a>
+<a href="#ai-lead-gen-service" class="toc-link depth-3">AI Lead Gen Service</a>
+<a href="#funnel-pitch-services" class="toc-link depth-3">Funnel + Pitch Services</a>
+<a href="#ai-automation-agency" class="toc-link depth-3">AI Automation Agency</a>
+<a href="#file-locations" class="toc-link depth-2">File Locations</a>
+<a href="#extraction-quality-standards" class="toc-link depth-2">Extraction Quality Standards</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="how-to-use-the-phase-3-extractions">How to Use the Phase 3 Extractions</h1>
+<h2 id="quick-start">Quick Start</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #3D7B7B; font-style: italic"># The three load-bearing walls (importance 10)</span>
+mig_recall(importance_min<span style="color: #666">=10</span>)
+
+<span style="color: #3D7B7B; font-style: italic"># All structural frameworks (importance 9+)</span>
+mig_recall(importance_min<span style="color: #666">=9</span>)
+
+<span style="color: #3D7B7B; font-style: italic"># Search by framework name</span>
+mig_search(<span style="color: #BA2121">&quot;criteria elicitation cleveland&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;embedded directive construction&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;multiple embedded stories&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;agent vox conversation architecture&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;agent vox language generation pipeline&quot;</span>)
+
+<span style="color: #3D7B7B; font-style: italic"># Search by product</span>
+mig_search(<span style="color: #BA2121">&quot;agent vox&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;AI sales coach&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;cold email&quot;</span>)
+mig_search(<span style="color: #BA2121">&quot;due diligence&quot;</span>)
+</code></pre></div>
+
+<hr />
+<h2 id="the-three-importance-10-memories">The Three Importance-10 Memories</h2>
+<p>These form a complete stack. Each answers a different question.</p>
+<h3 id="1-conversation-architecture-the-flow">1. Conversation Architecture (the FLOW)</h3>
+<p><strong>Search</strong>: <code>mig_search("welch diagnose cleveland redirect unicorn discover")</code></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>WHAT QUESTION DOES IT ANSWER?
+&quot;In what order do I run the conversation?&quot;
+
+THE SEQUENCE:
+Step 1: WELCH DIAGNOSE
+  → Identify what emotional chain the prospect is already running
+  → Use subset of 16-step coaching sequence
+  → Key question: &quot;When was the first time you felt [this problem]?&quot;
+
+Step 2: CLEVELAND REDIRECT  
+  → Chunk UP to the prospect&#39;s abstract criteria (security, freedom)
+  → Anchor the emotion attached to that criteria
+  → Chunk DOWN: redefine what that criteria means → your product
+
+Step 3: UNICORN DISCOVER
+  → Lead the prospect to realize the connection themselves
+  → Ask questions that connect dots — don&#39;t tell
+  → Use isomorphic metaphor: third-person story that mirrors their situation
+</code></pre></div>
+
+<h3 id="2-criteria-elicitation-the-engine">2. Criteria Elicitation (the ENGINE)</h3>
+<p><strong>Search</strong>: <code>mig_search("criteria elicitation construction manual")</code></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>WHAT QUESTION DOES IT ANSWER?
+&quot;How do I find out what the prospect actually wants?&quot;
+
+THE PATTERN:
+  &quot;What&#39;s important about [context]?&quot; → Level 1 (what they think they want)
+  &quot;What&#39;s important about [their answer]?&quot; → Level 2 (one meta level up)
+  &quot;What&#39;s important about [that]?&quot; → Level 3 (values — controls everything below)
+
+RULES:
+  - Each level UP controls everything below it
+  - Listen for towards/away polarity (&quot;I don&#39;t want to be broke&quot; = away-from)
+  - Soften with: &quot;I&#39;m curious...&quot; / &quot;Tell me more&quot; / &quot;Why now?&quot;
+  - NEVER tell them their criteria. Get THEM to tell you.
+  - Listen for EMPHASIS — start questioning from the emphasized item
+</code></pre></div>
+
+<h3 id="3-language-generation-pipeline-the-output">3. Language Generation Pipeline (the OUTPUT)</h3>
+<p><strong>Search</strong>: <code>mig_search("agent vox language generation pipeline")</code></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>WHAT QUESTION DOES IT ANSWER?
+&quot;How does the AI construct its responses?&quot;
+
+TWO-PASS ARCHITECTURE (Write-Then-Layer):
+  PASS 1 — SURFACE: Generate conversational content
+    - The story, the pitch, the response
+    - Must be genuine, emotionally invested, structurally sound
+    - Follows nested story structure when multi-turn
+
+  PASS 2 — DEEP STRUCTURE: Layer in influence architecture
+    - Embedded commands: 2-4 words, present tense, targeting elicited criteria
+    - Analogical marking: tone shifts in voice synthesis (pause + deeper + volume)
+    - Sensory stacking: visual + auditory + kinesthetic language
+    - Command sequence: emotional commands first, action commands later
+    - Pattern density: sustained commands across conversation (not one-off)
+
+FOR WRITTEN CHANNELS (email, chat):
+  Mark commands with subtle visual differentiation (bold, ellipsis, slight font change)
+</code></pre></div>
+
+<hr />
+<h2 id="product-specific-usage">Product-Specific Usage</h2>
+<h3 id="agent-vox-saas">Agent Vox SaaS</h3>
+<p><strong>Ready for Phase 4.</strong> The 3 imp-10 memories ARE the conversation engine spec.</p>
+<p>Call flow:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>1. Pillar 1 frame-setting (Unicorn) → establish authority, get buy-in
+2. Criteria elicitation (SOT) → &quot;What&#39;s important about [their problem]?&quot; x3
+3. Direction detection → towards or away-from?
+4. Isomorphic metaphor (DSCH) → tell structurally-mirrored success story
+5. Criteria chunking (DSCH) → redirect their criteria toward your solution
+6. Nested loops (DSCH-5a) → stack emotional states around pitch
+7. Embedded directives (PF) → layer commands in Write-Then-Layer format
+8. ABCDOs Counter (Phillips) → when they object, counter with story not specs
+9. Unicorn discovery → lead them to self-realize
+</code></pre></div>
+
+<p>Supporting data:<br />
+- <code>data/sales/belfort-rebuttals.json</code> — 312 rebuttals for objection handling<br />
+- Schwartz awareness levels — ad targeting per awareness stage<br />
+- 12-step sales page flow — landing page copy</p>
+<h3 id="ai-sales-coach-trainer">AI Sales Coach / Trainer</h3>
+<p><strong>Ready for Phase 4.</strong> The Welch 16-step sequence IS the coaching state machine.</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>DIAGNOSTIC PHASE (Steps 1-9):
+  1. &quot;When was the first time you felt [X]?&quot;
+  2. &quot;How&#39;d that make you feel?&quot;
+  3. &quot;Take me deeper on the feeling&quot;
+  4. &quot;Did you have to work harder?&quot;
+  5. &quot;Do you struggle with that today?&quot;
+  6. &quot;What choices does it cause you to make?&quot;
+  7. &quot;Anything else?&quot;
+  8. &quot;Project these choices — what outcomes?&quot;
+  9. Mirror the full causal chain back
+
+REPROGRAMMING PHASE (Steps 10-16):
+  10. &quot;Why did they pay you $[amount]?&quot;
+  11. &quot;Turn the story into a principle&quot;
+  12. &quot;Can you get them the result? How?&quot;
+  13. &quot;You can bail yourself out — true or false?&quot;
+  14. &quot;Where are you right now physically?&quot;
+  15. &quot;How much did you make then vs now?&quot;
+  16. &quot;Progress or table stakes?&quot;
+</code></pre></div>
+
+<p>Evaluation: RAG 5-point rubric (citation, contradiction, incorrect info, conversational quality, info leakage)</p>
+<h3 id="ai-due-diligence-platform">AI Due Diligence Platform</h3>
+<p><strong>Partial — needs more PE/VC extraction.</strong></p>
+<p>Available now:<br />
+- VC Return Math calculator: fund size → management fee → investable → failure rate → required winner multiple → required exit → required ARR<br />
+- Cap Table 5 Red Flags: founder buy-in, dead equity, past investments, option pool, pref stack<br />
+- SAFE Mechanics: pre/post-money traps, stacking danger, MFN<br />
+- PE Fund Entity Map: Investment Fund, GP, Advisor, Related Entities</p>
+<h3 id="ai-lead-gen-service">AI Lead Gen Service</h3>
+<p><strong>Partial — needs Feldman + Markl deep reads.</strong></p>
+<p>Available now:<br />
+- 4 Cold Email Ingredients: sexy offer + receptive audience + lead magnets + volume math<br />
+- 7-Step Email Sequence: progressive value delivery for niche audiences<br />
+- Schwartz 5 Levels: message matching per awareness stage<br />
+- Schwartz Desire Ladder: "so that I can what?" for email copy</p>
+<h3 id="funnel-pitch-services">Funnel + Pitch Services</h3>
+<p><strong>Ready for Phase 4.</strong></p>
+<ul>
+<li>Brunson 12-Step Sales Page Flow: headline → opener loop → credibility → story of discovery → bullets → testimonials → price → stack → guarantee → CTA</li>
+<li>Phillips ABCDOs: 5 story injection techniques (Counters most powerful for sales)</li>
+<li>Storyworthy: story = change over time</li>
+<li>Schwartz Mass Desire: Desire Ladder + Three Layers of Truth + Three Dimensions scoring</li>
+</ul>
+<h3 id="ai-automation-agency">AI Automation Agency</h3>
+<p><strong>Not started.</strong> Markl (523 transcripts) and Jack Roberts exist but not extracted.</p>
+<hr />
+<h2 id="file-locations">File Locations</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>This file</td>
+<td><code>docs/extractions/HOW-TO-USE-EXTRACTIONS.md</code></td>
+</tr>
+<tr>
+<td>Session report</td>
+<td><code>docs/extractions/SESSION-REPORT-2026-04-03.md</code></td>
+</tr>
+<tr>
+<td>Remaining work</td>
+<td><code>docs/extractions/REMAINING-WORK.md</code></td>
+</tr>
+<tr>
+<td>Extraction plan (master)</td>
+<td><code>data/EXTRACTION-PLAN.md</code></td>
+</tr>
+<tr>
+<td>Quality gate script</td>
+<td><code>scripts/transcript-quality-check.sh</code></td>
+</tr>
+<tr>
+<td>Retranscription script</td>
+<td><code>scripts/retranscribe-hallucinated.sh</code></td>
+</tr>
+<tr>
+<td>Transcript data</td>
+<td><code>data/*/transcripts/</code></td>
+</tr>
+<tr>
+<td>Belfort JSON</td>
+<td><code>data/sales/belfort-rebuttals.json</code>, <code>belfort-industry-scripts.json</code></td>
+</tr>
+<tr>
+<td>Audit artifacts</td>
+<td><code>docs/extractions/rag-*.md</code>, <code>knowledge-modelling-*.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="extraction-quality-standards">Extraction Quality Standards</h2>
+<ol>
+<li><strong><code>wc -l</code> before reading</strong> — know the file size</li>
+<li><strong>50%+ read minimum</strong> (100% for named frameworks)</li>
+<li><strong><code>mig_search()</code> before <code>mig_remember()</code></strong> — dedup</li>
+<li><strong>Depth pressure on every extraction</strong> — cross-domain synthesis only comes from depth</li>
+<li><strong>Noise Gate</strong>: "Am I witnessing or generating?"</li>
+<li><strong>If you can't write a full audit artifact, the extraction is too thin</strong></li>
+</ol></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
