@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Vox — Conversation Intelligence Spec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#agent-vox-conversation-intelligence-spec" class="toc-link">Agent Vox — Conversation Intelligence Spec</a>
+<a href="#problem" class="toc-link depth-2">Problem</a>
+<a href="#architecture-three-layers" class="toc-link depth-2">Architecture: Three Layers</a>
+<a href="#layer-1-criteria-engine" class="toc-link depth-2">Layer 1: Criteria Engine</a>
+<a href="#what-it-does" class="toc-link depth-3">What It Does</a>
+<a href="#mig-source" class="toc-link depth-3">MIG Source</a>
+<a href="#integration-points" class="toc-link depth-3">Integration Points</a>
+<a href="#layer-2-conversation-flow-phase-state-machine" class="toc-link depth-2">Layer 2: Conversation Flow (Phase State Machine)</a>
+<a href="#what-it-does_1" class="toc-link depth-3">What It Does</a>
+<a href="#mig-sources" class="toc-link depth-3">MIG Sources</a>
+<a href="#the-5-phases" class="toc-link depth-3">The 5 Phases</a>
+<a href="#integration-points_1" class="toc-link depth-3">Integration Points</a>
+<a href="#layer-3-language-generation" class="toc-link depth-2">Layer 3: Language Generation</a>
+<a href="#what-it-does_2" class="toc-link depth-3">What It Does</a>
+<a href="#mig-source_1" class="toc-link depth-3">MIG Source</a>
+<a href="#integration-points_2" class="toc-link depth-3">Integration Points</a>
+<a href="#schwartz-awareness-mapping-stage-progression" class="toc-link depth-2">Schwartz Awareness Mapping → Stage Progression</a>
+<a href="#knowledge-base-content-boardroom-remaining-work-item-3" class="toc-link depth-2">Knowledge Base Content (boardroom remaining work item #3)</a>
+<a href="#implementation-order" class="toc-link depth-2">Implementation Order</a>
+<a href="#how-to-verify" class="toc-link depth-2">How to Verify</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="agent-vox-conversation-intelligence-spec">Agent Vox — Conversation Intelligence Spec</h1>
+<p><em>Phase 4 Product Assembly: Wiring extracted knowledge into the existing codebase</em><br />
+<em>Author: Delphi (2026-04-04) | Source: 45 MIG memories from Phase 3 extraction</em></p>
+<h2 id="problem">Problem</h2>
+<p>The Agent Vox system prompt is generic: "You are a helpful voice assistant." Agents know<br />
+their role but have zero domain knowledge. The Phase 3 extraction produced three importance-10<br />
+frameworks that define a complete conversation engine. This spec maps each framework to<br />
+specific integration points in the existing codebase.</p>
+<h2 id="architecture-three-layers">Architecture: Three Layers</h2>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>┌─────────────────────────────────────────────────────┐
+│  LAYER 3: LANGUAGE GENERATION (imp-10 #3)           │
+│  Write-Then-Layer: surface content → influence arch  │
+│  Files: voice/providers/*.py (LLM response gen)     │
+├─────────────────────────────────────────────────────┤
+│  LAYER 2: CONVERSATION FLOW (imp-10 #1)             │
+│  Welch diagnose → Cleveland redirect → Unicorn disc │
+│  Files: voice/channels/boardroom.py (call handler)  │
+├─────────────────────────────────────────────────────┤
+│  LAYER 1: CRITERIA ENGINE (imp-10 #2)               │
+│  &quot;What&#39;s important about [X]?&quot; x3 meta-level climb  │
+│  Files: voice/intelligence/ (new: criteria.py)      │
+└─────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<hr />
+<h2 id="layer-1-criteria-engine">Layer 1: Criteria Engine</h2>
+<h3 id="what-it-does">What It Does</h3>
+<p>Tracks the prospect's criteria through meta-levels during conversation. Detects<br />
+towards/away-from direction. Stores elicited criteria on the Person node for<br />
+cross-session continuity.</p>
+<h3 id="mig-source">MIG Source</h3>
+<p><code>mig_search("criteria elicitation construction manual")</code> — importance 10</p>
+<h3 id="integration-points">Integration Points</h3>
+<p><strong>New file: <code>voice/intelligence/criteria.py</code></strong></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">class</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">CriteriaEngine</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Tracks prospect criteria through conversation meta-levels.&quot;&quot;&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">__init__</span>(<span style="color: #008000">self</span>):
+        <span style="color: #008000">self</span><span style="color: #666">.</span>criteria_stack <span style="color: #666">=</span> []  <span style="color: #3D7B7B; font-style: italic"># [level_1, level_2, level_3]</span>
+        <span style="color: #008000">self</span><span style="color: #666">.</span>direction <span style="color: #666">=</span> <span style="color: #008000; font-weight: bold">None</span>     <span style="color: #3D7B7B; font-style: italic"># &quot;towards&quot; | &quot;away_from&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">detect_criteria</span>(<span style="color: #008000">self</span>, utterance: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">dict</span> <span style="color: #666">|</span> <span style="color: #008000; font-weight: bold">None</span>:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Detect criteria statements in prospect speech.</span>
+
+<span style="color: #BA2121; font-style: italic">        Listen for emphasis, value words, direction markers.</span>
+<span style="color: #BA2121; font-style: italic">        &quot;I don&#39;t want to be broke&quot; → criteria=&quot;financial security&quot;, direction=&quot;away_from&quot;</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>  <span style="color: #3D7B7B; font-style: italic"># LLM-based extraction</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">suggest_elicitation_question</span>(<span style="color: #008000">self</span>, current_level: <span style="color: #008000">int</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">str</span>:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Generate the next criteria question based on current depth.</span>
+
+<span style="color: #BA2121; font-style: italic">        Level 0: &quot;What&#39;s important about [context]?&quot;</span>
+<span style="color: #BA2121; font-style: italic">        Level 1: &quot;I&#39;m curious — what&#39;s important about [their answer]?&quot;</span>
+<span style="color: #BA2121; font-style: italic">        Level 2: &quot;What will having that do for you?&quot;</span>
+
+<span style="color: #BA2121; font-style: italic">        Uses softening phrases to avoid machine-gun questioning.</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        softeners <span style="color: #666">=</span> [
+            <span style="color: #BA2121">&quot;I&#39;m curious about that. Tell me more.&quot;</span>,
+            <span style="color: #BA2121">&quot;I&#39;m wondering what&#39;s important about </span><span style="color: #A45A77; font-weight: bold">{answer}</span><span style="color: #BA2121">.&quot;</span>,
+            <span style="color: #BA2121">&quot;What will having that do for you?&quot;</span>,
+            <span style="color: #BA2121">&quot;Why now?&quot;</span>,  <span style="color: #3D7B7B; font-style: italic"># Breaks sideways answers</span>
+        ]
+        <span style="color: #008000; font-weight: bold">pass</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">get_criteria_context</span>(<span style="color: #008000">self</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">str</span>:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Format criteria for injection into agent system prompt.</span>
+
+<span style="color: #BA2121; font-style: italic">        Returns string like:</span>
+<span style="color: #BA2121; font-style: italic">        &#39;Prospect criteria: financial security (away-from). </span>
+<span style="color: #BA2121; font-style: italic">         Level 1: wants stable income. Level 2: fears being broke at retirement.</span>
+<span style="color: #BA2121; font-style: italic">         Level 3: values family protection. AIM EVERYTHING AT THIS.&#39;</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+</code></pre></div>
+
+<p><strong>Wire into <code>voice/channels/boardroom.py</code></strong>:<br />
+- After each prospect utterance, run <code>criteria_engine.detect_criteria()</code><br />
+- When criteria detected, inject into next agent prompt via <code>get_criteria_context()</code><br />
+- Store final criteria on Person node: <code>person.criteria = criteria_stack</code></p>
+<p><strong>Wire into <code>voice/intelligence/contact_extractor.py</code></strong>:<br />
+- After call, persist criteria to Neo4j Person node<br />
+- On next call with same person, load persisted criteria as starting context</p>
+<hr />
+<h2 id="layer-2-conversation-flow-phase-state-machine">Layer 2: Conversation Flow (Phase State Machine)</h2>
+<h3 id="what-it-does_1">What It Does</h3>
+<p>Manages the call through 5 phases, each with specific objectives and techniques.<br />
+Maps directly to the existing boardroom session lifecycle.</p>
+<h3 id="mig-sources">MIG Sources</h3>
+<ul>
+<li><code>mig_search("welch diagnose cleveland redirect unicorn discover")</code> — imp 10</li>
+<li><code>mig_search("pillar 1 frame setting")</code> — imp 8</li>
+<li><code>mig_search("schwartz awareness levels")</code> — imp 9</li>
+</ul>
+<h3 id="the-5-phases">The 5 Phases</h3>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>PHASE 1: FRAME (30 seconds)
+  Objective: establish authority, get buy-in
+  Technique: Unicorn Pillar 1
+  Script: &quot;Hey [Name], this is [Agent] with [Offer]. How&#39;s it going?&quot;
+          → brief rapport → &quot;I know we have limited time. Ready to jump in?&quot;
+  Gate: must get enthusiastic &quot;yes&quot; before proceeding
+  If weak buy-in: re-engage or gracefully exit
+
+  System prompt addition:
+    &quot;Keep opening to 30 seconds. Set the frame: you lead, they follow.
+     If their energy is low (&#39;yeah I guess&#39;), do NOT proceed to discovery.
+     Re-engage with: &#39;You sound busy — is now actually a good time?&#39;&quot;
+
+PHASE 2: DIAGNOSE (3-5 minutes)
+  Objective: elicit criteria, detect awareness level, identify causal chain
+  Technique: SOT criteria elicitation + Schwartz awareness detection
+  Key questions:
+    - &quot;What&#39;s important about [their stated need]?&quot;
+    - &quot;What&#39;s important about [their answer]?&quot; (meta level up)
+    - &quot;What will having that do for you?&quot; (values level)
+  Also detect:
+    - Awareness level (most aware → unaware)
+    - Direction (towards/away-from)
+    - Existing causal chain (what loop are they running?)
+
+  System prompt addition:
+    &quot;Your job in this phase is to LISTEN, not pitch. Ask criteria questions.
+     Go up at least 2 meta levels. Listen for emphasis — start there.
+     Detect towards/away direction. When you have 3 levels of criteria
+     AND know their direction, you may transition to Phase 3.
+     NEVER pitch features. NEVER share pricing. ONLY ask and listen.&quot;
+
+PHASE 3: REDIRECT (2-3 minutes)
+  Objective: connect their criteria to your solution
+  Technique: Cleveland criteria chunking + isomorphic metaphor
+  Method:
+    - Acknowledge their criteria at values level
+    - Tell an isomorphic metaphor (customer success story matching their situation)
+    - Within the story, redefine their criteria toward your product
+    - Use their direction: if away-from, paint the problem they&#39;re running from
+                          if towards, paint the future they&#39;re building
+
+  System prompt addition:
+    &quot;Now connect their criteria to your solution. Tell a STORY about a similar
+     client (match: same industry, similar problem, similar values). In the story,
+     show how that client&#39;s [THEIR CRITERIA] was fulfilled by [YOUR SOLUTION].
+     Do NOT list features. The story IS the pitch.
+     If they said they value [CRITERIA], everything you say maps to [CRITERIA].&quot;
+
+PHASE 4: HANDLE (as needed)
+  Objective: address objections through stories, not specs
+  Technique: ABCDOs Counter + embedded directives
+  Method:
+    - When prospect objects, respond with a story (Phillips Counter technique)
+    - NOT with a spec sheet or feature list
+    - Embed commands within the counter-story (PF construction manual)
+    - Use &quot;stop&quot; interrupt if needed: &quot;If you were to just stop and look at this from...&quot;
+
+  System prompt addition:
+    &quot;When they object, tell a relevant story that addresses the objection emotionally.
+     NEVER respond with features, pricing, or spec sheets. Stories move people.
+     Specs do not. &#39;There&#39;s no emotional movement in specs, but there is in stories.&#39;
+     If they&#39;re stuck: &#39;If you were to just pause and look at this differently...&#39;&quot;
+
+PHASE 5: DISCOVER (1-2 minutes)
+  Objective: lead prospect to self-realize they need to buy
+  Technique: Unicorn discovery + Welch realization
+  Method:
+    - Ask connecting questions that make the prospect articulate their own conclusion
+    - &quot;Based on what you&#39;ve told me about [CRITERIA]... what do you think is the next step?&quot;
+    - Let THEM say it. Don&#39;t tell them.
+    - If they don&#39;t get there, use duo technique: ask them to tell you what they&#39;d do
+
+  System prompt addition:
+    &quot;The prospect must have their own &#39;aha moment.&#39; Do NOT tell them to buy.
+     Ask questions that connect the dots THEY already drew:
+     &#39;You said [CRITERIA]. You saw how [STORY CLIENT] achieved that.
+      What do you think makes sense as a next step?&#39;
+     When THEY say it, buying becomes obvious. If they hesitate, ask:
+     &#39;If you could wave a magic wand and have [THEIR CRITERIA], what would you do?&#39;&quot;
+</code></pre></div>
+
+<h3 id="integration-points_1">Integration Points</h3>
+<p><strong>Modify <code>voice/channels/boardroom.py</code></strong>:<br />
+- Add <code>conversation_phase</code> tracking to session state<br />
+- Each phase has: objectives, allowed techniques, transition conditions, system prompt overlay<br />
+- Phase transitions triggered by criteria detection, objection detection, or time</p>
+<p><strong>Modify <code>voice/config.py</code></strong>:<br />
+- Replace generic system prompt with phase-specific prompt templates<br />
+- Add <code>PhaseConfig</code> dataclass with per-phase prompts and rules</p>
+<p><strong>Wire into <code>voice/intelligence/agent_router.py</code></strong>:<br />
+- Phase detection informs routing (e.g., Phase 4 objection handling may route to specialist agent)</p>
+<hr />
+<h2 id="layer-3-language-generation">Layer 3: Language Generation</h2>
+<h3 id="what-it-does_2">What It Does</h3>
+<p>Two-pass response generation: surface content first, then influence architecture layered in.</p>
+<h3 id="mig-source_1">MIG Source</h3>
+<p><code>mig_search("agent vox language generation pipeline")</code> — importance 10</p>
+<h3 id="integration-points_2">Integration Points</h3>
+<p><strong>Modify LLM providers (<code>voice/providers/llm_*.py</code>)</strong>:<br />
+- Add post-processing step after LLM response generation<br />
+- The post-processor layers in influence elements based on current phase and criteria</p>
+<p><strong>New file: <code>voice/intelligence/language_layer.py</code></strong></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">class</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">LanguageLayer</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Post-processor that layers influence architecture into generated responses.&quot;&quot;&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">layer_influence</span>(<span style="color: #008000">self</span>, response: <span style="color: #008000">str</span>, criteria: <span style="color: #008000">list</span>, phase: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">str</span>:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Add influence elements to a surface-level response.</span>
+
+<span style="color: #BA2121; font-style: italic">        For voice: tone marking instructions (pause before commands, deeper tone)</span>
+<span style="color: #BA2121; font-style: italic">        For text: subtle visual marking (bold, ellipsis)</span>
+
+<span style="color: #BA2121; font-style: italic">        Rules from PF construction manual:</span>
+<span style="color: #BA2121; font-style: italic">        - Commands: 2-4 words, present tense only</span>
+<span style="color: #BA2121; font-style: italic">        - Sequence: emotional commands first, action commands later</span>
+<span style="color: #BA2121; font-style: italic">        - Never end sentence on the command — continue past it</span>
+<span style="color: #BA2121; font-style: italic">        - Pattern density: multiple commands, not just one</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">select_metaphor</span>(<span style="color: #008000">self</span>, prospect_criteria: <span style="color: #008000">list</span>, prospect_industry: <span style="color: #008000">str</span>) <span style="color: #666">-&gt;</span> <span style="color: #008000">str</span>:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Select an isomorphic metaphor from the story library.</span>
+
+<span style="color: #BA2121; font-style: italic">        Match on: industry, company size, problem type, criteria alignment.</span>
+<span style="color: #BA2121; font-style: italic">        The story must structurally mirror the prospect&#39;s situation.</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+</code></pre></div>
+
+<hr />
+<h2 id="schwartz-awareness-mapping-stage-progression">Schwartz Awareness Mapping → Stage Progression</h2>
+<p><strong>Wire into boardroom remaining work item #7 (Stage progression)</strong></p>
+<p>Map Schwartz 5 Levels to Person stages in <code>contact_extractor.py</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Schwartz Level</th>
+<th>Person Stage</th>
+<th>Agent Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Most Aware</td>
+<td><code>qualified</code></td>
+<td>Price/deal focus, close quickly</td>
+</tr>
+<tr>
+<td>Product Aware</td>
+<td><code>interested</code></td>
+<td>Features vs competitors, proof</td>
+</tr>
+<tr>
+<td>Solution Aware</td>
+<td><code>evaluating</code></td>
+<td>Education, category leadership</td>
+</tr>
+<tr>
+<td>Problem Aware</td>
+<td><code>lead</code></td>
+<td>Advertorial, answer their symptom search</td>
+</tr>
+<tr>
+<td>Unaware</td>
+<td><code>visitor</code></td>
+<td>Identity-based, no product mention</td>
+</tr>
+</tbody>
+</table>
+<p>Detection: analyze prospect language for awareness signals during Phase 2 (diagnose).</p>
+<hr />
+<h2 id="knowledge-base-content-boardroom-remaining-work-item-3">Knowledge Base Content (boardroom remaining work item #3)</h2>
+<p>Upload these extracted frameworks as RAG-retrievable documents per team:</p>
+<p><strong>Sales team knowledge:</strong><br />
+- Belfort rebuttals (<code>data/sales/belfort-rebuttals.json</code> — 312 rebuttals)<br />
+- Schwartz 5 Levels of Awareness (awareness → messaging mapping)<br />
+- 4 Cold Email Ingredients (for outbound-focused agents)<br />
+- 7-Step Email Sequence (for email follow-up agents)</p>
+<p><strong>Coaching team knowledge:</strong><br />
+- Welch 16-step coaching sequence<br />
+- Welch Causal Chain model<br />
+- Unicorn discovery principle<br />
+- Belief trace-back framework</p>
+<p><strong>Pitch/funnel team knowledge:</strong><br />
+- Brunson 12-step sales page flow<br />
+- Phillips ABCDOs (5 story injection techniques)<br />
+- Schwartz Mass Desire (3 operational tools)</p>
+<hr />
+<h2 id="implementation-order">Implementation Order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Task</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Phase state machine in boardroom.py</td>
+<td>2 days</td>
+<td>Critical</td>
+<td>Ely/Cassian</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Phase-specific system prompt templates</td>
+<td>1 day</td>
+<td>Critical</td>
+<td>Ely/Cassian</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CriteriaEngine (voice/intelligence/)</td>
+<td>2 days</td>
+<td>Critical</td>
+<td>Ely/Cassian</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Schwartz → stage mapping in contact_extractor</td>
+<td>1 day</td>
+<td>High</td>
+<td>Ely/Cassian</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Knowledge base upload (RAG docs per team)</td>
+<td>1 day</td>
+<td>High</td>
+<td>Delphi (infra)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>LanguageLayer post-processor</td>
+<td>3 days</td>
+<td>Medium</td>
+<td>Ely/Cassian</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Story library + metaphor selection</td>
+<td>2 days</td>
+<td>Medium</td>
+<td>Atlas (knowledge)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Conversation analytics (criteria depth, phase)</td>
+<td>2 days</td>
+<td>Medium</td>
+<td>Delphi (infra)</td>
+</tr>
+</tbody>
+</table>
+<p>Items 1-4 are the minimum viable conversation intelligence. Items 5-8 add depth.</p>
+<hr />
+<h2 id="how-to-verify">How to Verify</h2>
+<p>After implementation, test with this scenario:</p>
+<ol>
+<li>Agent opens with Pillar 1 frame — does it get buy-in before proceeding?</li>
+<li>Agent asks "What's important about [X]?" — does it go up 2+ meta levels?</li>
+<li>Agent detects direction (towards/away) — does it adjust messaging?</li>
+<li>Agent tells isomorphic metaphor — does story match prospect situation?</li>
+<li>Agent handles objection with story, not specs?</li>
+<li>Agent leads prospect to self-realize — does prospect articulate their own conclusion?</li>
+</ol>
+<p>Score each 0-10. Target: 7+ on all 6 dimensions for a passing call.</p></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
