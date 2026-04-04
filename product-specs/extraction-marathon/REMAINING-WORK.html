@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 3 Extraction — Remaining Work (Updated 2026-04-04)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#phase-3-extraction-remaining-work-updated-2026-04-04" class="toc-link">Phase 3 Extraction — Remaining Work (Updated 2026-04-04)</a>
+<a href="#whats-done" class="toc-link depth-2">What's Done</a>
+<a href="#what-remains-by-priority" class="toc-link depth-2">What Remains (by priority)</a>
+<a href="#priority-1-phase-4-product-assembly-ready-now-3-of-6-products" class="toc-link depth-3">Priority 1: Phase 4 Product Assembly (READY NOW — 3 of 6 products)</a>
+<a href="#priority-2-remaining-extraction-additive-not-foundational" class="toc-link depth-3">Priority 2: Remaining Extraction (additive, not foundational)</a>
+<a href="#priority-3-products-needing-more-extraction-before-phase-4" class="toc-link depth-3">Priority 3: Products Needing More Extraction Before Phase 4</a>
+<a href="#priority-4-infrastructure-tasks" class="toc-link depth-3">Priority 4: Infrastructure Tasks</a>
+<a href="#extraction-quality-standards" class="toc-link depth-2">Extraction Quality Standards</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="phase-3-extraction-remaining-work-updated-2026-04-04">Phase 3 Extraction — Remaining Work (Updated 2026-04-04)</h1>
+<h2 id="whats-done">What's Done</h2>
+<p>The Agent Vox conversation engine is <strong>fully specified</strong> in MIG with 3 importance-10<br />
+memories (architecture, elicitation, language generation) and 14 importance-9 supporting<br />
+frameworks. Three of six revenue products have complete extraction coverage for Phase 4.</p>
+<h2 id="what-remains-by-priority">What Remains (by priority)</h2>
+<hr />
+<h3 id="priority-1-phase-4-product-assembly-ready-now-3-of-6-products">Priority 1: Phase 4 Product Assembly (READY NOW — 3 of 6 products)</h3>
+<p>These products have all their foundational frameworks extracted. Phase 4 = wire<br />
+extracted knowledge into actual product specs, data structures, and code.</p>
+<p><strong>Agent Vox SaaS</strong> — READY<br />
+- Architecture: Welch diagnose → Cleveland redirect → Unicorn discover (imp 10)<br />
+- Elicitation: "What's important about [X]?" x3 criteria climbing (imp 10)<br />
+- Language: Write-Then-Layer two-pass generation (imp 10)<br />
+- Supporting: isomorphic metaphor, criteria chunking, nested loops, embedded directives,<br />
+  Pillar 1 frame-setting, ABCDOs counters<br />
+- Data: <code>data/sales/belfort-rebuttals.json</code> (312 rebuttals)<br />
+- <strong>Next</strong>: build conversation state machine spec, define LLM prompt templates per conversation phase</p>
+<p><strong>AI Sales Coach</strong> — READY<br />
+- Coaching engine: Welch 16-step question sequence (imp 9)<br />
+- Diagnostic: Welch Causal Chain model (imp 9)<br />
+- Discovery: Unicorn prospect-driven discovery (imp 9)<br />
+- Supporting: belief trace-back, physical state amplification, mastery identity shift<br />
+- <strong>Next</strong>: define training scenario generator, build evaluation rubric from RAG 5-point framework</p>
+<p><strong>Funnel + Pitch Services</strong> — READY<br />
+- Copy: Brunson 12-step sales page flow (imp 9)<br />
+- Story: Phillips ABCDOs complete (imp 9), Storyworthy change principle<br />
+- Market: Schwartz 5 Levels + Mass Desire 3 tools (imp 9)<br />
+- <strong>Next</strong>: build copy template engine, define funnel type → template mapping</p>
+<hr />
+<h3 id="priority-2-remaining-extraction-additive-not-foundational">Priority 2: Remaining Extraction (additive, not foundational)</h3>
+<p>These extractions would enrich existing products but are NOT blockers for Phase 4.</p>
+<p><strong>Cleveland corpus — 340+ remaining transcripts</strong><br />
+- Crown jewels extracted: DSCH Day 1 (27 techniques), DSCH Module 5a (20 techniques),<br />
+  PF Month 14 (26 techniques), SOT Criteria (complete pattern)<br />
+- <strong>Still valuable</strong>: <code>darkside-advanced-hypnosis-2-final.txt</code> (3,856 lines, PASS),<br />
+<code>darkside-advanced-hypnosis-5-final.txt</code> (2,817 lines, PASS),<br />
+<code>neuro-unm-video-2-erickson.txt</code> (9,158 lines, PASS — Erickson neuro modelling),<br />
+<code>pf-1-21-02-busting-fuzzy-language.txt</code> (4,625 lines, PASS)<br />
+- <strong>Method</strong>: agent deep-read per file, then depth pressure + MIG storage<br />
+- <strong>Effort</strong>: 2-3 sessions for top 5-6 files<br />
+- <strong>Yield</strong>: incremental techniques (not new architectures)</p>
+<p><strong>Welch — 64 remaining transcripts</strong><br />
+- Core extracted: belief reprogramming, 16-step sequence, causal chain, RAS programming<br />
+- <strong>Still valuable</strong>: <code>inbound-*</code> files (closing patterns), <code>offer-*</code> (offer construction)<br />
+- <strong>Effort</strong>: 1-2 sessions</p>
+<p><strong>Unicorn Closer — 43 remaining transcripts</strong><br />
+- Core extracted: discovery principle, Pillar 1 frame-setting<br />
+- <strong>Still valuable</strong>: Pillars 2-4, role play breakdowns, call reviews<br />
+- <strong>Effort</strong>: 1 session</p>
+<p><strong>Phillips Presentation — 250 remaining transcripts</strong><br />
+- Core extracted: ABCDOs complete<br />
+- <strong>Still valuable</strong>: 110 communication steps (each a numbered transcript)<br />
+- <strong>Method</strong>: batch agent reads of top 20 by line count<br />
+- <strong>Effort</strong>: 2-3 sessions</p>
+<hr />
+<h3 id="priority-3-products-needing-more-extraction-before-phase-4">Priority 3: Products Needing More Extraction Before Phase 4</h3>
+<p><strong>AI Lead Gen Service</strong> — PARTIAL<br />
+- Have: 4 cold email ingredients, 7-step sequence, Schwartz awareness levels<br />
+- Need: deeper Feldman extraction (482 transcripts now, read 2), Clay.com workflows,<br />
+  automation templates from Markl (523 transcripts, read 0)<br />
+- <strong>Blocker</strong>: Feldman and Markl are Batch D output — need quality gate first<br />
+- <strong>Effort</strong>: 2-3 sessions of targeted extraction</p>
+<p><strong>AI Due Diligence Platform</strong> — PARTIAL<br />
+- Have: VC return math, cap table red flags, SAFE mechanics, PE fund structure<br />
+- Need: more PE/VC modeling transcripts, Nate Palmas platform review<br />
+- <strong>Effort</strong>: 1-2 sessions</p>
+<p><strong>AI Automation Agency</strong> — NOT STARTED<br />
+- Have: nothing extracted yet<br />
+- Need: Markl AI Automations (523 transcripts from Batch D), Jack Roberts<br />
+- <strong>Blocker</strong>: transcripts exist but not quality-gated or extracted<br />
+- <strong>Effort</strong>: 2-3 sessions</p>
+<hr />
+<h3 id="priority-4-infrastructure-tasks">Priority 4: Infrastructure Tasks</h3>
+<p><strong>Retranscription cleanup</strong> — 30 files still unmapped<br />
+- 18/48 severe retranscribed (fixed after stdin bug fix)<br />
+- 30 remaining at <code>/tmp/severe-retranscribe-remaining.txt</code><br />
+- 11 need manual source path resolution (different naming conventions)</p>
+<p><strong>Quality gate on new Batch D output</strong> — 1,442 files not yet gated<br />
+- <code>data/leadgen/</code> (482 files), <code>data/automations/</code> (523), <code>data/sales/</code> (437)<br />
+- Command: <code>bash scripts/transcript-quality-check.sh data/&lt;dir&gt;/transcripts/</code></p>
+<p><strong>Phase 2: PDF Extraction</strong> — ~900 PDFs queued<br />
+- Prompt files ready in <code>config/cursor/pdf_extraction_drive.md</code><br />
+- Method: cursor agent dispatch (mechanical parsing)<br />
+- Key batches: Feldman 384 PDFs, Markl 93, 30-90 Calls 32, CXL 140</p>
+<hr />
+<h2 id="extraction-quality-standards">Extraction Quality Standards</h2>
+<p>From the depth-over-breadth lesson:</p>
+<ol>
+<li><strong>Check <code>wc -l</code> before reading</strong> — know what you're dealing with</li>
+<li><strong>Read 50%+ minimum</strong> (100% for named frameworks)</li>
+<li><strong><code>mig_search()</code> before <code>mig_remember()</code></strong> — dedup check</li>
+<li><strong>Depth pressure pass on every extraction</strong>:</li>
+<li>Systems Thinking: second-order effects, connections to other frameworks</li>
+<li>Inversion: what would a FAILED extraction look like?</li>
+<li>Cross-Domain Transfer: does this connect to another course's framework?</li>
+<li><strong>If you can't write a full audit artifact, the extraction is too thin</strong></li>
+<li><strong>Noise Gate</strong>: "Am I witnessing or generating from the first page?"</li>
+</ol></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
