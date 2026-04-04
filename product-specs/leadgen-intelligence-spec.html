@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Lead Gen Service — Product Intelligence Spec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#ai-lead-gen-service-product-intelligence-spec" class="toc-link">AI Lead Gen Service — Product Intelligence Spec</a>
+<a href="#product-definition" class="toc-link depth-2">Product Definition</a>
+<a href="#architecture-the-clay-to-campaign-pipeline" class="toc-link depth-2">Architecture: The Clay-to-Campaign Pipeline</a>
+<a href="#client-onboarding-offer-one-sheeter-first" class="toc-link depth-2">Client Onboarding: Offer One-Sheeter First</a>
+<a href="#email-sequence-templates" class="toc-link depth-2">Email Sequence Templates</a>
+<a href="#cold-sequence-feldman-7-step" class="toc-link depth-3">Cold Sequence (Feldman 7-Step)</a>
+<a href="#nurture-sequence-post-interest" class="toc-link depth-3">Nurture Sequence (Post-Interest)</a>
+<a href="#reactivation-sequence-gone-cold-3-6-months" class="toc-link depth-3">Reactivation Sequence (Gone Cold 3-6 months)</a>
+<a href="#subject-line-strategy" class="toc-link depth-2">Subject Line Strategy</a>
+<a href="#omni-channel-bridge" class="toc-link depth-2">Omni-Channel Bridge</a>
+<a href="#infrastructure-stack" class="toc-link depth-2">Infrastructure Stack</a>
+<a href="#existing-code-integration" class="toc-link depth-2">Existing Code Integration</a>
+<a href="#implementation-order" class="toc-link depth-2">Implementation Order</a>
+<a href="#verification" class="toc-link depth-2">Verification</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="ai-lead-gen-service-product-intelligence-spec">AI Lead Gen Service — Product Intelligence Spec</h1>
+<p><em>Phase 4: Building the lead generation product from extracted frameworks</em><br />
+<em>Author: Delphi (2026-04-04) | Source: Feldman + Schwartz + Offer One-Sheeter extractions</em></p>
+<h2 id="product-definition">Product Definition</h2>
+<p>An AI-powered lead generation service that automates the entire pipeline from<br />
+raw prospect data to personalized outreach at scale. Clients provide their offer<br />
+and target market; the system delivers qualified, enriched, personalized outreach<br />
+campaigns that book calls.</p>
+<h2 id="architecture-the-clay-to-campaign-pipeline">Architecture: The Clay-to-Campaign Pipeline</h2>
+<p>Source: <code>mig_search("clay-to-campaign pipeline feldman")</code> — imp 9</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>┌─────────────────────────────────────────────────────────┐
+│  STAGE 1: DATA SOURCING                                 │
+│  Apollo / Trusted Leads → raw prospect list (10K+)      │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 2: DEDUPLICATION                                 │
+│  Google Sheet lookup → skip already-enriched leads       │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 3: COMPANY ENRICHMENT                            │
+│  Scrape company URL → description, industry, size        │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 4: ICP QUALIFICATION (4-Filter Gate)             │
+│  Staff count (8-500) → exclude recruiters →              │
+│  exclude agencies → final AND gate                       │
+│  NOTE: Use industry fields, NOT LLM on free text         │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 5: AI QUALIFICATION                              │
+│  LLM reads company data → qualified/disqualified         │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 6: EMAIL VALIDATION                              │
+│  Verify existing email address                           │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 7: EMAIL WATERFALL                               │
+│  If invalid → try 5+ platforms (Hunter, Dropcontact)     │
+│  Recovers ~2x more contactable leads                     │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 8: DEEP ENRICHMENT                               │
+│  Scrape: website + personal LinkedIn + company LinkedIn  │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 9: AI PERSONALIZATION (3 variables)              │
+│  1. Personalized first sentence (from website scrape)    │
+│  2. Target titles the lead is hiring for                 │
+│  3. Company type / industry description                  │
+│  Rule: AI generates FRAGMENTS, not full emails           │
+├─────────────────────────────────────────────────────────┤
+│  STAGE 10: CAMPAIGN INJECTION                           │
+│  Push to Instantly AI / Smartlead → automated sending    │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<p><strong>Key metric</strong>: Of 10K raw leads, only ~40% are worth emailing without this pipeline.<br />
+With pipeline: qualification removes waste, waterfall recovers lost emails, personalization lifts reply rates.</p>
+<h2 id="client-onboarding-offer-one-sheeter-first">Client Onboarding: Offer One-Sheeter First</h2>
+<p>Source: <code>mig_search("offer one-sheeter creation framework")</code> — imp 9</p>
+<p>Before any lead gen runs, the client must have their offer dialed in. The onboarding<br />
+flow uses the Offer One-Sheeter framework:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>Step 1: THREE P&#39;s WORKSHOP (30 min)
+  - Problem: What specific pain points does your market have?
+  - Promise: What&#39;s the desired future state? (&quot;Sell the future, not the features&quot;)
+  - Process: What are your 3-5 logical steps from A to B?
+
+Step 2: DREAM CLIENT IDENTIFICATION
+  - Who do you LOVE working with?
+  - Who can you get RESULTS for?
+  - Who can PAY you?
+  → If all three don&#39;t overlap, refine before proceeding.
+
+Step 3: OFFER NAMING
+  Rule: &quot;Tell them the exact result in the fewest words possible&quot;
+  Bad: &quot;Digital Marketing Accelerator Program&quot;
+  Good: &quot;30 Leads in 30 Days&quot;
+
+Step 4: REVENUE MATH (backward from target)
+  $1M target → 100 sales at $10K → 400 calls at 25% close
+  → 500 booked at 80% show → 10,000 leads at 5% opt-in
+  → Monthly: 833 leads → daily: 28 leads
+
+Step 5: AWARENESS-LEVEL MESSAGING (per Schwartz)
+  Map the offer to each awareness level:
+  - Most Aware: &quot;Last 10 spots at $X&quot;
+  - Product Aware: &quot;Why [Product] vs [Competitor]&quot;
+  - Solution Aware: &quot;The 3 types of [Solution]&quot;
+  - Problem Aware: &quot;[Symptom]? Here&#39;s why.&quot;
+  - Unaware: &quot;If you value [Identity], this is for you&quot;
+</code></pre></div>
+
+<h2 id="email-sequence-templates">Email Sequence Templates</h2>
+<h3 id="cold-sequence-feldman-7-step">Cold Sequence (Feldman 7-Step)</h3>
+<p>Source: <code>mig_search("7-step cold email sequence")</code> — imp 8</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>Email 1: Social proof + CTA
+  &quot;I help [avatar] do [result] in [timeframe].&quot;
+
+Email 2: Same-thread bump
+  Short reminder, no new content.
+
+Email 3: Case study / YouTube video
+  Plain YouTube link (NOT embedded/hyperlinked).
+  Give them something to watch.
+
+Email 4: First lead magnet as gift
+  &quot;I have a gift I think you&#39;d appreciate.
+   Our customers usually pay $100-200 for this.&quot;
+
+Email 5: Follow-up on gift + CTA
+  &quot;What&#39;d you think? Pretty cool, huh?
+   If you got value, imagine what else we can do.&quot;
+
+Email 6: Second lead magnet (better than first)
+  Escalate value. Include calendar link.
+
+Email 7: Soft guilt close
+  &quot;Did you get a chance to try it?
+   Either way, I think it&#39;s time to chat.&quot;
+</code></pre></div>
+
+<p><strong>Rules</strong>: Never 3+ emails without providing value. Large audience → stop at 2 emails.<br />
+Small/niche audience → expand to 7 with lead magnets.</p>
+<h3 id="nurture-sequence-post-interest">Nurture Sequence (Post-Interest)</h3>
+<ul>
+<li>10-15 emails over 30-60 days</li>
+<li>Value-first, CTA in PS only</li>
+<li>Goal: get them enjoying your emails → they click the calendar link</li>
+</ul>
+<h3 id="reactivation-sequence-gone-cold-3-6-months">Reactivation Sequence (Gone Cold 3-6 months)</h3>
+<ul>
+<li>3-4 emails over 1 week</li>
+<li>All value, zero selling</li>
+<li>Goal: re-excite, NOT close</li>
+</ul>
+<h2 id="subject-line-strategy">Subject Line Strategy</h2>
+<p>Source: Feldman "Customer-Mimic" framework</p>
+<p>Write subject lines that mimic what the recipient would receive from their own<br />
+customers or internal team. The recipient should think "this could be from a client."</p>
+<p><strong>E-commerce example</strong>: "[Product name] stock status"<br />
+<strong>Agency example</strong>: "Regarding your [city] rankings"<br />
+<strong>SaaS example</strong>: "Integration question about [their tool]"</p>
+<h2 id="omni-channel-bridge">Omni-Channel Bridge</h2>
+<ol>
+<li>Send LinkedIn connection requests (manual or automated)</li>
+<li>When accepted, wait 10-15 minutes</li>
+<li>Send email: "We just connected on LinkedIn. Would love to chat about [X]."</li>
+<li>Feed into email nurture sequence</li>
+</ol>
+<h2 id="infrastructure-stack">Infrastructure Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Warm-up</td>
+<td>Instantly AI or Smartlead</td>
+<td>Domain reputation</td>
+</tr>
+<tr>
+<td>Email verification</td>
+<td>Million Verifier or EmailGuard.io</td>
+<td>Deliverability</td>
+</tr>
+<tr>
+<td>Deliverability monitoring</td>
+<td>EmailGuard.io or Glock Apps</td>
+<td>Placement testing</td>
+</tr>
+<tr>
+<td>Lead data</td>
+<td>Apollo or Trusted Leads</td>
+<td>Raw prospect lists</td>
+</tr>
+<tr>
+<td>Enrichment</td>
+<td>Clay ($350/mo)</td>
+<td>Qualification + personalization</td>
+</tr>
+<tr>
+<td>Volume personalization</td>
+<td>Google Sheets + AI</td>
+<td>When Clay cost isn't justified</td>
+</tr>
+<tr>
+<td>Sending</td>
+<td>Instantly AI or Smartlead</td>
+<td>Campaign management</td>
+</tr>
+<tr>
+<td>CRM</td>
+<td>GoHighLevel or HubSpot</td>
+<td>Lead stage management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="existing-code-integration">Existing Code Integration</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>How It Connects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>voice/telephony/outbound.py</code></td>
+<td>Twilio outbound calling for booked leads</td>
+</tr>
+<tr>
+<td><code>gateway/outbound_scanner.py</code></td>
+<td>Scanning for outbound opportunities</td>
+</tr>
+<tr>
+<td><code>workers/funnel/neo4j_funnel.py</code></td>
+<td>Lead stage tracking in Neo4j</td>
+</tr>
+<tr>
+<td><code>workers/funnel/lead_approval_consumer.py</code></td>
+<td>Lead approval workflow</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-order">Implementation Order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Task</th>
+<th>Effort</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Client onboarding flow (Offer One-Sheeter wizard)</td>
+<td>2 days</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Clay table template (10-stage pipeline)</td>
+<td>2 days</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Email sequence template library (7-step + nurture + reactivation)</td>
+<td>1 day</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Schwartz awareness-level message adaptation</td>
+<td>1 day</td>
+<td>High</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Subject line generator (customer-mimic patterns)</td>
+<td>1 day</td>
+<td>High</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Revenue math calculator (backward from target)</td>
+<td>0.5 day</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Omni-channel bridge (LinkedIn → email)</td>
+<td>1 day</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Dashboard: campaign metrics + lead pipeline</td>
+<td>2 days</td>
+<td>Medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verification">Verification</h2>
+<p>Launch a test campaign for MERIDIAN itself:<br />
+1. Does the Offer One-Sheeter clearly state problem/promise/process?<br />
+2. Does the Clay pipeline qualify correctly (reject non-ICP)?<br />
+3. Are AI personalization fragments natural (not full-AI emails)?<br />
+4. Do subject lines pass the "could be from a customer" test?<br />
+5. Does the 7-step sequence provide value at steps 3, 4, 6?<br />
+6. Does the revenue math backward-plan check out?</p>
+<p>Score each 0-10. Target: 7+ across all dimensions.</p></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
