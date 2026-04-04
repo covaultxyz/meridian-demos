@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sales Coach — Conversation Intelligence Spec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#ai-sales-coach-conversation-intelligence-spec" class="toc-link">AI Sales Coach — Conversation Intelligence Spec</a>
+<a href="#current-state-lens" class="toc-link depth-2">Current State (Lens)</a>
+<a href="#what-changes" class="toc-link depth-2">What Changes</a>
+<a href="#phase-by-phase-coaching-intelligence" class="toc-link depth-2">Phase-by-Phase Coaching Intelligence</a>
+<a href="#opening-unicorn-pillar-1" class="toc-link depth-3">OPENING → Unicorn Pillar 1</a>
+<a href="#discovery-welch-16-step-sot-criteria" class="toc-link depth-3">DISCOVERY → Welch 16-Step + SOT Criteria</a>
+<a href="#presentation-cleveland-isomorphic-metaphor-criteria-chunking" class="toc-link depth-3">PRESENTATION → Cleveland Isomorphic Metaphor + Criteria Chunking</a>
+<a href="#objection_handling-abcdos-counter-cleveland-embedded-directives" class="toc-link depth-3">OBJECTION_HANDLING → ABCDOs Counter + Cleveland Embedded Directives</a>
+<a href="#closing-unicorn-discovery" class="toc-link depth-3">CLOSING → Unicorn Discovery</a>
+<a href="#evaluation-rubric-post-call-debrief" class="toc-link depth-2">Evaluation Rubric (Post-Call Debrief)</a>
+<a href="#training-scenario-generator" class="toc-link depth-2">Training Scenario Generator</a>
+<a href="#integration-points" class="toc-link depth-2">Integration Points</a>
+<a href="#implementation-order" class="toc-link depth-2">Implementation Order</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="ai-sales-coach-conversation-intelligence-spec">AI Sales Coach — Conversation Intelligence Spec</h1>
+<p><em>Phase 4: Wiring extracted knowledge into the existing coaching engine</em><br />
+<em>Author: Delphi (2026-04-04) | Source: MIG Phase 3 extractions</em></p>
+<h2 id="current-state-lens">Current State (Lens)</h2>
+<p>The coaching engine (<code>voice/meeting/coaching_engine.py</code>) is substantial:<br />
+- 143 tests, pattern classifier, session model, debrief, prep, replay<br />
+- 5 call phases already defined: opening, discovery, presentation, objection_handling, closing<br />
+- Phase triggers: keyword-based detection<br />
+- Phase coaching hints: <strong>GENERIC</strong> — "dig deeper into their pain"</p>
+<p><strong>Blocker</strong>: Routes not mounted in <code>voice/app.py</code> (see <code>docs/plans/coach-activation-plan.md</code> v2).<br />
+Fix B1-B6 and C1-C4 FIRST, then apply intelligence below.</p>
+<h2 id="what-changes">What Changes</h2>
+<p>Replace generic <code>PHASE_COACHING_HINTS</code> with extraction-informed coaching intelligence.<br />
+The coach doesn't just tell the trainee "dig deeper" — it tells them EXACTLY what question<br />
+to ask and WHY, based on the frameworks that produced importance-10 memories.</p>
+<hr />
+<h2 id="phase-by-phase-coaching-intelligence">Phase-by-Phase Coaching Intelligence</h2>
+<h3 id="opening-unicorn-pillar-1">OPENING → Unicorn Pillar 1</h3>
+<p><strong>Current hint</strong>: <code>"Early call — focus on rapport and understanding their situation."</code></p>
+<p><strong>Replace with</strong>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>PHASE_COACHING_HINTS <span style="color: #666">=</span> {
+    <span style="color: #BA2121">&quot;opening&quot;</span>: {
+        <span style="color: #BA2121">&quot;objective&quot;</span>: <span style="color: #BA2121">&quot;Set the frame in 30 seconds. You lead, they follow.&quot;</span>,
+        <span style="color: #BA2121">&quot;technique&quot;</span>: <span style="color: #BA2121">&quot;Pillar 1: greet → brief rapport (one-word location) → &#39;I know we have limited time. Ready to jump in?&#39;&quot;</span>,
+        <span style="color: #BA2121">&quot;watch_for&quot;</span>: [
+            <span style="color: #BA2121">&quot;Trainee spending &gt;60 seconds in rapport → ALERT: &#39;Cut rapport. Every minute here is stolen from discovery.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Weak prospect buy-in (&#39;yeah I guess&#39;) → ALERT: &#39;STOP. No frame = no sale. Re-engage: Is now actually a good time?&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee asking about prospect&#39;s weekend/hobbies → ALERT: &#39;You&#39;re seeking approval, not setting frame. Get to business.&#39;&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;tonality&quot;</span>: <span style="color: #BA2121">&quot;Neutral downward inflection. Not excited, not depressed. Authority.&quot;</span>,
+        <span style="color: #BA2121">&quot;transition_signal&quot;</span>: <span style="color: #BA2121">&quot;Enthusiastic &#39;yes&#39; from prospect = move to discovery&quot;</span>
+    },
+</code></pre></div>
+
+<h3 id="discovery-welch-16-step-sot-criteria">DISCOVERY → Welch 16-Step + SOT Criteria</h3>
+<p><strong>Current hint</strong>: <code>"Discovery phase — dig deeper into their pain. Ask follow-up questions."</code></p>
+<p><strong>Replace with</strong>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #BA2121">&quot;discovery&quot;</span>: {
+        <span style="color: #BA2121">&quot;objective&quot;</span>: <span style="color: #BA2121">&quot;Elicit 3 levels of criteria. Detect towards/away direction. Identify causal chain.&quot;</span>,
+        <span style="color: #BA2121">&quot;technique&quot;</span>: <span style="color: #BA2121">&quot;SOT Criteria: &#39;What&#39;s important about [context]?&#39; → &#39;What&#39;s important about [answer]?&#39; → &#39;What will having that do for you?&#39;&quot;</span>,
+        <span style="color: #BA2121">&quot;coaching_sequence&quot;</span>: [
+            <span style="color: #BA2121">&quot;Listen for emphasis — start questioning from the emphasized word&quot;</span>,
+            <span style="color: #BA2121">&quot;If sideways answer (same level), break with &#39;Why now?&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Soften with &#39;I&#39;m curious about that&#39; or &#39;Tell me more&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Detect direction: &#39;I don&#39;t want to be X&#39; = away-from. &#39;I want to achieve X&#39; = towards.&quot;</span>,
+            <span style="color: #BA2121">&quot;When you have 3 levels + direction → ready for presentation&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;watch_for&quot;</span>: [
+            <span style="color: #BA2121">&quot;Trainee pitching features during discovery → CRITICAL: &#39;STOP pitching. You&#39;re in discovery. Ask, don&#39;t tell.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee not going up meta levels → ALERT: &#39;You&#39;re stuck at level 1. Ask: what&#39;s important about [what they just said]?&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee machine-gunning questions → ALERT: &#39;Soften. Say: I&#39;m curious about that. Tell me more.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee missing direction signals → ALERT: &#39;They said [away-from phrase]. That&#39;s away-from. Paint the problem.&#39;&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;evaluation_criteria&quot;</span>: [
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;criteria_depth&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #666">3</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;How many meta levels did trainee reach?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;direction_detected&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee identify towards/away?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;no_pitching&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee resist urge to pitch during discovery?&quot;</span>}
+        ],
+        <span style="color: #BA2121">&quot;welch_diagnostic_overlay&quot;</span>: {
+            <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;If trainee is practicing coaching (not closing), use Welch 16-step sequence&quot;</span>,
+            <span style="color: #BA2121">&quot;steps_1_to_9&quot;</span>: <span style="color: #BA2121">&quot;Diagnostic: origin event → feeling → choices → consequences → mirror the chain&quot;</span>,
+            <span style="color: #BA2121">&quot;steps_10_to_16&quot;</span>: <span style="color: #BA2121">&quot;Reprogram: force value articulation → compress to principle → challenge dependency&quot;</span>
+        },
+        <span style="color: #BA2121">&quot;transition_signal&quot;</span>: <span style="color: #BA2121">&quot;3 criteria levels elicited + direction detected = move to presentation&quot;</span>
+    },
+</code></pre></div>
+
+<h3 id="presentation-cleveland-isomorphic-metaphor-criteria-chunking">PRESENTATION → Cleveland Isomorphic Metaphor + Criteria Chunking</h3>
+<p><strong>Current hint</strong>: <code>"Presenting — keep it focused on THEIR problems, not your features."</code></p>
+<p><strong>Replace with</strong>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #BA2121">&quot;presentation&quot;</span>: {
+        <span style="color: #BA2121">&quot;objective&quot;</span>: <span style="color: #BA2121">&quot;Connect their criteria to your solution through story, not specs.&quot;</span>,
+        <span style="color: #BA2121">&quot;technique&quot;</span>: <span style="color: #BA2121">&quot;Isomorphic metaphor: tell a customer success story that structurally mirrors their situation. Within the story, redefine their criteria toward your product.&quot;</span>,
+        <span style="color: #BA2121">&quot;coaching_sequence&quot;</span>: [
+            <span style="color: #BA2121">&quot;Select a story matching: same industry, similar problem, similar criteria&quot;</span>,
+            <span style="color: #BA2121">&quot;The story IS the pitch — no feature lists, no spec sheets&quot;</span>,
+            <span style="color: #BA2121">&quot;If prospect is away-from: paint the problem the story client was running from&quot;</span>,
+            <span style="color: #BA2121">&quot;If prospect is towards: paint the future the story client built&quot;</span>,
+            <span style="color: #BA2121">&quot;Within the story, embed how [YOUR SOLUTION] fulfilled [THEIR CRITERIA]&quot;</span>,
+            <span style="color: #BA2121">&quot;Leave the story unresolved if you want prospect to self-conclude&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;watch_for&quot;</span>: [
+            <span style="color: #BA2121">&quot;Trainee listing features → CRITICAL: &#39;Stop. Specs have no emotional movement. Tell a story.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Story doesn&#39;t match prospect situation → ALERT: &#39;Wrong metaphor. Match their industry/role/problem.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee not connecting story to criteria → ALERT: &#39;The story must hit [CRITERIA LEVEL 3]. You&#39;re talking about features, not values.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee using generic case study → ALERT: &#39;Isomorphic = structurally identical. Match 3+ elements of their situation.&#39;&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;evaluation_criteria&quot;</span>: [
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;story_used&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee use a story instead of specs?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;criteria_connected&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did story connect to elicited criteria?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;direction_matched&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did story match towards/away direction?&quot;</span>}
+        ],
+        <span style="color: #BA2121">&quot;transition_signal&quot;</span>: <span style="color: #BA2121">&quot;Prospect engaged with story (asking questions, leaning in) = ready for objections or close&quot;</span>
+    },
+</code></pre></div>
+
+<h3 id="objection_handling-abcdos-counter-cleveland-embedded-directives">OBJECTION_HANDLING → ABCDOs Counter + Cleveland Embedded Directives</h3>
+<p><strong>Current hint</strong>: <code>"Handling objections — acknowledge first, then reframe."</code></p>
+<p><strong>Replace with</strong>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #BA2121">&quot;objection_handling&quot;</span>: {
+        <span style="color: #BA2121">&quot;objective&quot;</span>: <span style="color: #BA2121">&quot;Counter objections with stories that evoke the emotion of the transformation you deliver.&quot;</span>,
+        <span style="color: #BA2121">&quot;technique&quot;</span>: <span style="color: #BA2121">&quot;Phillips Counter: when prospect argues, counter with EMOTION (story), not LOGIC (specs). Arguments are emotionally based — counter with emotion.&quot;</span>,
+        <span style="color: #BA2121">&quot;coaching_sequence&quot;</span>: [
+            <span style="color: #BA2121">&quot;Acknowledge the objection genuinely (don&#39;t dismiss)&quot;</span>,
+            <span style="color: #BA2121">&quot;Tell a counter-story: a client who had the SAME objection → what happened&quot;</span>,
+            <span style="color: #BA2121">&quot;Within the story, embed resolution of the objection&quot;</span>,
+            <span style="color: #BA2121">&quot;If stuck, use &#39;stop&#39; interrupt: &#39;If you were to just pause and look at this differently...&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Never respond with a feature list or pricing justification&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;watch_for&quot;</span>: [
+            <span style="color: #BA2121">&quot;Trainee arguing with logic → CRITICAL: &#39;Stop arguing. There is no emotional movement in logic. Tell a story.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee getting defensive → ALERT: &#39;You&#39;re defending, not redirecting. Acknowledge first, then story.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee dropping price → ALERT: &#39;Price drop without story = you lost the frame. Re-engage with value story.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee reading from spec sheet → CRITICAL: &#39;Specs. Features. There is no emotional movement. Story.&#39;&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;evaluation_criteria&quot;</span>: [
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;story_counter&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee counter with a story?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;no_logic_battle&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee avoid logical argumentation?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;objection_acknowledged&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Was the objection acknowledged before countering?&quot;</span>}
+        ],
+        <span style="color: #BA2121">&quot;transition_signal&quot;</span>: <span style="color: #BA2121">&quot;Objection resolved (prospect moves on) = return to presentation or move to close&quot;</span>
+    },
+</code></pre></div>
+
+<h3 id="closing-unicorn-discovery">CLOSING → Unicorn Discovery</h3>
+<p><strong>Current hint</strong>: (none currently)</p>
+<p><strong>Add</strong>:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>    <span style="color: #BA2121">&quot;closing&quot;</span>: {
+        <span style="color: #BA2121">&quot;objective&quot;</span>: <span style="color: #BA2121">&quot;Lead prospect to self-realize they should buy. THEY say it, not you.&quot;</span>,
+        <span style="color: #BA2121">&quot;technique&quot;</span>: <span style="color: #BA2121">&quot;Unicorn Discovery: ask connecting questions so prospect articulates their own conclusion. &#39;Based on what you told me about [CRITERIA]... what do you think is the next step?&#39;&quot;</span>,
+        <span style="color: #BA2121">&quot;coaching_sequence&quot;</span>: [
+            <span style="color: #BA2121">&quot;Summarize what they told you (criteria, story, direction) — let them confirm&quot;</span>,
+            <span style="color: #BA2121">&quot;Ask: &#39;What do you think makes sense as a next step?&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;If they self-conclude → facilitate the close&quot;</span>,
+            <span style="color: #BA2121">&quot;If they hesitate → Duo technique: &#39;Tell me what you&#39;d do if [CRITERIA] was guaranteed&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;If they resist → DO NOT push. Re-engage with a new story or ask more criteria questions.&quot;</span>,
+            <span style="color: #BA2121">&quot;The highest level: they have the &#39;aha moment&#39; without you telling them anything&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;watch_for&quot;</span>: [
+            <span style="color: #BA2121">&quot;Trainee pushing hard close → CRITICAL: &#39;You&#39;re pushing. The discovery belongs to THEM. Ask, don&#39;t tell.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee telling prospect what to do → ALERT: &#39;Lead with questions. Let them connect the dots.&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Trainee giving up too early → ALERT: &#39;They haven&#39;t had their discovery yet. Try: What would you do if [CRITERIA] was guaranteed?&#39;&quot;</span>,
+            <span style="color: #BA2121">&quot;Prospect self-concludes → CELEBRATE: &#39;That was a discovery close. They told YOU they want to buy.&#39;&quot;</span>
+        ],
+        <span style="color: #BA2121">&quot;evaluation_criteria&quot;</span>: [
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;prospect_self_concluded&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did prospect articulate their own decision?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;no_hard_close&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee avoid pushy closing?&quot;</span>},
+            {<span style="color: #BA2121">&quot;name&quot;</span>: <span style="color: #BA2121">&quot;criteria_referenced&quot;</span>, <span style="color: #BA2121">&quot;target&quot;</span>: <span style="color: #008000; font-weight: bold">True</span>, <span style="color: #BA2121">&quot;description&quot;</span>: <span style="color: #BA2121">&quot;Did trainee reference elicited criteria in close?&quot;</span>}
+        ],
+        <span style="color: #BA2121">&quot;transition_signal&quot;</span>: <span style="color: #BA2121">&quot;Prospect says yes = close. Prospect says no = graceful exit with door open.&quot;</span>
+    }
+}
+</code></pre></div>
+
+<hr />
+<h2 id="evaluation-rubric-post-call-debrief">Evaluation Rubric (Post-Call Debrief)</h2>
+<p>Based on RAG 5-point evaluation framework + extraction-specific criteria.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Dimension</th>
+<th>0 (fail)</th>
+<th>5 (adequate)</th>
+<th>10 (excellent)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame set</td>
+<td>No frame attempt</td>
+<td>Frame set but weak buy-in accepted</td>
+<td>Strong frame, enthusiastic buy-in before proceeding</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Criteria depth</td>
+<td>No criteria elicited</td>
+<td>1 level elicited</td>
+<td>3 levels + direction detected</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Story vs specs</td>
+<td>All features/specs</td>
+<td>Mix of story and specs</td>
+<td>Pure story-based, criteria-connected</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Objection handling</td>
+<td>Argued with logic</td>
+<td>Acknowledged then pivoted</td>
+<td>Counter-story that resolved emotionally</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Discovery close</td>
+<td>Hard close / pushed</td>
+<td>Asked for next steps</td>
+<td>Prospect self-concluded (aha moment)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Pacing</td>
+<td>Spent &gt;2min in rapport</td>
+<td>Balanced phases</td>
+<td>30s frame, 3-5min discovery, rest natural</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scoring</strong>: Average of 6 dimensions. Target: 7+ for certification.</p>
+<hr />
+<h2 id="training-scenario-generator">Training Scenario Generator</h2>
+<p>Build from <code>data/sales/belfort-rebuttals.json</code> (312 rebuttals) + extracted frameworks:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">class</span><span style="color: #BBB"> </span><span style="color: #00F; font-weight: bold">ScenarioGenerator</span>:
+<span style="color: #BBB">    </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Generate training scenarios with configurable difficulty.&quot;&quot;&quot;</span>
+
+    <span style="color: #008000; font-weight: bold">def</span><span style="color: #BBB"> </span><span style="color: #00F">generate</span>(<span style="color: #008000">self</span>, difficulty: <span style="color: #008000">str</span> <span style="color: #666">=</span> <span style="color: #BA2121">&quot;intermediate&quot;</span>) <span style="color: #666">-&gt;</span> Scenario:
+<span style="color: #BBB">        </span><span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">        Easy: prospect is product-aware, towards-motivated, no objections</span>
+<span style="color: #BA2121; font-style: italic">        Intermediate: prospect is solution-aware, mixed direction, 1-2 objections</span>
+<span style="color: #BA2121; font-style: italic">        Hard: prospect is problem-aware, away-from, 3+ objections, skeptical</span>
+<span style="color: #BA2121; font-style: italic">        Expert: prospect is unaware, hostile, time-constrained</span>
+
+<span style="color: #BA2121; font-style: italic">        The AI plays the prospect with:</span>
+<span style="color: #BA2121; font-style: italic">        - A causal chain (Welch model) that drives their behavior</span>
+<span style="color: #BA2121; font-style: italic">        - Criteria at 3 levels (predetermined but not revealed)</span>
+<span style="color: #BA2121; font-style: italic">        - Direction (towards or away)</span>
+<span style="color: #BA2121; font-style: italic">        - 0-5 objections from the rebuttal library</span>
+<span style="color: #BA2121; font-style: italic">        - Awareness level (Schwartz 5 levels)</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
+        <span style="color: #008000; font-weight: bold">pass</span>
+</code></pre></div>
+
+<hr />
+<h2 id="integration-points">Integration Points</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>voice/meeting/coaching_engine.py</code></td>
+<td>Replace <code>PHASE_COACHING_HINTS</code> dict with extraction-informed intelligence</td>
+</tr>
+<tr>
+<td><code>voice/meeting/coaching_engine.py</code></td>
+<td>Add criteria tracking per coaching session</td>
+</tr>
+<tr>
+<td><code>voice/meeting/prompts.py</code></td>
+<td>Update <code>build_coaching_prompt()</code> with phase-specific extraction knowledge</td>
+</tr>
+<tr>
+<td><code>voice/meeting/debrief.py</code></td>
+<td>Add 6-dimension evaluation rubric to post-call debrief</td>
+</tr>
+<tr>
+<td><code>voice/meeting/session.py</code></td>
+<td>Track criteria_depth, direction_detected, stories_used per session</td>
+</tr>
+<tr>
+<td><code>voice/app.py</code></td>
+<td>Mount meeting routers (activation plan B1 — PREREQUISITE)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="implementation-order">Implementation Order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Task</th>
+<th>Effort</th>
+<th>Prereq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Fix activation blockers B1-B6, C1-C4</td>
+<td>2-3 days</td>
+<td>None (see coach-activation-plan.md v2)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Replace PHASE_COACHING_HINTS</td>
+<td>1 day</td>
+<td>B1 (routes mounted)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Add criteria tracking to session</td>
+<td>1 day</td>
+<td>#1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Update build_coaching_prompt()</td>
+<td>1 day</td>
+<td>#1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Add 6-dimension evaluation rubric</td>
+<td>1 day</td>
+<td>#1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Build ScenarioGenerator</td>
+<td>2 days</td>
+<td>#2, #4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Wire Welch 16-step into coaching overlay</td>
+<td>1 day</td>
+<td>#2</td>
+</tr>
+</tbody>
+</table></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
