@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delphi Extraction Session — 2026-04-03/04</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#delphi-extraction-session-2026-04-0304" class="toc-link">Delphi Extraction Session — 2026-04-03/04</a>
+<a href="#phase-3-knowledge-extraction-marathon-final-report" class="toc-link depth-2">Phase 3 Knowledge Extraction Marathon (Final Report)</a>
+<a href="#session-arc" class="toc-link depth-3">Session Arc</a>
+<a href="#key-lesson" class="toc-link depth-3">Key Lesson</a>
+<a href="#infrastructure-deliverables" class="toc-link depth-2">Infrastructure Deliverables</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="delphi-extraction-session-2026-04-0304">Delphi Extraction Session — 2026-04-03/04</h1>
+<h2 id="phase-3-knowledge-extraction-marathon-final-report">Phase 3 Knowledge Extraction Marathon (Final Report)</h2>
+<h3 id="session-arc">Session Arc</h3>
+<p>Three phases: (1) breadth sprint → (2) self-audit and depth correction → (3) crown jewel deep reads.</p>
+<p>Phase 1 produced 29 shallow memories at high velocity. Lens/Prism audit caught the pattern:<br />
+2-13% transcript coverage producing table-of-contents-level indexing. The best insight<br />
+(static-fact bias) came from the one extraction that got the depth pressure pass.</p>
+<p>Phase 2 corrected 6 shallow extractions with full-read replacements. Each replacement<br />
+surfaced operational tools the shallow pass missed entirely (e.g., Phillips ABCDOs: had<br />
+2 of 5 letters; Traffic Secrets: had ingredient list but not the 12-step sequence).</p>
+<p>Phase 3 launched parallel agent deep reads on the Cleveland crown jewels (18,576 lines<br />
+across 3 files). Combined with a direct deep read of SOT Criteria Elicitation (1,120 lines),<br />
+produced three importance-10 memories that form the complete Agent Vox conversation engine.</p>
+<h3 id="key-lesson">Key Lesson</h3>
+<blockquote>
+<p>5 deep extractions beat 29 shallow ones. The three imp-10 memories could not have been<br />
+produced without full reads of the source transcripts. Cross-domain synthesis only emerges<br />
+from depth — you cannot synthesize what you have not witnessed.</p>
+</blockquote>
+<hr />
+<h2 id="infrastructure-deliverables">Infrastructure Deliverables</h2>
+<table>
+<thead>
+<tr>
+<th>Deliverable</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quality gate sweep</td>
+<td>931→3,062 transcripts scanned (Batch D added ~2,000). 13.6% overall fail rate</td>
+</tr>
+<tr>
+<td>Retranscription script</td>
+<td><code>scripts/retranscribe-hallucinated.sh</code> — anti-hallucination whisper params. 55 files retranscribed.</td>
+</tr>
+<tr>
+<td>stdin-stealing bug fix</td>
+<td>ffmpeg/whisper consumed pipe fd in while-read loops. `</td>
+</tr>
+</tbody>
+</table></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
