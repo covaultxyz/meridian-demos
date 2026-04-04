@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation Agency — Product Intelligence Spec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background: #050505; color: #d4d4d8; font-family: 'Inter', sans-serif;
+               -webkit-font-smoothing: antialiased; }
+
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 50; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Sidebar */
+        #sidebar { scrollbar-width: thin; scrollbar-color: #3f3f46 transparent; }
+        #sidebar::-webkit-scrollbar { width: 4px; }
+        #sidebar::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 2px; }
+
+        /* Prose styles */
+        .prose h1 { font-size: 2rem; font-weight: 700; color: #ffffff; margin: 2rem 0 1rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 600; color: #f4f4f5; margin: 1.75rem 0 0.75rem;
+                     padding-bottom: 0.5rem; border-bottom: 1px solid #27272a; }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; color: #e4e4e7; margin: 1.5rem 0 0.5rem; }
+        .prose h4 { font-size: 1.1rem; font-weight: 500; color: #d4d4d8; margin: 1.25rem 0 0.5rem; }
+        .prose p { line-height: 1.75; margin: 0.75rem 0; }
+        .prose a { color: #8b5cf6; text-decoration: underline; text-underline-offset: 2px; }
+        .prose a:hover { color: #a78bfa; }
+        .prose strong { color: #f4f4f5; }
+        .prose em { color: #a1a1aa; }
+        .prose ul, .prose ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+        .prose li { margin: 0.35rem 0; line-height: 1.7; }
+        .prose li > ul, .prose li > ol { margin: 0.25rem 0; }
+        .prose hr { border-color: #27272a; margin: 2rem 0; }
+        .prose img { border-radius: 0.5rem; margin: 1rem 0; max-width: 100%; }
+
+        /* Task lists (GFM) */
+        .prose ul li input[type="checkbox"] {
+            margin-right: 0.5rem; accent-color: #8b5cf6; vertical-align: middle;
+        }
+
+        /* Code blocks */
+        .prose code {
+            background: #27272a; color: #e4e4e7; padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem; font-size: 0.875em; font-family: 'Menlo', 'Consolas', monospace;
+        }
+        .prose pre {
+            background: #18181b; border: 1px solid #27272a; border-radius: 0.5rem;
+            padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0;
+        }
+        .prose pre code {
+            background: transparent; padding: 0; font-size: 0.85rem; line-height: 1.6;
+        }
+
+        /* Blockquotes */
+        .prose blockquote {
+            border-left: 3px solid #8b5cf6; padding: 0.75rem 1rem; margin: 1rem 0;
+            background: #0a0a0a; border-radius: 0 0.5rem 0.5rem 0; color: #a1a1aa;
+        }
+        .prose blockquote p { margin: 0.25rem 0; }
+
+        /* Tables */
+        .prose table {
+            width: 100%; border-collapse: collapse; margin: 1rem 0;
+            font-size: 0.875rem;
+        }
+        .prose th {
+            background: #18181b; color: #f4f4f5; font-weight: 600;
+            padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #27272a;
+        }
+        .prose td {
+            padding: 0.5rem 0.75rem; border: 1px solid #27272a;
+        }
+        .prose tr:nth-child(odd) td { background: #09090b; }
+        .prose tr:nth-child(even) td { background: #18181b; }
+
+        /* TOC sidebar links */
+        .toc-link {
+            display: block; padding: 0.3rem 0.75rem; color: #a1a1aa;
+            text-decoration: none; font-size: 0.82rem; border-radius: 0.25rem;
+            transition: color 0.15s, background 0.15s;
+        }
+        .toc-link:hover { color: #f4f4f5; background: #27272a; }
+        .toc-link.depth-2 { padding-left: 1.5rem; font-size: 0.78rem; color: #71717a; }
+        .toc-link.depth-3 { padding-left: 2.25rem; font-size: 0.75rem; color: #52525b; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="film-grain"></div>
+
+    <!-- Mobile menu toggle -->
+    <button id="menu-toggle" class="fixed top-4 left-4 z-40 lg:hidden bg-zinc-900 border border-zinc-800
+            rounded-lg p-2 text-zinc-400 hover:text-white transition-colors"
+            onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 left-0 z-30 w-64 h-screen bg-zinc-900/95
+               backdrop-blur border-r border-zinc-800 overflow-y-auto p-5 pt-14 lg:pt-5
+               transition-transform -translate-x-full lg:translate-x-0 flex-shrink-0">
+            <div class="text-sm font-semibold text-zinc-500 uppercase tracking-wider mb-3">Contents</div>
+            <nav id="toc-nav"><a href="#ai-automation-agency-product-intelligence-spec" class="toc-link">AI Automation Agency — Product Intelligence Spec</a>
+<a href="#product-definition" class="toc-link depth-2">Product Definition</a>
+<a href="#architecture-5-pillars-of-growth-sequential" class="toc-link depth-2">Architecture: 5 Pillars of Growth (Sequential)</a>
+<a href="#client-deliverable-the-automation-template-library" class="toc-link depth-2">Client Deliverable: The Automation Template Library</a>
+<a href="#sales-process-scorecard-analysis" class="toc-link depth-2">Sales Process: Scorecard Analysis</a>
+<a href="#pricing-strategy" class="toc-link depth-2">Pricing Strategy</a>
+<a href="#the-40-50kmonth-plateau" class="toc-link depth-2">The $40-50K/month Plateau</a>
+<a href="#revenue-milestones" class="toc-link depth-2">Revenue Milestones</a>
+<a href="#integration-with-meridian-products" class="toc-link depth-2">Integration with MERIDIAN Products</a>
+<a href="#implementation-order" class="toc-link depth-2">Implementation Order</a>
+<a href="#verification" class="toc-link depth-2">Verification</a></nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 min-w-0 px-6 py-10 lg:px-16 lg:py-14 max-w-4xl mx-auto">
+            <article class="prose"><h1 id="ai-automation-agency-product-intelligence-spec">AI Automation Agency — Product Intelligence Spec</h1>
+<p><em>Phase 4: Building the agency playbook from extracted frameworks</em><br />
+<em>Author: Delphi (2026-04-04) | Source: Ryan Stewart 5 Pillars + Feldman + Schwartz</em></p>
+<h2 id="product-definition">Product Definition</h2>
+<p>A productized AI automation agency that helps businesses automate operations using<br />
+AI agents, workflows, and integrations. The product is the AGENCY PLAYBOOK — the<br />
+system for building, running, and scaling the agency itself, not just the client deliverables.</p>
+<h2 id="architecture-5-pillars-of-growth-sequential">Architecture: 5 Pillars of Growth (Sequential)</h2>
+<p>Source: <code>mig_search("5 pillars agency growth ryan stewart")</code> — imp 9</p>
+<p><strong>Pillars are SEQUENTIAL. Skipping ahead guarantees failure.</strong></p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>PILLAR 1: POSITIONING &amp; OFFER DESIGN
+  │  Single vertical + single problem + measurable client ROI
+  │  Test: &quot;I help [vertical] solve [problem] resulting in [metric]&quot;
+  │  Example: &quot;I automate appointment booking for med spas, adding 40+ bookings/month&quot;
+  │  
+  │  OFFER-MARKET FIT CRITERIA:
+  │  1. Industry where businesses actively need the automation
+  │  2. The automation result is high-dollar or high-frequency
+  │  3. Small number of automations justifies the retainer
+  │
+  ▼
+PILLAR 2: PRODUCTIZATION
+  │  Build entire automation template BEFORE client signs
+  │  Eliminate custom discovery — it&#39;s a checklist, not a project
+  │  Junior hires execute templates ($40K) vs senior architects ($150K)
+  │  Day 1: client is live with working automation
+  │  Competitors: still in &quot;discovery phase&quot; at month 2
+  │
+  ▼
+PILLAR 3: SERVICE MASTERY
+  │  Best in world at YOUR vertical&#39;s automation needs
+  │  Learn the client&#39;s BUSINESS (buy courses in their industry)
+  │  Every client = control in your experiment (flywheel)
+  │  Case studies compound as proof → referrals → more clients
+  │
+  ▼
+PILLAR 4: ACQUISITION (3 channels)
+  │  Channel 1: Organic social (free, most neglected)
+  │    Post consistently about results, problems, client wins
+  │  Channel 2: Outbound sales (requires positioning to target)
+  │    &quot;I automate [X] for [vertical]&quot; — not &quot;I do AI stuff&quot;
+  │  Channel 3: Paid ads (requires audience specificity)
+  │    Only works with clear vertical + offer
+  │
+  ▼
+PILLAR 5: SALES
+    Scorecard Analysis → Traffic/Impact Projection → Close
+    80% proposal close rate by GATEKEEPING proposals
+    Sell projected OUTCOMES, not deliverables
+    &quot;30 automated bookings/month = $X revenue&quot; beats &quot;we&#39;ll build 5 Zapier flows&quot;
+</code></pre></div>
+
+<h2 id="client-deliverable-the-automation-template-library">Client Deliverable: The Automation Template Library</h2>
+<p>Source: Markl AI Automations corpus (237 transcripts, 176 PASS)</p>
+<p>For each vertical, pre-build the automation stack:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>TEMPLATE STRUCTURE (per vertical):
+
+  1. INTAKE AUTOMATION
+     - Lead capture form → CRM entry → auto-response
+     - Missed call text-back (Agent Vox integration)
+     - Appointment booking (Cal.com / GHL)
+
+  2. CLIENT COMMUNICATION
+     - AI receptionist / chatbot
+     - Follow-up email sequences (Feldman 7-step)
+     - Review request automation
+
+  3. OPERATIONS
+     - Onboarding workflow (documents, access, setup)
+     - Task assignment and tracking
+     - Reporting dashboard
+
+  4. MARKETING
+     - Social media content generation + scheduling
+     - Email newsletter automation
+     - SEO content pipeline (if applicable)
+
+  5. RETENTION
+     - Client check-in sequences
+     - Upsell/cross-sell triggers
+     - Churn risk detection
+</code></pre></div>
+
+<h2 id="sales-process-scorecard-analysis">Sales Process: Scorecard Analysis</h2>
+<p>Source: Ryan Stewart Scorecard Analysis framework</p>
+<p>Replace "here are your deliverables" proposals with data-driven narratives:</p>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>SCORECARD (5 areas, scored 0-100):
+
+  1. AUTOMATION READINESS
+     - How many manual processes exist?
+     - What&#39;s the time cost of manual work?
+     - Which processes are repetitive enough to automate?
+
+  2. LEAD CAPTURE EFFICIENCY
+     - How are leads currently captured?
+     - What&#39;s the response time to new inquiries?
+     - How many leads are lost to slow follow-up?
+
+  3. CLIENT COMMUNICATION
+     - How are clients currently contacted?
+     - What&#39;s the follow-up consistency?
+     - Are there gaps in the communication flow?
+
+  4. OPERATIONAL EFFICIENCY
+     - How is onboarding handled?
+     - What&#39;s the task management system?
+     - Where are the bottlenecks?
+
+  5. GROWTH INFRASTRUCTURE
+     - Is there a referral system?
+     - Is marketing automated or manual?
+     - What&#39;s the capacity for new clients?
+
+FLOW:
+  Scorecard → Impact Projection → &quot;If we automate these 3 areas,
+  you save X hours/week and capture Y more leads&quot; → Pricing
+</code></pre></div>
+
+<h2 id="pricing-strategy">Pricing Strategy</h2>
+<p>Source: Ryan Stewart pricing insights</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Retainer</th>
+<th>What's Included</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starter</td>
+<td>$2,000-3,000/mo</td>
+<td>1-2 core automations + maintenance</td>
+</tr>
+<tr>
+<td>Growth</td>
+<td>$5,000-8,000/mo</td>
+<td>Full automation stack + monthly optimization</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>$10,000-12,000/mo</td>
+<td>Custom automations + AI agent deployment + strategy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pricing rule</strong>: Sell projected outcomes, not deliverables.<br />
+"$5K/month for 40 extra automated bookings" beats "$5K/month for 3 Zapier workflows."</p>
+<p><strong>Client profitability test</strong>: Can ONE automated outcome justify the monthly retainer?<br />
+If yes → you have offer-market fit. If no → change vertical or raise outcome value.</p>
+<h2 id="the-40-50kmonth-plateau">The $40-50K/month Plateau</h2>
+<p>Most agencies stall here. Root cause: ALWAYS Pillar 1 failure.<br />
+- Selling to anyone who'll pay → commodity pricing<br />
+- No productization → every client is custom → margin destruction<br />
+- No vertical mastery → generic case studies → weak proof</p>
+<p><strong>Fix</strong>: Go back to Pillar 1. Pick ONE vertical. Build ONE template.<br />
+Master ONE type of automation. The constraint creates the breakthrough.</p>
+<h2 id="revenue-milestones">Revenue Milestones</h2>
+<table>
+<thead>
+<tr>
+<th>Revenue</th>
+<th>What Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0-10K/mo</td>
+<td>Solo + VA. Do everything. Build first templates.</td>
+</tr>
+<tr>
+<td>$10-30K/mo</td>
+<td>First hire (executor, not strategist). Productize.</td>
+</tr>
+<tr>
+<td>$30-50K/mo</td>
+<td>Plateau zone. Fix Pillar 1 if stuck.</td>
+</tr>
+<tr>
+<td>$50-100K/mo</td>
+<td>Sales hire or team. Paid acquisition viable.</td>
+</tr>
+<tr>
+<td>$100K+/mo</td>
+<td>All 5 pillars working. Hire for checklist execution.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="integration-with-meridian-products">Integration with MERIDIAN Products</h2>
+<table>
+<thead>
+<tr>
+<th>Integration</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent Vox</td>
+<td>AI receptionist as core automation offering</td>
+</tr>
+<tr>
+<td>AI Lead Gen</td>
+<td>Use Clay pipeline for client's outbound</td>
+</tr>
+<tr>
+<td>Funnel+Pitch</td>
+<td>Generate client landing pages via Brunson 12-step</td>
+</tr>
+<tr>
+<td>AI Sales Coach</td>
+<td>Train agency sales team with Welch 16-step</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-order">Implementation Order</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Task</th>
+<th>Effort</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Vertical selection guide + positioning worksheet</td>
+<td>1 day</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Automation template library (3 verticals to start)</td>
+<td>3 days</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Scorecard analysis tool</td>
+<td>2 days</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Impact projection calculator</td>
+<td>1 day</td>
+<td>High</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Client onboarding automation (using own templates)</td>
+<td>1 day</td>
+<td>High</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Case study template + flywheel tracker</td>
+<td>1 day</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Agency dashboard (client health + revenue)</td>
+<td>2 days</td>
+<td>Medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verification">Verification</h2>
+<p>Test by onboarding a real pilot client:<br />
+1. Can you articulate positioning in one sentence?<br />
+2. Is the automation template pre-built before client signs?<br />
+3. Does the scorecard produce a compelling impact projection?<br />
+4. Is the client live on Day 1 (not Day 30)?<br />
+5. Does the pricing map to projected outcomes, not deliverables?<br />
+6. Does the first client become a case study that attracts the second?</p>
+<p>Score each 0-10. Target: 7+ across all dimensions.</p></article>
+            <footer class="mt-16 pt-6 border-t border-zinc-800 text-zinc-600 text-xs">
+                Generated by md-to-html.py
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
