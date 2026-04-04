@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-04T01:23:15.962626+00:00",
+  "generated_at": "2026-04-04T01:51:06.659289+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-04T01:23:13.508493+00:00",
+      "updated_at": "2026-04-04T01:51:03.743876+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2562,20 +2562,20 @@
         {
           "node": "racknerd-7311420",
           "release": "2026-04-03",
-          "commit": "0ce982dcb",
-          "status": "\u2705 active \u2014 sandman + atlas healthy, disk 58%"
+          "commit": "cebe4fa5c",
+          "status": "\u2705 active \u2014 sandman + atlas healthy, disk 43%"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-03",
-          "commit": "0ce982dcb",
-          "status": "\u2705 active \u2014 delphi + avery healthy, disk 65%"
+          "commit": "cebe4fa5c",
+          "status": "\u2705 active \u2014 delphi + avery healthy, disk 56%"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-03",
-          "commit": "0ce982dcb",
-          "status": "\u2705 active \u2014 sensei healthy, NATS systemd-managed, Neo4j healthy, disk 46%"
+          "commit": "cebe4fa5c",
+          "status": "\u2705 active \u2014 sensei healthy, NATS systemd-managed, Neo4j healthy, disk 58%"
         }
       ],
       "active_sessions": [
@@ -2627,6 +2627,34 @@
           "terminal": "ttys087",
           "launched": "2026-04-04T01:23",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "atlas",
+          "pid": "95533",
+          "terminal": "ttys089",
+          "launched": "2026-04-04T01:33",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
+        },
+        {
+          "daemon": "sandman",
+          "pid": "95817",
+          "terminal": "ttys091",
+          "launched": "2026-04-04T01:33",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/sandman"
+        },
+        {
+          "daemon": "forge",
+          "pid": "96076",
+          "terminal": "ttys093",
+          "launched": "2026-04-04T01:33",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/forge"
+        },
+        {
+          "daemon": "avery",
+          "pid": "96847",
+          "terminal": "ttys095",
+          "launched": "2026-04-04T01:33",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery"
         }
       ],
       "daemon_tasks": [
@@ -2903,30 +2931,28 @@
           }
         ],
         "collected_at": "2026-03-28T18:00:27.712379+00:00",
-        "_stale_warning": "Data is 151 hours old"
+        "_stale_warning": "Data is 152 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-04T01:23:15.729161+00:00",
+      "updated_at": "2026-04-04T01:51:06.374939+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
           "enhancement": 13,
           "architecture": 2,
           "grade/C": 9,
-          "grade/B": 11,
+          "grade/B": 9,
           "daemon/delphi": 1,
-          "checkpoint": 6,
-          "in-progress": 6,
+          "checkpoint": 5,
+          "in-progress": 5,
           "grade/A": 3,
           "daemon/avery": 1,
           "daemon/atlas": 1,
-          "daemon/forge": 1,
           "daemon/sensei": 1,
           "daemon/sandman": 1,
           "sentinel-review:warn": 5,
-          "sentinel-review:pass": 4,
-          "mig": 1,
+          "sentinel-review:pass": 6,
           "dependencies": 6,
           "python:uv": 3,
           "grade/D": 2,
@@ -2985,7 +3011,7 @@
           "title": "CHECKPOINT: Delphi \u2014 Knowledge Extraction Marathon (865+ files, 6 revenue products)",
           "state": "open",
           "created_at": "2026-04-03T15:41:42Z",
-          "updated_at": "2026-04-03T15:45:16Z",
+          "updated_at": "2026-04-04T01:33:26Z",
           "labels": [
             "grade/B",
             "daemon/delphi",
@@ -3041,22 +3067,6 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/1845",
           "project_slug": "research-pipeline"
-        },
-        {
-          "number": 1844,
-          "title": "CHECKPOINT: Research pipeline unblock + 5 SC/MI query monitoring",
-          "state": "open",
-          "created_at": "2026-04-02T03:00:21Z",
-          "updated_at": "2026-04-02T03:15:49Z",
-          "labels": [
-            "grade/B",
-            "daemon/forge",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1844",
-          "project_slug": null
         },
         {
           "number": 1843,
@@ -3208,20 +3218,6 @@
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/1832",
-          "project_slug": null
-        },
-        {
-          "number": 1831,
-          "title": "MIG: Backfill 6,359 undomained Memory nodes with correct DomainCentroid edges",
-          "state": "open",
-          "created_at": "2026-04-02T01:10:59Z",
-          "updated_at": "2026-04-02T01:10:59Z",
-          "labels": [
-            "grade/B",
-            "mig"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1831",
           "project_slug": null
         },
         {
@@ -3628,6 +3624,32 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/1748",
           "project_slug": null
+        },
+        {
+          "number": 1747,
+          "title": "feat(#1721): Elaborate and Refine Content",
+          "state": "open",
+          "created_at": "2026-03-27T02:21:48Z",
+          "updated_at": "2026-03-27T02:27:20Z",
+          "labels": [
+            "sentinel-review:pass"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1747",
+          "project_slug": null
+        },
+        {
+          "number": 1746,
+          "title": "feat(#1721): Final Review and Formatting",
+          "state": "open",
+          "created_at": "2026-03-27T02:21:45Z",
+          "updated_at": "2026-03-27T02:26:12Z",
+          "labels": [
+            "sentinel-review:pass"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1746",
+          "project_slug": null
         }
       ],
       "issues_by_project": {
@@ -3672,22 +3694,6 @@
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/1846",
-            "project_slug": null
-          },
-          {
-            "number": 1844,
-            "title": "CHECKPOINT: Research pipeline unblock + 5 SC/MI query monitoring",
-            "state": "open",
-            "created_at": "2026-04-02T03:00:21Z",
-            "updated_at": "2026-04-02T03:15:49Z",
-            "labels": [
-              "grade/B",
-              "daemon/forge",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1844",
             "project_slug": null
           },
           {
@@ -3795,20 +3801,6 @@
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/1832",
-            "project_slug": null
-          },
-          {
-            "number": 1831,
-            "title": "MIG: Backfill 6,359 undomained Memory nodes with correct DomainCentroid edges",
-            "state": "open",
-            "created_at": "2026-04-02T01:10:59Z",
-            "updated_at": "2026-04-02T01:10:59Z",
-            "labels": [
-              "grade/B",
-              "mig"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1831",
             "project_slug": null
           },
           {
@@ -4215,6 +4207,32 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/1748",
             "project_slug": null
+          },
+          {
+            "number": 1747,
+            "title": "feat(#1721): Elaborate and Refine Content",
+            "state": "open",
+            "created_at": "2026-03-27T02:21:48Z",
+            "updated_at": "2026-03-27T02:27:20Z",
+            "labels": [
+              "sentinel-review:pass"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1747",
+            "project_slug": null
+          },
+          {
+            "number": 1746,
+            "title": "feat(#1721): Final Review and Formatting",
+            "state": "open",
+            "created_at": "2026-03-27T02:21:45Z",
+            "updated_at": "2026-03-27T02:26:12Z",
+            "labels": [
+              "sentinel-review:pass"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1746",
+            "project_slug": null
           }
         ],
         "openclaw": [
@@ -4240,7 +4258,7 @@
             "title": "CHECKPOINT: Delphi \u2014 Knowledge Extraction Marathon (865+ files, 6 revenue products)",
             "state": "open",
             "created_at": "2026-04-03T15:41:42Z",
-            "updated_at": "2026-04-03T15:45:16Z",
+            "updated_at": "2026-04-04T01:33:26Z",
             "labels": [
               "grade/B",
               "daemon/delphi",
@@ -4337,138 +4355,138 @@
         ]
       },
       "ci": {
-        "status": "pending",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-04-04T01:21:45Z",
-        "head_sha": "9eb980da"
+        "status": "completed",
+        "conclusion": "skipped",
+        "name": "Agent HQ \u2192 MERIDIAN Bridge",
+        "created_at": "2026-04-04T01:50:03Z",
+        "head_sha": "fc790d16"
       },
       "ci_recent_runs": [
         {
-          "id": 23968278322,
-          "name": "CI",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-04-04T01:21:45Z",
-          "updated_at": "2026-04-04T01:21:46Z",
-          "head_sha": "9eb980da",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968278322"
+          "id": 23968777024,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-04T01:50:03Z",
+          "updated_at": "2026-04-04T01:50:04Z",
+          "head_sha": "fc790d16",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968777024"
         },
         {
-          "id": 23968275181,
-          "name": "CodeQL Analysis",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-04T01:21:35Z",
-          "updated_at": "2026-04-04T01:21:35Z",
-          "head_sha": "f86f4ad7",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968275181"
+          "id": 23968777136,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-04T01:50:03Z",
+          "updated_at": "2026-04-04T01:50:10Z",
+          "head_sha": "fc790d16",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968777136"
         },
         {
-          "id": 23968275186,
+          "id": 23968776403,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-04T01:50:01Z",
+          "updated_at": "2026-04-04T01:50:02Z",
+          "head_sha": "fc790d16",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968776403"
+        },
+        {
+          "id": 23968764002,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-04T01:49:17Z",
+          "updated_at": "2026-04-04T01:49:18Z",
+          "head_sha": "c1d29a87",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968764002"
+        },
+        {
+          "id": 23968716566,
           "name": "CI",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-04T01:21:35Z",
-          "updated_at": "2026-04-04T01:21:46Z",
-          "head_sha": "f86f4ad7",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968275186"
-        },
-        {
-          "id": 23968145265,
-          "name": "uv in /. for aiohttp - Update #1307517076",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-04T01:14:25Z",
-          "updated_at": "2026-04-04T01:16:43Z",
-          "head_sha": "618dd920",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968145265"
-        },
-        {
-          "id": 23968142053,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-04T01:14:14Z",
-          "updated_at": "2026-04-04T01:21:36Z",
-          "head_sha": "618dd920",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968142053"
+          "conclusion": "success",
+          "created_at": "2026-04-04T01:46:25Z",
+          "updated_at": "2026-04-04T01:49:59Z",
+          "head_sha": "82fbed74",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/23968716566"
         }
       ],
       "recent_commits": [
         {
-          "sha": "dd7c4e88",
-          "message": "chore: update delphi assignment in boot state \u2014 #1850 Knowledge Extraction Marathon",
+          "sha": "fc790d16",
+          "message": "feat(mig): Phase 3 \u2014 Storyworthy story=change principle + plan update",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:21:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/dd7c4e882d3f8d11794dd43c6d870fe5a0e2fc4d"
+          "date": "2026-04-04T01:49:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/fc790d16ef9825a13573b4bfcc6d6a81ba788157"
         },
         {
-          "sha": "9eb980da",
-          "message": "fix(mcp): mig_health reports total node count + key label breakdown",
+          "sha": "c1d29a87",
+          "message": "feat(mig): Phase 3 extraction \u2014 Unicorn Closer discovery principle (importance 9) + PE fund structure",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:21:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9eb980da1d2131ef7a3afe210dcdb38307c9d6c5"
+          "date": "2026-04-04T01:48:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c1d29a87ad7fb47169627ede1f3000360bb2e5d9"
         },
         {
-          "sha": "f86f4ad7",
-          "message": "feat(sentinel): auto-remediate primary repo drift before creating GH issues",
+          "sha": "82fbed74",
+          "message": "feat(voice): add Gemini 3.1 Flash Live A2A mode to boardroom",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:21:26Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f86f4ad78ed388b3daa6dc191715707a3ba53049"
+          "date": "2026-04-04T01:46:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/82fbed74c33607cb64108c9db06d39170a4a5f8b"
         },
         {
-          "sha": "7ab0d04e",
-          "message": "feat(pipeline): quality gate sweep + retranscription script with anti-hallucination params",
+          "sha": "8de0e11b",
+          "message": "feat(mig): Phase 3 extraction \u2014 PE Fund Structure + plan update",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:19:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7ab0d04ef34b8903681a7bae7c640075a69d06bf"
+          "date": "2026-04-04T01:46:04Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8de0e11b54a8353173918b8fd53bcb548fbdd95a"
         },
         {
-          "sha": "618dd920",
-          "message": "security(deps): bump aiohttp >=3.13.4 \u2014 fixes 10 Dependabot CVEs (header injection, DoS, SSRF, cookie leak)",
+          "sha": "920368e4",
+          "message": "feat(mig): Phase 3 extraction \u2014 Breakthrough Advertising Schwartz frameworks (importance 9)",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:13:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/618dd9209cfc0c1486c321f25e3f5a665b3e94d3"
+          "date": "2026-04-04T01:44:36Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/920368e453c12e7d2efbcd68efcf97a00351057b"
         },
         {
-          "sha": "f1f47615",
-          "message": "docs: update extraction plan with session 2 progress + drive audit top 18",
+          "sha": "cebe4fa5",
+          "message": "fix(mig): add Phase 0 domain alias remap to backfill script \u2014 Closes #1831",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:13:45Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f1f476150d85fd3b89c24a5dc4a9deb817d1ccfd"
+          "date": "2026-04-04T01:43:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/cebe4fa5c597be4ee55e884991e8410dcb38b2b5"
         },
         {
-          "sha": "0a6effd0",
-          "message": "feat: research framework extractions \u2014 5 courses synthesized + drive audit",
+          "sha": "c2b27e6c",
+          "message": "feat(mig): Phase 3 extraction \u2014 Phillips ABCDOs + Brunson copy elements",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:11:12Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0a6effd0916d8cbdd191ef069d29833cf32808fb"
+          "date": "2026-04-04T01:41:39Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c2b27e6c5cf4530db1fc15d52008396a92c0c506"
         },
         {
-          "sha": "8b13e577",
-          "message": "feat: PDF extraction from drive \u2014 630 files across 8 categories",
+          "sha": "4bcd30ca",
+          "message": "feat(mig): Phase 3 extraction \u2014 Brunson Traffic Secrets (partial) \u2192 1 MIG memory",
           "author": "covaultxyz",
-          "date": "2026-04-04T01:05:35Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8b13e57740642c2d4271d477ab2cce7416e4e000"
+          "date": "2026-04-04T01:40:33Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4bcd30ca6bc696248c95b9dd44419056bcdc9db8"
         },
         {
-          "sha": "f64193fd",
-          "message": "auto-commit(cursor-agent): #1745: #1745 Pre-seed: Data room + diligence package",
+          "sha": "bcbe9035",
+          "message": "feat(mig): Phase 3 extraction \u2014 Feldman Lead Gen (partial) \u2192 2 MIG memories",
           "author": "covaultxyz",
-          "date": "2026-04-03T22:13:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f64193fd3546540a920988ed00188d2573e00628"
+          "date": "2026-04-04T01:37:21Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bcbe9035ad73d570102c39dd32a5d9465e34ec72"
         },
         {
-          "sha": "7c65bff6",
-          "message": "intel: auto-ingested 11 transcript(s)",
+          "sha": "22f174bb",
+          "message": "feat(mig): Phase 3 extraction \u2014 VC Guide (partial) + extraction plan update",
           "author": "covaultxyz",
-          "date": "2026-04-03T17:36:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7c65bff61f68a90d8bea4d33c70d70c303c296e1"
+          "date": "2026-04-04T01:35:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/22f174bbfa3b52fb2b44bcc47bd9e891c1cf0221"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-04T01:23:14.209150+00:00",
+        "updated_at": "2026-04-04T01:51:04.507215+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4538,7 +4556,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "members": [
         {
           "id": "alex",
@@ -4609,7 +4627,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "projects": [
         {
           "project": {
@@ -5039,7 +5057,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5124,7 +5142,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5221,7 +5239,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8761,7 +8779,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-04T01:23:15.913793+00:00",
+      "updated_at": "2026-04-04T01:51:06.605245+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10577,7 +10595,7 @@
       "total_docs": 300
     },
     "deals": {
-      "updated_at": "2026-04-04T01:23:15.913918+00:00",
+      "updated_at": "2026-04-04T01:51:06.605439+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10811,7 +10829,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-04T01:23:15.729176+00:00",
+      "updated_at": "2026-04-04T01:51:06.374960+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -29657,7 +29675,7 @@
       "total": 85
     },
     "call_intelligence": {
-      "updated_at": "2026-04-04T01:23:15.938827+00:00",
+      "updated_at": "2026-04-04T01:51:06.620733+00:00",
       "signal_summary": {
         "total_objections": 58,
         "total_buying_signals": 74,
@@ -35844,7 +35862,7 @@
       "total_action_items": 305
     },
     "attention": {
-      "updated_at": "2026-04-04T01:23:15.962558+00:00",
+      "updated_at": "2026-04-04T01:51:06.659194+00:00",
       "items": [
         {
           "type": "blocked",
@@ -35931,66 +35949,66 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-04T01:23:15.962613+00:00",
+      "updated_at": "2026-04-04T01:51:06.659269+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-04T01:21:55Z",
-          "title": "chore: update delphi assignment in boot state \u2014 #1850 Knowledge Extraction Marat",
+          "date": "2026-04-04T01:49:15Z",
+          "title": "feat(mig): Phase 3 \u2014 Storyworthy story=change principle + plan update",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:21:26Z",
-          "title": "feat(sentinel): auto-remediate primary repo drift before creating GH issues",
+          "date": "2026-04-04T01:48:11Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 Unicorn Closer discovery principle (importance 9",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:21:24Z",
-          "title": "fix(mcp): mig_health reports total node count + key label breakdown",
+          "date": "2026-04-04T01:46:15Z",
+          "title": "feat(voice): add Gemini 3.1 Flash Live A2A mode to boardroom",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:19:28Z",
-          "title": "feat(pipeline): quality gate sweep + retranscription script with anti-hallucinat",
+          "date": "2026-04-04T01:46:04Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 PE Fund Structure + plan update",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:13:55Z",
-          "title": "security(deps): bump aiohttp >=3.13.4 \u2014 fixes 10 Dependabot CVEs (header injecti",
+          "date": "2026-04-04T01:44:36Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 Breakthrough Advertising Schwartz frameworks (im",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:13:45Z",
-          "title": "docs: update extraction plan with session 2 progress + drive audit top 18",
+          "date": "2026-04-04T01:43:28Z",
+          "title": "fix(mig): add Phase 0 domain alias remap to backfill script \u2014 Closes #1831",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:11:12Z",
-          "title": "feat: research framework extractions \u2014 5 courses synthesized + drive audit",
+          "date": "2026-04-04T01:41:39Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 Phillips ABCDOs + Brunson copy elements",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-04T01:05:35Z",
-          "title": "feat: PDF extraction from drive \u2014 630 files across 8 categories",
+          "date": "2026-04-04T01:40:33Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 Brunson Traffic Secrets (partial) \u2192 1 MIG memory",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-03T22:13:11Z",
-          "title": "auto-commit(cursor-agent): #1745: #1745 Pre-seed: Data room + diligence package",
+          "date": "2026-04-04T01:37:21Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 Feldman Lead Gen (partial) \u2192 2 MIG memories",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-03T17:36:14Z",
-          "title": "intel: auto-ingested 11 transcript(s)",
+          "date": "2026-04-04T01:35:23Z",
+          "title": "feat(mig): Phase 3 extraction \u2014 VC Guide (partial) + extraction plan update",
           "detail": "covaultxyz"
         },
         {
