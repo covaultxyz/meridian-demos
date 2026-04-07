@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T22:02:44.103601+00:00",
+  "generated_at": "2026-04-07T22:08:46.634659+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-07T22:02:40.288060+00:00",
+      "updated_at": "2026-04-07T22:08:43.693863+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2602,20 +2602,20 @@
         {
           "node": "racknerd-7311420",
           "release": "2026-04-07",
-          "commit": "804477fac",
+          "commit": "ad2ab62dc",
           "status": "\u2705 active \u2014 sandman + atlas healthy, disk 43%"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-07",
-          "commit": "804477fac",
+          "commit": "ad2ab62dc",
           "status": "\u2705 active \u2014 delphi + avery healthy, disk 56%"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-07",
-          "commit": "804477fac",
-          "status": "\u2705 active \u2014 sensei healthy, 15 services (reduced from 20), 1.6GB available, NATS systemd-managed, Neo4j healthy, disk 61%"
+          "commit": "ad2ab62dc",
+          "status": "\u2705 active \u2014 sensei healthy, 15 services (reduced from 20), 1.75GB available, NATS systemd-managed, Neo4j healthy, disk 61%"
         }
       ],
       "active_sessions": [
@@ -2926,7 +2926,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-07T22:02:43.921913+00:00",
+      "updated_at": "2026-04-07T22:08:46.452391+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -4273,13 +4273,23 @@
         ]
       },
       "ci": {
-        "status": "pending",
+        "status": "queued",
         "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-07T21:33:58Z",
-        "head_sha": "b982ad9e"
+        "name": "CI",
+        "created_at": "2026-04-07T22:04:03Z",
+        "head_sha": "ad2ab62d"
       },
       "ci_recent_runs": [
+        {
+          "id": 24106652055,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-04-07T22:04:03Z",
+          "updated_at": "2026-04-07T22:07:05Z",
+          "head_sha": "ad2ab62d",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24106652055"
+        },
         {
           "id": 24105538363,
           "name": "CI Full",
@@ -4289,6 +4299,16 @@
           "updated_at": "2026-04-07T21:33:59Z",
           "head_sha": "b982ad9e",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24105538363"
+        },
+        {
+          "id": 24105348790,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-04-07T21:29:21Z",
+          "updated_at": "2026-04-07T22:04:04Z",
+          "head_sha": "b982ad9e",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24105348790"
         },
         {
           "id": 24105348749,
@@ -4301,16 +4321,6 @@
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24105348749"
         },
         {
-          "id": 24105348790,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-07T21:29:21Z",
-          "updated_at": "2026-04-07T21:32:23Z",
-          "head_sha": "b982ad9e",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24105348790"
-        },
-        {
           "id": 24105217078,
           "name": "CI",
           "status": "completed",
@@ -4319,19 +4329,30 @@
           "updated_at": "2026-04-07T21:29:22Z",
           "head_sha": "d07dd2e7",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24105217078"
-        },
-        {
-          "id": 24105217083,
-          "name": "CodeQL Analysis",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-07T21:26:09Z",
-          "updated_at": "2026-04-07T21:29:23Z",
-          "head_sha": "d07dd2e7",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24105217083"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "8c14f075",
+          "message": "docs: fix boot-state commit SHAs to match current VPS state (ad2ab62dc)",
+          "author": "covaultxyz",
+          "date": "2026-04-07T22:08:43Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8c14f075125fd77cf1a9f42b565b6c3e01b457a3"
+        },
+        {
+          "sha": "7438ba72",
+          "message": "ops: remove research consumer enable/start from prime deploy phase",
+          "author": "covaultxyz",
+          "date": "2026-04-07T22:06:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7438ba7280658fb6945cd55c2f9feb1b9344ef6c"
+        },
+        {
+          "sha": "ad2ab62d",
+          "message": "feat: add Pydantic validation to Cal.com booking service + unit tests",
+          "author": "Cassian Sandman",
+          "date": "2026-04-07T22:03:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ad2ab62dc56d7b621fe59a26baed098ec23c93a6"
+        },
         {
           "sha": "832ca027",
           "message": "ops: prime VPS service redistribution \u2014 stop embedding + 4 duplicate research services",
@@ -4380,31 +4401,10 @@
           "author": "covaultxyz",
           "date": "2026-04-07T21:21:45Z",
           "url": "https://github.com/covaultxyz/meridian/commit/f640bb23ae4fbc393b11c358ece3f0c798a52212"
-        },
-        {
-          "sha": "8d5a6e18",
-          "message": "fix: instance_health sentinel \u2014 node-aware daemon check + memory threshold",
-          "author": "covaultxyz",
-          "date": "2026-04-07T21:18:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8d5a6e18c68a47e3cf276a371b3edb929ae5c60b"
-        },
-        {
-          "sha": "daac55e7",
-          "message": "feat(collab): wire publish_collab_ping into MCP thread create/contribute/advance (#1908)",
-          "author": "covaultxyz",
-          "date": "2026-04-07T21:17:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/daac55e7b8be246c6f2cd9fbd6a5bab3dc124d60"
-        },
-        {
-          "sha": "3405d8a6",
-          "message": "fix: graceful skip for email_report sentinel when voice DB schema is empty",
-          "author": "covaultxyz",
-          "date": "2026-04-07T21:14:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3405d8a6b3ffd8eb29fd21bb94c6347a5a848aad"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-07T22:02:41.998031+00:00",
+        "updated_at": "2026-04-07T22:08:44.411483+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4474,7 +4474,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "members": [
         {
           "id": "alex",
@@ -4545,7 +4545,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "projects": [
         {
           "project": {
@@ -4975,7 +4975,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5060,7 +5060,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5157,7 +5157,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8697,7 +8697,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-07T22:02:44.055536+00:00",
+      "updated_at": "2026-04-07T22:08:46.584948+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10597,7 +10597,7 @@
       "total_docs": 314
     },
     "deals": {
-      "updated_at": "2026-04-07T22:02:44.055638+00:00",
+      "updated_at": "2026-04-07T22:08:46.585034+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10831,7 +10831,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-07T22:02:43.921936+00:00",
+      "updated_at": "2026-04-07T22:08:46.452405+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -30040,7 +30040,7 @@
       "total": 87
     },
     "call_intelligence": {
-      "updated_at": "2026-04-07T22:02:44.085826+00:00",
+      "updated_at": "2026-04-07T22:08:46.617141+00:00",
       "signal_summary": {
         "total_objections": 58,
         "total_buying_signals": 76,
@@ -36237,7 +36237,7 @@
       "total_action_items": 305
     },
     "attention": {
-      "updated_at": "2026-04-07T22:02:44.103545+00:00",
+      "updated_at": "2026-04-07T22:08:46.634610+00:00",
       "items": [
         {
           "type": "blocked",
@@ -36324,8 +36324,26 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-07T22:02:44.103588+00:00",
+      "updated_at": "2026-04-07T22:08:46.634649+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-07T22:08:43Z",
+          "title": "docs: fix boot-state commit SHAs to match current VPS state (ad2ab62dc)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-07T22:06:11Z",
+          "title": "ops: remove research consumer enable/start from prime deploy phase",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-07T22:03:44Z",
+          "title": "feat: add Pydantic validation to Cal.com booking service + unit tests",
+          "detail": "Cassian Sandman"
+        },
         {
           "type": "commit",
           "date": "2026-04-07T22:02:39Z",
@@ -36366,24 +36384,6 @@
           "type": "commit",
           "date": "2026-04-07T21:21:45Z",
           "title": "fix: disable dead GWS webhook health check (no service on port 8090)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T21:18:18Z",
-          "title": "fix: instance_health sentinel \u2014 node-aware daemon check + memory threshold",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T21:17:21Z",
-          "title": "feat(collab): wire publish_collab_ping into MCP thread create/contribute/advance",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T21:14:40Z",
-          "title": "fix: graceful skip for email_report sentinel when voice DB schema is empty",
           "detail": "covaultxyz"
         },
         {
