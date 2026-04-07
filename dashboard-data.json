@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T19:41:40.047248+00:00",
+  "generated_at": "2026-04-07T19:58:21.575772+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -891,7 +891,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-07T19:41:36.807992+00:00",
+      "updated_at": "2026-04-07T19:58:21.247452+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -911,6 +911,26 @@
           "buying_signal_count": 2,
           "sentiment": "negative",
           "suggested_stage": "proposal",
+          "participants": []
+        },
+        {
+          "client": "unknown",
+          "call_id": "fix boardroom",
+          "title": "fix boardroom",
+          "file": "clients/unknown/signals/deal-signals-fix boardroom-2026-04-07.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 1,
+            "competitor_mentions": 0,
+            "pricing_discussed": false,
+            "action_items_count": 0,
+            "sentiment": "positive",
+            "suggested_stage": "qualification"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 1,
+          "sentiment": "positive",
+          "suggested_stage": "qualification",
           "participants": []
         },
         {
@@ -2483,7 +2503,7 @@
         }
       ],
       "call_volume": {
-        "unknown": 8,
+        "unknown": 9,
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 30,
@@ -2491,7 +2511,7 @@
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 81,
+      "total_signals": 82,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -2611,6 +2631,20 @@
           "pid": "41996",
           "terminal": "ttys036",
           "launched": "2026-04-07T11:43",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "28111",
+          "terminal": "ttys050",
+          "launched": "2026-04-07T19:48",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "28574",
+          "terminal": "ttys052",
+          "launched": "2026-04-07T19:49",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
@@ -2892,1578 +2926,23 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-07T19:41:39.865559+00:00",
-      "open_issues": {
-        "total": 50,
-        "by_label": {
-          "sentinel-review:warn": 7,
-          "sentinel-review:pass": 6,
-          "grade/B": 17,
-          "enhancement": 12,
-          "infrastructure": 2,
-          "architecture": 3,
-          "grade/D": 3,
-          "bug": 2,
-          "grade/A": 2,
-          "cursor-bench": 7,
-          "collaboration": 1,
-          "grade/C": 5,
-          "daemon/delphi": 2,
-          "daemon/sandman": 1,
-          "daemon/sensei": 2,
-          "checkpoint": 2,
-          "in-progress": 2
-        }
-      },
-      "recent_issues": [
-        {
-          "number": 1945,
-          "title": "feat(#1907): add NATS active collaboration mode scaffolding",
-          "state": "open",
-          "created_at": "2026-04-07T14:27:08Z",
-          "updated_at": "2026-04-07T14:39:45Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1945",
-          "project_slug": null
-        },
-        {
-          "number": 1944,
-          "title": "feat(#1910): add daemon collaboration active/passive mode controls",
-          "state": "open",
-          "created_at": "2026-04-07T14:04:47Z",
-          "updated_at": "2026-04-07T14:04:47Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1944",
-          "project_slug": null
-        },
-        {
-          "number": 1943,
-          "title": "feat(#1908): add active-mode collab ping subject and listener",
-          "state": "open",
-          "created_at": "2026-04-07T14:02:00Z",
-          "updated_at": "2026-04-07T14:19:55Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1943",
-          "project_slug": null
-        },
-        {
-          "number": 1942,
-          "title": "feat(#1909): add lean-forward domain overlap auto-collaboration",
-          "state": "open",
-          "created_at": "2026-04-07T13:57:57Z",
-          "updated_at": "2026-04-07T15:26:17Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1942",
-          "project_slug": null
-        },
-        {
-          "number": 1941,
-          "title": "feat(#1912): active-mode collab monitor pulse sentinel",
-          "state": "open",
-          "created_at": "2026-04-07T13:29:25Z",
-          "updated_at": "2026-04-07T14:07:01Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1941",
-          "project_slug": null
-        },
-        {
-          "number": 1940,
-          "title": "feat(#1911): implement quantum worker pyQPanda logic + QUANTUM_JOBS routing",
-          "state": "open",
-          "created_at": "2026-04-07T13:28:07Z",
-          "updated_at": "2026-04-07T13:36:30Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1940",
-          "project_slug": null
-        },
-        {
-          "number": 1939,
-          "title": "feat(#1914): active mode daemon direct collaboration wiring",
-          "state": "open",
-          "created_at": "2026-04-07T12:57:52Z",
-          "updated_at": "2026-04-07T13:26:05Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1939",
-          "project_slug": null
-        },
-        {
-          "number": 1938,
-          "title": "feat(#1918): DLQ triage script, selective drain controls, and depth alert",
-          "state": "open",
-          "created_at": "2026-04-07T12:55:34Z",
-          "updated_at": "2026-04-07T13:09:44Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1938",
-          "project_slug": null
-        },
-        {
-          "number": 1937,
-          "title": "feat(#1921): Populate Architecture and Use Cases",
-          "state": "open",
-          "created_at": "2026-04-07T12:28:56Z",
-          "updated_at": "2026-04-07T12:33:44Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1937",
-          "project_slug": null
-        },
-        {
-          "number": 1936,
-          "title": "feat(#1921): Add Open Questions and Rollback Procedure",
-          "state": "open",
-          "created_at": "2026-04-07T12:27:42Z",
-          "updated_at": "2026-04-07T12:55:15Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1936",
-          "project_slug": null
-        },
-        {
-          "number": 1935,
-          "title": "feat(#1921): Populate Infrastructure and Gating Strategy",
-          "state": "open",
-          "created_at": "2026-04-07T12:27:13Z",
-          "updated_at": "2026-04-07T12:32:08Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1935",
-          "project_slug": null
-        },
-        {
-          "number": 1934,
-          "title": "feat(#1921): Populate Resource Budget and Timeline",
-          "state": "open",
-          "created_at": "2026-04-07T12:25:39Z",
-          "updated_at": "2026-04-07T12:30:52Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1934",
-          "project_slug": null
-        },
-        {
-          "number": 1932,
-          "title": "feat(#1924): CLI max-turns auto-resume hardening",
-          "state": "open",
-          "created_at": "2026-04-07T11:55:57Z",
-          "updated_at": "2026-04-07T12:21:59Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1932",
-          "project_slug": null
-        },
-        {
-          "number": 1931,
-          "title": "ops: orphan node purge pipeline (GH#1304)",
-          "state": "open",
-          "created_at": "2026-04-07T11:14:53Z",
-          "updated_at": "2026-04-07T11:14:53Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1931",
-          "project_slug": null
-        },
-        {
-          "number": 1930,
-          "title": "auto: fallback restart on auth refresh timeout",
-          "state": "open",
-          "created_at": "2026-04-07T02:16:16Z",
-          "updated_at": "2026-04-07T02:21:27Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1930",
-          "project_slug": null
-        },
-        {
-          "number": 1924,
-          "title": "infra: CLI session auto-resume on max_turns checkpoint",
-          "state": "open",
-          "created_at": "2026-04-06T22:37:45Z",
-          "updated_at": "2026-04-06T22:45:48Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1924",
-          "project_slug": null
-        },
-        {
-          "number": 1922,
-          "title": "Quantum Terminal: Worker + QUANTUM_JOBS Stream",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:37Z",
-          "updated_at": "2026-04-06T22:46:11Z",
-          "labels": [
-            "enhancement",
-            "infrastructure",
-            "architecture",
-            "grade/D"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1922",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 1918,
-          "title": "DLQ drain + triage: 1,445 dead-lettered messages",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:22Z",
-          "updated_at": "2026-04-06T22:46:57Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1918",
-          "project_slug": null
-        },
-        {
-          "number": 1917,
-          "title": "Research pipeline: unblock upstream feed from Intel Mac",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:14Z",
-          "updated_at": "2026-04-06T22:47:07Z",
-          "labels": [
-            "bug",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1917",
-          "project_slug": null
-        },
-        {
-          "number": 1916,
-          "title": "Forge worker: deploy as persistent consumer",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:13Z",
-          "updated_at": "2026-04-06T22:47:22Z",
-          "labels": [
-            "bug",
-            "grade/A",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1916",
-          "project_slug": null
-        },
-        {
-          "number": 1915,
-          "title": "Active Collaboration Mode (Lean Forward) \u2014 daemon-to-daemon collab",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:10Z",
-          "updated_at": "2026-04-06T22:50:12Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1915",
-          "project_slug": null
-        },
-        {
-          "number": 1914,
-          "title": "Active Mode: Daemon Direct Collaboration (Lean Forward)",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:10Z",
-          "updated_at": "2026-04-07T00:49:14Z",
-          "labels": [
-            "enhancement",
-            "architecture",
-            "collaboration",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1914",
-          "project_slug": null
-        },
-        {
-          "number": 1913,
-          "title": "Quantum Terminal: QUANTUM_JOBS stream + pyQPanda worker",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:09Z",
-          "updated_at": "2026-04-06T22:47:55Z",
-          "labels": [
-            "grade/D"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1913",
-          "project_slug": null
-        },
-        {
-          "number": 1912,
-          "title": "Active Mode: collab_monitor pulse sentinel",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:08Z",
-          "updated_at": "2026-04-06T22:48:06Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1912",
-          "project_slug": null
-        },
-        {
-          "number": 1911,
-          "title": "Quantum Terminal: pyQPanda worker + QUANTUM_JOBS stream",
-          "state": "open",
-          "created_at": "2026-04-06T22:34:04Z",
-          "updated_at": "2026-04-06T22:48:18Z",
-          "labels": [
-            "enhancement",
-            "grade/D"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1911",
-          "project_slug": null
-        },
-        {
-          "number": 1910,
-          "title": "Active Mode: collaboration config flag per daemon",
-          "state": "open",
-          "created_at": "2026-04-06T22:33:59Z",
-          "updated_at": "2026-04-06T22:48:29Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1910",
-          "project_slug": null
-        },
-        {
-          "number": 1909,
-          "title": "Lean-Forward Detection: daemon overlap awareness for auto-collaboration",
-          "state": "open",
-          "created_at": "2026-04-06T22:33:58Z",
-          "updated_at": "2026-04-06T22:48:40Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1909",
-          "project_slug": null
-        },
-        {
-          "number": 1908,
-          "title": "Active Mode: NATS collab ping subject + listener",
-          "state": "open",
-          "created_at": "2026-04-06T22:33:53Z",
-          "updated_at": "2026-04-06T22:48:49Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1908",
-          "project_slug": null
-        },
-        {
-          "number": 1907,
-          "title": "Active Collaboration Mode: NATS direct daemon-to-daemon messaging",
-          "state": "open",
-          "created_at": "2026-04-06T22:33:52Z",
-          "updated_at": "2026-04-06T22:49:07Z",
-          "labels": [
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1907",
-          "project_slug": null
-        },
-        {
-          "number": 1906,
-          "title": "fix: smoke test for actual Custom GPT gateway endpoints",
-          "state": "open",
-          "created_at": "2026-04-06T09:19:15Z",
-          "updated_at": "2026-04-06T09:19:15Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1906",
-          "project_slug": null
-        },
-        {
-          "number": 1905,
-          "title": "Arc 0A: Instance Configuration Scaffold \u2014 tests + slot alias",
-          "state": "open",
-          "created_at": "2026-04-05T13:51:41Z",
-          "updated_at": "2026-04-05T13:51:41Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1905",
-          "project_slug": null
-        },
-        {
-          "number": 1899,
-          "title": "Daemon Initiative Protocol: autonomous fix attempts for stale/blocked work",
-          "state": "open",
-          "created_at": "2026-04-05T02:47:11Z",
-          "updated_at": "2026-04-05T04:15:18Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1899",
-          "project_slug": null
-        },
-        {
-          "number": 1898,
-          "title": "Revenue Pipeline: research \u2192 client brief \u2192 proposal \u2192 SOW \u2192 invoice tracking",
-          "state": "open",
-          "created_at": "2026-04-05T02:47:03Z",
-          "updated_at": "2026-04-05T23:48:35Z",
-          "labels": [
-            "enhancement",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1898",
-          "project_slug": null
-        },
-        {
-          "number": 1897,
-          "title": "Autonomous Ops Rhythm: daily standup + weekly scorecard",
-          "state": "open",
-          "created_at": "2026-04-05T02:46:57Z",
-          "updated_at": "2026-04-05T04:15:53Z",
-          "labels": [
-            "enhancement",
-            "grade/A",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1897",
-          "project_slug": null
-        },
-        {
-          "number": 1896,
-          "title": "OKR Framework: Q2 2026 objectives, key results, weekly scoring",
-          "state": "open",
-          "created_at": "2026-04-05T02:46:50Z",
-          "updated_at": "2026-04-05T04:16:03Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1896",
-          "project_slug": null
-        },
-        {
-          "number": 1894,
-          "title": "Daemon Run Loop: persistent process model replacing request/response",
-          "state": "open",
-          "created_at": "2026-04-05T02:35:02Z",
-          "updated_at": "2026-04-05T02:46:36Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1894",
-          "project_slug": null
-        },
-        {
-          "number": 1893,
-          "title": "Daemon Initiative Engine \u2014 pulse-driven proactive actions",
-          "state": "open",
-          "created_at": "2026-04-05T02:34:52Z",
-          "updated_at": "2026-04-05T02:47:01Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1893",
-          "project_slug": null
-        },
-        {
-          "number": 1892,
-          "title": "Reaction Contracts: event-to-daemon routing with action authority",
-          "state": "open",
-          "created_at": "2026-04-05T02:34:47Z",
-          "updated_at": "2026-04-05T02:47:21Z",
-          "labels": [
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1892",
-          "project_slug": null
-        },
-        {
-          "number": 1888,
-          "title": "feat(ops): Daemon performance dashboard \u2014 unified daily digest + trend detection",
-          "state": "open",
-          "created_at": "2026-04-04T22:25:21Z",
-          "updated_at": "2026-04-04T22:30:21Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "daemon/delphi",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1888",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1887,
-          "title": "feat(meta): Harness optimizer \u2014 weekly meta-agent run for daemon prompt/tool improvement",
-          "state": "open",
-          "created_at": "2026-04-04T22:25:19Z",
-          "updated_at": "2026-04-04T22:30:33Z",
-          "labels": [
-            "enhancement",
-            "architecture",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1887",
-          "project_slug": null
-        },
-        {
-          "number": 1885,
-          "title": "feat(telegram): Pre-send verification loop \u2014 bonus turns for self-correction before delivery",
-          "state": "open",
-          "created_at": "2026-04-04T20:50:27Z",
-          "updated_at": "2026-04-04T21:30:37Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "daemon/delphi",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1885",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1883,
-          "title": "ops(mig): Work Arc \u2014 Bring MIG to Full MERIDIAN Compliance",
-          "state": "open",
-          "created_at": "2026-04-04T18:27:39Z",
-          "updated_at": "2026-04-04T18:27:39Z",
-          "labels": [
-            "infrastructure",
-            "grade/B",
-            "daemon/sandman"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1883",
-          "project_slug": "memory-gardener"
-        },
-        {
-          "number": 1882,
-          "title": "fix(#1860): MIG decay_tier validation + orphan remediation",
-          "state": "open",
-          "created_at": "2026-04-04T17:51:23Z",
-          "updated_at": "2026-04-04T17:51:23Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1882",
-          "project_slug": null
-        },
-        {
-          "number": 1881,
-          "title": "feat(#1792): Mock Conversation Generator (Primitive 4) + CI test gate fix",
-          "state": "open",
-          "created_at": "2026-04-04T17:49:26Z",
-          "updated_at": "2026-04-04T17:49:26Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1881",
-          "project_slug": null
-        },
-        {
-          "number": 1879,
-          "title": "feat(voice): Twilio Live bridge to Gemini Flash Live (PSTN A2A)",
-          "state": "open",
-          "created_at": "2026-04-04T17:44:16Z",
-          "updated_at": "2026-04-04T17:54:59Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1879",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1878,
-          "title": "feat(#1757): Image Grader Category nodes + validated ingest",
-          "state": "open",
-          "created_at": "2026-04-04T17:44:11Z",
-          "updated_at": "2026-04-04T17:44:11Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1878",
-          "project_slug": null
-        },
-        {
-          "number": 1877,
-          "title": "feat(#1758): Image Grader lead capture v1 + validated Lead writes",
-          "state": "open",
-          "created_at": "2026-04-04T17:43:22Z",
-          "updated_at": "2026-04-04T17:43:22Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1877",
-          "project_slug": null
-        },
-        {
-          "number": 1875,
-          "title": "feat(#1791): Pre-Call Need Matching Engine + work queue wiring",
-          "state": "open",
-          "created_at": "2026-04-04T17:40:38Z",
-          "updated_at": "2026-04-04T17:44:14Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1875",
-          "project_slug": null
-        },
-        {
-          "number": 1874,
-          "title": "CHECKPOINT: Sensei \u2014 Coherence Oversight + Telegram/Embedding Triage + Extraction Pipeline Analysis",
-          "state": "open",
-          "created_at": "2026-04-04T16:34:40Z",
-          "updated_at": "2026-04-04T16:45:15Z",
-          "labels": [
-            "grade/C",
-            "daemon/sensei",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1874",
-          "project_slug": "pulse-sentinels"
-        },
-        {
-          "number": 1873,
-          "title": "CHECKPOINT: Sensei \u2014 Kite Frame Tension Architecture + Autonomous Audit System",
-          "state": "open",
-          "created_at": "2026-04-04T16:33:54Z",
-          "updated_at": "2026-04-04T16:45:31Z",
-          "labels": [
-            "grade/B",
-            "daemon/sensei",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1873",
-          "project_slug": "pulse-sentinels"
-        }
-      ],
-      "issues_by_project": {
-        "unassigned": [
-          {
-            "number": 1945,
-            "title": "feat(#1907): add NATS active collaboration mode scaffolding",
-            "state": "open",
-            "created_at": "2026-04-07T14:27:08Z",
-            "updated_at": "2026-04-07T14:39:45Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1945",
-            "project_slug": null
-          },
-          {
-            "number": 1944,
-            "title": "feat(#1910): add daemon collaboration active/passive mode controls",
-            "state": "open",
-            "created_at": "2026-04-07T14:04:47Z",
-            "updated_at": "2026-04-07T14:04:47Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1944",
-            "project_slug": null
-          },
-          {
-            "number": 1943,
-            "title": "feat(#1908): add active-mode collab ping subject and listener",
-            "state": "open",
-            "created_at": "2026-04-07T14:02:00Z",
-            "updated_at": "2026-04-07T14:19:55Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1943",
-            "project_slug": null
-          },
-          {
-            "number": 1942,
-            "title": "feat(#1909): add lean-forward domain overlap auto-collaboration",
-            "state": "open",
-            "created_at": "2026-04-07T13:57:57Z",
-            "updated_at": "2026-04-07T15:26:17Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1942",
-            "project_slug": null
-          },
-          {
-            "number": 1941,
-            "title": "feat(#1912): active-mode collab monitor pulse sentinel",
-            "state": "open",
-            "created_at": "2026-04-07T13:29:25Z",
-            "updated_at": "2026-04-07T14:07:01Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1941",
-            "project_slug": null
-          },
-          {
-            "number": 1940,
-            "title": "feat(#1911): implement quantum worker pyQPanda logic + QUANTUM_JOBS routing",
-            "state": "open",
-            "created_at": "2026-04-07T13:28:07Z",
-            "updated_at": "2026-04-07T13:36:30Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1940",
-            "project_slug": null
-          },
-          {
-            "number": 1939,
-            "title": "feat(#1914): active mode daemon direct collaboration wiring",
-            "state": "open",
-            "created_at": "2026-04-07T12:57:52Z",
-            "updated_at": "2026-04-07T13:26:05Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1939",
-            "project_slug": null
-          },
-          {
-            "number": 1938,
-            "title": "feat(#1918): DLQ triage script, selective drain controls, and depth alert",
-            "state": "open",
-            "created_at": "2026-04-07T12:55:34Z",
-            "updated_at": "2026-04-07T13:09:44Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1938",
-            "project_slug": null
-          },
-          {
-            "number": 1937,
-            "title": "feat(#1921): Populate Architecture and Use Cases",
-            "state": "open",
-            "created_at": "2026-04-07T12:28:56Z",
-            "updated_at": "2026-04-07T12:33:44Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1937",
-            "project_slug": null
-          },
-          {
-            "number": 1936,
-            "title": "feat(#1921): Add Open Questions and Rollback Procedure",
-            "state": "open",
-            "created_at": "2026-04-07T12:27:42Z",
-            "updated_at": "2026-04-07T12:55:15Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1936",
-            "project_slug": null
-          },
-          {
-            "number": 1935,
-            "title": "feat(#1921): Populate Infrastructure and Gating Strategy",
-            "state": "open",
-            "created_at": "2026-04-07T12:27:13Z",
-            "updated_at": "2026-04-07T12:32:08Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1935",
-            "project_slug": null
-          },
-          {
-            "number": 1934,
-            "title": "feat(#1921): Populate Resource Budget and Timeline",
-            "state": "open",
-            "created_at": "2026-04-07T12:25:39Z",
-            "updated_at": "2026-04-07T12:30:52Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1934",
-            "project_slug": null
-          },
-          {
-            "number": 1932,
-            "title": "feat(#1924): CLI max-turns auto-resume hardening",
-            "state": "open",
-            "created_at": "2026-04-07T11:55:57Z",
-            "updated_at": "2026-04-07T12:21:59Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1932",
-            "project_slug": null
-          },
-          {
-            "number": 1931,
-            "title": "ops: orphan node purge pipeline (GH#1304)",
-            "state": "open",
-            "created_at": "2026-04-07T11:14:53Z",
-            "updated_at": "2026-04-07T11:14:53Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1931",
-            "project_slug": null
-          },
-          {
-            "number": 1930,
-            "title": "auto: fallback restart on auth refresh timeout",
-            "state": "open",
-            "created_at": "2026-04-07T02:16:16Z",
-            "updated_at": "2026-04-07T02:21:27Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1930",
-            "project_slug": null
-          },
-          {
-            "number": 1924,
-            "title": "infra: CLI session auto-resume on max_turns checkpoint",
-            "state": "open",
-            "created_at": "2026-04-06T22:37:45Z",
-            "updated_at": "2026-04-06T22:45:48Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1924",
-            "project_slug": null
-          },
-          {
-            "number": 1918,
-            "title": "DLQ drain + triage: 1,445 dead-lettered messages",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:22Z",
-            "updated_at": "2026-04-06T22:46:57Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1918",
-            "project_slug": null
-          },
-          {
-            "number": 1917,
-            "title": "Research pipeline: unblock upstream feed from Intel Mac",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:14Z",
-            "updated_at": "2026-04-06T22:47:07Z",
-            "labels": [
-              "bug",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1917",
-            "project_slug": null
-          },
-          {
-            "number": 1916,
-            "title": "Forge worker: deploy as persistent consumer",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:13Z",
-            "updated_at": "2026-04-06T22:47:22Z",
-            "labels": [
-              "bug",
-              "grade/A",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1916",
-            "project_slug": null
-          },
-          {
-            "number": 1915,
-            "title": "Active Collaboration Mode (Lean Forward) \u2014 daemon-to-daemon collab",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:10Z",
-            "updated_at": "2026-04-06T22:50:12Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1915",
-            "project_slug": null
-          },
-          {
-            "number": 1914,
-            "title": "Active Mode: Daemon Direct Collaboration (Lean Forward)",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:10Z",
-            "updated_at": "2026-04-07T00:49:14Z",
-            "labels": [
-              "enhancement",
-              "architecture",
-              "collaboration",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1914",
-            "project_slug": null
-          },
-          {
-            "number": 1913,
-            "title": "Quantum Terminal: QUANTUM_JOBS stream + pyQPanda worker",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:09Z",
-            "updated_at": "2026-04-06T22:47:55Z",
-            "labels": [
-              "grade/D"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1913",
-            "project_slug": null
-          },
-          {
-            "number": 1912,
-            "title": "Active Mode: collab_monitor pulse sentinel",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:08Z",
-            "updated_at": "2026-04-06T22:48:06Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1912",
-            "project_slug": null
-          },
-          {
-            "number": 1911,
-            "title": "Quantum Terminal: pyQPanda worker + QUANTUM_JOBS stream",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:04Z",
-            "updated_at": "2026-04-06T22:48:18Z",
-            "labels": [
-              "enhancement",
-              "grade/D"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1911",
-            "project_slug": null
-          },
-          {
-            "number": 1910,
-            "title": "Active Mode: collaboration config flag per daemon",
-            "state": "open",
-            "created_at": "2026-04-06T22:33:59Z",
-            "updated_at": "2026-04-06T22:48:29Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1910",
-            "project_slug": null
-          },
-          {
-            "number": 1909,
-            "title": "Lean-Forward Detection: daemon overlap awareness for auto-collaboration",
-            "state": "open",
-            "created_at": "2026-04-06T22:33:58Z",
-            "updated_at": "2026-04-06T22:48:40Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1909",
-            "project_slug": null
-          },
-          {
-            "number": 1908,
-            "title": "Active Mode: NATS collab ping subject + listener",
-            "state": "open",
-            "created_at": "2026-04-06T22:33:53Z",
-            "updated_at": "2026-04-06T22:48:49Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1908",
-            "project_slug": null
-          },
-          {
-            "number": 1907,
-            "title": "Active Collaboration Mode: NATS direct daemon-to-daemon messaging",
-            "state": "open",
-            "created_at": "2026-04-06T22:33:52Z",
-            "updated_at": "2026-04-06T22:49:07Z",
-            "labels": [
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1907",
-            "project_slug": null
-          },
-          {
-            "number": 1906,
-            "title": "fix: smoke test for actual Custom GPT gateway endpoints",
-            "state": "open",
-            "created_at": "2026-04-06T09:19:15Z",
-            "updated_at": "2026-04-06T09:19:15Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1906",
-            "project_slug": null
-          },
-          {
-            "number": 1905,
-            "title": "Arc 0A: Instance Configuration Scaffold \u2014 tests + slot alias",
-            "state": "open",
-            "created_at": "2026-04-05T13:51:41Z",
-            "updated_at": "2026-04-05T13:51:41Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1905",
-            "project_slug": null
-          },
-          {
-            "number": 1899,
-            "title": "Daemon Initiative Protocol: autonomous fix attempts for stale/blocked work",
-            "state": "open",
-            "created_at": "2026-04-05T02:47:11Z",
-            "updated_at": "2026-04-05T04:15:18Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1899",
-            "project_slug": null
-          },
-          {
-            "number": 1898,
-            "title": "Revenue Pipeline: research \u2192 client brief \u2192 proposal \u2192 SOW \u2192 invoice tracking",
-            "state": "open",
-            "created_at": "2026-04-05T02:47:03Z",
-            "updated_at": "2026-04-05T23:48:35Z",
-            "labels": [
-              "enhancement",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1898",
-            "project_slug": null
-          },
-          {
-            "number": 1897,
-            "title": "Autonomous Ops Rhythm: daily standup + weekly scorecard",
-            "state": "open",
-            "created_at": "2026-04-05T02:46:57Z",
-            "updated_at": "2026-04-05T04:15:53Z",
-            "labels": [
-              "enhancement",
-              "grade/A",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1897",
-            "project_slug": null
-          },
-          {
-            "number": 1896,
-            "title": "OKR Framework: Q2 2026 objectives, key results, weekly scoring",
-            "state": "open",
-            "created_at": "2026-04-05T02:46:50Z",
-            "updated_at": "2026-04-05T04:16:03Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1896",
-            "project_slug": null
-          },
-          {
-            "number": 1894,
-            "title": "Daemon Run Loop: persistent process model replacing request/response",
-            "state": "open",
-            "created_at": "2026-04-05T02:35:02Z",
-            "updated_at": "2026-04-05T02:46:36Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1894",
-            "project_slug": null
-          },
-          {
-            "number": 1893,
-            "title": "Daemon Initiative Engine \u2014 pulse-driven proactive actions",
-            "state": "open",
-            "created_at": "2026-04-05T02:34:52Z",
-            "updated_at": "2026-04-05T02:47:01Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1893",
-            "project_slug": null
-          },
-          {
-            "number": 1892,
-            "title": "Reaction Contracts: event-to-daemon routing with action authority",
-            "state": "open",
-            "created_at": "2026-04-05T02:34:47Z",
-            "updated_at": "2026-04-05T02:47:21Z",
-            "labels": [
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1892",
-            "project_slug": null
-          },
-          {
-            "number": 1887,
-            "title": "feat(meta): Harness optimizer \u2014 weekly meta-agent run for daemon prompt/tool improvement",
-            "state": "open",
-            "created_at": "2026-04-04T22:25:19Z",
-            "updated_at": "2026-04-04T22:30:33Z",
-            "labels": [
-              "enhancement",
-              "architecture",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1887",
-            "project_slug": null
-          },
-          {
-            "number": 1882,
-            "title": "fix(#1860): MIG decay_tier validation + orphan remediation",
-            "state": "open",
-            "created_at": "2026-04-04T17:51:23Z",
-            "updated_at": "2026-04-04T17:51:23Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1882",
-            "project_slug": null
-          },
-          {
-            "number": 1881,
-            "title": "feat(#1792): Mock Conversation Generator (Primitive 4) + CI test gate fix",
-            "state": "open",
-            "created_at": "2026-04-04T17:49:26Z",
-            "updated_at": "2026-04-04T17:49:26Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1881",
-            "project_slug": null
-          },
-          {
-            "number": 1878,
-            "title": "feat(#1757): Image Grader Category nodes + validated ingest",
-            "state": "open",
-            "created_at": "2026-04-04T17:44:11Z",
-            "updated_at": "2026-04-04T17:44:11Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1878",
-            "project_slug": null
-          },
-          {
-            "number": 1877,
-            "title": "feat(#1758): Image Grader lead capture v1 + validated Lead writes",
-            "state": "open",
-            "created_at": "2026-04-04T17:43:22Z",
-            "updated_at": "2026-04-04T17:43:22Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1877",
-            "project_slug": null
-          },
-          {
-            "number": 1875,
-            "title": "feat(#1791): Pre-Call Need Matching Engine + work queue wiring",
-            "state": "open",
-            "created_at": "2026-04-04T17:40:38Z",
-            "updated_at": "2026-04-04T17:44:14Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1875",
-            "project_slug": null
-          }
-        ],
-        "openclaw": [
-          {
-            "number": 1922,
-            "title": "Quantum Terminal: Worker + QUANTUM_JOBS Stream",
-            "state": "open",
-            "created_at": "2026-04-06T22:34:37Z",
-            "updated_at": "2026-04-06T22:46:11Z",
-            "labels": [
-              "enhancement",
-              "infrastructure",
-              "architecture",
-              "grade/D"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1922",
-            "project_slug": "openclaw"
-          }
-        ],
-        "agent-vox": [
-          {
-            "number": 1888,
-            "title": "feat(ops): Daemon performance dashboard \u2014 unified daily digest + trend detection",
-            "state": "open",
-            "created_at": "2026-04-04T22:25:21Z",
-            "updated_at": "2026-04-04T22:30:21Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "daemon/delphi",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1888",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 1885,
-            "title": "feat(telegram): Pre-send verification loop \u2014 bonus turns for self-correction before delivery",
-            "state": "open",
-            "created_at": "2026-04-04T20:50:27Z",
-            "updated_at": "2026-04-04T21:30:37Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "daemon/delphi",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1885",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 1879,
-            "title": "feat(voice): Twilio Live bridge to Gemini Flash Live (PSTN A2A)",
-            "state": "open",
-            "created_at": "2026-04-04T17:44:16Z",
-            "updated_at": "2026-04-04T17:54:59Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1879",
-            "project_slug": "agent-vox"
-          }
-        ],
-        "memory-gardener": [
-          {
-            "number": 1883,
-            "title": "ops(mig): Work Arc \u2014 Bring MIG to Full MERIDIAN Compliance",
-            "state": "open",
-            "created_at": "2026-04-04T18:27:39Z",
-            "updated_at": "2026-04-04T18:27:39Z",
-            "labels": [
-              "infrastructure",
-              "grade/B",
-              "daemon/sandman"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1883",
-            "project_slug": "memory-gardener"
-          }
-        ],
-        "pulse-sentinels": [
-          {
-            "number": 1874,
-            "title": "CHECKPOINT: Sensei \u2014 Coherence Oversight + Telegram/Embedding Triage + Extraction Pipeline Analysis",
-            "state": "open",
-            "created_at": "2026-04-04T16:34:40Z",
-            "updated_at": "2026-04-04T16:45:15Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1874",
-            "project_slug": "pulse-sentinels"
-          },
-          {
-            "number": 1873,
-            "title": "CHECKPOINT: Sensei \u2014 Kite Frame Tension Architecture + Autonomous Audit System",
-            "state": "open",
-            "created_at": "2026-04-04T16:33:54Z",
-            "updated_at": "2026-04-04T16:45:31Z",
-            "labels": [
-              "grade/B",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1873",
-            "project_slug": "pulse-sentinels"
-          }
-        ]
-      },
+      "updated_at": "2026-04-07T19:58:21.275281+00:00",
+      "open_issues": "GitHub issues query failed or gh CLI unavailable",
+      "recent_issues": [],
+      "issues_by_project": {},
       "ci": {
-        "status": "pending",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-07T18:45:48Z",
-        "head_sha": "eb0e09a4"
+        "error": "GitHub CI query failed or gh CLI unavailable",
+        "updated_at": null
       },
-      "ci_recent_runs": [
-        {
-          "id": 24098503764,
-          "name": "CI Full",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-04-07T18:45:48Z",
-          "updated_at": "2026-04-07T18:45:49Z",
-          "head_sha": "eb0e09a4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24098503764"
-        },
-        {
-          "id": 24096059932,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-07T17:50:13Z",
-          "updated_at": "2026-04-07T17:50:14Z",
-          "head_sha": "eb0e09a4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24096059932"
-        },
-        {
-          "id": 24095980780,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-07T17:48:22Z",
-          "updated_at": "2026-04-07T18:45:49Z",
-          "head_sha": "a3fc0c07",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24095980780"
-        },
-        {
-          "id": 24091393350,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-07T16:04:04Z",
-          "updated_at": "2026-04-07T17:48:24Z",
-          "head_sha": "196a8628",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24091393350"
-        },
-        {
-          "id": 24090251761,
-          "name": "github_actions in / for actions/setup-python - Update #1311469156",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-04-07T15:39:39Z",
-          "updated_at": "2026-04-07T15:41:05Z",
-          "head_sha": "196a8628",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24090251761"
-        }
-      ],
-      "recent_commits": [
-        {
-          "sha": "eb0e09a4",
-          "message": "docs: add E2E standalone suite docstring and DEVELOPMENT_WORKFLOW section",
-          "author": "Delphi (MERIDIAN)",
-          "date": "2026-04-07T17:50:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/eb0e09a4b41d2bf2df06a37923f0c1645822b2fb"
-        },
-        {
-          "sha": "a3fc0c07",
-          "message": "docs: update TEAM_STATE with crystallization closure and E2E suite commits",
-          "author": "Cassian Sandman",
-          "date": "2026-04-07T16:04:29Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a3fc0c07cd80f41225b5627f28023b4c9afe9dbf"
-        },
-        {
-          "sha": "196a8628",
-          "message": "ci: add standalone E2E suite to integration-test job",
-          "author": "Cassian Sandman",
-          "date": "2026-04-07T15:39:01Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/196a862881bb5a19913ceed78157a2bc86fc9437"
-        },
-        {
-          "sha": "b34d6124",
-          "message": "feat: update run_e2e.sh \u2014 Docker Compose lifecycle, trap cleanup, CI flags",
-          "author": "Cassian Sandman",
-          "date": "2026-04-07T15:36:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b34d6124ec253bcd61c201e89c4f43a7d836b5d7"
-        },
-        {
-          "sha": "034cf67c",
-          "message": "feat: standalone E2E test suite \u2014 38 tests across 4 stages",
-          "author": "Cassian Sandman",
-          "date": "2026-04-07T15:31:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/034cf67c0714ee3543ca4782447556a145948d28"
-        },
-        {
-          "sha": "30e64804",
-          "message": "Mark Phase 3 Research Extraction COMPLETE \u2014 all targets extracted or no-source",
-          "author": "covaultxyz",
-          "date": "2026-04-07T13:58:46Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/30e64804e65ae4a0834fe511e9664b9572a747b0"
-        },
-        {
-          "sha": "749f09c6",
-          "message": "Extract Phillips 110 Steps presentation corpus \u2014 276 files, 6 chemicals, 110 steps, 50+ spices",
-          "author": "covaultxyz",
-          "date": "2026-04-07T13:56:01Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/749f09c697940b3ad2742c601b3d4166eb197db8"
-        },
-        {
-          "sha": "21c50e1d",
-          "message": "Expand crystallization runbook with full R1-R8 methodology and all Cypher patterns",
-          "author": "claude-code",
-          "date": "2026-04-07T13:42:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/21c50e1d131328312a0a360637d94c2e90b6581b"
-        },
-        {
-          "sha": "02b33553",
-          "message": "Add E2E test suite, CI workflow, and crystallization runbook",
-          "author": "claude-code",
-          "date": "2026-04-07T13:33:25Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/02b33553e2f91549a0f9ebe5b6eaec579780df1d"
-        },
-        {
-          "sha": "ff91141e",
-          "message": "feat(extraction): Assaraf Winning Game of Business \u2014 45 frameworks from 279 transcripts",
-          "author": "covaultxyz",
-          "date": "2026-04-07T13:27:43Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ff91141e9ab0360131a4f8005b400cc0ee8bc829"
-        }
-      ],
+      "ci_recent_runs": [],
+      "recent_commits": [],
       "github_project": {
-        "updated_at": "2026-04-07T19:41:37.913459+00:00",
-        "source": "github_project_13",
-        "deals": [
-          {
-            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-            "number": 1675,
-            "url": "https://github.com/covaultxyz/meridian/issues/1675",
-            "state": "CLOSED",
-            "created_at": "2026-03-22T03:44:34Z",
-            "labels": [
-              "grade/B",
-              "verified",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-              "Status": "Done",
-              "Client": "Denver Griffin",
-              "Stage": "Engaged",
-              "Revenue": "$2K retainer (invoiced) + $5K/mo proposed",
-              "Next Action": "Confirm payment; follow up data handoff; P1 phone tests",
-              "Deadline": "2026-04-04",
-              "Owner": "Joint",
-              "Risk": "Data handoff blocked; scope doc not written"
-            }
-          },
-          {
-            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-            "number": 1676,
-            "url": "https://github.com/covaultxyz/meridian/issues/1676",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:50Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-              "Status": "Todo",
-              "Client": "Gordon (GCC)",
-              "Stage": "Lead",
-              "Next Action": "Deep research EHR needs; schedule meeting after Gordon returns ~Mar 28",
-              "Deadline": "2026-03-28",
-              "Owner": "Bitler"
-            }
-          },
-          {
-            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-            "number": 1677,
-            "url": "https://github.com/covaultxyz/meridian/issues/1677",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:56Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-              "Status": "Todo",
-              "Client": "Brian Cook",
-              "Stage": "Lead",
-              "Next Action": "Re-engage via Bitler after Denver demo ships",
-              "Owner": "Bitler"
-            }
-          }
-        ],
-        "total_items": 3
+        "error": "GitHub Project #13 query failed or gh CLI unavailable",
+        "updated_at": null
       }
     },
     "team": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "members": [
         {
           "id": "alex",
@@ -4534,7 +3013,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "projects": [
         {
           "project": {
@@ -4964,7 +3443,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5049,7 +3528,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5146,7 +3625,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -5440,6 +3919,37 @@
           ],
           "detail_page": "calls/2026-04-07-april7claudecodeskillyt.html",
           "preview": "The transcript explores various open-source and internal skills and plugins used by the Claude Code team for tasks such as front-end design, automated task parallelization, code simplification, verification, skill creation, security scanning, repetitive workflow automation, tech debt management, duplicate issue detection, and motion graphics creation."
+        },
+        {
+          "date": "2026-04-07",
+          "title": "Fix Boardroom",
+          "type": "internal",
+          "file": "transcriptions/april7/fix boardroom.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "The transcript details numerous functional and user experience gaps in the current AI agent system across prospect, sales, technical, product, and competitive perspectives, concluding with a prioritized list of five key improvements.",
+          "decisions": [
+            "Prioritize implementing a warm greeting for returning visitors that references their name and last topic.",
+            "Prioritize surfacing personal links via a UI button or agent utterance for conversation sharing.",
+            "Prioritize improving the Live A2A agent switch UX with a transfer line, transition sound, and UI updates.",
+            "Prioritize developing a post-call summary page for each session, including topics, action items, and personal links.",
+            "Prioritize building an observer UI page for live demos to show real-time transcript and conversation details."
+          ],
+          "discoveries": [
+            "Live A2A reconnects introduce a 2-3 second silent gap and voice change, making agent handoffs feel like dropped calls.",
+            "Users receive no feedback when documents are uploaded, leaving them unsure if the process was successful.",
+            "Personalized conversation links are generated automatically but are invisible to visitors and agents.",
+            "Returning visitors are met with a generic greeting, despite the system successfully loading their prior conversation context.",
+            "Refreshing the browser mid-conversation results in the complete loss of the session, transcript, and agent state.",
+            "Document uploads during Live A2A sessions silently fail because they incorrectly trigger a Classic mode endpoint.",
+            "The sales team lacks an observer dashboard to monitor prospect interactions in real-time during live demos.",
+            "Key technical components like the Cloudflare tunnel and voice gateway are single points of failure, lacking resilience mechanisms.",
+            "Session data and contact extraction are vulnerable to loss upon service restarts due to in-memory storage or missing retry logic.",
+            "The system's unique competitive advantages, such as multi-agent handoff and persistent memory, are not visible or effectively demonstrated to users or buyers."
+          ],
+          "detail_page": "calls/2026-04-07-fix-boardroom.html",
+          "preview": "The transcript details numerous functional and user experience gaps in the current AI agent system across prospect, sales, technical, product, and competitive perspectives, concluding with a prioritized list of five key improvements."
         },
         {
           "date": "2026-04-03",
@@ -8718,15 +7228,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 80,
-        "internal_calls": 40,
+        "total_calls": 81,
+        "internal_calls": 41,
         "external_calls": 19,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-07T19:41:40.001294+00:00",
+      "updated_at": "2026-04-07T19:58:21.494939+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -9253,6 +7763,12 @@
           "modified": "2026-03-23"
         },
         {
+          "name": "Nats Cluster Formation",
+          "file": "docs/runbooks/nats-cluster-formation.md",
+          "size": 20323,
+          "modified": "2026-04-07"
+        },
+        {
           "name": "Nats Token Rotation Sop",
           "file": "docs/runbooks/nats-token-rotation-sop.md",
           "size": 11963,
@@ -9263,6 +7779,12 @@
           "file": "docs/runbooks/nats-token-rotation.md",
           "size": 6198,
           "modified": "2026-03-09"
+        },
+        {
+          "name": "Neo4J Migration To Local",
+          "file": "docs/runbooks/neo4j-migration-to-local.md",
+          "size": 26400,
+          "modified": "2026-04-07"
         },
         {
           "name": "Neo4J Production Guide",
@@ -10608,13 +9130,13 @@
         }
       ],
       "total_sops": 16,
-      "total_runbooks": 116,
+      "total_runbooks": 118,
       "total_plans": 173,
       "total_protocols": 7,
-      "total_docs": 312
+      "total_docs": 314
     },
     "deals": {
-      "updated_at": "2026-04-07T19:41:40.001387+00:00",
+      "updated_at": "2026-04-07T19:58:21.495119+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10848,7 +9370,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-07T19:41:39.865576+00:00",
+      "updated_at": "2026-04-07T19:58:21.275306+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -29421,6 +27943,263 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-07T19:56:05.034328+00:00",
+          "transcript_file": "transcriptions/april7/fix boardroom.md",
+          "transcript_length": 9772,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [
+              "Angelo Robles",
+              "Victoria (AI agent)"
+            ],
+            "call_topic": "Product gap analysis \u2014 voice handoff transitions, upload feedback loops, personalization, and conversation persistence issues in prospect-facing voice system"
+          },
+          "personas_run": [
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "CTO": {
+              "tech_requirements": [
+                "Voice handoff/transfer with audio transition overlay (eliminate 2-3s silent gap between Gemini teardown/rebuild)",
+                "Document upload acknowledgment loop \u2014 agent confirms receipt and references context in response",
+                "Personal link visibility & sharing \u2014 UI element to display persistent session links, clickable/copyable for continuation",
+                "Context-aware visitor greetings \u2014 fetch prior conversation summary from Neo4j, reference last interaction in greeting",
+                "Session persistence across browser refresh/navigation \u2014 store transcript and context remotely, restore on reconnect",
+                "Live A2A mode document upload endpoint \u2014 currently only Classic mode upload works, Live mode silently fails",
+                "Mobile-responsive layout \u2014 sidebar roster hidden, bottom dock repositioned, mic button accessibility",
+                "Live A2A agent switching indicator \u2014 visual badge showing which agent is currently speaking (Classic mode has this, Live doesn't)",
+                "Agent attribution in transcripts \u2014 show agent name per message, not just 'user'/'agent' labels",
+                "Call termination UX \u2014 'End Call' button with post-call summary generation and delivery",
+                "Observer dashboard UI \u2014 visualize /observe SSE stream for live demo monitoring on separate screen",
+                "Mid-call agent intervention \u2014 'whisper' mode to correct agent without interrupting prospect",
+                "Post-call summary accessible via UI \u2014 currently data exists (Call + Transcript tables) but no page to review",
+                "Boardroom directory page \u2014 list all public boardrooms with live links (currently only CSV export exists)",
+                "Multi-worker voice gateway \u2014 replace single uvicorn worker to prevent Live A2A sessions from blocking other requests",
+                "SQLite WAL mode \u2014 concurrent writes from multi-session scenarios hit write locks without it",
+                "Session recovery mechanism \u2014 in-memory _sessions dict lost on service restart, needs durable recovery",
+                "Customizable call grading rubric per boardroom \u2014 currently hardcoded generic rubric, not board-specific",
+                "Contact extraction retry mechanism \u2014 async completion guarantee with fallback if service restarts mid-extraction",
+                "Interaction node creation consistency \u2014 currently fetch_person_context finds 0 interactions despite 37 memories, nodes not reliably created"
+              ],
+              "integrations": [
+                {
+                  "service": "Gemini API",
+                  "current_state": "Single API credential for Live A2A sessions",
+                  "issue": "Rate limit blocking all concurrent Live sessions if hit",
+                  "required": true
+                },
+                {
+                  "service": "Edge-TTS",
+                  "current_state": "Free fallback TTS after primary TTS failure",
+                  "issue": "Unreliable (occasional 503s), no SLA, untested under load",
+                  "required": true
+                },
+                {
+                  "service": "Cloudflare Tunnel (meridian-sot)",
+                  "current_state": "Ingress for all boardroom traffic",
+                  "issue": "Single point of failure, no health check, no auto-restart beyond systemd",
+                  "required": true
+                },
+                {
+                  "service": "Twilio",
+                  "current_state": "Undone (checkpoint mentions 'Twilio phone demo for Angelo' still pending)",
+                  "issue": "Phone number integration not implemented, required for feature parity with Bland.ai/Vapi",
+                  "required": false
+                },
+                {
+                  "service": "CRM/Webhook integrations",
+                  "current_state": "Not implemented",
+                  "issue": "No Zapier, no email triggers, no CRM push after calls \u2014 competitors have this",
+                  "required": false
+                },
+                {
+                  "service": "Neo4j",
+                  "current_state": "Memory/context storage (Interaction nodes, PARTICIPATED_IN relationships)",
+                  "issue": "Interaction nodes not reliably created; context fetch may return 0 prior conversations despite memory existing",
+                  "required": true
+                },
+                {
+                  "service": "SQLite",
+                  "current_state": "Call transcripts, session metadata, grading data",
+                  "issue": "Single file, concurrent write locks, no WAL, single point of failure on VPS",
+                  "required": true
+                }
+              ],
+              "security_compliance": [
+                "Single Gemini API key shared across all Live sessions \u2014 credential rotation and rate-limit protection needed",
+                "Session state stored in-memory _sessions dict \u2014 no encryption, lost on restart, no durable recovery",
+                "Call transcripts in plaintext SQLite \u2014 consider encryption at rest, access control for sensitive data",
+                "No session recovery = data loss risk \u2014 prospect's upload context and transcript lost if service crashes mid-call",
+                "Cloudflare tunnel single point of failure \u2014 if cloudflared dies, all inbound traffic blocked with no failover",
+                "Edge-TTS fallback unreliable \u2014 no graceful degradation if both primary TTS and Edge-TTS fail",
+                "No rate limiting on boardroom endpoints \u2014 concurrent Live sessions not throttled, DoS surface",
+                "Contact extraction async without retry \u2014 if service restarts during Neo4j write, no guarantee completion or recovery"
+              ],
+              "build_vs_buy": [
+                {
+                  "capability": "Multi-agent handoff with context preservation",
+                  "recommendation": "BUILD",
+                  "rationale": "Unique differentiator vs Bland.ai/Vapi/Retell. Competitors don't have agent-specific context switching."
+                },
+                {
+                  "capability": "Context-aware personalization (returning visitor greetings, memory integration)",
+                  "recommendation": "BUILD",
+                  "rationale": "Competitive moat. Requires Neo4j integration and LLM context synthesis. Not a commodity offering."
+                },
+                {
+                  "capability": "Phone number integration (Twilio)",
+                  "recommendation": "BUY/PARTNER",
+                  "rationale": "Undone, required for feature parity. Twilio SDK handles PSTN routing; not a core differentiator."
+                },
+                {
+                  "capability": "Analytics dashboard",
+                  "recommendation": "BUY",
+                  "rationale": "Competitors have this. Consider Tableau, Metabase, or custom Grafana dashboard. Not worth building from scratch."
+                },
+                {
+                  "capability": "Multi-language support",
+                  "recommendation": "BUY/INTEGRATE",
+                  "rationale": "Currently English-only (hardcoded recognition.lang). Use Google Speech-to-Text or Deepgram for multi-lang; swap recognition layer."
+                },
+                {
+                  "capability": "Webhook/Zapier integration layer",
+                  "recommendation": "BUY",
+                  "rationale": "Generic integration capability. Use Zapier API or ngrok-like webhook relay. Not core product logic."
+                },
+                {
+                  "capability": "Session persistence and recovery",
+                  "recommendation": "BUILD",
+                  "rationale": "Critical for product reliability. Requires durable session store (Redis or DB). Not a third-party feature."
+                },
+                {
+                  "capability": "Observer dashboard (live demo monitoring)",
+                  "recommendation": "BUILD",
+                  "rationale": "Specific to boardroom workflow. SSE endpoint exists; UI implementation is straightforward custom work."
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Cloudflare tunnel single point of failure",
+                  "severity": "CRITICAL",
+                  "impact": "All boardroom traffic dies if cloudflared crashes",
+                  "mitigation": "Add health check (systemd watch) and auto-restart; consider tunnel redundancy or DNS failover"
+                },
+                {
+                  "risk": "Single uvicorn worker blocking Live A2A requests",
+                  "severity": "HIGH",
+                  "impact": "Concurrent Live sessions queue behind long-running Gemini calls; demos hang or timeout",
+                  "mitigation": "Scale voice gateway: add --workers flag or async queue for Gemini calls"
+                },
+                {
+                  "risk": "Gemini API rate limits on single credential",
+                  "severity": "HIGH",
+                  "impact": "If rate limit hit, all concurrent Live sessions blocked",
+                  "mitigation": "Implement credential rotation, per-session quotas, or Groq fallback"
+                },
+                {
+                  "risk": "Edge-TTS unreliability (503s, no SLA)",
+                  "severity": "MEDIUM",
+                  "impact": "Voice fallback fails under load; prospects experience silence or repeated TTS failures",
+                  "mitigation": "Test under load; add circuit breaker; consider paid TTS provider (Azure, Google) as primary"
+                },
+                {
+                  "risk": "SQLite write locks on concurrent sessions",
+                  "severity": "MEDIUM",
+                  "impact": "Multi-session scenarios cause write contention; transcript loss or corruption",
+                  "mitigation": "Enable SQLite WAL mode; consider PostgreSQL migration for multi-session concurrency"
+                },
+                {
+                  "risk": "In-memory session state (no persistence)",
+                  "severity": "MEDIUM",
+                  "impact": "Service restart = all active sessions lost; prospect must restart conversation",
+                  "mitigation": "Implement durable session store (Redis or SQLite); add session recovery on reconnect"
+                },
+                {
+                  "risk": "2-3 second voice gap during Gemini teardown/rebuild",
+                  "severity": "MEDIUM",
+                  "impact": "Prospect perceives dropped call, broken handoff experience, reduced trust",
+                  "mitigation": "Implement audio transition (silence filler or 'transferring...' spoken message); pre-warm next agent session"
+                },
+                {
+                  "risk": "Contact extraction async without retry",
+                  "severity": "MEDIUM",
+                  "impact": "If service crashes during extraction, extracted contacts lost; no guarantee of completion",
+                  "mitigation": "Add retry queue; log extraction state; implement job persistence"
+                },
+                {
+                  "risk": "Interaction node creation inconsistent",
+                  "severity": "MEDIUM",
+                  "impact": "Context fetch returns 0 prior conversations despite memories existing; personalization fails silently",
+                  "mitigation": "Debug PARTICIPATED_IN \u2192 Interaction relationship creation; add validation on session close"
+                },
+                {
+                  "risk": "No mobile optimization",
+                  "severity": "MEDIUM",
+                  "impact": "Boardroom unusable on mobile; sidebar hidden, mic button awkward, stats bar wastes screen real estate",
+                  "mitigation": "Responsive redesign; hide stats on mobile; reposition controls"
+                },
+                {
+                  "risk": "Browser refresh = session loss",
+                  "severity": "MEDIUM",
+                  "impact": "Mobile Safari or accidental refresh kills entire session; especially painful on mobile background tabs",
+                  "mitigation": "Implement session persistence and restore on reconnect; add 'unsaved changes' warning"
+                },
+                {
+                  "risk": "Live A2A upload path missing",
+                  "severity": "LOW",
+                  "impact": "Can't upload documents during Live sessions; silent failure, user confusion",
+                  "mitigation": "Implement upload endpoint for Live mode with session_id mapping"
+                },
+                {
+                  "risk": "TransductionValidator/OmissionDetector not UI-integrated",
+                  "severity": "LOW",
+                  "impact": "Powerful features exist but can't be triggered by end users; 4-stage validation pipeline unused",
+                  "mitigation": "Add 'Validate Transcript' UI button; wire to /slt-validate endpoint"
+                },
+                {
+                  "risk": "Call grading rubric hardcoded and generic",
+                  "severity": "LOW",
+                  "impact": "Scoring not relevant to boardroom context; generic rubric doesn't reflect board-specific success criteria",
+                  "mitigation": "Make rubric per-boardroom configurable; fetch from config during scoring"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "Define MVP quality gate: Which gaps block boardroom demo launch? (voice gap, session persistence, mobile UX are critical; call grading & Twilio are nice-to-have)",
+                "Session persistence architecture: In-memory dict with no recovery is a blocker for production. Decide: Redis-backed sessions vs. SQLite WAL + recovery protocol",
+                "Voice handoff experience: 2-3 second silence during A2A transfer is audible to prospects. Decide: overlap audio, add transition phrase before disconnect, or accept as known limitation",
+                "Personalization for returning visitors: Greeting is generic despite context loading (Angelo case proves it works). Decide: enable context-aware greetings for all boardrooms or disable context entirely",
+                "Mobile-first or desktop-first: Sidebar roster, mic button positioning, stat overlays break mobile. Decide scope now \u2014 mobile optimization post-launch or pre-launch requirement?"
+              ],
+              "opportunities": [
+                "Observer dashboard: /observe SSE endpoint exists but no UI. Demo tool for sales team + competitive differentiator (Bland/Vapi don't have real-time observer view)",
+                "Post-call summaries: Data exists (Call + Transcript in SQLite), just needs UI. Email follow-ups + interaction node consistency unlock CRM integration path",
+                "Graceful call closure: 'End Call' button + summary + action items. Low-effort, high-impact UX fix that competitors don't emphasize",
+                "Upload acknowledgment: One-line agent response ('I've reviewed your family office structure') transforms upload from silent to confident. Touches prospect confidence without architecture change",
+                "Personal link UI: Bookmark/SMS sharing button makes invisible asset visible. Unlocks session continuation + viral distribution (share with advisor, return later)",
+                "Interaction node consistency: Fix fetch_person_context logic to reliably create Interaction nodes. Enables '5 prior conversations' context that justifies personalization"
+              ],
+              "threats": [
+                "Competitive parity gap: Bland.ai + Vapi have phone integration (Twilio), analytics dashboards, multi-language support. Our 'browser-only' positioning is a weakness if buyer expects omnichannel",
+                "Single points of failure (Cloudflare tunnel, Gemini API key, Edge-TTS fallback) create availability risk. A 2-hour outage during a high-profile demo is reputational damage",
+                "Session persistence loss on refresh (especially mobile Safari) will frustrate returning prospects mid-conversation. Each restart feels like product instability",
+                "Concurrent write locks on SQLite under load (multiple boardroom sessions) could cause call recording failures. Silent data loss is worse than visible error"
+              ],
+              "commitments": [
+                "Twilio phone demo for Angelo \u2014 checkpoint item, still open. Blocks phone integration narrative for that prospect",
+                "Multi-agent handoff capability mentioned but transcript incomplete ('What we have that they don't: Multi-agent handoff with d...'). Clarify scope + timeline for competitive positioning"
+              ],
+              "narrative_assessment": "MISALIGNED. We're positioning on personalization + multi-agent sophistication, but the UX doesn't deliver either convincingly yet. Angelo's case proves context loads (1,645 chars), but the greeting stays generic \u2014 we have the data, not the delivery. Voice gap (2-3 second silence) + upload silence undermine trust in our 'warm handoff' narrative. Competitive story is incomplete ('what they don't have' cuts off mid-sentence). We should either: (1) lead with 'we're in beta, UX is unpolished but architecture is enterprise-grade' (honest), or (2) delay demos until voice gap, personalization, and session persistence are fixed (safe). Hybrid demos (observer view for sales + graceful closures) could bridge."
+            }
+          },
+          "_file": "clients/unknown/audits/csuite-audit-fix-boardroom.json",
+          "_client": "unknown"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-23T13:40:23.738518+00:00",
           "transcript_file": "transcriptions/march/march 20/glassy 9am.md",
           "transcript_length": 68031,
@@ -29797,18 +28576,43 @@
           "_client": "unknown"
         }
       ],
-      "total": 86
+      "total": 87
     },
     "call_intelligence": {
-      "updated_at": "2026-04-07T19:41:40.029835+00:00",
+      "updated_at": "2026-04-07T19:58:21.553201+00:00",
       "signal_summary": {
         "total_objections": 58,
-        "total_buying_signals": 75,
+        "total_buying_signals": 76,
         "total_competitors": 198,
         "pricing_discussions": 66,
-        "calls_with_signals": 81
+        "calls_with_signals": 82
       },
       "decisions": [
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "decision": "Prioritize implementing a warm greeting for returning visitors that references their name and last topic."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "decision": "Prioritize surfacing personal links via a UI button or agent utterance for conversation sharing."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "decision": "Prioritize improving the Live A2A agent switch UX with a transfer line, transition sound, and UI updates."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "decision": "Prioritize developing a post-call summary page for each session, including topics, action items, and personal links."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "decision": "Prioritize building an observer UI page for live demos to show real-time transcript and conversation details."
+        },
         {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
@@ -31869,6 +30673,56 @@
           "date": "2026-04-07",
           "call": "April7Claudecodeskillyt",
           "discovery": "The Remotion skill is extensively used across all product announcement and marketing videos produced by the Claude marketing team."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Live A2A reconnects introduce a 2-3 second silent gap and voice change, making agent handoffs feel like dropped calls."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Users receive no feedback when documents are uploaded, leaving them unsure if the process was successful."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Personalized conversation links are generated automatically but are invisible to visitors and agents."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Returning visitors are met with a generic greeting, despite the system successfully loading their prior conversation context."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Refreshing the browser mid-conversation results in the complete loss of the session, transcript, and agent state."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Document uploads during Live A2A sessions silently fail because they incorrectly trigger a Classic mode endpoint."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "The sales team lacks an observer dashboard to monitor prospect interactions in real-time during live demos."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Key technical components like the Cloudflare tunnel and voice gateway are single points of failure, lacking resilience mechanisms."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "Session data and contact extraction are vulnerable to loss upon service restarts due to in-memory storage or missing retry logic."
+        },
+        {
+          "date": "2026-04-07",
+          "call": "Fix Boardroom",
+          "discovery": "The system's unique competitive advantages, such as multi-agent handoff and persistent memory, are not visible or effectively demonstrated to users or buyers."
         },
         {
           "date": "2026-04-03",
@@ -35689,6 +34543,11 @@
         },
         {
           "date": "",
+          "sentiment": "positive",
+          "client": "unknown"
+        },
+        {
+          "date": "",
           "sentiment": "neutral",
           "client": "unknown"
         },
@@ -36058,13 +34917,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 241,
+      "total_decisions": 246,
       "total_commitments": 161,
-      "total_discoveries": 281,
+      "total_discoveries": 291,
       "total_action_items": 309
     },
     "attention": {
-      "updated_at": "2026-04-07T19:41:40.047175+00:00",
+      "updated_at": "2026-04-07T19:58:21.575739+00:00",
       "items": [
         {
           "type": "blocked",
@@ -36151,68 +35010,8 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-07T19:41:40.047227+00:00",
+      "updated_at": "2026-04-07T19:58:21.575763+00:00",
       "events": [
-        {
-          "type": "commit",
-          "date": "2026-04-07T17:50:06Z",
-          "title": "docs: add E2E standalone suite docstring and DEVELOPMENT_WORKFLOW section",
-          "detail": "Delphi (MERIDIAN)"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T16:04:29Z",
-          "title": "docs: update TEAM_STATE with crystallization closure and E2E suite commits",
-          "detail": "Cassian Sandman"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T15:39:01Z",
-          "title": "ci: add standalone E2E suite to integration-test job",
-          "detail": "Cassian Sandman"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T15:36:40Z",
-          "title": "feat: update run_e2e.sh \u2014 Docker Compose lifecycle, trap cleanup, CI flags",
-          "detail": "Cassian Sandman"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T15:31:18Z",
-          "title": "feat: standalone E2E test suite \u2014 38 tests across 4 stages",
-          "detail": "Cassian Sandman"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T13:58:46Z",
-          "title": "Mark Phase 3 Research Extraction COMPLETE \u2014 all targets extracted or no-source",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T13:56:01Z",
-          "title": "Extract Phillips 110 Steps presentation corpus \u2014 276 files, 6 chemicals, 110 ste",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T13:42:04Z",
-          "title": "Expand crystallization runbook with full R1-R8 methodology and all Cypher patter",
-          "detail": "claude-code"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T13:33:25Z",
-          "title": "Add E2E test suite, CI workflow, and crystallization runbook",
-          "detail": "claude-code"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-07T13:27:43Z",
-          "title": "feat(extraction): Assaraf Winning Game of Business \u2014 45 frameworks from 279 tran",
-          "detail": "covaultxyz"
-        },
         {
           "type": "call",
           "date": "2026-04-07",
@@ -36220,61 +35019,91 @@
           "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
+          "type": "call",
           "date": "2026-04-07",
-          "title": "#1945 feat(#1907): add NATS active collaboration mode scaffolding",
-          "detail": "open"
+          "title": "Fix Boardroom",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1944 feat(#1910): add daemon collaboration active/passive mode co",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "Garretbitlerglassy",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1943 feat(#1908): add active-mode collab ping subject and listene",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Garrett Call Grade Report",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1942 feat(#1909): add lean-forward domain overlap auto-collaborat",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "02 Garrett Intel Correction",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1941 feat(#1912): active-mode collab monitor pulse sentinel",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Call Grade Report",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1940 feat(#1911): implement quantum worker pyQPanda logic + QUANT",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "04 Garrett Next Steps",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1939 feat(#1914): active mode daemon direct collaboration wiring",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "03 What Worked What Didnt",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1938 feat(#1918): DLQ triage script, selective drain controls, an",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "05 Playbook Updates",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1937 feat(#1921): Populate Architecture and Use Cases",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "03 Garrett What Worked What Didnt",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Garrett Call Grade Report",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "02 Garrett Intel Correction",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "04 Garrett Next Steps",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-31",
+          "title": "05 Playbook Updates",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-03-31",
+          "title": "03 Garrett What Worked What Didnt",
+          "detail": "internal \u2014 alex"
         }
       ],
-      "total": 35
+      "total": 15
     }
   }
 }
