@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9Pm — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>9Pm</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-04-09</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The discussion focuses on setting up a lightweight, semi-trusted federated mesh instance for a client named Charles, defining the customer experience with Telegram bots and dashboards, and clarifying data ownership and ingestion processes.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>The ThinkPad will be used for a &#x27;flash test&#x27; of the light version of the product.</li><li>A separate, stable federated mesh will be created for internal testing and development.</li><li>The client setup for Charles will be treated as a semi-trusted node.</li><li>The Neo4j instance for the new setup should be pre-loaded with core, non-personal data like ontology, data metro, virtual teams, and operational protocols.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Eli will provide Charles&#x27;s company name and data sources from Google Drive and Notion.</li><li>Eli will create a new Telegram bot for Charles, obtain its token, and send it.</li><li>Eli will provide Charles&#x27;s Telegram user ID and a username for the setup.</li><li>Eli will provide the Notion workspace for Charles&#x27;s data.</li><li>Eli will reorganize current setup for easier access for the client.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Claude agents have been released at 8 cents per hour, requiring an API key, raising concerns about cost and dependency.</li><li>Their existing tool&#x27;s value proposition is strong compared to Claude&#x27;s pricing, but there&#x27;s a risk of platform shutdowns.</li><li>The core of their product is built, but the &#x27;edges&#x27; (ingestion and intelligence delivery surfaces) are not fully developed.</li><li>The data ownership model clarifies that customers own raw documents, while the service owns the structured graph and delivered intelligence.</li><li>Their existing daemon orchestration is 7900 lines of code, prompting a plan to rebuild a leaner, self-contained customer bot.</li><li>Neo4j is better suited for Python scripts for heavy lifting rather than direct, token-heavy LLM interaction for reasoning.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &#x27;Set up a new instance on a Linux machine on the ThinkPad.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &#x27;Create SSH backdoors for accessing the new instance.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &quot;Set up a dedicated daemon and Telegram bot for the &#x27;flash test&#x27; instance.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &#x27;Provide the customer name (Charles Who) and company for the setup.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &quot;Provide Charles&#x27;s data sources from Google Drive and Notion for ingestion.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &#x27;Create a new Telegram bot for Charles using BotFather and send the token.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &quot;Provide Charles&#x27;s Telegram user ID and username.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Eli&#x27;, &#x27;what&#x27;: &#x27;Provide the Notion workspace so information can be added to the container.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>(...)</p>
+<p>If you watch the officially you&#x27;re gonna stand one up for a client then we can be really strict and make sure we do it from a dry dock but uh I think as far as testing one out right now it doesn&#x27;t really matter</p>
+<p>(...)</p>
+<p>I think we need to test it both ways but</p>
+<p>(...)</p>
+<p>This is what I got as of now</p>
+<p>(...)</p>
+<p>These are the documents see if this makes sense to you I also created a light mesh build spec sheet that we can make it I saw that with no NATs Yeah I was looking through that</p>
+<p>(...)</p>
+<p>I don&#x27;t know if it needs NATs or if it was in just I don&#x27;t even know what NATs does or doesn&#x27;t do like I get what it does in concepts but I&#x27;m not sure like Yeah If the no NATs, if the light version doesn&#x27;t need NATs then that&#x27;s great I also like the point that it made it was saying like look give them something that&#x27;s cool that leaves them wanting more</p>
+<p>(...)</p>
+<p>That&#x27;s not usually a tactic that I use but I think that&#x27;s a smart tactic</p>
+<p>(...)</p>
+<p>Yeah Yeah give them a flash one with the this and the that and no NATs and then when they step up and NATs and this whole full persistence then all the better</p>
+<p>(...)</p>
+<p>Also I don&#x27;t know if you read in the other chat Claude just released these Claude agents that cost 8 cents per hour(...) but you have to use the API key so you&#x27;re running agents It&#x27;s 8 cents plus the API right? Correct Yeah Doesn&#x27;t sound good I did read all that But that&#x27;s how they&#x27;re gonna make their money is through the API not through the 8 cents and it was like well we could test it but ours is already better because we&#x27;re not paying and it was saying straight out $5,000 per $200 account so we are fucking making our fucking value But also they could just shut us down at any moment</p>
+<p>(...)</p>
+<p>We have quite a bit here though What? I said we have quite a bit of code here so Yeah we do We have to pivot I&#x27;m not that concerned we can figure it out</p>
+<p>(...)</p>
+<p>We&#x27;ll always figure it out</p>
+<p>(...)</p>
+<p>If anything it makes me that much happier that we built the thing that was just agnostic like we just built a good tool</p>
+<p>(...)</p>
+<p>It&#x27;s also somewhat remarkable like no matter how many things keep coming up they&#x27;re like yeah they did all these things but they still don&#x27;t have what you guys built</p>
+<p>(...)</p>
+<p>Well not yet(...) Eventually that will</p>
+<p>(...)</p>
+<p>Maybe</p>
+<p>(...)</p>
+<p>We&#x27;ll see</p>
+<p>(...)</p>
+<p>So where do you do you have a way to put it on one of Michael&#x27;s Mac Minis Or where do you want to put it? Where do you want to put this next instance? I have three computers here that we can potentially do Okay just pick one Yeah that&#x27;s fine Well the issue is two of them are Linux already I have one PC so The question really is what operating system do we want to start from And if it&#x27;s Linux I already have one Yeah Linux</p>
+<p>(...)</p>
+<p>I think we want to avoid Windows Well I don&#x27;t think you can run tail scale from Windows anyway</p>
+<p>(...)</p>
+<p>Good Can you run it on Linux? Yes right because we have run Ubuntu on the VPSs</p>
+<p>(...)</p>
+<p>I don&#x27;t know a lot about it I just know a couple things about it So I got this thick pad here Which I did already install stuff on here I don&#x27;t know if the federated mesh is already on</p>
+<p>(...)</p>
+<p>It says meridian fed one login</p>
+<p>(...)</p>
+<p>So I did install the federated mesh already</p>
+<p>(...)</p>
+<p>Okay(...) So let&#x27;s see what we have to do</p>
+<p>(...)</p>
+<p>So let&#x27;s able to access it through our system</p>
+<p>(...)</p>
+<p>So maybe what we do is create backdoors So if we need to get into these things we can Okay Does that As far as like direct SSH access or something else? Yes</p>
+<p>(...)</p>
+<p>Okay Does that make sense to you? It certainly yeah it definitely does I think the worst case scenario would be We can&#x27;t access our own machines(...) Or one person needs to have something going on The other one can&#x27;t get at it Yeah we definitely need that</p>
+<p>(...)</p>
+<p>I was thinking that we might even get so specific Where we have one of our terminals(...) As like a key holder What is that thing in the matrix? The key master</p>
+<p>(...)</p>
+<p>And like you have to go to him and then he gives you key</p>
+<p>(...)</p>
+<p>But I don&#x27;t know that&#x27;s just a concept at this point We want to make sure we have access</p>
+<p>(...)</p>
+<p>For The figure limit resets April 13th Bro that sounds far April 13th (Laughing)</p>
+<p>(...)</p>
+<p>Are you using cursor?</p>
+<p>(...)</p>
+<p>I&#x27;ve been in cursor, yeah.</p>
+<p>(...)</p>
+<p>Because I think that&#x27;s gonna be another move.</p>
+<p>(...)</p>
+<p>(Clicking)</p>
+<p>(...)</p>
+<p>All right, so I&#x27;m looking at this machine. It&#x27;s already logged in, it has access to it.(...) What&#x27;s the next step you wanna work on to make sure that it&#x27;s got everything in the federated mesh part?</p>
+<p>(...)</p>
+<p>As far as like,</p>
+<p>(...)</p>
+<p>what would the surface be that we would turn loose on people?</p>
+<p>(...)</p>
+<p>We would give them a dashboard, we would give them a telegram, so we need to set up maybe a dedicated daemon that&#x27;s gonna be the daemon of that one, or like two daemons.</p>
+<p>(...)</p>
+<p>I mean, it could probably handle a few, right? Like it may be, let&#x27;s see, it&#x27;s federated. This is gonna be a standalone test, right? This is gonna be the one where we can,</p>
+<p>(...)</p>
+<p>let me think about this, yeah, telegram.</p>
+<p>(...)</p>
+<p>Is there a way to make it so that I have a terminal that I can do stuff, or it&#x27;s just really just telegram, the telegram bot, right?</p>
+<p>(...)</p>
+<p>Well, the question is, are we gonna install CLI on this?</p>
+<p>(...)</p>
+<p>This is the part that needs to be thought out, because I don&#x27;t know if we actually thought any of this out. Well, if the brain&#x27;s gonna be clawed, then it needs a CLI, right?(...) In which case it has the local OAuth.</p>
+<p>(...)</p>
+<p>If it&#x27;s not, do we wanna test the light version that we&#x27;re gonna install Flash on?</p>
+<p>(...)</p>
+<p>We can do that.</p>
+<p>(...)</p>
+<p>Let me see what-- Yeah, let&#x27;s do that. Let&#x27;s have this be the flash test, because then we can have that one laptop power, like three or four daemons, and put those in a new chat. We can use three or four new daemons, too. We don&#x27;t have to even use the same ones.</p>
+<p>(...)</p>
+<p>Or we can use the same ones, either way. All right, well, this is what I was trying to talk to Alan about earlier when we were trying to hash this out.</p>
+<p>(...)</p>
+<p>We said that our major agents that we&#x27;re using, like Sensei and everything that&#x27;s using the lens, and all those extra special bells and whistles,(...) are upgrades. So we need to define what the team is that they get that&#x27;s basic, that gives them a taste of it, and then leaves them wanting more. What is the team that has enough power to do a little bit and get them excited about for a smaller fee, but if they want the powerhouse, they gotta pay for that. And...</p>
+<p>(...)</p>
+<p>I felt like Delphi needs to shoot with every terminal.</p>
+<p>(...)</p>
+<p>Wasn&#x27;t Delphi like the strongest?</p>
+<p>(...)</p>
+<p>Yeah.(...) So you&#x27;re gonna give him Delphi as a main character?</p>
+<p>(...)</p>
+<p>It&#x27;s like Delphi is like every submarine needs a...</p>
+<p>(...)</p>
+<p>General or what, commander? I don&#x27;t know, who the hell is at the top of a submarine? I don&#x27;t know.</p>
+<p>(...)</p>
+<p>General?(...) Whoever runs the boat, commander?</p>
+<p>(...)</p>
+<p>It&#x27;s like shipping an engineer with a... Like a smart engineer that goes with the... So it&#x27;s saying customer gets two surfaces. A telegram bot, primary interaction, they talk to it, queries their Neo4j, it sends them their intelligence, low friction, works on their phone. This is the always on advisor. Dashboard secondary for deeper exploration, visualization, graph browsing, and command center view.</p>
+<p>(...)</p>
+<p>The daemon question. The ThinkPad has 31 gigs of RAM and is using 3 gigs. One lightweight daemon per customer is the right model. It matches the Federation architecture you&#x27;ve been already building.</p>
+<p>(...)</p>
+<p>Each daemon runs its own telegram bot instance, separate bot token per customer via bot file, scheduled intelligence loop, research alerts, digests,</p>
+<p>(...)</p>
+<p>MCP server points at the customer&#x27;s Neo4j container.</p>
+<p>(...)</p>
+<p>Two or three customer... Custom daemons on that ThinkPad is easy.(...) You&#x27;re nowhere near capacity. On the terminal question, the terminal is for you, not for the customer, you SSH in, fire up cloud code with MCP pointing at their Neo4j, and you can do operation level work on their graph.</p>
+<p>(...)</p>
+<p>Extraction, cleanup, onboard content, the customer never sees it.</p>
+<p>(...)</p>
+<p>So the stack per customer is customer sees telegram bot and dashboard, UCSSH cloud code and their Neo4j runs on this specific computer.</p>
+<p>(...)</p>
+<p>So we have the concept of using the API to monetize them using the intelligence. How does that currently work with this specific setup? What has to happen for us to create the interaction where they&#x27;re basically giving us money? How do they have to provide us with their documentation? Because if they&#x27;re owning it on their hardware, software, wherever it&#x27;s living, is it in a Google Drive? Where is it that they feel like they own the data? But we&#x27;re normalizing it and structuring it, which is where the value is, not in the actual data itself.</p>
+<p>(...)</p>
+<p>Do you have any other questions?</p>
+<p>(...)</p>
+<p>Any other questions?(...) Well based on what I just said, were you listening? Do you want me to answer those questions or do you want me to ask more questions? I&#x27;m talking to the things so it can fucking answer for me.</p>
+<p>(...)</p>
+<p>Or you want me to just render this first.</p>
+<p>(...)</p>
+<p>I feel like I know a lot of the answers to those questions. Alright, let&#x27;s see what comes back if it matches what you think in your head.</p>
+<p>(...)</p>
+<p>We may want a few daemons that we have access to that are loaded.</p>
+<p>(...)</p>
+<p>Not that they&#x27;re going to call on.(...) Not that we set up Father Tokens for. But that we may want to have multiple CLI shells if we had to do something significant on their machine.</p>
+<p>(...)</p>
+<p>Alright, so here&#x27;s the other question.</p>
+<p>(...)</p>
+<p>Alan brought this up.</p>
+<p>(...)</p>
+<p>They have a telegram bot.(...) That does not mean that they need to have this ThinkPad. So are we just hosting it on either our physical devices or our VPNs and then just giving them access to a telegram chat and then they get a website terminal and they don&#x27;t know anything about anything else and that&#x27;s enough for them. And then does it connect to their physical computer? I feel like we&#x27;re not set up for that.</p>
+<p>(...)</p>
+<p>But we could be. Like with a week or two or five of button smashing we could be. So far our architecture is totally separate machines.(...) It could be us running the machine but I think it&#x27;s more likely like(...) I don&#x27;t know.</p>
+<p>(...)</p>
+<p>I don&#x27;t know how to keep defaulting to this thing. I just get a damn idea in my head. Just stick on it. It&#x27;s like bringing pit balls.</p>
+<p>(...)</p>
+<p>Who cares?</p>
+<p>(...)</p>
+<p>If we&#x27;re confident and Michael seems super confident that we can host client things then we just have to test it and run the chaos agents. How that would be our process would be totally fine with it. We&#x27;re going to get higher and more compute for the dollar. It&#x27;s just more of a headache if we have to touch the machinery. I understand that. I like the scalability of VPSs and make them pay for it and not give a fuck. But realistically what you&#x27;re pointing out is absolutely a thing and if we&#x27;re talking about scaling it&#x27;s going to be a facet. How much money do we want to throw into VPSs versus into our own pocket?</p>
+<p>(...)</p>
+<p>Well here&#x27;s the other issue.</p>
+<p>(...)</p>
+<p>If we run the computer or the VPS and the customer never touches it what is the mechanism that has to happen for them to be able to connect their user interface which is their computer to this system so it can access control their computer using tail scale</p>
+<p>(...)</p>
+<p>where it&#x27;s basically able to access their web browser and do play write actions on their behalf and they can see these different things happening so they can guide it and monitor it. So you think that&#x27;s what they need?</p>
+<p>(...)</p>
+<p>Well if you think about this guy from Sweden</p>
+<p>(...)</p>
+<p>he&#x27;s going to run this entire system off of a telegram bot or is he going to need it to connect to his Amazon accounts and do different things on his behalf.</p>
+<p>(...)</p>
+<p>And if that&#x27;s the case where is that work happening? Is it happening headlessly? Is it happening on our computers and they have to rent a computer for us to provide them to do that or are they doing it on their own computer?</p>
+<p>(...)</p>
+<p>Let&#x27;s take things one question at a time.</p>
+<p>(...)</p>
+<p>To what degree will their computer be one of the surfaces that they&#x27;re interacting with the mesh through?</p>
+<p>(...)</p>
+<p>Question one.</p>
+<p>(...)</p>
+<p>Answer one,(...) the only way they&#x27;re going to interact with it is through a surface that we provide.</p>
+<p>(...)</p>
+<p>And most likely it&#x27;s a link.</p>
+<p>(...)</p>
+<p>It&#x27;s a mobile optimized link so they can access it through their desktop or through a mobile.</p>
+<p>(...)</p>
+<p>And that provides any way that they&#x27;re going to interact with it because it&#x27;s one of those really sleek design surfaces that you made</p>
+<p>(...)</p>
+<p>where it came directly from those few conversations we had and we were describing it in vivid detail and then it was like later that day it was made and I&#x27;m looking at this demo and it was like maybe 12 icons.</p>
+<p>(...)</p>
+<p>Even the icons that it chose maybe weren&#x27;t even the right ones but like that is the perfect layout.</p>
+<p>(...)</p>
+<p>Calendar, campaigns,(...) contacts,(...) like just right in your face and that&#x27;s how they do it. Campaigns, clients, and their clients or servers, right? Oh now they&#x27;re seeing all their machinery,</p>
+<p>(...)</p>
+<p>all the amazing super high level dashboards that you made, those are in there. You want to make a command, those are in there. Something goes wrong, you need to make a ticket, you do it from there.</p>
+<p>(...)</p>
+<p>I think that&#x27;s the interface.</p>
+<p>(...)</p>
+<p>Whether or not they need to use CLI,(...) I don&#x27;t know. I feel like they&#x27;re going to be way over their head to try to get into that terminal. I&#x27;m not saying they need a CLI. I&#x27;m saying that they need some sort of system that&#x27;s connecting to their web accounts whether it&#x27;s the website that&#x27;s going in and doing something and reviews. So we&#x27;re going to have a daemon team. Some of those daemons are going to need to be able to have MCP tools and those MCP tools are going to have to be able to access Amazon and be able to get in there to manipulate thousands of different things. So we&#x27;re going to need an intelligence that can operate at a really high level and access to all those things.</p>
+<p>(...)</p>
+<p>But I think that&#x27;s really just going to be through an Amazon API key per client and that is going to be in a configuration file. And there&#x27;s not going to be a million different places that we have to adjust those things. It&#x27;s going to be in the ENV passwords and there&#x27;s maybe...</p>
+<p>(...)</p>
+<p>I think the design was really forward facing to have almost everything replicated(...) and any adjustments that were client specific was like in one configuration.</p>
+<p>(...)</p>
+<p>Like one file, one plane, those are like the configurations.</p>
+<p>(...)</p>
+<p>And what does that mean? Probably email.</p>
+<p>(...)</p>
+<p>Probably...</p>
+<p>(...)</p>
+<p>Whatever CRM they choose, if it&#x27;s going to be our CRM that just copopulates and it doesn&#x27;t really matter. There may need to be some kind of normalization if they do have a big SCRM already or that will just model whatever data fields that we have on our software or whatever they have currently.</p>
+<p>(...)</p>
+<p>So in your mind, they never see any of the work that&#x27;s happening from the agent&#x27;s point of view. All that shit&#x27;s magic and they just get results.(...) So let&#x27;s just say...</p>
+<p>(...)</p>
+<p>You can kind of see those maybe, maybe not.</p>
+<p>(...)</p>
+<p>So is this like a security system where you have cameras in different rooms and you can click on one of the cameras and zoom into that browser window and be able to see... I mean that would be sick.(...) That would be sick if you could. It doesn&#x27;t need to zoom in, maybe not. But maybe it does need to tell you certain key things.(...) Certain key things like is it functional or is the swap maxed out?</p>
+<p>(...)</p>
+<p>And maybe it&#x27;s not going to say swap maxed out but it might have some kind of help either.</p>
+<p>(...)</p>
+<p>And then we can see it and they can see it.</p>
+<p>(...)</p>
+<p>It&#x27;s like the help overview.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>It&#x27;s almost like any expensive and fancy machine.(...) It works really well for a short period of time and then it needs maintenance.</p>
+<p>(...)</p>
+<p>That&#x27;s how these guys work. They just need constant maintenance.</p>
+<p>(...)</p>
+<p>But now there&#x27;s a gym routine. There&#x27;s a gym routine for the servers and for the Danids.</p>
+<p>(...)</p>
+<p>So it&#x27;s like hey, run this routine on this. And then usually it&#x27;s like after one go through there and back in pitch shape.</p>
+<p>(...)</p>
+<p>Just like when you had a computer and you would have to defrag it every so often. You just have to go do that process otherwise it wouldn&#x27;t run very well.</p>
+<p>(...)</p>
+<p>Alright, so this is the answer based on what we asked earlier.</p>
+<p>(...)</p>
+<p>What exists today? Customer data manual gap.</p>
+<p>(...)</p>
+<p>Extraction pipeline Neo4j container gateway API surface gap.(...) The middle is built, the edges aren&#x27;t.</p>
+<p>(...)</p>
+<p>Built per customer Neo4j container isolated sovereign per customer.</p>
+<p>(...)</p>
+<p>Extraction pipeline brain fact extractor research pipeline GenMI powered.</p>
+<p>(...)</p>
+<p>Gateway API on ThinkPad customer intelligence endpoint.</p>
+<p>(...)</p>
+<p>Federation installer can spin up a new customer node in minutes.</p>
+<p>(...)</p>
+<p>What&#x27;s not built? How docs get in ingestion surface.</p>
+<p>(...)</p>
+<p>How intelligence get out of the customer telegram bot per customer.</p>
+<p>(...)</p>
+<p>How about they upload documents?(...) That can just be done through a document tab now. And didn&#x27;t you even already do that I think?</p>
+<p>(...)</p>
+<p>In that surface there was a document so. So it also says it doesn&#x27;t have the how money comes in billing yet. The data ownership model, you&#x27;re right. That&#x27;s the value isn&#x27;t the data, it&#x27;s the graph and here&#x27;s how it should work. Raw documents PDFs transcriptions SOPs who owns it customers where it lives their Google Drive Dropbox or whatever they already use.(...) Structured graph in titles and entities relationships facts who owns it us the service where it lives Neo4j containers on the ThinkPad or whatever hardware we want. Intelligence query alerts digest who owns it delivered to customer where it lives telegram dashboard. The customer needs the customer never needs to move their files out of where they already are kept. We read them from their source extract and structure their raw docs stay in their drive. We build the intelligence later on top of that&#x27;s what they&#x27;re paying for simplest path to customer paying gets intelligence step on ingestion how docs get in easy to start customer shares a Google Drive folder with us.</p>
+<p>(...)</p>
+<p>Ingestion easy to start customer shares the dot we run extraction against it batch then incremental alternatives telegram bot accepts document uploads directly no need to build a fancy upload portal yet. Deliveries how intelligence gets out telegram bot per customer separate bot father token points to their Neo4j. They ask questions they get answers grounded in their data scheduled digest weekly and daily intelligence briefings same pattern as the audio recap we just fixed billing how money comes in stripe subscription is the cleanest or we just invoice them monthly don&#x27;t over engineer billing before you have three paying customers.</p>
+<p>(...)</p>
+<p>I&#x27;m not talking Neo4j connector Workspace ID Google Drive watcher for manual batches a script that pulls docs from shared folders and runs extraction into the customers Neo4j container one real customer and to end love buds is already loaded.</p>
+<p>(...)</p>
+<p>I just need the one that powers up. Even like these things. Oh, I&#x27;m just going to send this out. I can send it out from here.</p>
+<p>(...)</p>
+<p>Recordings. That&#x27;s the other one. Transcriptions.</p>
+<p>(...)</p>
+<p>Just push button transcriptions so it dumps right into the system.</p>
+<p>(...)</p>
+<p>That would be a good button to put on the terminal.</p>
+<p>(...)</p>
+<p>So, all right. It says I can set this up. I need a few things from Eli. Customer name, Charles Who. What company is it for?</p>
+<p>(...)</p>
+<p>Number two is what data does Charles have that we can ingest?(...) Do you have a Google Drive folder, PDFs, transcripts, and where are they being extracted from?</p>
+<p>(...)</p>
+<p>Notion. Where the juicy bits are. There is definitely a Google Drive folder together.</p>
+<p>(...)</p>
+<p>So Google Drive and Notion. Okay.</p>
+<p>(...)</p>
+<p>Telegram. Did you put it under BigCove holdings? Did you already put it in?</p>
+<p>(...)</p>
+<p>Okay. I&#x27;m going to use Google Drive and Notion.</p>
+<p>(...)</p>
+<p>Number three is Telegram bot token. Do you already have a bot created for this customer or should we create one?</p>
+<p>(...)</p>
+<p>I know. Do you want me to make one? I can let it do it. Charles Telegram user ID. Do you have a user ID or chat ID for him?</p>
+<p>(...)</p>
+<p>Let me see.(...) Yeah, I do.</p>
+<p>(...)</p>
+<p>Charles movie.(...) You want me to send it by Telegram?(...) Wherever you want.</p>
+<p>(...)</p>
+<p>Do you want me to get the telegram ID? I can let it do it if you want. This guy&#x27;s Asian.</p>
+<p>(...)</p>
+<p>This is movie Asian. It&#x27;s crazy that I can&#x27;t believe I burned my account that fast again. It&#x27;s nuts. Five days. Are you doing the $100 one or the $200 one?</p>
+<p>(...)</p>
+<p>$200.</p>
+<p>(...)</p>
+<p>Did you start on the $100 and upgrade midway?</p>
+<p>(...)</p>
+<p>Probably, yeah.</p>
+<p>(...)</p>
+<p>So I don&#x27;t know if that means that you get... But it was like the same day. It was like, okay, I paid $100. It was like an hour or two hours later. I was like, that&#x27;s not going to work. I&#x27;m going to need that $200 account immediately. That&#x27;s the way it was the same day.</p>
+<p>(...)</p>
+<p>That&#x27;s why I had two before.</p>
+<p>(...)</p>
+<p>There&#x27;s sometimes I go into a mode where I have to slow down and do the website work or insert another sheet.</p>
+<p>(...)</p>
+<p>But yeah, that&#x27;s how it is, right? You need two accounts. That&#x27;s how I had it before. One would last a couple days, the other one would last a couple days. Hopefully, you get to at least six days after the week.</p>
+<p>(...)</p>
+<p>Yeah, and breaking these accounts gives you a break. Otherwise, you&#x27;re freaking pushing yourself so hard that it just like breaks you.(...) I don&#x27;t know. I honestly don&#x27;t even know what to think. I think I just need to have... I don&#x27;t know.</p>
+<p>(...)</p>
+<p>Just keep marching.</p>
+<p>(...)</p>
+<p>My friend sent me this really cool video about this guy that brought this med. It&#x27;s this like... You know how people do...</p>
+<p>(...)</p>
+<p>Never mind. Let me not go on the whole damn tangent.</p>
+<p>(...)</p>
+<p>Short answer is just add faith.</p>
+<p>(...)</p>
+<p>More faith.</p>
+<p>(...)</p>
+<p>All right, so it&#x27;s saying...</p>
+<p>(...)</p>
+<p>The Bitcove Neo4j is up now for the Telegram, but I can&#x27;t create it programically, so you have to open it. Okay, so... Okay, I can do it. Or do you want to do it or... No, I don&#x27;t have any more bots. I maxed all my bots out, so I have to delete bots to make new ones.</p>
+<p>(...)</p>
+<p>It says, &quot;Go to bot father, create a new bot,&quot; and then you can name it Bitcove Intelligence or whatever you prefer.</p>
+<p>(...)</p>
+<p>And then the second one needs the bot at the end.</p>
+<p>(...)</p>
+<p>And then send me the token or whatever it sends out, and I&#x27;ll be able to share that with this.</p>
+<p>(...)</p>
+<p>(Silence)</p>
+<p>(...)</p>
+<p>So it said that the original bot Telegram was 39,000 lines of code, or 7900 lines of code, so it&#x27;s going to rewrite one for a lightweight customer bot.</p>
+<p>(...)</p>
+<p>Say that again?</p>
+<p>(...)</p>
+<p>Our existing demon orchestration is 7900 lines of code,(...) so it&#x27;s going to rebuild one that&#x27;s specializing in customer bot, lean, self-contained, and some other big word I&#x27;ve never seen before.</p>
+<p>(...)</p>
+<p>I need the username and password, too. Not the username and password, but the user name.</p>
+<p>(...)</p>
+<p>Other bot.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>How creative.</p>
+<p>(...)</p>
+<p>(Silence)</p>
+<p>(...)</p>
+<p>(Silence) All right.</p>
+<p>(...)</p>
+<p>So it just basically created a bunch of text for me to read.</p>
+<p>(...)</p>
+<p>Oh, still going.</p>
+<p>(...)</p>
+<p>Saying that Big Code bot is live,(...) Neo4j is connected.</p>
+<p>(...)</p>
+<p>(Silence)</p>
+<p>(...)</p>
+<p>Another idea was to run another federated mesh for us to test our own shit instead of constantly breaking the one that we&#x27;re currently using and have a backup version that&#x27;s just consistent. Is it that or is it the inverse?</p>
+<p>(...)</p>
+<p>Create a federated mesh for my tool that&#x27;s stable, whereas ours, who cares, we keep smashing it. We&#x27;ll make it for whatever the name of the code mirror, whatever you called it. Code mirror, yeah. We&#x27;ll be in that one.</p>
+<p>(...)</p>
+<p>Okay, let&#x27;s do that. I love that idea. He&#x27;ll be able to use it. Yeah, that&#x27;s a perfect idea. This also could be that. Let me think about this.</p>
+<p>(...)</p>
+<p>(Silence) Doesn&#x27;t really matter. This could be that. I guess it doesn&#x27;t matter where you can name it this. Where&#x27;s the notion workspace so we can start putting some information in that container and get that one?</p>
+<p>(...)</p>
+<p>(Silence) I&#x27;m so glad we&#x27;re doing this. Big Code.(...) Um...</p>
+<p>(...)</p>
+<p>(Silence)</p>
+<p>(...)</p>
+<p>I&#x27;m gonna make a...</p>
+<p>(...)</p>
+<p>(Silence) What else do I do? (Silence) Can I make it token at the workspace level?(...) Or do I have to take a... I have no idea, dude.</p>
+<p>(...)</p>
+<p>(Silence) (Silence)</p>
+<p>(...)</p>
+<p>(Silence) Now what I don&#x27;t understand is what the difference is between what we just did and the dry-dock version.</p>
+<p>(...)</p>
+<p>Right now, there&#x27;s a direct path between our stuff and theirs.</p>
+<p>(...)</p>
+<p>But if we had a dry-dock, then we would have one more step of separation. Between like our passwords and their system. Between our everything and theirs. It&#x27;s like one more step like air gap. Do you trust this Charles guy?</p>
+<p>(...)</p>
+<p>Absolutely.</p>
+<p>(...)</p>
+<p>50-50 partners and he&#x27;s shown resolve over the last year. So he&#x27;s definitely on my inner circle. So what I&#x27;m saying is if we use this one just for our purposes and test this and try to fucking crack it with asking passwords and stuff.(...) And if we can&#x27;t get into it, then we know we&#x27;re good. We still should do the dry-dock, but for other use cases we&#x27;re gonna just use what we&#x27;re using. Yeah, this is what I would call semi-trusted node. We can treat this as a semi-trusted node. So even if that same laptop was hosting this data and was also hosting other capital markets things, because it all relates. Whether it be Kodamere, Valor, whatever it is, we could come up with three or five different things that we were all controlling.</p>
+<p>(...)</p>
+<p>That like you, me, Michael, Charles, like that level of inner circle that could all live on one machine is fun.</p>
+<p>(...)</p>
+<p>But then if we sold it to someone else that was paying five or ten thousand dollars, then we&#x27;d give them several sheets.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>And we could buy used laptops for 200 bucks a pop and charge five grand.</p>
+<p>(...)</p>
+<p>Do I need to reorganize all this shit? I guess I have to paint right now. In order for her to just have one easy access point, I think I do have to do that.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Where&#x27;s sending it from?(...) Sending a text.</p>
+<p>(...)</p>
+<p>So another question would be, does it make sense to use Claude to do this Neo4j ingestion or should we find another tool that can possibly do the thing or is that something that needs the thought process involved?</p>
+<p>(...)</p>
+<p>Yeah. It&#x27;s actually we should look into it further.(...) But my assessment is Neo4j was built way before there was anything called a reasoning engine. It&#x27;s really built more for Python scripts.(...) So we could have Claude do the smart engineering, build the Python scripts, but don&#x27;t use Claude heavy lifting tokens.</p>
+<p>(...)</p>
+<p>Like don&#x27;t use the giant machine.</p>
+<p>(...)</p>
+<p>Use the giant machinery to dig a pool. Don&#x27;t use it to pick up your keys if you drop them in the parking lot.</p>
+<p>(...)</p>
+<p>So there&#x27;s Python scripts that should be doing a lot of the hard work for Neo4j. But Claude might be doing something like figuring out the right JSON to extract out of these huge research things. And then the Python just takes all these JSON and plugs them into MiG.</p>
+<p>(...)</p>
+<p>Perfect order.(...) And then in those JSONs it also defines the edges and all the key things. So it&#x27;s just like a data pipeline.</p>
+<p>(...)</p>
+<p>And Alan and I have been talking about this a bunch.</p>
+<p>(...)</p>
+<p>Alan&#x27;s hybrid design is like 45 to 55 percent machine compute Python type scripts.</p>
+<p>(...)</p>
+<p>And then the other 45 or 55 percent is the LLM work. And I think we could probably follow a similar pattern, maybe even leaning heavier into the Python scripts if we&#x27;re talking about putting things into MiG in the right way.</p>
+<p>(...)</p>
+<p>Maybe doing the semantic stuff. That might be where we do and it doesn&#x27;t necessarily have to be Claude. But that&#x27;s where we use some of the other models. But we&#x27;re probably overusing Claude on some simple stuff. Semantix is actually probably another thing that we don&#x27;t need Claude for. We just need a reasoning engine for it.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Because I&#x27;m just watching this going, &quot;Yo, this shit&#x27;s gonna eat my shit up.&quot;</p>
+<p>(...)</p>
+<p>Yeah, like making those websites and then like making another website. And then it&#x27;s not quite right. Do it again. It&#x27;s like don&#x27;t be lazy. Just go in there and update your own HTML. It&#x27;s like four updates. Instead of burning like another 10,000 tokens, just trying to like, &quot;Ah, I don&#x27;t really feel like looking at the HTML.&quot; Just you do it.</p>
+<p>(...)</p>
+<p>I mean, I wasn&#x27;t really looking at how many tokens it was burning, but it probably was like that many.</p>
+<p>(...)</p>
+<p>(Silence)</p>
+<p>(...)</p>
+<p>Okay, what should I do? Should I open up a thing? Oh yeah, this is one of my questions. I keep forgetting. (Silence)</p>
+<p>(...)</p>
+<p>Is the Neo4j that&#x27;s on this new thing, is it loaded with information or is it just totally blank? Is it loaded with the core or whatever? 17,000 or however many? 50,000.(...) Are there core things wired in there? (Silence)</p>
+<p>(...)</p>
+<p>What do you want it to be?</p>
+<p>(...)</p>
+<p>(Silence) I think it should have a lot of stuff wired.(...) (Silence)</p>
+<p>(...)</p>
+<p>So things that aren&#x27;t personal information and API keys and all that stuff, which aren&#x27;t even stored in there anyway.(...) But...</p>
+<p>(...)</p>
+<p>Yeah, like it should be...(...) because even like the ontology,(...) the data, the research pipeline...</p>
+<p>(...)</p>
+<p>What the hell is that going for? The data metro,(...) subway line or whatever it is, like that should be there, the ontology should be there, all the virtual teams should be there.</p>
+<p>(...)</p>
+<p>Probably damn near most of it. Most of the operational thing protocols,(...) probably a lot of the memories even. We don&#x27;t want it to go off and do a mistake like... (Silence)(...) Sales training would be relevant. Trying to think of what wouldn&#x27;t be relevant.(...) Amazon stuff wouldn&#x27;t be relevant. But I was like, are we going to start cutting out stuff out of it? Yeah, we could. But probably just cloning it over would make sense.</p>
+<p>(...)</p>
+<p>We could then...</p>
+<p>(...)</p>
+<p>And then if we clone it over but don&#x27;t have daemons, is that going to be stupid or is that going to be fine? Because if the column in them is just already pre-wired,</p>
+<p>(...)</p>
+<p>these are the little nuance questions we have to get into.</p>
+<p>(...)</p>
+<p>(Silence)</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-08 22:39</div>
+</body></html>
