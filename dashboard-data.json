@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T02:29:30.394771+00:00",
+  "generated_at": "2026-04-09T02:39:14.899989+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -889,7 +889,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-09T02:29:29.560366+00:00",
+      "updated_at": "2026-04-09T02:39:13.602982+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1069,6 +1069,26 @@
           "buying_signal_count": 0,
           "sentiment": "neutral",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "unknown",
+          "call_id": "9pm",
+          "title": "9pm",
+          "file": "clients/unknown/signals/deal-signals-9pm-2026-04-09.json",
+          "deal_signals": {
+            "objection_count": 4,
+            "buying_signal_count": 2,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "proposal"
+          },
+          "objection_count": 4,
+          "buying_signal_count": 2,
+          "sentiment": "neutral",
+          "suggested_stage": "proposal",
           "participants": []
         },
         {
@@ -2501,7 +2521,7 @@
         }
       ],
       "call_volume": {
-        "unknown": 9,
+        "unknown": 10,
         "rankona-mazon": 1,
         "omar": 1,
         "meridian-internal": 30,
@@ -2509,7 +2529,7 @@
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 82,
+      "total_signals": 83,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3027,11 +3047,11 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 14 hours old"
+        "_stale_warning": "Data is 15 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-09T02:29:29.621386+00:00",
+      "updated_at": "2026-04-09T02:39:13.624709+00:00",
       "open_issues": "GitHub issues query failed or gh CLI unavailable",
       "recent_issues": [],
       "issues_by_project": {},
@@ -3047,7 +3067,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "members": [
         {
           "id": "alex",
@@ -3118,7 +3138,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "projects": [
         {
           "project": {
@@ -3548,7 +3568,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -3633,7 +3653,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -3730,7 +3750,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -3985,6 +4005,73 @@
         }
       ],
       "calls": [
+        {
+          "date": "2026-04-09",
+          "title": "9Pm",
+          "type": "internal",
+          "file": "transcriptions/april8/9pm.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "The discussion focuses on setting up a lightweight, semi-trusted federated mesh instance for a client named Charles, defining the customer experience with Telegram bots and dashboards, and clarifying data ownership and ingestion processes.",
+          "decisions": [
+            "The ThinkPad will be used for a 'flash test' of the light version of the product.",
+            "A separate, stable federated mesh will be created for internal testing and development.",
+            "The client setup for Charles will be treated as a semi-trusted node.",
+            "The Neo4j instance for the new setup should be pre-loaded with core, non-personal data like ontology, data metro, virtual teams, and operational protocols."
+          ],
+          "commitments": [
+            "Eli will provide Charles's company name and data sources from Google Drive and Notion.",
+            "Eli will create a new Telegram bot for Charles, obtain its token, and send it.",
+            "Eli will provide Charles's Telegram user ID and a username for the setup.",
+            "Eli will provide the Notion workspace for Charles's data.",
+            "Eli will reorganize current setup for easier access for the client."
+          ],
+          "discoveries": [
+            "Claude agents have been released at 8 cents per hour, requiring an API key, raising concerns about cost and dependency.",
+            "Their existing tool's value proposition is strong compared to Claude's pricing, but there's a risk of platform shutdowns.",
+            "The core of their product is built, but the 'edges' (ingestion and intelligence delivery surfaces) are not fully developed.",
+            "The data ownership model clarifies that customers own raw documents, while the service owns the structured graph and delivered intelligence.",
+            "Their existing daemon orchestration is 7900 lines of code, prompting a plan to rebuild a leaner, self-contained customer bot.",
+            "Neo4j is better suited for Python scripts for heavy lifting rather than direct, token-heavy LLM interaction for reasoning."
+          ],
+          "action_items": [
+            {
+              "who": "Eli",
+              "what": "Set up a new instance on a Linux machine on the ThinkPad."
+            },
+            {
+              "who": "Eli",
+              "what": "Create SSH backdoors for accessing the new instance."
+            },
+            {
+              "who": "Eli",
+              "what": "Set up a dedicated daemon and Telegram bot for the 'flash test' instance."
+            },
+            {
+              "who": "Eli",
+              "what": "Provide the customer name (Charles Who) and company for the setup."
+            },
+            {
+              "who": "Eli",
+              "what": "Provide Charles's data sources from Google Drive and Notion for ingestion."
+            },
+            {
+              "who": "Eli",
+              "what": "Create a new Telegram bot for Charles using BotFather and send the token."
+            },
+            {
+              "who": "Eli",
+              "what": "Provide Charles's Telegram user ID and username."
+            },
+            {
+              "who": "Eli",
+              "what": "Provide the Notion workspace so information can be added to the container."
+            }
+          ],
+          "detail_page": "calls/2026-04-09-9pm.html",
+          "preview": "The discussion focuses on setting up a lightweight, semi-trusted federated mesh instance for a client named Charles, defining the customer experience with Telegram bots and dashboards, and clarifying data ownership and ingestion processes."
+        },
         {
           "date": "2026-04-03",
           "title": "Garretbitlerglassy",
@@ -7262,15 +7349,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 79,
-        "internal_calls": 39,
+        "total_calls": 80,
+        "internal_calls": 40,
         "external_calls": 19,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-09T02:29:30.303291+00:00",
+      "updated_at": "2026-04-09T02:39:14.810164+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -9212,7 +9299,7 @@
       "total_docs": 321
     },
     "deals": {
-      "updated_at": "2026-04-09T02:29:30.303512+00:00",
+      "updated_at": "2026-04-09T02:39:14.810358+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -9446,7 +9533,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-09T02:29:29.621427+00:00",
+      "updated_at": "2026-04-09T02:39:13.624742+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -26938,6 +27025,255 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-09T02:35:54.413008+00:00",
+          "transcript_file": "transcriptions/april8/9pm.md",
+          "transcript_length": 30279,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [
+              "unnamed_team_members"
+            ],
+            "their_participants": [],
+            "call_topic": "Planning deployment strategy, evaluating competitive positioning against Claude agents, and deciding infrastructure for next instance"
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "item": "Set up SSH backdoors/access for system administration",
+                  "owner": "Unassigned (implied: infrastructure lead)",
+                  "deadline": "Immediate",
+                  "priority": "High - blocking ops access"
+                },
+                {
+                  "item": "Deploy 'flash' (light) version test on ThinkPad machine",
+                  "owner": "Unassigned (implied: Ely)",
+                  "deadline": "Immediate/next session",
+                  "priority": "High - validates light tier model"
+                },
+                {
+                  "item": "Define daemon tier model: basic vs. premium upgrades",
+                  "owner": "Unassigned (possibly Alan/product)",
+                  "deadline": "Before customer sales pitch",
+                  "priority": "Critical - blocks pricing/feature packaging"
+                },
+                {
+                  "item": "Configure Telegram bot for flash instance",
+                  "owner": "Unassigned",
+                  "deadline": "With flash deployment",
+                  "priority": "High - primary customer surface"
+                },
+                {
+                  "item": "Set up MCP server pointing to customer Neo4j",
+                  "owner": "Unassigned",
+                  "deadline": "With daemon setup",
+                  "priority": "High"
+                },
+                {
+                  "item": "Decide: Install Claude CLI on test machine or proceed light-only",
+                  "owner": "Unassigned (engineering decision)",
+                  "deadline": "Before flash deployment",
+                  "priority": "Medium - architectural choice"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Light/flash version requirements undefined",
+                  "impact": "Can't validate feature parity or scope",
+                  "mention": "Don't know if light version needs NATS"
+                },
+                {
+                  "gap": "Daemon architecture for federation not fully designed",
+                  "impact": "Unclear how many daemons per customer, what features each has",
+                  "mention": "This is the part that needs to be thought out, because I don't know if we actually thought any of this out"
+                },
+                {
+                  "gap": "Basic vs. premium capability matrix not defined",
+                  "impact": "Can't create pricing tiers or feature packaging",
+                  "mention": "Define what the team is that they get that's basic vs. upgrades"
+                },
+                {
+                  "gap": "Terminal operator access model unfinalized",
+                  "impact": "Unclear if SSH-into-customer-graph is standard or exception",
+                  "mention": "The question is, are we gonna install CLI on this?"
+                },
+                {
+                  "gap": "Machine OS selection was ad-hoc",
+                  "impact": "No clear criteria for Linux vs. other platforms",
+                  "mention": "The question really is what operating system do we want to start from"
+                },
+                {
+                  "gap": "Deployment surface unclear for customers",
+                  "impact": "Dashboard + Telegram mentioned but no UI spec",
+                  "mention": "What's the surface that we would turn loose on people?"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "milestone": "April 13th figure limit reset",
+                  "status": "Deadline mentioned, context unclear",
+                  "realism": "Assumes external rate limit, not internal work bound"
+                },
+                {
+                  "milestone": "Flash test deployment on ThinkPad",
+                  "status": "Planned as next step",
+                  "realism": "Feasible if daemon tier definitions are resolved; blocked otherwise"
+                },
+                {
+                  "milestone": "Customer-ready federation instance",
+                  "status": "No explicit date; implied 'soon'",
+                  "realism": "Unrealistic without defining: tier matrix, NATS optionality, CLI requirements, onboarding surface"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "ThinkPad (31GB RAM, 3GB in use)",
+                  "capacity": "Can run 2-3 customer daemons + Telegram bots easily",
+                  "status": "Available, federated mesh already installed"
+                },
+                {
+                  "resource": "Claude Code CLI",
+                  "decision": "Conditional \u2014 needed only if full-tier daemons used; optional for flash tier",
+                  "implication": "Affects OAuth architecture, operator capabilities"
+                },
+                {
+                  "resource": "Telegram bot infrastructure",
+                  "decision": "Needed for all customer instances",
+                  "scope": "One bot token per customer daemon"
+                },
+                {
+                  "resource": "Dashboard UI",
+                  "decision": "Secondary surface for customer exploration",
+                  "scope": "Not specified; appears lower priority than Telegram"
+                },
+                {
+                  "resource": "MCP server configuration",
+                  "decision": "One per customer Neo4j instance",
+                  "scope": "Connects operator terminal to customer graph"
+                },
+                {
+                  "resource": "SSH/admin access mechanism",
+                  "decision": "Consensus needed on 'keymaster' pattern vs. direct access",
+                  "implication": "Could block onboarding if access model remains undefined"
+                }
+              ],
+              "dependencies": [
+                {
+                  "dependent": "Flash deployment",
+                  "blocks": "NATS optionality decision (affects light-tier architecture)",
+                  "status": "Unresolved"
+                },
+                {
+                  "dependent": "Daemon tier packaging",
+                  "blocks": "Pricing, sales messaging, customer onboarding",
+                  "status": "Requires product/leadership alignment"
+                },
+                {
+                  "dependent": "Customer surface definition (Telegram + Dashboard)",
+                  "blocks": "UI/UX work, operator workflows, bot configuration",
+                  "status": "Partially discussed, not finalized"
+                },
+                {
+                  "dependent": "CLI on test machine decision",
+                  "blocks": "Whether full brain or light-only brain is used",
+                  "status": "Engineering choice pending"
+                },
+                {
+                  "dependent": "SSH access/keymaster model",
+                  "blocks": "Operator capability, disaster recovery, onboarding process",
+                  "status": "Mentioned as concept, not implemented"
+                },
+                {
+                  "dependent": "Federation architecture finalization",
+                  "blocks": "All daemon scaling work; currently 'somewhat understood' per speakers",
+                  "status": "In progress"
+                }
+              ]
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Light mesh build variant (potentially NATS-optional, testing in progress)",
+                "Federated mesh deployment on Linux edge nodes (ThinkPad as test platform)",
+                "Per-customer daemon architecture (lightweight single-daemon-per-customer model)",
+                "Dashboard interface for customer graph exploration and visualization",
+                "Telegram bot as primary customer interaction surface (mobile-first)",
+                "Claude CLI integration for admin operations (local OAuth workflow)",
+                "MCP server pointing at customer-hosted Neo4j containers",
+                "SSH backdoor/key-holder access model for team operations",
+                "Scheduled intelligence loop + research alerts/digests via daemon",
+                "Two-tier service offering: 'flash' (basic, leaves-wanting-more) vs 'powerhouse' (full capabilities)"
+              ],
+              "integrations": [
+                "Telegram Bot API (per-customer bot token via bot file)",
+                "Neo4j (customer-hosted container, 1 per customer)",
+                "Claude CLI + local OAuth (admin brain operations)",
+                "MCP servers (customer graph access)",
+                "Tailscale (network access, verified functional on Linux)",
+                "Cursor Code terminal (admin operations interface)"
+              ],
+              "security_compliance": [
+                "Per-customer credential isolation (separate bot tokens)",
+                "SSH-only terminal access for ops (no web-exposed admin)",
+                "Federated customer isolation (separate daemons, separate graphs)",
+                "Key holder pattern: centralized access control for sensitive operations",
+                "No Windows for Tailscale access (Linux/Mac only for now)"
+              ],
+              "build_vs_buy": [
+                "Claude Agents API (8 cents/hour + API costs) vs proprietary daemon architecture: chose build. Self-assessment: 'ours is already better because we're not paying', $5k per $200 customer, API-agnostic design reduces lock-in risk",
+                "Risk acknowledged: 'they could just shut us down at any moment' re: Anthropic dependency, mitigated by custom tooling"
+              ],
+              "tech_risks": [
+                "Anthropic competitive/dependency risk (Claude Agents API feature creep, potential API shutdown)",
+                "NATS architectural decision: unclear if light mesh requires NATS; decision deferred to testing",
+                "Two-tier service maintenance burden (feature parity, upgrade paths between tiers)",
+                "Customer Neo4j isolation model: assumes per-customer container (resource/scaling implications unclear)",
+                "Edge node capacity planning: ThinkPad at 3GB/31GB headroom comfortable for 2-3 daemons now; long-term scaling model TBD",
+                "Terminal/admin access design incomplete ('this is the part that needs to be thought out')"
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "Launch tiered product strategy: basic team (light mesh, Telegram bot, dashboard) vs. powerhouse (full agents with Lens, advanced features)",
+                "Light mesh build version without NATS as entry product \u2014 leaves customers wanting more when they upgrade",
+                "Federated mesh test on ThinkPad using Flash daemon config \u2014 validate one lightweight daemon per customer model",
+                "Customer surfaces: Telegram (primary, always-on), Dashboard (secondary, exploration/command center)",
+                "SSH backdoor access for team ops-level work; customer gets Telegram + Dashboard only (no terminal)",
+                "One daemon per customer on federated architecture \u2014 matches existing mesh design, avoids Windows complexity"
+              ],
+              "opportunities": [
+                "Claude agents released at 8 cents/hour proves market validation for daemon agents; MERIDIAN competitive moat is $5K/$200 account value with no API costs",
+                "Light version (NATS-free) as demo/teaser creates upsell funnel to powerhouse tier with Delphi, Sensei, Lens integrations",
+                "ThinkPad can run 2-3 customer daemons on 31GB RAM using 3GB \u2014 hardware efficiency enables micro-margin customer deployments",
+                "Telegram bot as mobile-first interface positions MERIDIAN as always-on advisor (low friction vs. dashboard-only competitors)",
+                "Agnostic tool architecture protects against LLM provider churn \u2014 already built, ready to pivot if needed"
+              ],
+              "threats": [
+                "Anthropic (or competitors) will eventually build equivalent agent capabilities \u2014 acknowledged as inevitable ('Eventually that will')",
+                "Dependency on Claude CLI OAuth and Anthropic infrastructure \u2014 'they could shut us down at any moment'",
+                "Product definition uncertainty \u2014 'I don't know if we actually thought any of this out' suggests go-to-market clarity gap",
+                "April 13 CLI figure limit reset creates operational deadline pressure"
+              ],
+              "commitments": [
+                "Define crisp 'basic team' feature set (vs. upgrade features) by next planning session",
+                "Set up SSH backdoor access protocol for team access to customer instances",
+                "Deploy Flash daemon test on ThinkPad \u2014 validate 2-3 daemons, single bot-per-customer model",
+                "Implement per-customer bot token management via bot file (Telegram bot isolation)",
+                "Prepare MCP server configuration pointing to customer Neo4j containers for ops access",
+                "April 13: CLI token figure limit resets \u2014 plan for impact"
+              ],
+              "narrative_assessment": "**Strong positioning on differentiation**: 'We built a good tool that's agnostic' \u2014 shields against LLM provider moats. **Value is clear**: $5K/$200 account leverage demonstrates 25x customer value creation. **Product strategy emerging but not crisp**: Tiered model (light \u2192 powerhouse) is solid, but 'leaves them wanting more' tactic and feature mapping need explicit definition. **Competitive awareness healthy**: Acknowledge Claude agents will evolve; betting on infrastructure resilience + TCO advantage (no API cost), not feature moat. **Risk acknowledgment real**: 'They could shut us down' shows realistic threat modeling. **Process concern**: Undefined 'basic team' and daemon architecture suggests some improvisation mid-build. Recommendation: Lock down feature tier definitions before next customer demo \u2014 confidence gap visible in 'I don't know if we thought any of this out.'"
+            }
+          },
+          "_file": "clients/unknown/audits/csuite-audit-9pm.json",
+          "_client": "unknown"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-24T22:56:57.874197+00:00",
           "transcript_file": "transcriptions/adam-joe-output.md",
           "transcript_length": 24598,
@@ -28652,18 +28988,38 @@
           "_client": "unknown"
         }
       ],
-      "total": 87
+      "total": 88
     },
     "call_intelligence": {
-      "updated_at": "2026-04-09T02:29:30.337120+00:00",
+      "updated_at": "2026-04-09T02:39:14.843099+00:00",
       "signal_summary": {
-        "total_objections": 58,
-        "total_buying_signals": 76,
-        "total_competitors": 198,
-        "pricing_discussions": 66,
-        "calls_with_signals": 82
+        "total_objections": 62,
+        "total_buying_signals": 78,
+        "total_competitors": 199,
+        "pricing_discussions": 67,
+        "calls_with_signals": 83
       },
       "decisions": [
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "decision": "The ThinkPad will be used for a 'flash test' of the light version of the product."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "decision": "A separate, stable federated mesh will be created for internal testing and development."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "decision": "The client setup for Charles will be treated as a semi-trusted node."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "decision": "The Neo4j instance for the new setup should be pre-loaded with core, non-personal data like ontology, data metro, virtual teams, and operational protocols."
+        },
         {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
@@ -29872,6 +30228,31 @@
       ],
       "commitments": [
         {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "what": "Eli will provide Charles's company name and data sources from Google Drive and Notion."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "what": "Eli will create a new Telegram bot for Charles, obtain its token, and send it."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "what": "Eli will provide Charles's Telegram user ID and a username for the setup."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "what": "Eli will provide the Notion workspace for Charles's data."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "what": "Eli will reorganize current setup for easier access for the client."
+        },
+        {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
           "what": "Garrett Taylor: think about use cases and follow up over weekend or early next week"
@@ -30685,6 +31066,36 @@
         }
       ],
       "discoveries": [
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "Claude agents have been released at 8 cents per hour, requiring an API key, raising concerns about cost and dependency."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "Their existing tool's value proposition is strong compared to Claude's pricing, but there's a risk of platform shutdowns."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "The core of their product is built, but the 'edges' (ingestion and intelligence delivery surfaces) are not fully developed."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "The data ownership model clarifies that customers own raw documents, while the service owns the structured graph and delivered intelligence."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "Their existing daemon orchestration is 7900 lines of code, prompting a plan to rebuild a leaner, self-contained customer bot."
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "discovery": "Neo4j is better suited for Python scripts for heavy lifting rather than direct, token-heavy LLM interaction for reasoning."
+        },
         {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
@@ -32052,6 +32463,70 @@
         }
       ],
       "action_items": [
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Set up a new instance on a Linux machine on the ThinkPad."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Create SSH backdoors for accessing the new instance."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Set up a dedicated daemon and Telegram bot for the 'flash test' instance."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Provide the customer name (Charles Who) and company for the setup."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Provide Charles's data sources from Google Drive and Notion for ingestion."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Create a new Telegram bot for Charles using BotFather and send the token."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Provide Charles's Telegram user ID and username."
+          }
+        },
+        {
+          "date": "2026-04-09",
+          "call": "9Pm",
+          "action": {
+            "who": "Eli",
+            "what": "Provide the Notion workspace so information can be added to the container."
+          }
+        },
         {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
@@ -34502,6 +34977,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "unknown"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "rankona-mazon"
         },
@@ -34846,13 +35326,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 241,
-      "total_commitments": 161,
-      "total_discoveries": 273,
-      "total_action_items": 305
+      "total_decisions": 245,
+      "total_commitments": 166,
+      "total_discoveries": 279,
+      "total_action_items": 313
     },
     "attention": {
-      "updated_at": "2026-04-09T02:29:30.394696+00:00",
+      "updated_at": "2026-04-09T02:39:14.899931+00:00",
       "items": [
         {
           "type": "blocked",
@@ -34939,8 +35419,14 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-09T02:29:30.394748+00:00",
+      "updated_at": "2026-04-09T02:39:14.899968+00:00",
       "events": [
+        {
+          "type": "call",
+          "date": "2026-04-09",
+          "title": "9Pm",
+          "detail": "internal \u2014 alex"
+        },
         {
           "type": "call",
           "date": "2026-04-03",
@@ -35023,12 +35509,6 @@
           "type": "call",
           "date": "2026-03-31",
           "title": "04 Next Steps",
-          "detail": "internal \u2014 alex"
-        },
-        {
-          "type": "call",
-          "date": "2026-03-31",
-          "title": "02 Intel Correction",
           "detail": "internal \u2014 alex"
         }
       ],
