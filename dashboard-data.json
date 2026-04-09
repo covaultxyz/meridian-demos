@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T23:06:01.710626+00:00",
+  "generated_at": "2026-04-09T23:12:08.451264+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -889,7 +889,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-09T23:05:58.283461+00:00",
+      "updated_at": "2026-04-09T23:12:05.109831+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2619,21 +2619,21 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-04-08",
-          "commit": "4717200f",
+          "release": "2026-04-09",
+          "commit": "f95b96a0",
           "status": "\u2705 active \u2014 sandman + atlas healthy, disk 40%"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-04-08",
-          "commit": "4717200f",
+          "release": "2026-04-09",
+          "commit": "f95b96a0",
           "status": "\u2705 active \u2014 delphi + avery healthy, disk 54%"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-04-08",
-          "commit": "4717200f",
-          "status": "\u2705 active \u2014 sensei healthy, 15 services, 2.0GB available, disk 50%"
+          "release": "2026-04-09",
+          "commit": "f95b96a0",
+          "status": "\u2705 active \u2014 sensei + conductor healthy, disk 50%"
         }
       ],
       "active_sessions": [
@@ -3121,7 +3121,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-09T23:06:01.507712+00:00",
+      "updated_at": "2026-04-09T23:12:08.154263+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -4471,17 +4471,27 @@
         "status": "pending",
         "conclusion": null,
         "name": "CI",
-        "created_at": "2026-04-09T23:03:20Z",
-        "head_sha": "4717200f"
+        "created_at": "2026-04-09T23:11:36Z",
+        "head_sha": "aa32b818"
       },
       "ci_recent_runs": [
         {
-          "id": 24217578173,
+          "id": 24217841000,
           "name": "CI",
           "status": "pending",
           "conclusion": null,
+          "created_at": "2026-04-09T23:11:36Z",
+          "updated_at": "2026-04-09T23:11:37Z",
+          "head_sha": "aa32b818",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24217841000"
+        },
+        {
+          "id": 24217578173,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
           "created_at": "2026-04-09T23:03:20Z",
-          "updated_at": "2026-04-09T23:03:21Z",
+          "updated_at": "2026-04-09T23:11:37Z",
           "head_sha": "4717200f",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24217578173"
         },
@@ -4514,19 +4524,23 @@
           "updated_at": "2026-04-09T22:59:20Z",
           "head_sha": "5bfdec39",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24217355075"
-        },
-        {
-          "id": 24217344842,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-09T22:55:54Z",
-          "updated_at": "2026-04-09T22:56:13Z",
-          "head_sha": "26d12b09",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24217344842"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "878a571c",
+          "message": "ops(boot-state): update fleet to f95b96a0 \u2014 conductor SSL fix deployed, all 3 nodes synced",
+          "author": "covaultxyz",
+          "date": "2026-04-09T23:12:04Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/878a571c0aba45262a11608714af73ed40dccb9a"
+        },
+        {
+          "sha": "aa32b818",
+          "message": "fix(nats): use get_nats_connect_opts() in ontology_approval + monitor-jetstream-health",
+          "author": "covaultxyz",
+          "date": "2026-04-09T23:11:27Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/aa32b8182287582ae4f3a00674d30c603b5a275e"
+        },
         {
           "sha": "59de5f97",
           "message": "chore: update boot-state files \u2014 deployed 4717200f",
@@ -4582,24 +4596,10 @@
           "author": "covaultxyz",
           "date": "2026-04-09T22:54:53Z",
           "url": "https://github.com/covaultxyz/meridian/commit/f95b96a0f7b516b090624c884327ca7ee30d2041"
-        },
-        {
-          "sha": "0430e7e0",
-          "message": "fix(scorer): show raw value in metric alert titles (GH#1958) (#1962)",
-          "author": "covaultxyz",
-          "date": "2026-04-09T22:47:42Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0430e7e0fda139c880d32100ccb626d9fc47f4a8"
-        },
-        {
-          "sha": "89fad6fb",
-          "message": "fix(conductor): use get_nats_connect_opts() \u2014 resolve SSL cert verification failure",
-          "author": "covaultxyz",
-          "date": "2026-04-09T22:33:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/89fad6fb65d6ed32bc9e94aae67ef23eb4637914"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-09T23:05:59.305985+00:00",
+        "updated_at": "2026-04-09T23:12:06.116291+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4669,7 +4669,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "members": [
         {
           "id": "alex",
@@ -4740,7 +4740,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "projects": [
         {
           "project": {
@@ -5170,7 +5170,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5255,7 +5255,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5352,7 +5352,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8959,7 +8959,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-09T23:06:01.657796+00:00",
+      "updated_at": "2026-04-09T23:12:08.366254+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10901,7 +10901,7 @@
       "total_docs": 321
     },
     "deals": {
-      "updated_at": "2026-04-09T23:06:01.657901+00:00",
+      "updated_at": "2026-04-09T23:12:08.366383+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -11135,7 +11135,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-09T23:06:01.507724+00:00",
+      "updated_at": "2026-04-09T23:12:08.154353+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -30593,7 +30593,7 @@
       "total": 88
     },
     "call_intelligence": {
-      "updated_at": "2026-04-09T23:06:01.691860+00:00",
+      "updated_at": "2026-04-09T23:12:08.430727+00:00",
       "signal_summary": {
         "total_objections": 62,
         "total_buying_signals": 78,
@@ -36934,7 +36934,7 @@
       "total_action_items": 313
     },
     "attention": {
-      "updated_at": "2026-04-09T23:06:01.710574+00:00",
+      "updated_at": "2026-04-09T23:12:08.451202+00:00",
       "items": [
         {
           "type": "blocked",
@@ -37021,8 +37021,20 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-09T23:06:01.710615+00:00",
+      "updated_at": "2026-04-09T23:12:08.451249+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-09T23:12:04Z",
+          "title": "ops(boot-state): update fleet to f95b96a0 \u2014 conductor SSL fix deployed, all 3 no",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-09T23:11:27Z",
+          "title": "fix(nats): use get_nats_connect_opts() in ontology_approval + monitor-jetstream-",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-09T23:05:56Z",
@@ -37069,18 +37081,6 @@
           "type": "commit",
           "date": "2026-04-09T22:54:53Z",
           "title": "chore: purge 5 zombie sessions from boot-state, add sandman cc-1688a2826e91",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-09T22:47:42Z",
-          "title": "fix(scorer): show raw value in metric alert titles (GH#1958) (#1962)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-09T22:33:23Z",
-          "title": "fix(conductor): use get_nats_connect_opts() \u2014 resolve SSL cert verification fail",
           "detail": "covaultxyz"
         },
         {
