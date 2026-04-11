@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T17:20:53.076079+00:00",
+  "generated_at": "2026-04-11T17:25:22.983507+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -889,7 +889,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-11T17:20:49.793849+00:00",
+      "updated_at": "2026-04-11T17:25:20.283917+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2630,7 +2630,7 @@
       ]
     },
     "operations": {
-      "updated_at": "2026-04-10 by delphi (node status after OOM fix + fleet deploy)",
+      "updated_at": "2026-04-11 by sandman (VPS commit verified c1bbcdd8, research-mig-writer restarted)",
       "source": "boot-state.md",
       "current_phase": {
         "number": 2,
@@ -2639,21 +2639,21 @@
       "nodes": [
         {
           "node": "racknerd-7311420",
-          "release": "2026-04-10",
-          "commit": "2cf4b2ee",
-          "status": "\u2705 active \u2014 sandman + atlas healthy, disk 39% (pruned old releases)"
+          "release": "2026-04-11",
+          "commit": "c1bbcdd8",
+          "status": "\u2705 active \u2014 sandman + atlas healthy, research-mig-writer restarted"
         },
         {
           "node": "racknerd-e3b5f73",
-          "release": "2026-04-10",
-          "commit": "2cf4b2ee",
-          "status": "\u2705 active \u2014 delphi + avery healthy, disk 46%"
+          "release": "2026-04-11",
+          "commit": "c1bbcdd8",
+          "status": "\u2705 active \u2014 delphi + avery healthy"
         },
         {
           "node": "meridian-prime",
-          "release": "2026-04-10",
-          "commit": "2cf4b2ee",
-          "status": "\u2705 active \u2014 sensei healthy, 15 services, 2.1GB avail, disk 54%"
+          "release": "2026-04-11",
+          "commit": "c1bbcdd8",
+          "status": "\u2705 active \u2014 sensei healthy"
         },
         {
           "node": "r-ubuntu",
@@ -2745,6 +2745,13 @@
           "terminal": "ttys053",
           "launched": "2026-04-11T17:09",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "14341",
+          "terminal": "ttys068",
+          "launched": "2026-04-11T17:21",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         }
       ],
       "daemon_tasks": [
@@ -3095,7 +3102,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-11T17:20:52.900700+00:00",
+      "updated_at": "2026-04-11T17:25:22.734274+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -4485,13 +4492,53 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "failure",
+        "status": "in_progress",
+        "conclusion": null,
         "name": "Deploy Dashboard to GitHub Pages",
-        "created_at": "2026-04-11T17:18:41Z",
-        "head_sha": "c1bbcdd8"
+        "created_at": "2026-04-11T17:25:09Z",
+        "head_sha": "4a2db3ff"
       },
       "ci_recent_runs": [
+        {
+          "id": 24287675548,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-04-11T17:25:09Z",
+          "updated_at": "2026-04-11T17:25:14Z",
+          "head_sha": "4a2db3ff",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287675548"
+        },
+        {
+          "id": 24287655046,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-04-11T17:23:58Z",
+          "updated_at": "2026-04-11T17:24:41Z",
+          "head_sha": "0d934618",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287655046"
+        },
+        {
+          "id": 24287644585,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-04-11T17:23:21Z",
+          "updated_at": "2026-04-11T17:24:02Z",
+          "head_sha": "f15f21ca",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287644585"
+        },
+        {
+          "id": 24287633876,
+          "name": "CI Full",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-04-11T17:22:44Z",
+          "updated_at": "2026-04-11T17:22:45Z",
+          "head_sha": "2f5d6c48",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287633876"
+        },
         {
           "id": 24287562881,
           "name": "Deploy Dashboard to GitHub Pages",
@@ -4501,49 +4548,65 @@
           "updated_at": "2026-04-11T17:19:22Z",
           "head_sha": "c1bbcdd8",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24287562881"
-        },
-        {
-          "id": 24287548746,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-11T17:17:52Z",
-          "updated_at": "2026-04-11T17:17:53Z",
-          "head_sha": "4625e2e7",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287548746"
-        },
-        {
-          "id": 24287514776,
-          "name": "Deploy Dashboard to GitHub Pages",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-11T17:15:56Z",
-          "updated_at": "2026-04-11T17:16:37Z",
-          "head_sha": "39b459d8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287514776"
-        },
-        {
-          "id": 24287341235,
-          "name": "Deploy Dashboard to GitHub Pages",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-11T17:06:23Z",
-          "updated_at": "2026-04-11T17:07:05Z",
-          "head_sha": "049c0356",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24287341235"
-        },
-        {
-          "id": 24286584639,
-          "name": "CI Full",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-04-11T16:23:34Z",
-          "updated_at": "2026-04-11T16:23:35Z",
-          "head_sha": "d27e74fc",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24286584639"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "62b5be93",
+          "message": "docs: update boot-state \u2014 VPS verified at c1bbcdd8, research-mig-writer restarted (sandman COO)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:25:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/62b5be93e2713dc85f728e74e2957d8027f4f725"
+        },
+        {
+          "sha": "e71a60af",
+          "message": "security: kill exec() in risk-tier-hook + fail-closed (sensei CA-1)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:25:14Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e71a60af4a0df5e5ade824eaca30a877f1636e2b"
+        },
+        {
+          "sha": "4a2db3ff",
+          "message": "feat(dashboard): add midnight, forest, sunset theme variants (CA-6)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:24:50Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4a2db3ffd14b93f3ba5c908efe6cf08220e93672"
+        },
+        {
+          "sha": "0d934618",
+          "message": "feat(dashboard): expand command palette with actions, operations, recents (CA-3)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:23:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0d93461823cede1c61816b8c36c384511855e26d"
+        },
+        {
+          "sha": "f15f21ca",
+          "message": "feat(dashboard): add Zustand persisted stores \u2014 sidebar, layout, theme (CA-1)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:23:12Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f15f21ca465bf626dcf2ed267548de998d1094b2"
+        },
+        {
+          "sha": "9a088932",
+          "message": "feat(dashboard): add PWA manifest, service worker, registration (CA-2)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:23:07Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/9a088932586829fe894aab744b9fea9788413a0d"
+        },
+        {
+          "sha": "99a64138",
+          "message": "ops: add 5 sandman COO cursor prompts \u2014 delivery toggle, checklist reconcile, mesh-state regen, team-state update, subscription audit",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:22:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/99a64138eb3585b70afc808f3da546771ab4f754"
+        },
+        {
+          "sha": "2f5d6c48",
+          "message": "sensei: 3 security fix cursor prompts + dispatch index Tier 0",
+          "author": "covaultxyz",
+          "date": "2026-04-11T17:20:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2f5d6c480047e4c3bd152b310e4c5aae29f8b776"
+        },
         {
           "sha": "c1bbcdd8",
           "message": "feat(dashboard): add health check panel to onboarding flow (CC-5)",
@@ -4557,66 +4620,10 @@
           "author": "covaultxyz",
           "date": "2026-04-11T17:18:18Z",
           "url": "https://github.com/covaultxyz/meridian/commit/f229bd1508609ee10026f98ebc71d06744a19a43"
-        },
-        {
-          "sha": "4625e2e7",
-          "message": "feat: bi-temporal contradiction resolution + recall temporal filter (KAIROS P0)",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:17:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/4625e2e7b2ea84f4b848f04be1adc453ac87d397"
-        },
-        {
-          "sha": "39b459d8",
-          "message": "feat(dashboard): restructure sidebar for MERIDIAN operator taxonomy (CC-4)",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:15:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/39b459d8aa12113366b12f277020312094e41d5e"
-        },
-        {
-          "sha": "94b801bd",
-          "message": "docs: KAIROS Phase 2 completed work + remaining work guides",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:14:02Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/94b801bd20bc88ce7815629298d99f153d7fb334"
-        },
-        {
-          "sha": "3929d674",
-          "message": "feat: Wave 1 research complete \u2014 26 strategies extracted from DR-01, DR-02, DR-12",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:11:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3929d674c6f3b58badaabbdab470e681db12df94"
-        },
-        {
-          "sha": "36b74661",
-          "message": "chore: re-apply Tier 8 Hermes entries to DISPATCH-INDEX",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:10:56Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/36b74661d0289865f6306cc5a675e8ab56dac813"
-        },
-        {
-          "sha": "049c0356",
-          "message": "Hermes frontend consolidation: 6 cursor prompts + SSE hook + MeshActivityFeed + service decision doc",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:06:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/049c0356ebf8b389a62e40bd70b5695b58b9ca4d"
-        },
-        {
-          "sha": "f7cb3ac1",
-          "message": "feat: LaunchAgent migration batches 1-2 complete, MIG enrichment, session GC",
-          "author": "covaultxyz",
-          "date": "2026-04-11T17:02:27Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f7cb3ac19e1e21a207a4c6c58623d1355aedbf77"
-        },
-        {
-          "sha": "43a3617c",
-          "message": "chore: update boot-state files \u2014 deployed 2cf4b2ee",
-          "author": "covaultxyz",
-          "date": "2026-04-11T16:26:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/43a3617c16c463325baa041343a9b809adc43c00"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-11T17:20:50.917305+00:00",
+        "updated_at": "2026-04-11T17:25:21.001236+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4686,7 +4693,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "members": [
         {
           "id": "alex",
@@ -4757,7 +4764,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "projects": [
         {
           "project": {
@@ -5187,7 +5194,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5272,7 +5279,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5369,7 +5376,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8909,7 +8916,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-11T17:20:53.035089+00:00",
+      "updated_at": "2026-04-11T17:25:22.931281+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10881,7 +10888,7 @@
       "total_docs": 326
     },
     "deals": {
-      "updated_at": "2026-04-11T17:20:53.035189+00:00",
+      "updated_at": "2026-04-11T17:25:22.931381+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -11115,7 +11122,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-11T17:20:52.900711+00:00",
+      "updated_at": "2026-04-11T17:25:22.734299+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -30573,7 +30580,7 @@
       "total": 88
     },
     "call_intelligence": {
-      "updated_at": "2026-04-11T17:20:53.058779+00:00",
+      "updated_at": "2026-04-11T17:25:22.959984+00:00",
       "signal_summary": {
         "total_objections": 62,
         "total_buying_signals": 79,
@@ -36780,7 +36787,7 @@
       "total_action_items": 305
     },
     "attention": {
-      "updated_at": "2026-04-11T17:20:53.076026+00:00",
+      "updated_at": "2026-04-11T17:25:22.983454+00:00",
       "items": [
         {
           "type": "blocked",
@@ -36867,8 +36874,56 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-11T17:20:53.076067+00:00",
+      "updated_at": "2026-04-11T17:25:22.983494+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:25:19Z",
+          "title": "docs: update boot-state \u2014 VPS verified at c1bbcdd8, research-mig-writer restarte",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:25:14Z",
+          "title": "security: kill exec() in risk-tier-hook + fail-closed (sensei CA-1)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:24:50Z",
+          "title": "feat(dashboard): add midnight, forest, sunset theme variants (CA-6)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:23:49Z",
+          "title": "feat(dashboard): expand command palette with actions, operations, recents (CA-3)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:23:12Z",
+          "title": "feat(dashboard): add Zustand persisted stores \u2014 sidebar, layout, theme (CA-1)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:23:07Z",
+          "title": "feat(dashboard): add PWA manifest, service worker, registration (CA-2)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:22:54Z",
+          "title": "ops: add 5 sandman COO cursor prompts \u2014 delivery toggle, checklist reconcile, me",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T17:20:49Z",
+          "title": "sensei: 3 security fix cursor prompts + dispatch index Tier 0",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-11T17:18:31Z",
@@ -36879,54 +36934,6 @@
           "type": "commit",
           "date": "2026-04-11T17:18:18Z",
           "title": "docs(infra): session report + 3 cursor prompts for fleet hardening",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:17:48Z",
-          "title": "feat: bi-temporal contradiction resolution + recall temporal filter (KAIROS P0)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:15:49Z",
-          "title": "feat(dashboard): restructure sidebar for MERIDIAN operator taxonomy (CC-4)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:14:02Z",
-          "title": "docs: KAIROS Phase 2 completed work + remaining work guides",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:11:09Z",
-          "title": "feat: Wave 1 research complete \u2014 26 strategies extracted from DR-01, DR-02, DR-1",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:10:56Z",
-          "title": "chore: re-apply Tier 8 Hermes entries to DISPATCH-INDEX",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:06:18Z",
-          "title": "Hermes frontend consolidation: 6 cursor prompts + SSE hook + MeshActivityFeed + ",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T17:02:27Z",
-          "title": "feat: LaunchAgent migration batches 1-2 complete, MIG enrichment, session GC",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T16:26:47Z",
-          "title": "chore: update boot-state files \u2014 deployed 2cf4b2ee",
           "detail": "covaultxyz"
         },
         {
