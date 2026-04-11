@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-11T12:24:16.938877+00:00",
+  "generated_at": "2026-04-11T13:19:23.767921+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -889,7 +889,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-11T12:24:09.863232+00:00",
+      "updated_at": "2026-04-11T13:19:21.143786+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -2640,35 +2640,78 @@
         {
           "node": "racknerd-7311420",
           "release": "2026-04-10",
-          "commit": "fe66766c",
+          "commit": "a4bbecef",
           "status": "\u2705 active \u2014 sandman + atlas healthy, disk 39% (pruned old releases)"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-10",
-          "commit": "fe66766c",
+          "commit": "a4bbecef",
           "status": "\u2705 active \u2014 delphi + avery healthy, disk 46%"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-10",
-          "commit": "fe66766c",
+          "commit": "a4bbecef",
           "status": "\u2705 active \u2014 sensei healthy, 15 services, 2.1GB avail, disk 54%"
         },
         {
           "node": "r-ubuntu",
           "release": "2026-04-10",
-          "commit": "fe66766c",
+          "commit": "a4bbecef",
           "status": "\u2705 active \u2014 forge-worker connected to NATS, Ubuntu 24.04, Tailscale 100.79.107.77"
         },
         {
           "node": "toshiba-linux",
           "release": "2026-04-10",
-          "commit": "fe66766c",
+          "commit": "a4bbecef",
           "status": "\u2705 active \u2014 forge-worker online (14 capabilities), Ubuntu 24.04, Tailscale 100.101.165.88"
         }
       ],
-      "active_sessions": [],
+      "active_sessions": [
+        {
+          "daemon": "sensei",
+          "pid": "60330",
+          "terminal": "ttys030",
+          "launched": "2026-04-11T12:28",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "61350",
+          "terminal": "ttys032",
+          "launched": "2026-04-11T12:28",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "atlas",
+          "pid": "62792",
+          "terminal": "ttys034",
+          "launched": "2026-04-11T12:29",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
+        },
+        {
+          "daemon": "sandman",
+          "pid": "63572",
+          "terminal": "ttys036",
+          "launched": "2026-04-11T12:29",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/sandman"
+        },
+        {
+          "daemon": "forge",
+          "pid": "64255",
+          "terminal": "ttys038",
+          "launched": "2026-04-11T12:29",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/forge"
+        },
+        {
+          "daemon": "avery",
+          "pid": "64710",
+          "terminal": "ttys040",
+          "launched": "2026-04-11T12:29",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery"
+        }
+      ],
       "daemon_tasks": [
         {
           "daemon": "sandman",
@@ -3013,36 +3056,204 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 72 hours old"
+        "_stale_warning": "Data is 73 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-11T12:24:13.176864+00:00",
+      "updated_at": "2026-04-11T13:19:23.431017+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
-          "grade/C": 11,
+          "enhancement": 8,
+          "grade/B": 4,
+          "infrastructure": 4,
+          "sentinel-review:warn": 8,
+          "documentation": 1,
+          "grade/C": 13,
+          "verified": 1,
+          "brain": 6,
+          "cursor-bench": 3,
+          "architecture": 4,
           "auto-created": 1,
-          "grade/B": 3,
           "daemon/atlas": 1,
-          "checkpoint": 9,
-          "in-progress": 9,
+          "checkpoint": 7,
+          "in-progress": 7,
           "daemon/forge": 1,
           "daemon/sensei": 5,
-          "enhancement": 3,
-          "cursor-bench": 2,
-          "sentinel-review:warn": 9,
-          "sentinel-review:pass": 8,
-          "architecture": 1,
-          "infrastructure": 1,
-          "daemon/sandman": 1,
-          "grade/A": 1,
-          "daemon/delphi": 2,
-          "dependencies": 1,
-          "python:uv": 1
+          "sentinel-review:pass": 6,
+          "daemon/sandman": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 1985,
+          "title": "feat(sentinel): Custom GPT gateway health monitor \u2014 pulse check + Telegram alert",
+          "state": "open",
+          "created_at": "2026-04-11T13:14:01Z",
+          "updated_at": "2026-04-11T13:14:01Z",
+          "labels": [
+            "enhancement",
+            "grade/B"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1985",
+          "project_slug": "pulse-sentinels"
+        },
+        {
+          "number": 1984,
+          "title": "fix(gateway): Custom GPT gateway systemd hardening \u2014 workers, watchdog, restart",
+          "state": "open",
+          "created_at": "2026-04-11T13:11:41Z",
+          "updated_at": "2026-04-11T13:11:41Z",
+          "labels": [
+            "infrastructure",
+            "grade/B"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1984",
+          "project_slug": "custom-gpt"
+        },
+        {
+          "number": 1982,
+          "title": "feat(#1980): Intelligence query library + MCP knowledge_query tools + mig_ask slice",
+          "state": "open",
+          "created_at": "2026-04-11T13:06:09Z",
+          "updated_at": "2026-04-11T13:14:41Z",
+          "labels": [
+            "sentinel-review:warn"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/1982",
+          "project_slug": null
+        },
+        {
+          "number": 1981,
+          "title": "Re-establish GitHub issue discipline for all work arcs",
+          "state": "open",
+          "created_at": "2026-04-11T12:49:20Z",
+          "updated_at": "2026-04-11T13:00:11Z",
+          "labels": [
+            "documentation",
+            "grade/C",
+            "verified"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1981",
+          "project_slug": null
+        },
+        {
+          "number": 1980,
+          "title": "Intelligence query library + MCP gateway extensions",
+          "state": "open",
+          "created_at": "2026-04-11T12:49:08Z",
+          "updated_at": "2026-04-11T13:00:21Z",
+          "labels": [
+            "enhancement",
+            "brain",
+            "grade/C",
+            "cursor-bench"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1980",
+          "project_slug": "graph-intelligence"
+        },
+        {
+          "number": 1979,
+          "title": "Inference layer \u2014 GDS pipeline + Cluster/Bridge/Frontier/Consensus nodes",
+          "state": "open",
+          "created_at": "2026-04-11T12:48:46Z",
+          "updated_at": "2026-04-11T12:48:46Z",
+          "labels": [
+            "brain",
+            "architecture"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1979",
+          "project_slug": "graph-intelligence"
+        },
+        {
+          "number": 1978,
+          "title": "Claude Project + research corpus ingestion into claim-centric graph",
+          "state": "open",
+          "created_at": "2026-04-11T12:48:25Z",
+          "updated_at": "2026-04-11T12:48:25Z",
+          "labels": [
+            "enhancement",
+            "brain"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1978",
+          "project_slug": "graph-intelligence"
+        },
+        {
+          "number": 1977,
+          "title": "Claim-centric decomposition pipeline (Decomposer)",
+          "state": "open",
+          "created_at": "2026-04-11T12:47:56Z",
+          "updated_at": "2026-04-11T12:47:56Z",
+          "labels": [
+            "enhancement",
+            "brain"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1977",
+          "project_slug": "graph-intelligence"
+        },
+        {
+          "number": 1976,
+          "title": "Schema Graph \u2014 ontology as data (SchemaNode/SchemaEdge)",
+          "state": "open",
+          "created_at": "2026-04-11T12:47:35Z",
+          "updated_at": "2026-04-11T12:47:35Z",
+          "labels": [
+            "brain",
+            "architecture"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1976",
+          "project_slug": "graph-intelligence"
+        },
+        {
+          "number": 1975,
+          "title": "Evaluate Neo4j heap sizing for expanded claim-centric graph",
+          "state": "open",
+          "created_at": "2026-04-11T12:47:07Z",
+          "updated_at": "2026-04-11T12:47:07Z",
+          "labels": [
+            "infrastructure"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1975",
+          "project_slug": "openclaw"
+        },
+        {
+          "number": 1974,
+          "title": "Neo4j GDS plugin install + APOC verification on prime",
+          "state": "open",
+          "created_at": "2026-04-11T12:46:55Z",
+          "updated_at": "2026-04-11T12:46:55Z",
+          "labels": [
+            "infrastructure"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1974",
+          "project_slug": "openclaw"
+        },
+        {
+          "number": 1973,
+          "title": "KG Implementation Roadmap \u2014 Memory System Upgrade to Claim-Centric Graph",
+          "state": "open",
+          "created_at": "2026-04-11T12:46:37Z",
+          "updated_at": "2026-04-11T12:49:52Z",
+          "labels": [
+            "enhancement",
+            "brain",
+            "architecture"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/1973",
+          "project_slug": "graph-intelligence"
+        },
         {
           "number": 1968,
           "title": "Metric below target: Research Claim Density (0.54)",
@@ -3543,163 +3754,151 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/1869",
           "project_slug": "pulse-sentinels"
-        },
-        {
-          "number": 1868,
-          "title": "CHECKPOINT: Delphi \u2014 Gemini Live A2A Boardroom Integration",
-          "state": "open",
-          "created_at": "2026-04-04T16:26:30Z",
-          "updated_at": "2026-04-10T13:13:46Z",
-          "labels": [
-            "grade/A",
-            "daemon/delphi",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1868",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1867,
-          "title": "fix(#1848): voice persona handoff \u2014 preserve question context",
-          "state": "open",
-          "created_at": "2026-04-04T12:50:36Z",
-          "updated_at": "2026-04-04T12:50:36Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1867",
-          "project_slug": null
-        },
-        {
-          "number": 1866,
-          "title": "feat(#1846): Groq grader, Cal.com Twilio retry, Lead funnel validation",
-          "state": "open",
-          "created_at": "2026-04-04T12:47:28Z",
-          "updated_at": "2026-04-04T12:47:28Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1866",
-          "project_slug": null
-        },
-        {
-          "number": 1865,
-          "title": "feat(#1793): Pre-call coherence quality gate \u2014 seven criteria + worker fixes",
-          "state": "open",
-          "created_at": "2026-04-04T12:42:23Z",
-          "updated_at": "2026-04-04T12:42:23Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1865",
-          "project_slug": null
-        },
-        {
-          "number": 1864,
-          "title": "feat(#1848): Phase 3 \u2014 structured handoff summary for agent router",
-          "state": "open",
-          "created_at": "2026-04-04T12:42:00Z",
-          "updated_at": "2026-04-04T17:53:20Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1864",
-          "project_slug": null
-        },
-        {
-          "number": 1863,
-          "title": "feat(#1848): Phase 2 \u2014 session questions + handoff prompt",
-          "state": "open",
-          "created_at": "2026-04-04T12:41:45Z",
-          "updated_at": "2026-04-04T12:49:03Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1863",
-          "project_slug": null
-        },
-        {
-          "number": 1862,
-          "title": "fix(#1799): Research layer stats match MIG writer graph",
-          "state": "open",
-          "created_at": "2026-04-04T12:34:53Z",
-          "updated_at": "2026-04-04T17:29:52Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1862",
-          "project_slug": null
-        },
-        {
-          "number": 1861,
-          "title": "feat(#1789): Phase 1 \u2014 Google Calendar polling worker skeleton",
-          "state": "open",
-          "created_at": "2026-04-04T12:28:22Z",
-          "updated_at": "2026-04-04T12:36:58Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1861",
-          "project_slug": null
-        },
-        {
-          "number": 1859,
-          "title": "chore(deps): bump web3 from 7.14.1 to 7.15.0",
-          "state": "open",
-          "created_at": "2026-04-04T06:43:36Z",
-          "updated_at": "2026-04-04T06:43:36Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1859",
-          "project_slug": null
-        },
-        {
-          "number": 1858,
-          "title": "feat(#1744): Prospect pipeline \u2014 validation, mutation upsert, prospect_ingest worker",
-          "state": "open",
-          "created_at": "2026-04-03T22:16:31Z",
-          "updated_at": "2026-04-03T22:16:31Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1858",
-          "project_slug": null
-        },
-        {
-          "number": 1850,
-          "title": "CHECKPOINT: Delphi \u2014 Knowledge Extraction Marathon (865+ files, 6 revenue products)",
-          "state": "open",
-          "created_at": "2026-04-03T15:41:42Z",
-          "updated_at": "2026-04-09T12:07:20Z",
-          "labels": [
-            "grade/B",
-            "daemon/delphi",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/1850",
-          "project_slug": "agent-vox"
-        },
-        {
-          "number": 1841,
-          "title": "ci: automated SAST and dependency CVE gate (#521)",
-          "state": "open",
-          "created_at": "2026-04-02T02:50:41Z",
-          "updated_at": "2026-04-02T02:50:41Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/1841",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
+        "pulse-sentinels": [
+          {
+            "number": 1985,
+            "title": "feat(sentinel): Custom GPT gateway health monitor \u2014 pulse check + Telegram alert",
+            "state": "open",
+            "created_at": "2026-04-11T13:14:01Z",
+            "updated_at": "2026-04-11T13:14:01Z",
+            "labels": [
+              "enhancement",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1985",
+            "project_slug": "pulse-sentinels"
+          },
+          {
+            "number": 1963,
+            "title": "CHECKPOINT: Sensei \u2014 Proactive Oversight Loop + 5 Code/Ops Items Shipped",
+            "state": "open",
+            "created_at": "2026-04-10T03:07:03Z",
+            "updated_at": "2026-04-10T03:15:15Z",
+            "labels": [
+              "grade/C",
+              "daemon/sensei",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1963",
+            "project_slug": "pulse-sentinels"
+          },
+          {
+            "number": 1960,
+            "title": "CHECKPOINT: Sensei \u2014 Transducer Docs + AGTEHK Audit + Insurance Vertical Plan",
+            "state": "open",
+            "created_at": "2026-04-09T12:14:27Z",
+            "updated_at": "2026-04-09T12:15:11Z",
+            "labels": [
+              "grade/C",
+              "daemon/sensei",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1960",
+            "project_slug": "pulse-sentinels"
+          },
+          {
+            "number": 1959,
+            "title": "CHECKPOINT: Sensei \u2014 Federated Node Installer Hardening + Documentation",
+            "state": "open",
+            "created_at": "2026-04-09T12:13:53Z",
+            "updated_at": "2026-04-09T12:15:20Z",
+            "labels": [
+              "grade/C",
+              "daemon/sensei",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1959",
+            "project_slug": "pulse-sentinels"
+          },
+          {
+            "number": 1874,
+            "title": "CHECKPOINT: Sensei \u2014 Coherence Oversight + Telegram/Embedding Triage + Extraction Pipeline Analysis",
+            "state": "open",
+            "created_at": "2026-04-04T16:34:40Z",
+            "updated_at": "2026-04-04T16:45:15Z",
+            "labels": [
+              "grade/C",
+              "daemon/sensei",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1874",
+            "project_slug": "pulse-sentinels"
+          },
+          {
+            "number": 1869,
+            "title": "CHECKPOINT: Sensei \u2014 vox.speedoftrust.ai Admin Panel Fix (Bug 1 + Bug 2 + Routing)",
+            "state": "open",
+            "created_at": "2026-04-04T16:31:32Z",
+            "updated_at": "2026-04-04T16:46:27Z",
+            "labels": [
+              "grade/C",
+              "daemon/sensei",
+              "cursor-bench",
+              "checkpoint",
+              "in-progress"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1869",
+            "project_slug": "pulse-sentinels"
+          }
+        ],
+        "custom-gpt": [
+          {
+            "number": 1984,
+            "title": "fix(gateway): Custom GPT gateway systemd hardening \u2014 workers, watchdog, restart",
+            "state": "open",
+            "created_at": "2026-04-11T13:11:41Z",
+            "updated_at": "2026-04-11T13:11:41Z",
+            "labels": [
+              "infrastructure",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1984",
+            "project_slug": "custom-gpt"
+          }
+        ],
         "unassigned": [
+          {
+            "number": 1982,
+            "title": "feat(#1980): Intelligence query library + MCP knowledge_query tools + mig_ask slice",
+            "state": "open",
+            "created_at": "2026-04-11T13:06:09Z",
+            "updated_at": "2026-04-11T13:14:41Z",
+            "labels": [
+              "sentinel-review:warn"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/1982",
+            "project_slug": null
+          },
+          {
+            "number": 1981,
+            "title": "Re-establish GitHub issue discipline for all work arcs",
+            "state": "open",
+            "created_at": "2026-04-11T12:49:20Z",
+            "updated_at": "2026-04-11T13:00:11Z",
+            "labels": [
+              "documentation",
+              "grade/C",
+              "verified"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1981",
+            "project_slug": null
+          },
           {
             "number": 1968,
             "title": "Metric below target: Research Claim Density (0.54)",
@@ -4075,127 +4274,123 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/1875",
             "project_slug": null
-          },
+          }
+        ],
+        "graph-intelligence": [
           {
-            "number": 1867,
-            "title": "fix(#1848): voice persona handoff \u2014 preserve question context",
+            "number": 1980,
+            "title": "Intelligence query library + MCP gateway extensions",
             "state": "open",
-            "created_at": "2026-04-04T12:50:36Z",
-            "updated_at": "2026-04-04T12:50:36Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1867",
-            "project_slug": null
-          },
-          {
-            "number": 1866,
-            "title": "feat(#1846): Groq grader, Cal.com Twilio retry, Lead funnel validation",
-            "state": "open",
-            "created_at": "2026-04-04T12:47:28Z",
-            "updated_at": "2026-04-04T12:47:28Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1866",
-            "project_slug": null
-          },
-          {
-            "number": 1865,
-            "title": "feat(#1793): Pre-call coherence quality gate \u2014 seven criteria + worker fixes",
-            "state": "open",
-            "created_at": "2026-04-04T12:42:23Z",
-            "updated_at": "2026-04-04T12:42:23Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1865",
-            "project_slug": null
-          },
-          {
-            "number": 1864,
-            "title": "feat(#1848): Phase 3 \u2014 structured handoff summary for agent router",
-            "state": "open",
-            "created_at": "2026-04-04T12:42:00Z",
-            "updated_at": "2026-04-04T17:53:20Z",
+            "created_at": "2026-04-11T12:49:08Z",
+            "updated_at": "2026-04-11T13:00:21Z",
             "labels": [
-              "sentinel-review:warn"
+              "enhancement",
+              "brain",
+              "grade/C",
+              "cursor-bench"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1864",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1980",
+            "project_slug": "graph-intelligence"
           },
           {
-            "number": 1863,
-            "title": "feat(#1848): Phase 2 \u2014 session questions + handoff prompt",
+            "number": 1979,
+            "title": "Inference layer \u2014 GDS pipeline + Cluster/Bridge/Frontier/Consensus nodes",
             "state": "open",
-            "created_at": "2026-04-04T12:41:45Z",
-            "updated_at": "2026-04-04T12:49:03Z",
+            "created_at": "2026-04-11T12:48:46Z",
+            "updated_at": "2026-04-11T12:48:46Z",
             "labels": [
-              "sentinel-review:warn"
+              "brain",
+              "architecture"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1863",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1979",
+            "project_slug": "graph-intelligence"
           },
           {
-            "number": 1862,
-            "title": "fix(#1799): Research layer stats match MIG writer graph",
+            "number": 1978,
+            "title": "Claude Project + research corpus ingestion into claim-centric graph",
             "state": "open",
-            "created_at": "2026-04-04T12:34:53Z",
-            "updated_at": "2026-04-04T17:29:52Z",
+            "created_at": "2026-04-11T12:48:25Z",
+            "updated_at": "2026-04-11T12:48:25Z",
             "labels": [
-              "sentinel-review:pass"
+              "enhancement",
+              "brain"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1862",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1978",
+            "project_slug": "graph-intelligence"
           },
           {
-            "number": 1861,
-            "title": "feat(#1789): Phase 1 \u2014 Google Calendar polling worker skeleton",
+            "number": 1977,
+            "title": "Claim-centric decomposition pipeline (Decomposer)",
             "state": "open",
-            "created_at": "2026-04-04T12:28:22Z",
-            "updated_at": "2026-04-04T12:36:58Z",
+            "created_at": "2026-04-11T12:47:56Z",
+            "updated_at": "2026-04-11T12:47:56Z",
             "labels": [
-              "sentinel-review:pass"
+              "enhancement",
+              "brain"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1861",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1977",
+            "project_slug": "graph-intelligence"
           },
           {
-            "number": 1859,
-            "title": "chore(deps): bump web3 from 7.14.1 to 7.15.0",
+            "number": 1976,
+            "title": "Schema Graph \u2014 ontology as data (SchemaNode/SchemaEdge)",
             "state": "open",
-            "created_at": "2026-04-04T06:43:36Z",
-            "updated_at": "2026-04-04T06:43:36Z",
+            "created_at": "2026-04-11T12:47:35Z",
+            "updated_at": "2026-04-11T12:47:35Z",
             "labels": [
-              "dependencies",
-              "python:uv"
+              "brain",
+              "architecture"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1859",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1976",
+            "project_slug": "graph-intelligence"
           },
           {
-            "number": 1858,
-            "title": "feat(#1744): Prospect pipeline \u2014 validation, mutation upsert, prospect_ingest worker",
+            "number": 1973,
+            "title": "KG Implementation Roadmap \u2014 Memory System Upgrade to Claim-Centric Graph",
             "state": "open",
-            "created_at": "2026-04-03T22:16:31Z",
-            "updated_at": "2026-04-03T22:16:31Z",
-            "labels": [],
+            "created_at": "2026-04-11T12:46:37Z",
+            "updated_at": "2026-04-11T12:49:52Z",
+            "labels": [
+              "enhancement",
+              "brain",
+              "architecture"
+            ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1858",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1973",
+            "project_slug": "graph-intelligence"
+          }
+        ],
+        "openclaw": [
+          {
+            "number": 1975,
+            "title": "Evaluate Neo4j heap sizing for expanded claim-centric graph",
+            "state": "open",
+            "created_at": "2026-04-11T12:47:07Z",
+            "updated_at": "2026-04-11T12:47:07Z",
+            "labels": [
+              "infrastructure"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/1975",
+            "project_slug": "openclaw"
           },
           {
-            "number": 1841,
-            "title": "ci: automated SAST and dependency CVE gate (#521)",
+            "number": 1974,
+            "title": "Neo4j GDS plugin install + APOC verification on prime",
             "state": "open",
-            "created_at": "2026-04-02T02:50:41Z",
-            "updated_at": "2026-04-02T02:50:41Z",
-            "labels": [],
+            "created_at": "2026-04-11T12:46:55Z",
+            "updated_at": "2026-04-11T12:46:55Z",
+            "labels": [
+              "infrastructure"
+            ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/1841",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/1974",
+            "project_slug": "openclaw"
           }
         ],
         "research-pipeline": [
@@ -4214,89 +4409,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/1965",
             "project_slug": "research-pipeline"
-          }
-        ],
-        "pulse-sentinels": [
-          {
-            "number": 1963,
-            "title": "CHECKPOINT: Sensei \u2014 Proactive Oversight Loop + 5 Code/Ops Items Shipped",
-            "state": "open",
-            "created_at": "2026-04-10T03:07:03Z",
-            "updated_at": "2026-04-10T03:15:15Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1963",
-            "project_slug": "pulse-sentinels"
-          },
-          {
-            "number": 1960,
-            "title": "CHECKPOINT: Sensei \u2014 Transducer Docs + AGTEHK Audit + Insurance Vertical Plan",
-            "state": "open",
-            "created_at": "2026-04-09T12:14:27Z",
-            "updated_at": "2026-04-09T12:15:11Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1960",
-            "project_slug": "pulse-sentinels"
-          },
-          {
-            "number": 1959,
-            "title": "CHECKPOINT: Sensei \u2014 Federated Node Installer Hardening + Documentation",
-            "state": "open",
-            "created_at": "2026-04-09T12:13:53Z",
-            "updated_at": "2026-04-09T12:15:20Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1959",
-            "project_slug": "pulse-sentinels"
-          },
-          {
-            "number": 1874,
-            "title": "CHECKPOINT: Sensei \u2014 Coherence Oversight + Telegram/Embedding Triage + Extraction Pipeline Analysis",
-            "state": "open",
-            "created_at": "2026-04-04T16:34:40Z",
-            "updated_at": "2026-04-04T16:45:15Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1874",
-            "project_slug": "pulse-sentinels"
-          },
-          {
-            "number": 1869,
-            "title": "CHECKPOINT: Sensei \u2014 vox.speedoftrust.ai Admin Panel Fix (Bug 1 + Bug 2 + Routing)",
-            "state": "open",
-            "created_at": "2026-04-04T16:31:32Z",
-            "updated_at": "2026-04-04T16:46:27Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "cursor-bench",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1869",
-            "project_slug": "pulse-sentinels"
           }
         ],
         "memory-gardener": [
@@ -4329,101 +4441,118 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/1879",
             "project_slug": "agent-vox"
-          },
-          {
-            "number": 1868,
-            "title": "CHECKPOINT: Delphi \u2014 Gemini Live A2A Boardroom Integration",
-            "state": "open",
-            "created_at": "2026-04-04T16:26:30Z",
-            "updated_at": "2026-04-10T13:13:46Z",
-            "labels": [
-              "grade/A",
-              "daemon/delphi",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1868",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 1850,
-            "title": "CHECKPOINT: Delphi \u2014 Knowledge Extraction Marathon (865+ files, 6 revenue products)",
-            "state": "open",
-            "created_at": "2026-04-03T15:41:42Z",
-            "updated_at": "2026-04-09T12:07:20Z",
-            "labels": [
-              "grade/B",
-              "daemon/delphi",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/1850",
-            "project_slug": "agent-vox"
           }
         ]
       },
       "ci": {
-        "status": "pending",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-11T11:21:38Z",
-        "head_sha": "45c9968f"
+        "status": "completed",
+        "conclusion": "skipped",
+        "name": "Agent HQ \u2192 MERIDIAN Bridge",
+        "created_at": "2026-04-11T13:18:02Z",
+        "head_sha": "a4bbecef"
       },
       "ci_recent_runs": [
         {
-          "id": 24281395764,
-          "name": "CI Full",
-          "status": "pending",
-          "conclusion": null,
-          "created_at": "2026-04-11T11:21:38Z",
-          "updated_at": "2026-04-11T11:21:39Z",
-          "head_sha": "45c9968f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24281395764"
+          "id": 24283296016,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-11T13:18:02Z",
+          "updated_at": "2026-04-11T13:18:03Z",
+          "head_sha": "a4bbecef",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24283296016"
         },
         {
-          "id": 24280475586,
-          "name": "CI Full",
+          "id": 24283295453,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-11T10:23:17Z",
-          "updated_at": "2026-04-11T11:21:39Z",
-          "head_sha": "45c9968f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24280475586"
+          "conclusion": "skipped",
+          "created_at": "2026-04-11T13:18:00Z",
+          "updated_at": "2026-04-11T13:18:02Z",
+          "head_sha": "a4bbecef",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24283295453"
         },
         {
-          "id": 24279629358,
-          "name": "CI Full",
+          "id": 24283232899,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-11T09:30:17Z",
-          "updated_at": "2026-04-11T10:23:18Z",
-          "head_sha": "45c9968f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24279629358"
+          "conclusion": "skipped",
+          "created_at": "2026-04-11T13:14:11Z",
+          "updated_at": "2026-04-11T13:14:12Z",
+          "head_sha": "92764a79",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24283232899"
         },
         {
-          "id": 24278669999,
-          "name": "CI Full",
+          "id": 24283232856,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-11T08:30:53Z",
-          "updated_at": "2026-04-11T09:30:18Z",
-          "head_sha": "45c9968f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24278669999"
+          "conclusion": "skipped",
+          "created_at": "2026-04-11T13:14:11Z",
+          "updated_at": "2026-04-11T13:14:12Z",
+          "head_sha": "92764a79",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24283232856"
         },
         {
-          "id": 24277885877,
-          "name": "CI Full",
+          "id": 24283231404,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-11T07:42:16Z",
-          "updated_at": "2026-04-11T08:30:54Z",
-          "head_sha": "45c9968f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24277885877"
+          "conclusion": "skipped",
+          "created_at": "2026-04-11T13:14:05Z",
+          "updated_at": "2026-04-11T13:14:06Z",
+          "head_sha": "92764a79",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24283231404"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "8d92679e",
+          "message": "chore: update boot-state files \u2014 deployed a4bbecef",
+          "author": "covaultxyz",
+          "date": "2026-04-11T13:19:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8d92679ea6991616ddc6f10d755419ef93ad7187"
+        },
+        {
+          "sha": "a4bbecef",
+          "message": "deploy: add stop timeouts + parallelize worker restarts in promote-release",
+          "author": "covaultxyz",
+          "date": "2026-04-11T13:16:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a4bbecefffddb961729dc738569f73cb702535c0"
+        },
+        {
+          "sha": "7cdd6444",
+          "message": "Add GitHub issue discipline to non-negotiable rules \u2014 Part of #1981",
+          "author": "Glasshaus",
+          "date": "2026-04-11T13:02:50Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7cdd6444ad3c66925b90986b20279c9a97d4da7a"
+        },
+        {
+          "sha": "92764a79",
+          "message": "boot: zero MCP calls at boot \u2014 all 6 daemons",
+          "author": "Glasshaus",
+          "date": "2026-04-11T12:55:17Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/92764a79b57630f268d0413aa1e9c9affc2b00d5"
+        },
+        {
+          "sha": "bd392bc1",
+          "message": "Add KAIROS deep research prompts \u2014 18 targeted queries (DR-01 to DR-18)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T12:59:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bd392bc1ac5e20d6d9cd16955b78e10549681f13"
+        },
+        {
+          "sha": "2f324abd",
+          "message": "Add Project KAIROS PRD \u2014 cognitive enhancement from Mythos analysis",
+          "author": "covaultxyz",
+          "date": "2026-04-11T12:52:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2f324abd2b7d047e38bc74d4228c767e8eda6d37"
+        },
+        {
+          "sha": "16b9c5c6",
+          "message": "fix: resolve 10 CI test failures across 5 test files (#1966)",
+          "author": "covaultxyz",
+          "date": "2026-04-11T12:48:57Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/16b9c5c6824ea7b2468410bb5e4e1da3bc353789"
+        },
         {
           "sha": "45c9968f",
           "message": "Update CI docs with conftest fixture, audit results, mock_brain usage",
@@ -4444,59 +4573,10 @@
           "author": "covaultxyz",
           "date": "2026-04-11T05:46:42Z",
           "url": "https://github.com/covaultxyz/meridian/commit/78c19af124e250b215a2237da9e5cad11b78b556"
-        },
-        {
-          "sha": "1b187197",
-          "message": "Add shared mock_brain fixture to conftest.py \u2014 prevents _session drift",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:46:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1b1871974ab93569910506aa9ed75506e3c69cc1"
-        },
-        {
-          "sha": "34d65b5e",
-          "message": "docs: CI fix report, remaining work, and usage guide for test infrastructure",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:30:39Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/34d65b5eb3977282e5b99954346356bdc927c521"
-        },
-        {
-          "sha": "cba4bcd3",
-          "message": "docs: Prism adoption completed work + remaining work & usage guide",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:29:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cba4bcd3fe01371dbab24d741231804cee3deb7f"
-        },
-        {
-          "sha": "0552efb1",
-          "message": "docs: DoD security audit report + hardening plan",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:29:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0552efb1ce6660b931ca2cdbc9969e300f85e465"
-        },
-        {
-          "sha": "dbcd69de",
-          "message": "feat(cursor): batch 4 \u2014 corrected CI prompt + 3 design-based prompts from agent investigations",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:28:15Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/dbcd69decdabf8fa136134a34a3f4ab86af54e13"
-        },
-        {
-          "sha": "6c06c4ce",
-          "message": "ci: add SBOM generation (CycloneDX) to security-scan job",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:24:36Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6c06c4cecae036d2fd0a65a7bbfe31861d93275d"
-        },
-        {
-          "sha": "95e2cddd",
-          "message": "Prism: Phase B wiring + Phase C timeline builder import",
-          "author": "covaultxyz",
-          "date": "2026-04-11T05:23:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/95e2cddd4209f395cbd529050c06156b5b91e399"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-11T12:24:10.642641+00:00",
+        "updated_at": "2026-04-11T13:19:21.781687+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -4566,7 +4646,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "members": [
         {
           "id": "alex",
@@ -4637,7 +4717,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "projects": [
         {
           "project": {
@@ -5067,7 +5147,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5152,7 +5232,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5249,7 +5329,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6899,7 +6979,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -6925,7 +7005,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -7262,7 +7342,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -7355,7 +7435,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -7418,7 +7498,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -7515,7 +7595,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -7577,7 +7657,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -7637,7 +7717,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7692,7 +7772,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7787,7 +7867,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -7829,7 +7909,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -7956,7 +8036,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -8099,7 +8179,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -8272,7 +8352,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -8789,7 +8869,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-11T12:24:14.271203+00:00",
+      "updated_at": "2026-04-11T13:19:23.690823+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10708,8 +10788,8 @@
         {
           "name": "Claude",
           "file": "CLAUDE.md",
-          "size": 18616,
-          "modified": "2026-04-09"
+          "size": 19319,
+          "modified": "2026-04-11"
         },
         {
           "name": "Agent Protocol",
@@ -10755,7 +10835,7 @@
       "total_docs": 325
     },
     "deals": {
-      "updated_at": "2026-04-11T12:24:14.271283+00:00",
+      "updated_at": "2026-04-11T13:19:23.690924+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10989,7 +11069,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-11T12:24:13.176898+00:00",
+      "updated_at": "2026-04-11T13:19:23.431029+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -28481,6 +28561,255 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-09T02:35:54.413008+00:00",
+          "transcript_file": "transcriptions/april8/9pm.md",
+          "transcript_length": 30279,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [
+              "unnamed_team_members"
+            ],
+            "their_participants": [],
+            "call_topic": "Planning deployment strategy, evaluating competitive positioning against Claude agents, and deciding infrastructure for next instance"
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "item": "Set up SSH backdoors/access for system administration",
+                  "owner": "Unassigned (implied: infrastructure lead)",
+                  "deadline": "Immediate",
+                  "priority": "High - blocking ops access"
+                },
+                {
+                  "item": "Deploy 'flash' (light) version test on ThinkPad machine",
+                  "owner": "Unassigned (implied: Ely)",
+                  "deadline": "Immediate/next session",
+                  "priority": "High - validates light tier model"
+                },
+                {
+                  "item": "Define daemon tier model: basic vs. premium upgrades",
+                  "owner": "Unassigned (possibly Alan/product)",
+                  "deadline": "Before customer sales pitch",
+                  "priority": "Critical - blocks pricing/feature packaging"
+                },
+                {
+                  "item": "Configure Telegram bot for flash instance",
+                  "owner": "Unassigned",
+                  "deadline": "With flash deployment",
+                  "priority": "High - primary customer surface"
+                },
+                {
+                  "item": "Set up MCP server pointing to customer Neo4j",
+                  "owner": "Unassigned",
+                  "deadline": "With daemon setup",
+                  "priority": "High"
+                },
+                {
+                  "item": "Decide: Install Claude CLI on test machine or proceed light-only",
+                  "owner": "Unassigned (engineering decision)",
+                  "deadline": "Before flash deployment",
+                  "priority": "Medium - architectural choice"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Light/flash version requirements undefined",
+                  "impact": "Can't validate feature parity or scope",
+                  "mention": "Don't know if light version needs NATS"
+                },
+                {
+                  "gap": "Daemon architecture for federation not fully designed",
+                  "impact": "Unclear how many daemons per customer, what features each has",
+                  "mention": "This is the part that needs to be thought out, because I don't know if we actually thought any of this out"
+                },
+                {
+                  "gap": "Basic vs. premium capability matrix not defined",
+                  "impact": "Can't create pricing tiers or feature packaging",
+                  "mention": "Define what the team is that they get that's basic vs. upgrades"
+                },
+                {
+                  "gap": "Terminal operator access model unfinalized",
+                  "impact": "Unclear if SSH-into-customer-graph is standard or exception",
+                  "mention": "The question is, are we gonna install CLI on this?"
+                },
+                {
+                  "gap": "Machine OS selection was ad-hoc",
+                  "impact": "No clear criteria for Linux vs. other platforms",
+                  "mention": "The question really is what operating system do we want to start from"
+                },
+                {
+                  "gap": "Deployment surface unclear for customers",
+                  "impact": "Dashboard + Telegram mentioned but no UI spec",
+                  "mention": "What's the surface that we would turn loose on people?"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "milestone": "April 13th figure limit reset",
+                  "status": "Deadline mentioned, context unclear",
+                  "realism": "Assumes external rate limit, not internal work bound"
+                },
+                {
+                  "milestone": "Flash test deployment on ThinkPad",
+                  "status": "Planned as next step",
+                  "realism": "Feasible if daemon tier definitions are resolved; blocked otherwise"
+                },
+                {
+                  "milestone": "Customer-ready federation instance",
+                  "status": "No explicit date; implied 'soon'",
+                  "realism": "Unrealistic without defining: tier matrix, NATS optionality, CLI requirements, onboarding surface"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "ThinkPad (31GB RAM, 3GB in use)",
+                  "capacity": "Can run 2-3 customer daemons + Telegram bots easily",
+                  "status": "Available, federated mesh already installed"
+                },
+                {
+                  "resource": "Claude Code CLI",
+                  "decision": "Conditional \u2014 needed only if full-tier daemons used; optional for flash tier",
+                  "implication": "Affects OAuth architecture, operator capabilities"
+                },
+                {
+                  "resource": "Telegram bot infrastructure",
+                  "decision": "Needed for all customer instances",
+                  "scope": "One bot token per customer daemon"
+                },
+                {
+                  "resource": "Dashboard UI",
+                  "decision": "Secondary surface for customer exploration",
+                  "scope": "Not specified; appears lower priority than Telegram"
+                },
+                {
+                  "resource": "MCP server configuration",
+                  "decision": "One per customer Neo4j instance",
+                  "scope": "Connects operator terminal to customer graph"
+                },
+                {
+                  "resource": "SSH/admin access mechanism",
+                  "decision": "Consensus needed on 'keymaster' pattern vs. direct access",
+                  "implication": "Could block onboarding if access model remains undefined"
+                }
+              ],
+              "dependencies": [
+                {
+                  "dependent": "Flash deployment",
+                  "blocks": "NATS optionality decision (affects light-tier architecture)",
+                  "status": "Unresolved"
+                },
+                {
+                  "dependent": "Daemon tier packaging",
+                  "blocks": "Pricing, sales messaging, customer onboarding",
+                  "status": "Requires product/leadership alignment"
+                },
+                {
+                  "dependent": "Customer surface definition (Telegram + Dashboard)",
+                  "blocks": "UI/UX work, operator workflows, bot configuration",
+                  "status": "Partially discussed, not finalized"
+                },
+                {
+                  "dependent": "CLI on test machine decision",
+                  "blocks": "Whether full brain or light-only brain is used",
+                  "status": "Engineering choice pending"
+                },
+                {
+                  "dependent": "SSH access/keymaster model",
+                  "blocks": "Operator capability, disaster recovery, onboarding process",
+                  "status": "Mentioned as concept, not implemented"
+                },
+                {
+                  "dependent": "Federation architecture finalization",
+                  "blocks": "All daemon scaling work; currently 'somewhat understood' per speakers",
+                  "status": "In progress"
+                }
+              ]
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Light mesh build variant (potentially NATS-optional, testing in progress)",
+                "Federated mesh deployment on Linux edge nodes (ThinkPad as test platform)",
+                "Per-customer daemon architecture (lightweight single-daemon-per-customer model)",
+                "Dashboard interface for customer graph exploration and visualization",
+                "Telegram bot as primary customer interaction surface (mobile-first)",
+                "Claude CLI integration for admin operations (local OAuth workflow)",
+                "MCP server pointing at customer-hosted Neo4j containers",
+                "SSH backdoor/key-holder access model for team operations",
+                "Scheduled intelligence loop + research alerts/digests via daemon",
+                "Two-tier service offering: 'flash' (basic, leaves-wanting-more) vs 'powerhouse' (full capabilities)"
+              ],
+              "integrations": [
+                "Telegram Bot API (per-customer bot token via bot file)",
+                "Neo4j (customer-hosted container, 1 per customer)",
+                "Claude CLI + local OAuth (admin brain operations)",
+                "MCP servers (customer graph access)",
+                "Tailscale (network access, verified functional on Linux)",
+                "Cursor Code terminal (admin operations interface)"
+              ],
+              "security_compliance": [
+                "Per-customer credential isolation (separate bot tokens)",
+                "SSH-only terminal access for ops (no web-exposed admin)",
+                "Federated customer isolation (separate daemons, separate graphs)",
+                "Key holder pattern: centralized access control for sensitive operations",
+                "No Windows for Tailscale access (Linux/Mac only for now)"
+              ],
+              "build_vs_buy": [
+                "Claude Agents API (8 cents/hour + API costs) vs proprietary daemon architecture: chose build. Self-assessment: 'ours is already better because we're not paying', $5k per $200 customer, API-agnostic design reduces lock-in risk",
+                "Risk acknowledged: 'they could just shut us down at any moment' re: Anthropic dependency, mitigated by custom tooling"
+              ],
+              "tech_risks": [
+                "Anthropic competitive/dependency risk (Claude Agents API feature creep, potential API shutdown)",
+                "NATS architectural decision: unclear if light mesh requires NATS; decision deferred to testing",
+                "Two-tier service maintenance burden (feature parity, upgrade paths between tiers)",
+                "Customer Neo4j isolation model: assumes per-customer container (resource/scaling implications unclear)",
+                "Edge node capacity planning: ThinkPad at 3GB/31GB headroom comfortable for 2-3 daemons now; long-term scaling model TBD",
+                "Terminal/admin access design incomplete ('this is the part that needs to be thought out')"
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "Launch tiered product strategy: basic team (light mesh, Telegram bot, dashboard) vs. powerhouse (full agents with Lens, advanced features)",
+                "Light mesh build version without NATS as entry product \u2014 leaves customers wanting more when they upgrade",
+                "Federated mesh test on ThinkPad using Flash daemon config \u2014 validate one lightweight daemon per customer model",
+                "Customer surfaces: Telegram (primary, always-on), Dashboard (secondary, exploration/command center)",
+                "SSH backdoor access for team ops-level work; customer gets Telegram + Dashboard only (no terminal)",
+                "One daemon per customer on federated architecture \u2014 matches existing mesh design, avoids Windows complexity"
+              ],
+              "opportunities": [
+                "Claude agents released at 8 cents/hour proves market validation for daemon agents; MERIDIAN competitive moat is $5K/$200 account value with no API costs",
+                "Light version (NATS-free) as demo/teaser creates upsell funnel to powerhouse tier with Delphi, Sensei, Lens integrations",
+                "ThinkPad can run 2-3 customer daemons on 31GB RAM using 3GB \u2014 hardware efficiency enables micro-margin customer deployments",
+                "Telegram bot as mobile-first interface positions MERIDIAN as always-on advisor (low friction vs. dashboard-only competitors)",
+                "Agnostic tool architecture protects against LLM provider churn \u2014 already built, ready to pivot if needed"
+              ],
+              "threats": [
+                "Anthropic (or competitors) will eventually build equivalent agent capabilities \u2014 acknowledged as inevitable ('Eventually that will')",
+                "Dependency on Claude CLI OAuth and Anthropic infrastructure \u2014 'they could shut us down at any moment'",
+                "Product definition uncertainty \u2014 'I don't know if we actually thought any of this out' suggests go-to-market clarity gap",
+                "April 13 CLI figure limit reset creates operational deadline pressure"
+              ],
+              "commitments": [
+                "Define crisp 'basic team' feature set (vs. upgrade features) by next planning session",
+                "Set up SSH backdoor access protocol for team access to customer instances",
+                "Deploy Flash daemon test on ThinkPad \u2014 validate 2-3 daemons, single bot-per-customer model",
+                "Implement per-customer bot token management via bot file (Telegram bot isolation)",
+                "Prepare MCP server configuration pointing to customer Neo4j containers for ops access",
+                "April 13: CLI token figure limit resets \u2014 plan for impact"
+              ],
+              "narrative_assessment": "**Strong positioning on differentiation**: 'We built a good tool that's agnostic' \u2014 shields against LLM provider moats. **Value is clear**: $5K/$200 account leverage demonstrates 25x customer value creation. **Product strategy emerging but not crisp**: Tiered model (light \u2192 powerhouse) is solid, but 'leaves them wanting more' tactic and feature mapping need explicit definition. **Competitive awareness healthy**: Acknowledge Claude agents will evolve; betting on infrastructure resilience + TCO advantage (no API cost), not feature moat. **Risk acknowledgment real**: 'They could shut us down' shows realistic threat modeling. **Process concern**: Undefined 'basic team' and daemon architecture suggests some improvisation mid-build. Recommendation: Lock down feature tier definitions before next customer demo \u2014 confidence gap visible in 'I don't know if we thought any of this out.'"
+            }
+          },
+          "_file": "clients/unknown/audits/csuite-audit-9pm.json",
+          "_client": "unknown"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-24T22:56:57.874197+00:00",
           "transcript_file": "transcriptions/adam-joe-output.md",
           "transcript_length": 24598,
@@ -29562,6 +29891,263 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-07T19:56:05.034328+00:00",
+          "transcript_file": "transcriptions/april7/fix boardroom.md",
+          "transcript_length": 9772,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [
+              "Angelo Robles",
+              "Victoria (AI agent)"
+            ],
+            "call_topic": "Product gap analysis \u2014 voice handoff transitions, upload feedback loops, personalization, and conversation persistence issues in prospect-facing voice system"
+          },
+          "personas_run": [
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "CTO": {
+              "tech_requirements": [
+                "Voice handoff/transfer with audio transition overlay (eliminate 2-3s silent gap between Gemini teardown/rebuild)",
+                "Document upload acknowledgment loop \u2014 agent confirms receipt and references context in response",
+                "Personal link visibility & sharing \u2014 UI element to display persistent session links, clickable/copyable for continuation",
+                "Context-aware visitor greetings \u2014 fetch prior conversation summary from Neo4j, reference last interaction in greeting",
+                "Session persistence across browser refresh/navigation \u2014 store transcript and context remotely, restore on reconnect",
+                "Live A2A mode document upload endpoint \u2014 currently only Classic mode upload works, Live mode silently fails",
+                "Mobile-responsive layout \u2014 sidebar roster hidden, bottom dock repositioned, mic button accessibility",
+                "Live A2A agent switching indicator \u2014 visual badge showing which agent is currently speaking (Classic mode has this, Live doesn't)",
+                "Agent attribution in transcripts \u2014 show agent name per message, not just 'user'/'agent' labels",
+                "Call termination UX \u2014 'End Call' button with post-call summary generation and delivery",
+                "Observer dashboard UI \u2014 visualize /observe SSE stream for live demo monitoring on separate screen",
+                "Mid-call agent intervention \u2014 'whisper' mode to correct agent without interrupting prospect",
+                "Post-call summary accessible via UI \u2014 currently data exists (Call + Transcript tables) but no page to review",
+                "Boardroom directory page \u2014 list all public boardrooms with live links (currently only CSV export exists)",
+                "Multi-worker voice gateway \u2014 replace single uvicorn worker to prevent Live A2A sessions from blocking other requests",
+                "SQLite WAL mode \u2014 concurrent writes from multi-session scenarios hit write locks without it",
+                "Session recovery mechanism \u2014 in-memory _sessions dict lost on service restart, needs durable recovery",
+                "Customizable call grading rubric per boardroom \u2014 currently hardcoded generic rubric, not board-specific",
+                "Contact extraction retry mechanism \u2014 async completion guarantee with fallback if service restarts mid-extraction",
+                "Interaction node creation consistency \u2014 currently fetch_person_context finds 0 interactions despite 37 memories, nodes not reliably created"
+              ],
+              "integrations": [
+                {
+                  "service": "Gemini API",
+                  "current_state": "Single API credential for Live A2A sessions",
+                  "issue": "Rate limit blocking all concurrent Live sessions if hit",
+                  "required": true
+                },
+                {
+                  "service": "Edge-TTS",
+                  "current_state": "Free fallback TTS after primary TTS failure",
+                  "issue": "Unreliable (occasional 503s), no SLA, untested under load",
+                  "required": true
+                },
+                {
+                  "service": "Cloudflare Tunnel (meridian-sot)",
+                  "current_state": "Ingress for all boardroom traffic",
+                  "issue": "Single point of failure, no health check, no auto-restart beyond systemd",
+                  "required": true
+                },
+                {
+                  "service": "Twilio",
+                  "current_state": "Undone (checkpoint mentions 'Twilio phone demo for Angelo' still pending)",
+                  "issue": "Phone number integration not implemented, required for feature parity with Bland.ai/Vapi",
+                  "required": false
+                },
+                {
+                  "service": "CRM/Webhook integrations",
+                  "current_state": "Not implemented",
+                  "issue": "No Zapier, no email triggers, no CRM push after calls \u2014 competitors have this",
+                  "required": false
+                },
+                {
+                  "service": "Neo4j",
+                  "current_state": "Memory/context storage (Interaction nodes, PARTICIPATED_IN relationships)",
+                  "issue": "Interaction nodes not reliably created; context fetch may return 0 prior conversations despite memory existing",
+                  "required": true
+                },
+                {
+                  "service": "SQLite",
+                  "current_state": "Call transcripts, session metadata, grading data",
+                  "issue": "Single file, concurrent write locks, no WAL, single point of failure on VPS",
+                  "required": true
+                }
+              ],
+              "security_compliance": [
+                "Single Gemini API key shared across all Live sessions \u2014 credential rotation and rate-limit protection needed",
+                "Session state stored in-memory _sessions dict \u2014 no encryption, lost on restart, no durable recovery",
+                "Call transcripts in plaintext SQLite \u2014 consider encryption at rest, access control for sensitive data",
+                "No session recovery = data loss risk \u2014 prospect's upload context and transcript lost if service crashes mid-call",
+                "Cloudflare tunnel single point of failure \u2014 if cloudflared dies, all inbound traffic blocked with no failover",
+                "Edge-TTS fallback unreliable \u2014 no graceful degradation if both primary TTS and Edge-TTS fail",
+                "No rate limiting on boardroom endpoints \u2014 concurrent Live sessions not throttled, DoS surface",
+                "Contact extraction async without retry \u2014 if service restarts during Neo4j write, no guarantee completion or recovery"
+              ],
+              "build_vs_buy": [
+                {
+                  "capability": "Multi-agent handoff with context preservation",
+                  "recommendation": "BUILD",
+                  "rationale": "Unique differentiator vs Bland.ai/Vapi/Retell. Competitors don't have agent-specific context switching."
+                },
+                {
+                  "capability": "Context-aware personalization (returning visitor greetings, memory integration)",
+                  "recommendation": "BUILD",
+                  "rationale": "Competitive moat. Requires Neo4j integration and LLM context synthesis. Not a commodity offering."
+                },
+                {
+                  "capability": "Phone number integration (Twilio)",
+                  "recommendation": "BUY/PARTNER",
+                  "rationale": "Undone, required for feature parity. Twilio SDK handles PSTN routing; not a core differentiator."
+                },
+                {
+                  "capability": "Analytics dashboard",
+                  "recommendation": "BUY",
+                  "rationale": "Competitors have this. Consider Tableau, Metabase, or custom Grafana dashboard. Not worth building from scratch."
+                },
+                {
+                  "capability": "Multi-language support",
+                  "recommendation": "BUY/INTEGRATE",
+                  "rationale": "Currently English-only (hardcoded recognition.lang). Use Google Speech-to-Text or Deepgram for multi-lang; swap recognition layer."
+                },
+                {
+                  "capability": "Webhook/Zapier integration layer",
+                  "recommendation": "BUY",
+                  "rationale": "Generic integration capability. Use Zapier API or ngrok-like webhook relay. Not core product logic."
+                },
+                {
+                  "capability": "Session persistence and recovery",
+                  "recommendation": "BUILD",
+                  "rationale": "Critical for product reliability. Requires durable session store (Redis or DB). Not a third-party feature."
+                },
+                {
+                  "capability": "Observer dashboard (live demo monitoring)",
+                  "recommendation": "BUILD",
+                  "rationale": "Specific to boardroom workflow. SSE endpoint exists; UI implementation is straightforward custom work."
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Cloudflare tunnel single point of failure",
+                  "severity": "CRITICAL",
+                  "impact": "All boardroom traffic dies if cloudflared crashes",
+                  "mitigation": "Add health check (systemd watch) and auto-restart; consider tunnel redundancy or DNS failover"
+                },
+                {
+                  "risk": "Single uvicorn worker blocking Live A2A requests",
+                  "severity": "HIGH",
+                  "impact": "Concurrent Live sessions queue behind long-running Gemini calls; demos hang or timeout",
+                  "mitigation": "Scale voice gateway: add --workers flag or async queue for Gemini calls"
+                },
+                {
+                  "risk": "Gemini API rate limits on single credential",
+                  "severity": "HIGH",
+                  "impact": "If rate limit hit, all concurrent Live sessions blocked",
+                  "mitigation": "Implement credential rotation, per-session quotas, or Groq fallback"
+                },
+                {
+                  "risk": "Edge-TTS unreliability (503s, no SLA)",
+                  "severity": "MEDIUM",
+                  "impact": "Voice fallback fails under load; prospects experience silence or repeated TTS failures",
+                  "mitigation": "Test under load; add circuit breaker; consider paid TTS provider (Azure, Google) as primary"
+                },
+                {
+                  "risk": "SQLite write locks on concurrent sessions",
+                  "severity": "MEDIUM",
+                  "impact": "Multi-session scenarios cause write contention; transcript loss or corruption",
+                  "mitigation": "Enable SQLite WAL mode; consider PostgreSQL migration for multi-session concurrency"
+                },
+                {
+                  "risk": "In-memory session state (no persistence)",
+                  "severity": "MEDIUM",
+                  "impact": "Service restart = all active sessions lost; prospect must restart conversation",
+                  "mitigation": "Implement durable session store (Redis or SQLite); add session recovery on reconnect"
+                },
+                {
+                  "risk": "2-3 second voice gap during Gemini teardown/rebuild",
+                  "severity": "MEDIUM",
+                  "impact": "Prospect perceives dropped call, broken handoff experience, reduced trust",
+                  "mitigation": "Implement audio transition (silence filler or 'transferring...' spoken message); pre-warm next agent session"
+                },
+                {
+                  "risk": "Contact extraction async without retry",
+                  "severity": "MEDIUM",
+                  "impact": "If service crashes during extraction, extracted contacts lost; no guarantee of completion",
+                  "mitigation": "Add retry queue; log extraction state; implement job persistence"
+                },
+                {
+                  "risk": "Interaction node creation inconsistent",
+                  "severity": "MEDIUM",
+                  "impact": "Context fetch returns 0 prior conversations despite memories existing; personalization fails silently",
+                  "mitigation": "Debug PARTICIPATED_IN \u2192 Interaction relationship creation; add validation on session close"
+                },
+                {
+                  "risk": "No mobile optimization",
+                  "severity": "MEDIUM",
+                  "impact": "Boardroom unusable on mobile; sidebar hidden, mic button awkward, stats bar wastes screen real estate",
+                  "mitigation": "Responsive redesign; hide stats on mobile; reposition controls"
+                },
+                {
+                  "risk": "Browser refresh = session loss",
+                  "severity": "MEDIUM",
+                  "impact": "Mobile Safari or accidental refresh kills entire session; especially painful on mobile background tabs",
+                  "mitigation": "Implement session persistence and restore on reconnect; add 'unsaved changes' warning"
+                },
+                {
+                  "risk": "Live A2A upload path missing",
+                  "severity": "LOW",
+                  "impact": "Can't upload documents during Live sessions; silent failure, user confusion",
+                  "mitigation": "Implement upload endpoint for Live mode with session_id mapping"
+                },
+                {
+                  "risk": "TransductionValidator/OmissionDetector not UI-integrated",
+                  "severity": "LOW",
+                  "impact": "Powerful features exist but can't be triggered by end users; 4-stage validation pipeline unused",
+                  "mitigation": "Add 'Validate Transcript' UI button; wire to /slt-validate endpoint"
+                },
+                {
+                  "risk": "Call grading rubric hardcoded and generic",
+                  "severity": "LOW",
+                  "impact": "Scoring not relevant to boardroom context; generic rubric doesn't reflect board-specific success criteria",
+                  "mitigation": "Make rubric per-boardroom configurable; fetch from config during scoring"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "Define MVP quality gate: Which gaps block boardroom demo launch? (voice gap, session persistence, mobile UX are critical; call grading & Twilio are nice-to-have)",
+                "Session persistence architecture: In-memory dict with no recovery is a blocker for production. Decide: Redis-backed sessions vs. SQLite WAL + recovery protocol",
+                "Voice handoff experience: 2-3 second silence during A2A transfer is audible to prospects. Decide: overlap audio, add transition phrase before disconnect, or accept as known limitation",
+                "Personalization for returning visitors: Greeting is generic despite context loading (Angelo case proves it works). Decide: enable context-aware greetings for all boardrooms or disable context entirely",
+                "Mobile-first or desktop-first: Sidebar roster, mic button positioning, stat overlays break mobile. Decide scope now \u2014 mobile optimization post-launch or pre-launch requirement?"
+              ],
+              "opportunities": [
+                "Observer dashboard: /observe SSE endpoint exists but no UI. Demo tool for sales team + competitive differentiator (Bland/Vapi don't have real-time observer view)",
+                "Post-call summaries: Data exists (Call + Transcript in SQLite), just needs UI. Email follow-ups + interaction node consistency unlock CRM integration path",
+                "Graceful call closure: 'End Call' button + summary + action items. Low-effort, high-impact UX fix that competitors don't emphasize",
+                "Upload acknowledgment: One-line agent response ('I've reviewed your family office structure') transforms upload from silent to confident. Touches prospect confidence without architecture change",
+                "Personal link UI: Bookmark/SMS sharing button makes invisible asset visible. Unlocks session continuation + viral distribution (share with advisor, return later)",
+                "Interaction node consistency: Fix fetch_person_context logic to reliably create Interaction nodes. Enables '5 prior conversations' context that justifies personalization"
+              ],
+              "threats": [
+                "Competitive parity gap: Bland.ai + Vapi have phone integration (Twilio), analytics dashboards, multi-language support. Our 'browser-only' positioning is a weakness if buyer expects omnichannel",
+                "Single points of failure (Cloudflare tunnel, Gemini API key, Edge-TTS fallback) create availability risk. A 2-hour outage during a high-profile demo is reputational damage",
+                "Session persistence loss on refresh (especially mobile Safari) will frustrate returning prospects mid-conversation. Each restart feels like product instability",
+                "Concurrent write locks on SQLite under load (multiple boardroom sessions) could cause call recording failures. Silent data loss is worse than visible error"
+              ],
+              "commitments": [
+                "Twilio phone demo for Angelo \u2014 checkpoint item, still open. Blocks phone integration narrative for that prospect",
+                "Multi-agent handoff capability mentioned but transcript incomplete ('What we have that they don't: Multi-agent handoff with d...'). Clarify scope + timeline for competitive positioning"
+              ],
+              "narrative_assessment": "MISALIGNED. We're positioning on personalization + multi-agent sophistication, but the UX doesn't deliver either convincingly yet. Angelo's case proves context loads (1,645 chars), but the greeting stays generic \u2014 we have the data, not the delivery. Voice gap (2-3 second silence) + upload silence undermine trust in our 'warm handoff' narrative. Competitive story is incomplete ('what they don't have' cuts off mid-sentence). We should either: (1) lead with 'we're in beta, UX is unpolished but architecture is enterprise-grade' (honest), or (2) delay demos until voice gap, personalization, and session persistence are fixed (safe). Hybrid demos (observer view for sales + graceful closures) could bridge."
+            }
+          },
+          "_file": "clients/unknown/audits/csuite-audit-fix-boardroom.json",
+          "_client": "unknown"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-23T13:40:23.738518+00:00",
           "transcript_file": "transcriptions/march/march 20/glassy 9am.md",
           "transcript_length": 68031,
@@ -29938,10 +30524,10 @@
           "_client": "unknown"
         }
       ],
-      "total": 86
+      "total": 88
     },
     "call_intelligence": {
-      "updated_at": "2026-04-11T12:24:16.510049+00:00",
+      "updated_at": "2026-04-11T13:19:23.747674+00:00",
       "signal_summary": {
         "total_objections": 62,
         "total_buying_signals": 79,
@@ -36148,7 +36734,7 @@
       "total_action_items": 305
     },
     "attention": {
-      "updated_at": "2026-04-11T12:24:16.938230+00:00",
+      "updated_at": "2026-04-11T13:19:23.767684+00:00",
       "items": [
         {
           "type": "blocked",
@@ -36235,8 +36821,50 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-11T12:24:16.938457+00:00",
+      "updated_at": "2026-04-11T13:19:23.767881+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-11T13:19:20Z",
+          "title": "chore: update boot-state files \u2014 deployed a4bbecef",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T13:16:32Z",
+          "title": "deploy: add stop timeouts + parallelize worker restarts in promote-release",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T13:02:50Z",
+          "title": "Add GitHub issue discipline to non-negotiable rules \u2014 Part of #1981",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T12:59:44Z",
+          "title": "Add KAIROS deep research prompts \u2014 18 targeted queries (DR-01 to DR-18)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T12:55:17Z",
+          "title": "boot: zero MCP calls at boot \u2014 all 6 daemons",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T12:52:20Z",
+          "title": "Add Project KAIROS PRD \u2014 cognitive enhancement from Mythos analysis",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-11T12:48:57Z",
+          "title": "fix: resolve 10 CI test failures across 5 test files (#1966)",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-11T05:57:29Z",
@@ -36256,105 +36884,63 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-11T05:46:06Z",
-          "title": "Add shared mock_brain fixture to conftest.py \u2014 prevents _session drift",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:30:39Z",
-          "title": "docs: CI fix report, remaining work, and usage guide for test infrastructure",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:29:49Z",
-          "title": "docs: Prism adoption completed work + remaining work & usage guide",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:29:28Z",
-          "title": "docs: DoD security audit report + hardening plan",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:28:15Z",
-          "title": "feat(cursor): batch 4 \u2014 corrected CI prompt + 3 design-based prompts from agent ",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:24:36Z",
-          "title": "ci: add SBOM generation (CycloneDX) to security-scan job",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-11T05:23:34Z",
-          "title": "Prism: Phase B wiring + Phase C timeline builder import",
-          "detail": "covaultxyz"
-        },
-        {
           "type": "issue",
-          "date": "2026-04-10",
-          "title": "#1968 Metric below target: Research Claim Density (0.54)",
+          "date": "2026-04-11",
+          "title": "#1985 feat(sentinel): Custom GPT gateway health monitor \u2014 pulse ch",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-10",
-          "title": "#1966 Metric below target: CI Pass Rate (0.0)",
+          "date": "2026-04-11",
+          "title": "#1984 fix(gateway): Custom GPT gateway systemd hardening \u2014 workers",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-10",
-          "title": "#1965 CHECKPOINT: Atlas \u2014 Audio Recap Fix + 3-Day Regeneration",
+          "date": "2026-04-11",
+          "title": "#1982 feat(#1980): Intelligence query library + MCP knowledge_quer",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-10",
-          "title": "#1964 CHECKPOINT: Forge Pipeline Hardening + Research Reactivation",
+          "date": "2026-04-11",
+          "title": "#1981 Re-establish GitHub issue discipline for all work arcs",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-10",
-          "title": "#1963 CHECKPOINT: Sensei \u2014 Proactive Oversight Loop + 5 Code/Ops I",
+          "date": "2026-04-11",
+          "title": "#1980 Intelligence query library + MCP gateway extensions",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-09",
-          "title": "#1961 feat(quant): Kronos crypto paper trading \u2014 model-driven pric",
+          "date": "2026-04-11",
+          "title": "#1979 Inference layer \u2014 GDS pipeline + Cluster/Bridge/Frontier/Con",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-09",
-          "title": "#1960 CHECKPOINT: Sensei \u2014 Transducer Docs + AGTEHK Audit + Insura",
+          "date": "2026-04-11",
+          "title": "#1978 Claude Project + research corpus ingestion into claim-centri",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-09",
-          "title": "#1959 CHECKPOINT: Sensei \u2014 Federated Node Installer Hardening + Do",
+          "date": "2026-04-11",
+          "title": "#1977 Claim-centric decomposition pipeline (Decomposer)",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1946 Wire Cal.com booking action into voice call flow",
+          "date": "2026-04-11",
+          "title": "#1976 Schema Graph \u2014 ontology as data (SchemaNode/SchemaEdge)",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-07",
-          "title": "#1945 feat(#1907): add NATS active collaboration mode scaffolding",
+          "date": "2026-04-11",
+          "title": "#1975 Evaluate Neo4j heap sizing for expanded claim-centric graph",
           "detail": "open"
         }
       ],
