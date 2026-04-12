@@ -60,7 +60,566 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Vendor&#x27;s LLM notebooks have superior RAG system compared to building custom solutions</li><li>Running bots get interrupted mid-task every time the system is updated, causing cascading failures</li><li>Tasks consistently fail in groups of three over extended periods</li><li>Deep research takes 20-30 minutes per task and needs 45-minute buffer windows to avoid blocking</li><li>Notion charges $150 when adding members instead of guests</li><li>Different LLM voice models cost 1 cent/min instead of 2.5 cents/min</li><li>GitHub team structure UX doesn&#x27;t show team options until an organization is created first</li><li>Current system has idle states when bots lack tasks despite abundant work plans available</li></ul></div>
 <div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Create GitHub organization and set up team structure with co-owner permissions&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Fix Tailscale access on personal computer blocking code deployments&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Deploy voice web interface from local development to Render&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Implement OAuth token automation for cursor agents with Telegram fallback&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Architect task office swarm to pull work from GitHub, transcriptions, and work plans&#x27;}</li><li>{&#x27;who&#x27;: &#x27;System&#x27;, &#x27;what&#x27;: &#x27;Build closed-loop system eliminating idle states (infinite marble machine concept)&#x27;}</li><li>{&#x27;who&#x27;: &#x27;System&#x27;, &#x27;what&#x27;: &#x27;Implement daily bot accomplishment logging in Notion following continuity check-in format&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Establish scheduled daily update windows to prevent mid-task bot interruptions&#x27;}</li></ul></div>
 
-<div class="section"><h2>Transcript Preview</h2><p style="font-style:italic;color:var(--dim)">“Internal team sync”</p></div>
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>A $10,000 check that came into my account.(...) I tried to pay my rent with PayPal. They told me there was not enough money, so for last month they&#x27;ve been sending $3,000 trying to take the money out. I put the money into the bank, and then I get no money in the bank and $8,000 removed from my account. And I just flipped out, and I just went to the bank and realized, &quot;Oh, today&#x27;s President&#x27;s Day.&quot; So... Uh, what a nightmare. So that&#x27;s what I&#x27;m doing. But anyway, this is what I got.</p>
+<p>(...)</p>
+<p>When I put all this stuff into the bot,(...) it basically audits it and analyzes it, and it&#x27;s like, &quot;Yeah, this is nice as a strategy, but what we have is way better.&quot; It just keeps telling me these things.</p>
+<p>(...)</p>
+<p>What&#x27;s happening, though, is I don&#x27;t know if this is truth, or I woke up the limited amount of time that I did sleep with this feeling of every time we&#x27;re making changes,</p>
+<p>(...)</p>
+<p>it&#x27;s kicking bots off that are doing the process and interrupting it. So do we need an A-B system where we&#x27;re affecting Team A while they&#x27;re not working?</p>
+<p>(...)</p>
+<p>Because once we start having this system and it&#x27;s constantly being updated, shit&#x27;s getting interrupted while it&#x27;s being updated. Does that make sense?</p>
+<p>(...)</p>
+<p>Well, it does make sense. And the solution should be the updates are only happening to the sandbox, not for the ones that are actually running and operating. Well, that&#x27;s the A-B shop.(...) Yeah.</p>
+<p>(...)</p>
+<p>Yeah, the updates should be happening to the sandbox, not to the ones that are actually doing work.</p>
+<p>(...)</p>
+<p>Yeah. And then if we need to update, then we&#x27;re not doing work for that hour or whatever, and then pushing the updates. Well, the system would know that there&#x27;s an update about to happen, and it dedicates that every day at a certain hour for those things to happen.(...) Then everyone could say they work or finish their tasks or whatever it is. Yeah. So if it&#x27;s a systematic thing that&#x27;s happening every day, because this thing&#x27;s going to potentially constantly be updating itself,(...) you just want to make sure that you&#x27;re like me and you not stepping on each other&#x27;s toes and then you&#x27;re breaking something. And then I&#x27;m like in the middle of something going, why is my shit not rendering? And it&#x27;s because you were editing something and reset the box and it didn&#x27;t finish the process. Right. Or both people are trying to fix something and fixing it in different ways. Yeah.</p>
+<p>(...)</p>
+<p>But yeah, even if the box are in the middle of a task and then that task is getting like it&#x27;s been claimed, they got 20 turns through completion, then they got booted off because the thing got reset because one of the other box needed attention. We&#x27;re not even thinking about what the other one is actually in the middle of a task board. And if it just gets reset in the middle of it, then there&#x27;s no log of like if that task got done, how far it got done, whatever.</p>
+<p>(...)</p>
+<p>Yeah. So. You need to get picked back up or whatever.</p>
+<p>(...)</p>
+<p>As far as watching what this lady had. Yeah, it was cool, but I don&#x27;t think.(...) Well, the thing that is nice, it&#x27;s not just cool, like it&#x27;s functional, but you ask for shit and it does it and then it&#x27;s in your hand again. Is it theater? Because she made it a video. I don&#x27;t know. I asked for shit and they give you a response and then they lose their mind and they don&#x27;t do any shit like they&#x27;re not that functional.(...) Hours currently.(...) Yeah. Yeah.</p>
+<p>(...)</p>
+<p>Like they don&#x27;t do shit like hello. I&#x27;m giving you such specific instructions. You&#x27;re not breaking that down. You&#x27;re not making the work plan. You&#x27;re not turning it into the next thing. You&#x27;re immediately going back on the pause.</p>
+<p>(...)</p>
+<p>Well, you have to understand that.</p>
+<p>(...)</p>
+<p>What I&#x27;m doing in the cloud code is setting everything up. And then I go into the Telegram group and then I ask a question like, are you working or waiting? Oh, I&#x27;m waiting. So then I go in and take a screenshot of this and bring it into cloud code and say, what has to happen for these things to start self-delegating or delegating the tasks to themselves? And it creates a plan and then it starts implementing it. So it&#x27;s just like I&#x27;m constantly going from one environment to the other to see if this thing&#x27;s running at one point last night right before you came online. This thing had a log and it was just like, I&#x27;m doing this. I&#x27;m doing that. I&#x27;m doing this. And there was no interaction with a human. It was just knocking shit out and giving you like an update of what&#x27;s happening.</p>
+<p>(...)</p>
+<p>Also, I would say the Mesh Mind Alerts is we don&#x27;t need that in the Telegram, which is annoying. Makes the Telegram like spam. Put that into a dashboard or something else. So if you want to see the alerts, you can go to it. But putting that in line with the chat is disruptive. I just figured that that&#x27;s where our danger was going to be. And you would want to just seems like everything&#x27;s failed. Like tax bail, pass bail. It&#x27;s like the whole thing, like every other one. Like, is this whole thing was broken or is it just.</p>
+<p>(...)</p>
+<p>Well, when I get those logs, why is it why are there so many failures? Yeah. So when I get that log, I tell cloud code, here&#x27;s what I&#x27;m getting. What has to happen to make this self-heal itself. So we&#x27;re not getting these issues consistently in the account. But.</p>
+<p>(...)</p>
+<p>I don&#x27;t know. I just wanted to share with you some of the activities that I got working on.</p>
+<p>(...)</p>
+<p>One was.(...) You want to come up here?(...) One was using LM notebooks to offload specific knowledge based stuff because their rag system is like superior to anything that we would want to build and spend the money on. So they&#x27;re leveraging the research.</p>
+<p>(...)</p>
+<p>Deep research and compiling and doing all this stuff because it has all the information inside its ecosystem. So you&#x27;re leveraging it. And then you&#x27;re using the LM notebook CLI in the ecosystem for these things to happen. So that was an interesting part. Individual knowledge base or for all of the knowledge. Yes. No, what they&#x27;re doing is they&#x27;re segregating knowledge bases into a notebook and they&#x27;re containerizing it like that and using the LM notebooks. Like all the things having to do with trading, like kind of how we&#x27;re doing with the folders and notion, but that would all be like one LM. Yeah.(...) And then you have the bag built in.(...) So it was an interesting thing. That makes sense. That&#x27;s actually Alan was saying that he&#x27;s like, yeah, we should use notebook. And I wasn&#x27;t quite getting a sense of like how to access that or but yeah, through CLI, then it&#x27;s the easy answer.</p>
+<p>(...)</p>
+<p>So he had flagged that and then someone else brought that up too. They&#x27;re like, yeah, I&#x27;m using notebook for all this stuff. And I was like, what do you, how are you doing that? How are you organizing that? Yeah. So it&#x27;s through CLI and then it&#x27;s just connected seamlessly into our system. And then, yeah, it makes perfect sense. So here&#x27;s my process at 4 a.m. I went into YouTube and I started seeing things that are like the videos I was sending you. I take that into a transcription, put it into a MD file in my local folder structure, drag that in and say audit this project, identify any principles,(...) inspiration ideas that we could use to make the mesh meridian mesh better.(...) And then it goes in and audits it and then it basically creates the issues on the GitHub. And then I want to have the board teams come in there and audit the issues to identify, is there a better way to do this? This is a great idea or concept. What&#x27;s the best tech stack that we would want to use to do this? They vote. And then it gets pushed into the let&#x27;s get our automation team to start building this out.</p>
+<p>(...)</p>
+<p>So that game, the thinking game documentary I told you about that I watched on the plane with DeepMind and how they were doing it, I took my brain and said, well, because my wife always watches movies with subtitles and I&#x27;m like, all I need is the SCR file and that&#x27;s the entire movie transcribed. So I just went and found the transcription file because it was already done for the closed caption and put that in there and then extracted all the wisdom that they&#x27;ve come to the conclusion from that documentary and applied that to our system.</p>
+<p>(...)</p>
+<p>Wow.(...) That&#x27;s cool.</p>
+<p>(...)</p>
+<p>So these are the things that I&#x27;m doing and I have clusters of four windows in my anti-gravity terminal. So I cluster them in packets of four. So now I got like six to eight packets of four and I&#x27;m just clicking in between each one of them and they&#x27;re all running all at the same time. And I&#x27;m just clicking buttons to make sure that they keep going.(...) So it&#x27;s wild.</p>
+<p>(...)</p>
+<p>Most of the time I got currently around eighteen hundred and forty tests that are passing on all the stuff that I&#x27;m doing. So I think we&#x27;re going and building this thing. But my brain woke up this morning saying every time you&#x27;re building something, you&#x27;re breaking it because you&#x27;re in the middle of one process and you&#x27;re updating it and resetting bots. And there&#x27;s also three steps that have to happen from my observation.</p>
+<p>(...)</p>
+<p>When you&#x27;re done with the code locally, you have to push, commit,(...) and then you&#x27;ve got to pull it on the VPSs and then restart the bots for the new code to exist.</p>
+<p>(...)</p>
+<p>Is it in that order? I feel like it usually does the VPS first. No, you can&#x27;t do the VPS first until you pull it onto the machines. And then the machines have the code on their VPS and then they&#x27;re resetting to activate the new code that&#x27;s in the VPS.</p>
+<p>(...)</p>
+<p>I&#x27;m just saying when I&#x27;m working on claw, that&#x27;s usually the process that it goes through. And then after it does that, then it says like, oh, you want to whatever push to GitHub.</p>
+<p>(...)</p>
+<p>Yeah, but you&#x27;re pushing to GitHub first and then it goes onto GitHub. GitHub is our VPSs. The VPSs is a pull.</p>
+<p>(...)</p>
+<p>So this is why when you&#x27;re just working and you don&#x27;t know the steps, you&#x27;re just like, oh, I pushed it. I&#x27;m good. Well, it&#x27;s pushed to GitHub,(...) but GitHub is the middleman between us and the VPSs. Yeah, but how can I test it on the-- it&#x27;s saying go test it on the Telegram bot. It must have put it on the VPS now.</p>
+<p>(...)</p>
+<p>I&#x27;m just saying that I&#x27;ve had experiences where it&#x27;s not.(...) And I&#x27;m watching that little bar that I told you, you&#x27;re supposed to hit tab and enter. You don&#x27;t even have to hit the tab anymore. You just hit enter. And that little pre-frame just starts going and it first goes commit this. Then once it&#x27;s done committing, it says push this. And then it goes,(...) huh?</p>
+<p>(...)</p>
+<p>Yep. And then it goes, all right, now let&#x27;s pull it on all three VPSs. All right, now let&#x27;s restart all the box. And then it says test it in Telegram to see if you&#x27;re getting anything different. So there&#x27;s certain times when that box just is cleaned out and there&#x27;s no text. And because I&#x27;ve been watching this and participating in it, it&#x27;s already given me the information of, oh, was this done? So instead of me telling it to do certain things, I&#x27;m like, did you do this? And then it&#x27;s like, oh, no, let me do that now.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>I&#x27;m just sharing my methods. No, that&#x27;s good. That makes sense. Just to be thorough and make sure that it&#x27;s actually getting pulled from the VPS and GitHub and everything&#x27;s locked tight and it&#x27;s not like you did one of the three steps and thought it was done. Yeah.(...) Another thing I did was since we&#x27;re both on Macs, I created, you know how you have those little icons on the top of the screen on your menu bar of the Mac itself.</p>
+<p>(...)</p>
+<p>So I created a little icon that goes up there that is the Meridian toolbar.</p>
+<p>(...)</p>
+<p>And that has like all the stuff in GitHub, like all the tasks and everything. So it&#x27;s just a little easier to just access. So you just go there and you&#x27;re not going to the website and looking for the page and all that stuff.(...) That&#x27;s cool.(...) I could put the alert system in there if that&#x27;s useful.</p>
+<p>(...)</p>
+<p>Yeah, that makes sense.</p>
+<p>(...)</p>
+<p>But the only problem is it&#x27;s only if you&#x27;re on a Mac. If you&#x27;re not, if you&#x27;re on the phone, I still think we should have that channel segregated. So it&#x27;s just a notification channel and then I&#x27;ll make a group chat of that. So it&#x27;s just there and it&#x27;s just your running log.</p>
+<p>(...)</p>
+<p>That makes sense. Yeah, that was my other suggestion I had in my head that I didn&#x27;t say out loud.(...) But yeah, that makes sense. That makes sense. If it&#x27;s just like a.</p>
+<p>(...)</p>
+<p>Like alerts channel.</p>
+<p>(...)</p>
+<p>And that&#x27;s all that goes there is when it fails.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>For the mesh, you know, like a mesh alerts group chat.</p>
+<p>(...)</p>
+<p>And I don&#x27;t think Alan needs to be on there. It&#x27;s just me and you because we&#x27;re the ones that are managing the health of this thing.(...) I also found a few other ways to save tokens inside of Claude. So I ran those through and then there was a thing called swarms.(...) So I use that information to update it. So if you go into the.</p>
+<p>(...)</p>
+<p>Get hub.</p>
+<p>(...)</p>
+<p>Thing which I don&#x27;t know if you want me to get access to the cobalt one or not, but I don&#x27;t have access. I just could never figure out how I spent I spent a. I roamed through like every button I could find and could never find how to add you as an admin.</p>
+<p>(...)</p>
+<p>I think my daughter just unplugged my Internet.</p>
+<p>(...)</p>
+<p>Fucking crazy.</p>
+<p>(...)</p>
+<p>What&#x27;s this button do?(...) No, she just pushes buttons.</p>
+<p>(...)</p>
+<p>I&#x27;m fighting Puerto Rico&#x27;s Internet going down and my daughter.</p>
+<p>(...)</p>
+<p>But yeah.</p>
+<p>(...)</p>
+<p>What were you saying? I just I worry that we get that we&#x27;re falling in these little loops and I see</p>
+<p>(...)</p>
+<p>tasks fail, pass fail, pass fail. I&#x27;m like, why are there so many tasks failing? Why does that happen in groups of three, like over and over and over and over?</p>
+<p>(...)</p>
+<p>That&#x27;s what yeah, like, is there a diagnostic on that? Is that normal? How long is that running for? Like, why is that? When you&#x27;re saying failed, is it the thing that alert system or inside your chat? Yeah, I&#x27;m not saying that. I&#x27;m saying that. I&#x27;m saying that. I&#x27;m saying that. I&#x27;m saying failed. Is it the thing that alert system or inside your chat?</p>
+<p>(...)</p>
+<p>It&#x27;s inside the chat.</p>
+<p>(...)</p>
+<p>And then it&#x27;s like most of the chat is failed or recovery critical fails. I&#x27;m like, are these guys doing any work or is this just the same doom loop of like hours and hours of failing and recovering?</p>
+<p>(...)</p>
+<p>You know what I mean? Like, if you look at the chat, I&#x27;m like, is anything happening? Or are we just burning resources on? No.</p>
+<p>(...)</p>
+<p>No,(...) I don&#x27;t think those fails are being using tokens. Those are just coming in through Python or whatever through a system. But I&#x27;m in the process of figuring these things out. I just need to get my Internet back up. And then the other thing you were saying was the cobalt thing.</p>
+<p>(...)</p>
+<p>Oh, you had to figure out how to get you added. Yeah.(...) Because it&#x27;s not like I set that up as a brand new repo for this. That&#x27;s what I thought we should have done. I have every intention to add you. I just couldn&#x27;t figure out how to actually make you admin.</p>
+<p>(...)</p>
+<p>All right. Well, there&#x27;s another project inside there that has that. Let me see if I can go into my.</p>
+<p>(...)</p>
+<p>I&#x27;m in here settings.</p>
+<p>(...)</p>
+<p>I&#x27;m doing a GPC search collaboration. Going to my Gmail account.</p>
+<p>(...)</p>
+<p>Co-owner via a team.</p>
+<p>(...)</p>
+<p>I got I got smacked with a almost $150 notion charge because I added these people as members instead of having them as guests.(...) Yeah, that&#x27;s hard. I&#x27;m going to go to the next one. I&#x27;m going to go to the next one. I&#x27;m going to go to the next one. I&#x27;m going to go to the next one. I&#x27;m going to go to the next one. I&#x27;m going to go to the next one. Yeah, that&#x27;s hard. So now I&#x27;m like, what the hell is this bullshit?</p>
+<p>(...)</p>
+<p>So I got to take care of that this morning.</p>
+<p>(...)</p>
+<p>So how do we make you a managed visibility? I got to bring teams into the picture. That&#x27;s what I wasn&#x27;t doing. Okay, I got to create a team.</p>
+<p>(...)</p>
+<p>Does it tell you how to do the teams?</p>
+<p>(...)</p>
+<p>I have the instructions in front of me now. So I&#x27;m going to open up my laptop and I&#x27;ll go figure this out. Awesome. I got my.</p>
+<p>(...)</p>
+<p>Here you go. Bye-bye.</p>
+<p>(...)</p>
+<p>I definitely feel like the Nat Butts thing is going to be useful.</p>
+<p>(...)</p>
+<p>And these things are going to start doing stuff. And if you only have one bot,(...) I don&#x27;t see how you&#x27;re going to be able to scale at the level that we&#x27;re talking.</p>
+<p>(...)</p>
+<p>Yeah, we want these things running. Like we&#x27;re just going to sleep and we wake up in the morning and I like, oh, yeah, here&#x27;s another 50,000 node brain that we wired last night. And it has 250,000 relationships mapped already. And we found 50 leads of people that are interested in what crap of those emails on the decks of review and you know, like, yeah, I think we&#x27;re getting there.</p>
+<p>(...)</p>
+<p>So if that&#x27;s what has to happen, what is the steps that in your mind have to happen when I saw that video, I immediately got jealous. I was like, are we what the fuck? She just makes one phone call, ask for this complex thing and then it just shows up some minutes later, all done, designed, ready for review.</p>
+<p>(...)</p>
+<p>Damn, dude, we are not at that point. Want to request done deal, finish, polish,(...) clean design in your hand minutes later.</p>
+<p>(...)</p>
+<p>I thought I gave pretty good instructions last night, so I was interested to see what they came up with, but they literally came up with nothing. They just did one response. Like I could have just thrown that in GPT and got more elaborate response.</p>
+<p>(...)</p>
+<p>You guys didn&#x27;t break that down. You didn&#x27;t turn that into work plans, even though in the thing it said intricately the sequence of steps that should be followed.</p>
+<p>(...)</p>
+<p>I mean, I know it wasn&#x27;t a bulletproof instruction. It was really just a test, but they definitely failed the test.</p>
+<p>(...)</p>
+<p>They&#x27;re not breaking it down. They&#x27;re not auto making.</p>
+<p>(...)</p>
+<p>Like,(...) all right, this is the architecture in my head. It&#x27;s recording, right?</p>
+<p>(...)</p>
+<p>The tasks can be coming in from one of three places, right? It&#x27;s coming in from research.</p>
+<p>(...)</p>
+<p>It&#x27;s coming in from conversation and transcriptions.</p>
+<p>(...)</p>
+<p>Or it&#x27;s coming in from them developing an iterating work plan.</p>
+<p>(...)</p>
+<p>But there&#x27;s never an excuse to, oh, there&#x27;s not another task to do. Of course there&#x27;s another task to do because there&#x27;s always another work plan. Because there&#x27;s always enough core mesh projects to always have more work plans. The work is never done. Some of the work is things like self-healing. Go look at the logs. Go fix your situation with why does this thing keep failing and triads.</p>
+<p>(...)</p>
+<p>So there&#x27;s never a lull because there&#x27;s already a directive for building further work plans. If there&#x27;s enough work plans, then they can switch on to actually do the work of the work plan. But if they finished every work from every work plan, they should switch off to making the next work plan on the priority projects.</p>
+<p>(...)</p>
+<p>Because the priority projects never get done, like how to make it more efficient, how to grow the next brain, right? Because now we have these arc projects. There&#x27;s another, like, another no-use realm.</p>
+<p>(...)</p>
+<p>If we had every single thing done for mesh improvements, which will never happen, it will always be self-improving, it will always be evolving. But if they were all the way done, it would go build the next brain, it would go to the next research for what of these knowledge as a service things would be built. So that&#x27;s one thing. Or it would be aligning that brain that was built for how to leverage that to then start building the work plan. And there would just be this ongoing driving tendency of always getting closer to revenue or generating more revenue. And there would never be a tendency of stalling to say, oh, we&#x27;re waiting for input. And it even said that. It was like, yesterday, I think, oh, by design, we&#x27;re doing this, this and this. I&#x27;m like, well, you guys have the wrong damn design then, because you&#x27;re not supposed to be sitting there idle when we have this massive list of ideas and things like that. Because you&#x27;re not supposed to be sitting there idle when we have this massive list of all these ambitious projects we want to get accomplished. And we have this massive bench of all these virtual teams to leverage. And we have this huge amount of array of deep research that could be parsed out and brought in. And then we have all kinds of further deep research to make sure the relationships are mapped in a cohesive and dense way.</p>
+<p>(...)</p>
+<p>It&#x27;s a never end. Like, it&#x27;s the kind of ambition that we have that humans would never be able to keep up with. But if they were just working 24 seven, much less collaborating,(...) that&#x27;s another thing they don&#x27;t really do much. They don&#x27;t tend to collaborate. They just could do work.(...) Sometimes if you tell them to collaborate, they&#x27;ll collaborate on like one or two things. But then they get to that and then they go right back to like idle. So I feel like at that default, whether it&#x27;s a bootstrap or the heartbeat or whatever, where that actually lands, but to enforce these tendencies. So ten minutes goes by, they&#x27;re triggered to go do that next thing.(...) And then there&#x27;s a cascading priority structure. So if one is done or if it&#x27;s done at least up to 80 percent or something, then they have the option of moving into the next basket of work, which could be creating more.</p>
+<p>(...)</p>
+<p>Yeah, one of those whatever five or ten priority mesh projects,(...) creating more research, parsing research into a midbrain, taking that research into a LLM, doing further research, finding clients, crafting campaigns.</p>
+<p>(...)</p>
+<p>I&#x27;d like to think that we could write that as a directive.</p>
+<p>(...)</p>
+<p>And then there&#x27;s just always a loop of something to work on or they&#x27;re all they each have individual assignments and then wrote and just continually building more dense knowledge graphs and sensei is doing like further like architecture and coherence mapping. You know what I mean?</p>
+<p>(...)</p>
+<p>Each one is just like actually furthering the thing. Then we&#x27;re waking up in the morning and it&#x27;s not because you were up all night mashing the buttons, but now they&#x27;re reporting to say, oh, yeah,(...) our health improvement is this, our resiliency was increased by these things. We found this deep research. Oh, since they found this great research, we&#x27;ll put me down this other rabbit hole. But now I built these features or at least propose them. All right. So here&#x27;s the gap that I&#x27;m seeing just from what you&#x27;re saying.</p>
+<p>(...)</p>
+<p>How or where do you want to be able to see the information of what they&#x27;re doing so you can a log it and be have some sort of one pager or sheet that once this stuff is being done is being added as this format. So we have like, okay, this was done this week. Or how do we create something that measures how efficient they&#x27;re working and kind of have like a week by week like comparison of this is what we were able to get done last week. Are we improving and getting more done? Is it better quality? Like, how do we model those things? So we&#x27;re able to open up our user interface, whether that&#x27;s on Telegram or on a website or on GitHub or on Notion. What or how would you want to see that information displayed for you to feel comfortable and confident that things are working in the way that you want.</p>
+<p>(...)</p>
+<p>I think that my first answer is notion, just for this familiar. And if it was a notion DB, that was like a daily log. And then you could go in and see that according to the different either box like view by bot would probably make sense or just by time period would also be fine.</p>
+<p>(...)</p>
+<p>So what there&#x27;s two, maybe there&#x27;s two, maybe one is the bot logging what it&#x27;s doing and the other one is, although I think we have the logs pretty well set up. So I think what you&#x27;re saying is more like a daily accomplishment, just like I have it set up for the continuity check in. I would want that I would want them to follow that same process so that we could see what was done that night and then we would go there and it would be essentially a report of things that were completed research that was done. We like whatever the five or so metrics. But but the other answer is benchmarks.(...) We need benchmarks. So we&#x27;re like, okay, well, how are we going to judge what happened this week versus last week? Well, we need a benchmark every week. We need a benchmark every day so that we can have a comparison and that benchmark would include like what are the key metrics or outputs amount of research amount of nodes amount of relationships amount of leads, whatever revenue.</p>
+<p>(...)</p>
+<p>Research post published, whatever other key like actions and tasks and output. We could probably get it down to like five or 10 key outputs that we could just measure. We like, okay, last week they did this much research this week. They did this much.</p>
+<p>(...)</p>
+<p>So for the deep research, it takes 20 to 30 minutes per task. When a bot is requesting that it kind of has to wait until that thing&#x27;s done before they can go back and do it. Let&#x27;s say on average is 25, 30 minutes. We wait 45 minutes and create like a scheduled type thing that when you do this research, you&#x27;re going to start it and keep research. And then you&#x27;re going to come back 45 minutes later to see if it&#x27;s finished because we know that it takes quite a bit of time to do that. Don&#x27;t be sitting there waiting for 45 minutes, not doing anything. Go to the next things that you can do within that 45 minute period of time to start getting other things done. Yeah.</p>
+<p>(...)</p>
+<p>Yeah, I mean, what I had posted out yesterday of like, well, we have this business. What we don&#x27;t have is like the task, man, it&#x27;s like the task office.</p>
+<p>(...)</p>
+<p>So the good guy. Well, that&#x27;s the next thing we need to architect them. And the task office is a swarm on its own, but it&#x27;s pulling, like I said, from these three different sources like GitHub and issues or. Or transcription. Maybe it&#x27;s not pulling straight from transcription. Probably the transcriptions that got digested and either put into tasks.</p>
+<p>(...)</p>
+<p>And the tax database and notion or into GitHub issues and projects.</p>
+<p>(...)</p>
+<p>Is that true? Is it issues like the equivalent of tasks?</p>
+<p>(...)</p>
+<p>Sort of. But yes, that&#x27;s where these things would most likely be pulling their aggregate of what needs to happen. And they can make comments on it. So this is another reason why I was thinking what made sense to use the GitHub to do these circles, isolated containers. I don&#x27;t know if we actually talked about this, but if we&#x27;re using GitHub to hold all the content and using the issues, then basically through comments and things like that, you&#x27;re able to literally have a bot to bot communications where they&#x27;re writing and reading the comments of another GitHub page. So they can just be approved collaborator on another GitHub page and be able to see what&#x27;s going on in their company without having to have so much access to some of their other information. So I see it as possibly.</p>
+<p>(...)</p>
+<p>Each company has two or more circles. One is the inner circle, which is what we&#x27;re working in now. And then second would be in between where it only can access the information that&#x27;s relevant to be shared with outside front facing stuff.</p>
+<p>(...)</p>
+<p>So similar to how a website works where our inner circle is the back end that nobody sees. And then we have a front end that is just a website, but that GitHub has all the information that&#x27;s relevant for when other people want to collaborate with us. It&#x27;s able to access the only things that we give it access to. So this way there&#x27;s no leaking information and like prompt engineering and prompt injections that are happening at the core level. We would have a third party source that like audits it before bringing it into our ecosystem to quarantine it to make sure that it&#x27;s legit before, you know, interacting with anything like that.</p>
+<p>(...)</p>
+<p>What would be a circumstance where we would need that? So like you&#x27;re talking about working with Noah and I have other people who I could probably think of that would want to start interacting with this because they&#x27;re like, yo, this is so cool. I want this. But it&#x27;s like, why do I have to rebuild this entire thing? We would be able to tell the system to basically extract all the information as relevant for this to be a standalone open source type project. And not that we&#x27;re open sourcing it, but we would privatize it and then sell access to it. But then they literally have a GitHub page that&#x27;s no personal information, just that skeleton that they basically download to their server or computer hit the instructions, the instructions install itself.</p>
+<p>(...)</p>
+<p>And they&#x27;re up and going with our exoskeleton system. So now that would somehow come up with a way to collaborate with our front facing GitHub team. And that way you have these circles being expanded and now you&#x27;re you&#x27;re sharing the computational power like the like the ultimate mesh because you&#x27;re building the mesh network around your front facing stuff, not your back end, if that makes sense.</p>
+<p>(...)</p>
+<p>Kind of makes sense, but kind of my head breaking a little mainly breaking because what do they actually need? They need a terminal so that they can do the processing and they like they just need this claw bot type of a situation.</p>
+<p>(...)</p>
+<p>Like they don&#x27;t necessarily need all the back end and they don&#x27;t want to have to deal with GitHub. They&#x27;re not going to want to push an update.</p>
+<p>(...)</p>
+<p>No, but it helps involve because of a permission structure than fine. But at the end of the day, like what they want is to be able to plug in their email, their phone number, their telegram and just get working on it. They don&#x27;t necessarily need to interact with any of our data so much as like we were talking about like that operational make. They just need that as like a stood up functional like cell single cell. So then the move might be that what I just explained is happening from the back end purposes, but all they&#x27;re getting is a chat interface inside. So the other thing I see is this. Yeah, like we&#x27;re using GitHub, but it&#x27;s a part of our infrastructure architecture. They don&#x27;t really have to interact with it much. They just interact with their like key points.</p>
+<p>(...)</p>
+<p>That&#x27;s where all the logging and everything else is happening. But if you have two get hubs for the meridian, one is internal inner circle and one is exterior.</p>
+<p>(...)</p>
+<p>The exterior has access to communicate with the inner circle to retrieve, but can&#x27;t write. It could just read and has permission based things where it can only read certain files. So now that data is getting ported into this front facing version and that bot can be added to anybody&#x27;s telegram group almost like tech support that lives inside of other people&#x27;s chat bots. So when they want to do something, it could even go with, wow, that&#x27;s a really interesting, ambitious thing that you&#x27;re trying to do there, glassy. Let me bring it back to my team and we&#x27;re going to come up with a system where we can help you figure out the best way to do it.</p>
+<p>(...)</p>
+<p>And let&#x27;s get it happening.(...) So now it&#x27;s almost like one of our employees is living inside of their ecosystem at all times as support and observation.</p>
+<p>(...)</p>
+<p>Yeah, that makes sense.(...) Or like that Evelyn pod, like the Evelyn liaison kind of pod was designed for that purpose.(...) Correct.</p>
+<p>(...)</p>
+<p>But this is the kind of thinking that I don&#x27;t think these other people are even aware of yet.</p>
+<p>(...)</p>
+<p>That&#x27;s why I&#x27;m excited about it and really pushing hard because, yeah, okay, you can have one bot doing stupid little things like making your YouTube scripts, but that&#x27;s not really what we&#x27;re doing. You know what I&#x27;m saying? Like we have so many bigger things that we&#x27;re trying to accomplish.</p>
+<p>(...)</p>
+<p>Don&#x27;t get jealous of the bicycle. We&#x27;re building a rocket ship. Okay, bro. Like we&#x27;re not pedaling down the street here. We&#x27;re blasting off the planet. And if you look at some of these YouTube videos, they&#x27;re literally doing what they do about everything. They just take the information, repackage it and they&#x27;re like, look what I got. Whether it&#x27;s fully functional or what happens when it breaks, they&#x27;re not going to share any of that with you.(...) Yeah, this is like a polished like.(...) Yeah.</p>
+<p>(...)</p>
+<p>That&#x27;s why I said how many of these people are going to install this shit and then it&#x27;s going to break and they&#x27;re just going to be like, I just spent all this money and I don&#x27;t understand even how to fucking correct it.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Okay, I see I have to create an organization in order to set up teams. So I&#x27;m going through that process now.</p>
+<p>(...)</p>
+<p>But I think it makes sense that we all are on one master GitHub, not segregated the way it is, or we both had the username and sign in for one thing and that would have been fine.</p>
+<p>(...)</p>
+<p>The</p>
+<p>(...)</p>
+<p>we stay using both pages? It&#x27;s not needed anymore. I don&#x27;t know. That&#x27;s not a question. Anything that you&#x27;re gonna ask me, it&#x27;s not up to me to answer anymore. It&#x27;s how do we create a voting system that the teams that you&#x27;ve created that are 150 of them are gonna go in, it&#x27;s gonna dynamically select the ones that are gonna most likely be interacting with this specific ask, and then they go in and analyze it, audit it, do iterations, and then it&#x27;s gonna say, well, based on the best interest of the entire project moving forward, we&#x27;re either approving or declining based on these reasons XYZ. Yes.(...) Do you agree with that?</p>
+<p>(...)</p>
+<p>I agree that that should be part of our decision making, but they may or may not know.</p>
+<p>(...)</p>
+<p>Like, let me say, we need to run those, we need to do those, we need to log those, we need to weigh in also,</p>
+<p>(...)</p>
+<p>and then like over time, build confidence that they can make decisions on their own like that. But that&#x27;s the ultimate goal, yes?(...) Total goal, absolute goal.(...) And then the better even goal, like, yeah, they just always are doing that, we don&#x27;t even have to worry.</p>
+<p>(...)</p>
+<p>Cool, made a new thing, search by username and organization members of the,</p>
+<p>(...)</p>
+<p>(Mumbles) Just you and me, right? Yeah, okay, here we go.</p>
+<p>(...)</p>
+<p>Because I can&#x27;t add projects without the admin account, so I was trying to add other-- It should solve that.</p>
+<p>(...)</p>
+<p>Also, I could just give you the username and password. I just thought it was silly that we have access to pretty much everything except for that one fucking thing and I&#x27;m just like, whatever, dude. Dude, I spent like an hour looking, combing, combing, combing, but I didn&#x27;t do the obvious thing of just asking. And it&#x27;s like a little inadvertent because you have to create a organization first, otherwise you&#x27;ll never see the team thing.(...) Right.</p>
+<p>(...)</p>
+<p>But think about how much shit we&#x27;re learning doing this project.</p>
+<p>(...)</p>
+<p>It&#x27;s an intense, it&#x27;s an intense undertaking.</p>
+<p>(...)</p>
+<p>The amount of reading,</p>
+<p>(...)</p>
+<p>some other reports to look at. (Mumbles)</p>
+<p>(...)</p>
+<p>Activate GitHub, co-pilot.</p>
+<p>(...)</p>
+<p>Just tell me I need to pay for stuff.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>I think it&#x27;s gonna be easy to just keep your password because this is, now I have to activate a co-pilot and pay per user. Yeah, you don&#x27;t wanna do that.</p>
+<p>(...)</p>
+<p>I don&#x27;t know why it&#x27;s bringing me to co-pilot.</p>
+<p>(...)</p>
+<p>Yeah, it might be that just this is like a paid feature. Yeah.</p>
+<p>(...)</p>
+<p>(Mumbles)</p>
+<p>(...)</p>
+<p>Well, I&#x27;ll tell you working in a system where you got 25 terminal windows that you&#x27;re managing,</p>
+<p>(...)</p>
+<p>it like steals your brain bandwidth, like you don&#x27;t know.</p>
+<p>(...)</p>
+<p>I can imagine. (Mumbles)</p>
+<p>(...)</p>
+<p>Also, my wife has been watching some dude named Roy.</p>
+<p>(...)</p>
+<p>He is a,(...) what do you call those things? Bankers, the higher ones, the investment bankers.</p>
+<p>(...)</p>
+<p>And he was giving away a couple of books that he read that helped him predict human evolution and where things are moving so he can make his $25 billion.</p>
+<p>(...)</p>
+<p>So I was thinking maybe getting out those books and doing the same type of system and putting it into here because we&#x27;re gonna be working with prediction modeling and things like that.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>But it&#x27;s just funny to me how many people are scared of everything.</p>
+<p>(...)</p>
+<p>Okay, it&#x27;s just a Google sign in.</p>
+<p>(...)</p>
+<p>Just a Google, it&#x27;s not gonna work with the password but it&#x27;ll work with Google sign in.</p>
+<p>(...)</p>
+<p>Okay, so just give me the Google credentials and then I&#x27;ll use that to sign in when I need to do these like specific things. Cool.(...) ( Welsh Speaker In The Distance) Oh, put that in a text message.</p>
+<p>(...)</p>
+<p>To go on it.</p>
+<p>(...)</p>
+<p>(Eerieasonal Box Exactly Unt Duo)</p>
+<p>(...)</p>
+<p>Yeah, I don&#x27;t know how you get so lost in the sauce and you just see one video and you&#x27;re like, I believe this. If you believe it, think about how many other people believe it.</p>
+<p>(...)</p>
+<p>And if it&#x27;s that big of a deal, then maybe we could just go in there and try it and see if it actually does what you&#x27;re thinking it does. And if it does, what I was thinking, I was like, if this is this easy and we could just spin this up, this could be something we have running while we&#x27;re building this much bigger(...) Yeah, that&#x27;s what I was thinking too. What I just said is you have this as a standalone situation that you&#x27;re using to help build this bigger system.</p>
+<p>(...)</p>
+<p>If it actually works.</p>
+<p>(...)</p>
+<p>But that goes into how much time do you want to dedicate to see if that actually is true or false?</p>
+<p>(...)</p>
+<p>You don&#x27;t know how many times a day I think about fuck. Do I just want to just go back to claw bot even though I know it&#x27;s a security nightmare and all this other shit?</p>
+<p>(...)</p>
+<p>Yeah, that was tough, though. That was its own tough thing.</p>
+<p>(...)</p>
+<p>But yeah, it did feel like things were like flying together, but just the same, like look at the amount of nodes that have been added. So I think that&#x27;s one of our key benchmarks.</p>
+<p>(...)</p>
+<p>And her system was off of, I saw it. The thing that you saw coming in was she&#x27;s doing it off of a Superbase.</p>
+<p>(...)</p>
+<p>Superbase and then she was also talking about Bun. I didn&#x27;t even watch the whole video yet, but she was talking about Bun as like a background operating like in power back operating in the background.</p>
+<p>(...)</p>
+<p>She did also say something about the semantic stuff.</p>
+<p>(...)</p>
+<p>But again, is it like is it better than what we started working on? I don&#x27;t know.</p>
+<p>(...)</p>
+<p>Yeah, we don&#x27;t. You don&#x27;t know until they search.</p>
+<p>(...)</p>
+<p>And this is what her first video was. What&#x27;s it going to be like in six weeks from now when she&#x27;s like, oh, I actually spent some time with it. And this is where we&#x27;re at now.</p>
+<p>(...)</p>
+<p>(Typing) (Baby Cooing) How do you spell autonomous?</p>
+<p>(...)</p>
+<p>Well, atomic. A-t-o-m-i-s. A-t-o-m-i-s. No, like working as an autonomous agent. Well, autonomous, A-u-t-o-n-o-m-o-u-s.</p>
+<p>(...)</p>
+<p>Posse.</p>
+<p>(...)</p>
+<p>Dandy Posse.</p>
+<p>(...)</p>
+<p>I had Claude write a white paper for us yesterday.</p>
+<p>(...)</p>
+<p>(Coughing) And what did I do?</p>
+<p>(...)</p>
+<p>I wanted to have like a date overview that we could compare against other architectures like Kubernetes and some of these other ones that got well adopted.</p>
+<p>(...)</p>
+<p>How do you feel it&#x27;s going so far?</p>
+<p>(...)</p>
+<p>Random reports, but I didn&#x27;t read them yet. Okay.</p>
+<p>(...)</p>
+<p>What was your feelings and experience</p>
+<p>(...)</p>
+<p>after thinking about what I sent with the whole agents from the Bible point of view and having that-- Dude, I thought that was really trippy. I felt like I learned more about the Bible from that reading that than I have in years and years of going to Catholic school.</p>
+<p>(...)</p>
+<p>Like I didn&#x27;t know about Esther. That Esther protocol I thought was super dope.(...) I don&#x27;t know if you remember that one in particular, but there were like, yeah, there was an attempt at a system-wide deletion of the Jewish,(...) whatever,</p>
+<p>(...)</p>
+<p>heritage as a whole.</p>
+<p>(...)</p>
+<p>And in these situations where you might have no contact(...) with a larger operating system,(...) like a sleeper cell, like you might be totally disconnected from your reinforcing organization and you might have no instructions whatsoever. And you still have to, as a single lone agent, have the capacity of bringing back a full reset, even if you&#x27;re staged behind like hot style ground, like hostile enemy territory for extended period, that you could stage an entire complete reboot and bring the system back online. So what that sounds to me is when our nodes go down and there&#x27;s only one left, how does it survive to bring back the rest of the collaborative team?</p>
+<p>(...)</p>
+<p>Right,(...) Esther protocol.</p>
+<p>(...)</p>
+<p>But yeah, I could reread that.(...) I could reread it many times because there are a lot of books in the Bible I never read or never really heard from. A lot of times they just seem to hammer on the same stories over and over, at least from my growing up.</p>
+<p>(...)</p>
+<p>So it&#x27;s nice to have a really deep, insightful comparison to another domain that makes perfect sense.</p>
+<p>(...)</p>
+<p>If it made sense to you, think about how many other people it&#x27;s gonna make sense to without them even realizing that where it came from. Okay.</p>
+<p>(...)</p>
+<p>And another side note, my wife&#x27;s been watching all these documentaries and podcasts on CIA, sleeper agents, and all these other things. And she&#x27;s telling me that Epstein was most likely a spy for another country that was designed to extract data from the high elites.</p>
+<p>(...)</p>
+<p>And he got burnt and that&#x27;s why they basically let him burn.</p>
+<p>(...)</p>
+<p>But there was some interesting things she was asking me. And it&#x27;s just weird how I know all the answers to a lot of this stuff because of all the things that we&#x27;ve studied. But I don&#x27;t know if it makes sense if we should start bringing in certain CIA handbook trainings and run that through this.</p>
+<p>(...)</p>
+<p>It&#x27;s the intelligence game.</p>
+<p>(...)</p>
+<p>They&#x27;ve been the masters of the intelligence game for all these years,(...) all these decades.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So that was one idea I had. So doing deep research, creating a brain, and then having like similar to your compliance office, it&#x27;s like a CIA slash intelligence agency consultant that&#x27;s working inside of our agency.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>That could build out that team.</p>
+<p>(...)</p>
+<p>We have, I mean, at the moment, the chief intelligence officer is Cassian, but it could certainly get shifted to another one.</p>
+<p>(...)</p>
+<p>But yeah, that makes a lot of sense.</p>
+<p>(...)</p>
+<p>I built out a couple yesterday. I don&#x27;t even remember. My brain is like not quite turned on.</p>
+<p>(...)</p>
+<p>Okay, I pushed the white paper. There&#x27;s probably updates and I&#x27;ll further update it, but that was as of yesterday,(...) whatever, probably yesterday, mid-day or something.</p>
+<p>(...)</p>
+<p>Mommy.</p>
+<p>(...)</p>
+<p>(Mumbling) Noah, in talking to Noah, you&#x27;ve seen...</p>
+<p>(...)</p>
+<p>(Mumbling) You seen Noah?</p>
+<p>(...)</p>
+<p>Confident that he had a lot of, he had a number of people that were already asking about this kind of domain. So if we could stand up a proper institutional grade fund and have this be what generates the returns for it, he seemed to think like he would definitely be able to bring in capital. And there was a number of people that have already been asking about this in particular.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So just out of curiosity, that money comes in. How is it getting delegated? And are we able to pull a salary or some sort of situation from this?(...) So this is how it would get set up.(...) It would get set up as a fund.</p>
+<p>(...)</p>
+<p>We would bring in capital into the fund.(...) The terms would most likely be something like a two and 20 model. We would split that with Noah. So one and 10, which means however much money we bring in, 1% of that we keep every year as a management fee.(...) And then 10% of the profits that we&#x27;re generating, 10% of all the profits we would also keep. And then he would keep the other half.</p>
+<p>(...)</p>
+<p>So then that split of 10 gets split between me and Alan?</p>
+<p>(...)</p>
+<p>Yeah, however we want to divide it up. Okay.</p>
+<p>(...)</p>
+<p>So if we brought in a million,</p>
+<p>(...)</p>
+<p>or I mean, if we brought in like, yeah, if we brought in a million, there would be like 100,000 non-management fees. So that&#x27;s 50K each.</p>
+<p>(...)</p>
+<p>But if you brought in 10 million, now that&#x27;s... Couple more shekels.</p>
+<p>(...)</p>
+<p>Yeah, a few more.</p>
+<p>(...)</p>
+<p>Actually it&#x27;s 100,000 at 10 million.</p>
+<p>(...)</p>
+<p>And they&#x27;re not looking to bring in a million.</p>
+<p>(...)</p>
+<p>No, they want to bring in serious capital. Right now they have, I think 150 million AUM.</p>
+<p>(...)</p>
+<p>So yeah, I imagine 10 to 20 would be probably on the low target size. If it starts performing well, then more and more capital will come in.</p>
+<p>(...)</p>
+<p>If we start showing those crazy rates like you were showing, then like, yeah, let&#x27;s see if they&#x27;re gonna flunk in.</p>
+<p>(...)</p>
+<p>So it&#x27;s 1% on the money itself on an annual basis, and then, or 2% total, and then 20% on the profits generated.</p>
+<p>(...)</p>
+<p>And I think they usually do profits on a monthly basis with their funds.</p>
+<p>(...)</p>
+<p>At least I know Noah did with his last fund.</p>
+<p>(...)</p>
+<p>So I think this is the right direction we&#x27;re moving in.</p>
+<p>(...)</p>
+<p>I think so. I mean, if we built a stable system to be able to make money, and then we have them to bring in the other people&#x27;s money that is being used, and then we don&#x27;t have to deal with all the LPs and whatever, we don&#x27;t have to, if anything, I&#x27;m trying to design a system where I can interact with as few people as possible, and have automated systems making money for us.</p>
+<p>(...)</p>
+<p>So yeah, I think this is a great direction.(...) The data sales, I think is also a great direction, although I have no idea what it&#x27;ll take to actually do the sales part of that. I&#x27;m hoping that we get our thing sophisticated enough that it&#x27;s just also doing the sales.</p>
+<p>(...)</p>
+<p>After seeing how much stuff can happen online and through digital conversations and everything else,(...) I&#x27;m pretty sure it&#x27;s gonna be able to do a lot. And if we&#x27;re doing phone calls, those phone calls get transcribed, it&#x27;s doing most of the lifting anyway.</p>
+<p>(...)</p>
+<p>Yep.</p>
+<p>(...)</p>
+<p>We&#x27;re just the, the AI&#x27;s access controlling us, and we&#x27;re the little nodes that are just collecting data for it to keep moving. Yep.</p>
+<p>(...)</p>
+<p>And I told this to my wife, how many videos on your social network are already AI? So who is it? Is it the AI that&#x27;s gonna take over the world, or is it already done that, and it&#x27;s using humans to utilize itself to just keep seeding more and more bullshit out there because humans just want more content, not context?</p>
+<p>(...)</p>
+<p>Yeah, yeah, that makes sense. I feel like a lot of the things that I came across in all these different whatever, the rollout of all these different generative AI,</p>
+<p>(...)</p>
+<p>my thought was, oh, this is how they&#x27;ve been doing it all this time. Like they&#x27;re leaking out some of these tools for like retail use at this point, but they&#x27;ve had these for years and years and years. Like this is how they&#x27;ve been controlling people through social media and triggering people&#x27;s fears and getting them to do shit and buy shit. And like this has already been at play, this is old tech.</p>
+<p>(...)</p>
+<p>It just feels new because they rolled it out.(...) Well, they rolled it out in a way where now they&#x27;re giving it access to the developers and they&#x27;re making their own spins on it, but the power people have been using this technology for at least their use. Forever, yeah,(...) yeah. Yep, I totally agree.</p>
+<p>(...)</p>
+<p>And if it wasn&#x27;t using these techniques as actual AI, then it could have been done even more. It just took more work, but the systems and principles were actually in play.</p>
+<p>(...)</p>
+<p>Yeah, I forget where someone, it was like a video from 1996.</p>
+<p>(...)</p>
+<p>It was a video from, that&#x27;s where all this thing was come out with. I mean, that&#x27;s where I heard this whole theory. They were like, they&#x27;ve had this plan for so long and it was a video game in 1996. And it was like, they were breaking all this down.</p>
+<p>(...)</p>
+<p>And then here we are, 30 years later. Do you know what the name of the video game was? And is there anything in there that we could use that can help us move this thing forward?</p>
+<p>(...)</p>
+<p>I don&#x27;t know, it was like one of those random things to just come across on Instagram.(...) So I don&#x27;t remember the video game name, but we could probably find it with some search.</p>
+<p>(...)</p>
+<p>It feels like the 90s, like even going through this, what&#x27;s that other movie,(...) &quot;Coke and Dagger.&quot;</p>
+<p>(...)</p>
+<p>We had like a video game and it was like,</p>
+<p>(...)</p>
+<p>super secret, like top secret algorithm, like stored in the video game or whatever. It comes into these kids&#x27; hands by accident.</p>
+<p>(...)</p>
+<p>So another thing I was trying to solve most of yesterday was the stupid OAuth token for cursor.</p>
+<p>(...)</p>
+<p>So that&#x27;s still an issue. And I don&#x27;t know if it&#x27;s possible to automate that. And if it&#x27;s not, there&#x27;s a fallback that sends a message in telegram, you click the button and you do the OAuth off your phone when you&#x27;re in the field.</p>
+<p>(...)</p>
+<p>So this way these things can keep going. Cause if this thing just dies and it doesn&#x27;t get reset and nobody knows about it, that&#x27;s not good.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Are those the main workhorse at this point of the whatever, of the operation?</p>
+<p>(...)</p>
+<p>Claude?</p>
+<p>(...)</p>
+<p>No, the cursor agents. No, the cursor, I&#x27;m not talking about cursor, I&#x27;m talking about Claude code. When we have to do that reset after so many hours</p>
+<p>(...)</p>
+<p>and then the bot goes down,</p>
+<p>(...)</p>
+<p>we need to be able to get that OAuth link sent to us so we can get that code and put it back to make those bots alive again.</p>
+<p>(...)</p>
+<p>How often have you had to, I haven&#x27;t had to do that at all. Is that something you&#x27;ve been doing?</p>
+<p>(...)</p>
+<p>I&#x27;ve had to do it a few times yesterday.</p>
+<p>(...)</p>
+<p>It seemed like that was a more easy solution given the, let me think about this. I feel like it&#x27;s just fixed itself. I don&#x27;t think I&#x27;ve had to click that link and enter in an OAuth token even one time.</p>
+<p>(...)</p>
+<p>But then again, you might just be the one handling that and that&#x27;s why it seems seamless on my end.</p>
+<p>(...)</p>
+<p>Where are we at with the voice thing?</p>
+<p>(...)</p>
+<p>I fixed that too yesterday.</p>
+<p>(...)</p>
+<p>Great.</p>
+<p>(...)</p>
+<p>So we can interact a bit with the phone calls now? Not phone calls, I got it on the web app and then it was saying if we use it in a way where it&#x27;s doing a different model than OpenAI, you can drop it down to even one cents instead of two and a half cents per minute.</p>
+<p>(...)</p>
+<p>So I don&#x27;t know if that&#x27;s a big deal on volume maybe, but.</p>
+<p>(...)</p>
+<p>Maybe if you have like a call center or whatever.(...) It&#x27;s just good to know that there was different things. So if you go into the GitHub and look for, I think it&#x27;s voice,(...) inside voice, there should be some sort of documentation somewhere.</p>
+<p>(...)</p>
+<p>Maybe search for voice that shows the voice gateway guide.(...) That&#x27;s the name of the doc in the docs folder.</p>
+<p>(...)</p>
+<p>And that basically broke everything down with pricing.</p>
+<p>(...)</p>
+<p>So that was useful, I believe. So how do we access it? And is it possible to get it on Google meetings? It&#x27;s local now and is it possible? Yes, just not right now. And I was exploring a lot of things. I got it pretty dialed in. I got it working, I could talk to it. It could read my voice and then talk back to me. So it&#x27;s using our system and makes brain.</p>
+<p>(...)</p>
+<p>Amazing. Yeah, so these are the little things that you were like, &quot;Oh, I don&#x27;t know if we&#x27;re moving fast enough.&quot; And I&#x27;m like, &quot;Bro, shut up.&quot;</p>
+<p>(...)</p>
+<p>Yeah, but it&#x27;s not, my question is, I don&#x27;t know if we&#x27;re moving fast enough. I don&#x27;t wanna do 10 times the work, if we could do 10% of that work to get an output.</p>
+<p>(...)</p>
+<p>My question is only about efficiency because I know you&#x27;re putting in stupid amounts of hours and loading in so much robust features.</p>
+<p>(...)</p>
+<p>And so when I see that Telegram chat, I want it to just be the perfect, smoothest thing. But reality is, reality. And we have to just separate some of those things out, whatever, update them, build out some new tendencies.</p>
+<p>(...)</p>
+<p>Yeah, but it sounds like we&#x27;re at polishing level, not at like design and like re-implementation level, which was kind of where we were at, right? Last week, last Monday, we were just starting on this whole build with the meridian. Is that true or is my time frame- No, no, no, we, you have to understand that, that week that I took off and blew this thing up,(...) we basically were able to almost save what we did and restart, but we weren&#x27;t starting from the zero. We were starting from- Oh, hell no. We got a group- No, we were starting from an actual working big brain that had, and even that, it was a big brain that had protocols that were developed over maybe a month or two. Developing all those protocols, three, four weeks, five weeks developing all those virtual teams. They had standing on top of a lot of months of effort, but I&#x27;m just saying last week, last Monday, I think is when we started the rebuild and on the meridian thing after designing it over the weekend. Or maybe it was like Sunday night.(...) Yeah, so we&#x27;re in a really good standing position that we have a group chat, which was only a couple of days old if that, I think I created it over the weekend.(...) Yeah.</p>
+<p>(...)</p>
+<p>So now- So we&#x27;re flying. And then with the voice thing, it&#x27;s huge. Cause then I didn&#x27;t tell Oliver to do any more voice stuff.</p>
+<p>(...)</p>
+<p>That&#x27;s what I was asking. So it&#x27;s good to hear that that&#x27;s already functional from the side. Yeah, so it&#x27;s local on my computer. I got to put it on render. And I was just thinking, does it make sense for us to see if it can go on a free render account or if there&#x27;s another free method to host a voice web part. And it&#x27;s basically just that user interface that I showed you last time, where it&#x27;s a button, you push it and hold it to talk, let go, and then it talks to you and has a transcription. So you can copy and paste the text if you need to.</p>
+<p>(...)</p>
+<p>Okay. But then I&#x27;m just thinking,(...) does it make sense to have, since it&#x27;s on the voice, on the web,(...) does it make sense to give it some sort of functionality that when the information goes into this, we&#x27;re getting notifications inside of the telegram where it&#x27;s actually taking information. And it&#x27;s like, you&#x27;re getting a real time log of okay, I tracked this, and now I&#x27;m able to start working on these things. And you&#x27;re getting confirmations and things like that. So the user web face is just kind of- Say that again. If a person is on voice and getting directives by voice. Yeah, so like, let&#x27;s say it&#x27;s me or you. We have this button, we push it, and we&#x27;re just like, yo, I have this idea. Just put it in the memory.(...) It&#x27;s gonna put it on the memory on the screen that&#x27;s just inside the web browser that&#x27;s temporary, but you&#x27;re also gonna get a confirmation.(...) Just got this from the voice agent and it&#x27;s confirmed that it&#x27;s saved in the MiG inside the telegram chat. So now you have-</p>
+<p>(...)</p>
+<p>Okay, great, yeah, I like that. That makes a lot of sense. And even then it might not even just like saved in the MiG. It might be, this got sent to the transcription office.</p>
+<p>(...)</p>
+<p>And then the transcription office is gonna break it down. So things that need to go to task, go to task, things that need to go to build mode, go to build mode, things that need to go to question for developer, go to the appropriate things. Issues get spun up if they need to input into GitHub, right? Like that kind of a- Yeah, but the transcription is only one burst at a time. So every sentence that are pyrograph that is spoken, it&#x27;s already getting transcribed. So it could be doing these things(...) at the beginning of each conversation point. So every time you hit record and stop, it transcribes it, and that information gets parsed and pushed to the main brain.(...) And it basically decides what to do with that information. Or do you want it to take the entire script of it going back and forth in that one session, and then compiling that and pushing that out as a package to do this next step? What makes more sense? I don&#x27;t know. I think A makes more sense. I think that&#x27;s what we want. And A makes more sense than it could be like a staggered situation where we&#x27;re at the beginning of the call, we&#x27;re saying a certain thing. We&#x27;re like, oh yeah, this deep research needs to happen.(...) Damn, that triggers that deep research to happen. That doesn&#x27;t need to wait to the end of 40 minutes in order to then go to a transcription office.</p>
+<p>(...)</p>
+<p>Okay, so then that tells me another thing. I would like, let&#x27;s just put it like that, wish list items. But if it was just a transcription, I think actually we&#x27;re probably gonna be both modes because there&#x27;s already a transcription tool. So if we&#x27;re just designing how does this voice interface work, I would like to call out things that happen in real time or close to real time and at least trigger sequences. Maybe the protocol that we&#x27;re telling it to run. Okay, that protocol might take 45 minutes to run, but when we trigger it, it happens. It doesn&#x27;t wait till the end of the call to start.</p>
+<p>(...)</p>
+<p>All right, so what about this? Because I&#x27;m thinking about this now as a phone call. What if we use the same techniques with the phone call that every time somebody&#x27;s done speaking, it parses it and puts it into the brain. And similar to how an AI,</p>
+<p>(...)</p>
+<p>how a human works when it gets an idea.(...) So let&#x27;s say you&#x27;re in a conversation and then some idea just pops into your head, and then you&#x27;re just like, I have to get this out.(...) Instead of it being these long pauses and weird silences,</p>
+<p>(...)</p>
+<p>it will be in the process of explaining everything in its little tiny brain, fast supermodel that&#x27;s doing stuff. But then all the processing is being done off of that call in our main system. And then when the main system comes back with something relevant to the conversation, it&#x27;s gonna push it back and he&#x27;s-- Push it back to the call. And then the AI agent is gonna say, hey, I just received this idea in my head that I wanna share with you guys. What do you think about this? And then it spits out anything that&#x27;s really powerful and relevant so this way you&#x27;re not holding the hostage of the time and the person waiting with these weird awkward lags. And I think that would be a way to speed it up in quality. Yeah, I agree. Totally agree, we should be able to.(...) I would be fine with code words.</p>
+<p>(...)</p>
+<p>Right, like if we&#x27;re having conversation, conversation, conversation, we&#x27;re like, oh, this is great, yeah, hey, push this to blah, blah, blah, or instigate this blah, blah, blah, blah, blah, or initiate this,(...) have this team initiate this. And then it&#x27;s like, oh, okay, if it&#x27;s called out with an initiate command, then it&#x27;s gonna go do that at that moment. And if it finishes the command before the end of the call, it can come back and say, oh, we did that research and you&#x27;re right, this is it.</p>
+<p>we need some operation? How do we help them get over this hurdle of--</p>
+<p>(...)</p>
+<p>into that workflow, like I was describing at the beginning of the call, where they just always have another cue to look at, and they just always have another thing to do? It&#x27;s like an infinite marble machine.</p>
+<p>(...)</p>
+<p>A marble?</p>
+<p>(...)</p>
+<p>Yeah, you know those machines, and it goes down a spiral, and then it goes up a little ferris wheel.(...) Like a little track, like a little roller coaster for a marble. But then it gets down to the bottom, and then it gets brought back up, and it just keeps going around the loop.</p>
+<p>(...)</p>
+<p>So I think that&#x27;s called loops. And what we&#x27;re building is components of the loops, but the system hasn&#x27;t been finalized where the loop is closed, and that&#x27;s why we&#x27;re having breakage. So I&#x27;m in the process of right now going through-- this is the third iteration of the self-healing, self-matic-related type things, so it could be completely fully automated. And this is the third iteration of that. And once I get through this, hopefully all those errors and everything aren&#x27;t going to be as significant, and it&#x27;s going to be able to have the autonomous feeling of being able to just work.</p>
+<p>(...)</p>
+<p>Just home.(...) All right, so here&#x27;s another issue.(...) My computer still doesn&#x27;t have tail scale access.</p>
+<p>(...)</p>
+<p>So when I go to push things or do certain things, it can&#x27;t do it. And we were going to fix it the other day, and then I spent a bunch of hours trying to fix it, and I just couldn&#x27;t do it.</p>
+<p>(...)</p>
+<p>And it was just that little code that needed to get added so that my account and or any approved accounts can make pushes.</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-12 22:14</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-12 18:43</div>
 </body></html>
