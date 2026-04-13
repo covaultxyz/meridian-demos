@@ -60,7 +60,87 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Context window code (28K) doesn&#x27;t match actual setting (128-150K) — causes incorrect resource planning</li><li>79% of Memory nodes are NULL (1,320 empty records) — indicates upstream data quality issue</li><li>Self-healing is weakest mesh area despite recovery engine code existing (4-level escalation untested)</li><li>Three conflicting timeout settings (Claude/Telegram/Tailscale) cause crashes</li><li>Daemons unaware of existing skills inventory — orchestration blocked by visibility gap</li><li>Notion MCP bug exposed security gap in skill vetting process</li></ul></div>
 <div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Fix context_builder.py line 14 to reflect actual 128-150K context window&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Design normalization protocol for multi-perspective review before gardener prunes Memory nodes&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Inventory existing skills vs daemon awareness and wire known skills into daemon configurations&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Ely&#x27;, &#x27;what&#x27;: &#x27;Implement multi-model orchestration routing (Claude/Codex/GPT/Cursor API) for token optimization&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex/Team&#x27;, &#x27;what&#x27;: &#x27;Build and document skill vetting protocol covering community review, security audit, and approval gates&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Audit and consolidate timeout settings across Claude/Telegram/Tailscale integrations&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Stress-test medic daemon recovery engine (RESTART → RESET_CONTEXT → FULL_RESET → ESCALATE)&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Oliver + CJ&#x27;, &#x27;what&#x27;: &#x27;Build Notion dashboard and define pricing model for Apollo.IO lead extraction client&#x27;}</li></ul></div>
 
-<div class="section"><h2>Transcript Preview</h2><p style="font-style:italic;color:var(--dim)">“Audit review of February 11 team sync”</p></div>
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>Conversation Audit: Alex &amp; Ely — Feb 11</p>
+<p>Critical Architectural Items (affect current mesh)</p>
+<p>1. Context Window Confirmed at 128-150K (line 213)</p>
+<p>&quot;So then I bumped that up to like 128, I think, currently or 150 or something.&quot;</p>
+<p>This is exactly what you flagged — Ely already bumped it but context_builder.py still says 28K. The code didn&#x27;t get updated to match. This needs a code fix in</p>
+<p>brain/context_builder.py:14.</p>
+<p>2. Normalization Team Before Any Deletions (lines 1-9)</p>
+<p>Alex&#x27;s #1 fear: records getting deleted. Before the gardener prunes anything, they want a multi-perspective review — a virtual team that analyzes from different angles</p>
+<p>before flagging duplicates. This directly affects the Memory Noise finding (79% NULL nodes). Don&#x27;t just delete the 1,320 empty Memory nodes — investigate first. Build a</p>
+<p>normalization protocol.</p>
+<p>3. Self-Healing Is the Weakest Area (lines 239-258)</p>
+<p>Both agree: when things break, it&#x27;s humans behind CLI. They want a &quot;medic&quot; daemon. The recovery engine exists in code (4 levels: RESTART → RESET_CONTEXT → FULL_RESET →</p>
+<p>ESCALATE) but hasn&#x27;t been stress-tested. This maps to Metric 20 (Error Recovery) — still TBD.</p>
+<p>4. Timeout Alignment (line 217)</p>
+<p>Three different timeout settings (Claude, Telegram, Tailscale?) causing crashes. They mention a dedicated daemon just for timing alignment monitoring. Check if this is</p>
+<p>still a live issue.</p>
+<p>---</p>
+<p>Near-Term Action Items (next 3-5 days)</p>
+<p>5. Add ~9 Skills to Daemons (lines 13-29)</p>
+<p>Each daemon requested 3 skills. Some already exist but daemons don&#x27;t know about them. Need to:</p>
+<p style='padding-left:1rem'>&bull; Inventory what&#x27;s in skills/ vs what daemons think they have</p>
+<p style='padding-left:1rem'>&bull; Wire existing skills into daemon awareness</p>
+<p style='padding-left:1rem'>&bull; Build the missing ones</p>
+<p>6. Multi-Model Orchestration (lines 29-46)</p>
+<p>Ely called this &quot;the main arc for tomorrow&quot;:</p>
+<p style='padding-left:1rem'>&bull; OpenAI Codex for coding tasks (save Claude tokens)</p>
+<p style='padding-left:1rem'>&bull; GPT for routine/mechanical work</p>
+<p style='padding-left:1rem'>&bull; Cursor API integration</p>
+<p style='padding-left:1rem'>&bull; Token optimization — Claude Code already uses Haiku for lightweight tasks (line 317-323), but they want explicit cross-model routing</p>
+<p>7. Convergent Protocols &gt; Fixed Specialization (lines 269-281)</p>
+<p>Instead of &quot;Sandman does X, Delphi does Y&quot;, use numbered positions any online daemon can fill. Protocol-based team formation. This is a design philosophy that should</p>
+<p>influence how skills and delegation get implemented.</p>
+<p>8. Security Vetting Protocol for Third-Party Skills (lines 287-296)</p>
+<p>Before any skill/MCP enters the ecosystem:</p>
+<p style='padding-left:1rem'>&bull; Community review/rating check</p>
+<p style='padding-left:1rem'>&bull; Security audit for prompt injection</p>
+<p style='padding-left:1rem'>&bull; Formal approval protocol</p>
+<p>They got burned by the Notion MCP bug. Build a protocols/skill_vetting.md or similar.</p>
+<p>---</p>
+<p>Revenue / Business Opportunities Discussed</p>
+<p>9. Apollo.IO Lead Gen Client (lines 53-109)</p>
+<p style='padding-left:1rem'>&bull; Client wants lead extraction + outreach + appointment booking</p>
+<p style='padding-left:1rem'>&bull; Oliver already built most of the tool</p>
+<p style='padding-left:1rem'>&bull; Need: Notion dashboard, pricing model, CJ running point</p>
+<p style='padding-left:1rem'>&bull; Not a mesh task yet — but could become one once orchestration works</p>
+<p>10. Neo4j Data Products (lines 307-315)</p>
+<p>Both excited about licensing specialized MIG brains:</p>
+<p style='padding-left:1rem'>&bull; Trading/financial simulations (first candidate)</p>
+<p style='padding-left:1rem'>&bull; Law</p>
+<p style='padding-left:1rem'>&bull; Industrial data rooms</p>
+<p style='padding-left:1rem'>&bull; Requires: knowledge domain ontology protocol, back-testing capability</p>
+<p>11. Gemini Video Factory (lines 39-51)</p>
+<p>5 Gemini accounts → 18 videos/day potential. Browser automation, not API. Low priority but &quot;waste of days going by.&quot;</p>
+<p>12. BitCove AI as Processing Workhorse (lines 349-380)</p>
+<p>Queue prompts into BitCove (Notion-based), let it process autonomously. Dedicated sandbox workspace for security isolation. Could handle iteration/preparation steps.</p>
+<p>---</p>
+<p>Strategic Themes to Keep in Mind</p>
+<p>┌───────────────────────────────┬──────────────────────────────────────────────────────────┐</p>
+<p>│             Theme             │                       Implication                        │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Don&#x27;t delete records          │ Gardener needs normalization review before pruning       │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Orchestrate across models     │ Claude for intelligence, Codex/GPT/Gemini for grunt work │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Protocol-based teams          │ Numbered roles, not fixed daemon identities              │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Skills awareness gap          │ Daemons don&#x27;t know what they already have                │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Transcription → Intelligence  │ These conversations should auto-extract into MIG         │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Security-first skill adoption │ Vet before integrating any third-party tool              │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Knowledge domain expansion    │ Trading as first domain, need ontology portability       │</p>
+<p>├───────────────────────────────┼──────────────────────────────────────────────────────────┤</p>
+<p>│ Self-healing is #1 ops gap    │ Medic daemon or stronger recovery testing                │</p>
+<p>└───────────────────────────────┴──────────────────────────────────────────────────────────┘</p>
+<p>---</p>
+<p>What This Means for Current Work</p>
+<p>The context window mismatch (item #1) and normalization before deletion (item #2) are the most immediately relevant. The context builder fix is a code change for Ely. The</p>
+<p>normalization concern means we should not create a gardener task to mass-delete the 1,320 NULL Memory nodes without building the review protocol Alex described first.</p>
+<p>Want me to create GitHub issues for any of these items?</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 16:14</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 16:55</div>
 </body></html>
