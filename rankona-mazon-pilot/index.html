@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank on Amazon — Amazon Terminal Proposal | MERIDIAN Brief</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050505;color:#a1a1aa;font-family:'Inter',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.04;
+    background-image:radial-gradient(circle,rgba(255,255,255,0.5) 1px,transparent 1px);
+    background-size:24px 24px;
+}
+.glass-card{position:relative;background:rgba(255,255,255,0.03);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.06);border-radius:20px;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.glass-card:hover{border-color:rgba(6,182,212,0.25);background:rgba(255,255,255,0.05);box-shadow:0 0 40px -12px rgba(6,182,212,0.15),0 0 80px -20px rgba(6,182,212,0.08);transform:translateY(-2px)}
+.nav-glass{background:rgba(5,5,5,0.6);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.glow-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(120px);will-change:transform}
+.glow-orb-1{animation:float-orb 20s ease-in-out infinite}
+.glow-orb-2{animation:float-orb 25s ease-in-out infinite reverse}
+.glow-orb-3{animation:float-orb 18s ease-in-out infinite 5s}
+@keyframes float-orb{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-20px) scale(1.05)}50%{transform:translate(-20px,30px) scale(0.95)}75%{transform:translate(20px,15px) scale(1.02)}}
+.reveal{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.4,0,.2,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.text-gradient-cyan{background:linear-gradient(135deg,#22d3ee 0%,#06b6d4 50%,#0891b2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.shimmer{background:linear-gradient(110deg,#fff 0%,#fff 40%,rgba(6,182,212,0.4) 50%,#fff 60%,#fff 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer-sweep 4s ease-in-out infinite}
+@keyframes shimmer-sweep{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
+.icon-box{background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.12);border-radius:14px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:9999px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+.toc-link{display:block;padding:6px 12px;border-radius:8px;font-size:11px;color:#52525b;transition:all .25s;border-left:2px solid transparent}
+.toc-link:hover{color:#22d3ee;background:rgba(6,182,212,0.05);border-left-color:rgba(6,182,212,0.3)}
+.toc-link.active{color:#22d3ee;background:rgba(6,182,212,0.08);border-left-color:#06b6d4}
+.gradient-divider{height:1px;background:linear-gradient(90deg,transparent 0%,rgba(6,182,212,0.2) 50%,transparent 100%);margin:0 auto;margin-top:2rem;margin-bottom:2rem}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;z-index:100;background:linear-gradient(90deg,#06b6d4,#3b82f6,#8b5cf6);transform-origin:left;transform:scaleX(0);transition:transform .1s linear}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:3px}
+@media(max-width:640px){.hero-flex{flex-direction:column;align-items:center;text-align:center}.hero-flex .grade-ring-hero{width:60px!important;height:60px!important;font-size:22px!important}.hero-meta{justify-content:center}}
+@media print{body{background:#000!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}body::before,body::after,.scroll-progress,.nav-glass,aside{display:none}.reveal{opacity:1!important;transform:none!important}.glass-card{break-inside:avoid}}
+.score-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.06);overflow:hidden}
+.score-fill{height:100%;border-radius:3px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.reveal.visible .score-fill{width:var(--w)}
+:root{--ring-cyan:6 182 212;--ring-green:34 197 94;--ring-amber:251 191 36;--ring-orange:249 115 22;--ring-red:239 68 68;--ring-zinc:161 161 170}
+.gradient-border{position:relative;border:none;overflow:hidden;border-radius:20px}
+.gradient-border::before{content:'';position:absolute;inset:-1px;z-index:-1;border-radius:21px;background:conic-gradient(from var(--angle,0deg),#06b6d4,#3b82f6,#8b5cf6,#06b6d4);animation:rotate-border 6s linear infinite}
+.gradient-border::after{content:'';position:absolute;inset:1px;z-index:-1;border-radius:19px;background:#0a0a0a}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes rotate-border{to{--angle:360deg}}
+</style>
+</head>
+<body class="min-h-screen relative">
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="glow-orb glow-orb-1 w-[600px] h-[600px] bg-cyan-500/[0.04] -top-60 -right-60 fixed" style="z-index:0"></div>
+    <div class="glow-orb glow-orb-2 w-[400px] h-[400px] bg-purple-500/[0.03] top-1/3 -left-40 fixed" style="z-index:0"></div>
+    <div class="glow-orb glow-orb-3 w-[500px] h-[500px] bg-blue-500/[0.03] bottom-20 right-10 fixed" style="z-index:0"></div>
+
+    <nav class="nav-glass fixed top-0 w-full z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/sales/briefs" class="flex items-center gap-2 text-zinc-600 hover:text-white text-xs transition-colors">
+                <i data-lucide="arrow-left" class="w-3 h-3"></i> All Briefs
+            </a>
+            <div class="flex items-center gap-3">
+                <span class="badge bg-amber-500/10 text-amber-400 border-amber-500/20 border">Post-Call Analysis</span>
+                <span class="text-zinc-700 text-xs font-mono">2026-04-12</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-28 pb-8 px-6" style="z-index:1">
+        <div class="max-w-6xl mx-auto relative z-10 reveal">
+            <div class="flex items-start gap-6 hero-flex">
+                
+                <div>
+                    <h1 class="shimmer text-3xl md:text-4xl font-extrabold tracking-tight">Rank on Amazon — Amazon Terminal Proposal</h1>
+                    <p class="text-zinc-500 text-sm mt-2 max-w-2xl leading-relaxed">Prepared by: MERIDIAN | Speed of Trust</p>
+                    <div class="flex items-center gap-5 mt-4 flex-wrap"><span class="text-zinc-600 text-xs flex items-center gap-1.5"><i data-lucide="file-text" class="w-3 h-3 text-zinc-700"></i> 1 source document</span></div>
+                </div>
+            </div>
+            <div class="gradient-divider w-full mt-8"></div>
+        </div>
+    </section>
+
+    <div class="max-w-6xl mx-auto px-6 pb-24 flex gap-8" style="z-index:1;position:relative">
+        <aside class="hidden lg:block w-44 shrink-0 sticky top-24 self-start">
+        <p class="text-zinc-700 text-[10px] font-bold uppercase tracking-[.15em] mb-3">Contents</p>
+        <nav class="space-y-0.5"><a href="#the-rank-on-amazon-amazon-term" class="toc-link">The Rank on Amazon A</a>
+</nav>
+    </aside>
+        <div class="flex-1 space-y-8 min-w-0">
+            <section id="the-rank-on-amazon-amazon-term" class="reveal"><h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">The Rank on Amazon Amazon Terminal</h2></section>
+<section id="engagement-proposal" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">Engagement Proposal</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Prepared for:</span> Carl Helgesson, CEO <span class="text-white font-semibold">Date:</span> April 2026 <span class="text-white font-semibold">Prepared by:</span> MERIDIAN | Speed of Trust <span class="text-white font-semibold">Classification:</span> Confidential</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<section id="executive-summary" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">Executive Summary</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Rank on Amazon has built a strong agency managing Amazon marketplace accounts across 11+ geographies. Two workflows sit at the foundation of every client engagement: backend catalog optimization and listing copy creation with localization.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">In your words, backend field updates are *&quot;a nightmare when we have clients with hundreds or thousands of SKUs.&quot;* Listing creation is a multi-stage process — keyword research, review scraping, SEO-first copywriting, client proofing, then full localization per marketplace — that consumes your team&#x27;s most expensive hours on work that should be systematized.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">The result: <span class="text-white font-semibold">capacity coupled to headcount.</span> More clients means more people. More markets means more people. Three open strategist positions. A 40,000-SKU prospect you cannot efficiently onboard. An estimated <span class="text-white font-semibold">$300,000 - $450,000 per year</span> in avoidable cost from manual labor, unreachable revenue, and undetected risk exposure.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">MERIDIAN proposes building two foundational stations in the <span class="text-white font-semibold">Rank on Amazon Amazon Terminal</span> — an AI-augmented intelligence infrastructure your agency owns and operates. <span class="text-white font-semibold">Station 1A</span> eliminates the backend flat-file nightmare. <span class="text-white font-semibold">Station 1B</span> systematizes listing creation and localization from keyword research through native-market deployment. Both are operational within three weeks of kickoff.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Based on your current operations, the Terminal enables Rank on Amazon to:</p>
+<ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Process <span class="text-white font-semibold">60 - 75% more backend work</span> per hour</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Compress <span class="text-white font-semibold">multi-week listing workflows into days</span></span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Service clients at <span class="text-white font-semibold">catalog scales your current model cannot reach</span></span></li>
+</ul>
+<div class="glass-card p-4" style="border-left:2px solid rgba(6,182,212,0.3)">
+        <p class="text-zinc-300 text-sm italic leading-relaxed"><span class="text-white font-semibold">To proceed:</span> a 60-minute kickoff call to scope the first client deployment. We can schedule that this week.</p>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Two engagement paths are presented: a commercial partnership at full rate, and a joint venture partnership where MERIDIAN deploys at operating cost and ties its compensation to your growth. Both deliver the same Terminal. The right path depends on how you want the economics to align.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<section id="the-cost-of-standing-still" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">The Cost of Standing Still</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Before evaluating what the Terminal costs, it&#x27;s worth quantifying what the current state costs. These numbers are drawn from your April 3 demo call and the operational realities you described.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Capacity Locked Behind Headcount</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">You have three open strategist positions. At $60,000 - $75,000 per strategist fully loaded, that&#x27;s <span class="text-white font-semibold">$180,000 - $225,000 per year</span> in hiring cost to solve a capacity problem the Terminal addresses differently. Each hire takes 3 - 6 months to ramp, works on one client at a time, produces output at their individual pace, and takes their knowledge with them when they leave.</p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Manual Labor on Systematizable Work</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">A single Germany market analysis takes your team approximately <span class="text-white font-semibold">8 hours</span>. You operate across 11+ marketplaces. For a portfolio of 5 clients requiring market-level analysis, that&#x27;s <span class="text-white font-semibold">440+ hours of analyst time per cycle</span> — work that our demo compressed to <span class="text-white font-semibold">25 minutes per market</span> using your real data.</p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Revenue You Cannot Capture</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">You have a prospective client with <span class="text-white font-semibold">40,000 SKUs</span>. Your current workflow cannot service a catalog at that scale without proportional headcount. At a conservative management fee of $8,000 - $15,000/month, that single client represents <span class="text-white font-semibold">$96,000 - $180,000 per year</span> in revenue the agency cannot access.</p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Risk Running Unchecked</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">During our demo, the overnight alert triage identified a suppressed listing costing <span class="text-white font-semibold">€2,100 per day</span> — €63,000 per month if uncaught. How many suppressed listings, unauthorized sellers, and BSR crashes go undetected across your client portfolio right now?</p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Cost Category</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Annual Estimate</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Three strategist hires</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$180,000 - $225,000</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Manual market analysis (11 markets x 5 clients)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$26,400 - $33,000</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Backend + listing labor (&quot;a nightmare&quot; at scale)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Significant but unmeasured</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Unreachable revenue (40,000-SKU prospect alone)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$96,000 - $180,000</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Undetected risk (€2,100/day per incident)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Variable — one incident = €63K/month</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Conservative Total</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$300,000 - $450,000 / year</span></td></tr>
+</tbody></table>
+    </div>
+<div class="glass-card p-4" style="border-left:2px solid rgba(6,182,212,0.3)">
+        <p class="text-zinc-300 text-sm italic leading-relaxed">Every month without systematized operations is a month that cost compounds.</p>
+    </div>
+        </div>
+<section id="what-we-already-demonstrated" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">What We Already Demonstrated</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">On April 3, we ran a <span class="text-white font-semibold">45-minute live demo using Rank on Amazon&#x27;s real data</span> — your email, your org chart, your client information. Not a simulated environment. Your business, in real time.</p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Capability</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Your Team Today</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">MERIDIAN</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Germany market analysis (keywords, competitors, strategy)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">~8 hours</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">25 minutes</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Proposal generation from 222-page deck</td><td class="text-zinc-400 text-xs py-1.5 pr-4">~44 hours</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">45 minutes</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Alert triage: suppressed listing (€2,100/day), unauthorized seller, BSR crash</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Manual monitoring, if it happens at all</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">Overnight autonomous run, briefing by morning</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">AI assistant trained on proprietary course content</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Custom development required</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">Deployed live during demo</span></td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">The Terminal stations proposed in this document build on that same infrastructure — the same intelligence mesh, the same agent architecture, the same persistent memory — configured for the two workflows at the foundation of your agency.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<section id="what-rank-on-amazon-looks-like" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">What Rank on Amazon Looks Like in Month Three</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">In month three, your team onboards the 40,000-SKU prospect. The ontology is already mapped for their product categories. Jennifer&#x27;s team processes the full backend in an afternoon — not because they work faster, but because the system handles the flat-file mapping, attribute validation, and bulk upload while they review and approve. Johan&#x27;s team generates localized listings across five European markets in parallel. The work that would have required three new hires and four months of ramp happens in a week.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Every component of this scenario was demonstrated during the April 3 demo using your actual data.</span> The Terminal makes it repeatable, at scale, on every client account.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">What This Means for Your Team</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Jennifer and Johan&#x27;s teams keep doing what they do best: strategic decisions about positioning, brand voice, keyword strategy, and market entry. Their expertise stays. What changes is the work *around* the expertise — flat-file management, manual keyword mapping, copy-paste localization, repetitive formatting. That work moves into the Terminal.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">The strategist positions you&#x27;re hiring for? The Terminal doesn&#x27;t eliminate those roles — it changes what they spend their time on. Instead of processing backends, they manage more client relationships. Instead of manually localizing listings, they oversee quality across markets. <span class="text-white font-semibold">Capacity grows without headcount growing proportionally.</span></p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">What the Terminal Does Not Do</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">The Terminal does not replace your team&#x27;s Amazon expertise. It cannot make strategic judgment calls about product positioning, brand voice, or market-entry timing. It does not handle regulated categories autonomously — supplements, food, medical devices, and children&#x27;s products require human review and manual upload. What it eliminates is the manual complexity that prevents your team&#x27;s expertise from scaling.</p>
+        </div>
+<section id="the-rank-on-amazon-amazon-term" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">The Rank on Amazon Amazon Terminal</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Each station is a discrete operating system — built, documented, repeatable — that handles a specific workflow. Stations connect: opening one creates the data pathways for the next. This proposal opens the first two.</p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Line</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Station</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">System</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Status</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Line 1</span> — Catalog Foundation</td><td class="text-zinc-400 text-xs py-1.5 pr-4">1A</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Backend Attribute Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">Building Now</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">1B</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Listing Copy Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">Building Now</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">1C</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Localization Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Under Construction</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Line 2</span> — Market Intelligence</td><td class="text-zinc-400 text-xs py-1.5 pr-4">2A</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Keyword &amp; Search Intelligence</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Under Construction</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">2B</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Competitive Position Tracking</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">2C</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Voice of Customer Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Line 3</span> — Growth Operations</td><td class="text-zinc-400 text-xs py-1.5 pr-4">3A</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Product Launch Protocol</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">3B</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Advertising Architecture</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">3C</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Account Health &amp; Compliance</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Line 4</span> — Client Output</td><td class="text-zinc-400 text-xs py-1.5 pr-4">4A</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Performance Reporting</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"></td><td class="text-zinc-400 text-xs py-1.5 pr-4">4B</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Client-Facing Dashboard</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Future</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Opening <span class="text-white font-semibold">Station 1A</span> creates the data foundation: clean backend attributes enable keyword intelligence, advertising targeting, and localization to start from correct data instead of propagating errors. Opening <span class="text-white font-semibold">Station 1B</span> creates the content framework: once primary copy is systematized, localization becomes standalone, review scraping scales independently, and product launch copy inherits the workflow.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Station 1A — Backend Attribute Engine</h3>
+            <div class="glass-card p-4" style="border-left:2px solid rgba(6,182,212,0.3)">
+        <p class="text-zinc-300 text-sm italic leading-relaxed">*&quot;We do not have any good process for efficient backend field updates. This is a nightmare when we have clients with hundreds or thousands of SKUs.&quot;* — Carl Helgesson, April 3</p>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Station 1A takes any client catalog, maps it to Amazon&#x27;s category-specific field requirements, validates every attribute, and outputs a clean flat-file ready for bulk upload. The system works with Category Reports and flat files from Amazon, mapping product information to the correct Amazon-tagged fields per your existing workflow.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">How It Works:</span></p>
+<ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">1.</span><span><span class="text-white font-semibold">Category Ontology Mapping</span> — Map the client&#x27;s catalog to Amazon&#x27;s browse node and attribute taxonomy. Done once per category, reused across all ASINs.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">2.</span><span><span class="text-white font-semibold">Data Ingestion &amp; Reconciliation</span> — Pull the Category Report, download the flat-file template, reconcile existing data against the ontology to find gaps, errors, and misclassifications.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">3.</span><span><span class="text-white font-semibold">Attribute Population &amp; Validation</span> — Map product information from product sheets, Seller Central, and website to correct flat-file fields. AI-assisted population follows the source-of-truth hierarchy below. Inferred fields flagged for written client approval.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">4.</span><span><span class="text-white font-semibold">Bulk Upload &amp; Verification</span> — Generate the flat-file, upload via Seller Central, verify processing. Rejections diagnosed and corrected.</span></li>
+</ul>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Source-of-Truth Hierarchy:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Priority</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Source</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Treatment</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">1 (Highest)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Manufacturer Specification</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Authoritative for technical attributes</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">2</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Client Product Sheet</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Cross-checked against manufacturer spec</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">3</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Existing Seller Central Data</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Validated; corrected if conflicting</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">4</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Client Website / Marketing</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Descriptive attributes only</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">5 (Lowest)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">AI-Inferred</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Flagged; requires written approval</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Regulated categories excluded from AI-assisted population. Manual review and upload required.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Delivery:</span></p>
+<ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>100% required fields populated</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Zero rejections on validated fields</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>60 - 75% processing time reduction</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>30-day commercial check: organic impressions and rank movement tracked on top 20 keywords per ASIN</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span><span class="text-white font-semibold">Build time: 10 business days</span> from access and data receipt</span></li>
+</ul>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Station 1B — Listing Copy Engine</h3>
+            <div class="glass-card p-4" style="border-left:2px solid rgba(6,182,212,0.3)">
+        <p class="text-zinc-300 text-sm italic leading-relaxed">*&quot;SEO comes first and we &#x27;wrap&#x27; the sales copy around the SEO. Main SEO in title, secondary in bullets, tertiary in backend.&quot;* — Carl Helgesson, April 3</p>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Station 1B systematizes this exact workflow — your words, your process — at a speed and consistency that manual execution cannot match.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Workflow:</span></p>
+<ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">1.</span><span><span class="text-white font-semibold">Data Intake</span> — Product sheet, website, existing listings, brand guidelines. Reviews and Q&amp;A scraped for voice-of-customer language.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">2.</span><span><span class="text-white font-semibold">Keyword Research</span> — Helium 10 or equivalent. Prioritized keyword map: primary (title), secondary (bullets), tertiary (backend).</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">3.</span><span><span class="text-white font-semibold">SEO-First Copy</span> — Title maximizes keywords. Bullets layer secondary SEO with benefits. Description captures remaining keywords. Backend holds tertiary terms.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">4.</span><span><span class="text-white font-semibold">Proofreading &amp; Approval</span> — Two revision rounds, 7 business days each. Corrections unlimited. Revisions within rounds.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-0.5 text-xs font-semibold w-4 text-right">5.</span><span><span class="text-white font-semibold">Localization</span> — Not translation. Country-specific keyword research, consumer psychology adaptation, native proofreading, marketplace compliance. Side-by-side localization vs. translation comparison included as deliverable.</span></li>
+</ul>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Delivery:</span></p>
+<ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Top 50 keywords indexed per ASIN</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>All fields populated</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>≥90% first-round approval</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>30-day commercial check: impressions, conversion, native sign-off per market</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span><span class="text-white font-semibold">Build time: 15 business days</span> from data receipt</span></li>
+</ul>
+        </div>
+<section id="your-investment-and-expected-r" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">Your Investment and Expected Return</h2>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Two engagement paths. Same Terminal. Same quality. Same deliverables. Same ownership. Different commercial relationship, different risk profile, different alignment.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">The MERIDIAN platform is already built. You are paying for implementation: ontology mapping, workflow customization, and deployment into your operations. Not template installations — each station is engineered around how your team actually works.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Option A — Commercial Partnership</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">Full-rate engagement. MERIDIAN builds, Rank on Amazon pays. Clean, simple, predictable.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Setup Fees:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Component</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Individual</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Combined</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Station 1A — Backend Attribute Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$7,500</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Station 1B — Listing Copy Engine</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$10,000</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Station 1A + 1B Combined</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$15,750</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Ontology Mapping (per category)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$750</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$750</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Monthly Terminal Access:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Tier</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">ASIN Volume</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Monthly</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Operator</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Up to 50</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$3,800</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Growth</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">Up to 150</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$6,500</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Scale</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Up to 400</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$9,500</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Enterprise</td><td class="text-zinc-400 text-xs py-1.5 pr-4">400+</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Custom</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Market Activation:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Package</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Geographies</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Monthly</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">European Core</td><td class="text-zinc-400 text-xs py-1.5 pr-4">DE, FR, IT, ES, NL</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$2,400</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">European Extended</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Core + PL, SE, CZ</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$3,600</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Global</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Extended + JP, KO</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$5,500</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Example Scenario: 2 categories, 150 ASINs, EU Core</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Component</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">One-Time</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Monthly</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Station 1A + 1B Combined</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$15,750</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Ontology Mapping (2 categories)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$1,500</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Terminal Access — Growth</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$6,500</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Market Activation — European Core</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$2,400</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Total</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$17,250</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$8,900 / month</span></td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">First-year all-in: $124,050.</span> A single strategist costs $5,000 - $6,000/month loaded, takes 3 - 6 months to ramp, and creates a single point of failure. The Growth tier at $6,500 is barely above one hire — but delivers throughput that would require multiple strategists, operational in 3 weeks with zero ramp. Against the $300,000 - $450,000 annual cost of standing still, <span class="text-white font-semibold">payback is under 5 months.</span></p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Setup: 50% deposit on signing, 50% on completion. Monthly invoiced on the 1st, due net-15.</p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Option B — Joint Venture Partnership *(Recommended)*</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">MERIDIAN deploys at operating cost and ties its compensation to your growth.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Option A is a fair commercial price for expert-level systems engineering. But it asks you to bear the full cash cost while MERIDIAN bears none of the risk.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Option B inverts that.</span> MERIDIAN deploys its infrastructure at operating cost — covering direct expenses and nothing more — and ties its compensation to two things: the quarterly profit growth it helps generate, and the enterprise value it helps create at exit. If MERIDIAN&#x27;s systems don&#x27;t grow the business, MERIDIAN earns less than Option A. If they do, both sides participate.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">This is not a discount. It is a bet. MERIDIAN is betting its own time and infrastructure that the Terminal, the process formalization, and the systematic removal of headcount-dependency will make Rank on Amazon materially more profitable and materially more valuable.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Operating Economics:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Component</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">One-Time</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Monthly</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Station 1A + 1B Combined</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$4,500</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Ontology Mapping (2 categories)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$750</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Terminal Access — Growth</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$1,200</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Market Activation — European Core</td><td class="text-zinc-400 text-xs py-1.5 pr-4">—</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$500</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Total</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$5,250</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$1,700 / month</span></td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">First-year cash cost: $25,650.</span> That&#x27;s 6 - 9% of the annual cost of standing still — and less than three months of Option A&#x27;s run rate. If profits don&#x27;t grow, that&#x27;s all MERIDIAN earns. Your cash exposure is a fraction of what the current state already costs every quarter.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Setup: 50% deposit on signing, 50% on completion. Monthly invoiced on the 1st, due net-15.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Quarterly Profit Participation:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Term</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Detail</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Rate</td><td class="text-zinc-400 text-xs py-1.5 pr-4">20% of net increase in quarterly profit above baseline</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Baseline</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Rolling 12-month profitability through Q1 2026</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Measurement</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Quarterly, from completed financial reports</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Duration</td><td class="text-zinc-400 text-xs py-1.5 pr-4">10 years from agreement date</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">If profits don&#x27;t increase</td><td class="text-zinc-400 text-xs py-1.5 pr-4">No participation owed. MERIDIAN earns only the monthly operating fees.</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">Success Participation on Exit:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Term</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Detail</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Rate</td><td class="text-zinc-400 text-xs py-1.5 pr-4">50% of enterprise value above threshold</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Threshold</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$25,000,000</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Qualifying event</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Acquisition, merger, or majority recapitalization</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Duration</td><td class="text-zinc-400 text-xs py-1.5 pr-4">10 years or duration of active engagement, whichever is longer</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">If no qualifying event</td><td class="text-zinc-400 text-xs py-1.5 pr-4">No success participation. MERIDIAN retains only monthly fees and quarterly profit participation.</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">What This Looks Like at Exit:</span></p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Scenario</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">EBITDA</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Multiple</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">EV</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Carl Keeps</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">MERIDIAN</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">No Terminal</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$1.5M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">4x</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$6M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$6M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$0</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Systematized</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$2.5M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">8x</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$20M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$20M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$0</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">Scaled</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$4M</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">10x</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$40M</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$32.5M</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">$7.5M</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Platform</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$6M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">12x</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$72M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$48.5M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$23.5M</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Major Exit</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$10M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">12x</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$120M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$72.5M</td><td class="text-zinc-400 text-xs py-1.5 pr-4">$47.5M</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Below $25M, MERIDIAN earns nothing beyond monthly fees and quarterly profit participation. At the &quot;Scaled&quot; scenario, <span class="text-white font-semibold">Carl keeps $32.5M from a company that would have been worth $6M without systematic transformation.</span> MERIDIAN&#x27;s $7.5M is earned from $34M in value created.</p>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Partnership terms documented in a separate agreement covering definitions, qualifying events, baseline measurement, and sunset provisions.</p>
+        </div>
+<section id="what-you-own-what-we-commit-to" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">What You Own, What We Commit To, What We Need</h2>
+            
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Deliverable Ownership</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-3">On final payment, all deliverables transfer to Rank on Amazon with full ownership rights. Both options.</p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">#</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Asset</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Description</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">1</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Category Ontology Maps</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Field taxonomy mapping per category</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">2</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Flat-File Templates</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Pre-configured with validation rules</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">3</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Backend Processing Pipeline</td><td class="text-zinc-400 text-xs py-1.5 pr-4">SOPs, automation configurations</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">4</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Keyword Research Templates</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Search term harvesting frameworks</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">5</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Listing Copy Architecture</td><td class="text-zinc-400 text-xs py-1.5 pr-4">SEO-first framework, placement hierarchy</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">6</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Localization Framework</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Per-market guides, consumer psychology</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">7</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Prompt Architecture</td><td class="text-zinc-400 text-xs py-1.5 pr-4">All AI prompts, validation logic, templates</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">8</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Raw Working Files</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Source files, outputs, research data</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">MERIDIAN retains platform IP, methodologies, and tooling. You own the output systems. If you discontinue Terminal Access, all assets stay with you. <span class="text-white font-semibold">You paid to build these, not rent them.</span></p>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">What&#x27;s Not Included</h3>
+            <ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Amazon Seller Central subscriptions or advertising spend</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Helium 10 or third-party keyword tool subscriptions (you provide access)</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>A+ Content / Enhanced Brand Content design (separate scope)</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Product photography or video assets</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Stations beyond 1A and 1B (scoped separately)</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Regulated category manual review labor (flagged and returned for your processing)</span></li>
+</ul>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">Quality Standards</h3>
+            <ul class="space-y-0.5"><li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Source-of-truth hierarchy governs all data decisions</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>AI-inferred fields require written approval — no exceptions</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Regulated categories excluded from AI-assisted population</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Station 1A: one revision round, 7 business days. Corrections unlimited.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>Station 1B: two revision rounds, 7 business days each. Corrections unlimited.</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>72-hour verification: uploads processed, fields indexed, no rejections</span></li>
+<li class="text-zinc-300 text-sm py-1 flex items-start gap-2"><span class="text-cyan-400/60 shrink-0 mt-1">&#8226;</span><span>30-day performance check: rank, impressions, CTR, conversion. Report with recommendations.</span></li>
+</ul>
+        </div>
+<div class="glass-card p-5 mb-3">
+            <h3 class="text-white text-sm font-semibold mb-3">What We Need from You</h3>
+            <div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Responsibility</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Deadline</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Primary point of contact designated</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Before signing</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Seller Central access (read/write)</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Within 3 business days</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Keyword tool access</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Within 3 business days</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Product sheets, brand guidelines, source data</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Within 5 business days</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Deliverable review within stated windows</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Per milestone</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Regulated categories confirmed</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Before ontology mapping</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">Delays from late responses extend timelines. Cumulative delays exceeding 15 business days trigger re-scoping rights.</p>
+        </div>
+<section id="opening-the-terminal" class="reveal">
+            <h2 class="text-gradient-cyan text-xs font-bold uppercase tracking-[.15em] mb-5">Opening the Terminal</h2>
+            <div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Step</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Action</th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4">Timing</th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">1</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Select Option A or Option B. Sign engagement terms.</td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">This week</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">2</td><td class="text-zinc-400 text-xs py-1.5 pr-4">60-minute kickoff: access handoff, category scoping, first client selection</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Within 3 business days</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">3</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Station builds begin. 1A and 1B run in parallel.</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Week 1 post-kickoff</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3"><span class="text-white font-semibold">First stations operational within 3 weeks of kickoff.</span> 30-day commercial performance validation on every deployment.</p>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+<section class="reveal">
+            <div class="gradient-border glass-card p-6">
+                <div class="flex items-center gap-2 mb-4">
+                    <h3 class="text-white text-sm font-semibold mb-3">One Thing to Do This Week — Regardless of This Proposal</h3>
+                </div>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-3">Audit the backend completion rate on your top 10 revenue-generating ASINs across your largest client account. Pull the Category Report, compare populated fields against the category&#x27;s required and recommended attributes. Even partial backend cleanup on high-volume listings produces measurable organic lift within 14 days. This costs nothing and takes an hour. If the results surprise you, it&#x27;ll tell you everything about what&#x27;s happening across the rest of your portfolio.</p>
+<div class="glass-card p-5 overflow-x-auto">
+        <table class="w-full"><thead><tr><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4"></th><th class="text-left text-zinc-500 text-[10px] uppercase pb-2 pr-4"></th></tr></thead><tbody><tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4"><span class="text-white font-semibold">RANK ON AMAZON</span></td><td class="text-zinc-400 text-xs py-1.5 pr-4"><span class="text-white font-semibold">MERIDIAN</span></td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Carl Helgesson, CEO</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Authorized Representative</td></tr>
+<tr class='border-b border-white/5'><td class="text-white text-xs py-1.5 pr-4">Date: _____________</td><td class="text-zinc-400 text-xs py-1.5 pr-4">Date: _____________</td></tr>
+</tbody></table>
+    </div>
+<p class="text-zinc-400 text-sm leading-relaxed mb-3">*This document is confidential and intended solely for the named recipient. It does not constitute a binding agreement. Engagement terms are subject to execution of a formal services agreement or partnership agreement as applicable to the selected option.*</p>
+            </div>
+        </section>
+        <div class="gradient-divider w-3/4"></div>
+        </div>
+    </div>
+
+    <footer class="text-center py-10 border-t border-white/5" style="position:relative;z-index:1">
+        <p class="text-zinc-800 text-xs">MERIDIAN Mesh &mdash; Post-Call Brief</p>
+        <p class="text-zinc-900 text-[10px] mt-1">Generated 2026-04-12</p>
+    </footer>
+    <script>
+lucide.createIcons();
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-link');
+const tocObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            tocLinks.forEach(l => l.classList.remove('active'));
+            const active = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+        }
+    });
+}, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+sections.forEach(s => tocObserver.observe(s));
+const progressBar = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${docHeight > 0 ? scrollTop / docHeight : 0})`;
+}, { passive: true });
+/* Count-up animation for prediction accuracy */
+const countUpObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10) || 0;
+            let current = 0;
+            const duration = 1500;
+            const step = Math.max(1, Math.floor(target / (duration / 16)));
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = current;
+            }, 16);
+            countUpObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.3 });
+document.querySelectorAll('.count-up').forEach(el => countUpObserver.observe(el));
+</script>
+</body>
+</html>
