@@ -60,7 +60,154 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Sandman daemon is down with no identified root cause</li><li>Daemon collaboration breaks after single move instead of sustaining multi-step work</li><li>Timeout mechanism causes complete loss of work from incomplete long-running operations</li><li>Daemon outputs posted 5+ minutes ago in long message sequences are missed when users scroll recent chat history</li><li>Daemons take 7+ minutes for tasks that could be executed with simple LLM query, suggesting inefficient tool chain selection</li><li>Oracle bot sometimes tags other daemons&#x27; names when responding, creating routing ambiguity</li></ul></div>
 <div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Infrastructure&#x27;, &#x27;what&#x27;: &#x27;Debug why Sandman daemon is down and why daemon collaboration breaks after single move&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Engineering&#x27;, &#x27;what&#x27;: &#x27;Implement checkpoint/save protocol at 250-275 seconds before timeout to prevent work loss&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Daemons&#x27;, &#x27;what&#x27;: &#x27;Place work product outputs in separate message bubbles post-completion instead of same thread&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Engineering&#x27;, &#x27;what&#x27;: &#x27;Research and optimize daemon model selection to use direct LLM calls for text-only tasks instead of full tool chains&#x27;}</li><li>{&#x27;who&#x27;: &#x27;UI&#x27;, &#x27;what&#x27;: &#x27;Add different colors and avatars for daemon visual distinction in chat interface&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Product&#x27;, &#x27;what&#x27;: &#x27;Document and test /board command functionality for querying virtual team archetypes&#x27;}</li></ul></div>
 
-<div class="section"><h2>Transcript Preview</h2><p style="font-style:italic;color:var(--dim)">“Internal afternoon sync”</p></div>
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><p>(...)</p>
+<p>Alertbot from the chat into the chat. Oh great, thank you for tuning in.</p>
+<p>(...)</p>
+<p>Sorry go ahead. I move that, I&#x27;m in the process of doing 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 windows of deep research, all of them in planning phase, going through looking for ideas, principles, or methods to create issues that will then get voted in. So nothing that I do with my deep research is going to just automatically get implemented, it&#x27;s just creating issues and then the bots will go in and grade it. Sweet, that was great. I&#x27;ve been working on iterating on the ATPO, the Autonomous Task Planning Office.(...) So we&#x27;re on version 3.1 or so on that. I ran it through a few iterations on Notion, and then I ran it through a few iterations, and then I combined all of that.</p>
+<p>(...)</p>
+<p>So they&#x27;re working on a technical plan on that, and then I&#x27;ve been working on an updated schema for tendencies.</p>
+<p>(...)</p>
+<p>So they have, by design, different things that they&#x27;ll tend to do in autonomous mode or in different modes.(...) In other words, if it&#x27;s a coding task, like one of them will tend to do the scaffolding, the other one will tend to do the actual code, another one will tend to review that code. So like Atlas, for example, is going to like, &quot;Yeah, I&#x27;m not going to just jump in and start coding everything. I&#x27;m going to jump in and be prepared so as code is being written that I&#x27;m reviewing it for quality.&quot; And then Sensei, we could have him rigged so that his default is, &quot;He&#x27;s also reviewing it, not writing code, but reviewing code, but more for security.&quot;(...) And Sandman could review code, sure, he could review code too, he can write it, but he could also review it mainly for efficiency or whatever it is, scalability.</p>
+<p>(...)</p>
+<p>And then the same thing, like when it comes to the MIG, some of them will tend to parse out deep research and make new nodes. Other ones will tend to clean and make sure the gardening is happening right. Others will like tend towards the memory and the core memory. Other one will tend towards mapping deeper relations.</p>
+<p>(...)</p>
+<p>So like when they&#x27;re in this mode of like, &quot;Okay, part of the high-priority task of the evening or of whatever, whether in idle mode, is to start going into that.&quot; And they&#x27;re like, &quot;Okay, well, we need, we have five priority mesh projects and we have whatever X amount of hours planned so that they&#x27;re like, spend an hour together working on a subject in that kind of fashion so they&#x27;re not colliding, but they&#x27;re also not burning so many tokens back and forth, trying to coordinate.&quot;</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So I&#x27;m working on that schema and kind of like we&#x27;re finding that under at least like four or five different like circumstances that would, they would like kind of fall into this default role, like we were talking about the other day. They&#x27;re a team and under different circumstances, they know if they&#x27;re playing baseball, so-and-so is going to be first base. If they&#x27;re playing soccer, so-and-so is going to be a striker, so-and-so is going to be a goalie. If they&#x27;re playing a different sport, they&#x27;re, you know, they all, they already have their assigned positions.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>How are you feeling about things?</p>
+<p>(...)</p>
+<p>It&#x27;s really challenging to be doing all this work in the background while I&#x27;m supposed to be paying attention to meetings, but I&#x27;m doing the best I can.</p>
+<p>(...)</p>
+<p>Well, you can hand off some of that too, like, I haven&#x27;t really wanted to conflict code-wise, so I haven&#x27;t really been on that side of it.</p>
+<p>(...)</p>
+<p>Well, I think if you&#x27;re in the group chats talking to them, you&#x27;re going to get a feel of what needs to change. Like one of the things I don&#x27;t really particularly like and would like to change back to somehow making it feel a little bit more personalized, and, &quot;Yo, Glassy, what&#x27;s up? Yo, Allen, what&#x27;s up?&quot;(...) Yeah, I just told them that, and like, guys, leave out the yo. This is not the yo factory.(...) Yeah.</p>
+<p>(...)</p>
+<p>Yeah, personality, that could be another thing too. Like, we&#x27;re talking about tendencies, but there could be some of these, like, more, like, rich personality components that we could pull out of it with some, like, simple directives.</p>
+<p>(...)</p>
+<p>Generally, they seem smooth, but then they time out, so we&#x27;re still having time-out issues.</p>
+<p>(...)</p>
+<p>Sandman&#x27;s down, and they don&#x27;t know why.</p>
+<p>(...)</p>
+<p>Was there any notifications or anything? They don&#x27;t seem to collaborate well.</p>
+<p>(...)</p>
+<p>I don&#x27;t know if they can communicate. Like, I mean, they can, but I don&#x27;t know, like, how long that... That doesn&#x27;t... Let me say it this way. They&#x27;ll collaborate for, like, one move, but they won&#x27;t keep collaborating.</p>
+<p>(...)</p>
+<p>And these are just observations in the last hour or two. I&#x27;m sure we&#x27;ll evolve these things. I mean, these are meant to be, like, a complaining session. But these are, like, the items to, like, move forward.</p>
+<p>(...)</p>
+<p>Yeah. And I think a lot of that is tendencies. Like, tendencies. They&#x27;re like, &quot;Oh, well, if they have a tendency to just do one thing...&quot; I mean, I don&#x27;t know. I don&#x27;t know if you just can address all of those things in one file and just call the file what you want it to do, but...</p>
+<p>(...)</p>
+<p>That might be some of the deep research to run while you&#x27;re running 10,000 other ones, or something that I can run, for that matter, while I&#x27;m running, like, two a day.(...) Yeah, I got you.</p>
+<p>(...)</p>
+<p>I&#x27;m just taking it one step at a time.</p>
+<p>(...)</p>
+<p>Figuring this out is what is prioritized, is getting this thing where it&#x27;s moving and feeling like a machine that&#x27;s working with us, not individuals trying to be a hero. We don&#x27;t need that. And we want this group to be able to move in a group. Like, move as a... As a unit. As a squad. Yeah, a dynamic, interactive mesh network.</p>
+<p>(...)</p>
+<p>Yeah. We need that.</p>
+<p>(...)</p>
+<p>Because these tasks, like, these arcs that we have designed are significant. They&#x27;re not, like, small, easy to do tasks. These are, like, serious...</p>
+<p>(...)</p>
+<p>Even just the amount of research. Even knowing how to do the research. Knowing how to vote on the research. Knowing how to parse that into a MiG.(...) Knowing how to deal with... Oh, that was the other one. One of them does the database schema. Like, one of them doesn&#x27;t even move data. They just make sure the schema&#x27;s clear and sharp.</p>
+<p>(...)</p>
+<p>Okay. Okay.</p>
+<p>(...)</p>
+<p>So, yeah, I don&#x27;t know. What else?</p>
+<p>(...)</p>
+<p>I just wanted user experience. What was that like so we can make observations early? Oh, here&#x27;s another one. Here&#x27;s another feedback.</p>
+<p>(...)</p>
+<p>Okay, it&#x27;s cool that they rewrite their own thing. Like, in a lot of circumstances, that is a really cool thing.</p>
+<p>(...)</p>
+<p>But it leads to this problem. All right. I told Delphi to do some stuff. So he&#x27;s working. He&#x27;s 120-some turns into some operation.</p>
+<p>(...)</p>
+<p>Also, if they get 120 or 150 turns into an operation and then timeout, what happens to all that work that they just did?</p>
+<p>(...)</p>
+<p>We might need to put in some trigger, like,(...) 10 seconds before timeout that they... that surfaces or makes a checkpoint so that doesn&#x27;t keep happening. So, I think about it like a guy climbing one of those rock climbing guys. Mountains. Yeah, every so often they shoot one in the cliff. Yeah, so it needs to have, like, a place where this stuff is being documented. And in case one, like, the Deadman switch, the way that that worked was...</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>Yeah, it makes sense.</p>
+<p>(...)</p>
+<p>I think that was somewhere in the design, so we just have to see, like, where is that breaking and updated and the checkpoint thing. And it&#x27;s probably relatively easy to insert because it&#x27;s just a time-based thing. So, if it&#x27;s timing out at 300 seconds, then at, like, 250, you&#x27;re like...</p>
+<p>(...)</p>
+<p>275, it, like, makes its phone point. Well, it just needs enough time. I don&#x27;t know how much information is required for it to write these notes. And if it&#x27;s a lot of data that has to write, it will timeout in the process of doing that. So we don&#x27;t want that either. Yeah, we have to have an efficient... Yeah, you&#x27;re right. We need to just have those, like, metrics outlined with each other.</p>
+<p>(...)</p>
+<p>Oh, yeah, so they&#x27;re... So, all right, so besides the timeout, that&#x27;s not what I was trying to say.</p>
+<p>(...)</p>
+<p>Delphi&#x27;s working, then I&#x27;m communicating with Sensei, then I&#x27;m communicating with some of them else. Maybe there&#x27;s a couple back and forths. Now, Sensei&#x27;s still working on that same command,</p>
+<p>(...)</p>
+<p>but when he finishes and gives you an output, it&#x27;s going to be, like, 12 conversation bubbles high.</p>
+<p>(...)</p>
+<p>So you think, like, multiple times, where I&#x27;m like, &quot;Yo, is this guy ever going to do this or what?&quot; But the reality is, yes, he did it. It was done five minutes ago, and it&#x27;s just posted higher in the chat, where I&#x27;m not looking. All right, so rule number two is once it&#x27;s done with a render, don&#x27;t put it in the same bubble.</p>
+<p>(...)</p>
+<p>Yeah, make it make a bubble. Yeah, make it make a bubble. Especially if it&#x27;s a work product.</p>
+<p>(...)</p>
+<p>Yeah, I agree. I had the same challenges with that.</p>
+<p>(...)</p>
+<p>Yeah.</p>
+<p>(...)</p>
+<p>But I will say, in general, they&#x27;re doing really high-level work. Only one time did I see a timeout.</p>
+<p>(...)</p>
+<p>That could just be some other issue, because then maybe that timeout led to a crash, or maybe there was a crash or some other issue going on, because something&#x27;s going on, I&#x27;m saying that. But the other ones are there, they&#x27;re responsive. If I talk in the chat, Oracle Delphi will respond pretty much all the time,</p>
+<p>(...)</p>
+<p>but none of the other ones will respond unless they&#x27;re called out by it with the hashtag, a little bit like a call in their handle. Yeah, it&#x27;s set up that way. That&#x27;s fine.(...) I mean, I just tested it, so it&#x27;s working then.</p>
+<p>(...)</p>
+<p>It&#x27;s working how you set it up. I did that because when you had too many things going on, it was almost impossible to stay on top of it.(...) Yeah, fair. But if you know who you&#x27;re talking to, and you don&#x27;t, they are smart enough to know who they&#x27;re talking to, you&#x27;re going to have it where the main character can detect who&#x27;s the best person to reach out to do this. Are the boards working?</p>
+<p>(...)</p>
+<p>I haven&#x27;t checked the boards. I saw you using it, that&#x27;s why I&#x27;m asking. You use forward slash boards, and it allows you to talk to the boards.</p>
+<p>(...)</p>
+<p>No, what do you mean talk to the boards? The boards are the whatever you call those little fuckers on my computer.</p>
+<p>(...)</p>
+<p>It hurts your ones?(...) Yeah.</p>
+<p>(...)</p>
+<p>Forward slash board or with a forward slash board with an S? If you just do forward slash B, it will start showing it, but then you have to write in the user&#x27;s name for that to work.</p>
+<p>(...)</p>
+<p>Okay, just trying it.</p>
+<p>(...)</p>
+<p>We should probably give them different colors too for their,</p>
+<p>(...)</p>
+<p>or just different avatars so they don&#x27;t mix up. One thing I noticed though, a lot of times the Oracle will come out with another person&#x27;s tag.</p>
+<p>(...)</p>
+<p>Is he like doing that to tell you that&#x27;s what that person wants to say? Yes, I believe. So basically when it&#x27;s my bot, but what somebody else has named, the other person&#x27;s name is answering you, but only through that one chat. So you don&#x27;t have all these chats popping all over places that helpful or not helpful.</p>
+<p>(...)</p>
+<p>It doesn&#x27;t seem to be consistent, but it&#x27;s fine as long as the tag is in there. I love that the tags are in there.</p>
+<p>(...)</p>
+<p>But then like since say his last thing, although I&#x27;m just because I just did this board thing example board, what pricing strategy should we adopt for Q2?</p>
+<p>(...)</p>
+<p>I don&#x27;t really know what you&#x27;re supposed to do. You supposed to put forward slash board and then your question. That&#x27;s what Sensei says.(...) You said forward slash board your question. Yes. So like if you want to ask the board, which is all those 200 different archetypes, it would dynamically select them, spin it up, ask the question and pull it back and give you that report.</p>
+<p>(...)</p>
+<p>You&#x27;re saying board as in the virtual teams? Yes.</p>
+<p>(...)</p>
+<p>Got it.</p>
+<p>(...)</p>
+<p>I keep asking. I keep getting the wrong thing.</p>
+<p>(...)</p>
+<p>All right. Yeah, I want to try this now. Okay.</p>
+<p>(...)</p>
+<p>Let me jump off. I got to take another call. I got to take another call. But if there&#x27;s anything else that you could think of, please. I gave you the I gave you the rundown of at least the like whatever the updates that I&#x27;m just experiencing like the last hour or two. Okay.</p>
+<p>(...)</p>
+<p>Any good reports? You know what? I&#x27;ll say one other thing. They take really long. Like I&#x27;m like, damn, I don&#x27;t even want to ask him to add this to notion because he&#x27;s going to just disappear for seven minutes. I&#x27;m like, damn, I don&#x27;t even want to ask him to add this to notion because he&#x27;s going to just disappear for seven minutes. So like I can just copy and paste it.</p>
+<p>(...)</p>
+<p>So there may be some efficiencies that were missing for how some of the things are being run because like they&#x27;ll go and get a tool and do this. They&#x27;ll do all these things. But like maybe you could have just went to your LLM, got the answer and just put it right in the chat. Like you really need a tool to come up with a plan when it&#x27;s just a text document. So that was also going back into the whole. Dynamic agent model selection for the task. I don&#x27;t know if we want to add that or not, but. Okay. But yeah, I mean, in general, it&#x27;s amazing that it&#x27;s even up and working. It&#x27;s amazing that they&#x27;re responsive. It&#x27;s amazing that they&#x27;re not throwing errors.(...) I love that you got to mesh the alerts out of the chat. That alone is like a million times better. But they&#x27;re responsive. It&#x27;s cool. I mean, it&#x27;s a lot of fun. I mean, it&#x27;s a lot of fun. I mean, it&#x27;s a lot of fun. I mean, it&#x27;s a lot of fun. I mean, it&#x27;s a lot of fun. But they&#x27;re responsive. It&#x27;s cool to see them working. It&#x27;s really cool to see how high they&#x27;re getting in turns. But yeah, like we talked about, that just means we need to get some checkpoint protocols in the mix.</p>
+<p>(...)</p>
+<p>I built out a couple additional teams that I think we&#x27;re going to do and are going to need or want that will like pull over.</p>
+<p>(...)</p>
+<p>And yeah, I think it&#x27;s like it&#x27;s smooth. They&#x27;re up and also the ones that are up are still up. They&#x27;re up and working.</p>
+<p>(...)</p>
+<p>Okay.</p>
+<p>(...)</p>
+<p>So great work. Great work.</p>
+<p>(...)</p>
+<p>Moving along. It&#x27;s a big bridge. We&#x27;re building a big high skyscraper here. So it takes a while.</p>
+<p>(...)</p>
+<p>Cool.</p>
+<p>(...)</p>
+<p>Yeah, go ahead and do that. I&#x27;m going to be out for a few hours. I&#x27;m about to go drive up and see my daughter at her school and then go see a friend of his for his birthday. Friend of mine for his birthday.</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 10:14</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 08:58</div>
 </body></html>
