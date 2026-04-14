@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T03:12:12.295632+00:00",
+  "generated_at": "2026-04-14T03:18:08.039235+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-14T03:12:11.835136+00:00",
+      "updated_at": "2026-04-14T03:18:07.787806+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1297,6 +1297,26 @@
           "buying_signal_count": 0,
           "sentiment": "neutral",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "rankona-mazon",
+          "call_id": "pdr-remaining-work",
+          "title": "pdr-remaining-work",
+          "file": "clients/rankona-mazon/signals/deal-signals-pdr-remaining-work-2026-04-14.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -2790,14 +2810,14 @@
       ],
       "call_volume": {
         "unknown": 11,
-        "rankona-mazon": 7,
+        "rankona-mazon": 8,
         "omar": 1,
         "meridian-internal": 30,
         "mbm": 33,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 90,
+      "total_signals": 91,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3048,6 +3068,13 @@
           "pid": "17340",
           "terminal": "ttys198",
           "launched": "2026-04-14T03:08",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "90574",
+          "terminal": "ttys215",
+          "launched": "2026-04-14T03:16",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
@@ -3399,7 +3426,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-14T03:12:11.848914+00:00",
+      "updated_at": "2026-04-14T03:18:07.804267+00:00",
       "open_issues": "GitHub issues query failed or gh CLI unavailable",
       "recent_issues": [],
       "issues_by_project": {},
@@ -3415,7 +3442,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "members": [
         {
           "id": "alex",
@@ -3486,7 +3513,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "projects": [
         {
           "project": {
@@ -3916,7 +3943,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -4001,7 +4028,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -4098,7 +4125,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -4600,6 +4627,83 @@
           ],
           "detail_page": "calls/2026-04-14-pdr-work-completed.html",
           "preview": "A 3-version PDR (Product Design/Requirements Review) for the Rankona Mazon terminal buildout was completed, covering an 8-station metro architecture, coherence audit, and codebase evidence verification."
+        },
+        {
+          "date": "2026-04-14",
+          "title": "Pdr Remaining Work",
+          "type": "external",
+          "file": "clients/rankona-mazon/pdr-remaining-work.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "A project punch list for the Rankona Mazon terminal buildout outlines 9 human-action blockers, 7 technical pre-work items, and a 438.5-hour execution plan needed to advance the project coherence score from 0.79 to 0.95+.",
+          "decisions": [
+            "Exclusivity boundary proposed: ontology mappings, knowledge graph content, and competitive intel from Rankona's data are exclusive; code, framework, and patterns are shared with JV channel clients.",
+            "Measurable sales lift is defined as a >=5% increase in sessions or units ordered per optimized ASIN over a rolling 14-day window vs baseline.",
+            "Delphi utilization allocation determines delivery timeline: 100% = ~55 days, 50% = ~110 days, 30% = ~183 days, and the chosen percentage must be communicated to Carl."
+          ],
+          "commitments": [
+            "Carl to start SP-API registration immediately (2-14 day Amazon approval wait makes this a critical path item with no deadline slack).",
+            "Jennifer to log into Seller Central and run account health check on the 43K SKU horse equipment account before bulk upload work begins.",
+            "Operator (Alexander) to provision SSH key access to 100.97.248.107, which blocks all technical execution.",
+            "Alexander and Carl to sign a contract defining scope boundary, profit share mechanics, and exclusivity before PDR can reach 0.95 coherence.",
+            "Delphi to begin Tier 2 pre-work (~19.5 hours, tasks T1\u2013T7) immediately while human-action blockers are being resolved.",
+            "Carl and Sander to obtain shareholder approval for Option B (JV/partnership) terms before invoicing the setup fee (no timeline given)."
+          ],
+          "discoveries": [
+            "14 claims in the evidence audit are currently unverified because deal terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) are sourced from a call transcript, not a signed legal document.",
+            "SP-API registration is on the critical path to first revenue and has a 2-14 day external approval wait, making it the highest-urgency action item for Carl.",
+            "Writing cursor agent specs for mechanical tasks is estimated to save ~100 net hours after coordination overhead, representing a significant leverage point.",
+            "Groq throughput at 100 calls/min is documented but unproven with Amazon-domain prompts at scale \u2014 only verifiable during the 1A-4 build phase."
+          ],
+          "action_items": [
+            {
+              "who": "Alexander",
+              "what": "Sign contract with scope boundary covering what $4,500/mo includes, profit share mechanics, and whether post-launch maintenance is included or billed separately."
+            },
+            {
+              "who": "Alexander",
+              "what": "Decide and communicate to Carl what percentage of Delphi's time is allocated to Rankona vs the #1850 Knowledge Extraction Marathon."
+            },
+            {
+              "who": "Alexander",
+              "what": "Verify deal terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) against a term sheet or signed agreement."
+            },
+            {
+              "who": "Alexander + Carl",
+              "what": "Define exclusivity in the contract \u2014 specifically what is exclusive to Rankona vs. available to JV channel clients \u2014 before the first JV client onboards in the same category."
+            },
+            {
+              "who": "Carl",
+              "what": "Register Amazon Developer account and submit SP-API app for approval immediately, as the 2-14 day wait is on the critical path."
+            },
+            {
+              "who": "Carl",
+              "what": "Confirm whether Humble Group acquisition intent is active or speculative, and provide an estimated timeline if available."
+            },
+            {
+              "who": "Carl + Sander",
+              "what": "Obtain shareholder approval for Option B (JV/partnership) terms to unblock revenue activation and invoicing."
+            },
+            {
+              "who": "Jennifer",
+              "what": "Log into Seller Central, check for active performance notifications, ASIN suppressions, and open policy cases on the 43K SKU horse equipment account, and report findings."
+            },
+            {
+              "who": "Jennifer",
+              "what": "Export the 43K SKU category report needed for the category report parser (task 1A-2)."
+            },
+            {
+              "who": "Operator",
+              "what": "Provision SSH key access to 100.97.248.107 and confirm with a successful hostname test \u2014 this is the single blocker on all technical execution."
+            },
+            {
+              "who": "Delphi",
+              "what": "Begin Tier 2 pre-work: design Neo4j category ontology schema (T1), document COSMO/Rufus attribute priority list (T2), write cursor agent specs for all M-classified tasks (T3), and complete remaining design tasks T4\u2013T7."
+            }
+          ],
+          "detail_page": "calls/2026-04-14-pdr-remaining-work.html",
+          "preview": "A project punch list for the Rankona Mazon terminal buildout outlines 9 human-action blockers, 7 technical pre-work items, and a 438.5-hour execution plan needed to advance the project coherence score from 0.79 to 0.95+."
         },
         {
           "date": "2026-04-03",
@@ -7878,15 +7982,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 83,
+        "total_calls": 84,
         "internal_calls": 39,
-        "external_calls": 23,
+        "external_calls": 24,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-14T03:12:12.256340+00:00",
+      "updated_at": "2026-04-14T03:18:07.960781+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -9894,7 +9998,7 @@
       "total_docs": 332
     },
     "deals": {
-      "updated_at": "2026-04-14T03:12:12.256474+00:00",
+      "updated_at": "2026-04-14T03:18:07.960914+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -10136,7 +10240,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-14T03:12:11.848935+00:00",
+      "updated_at": "2026-04-14T03:18:07.804298+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -28922,6 +29026,706 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-14T03:14:57.314182+00:00",
+          "transcript_file": "clients/rankona-mazon/pdr-remaining-work.md",
+          "transcript_length": 12471,
+          "classification": {
+            "error": "not_a_call_transcript",
+            "note": "Input is an internal work planning document, not a call transcript. No dialogue, participants, or conversation present.",
+            "best_fit_if_forced": "internal"
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "id": "H1",
+                  "title": "Signed Contract with Scope Boundary",
+                  "owner": "Alexander + Carl",
+                  "deadline": "UNSET",
+                  "priority": "CRITICAL",
+                  "blocks": [
+                    "Evidence grounding",
+                    "Completeness",
+                    "H2 (Exclusivity)"
+                  ],
+                  "details": "Define $4,500/mo scope, profit share mechanics (baseline + 20% above measure), post-launch maintenance budget"
+                },
+                {
+                  "id": "H2",
+                  "title": "Exclusivity Definition (Gate G0.1)",
+                  "owner": "Alexander + Carl",
+                  "deadline": "Before first JV channel client in same category",
+                  "priority": "HIGH",
+                  "depends_on": [
+                    "H1"
+                  ],
+                  "details": "Written boundary: Rankona data-derived assets (ontology, knowledge graph, intel) exclusive; code/framework/patterns shared"
+                },
+                {
+                  "id": "H3",
+                  "title": "Amazon Account Health Check (P0-15a)",
+                  "owner": "Jennifer",
+                  "deadline": "UNSET",
+                  "priority": "P0",
+                  "blocks": [
+                    "Bulk upload phase"
+                  ],
+                  "details": "Log into Seller Central: check ASIN suppressions, policy cases, performance warnings. Halt if active warnings."
+                },
+                {
+                  "id": "H4",
+                  "title": "Humble Group Acquisition Confirmation",
+                  "owner": "Carl",
+                  "deadline": "UNSET",
+                  "priority": "MEDIUM",
+                  "details": "Confirm acquisition intent is active (not speculative) + estimated timeline"
+                },
+                {
+                  "id": "H5",
+                  "title": "Delphi Utilization Allocation Decision",
+                  "owner": "Alexander (Operator)",
+                  "deadline": "ASAP",
+                  "priority": "CRITICAL",
+                  "blocks": [
+                    "Realistic delivery timeline"
+                  ],
+                  "options": [
+                    {
+                      "allocation": "100%",
+                      "duration": "55 working days"
+                    },
+                    {
+                      "allocation": "50%",
+                      "duration": "110 working days (5.5 months)"
+                    },
+                    {
+                      "allocation": "30%",
+                      "duration": "183 working days (9 months)"
+                    }
+                  ],
+                  "details": "Decision drives timeline for entire Tier 3 execution phase"
+                },
+                {
+                  "id": "H6",
+                  "title": "Revenue Term Verification",
+                  "owner": "Alexander",
+                  "deadline": "UNSET",
+                  "priority": "HIGH",
+                  "blocks": [
+                    "14 unverified claims in evidence audit"
+                  ],
+                  "details": "Verify terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) against signed legal document, not call transcript"
+                },
+                {
+                  "id": "H7",
+                  "title": "SSH Key Provisioning (Gate G0)",
+                  "owner": "Operator (Alexander)",
+                  "deadline": "ASAP - CRITICAL PATH",
+                  "priority": "CRITICAL",
+                  "blocks": [
+                    "ALL technical work in Tier 3"
+                  ],
+                  "details": "Provision access to 100.97.248.107 (Bitler location). Marked as 'single hardest blocker in entire project'"
+                },
+                {
+                  "id": "H8",
+                  "title": "SP-API Credentials Registration (Gate G0.5)",
+                  "owner": "Carl",
+                  "deadline": "ASAP - parallel with H7",
+                  "priority": "CRITICAL",
+                  "wait_time": "2-14 days for Amazon approval",
+                  "blocks": [
+                    "Bulk upload engine (1A-6 through 1A-8)",
+                    "Localization uploads"
+                  ],
+                  "details": "Register dev account, app, submit for approval, obtain refresh token. START IMMEDIATELY."
+                },
+                {
+                  "id": "H9",
+                  "title": "Shareholder Approval (Gate G2)",
+                  "owner": "Carl + Sander + shareholders",
+                  "deadline": "UNKNOWN",
+                  "priority": "HIGH",
+                  "blocks": [
+                    "Revenue activation",
+                    "Invoicing setup fee"
+                  ],
+                  "details": "Approve Option B (JV/partnership) terms. Status unknown, no timeline on call."
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Critical blocker (SSH access) lacks defined ownership timeline",
+                  "impact": "All technical execution blocked indefinitely",
+                  "severity": "CRITICAL",
+                  "resolution": "Assign deadline and escalate to operator"
+                },
+                {
+                  "gap": "SP-API approval wait time (2-14 days) not integrated into critical path planning",
+                  "impact": "Bulk upload phase may slip if approval delayed",
+                  "severity": "HIGH",
+                  "resolution": "Start H8 immediately in parallel with H7"
+                },
+                {
+                  "gap": "Revenue terms only documented in call transcript, not signed contract",
+                  "impact": "14 evidence audit claims unverified; legal risk on invoicing",
+                  "severity": "HIGH",
+                  "resolution": "Move transcript claims to signed term sheet (H6)"
+                },
+                {
+                  "gap": "Delphi allocation (H5) not formally decided; delivery timeline is 3x range (55\u2013183 days)",
+                  "impact": "Cannot commit realistic timeline to Carl without allocation decision",
+                  "severity": "CRITICAL",
+                  "resolution": "Alexander makes H5 decision and communicates to Carl"
+                },
+                {
+                  "gap": "Shareholder approval (H9) status unknown with no timeline",
+                  "impact": "Gate G2 (revenue activation) may be orphaned",
+                  "severity": "MEDIUM",
+                  "resolution": "Carl provides shareholder status + ETA"
+                },
+                {
+                  "gap": "Account health check (H3) must precede bulk uploads but no gating defined",
+                  "impact": "Risk of uploading to account with active warnings",
+                  "severity": "MEDIUM",
+                  "resolution": "Add H3 check as blocking requirement for 1A-6"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "phase": "Tier 1 (Human Actions Blockers)",
+                  "estimated_duration": "UNSET - depends on H5, H7, H8, H9",
+                  "realistic": false,
+                  "rationale": "No deadlines assigned; critical path (SSH + SP-API) has no ETA. H5 (allocation) drives entire schedule but not decided."
+                },
+                {
+                  "phase": "Tier 2 (Pre-Work Technical)",
+                  "estimated_hours": "~20\u201330 hours total",
+                  "estimated_duration": "1\u20132 weeks (if sequential)",
+                  "realistic": true,
+                  "note": "Can run in parallel with Tier 1 blockers. Includes cursor agent specs (8 hrs) + schema design (4 hrs) + config setup (0.5 hrs)"
+                },
+                {
+                  "phase": "Tier 3 (Full PDR Execution)",
+                  "estimated_hours": "438.5 hours",
+                  "delivery_scenarios": [
+                    {
+                      "delphi_allocation": "100%",
+                      "duration": "55 working days (~11 weeks)",
+                      "realistic": "Aspirational - would need exclusive focus"
+                    },
+                    {
+                      "delphi_allocation": "50%",
+                      "duration": "110 working days (~5.5 months)",
+                      "realistic": "Realistic - balances with #1850"
+                    },
+                    {
+                      "delphi_allocation": "30%",
+                      "duration": "183 working days (~9 months)",
+                      "realistic": "Conservative - long delivery window"
+                    }
+                  ],
+                  "critical_path": "H7 (SSH) \u2192 H8 (SP-API approval) \u2192 1A-6 (bulk uploads) \u2192 subsequent stations",
+                  "gate_blockers": [
+                    "G0 (SSH)",
+                    "G0.1 (Exclusivity)",
+                    "G0.5 (SP-API)",
+                    "G2 (Shareholder approval)"
+                  ]
+                },
+                {
+                  "timeline_assessment": "NOT REALISTIC",
+                  "reasons": [
+                    "H5 allocation not decided \u2014 3.3x variance in duration (55\u2013183 days)",
+                    "H7 (SSH) has no deadline or ETA",
+                    "H8 (SP-API) has 2\u201314 day external dependency not in planning",
+                    "H9 (Shareholder approval) status/timing unknown",
+                    "No Gantt or critical path visualization provided"
+                  ]
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "SSH access to 100.97.248.107",
+                  "owner": "Operator (Alexander)",
+                  "criticality": "BLOCKING - all technical work",
+                  "type": "Infrastructure",
+                  "status": "PENDING"
+                },
+                {
+                  "resource": "SP-API credentials + refresh token",
+                  "owner": "Carl",
+                  "criticality": "BLOCKING - bulk upload engine",
+                  "type": "External credential",
+                  "external_dependency": "Amazon Developer approval (2\u201314 days)",
+                  "status": "NOT STARTED"
+                },
+                {
+                  "resource": "Delphi's allocated time (% of capacity)",
+                  "owner": "Alexander",
+                  "criticality": "DRIVES delivery timeline",
+                  "type": "Personnel allocation",
+                  "ranges": [
+                    "30% (~183 days)",
+                    "50% (~110 days)",
+                    "100% (~55 days)"
+                  ],
+                  "status": "UNDECIDED"
+                },
+                {
+                  "resource": "Shareholder approval (Option B terms)",
+                  "owner": "Carl + shareholders",
+                  "criticality": "Gate G2 - revenue activation",
+                  "type": "Governance",
+                  "status": "UNKNOWN"
+                },
+                {
+                  "resource": "Cursor agent specs (12 M-classified tasks)",
+                  "owner": "Delphi",
+                  "criticality": "HIGH - unlocks 100+ hours of automation",
+                  "type": "Technical specification",
+                  "depends_on": [
+                    "T1 (schema design)"
+                  ],
+                  "status": "BLOCKED by SSH access"
+                },
+                {
+                  "resource": "Category ontology schema (Neo4j design)",
+                  "owner": "Delphi",
+                  "criticality": "Foundation for all downstream work",
+                  "type": "Technical design",
+                  "hours": "4",
+                  "status": "CAN START NOW"
+                }
+              ],
+              "dependencies": [
+                {
+                  "from": "H1 (Signed Contract)",
+                  "to": "H2 (Exclusivity Definition)",
+                  "type": "Gate",
+                  "note": "Exclusivity language goes into contract"
+                },
+                {
+                  "from": "H2 (Exclusivity)",
+                  "to": "JV channel client onboarding",
+                  "type": "Gate",
+                  "note": "Must be finalized before first JV partner"
+                },
+                {
+                  "from": "H5 (Delphi Allocation)",
+                  "to": "Realistic delivery timeline",
+                  "type": "Constraint",
+                  "note": "3.3x variance: determines whether project is 55 days or 183 days"
+                },
+                {
+                  "from": "H7 (SSH Access)",
+                  "to": "ALL Tier 3 execution",
+                  "type": "Gate",
+                  "criticality": "BLOCKING",
+                  "note": "Single hardest blocker in entire project"
+                },
+                {
+                  "from": "H8 (SP-API Credentials)",
+                  "to": "1A-6 (Bulk upload engine)",
+                  "type": "Gate",
+                  "wait_time": "2\u201314 days for Amazon approval",
+                  "note": "Must start in parallel with H7 to not compound delay"
+                },
+                {
+                  "from": "H3 (Account Health Check)",
+                  "to": "1A-6 (Bulk upload)",
+                  "type": "Gate",
+                  "note": "Must clear before uploading to account"
+                },
+                {
+                  "from": "H6 (Revenue Term Verification)",
+                  "to": "14 evidence audit claims",
+                  "type": "Dependency",
+                  "note": "Claims currently unverified (transcript-only)"
+                },
+                {
+                  "from": "H9 (Shareholder Approval)",
+                  "to": "G2 (Revenue activation gate)",
+                  "type": "Gate",
+                  "note": "Revenue invoicing blocked until approved"
+                },
+                {
+                  "from": "T1 (Schema Design)",
+                  "to": "T3 (Cursor Agent Specs)",
+                  "type": "Dependency",
+                  "note": "Schema informs all M-task specifications"
+                },
+                {
+                  "from": "T3 (Cursor Agent Specs)",
+                  "to": "~100 hours of Tier 3 automation",
+                  "type": "Enabler",
+                  "note": "Specs unlock delegation to cursor agents"
+                },
+                {
+                  "from": "Coherence score 0.79 \u2192 0.95",
+                  "to": "PDR launch approval",
+                  "type": "Gate",
+                  "note": "All 6 Tier 1 items must complete to reach 0.95"
+                }
+              ]
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Neo4j schema design for Amazon category taxonomy (node types, relationships, constraints)",
+                "Amazon SP-API integration with refresh token handling and bulk upload engine",
+                "COSMO/Rufus attribute mapping engine (15 critical backend attributes for Rankona)",
+                "Category report parser for CSV/TSV ingestion",
+                "Flat file fallback generator for SP-API failures",
+                "Review and Q&A web scraper with approval workflow tracker",
+                "Product sheet ingestion pipeline",
+                "Market intelligence dashboard with competitor tracking",
+                "Competitive shift alert system (real-time monitoring)",
+                "Multi-client performance dashboard (for JV channel visibility)",
+                "Client-facing report generator with custom templates",
+                "Telegram bot integration with role-based command vocabulary (@RankonaBot)",
+                "Alert pipeline: NATS \u2192 Telegram routing",
+                "Blue-green deployment system for zero-downtime updates",
+                "Instance configuration template (config/rankona-mazon-01.yaml)",
+                "Health check automation for 43K SKU account monitoring",
+                "MERIDIAN daemon integration for Rankona instance"
+              ],
+              "integrations": [
+                "Amazon SP-API (Selling Partner API) \u2014 requires Developer account + app approval (2-14 day wait)",
+                "Amazon Seller Central dashboard \u2014 account health checks, performance notifications",
+                "Amazon Browse Tree Guide \u2014 category taxonomy reference",
+                "Amazon COSMO engine \u2014 backend attribute optimization",
+                "Amazon Rufus AI \u2014 feeds from COSMO attributes",
+                "NATS messaging bus \u2014 alert routing (existing MERIDIAN infrastructure)",
+                "Neo4j database \u2014 category ontology storage",
+                "Telegram Bot API \u2014 command interface for Carl/Jennifer/Johan",
+                "Cursor agent framework \u2014 mechanical task automation (11 agent specs)",
+                "GitHub \u2014 PDR version control, task tracking"
+              ],
+              "security_compliance": [
+                "Amazon Seller Central Terms of Service compliance audit (automated attribute policies, bulk upload restrictions, API usage terms)",
+                "SP-API approval process \u2014 Amazon vetting required",
+                "SSH key provisioning and access control to 100.97.248.107 (Bitler location)",
+                "Role-based access control for Telegram bot (Carl, Jennifer, Johan command authorization)",
+                "Profit share mechanics tracking (baseline definition, measurement window, calculation method)",
+                "Exclusivity definition \u2014 IP ownership boundary (Rankona-exclusive: ontology mappings + knowledge graph; shared: code + patterns)",
+                "Account health warnings resolution before bulk uploads proceed",
+                "Post-launch maintenance service level (8-14 hrs/month \u2014 billed separately or included?)"
+              ],
+              "build_vs_buy": [
+                {
+                  "component": "Amazon SP-API integration",
+                  "decision": "BUY/INTEGRATE",
+                  "reasoning": "Proprietary Amazon API \u2014 no alternative, required for bulk upload and attribute sync"
+                },
+                {
+                  "component": "Category ontology schema + Neo4j model",
+                  "decision": "BUILD",
+                  "reasoning": "Custom to Rankona's 43K SKU product catalog; competitive advantage; foundational for all downstream stations"
+                },
+                {
+                  "component": "COSMO/Rufus attribute mapping",
+                  "decision": "BUILD",
+                  "reasoning": "Jennifer's 15 critical attributes are Rankona-specific; requires reverse-engineering Amazon backend behavior"
+                },
+                {
+                  "component": "Cursor agent automation (11 specs)",
+                  "decision": "BUILD",
+                  "reasoning": "Leverage existing MERIDIAN cursor agent framework; 100+ hours saved vs. manual task execution"
+                },
+                {
+                  "component": "Telegram bot integration",
+                  "decision": "BUILD",
+                  "reasoning": "Custom role-based vocabulary; integrates with MERIDIAN daemon infrastructure"
+                },
+                {
+                  "component": "Blue-green deployment",
+                  "decision": "BUILD (reuse existing pattern)",
+                  "reasoning": "MERIDIAN already has blue-green deploy framework; clone and customize for Rankona"
+                },
+                {
+                  "component": "Market intelligence + competitive tracking dashboards",
+                  "decision": "BUILD",
+                  "reasoning": "Competitive differentiation; custom to Rankona's market (horse equipment)"
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "SSH access to 100.97.248.107 (Gate G0) \u2014 single hardest blocker",
+                  "severity": "CRITICAL",
+                  "mitigation": "Test ssh root@100.97.248.107 'hostname' before proceeding; blocks ALL technical execution"
+                },
+                {
+                  "risk": "SP-API approval timeline (2-14 days) \u2014 parallel wait with SSH provisioning",
+                  "severity": "HIGH",
+                  "mitigation": "Initiate registration immediately; parallel with Tier 2 work; approval gate (G0.5)"
+                },
+                {
+                  "risk": "Amazon account health warnings unknown \u2014 may block bulk uploads",
+                  "severity": "HIGH",
+                  "mitigation": "H3: Jennifer logs into Seller Central, checks notifications/suppressions/cases before bulk planning"
+                },
+                {
+                  "risk": "Operator allocation conflict \u2014 Rankona vs #1850 Knowledge Extraction Marathon",
+                  "severity": "HIGH",
+                  "impact": "Affects timeline: 100% = 55 days (aspirational), 50% = 110 days, 30% = 183 days",
+                  "mitigation": "H5: Operator decides allocation % and communicates to Carl"
+                },
+                {
+                  "risk": "Unverified deal terms block evidence grounding (14 claims)",
+                  "severity": "MEDIUM-HIGH",
+                  "impact": "PDR coherence score capped at 0.79; targets 0.95+",
+                  "mitigation": "H6: Verify $4,500/mo + 20% profit share + 50/50 exit terms against signed agreement, not call transcript"
+                },
+                {
+                  "risk": "Shareholder approval status unknown (Gate G2) \u2014 blocks revenue activation",
+                  "severity": "MEDIUM",
+                  "impact": "Cannot invoice setup fee or margin share",
+                  "mitigation": "H9: Carl + shareholders vote on Option B (JV/partnership) terms; timeline unknown"
+                },
+                {
+                  "risk": "Exclusivity definition not contractually bound (Gate G0.1)",
+                  "severity": "MEDIUM",
+                  "impact": "Ambiguity on IP ownership when JV channel onboards same-category clients",
+                  "mitigation": "H2: Lock written definition (ontology/KG = exclusive, code = shared) before first JV client in category"
+                },
+                {
+                  "risk": "Humble Group acquisition timeline unconfirmed (Perspective 8)",
+                  "severity": "LOW-MEDIUM",
+                  "impact": "Transferability grounding; exit assumptions unverified",
+                  "mitigation": "H4: Carl confirms acquisition intent is active; provides estimated timeline"
+                },
+                {
+                  "risk": "Post-launch maintenance burden (8-14 hrs/month) unbudgeted",
+                  "severity": "MEDIUM",
+                  "impact": "Profitability margins may not reflect ongoing support costs",
+                  "mitigation": "H1: Contract must clarify if $4,500/mo includes maintenance or billed separately"
+                },
+                {
+                  "risk": "43K SKU horse equipment account \u2014 actual health unknown",
+                  "severity": "MEDIUM",
+                  "impact": "May have active ASIN suppressions, policy cases, or performance warnings blocking uploads",
+                  "mitigation": "H3: Jennifer checks Seller Central for active notifications before upload planning"
+                },
+                {
+                  "risk": "Multiple cursor agent specifications needed (11 agents) \u2014 coordination overhead",
+                  "severity": "LOW",
+                  "impact": "100+ hours saved but requires detailed prompt engineering; risk of over-spec or under-spec",
+                  "mitigation": "T3: Delphi writes detailed specs after schema design (T1) complete; each spec detailed enough for dispatch without follow-up"
+                },
+                {
+                  "risk": "Schema design (T1) is foundational \u2014 all downstream stations depend on it",
+                  "severity": "MEDIUM",
+                  "impact": "Mistakes in category ontology cascade through bulk upload, attributes, dashboards",
+                  "mitigation": "T1: Design reviewed against Amazon Browse Tree Guide before implementation"
+                },
+                {
+                  "risk": "Integration complexity \u2014 MERIDIAN daemon architecture + Amazon APIs + Telegram + Neo4j",
+                  "severity": "MEDIUM",
+                  "impact": "System complexity increases test surface area; deployment risk",
+                  "mitigation": "Blue-green deployment + rollback capability mandatory (T7); instance config template (T4) for reproducibility"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "Contract Scope Definition Required",
+                  "context": "Currently undefined: does $4,500/month cover Stations 1A+1B only or all 8 stations? Does it include post-launch maintenance (8-14 hrs/mo)?",
+                  "stakes": "Blocks evidence grounding (+0.08) and completeness (+0.05) on coherence score. Legal gaps in revenue terms currently unverified against signed agreement.",
+                  "owner": "Alexander + Carl",
+                  "blocker_level": "H1 \u2014 Human Action Required"
+                },
+                {
+                  "decision": "Exclusivity Boundary (IP Partitioning)",
+                  "context": "What can Rankona claim exclusively vs. what's shared with JV channel clients? Suggested: ontology/knowledge/competitive intel = exclusive; code/framework = shared.",
+                  "stakes": "Must be locked before first JV channel client in same category onboards. Resolves internal dissonance D4.",
+                  "owner": "Alexander + Carl",
+                  "blocker_level": "H2 \u2014 Gate G0.1"
+                },
+                {
+                  "decision": "Delphi Time Allocation (Resource Bottleneck)",
+                  "context": "What % of Delphi's capacity goes to Rankona vs. #1850 Knowledge Extraction? Directly determines delivery timeline: 100%=55 days, 50%=110 days, 30%=183 days.",
+                  "stakes": "Carl needs this number communicated immediately to set customer expectations. Current estimate assumes 100% (unrealistic if shared resource).",
+                  "owner": "Operator (Alexander)",
+                  "blocker_level": "H5 \u2014 Reality Match (+0.03 coherence)"
+                },
+                {
+                  "decision": "Humble Group Acquisition Status",
+                  "context": "Is this active acquisition or speculative? What's the timeline? Affects whether Rankona is an acquirer, transferability assessment, and channel dynamics.",
+                  "stakes": "Grounds Perspective 8 on coherence audit. Unverified claim 36.",
+                  "owner": "Carl",
+                  "blocker_level": "H4 \u2014 Evidence Grounding"
+                },
+                {
+                  "decision": "Shareholder Approval (Option B Terms)",
+                  "context": "Shareholders must approve JV/partnership structure. Status and timeline unknown.",
+                  "stakes": "Blocks revenue activation and setup fee invoicing (Gate G2). No timeline provided.",
+                  "owner": "Carl + Sander + other shareholders",
+                  "blocker_level": "H9 \u2014 Gate G2"
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "SP-API Bulk Upload Automation at Scale",
+                  "scale": "43K SKU horse equipment account \u2014 one of largest categories on Amazon",
+                  "leverage": "Buildout includes localization uploads, category mapping, attribute optimization for Rufus/COSMO AI discovery engine",
+                  "timeline": "Dependent on H8 (SP-API credentials approval: 2-14 days from Amazon)",
+                  "strategic_value": "Positions Rankona as automated inventory management player; replicable pattern for JV channel clients"
+                },
+                {
+                  "opportunity": "Productized Knowledge Graph / Ontology for Amazon Sellers",
+                  "what": "Category taxonomy, attribute mapping, competitive intelligence extraction \u2014 the T1 schema work becomes an asset",
+                  "channels": "JV channel clients in same/adjacent categories could license ontology ($X/mo) without rebuilding",
+                  "margin": "Ontology work is front-loaded; distribution is near-zero marginal cost",
+                  "coherence_lift": "Locks in repeatability narrative"
+                },
+                {
+                  "opportunity": "Market Intelligence Edge (Rufus-Optimized Attributes)",
+                  "insight": "Jennifer identified 15 critical COSMO backend attributes that feed Amazon's Rufus AI. Optimizing Rankona's product feed for these directly improves search ranking and visibility.",
+                  "leverage": "Not just Rankona's 43K SKUs \u2014 this becomes competitive intel product for JV channel",
+                  "timeline": "T2 (2 hours research) can document these immediately"
+                },
+                {
+                  "opportunity": "Profit Share Upside Structure",
+                  "terms": "20% above baseline + 50/50 on exits above $25M",
+                  "unlock": "If Rankona scales to $25M+ exit, MERIDIAN owns 50% of that upside \u2014 multi-million dollar outcome potential",
+                  "condition": "Requires staying power + Delphi resource commitment to see it through"
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "SSH Access Gate (G0) \u2014 Single Point of Failure",
+                  "severity": "CRITICAL",
+                  "description": "Provisioning access to 100.97.248.107 (Bitler location) is explicitly called 'the single hardest blocker in the entire project.' All technical work (Tier 3 = 438.5 hours) cannot start without this.",
+                  "blocker": "H7 \u2014 requires operator (Alexander) to execute",
+                  "mitigation": "Start immediately in parallel with other Tier 1 items. Currently at G0 gate."
+                },
+                {
+                  "threat": "SP-API Approval Timeline Slip",
+                  "severity": "HIGH",
+                  "description": "Amazon approval for SP-API access takes 2-14 days. Any slip here cascades to bulk upload engine (Stations 1A-6 through 1A-8).",
+                  "blocker": "H8 \u2014 Carl must register developer account and submit for approval",
+                  "mitigation": "Start immediately. This should have been started weeks ago."
+                },
+                {
+                  "threat": "Amazon Account Health Issues Undiagnosed",
+                  "severity": "HIGH",
+                  "description": "Jennifer has not checked Seller Central for active suppressions, ASIN suppressions, or open policy cases. If any exist, bulk upload plans halt until resolved.",
+                  "blocker": "H3 \u2014 Jennifer must run account health check",
+                  "impact": "Could delay entire project by weeks if account has active warnings"
+                },
+                {
+                  "threat": "Scope Creep (Jennifer's Wish List Undefined)",
+                  "severity": "MEDIUM",
+                  "description": "PPC, account health, image QA are mentioned but not defined as in-scope or out-of-scope for $4,500/month contract.",
+                  "impact": "If included, could balloon timeline and cost; if excluded, risks customer dissatisfaction post-launch",
+                  "blocker": "H1 \u2014 contract scope definition needed"
+                },
+                {
+                  "threat": "Revenue Terms Unverified",
+                  "severity": "HIGH",
+                  "description": "Deal terms ($4,500/mo, 20% profit share, 50/50 above $25M) are currently referenced from call transcript only, not a signed legal document. 14 evidence audit claims depend on this.",
+                  "blocker": "H6 \u2014 Alexander must verify against signed agreement",
+                  "impact": "Entire PDR evidence audit is grounded on unverified claims"
+                },
+                {
+                  "threat": "Shareholder Approval Timeline Unknown",
+                  "severity": "MEDIUM",
+                  "description": "Gate G2 (shareholder approval for Option B terms) status is unknown, no timeline provided. This blocks revenue activation.",
+                  "blocker": "H9 \u2014 Carl must drive approval or provide status",
+                  "impact": "Could delay invoicing and cash flow"
+                },
+                {
+                  "threat": "Coherence Gap (0.79 \u2192 0.95 Required)",
+                  "severity": "MEDIUM",
+                  "description": "Current coherence score is 0.79; target is 0.95+. Without all 6 Tier 1 human actions, PDR cannot reach required confidence level.",
+                  "gap_analysis": "8 named gaps, 3 CRITICAL, 5 recommended actions, multiple blind spots identified",
+                  "impact": "If we ship at 0.79, we ship knowing there are unresolved risks"
+                }
+              ],
+              "commitments": [
+                {
+                  "commitment": "Delphi Delivery Timeline (Once Utilization Set)",
+                  "terms": "Once allocation % is set, this becomes an implicit timeline commitment to Carl and the customer",
+                  "current_range": "55 days (100%) to 183 days (30%)",
+                  "owner": "Delphi / Alexander",
+                  "track_in": "TEAM_STATE.md, GitHub issue timeline"
+                },
+                {
+                  "commitment": "$4,500/month Service Delivery",
+                  "terms": "Pricing and scope must be locked in signed contract",
+                  "undefined": "What exactly is included (Stations 1A+1B vs all 8?), post-launch maintenance ($100/mo or included?)",
+                  "owner": "Alexander + Carl",
+                  "required_by": "Before first invoice"
+                },
+                {
+                  "commitment": "20% Profit Share Above Baseline",
+                  "terms": "Need to verify baseline definition, measurement window (monthly? quarterly?), calculation method",
+                  "owner": "Alexander",
+                  "required_by": "Before revenue activation"
+                },
+                {
+                  "commitment": "50/50 Exit Upside Above $25M",
+                  "terms": "Applies to acquisitions or equity events above $25M valuation",
+                  "owner": "Both parties (Rankona + MERIDIAN)",
+                  "track_in": "Term sheet / shareholder approval documentation"
+                },
+                {
+                  "commitment": "Exclusivity Terms (Once Defined)",
+                  "terms": "Becomes binding constraint on how JV channel can use same tech/ontology",
+                  "owner": "Both parties",
+                  "required_by": "Before first JV channel client in same category"
+                },
+                {
+                  "commitment": "Post-Launch Maintenance Window",
+                  "terms": "8-14 hrs/month required; must define if included in $4,500 or billed separately",
+                  "owner": "Alexander + Carl",
+                  "impact": "Affects true cost-of-service calculation"
+                }
+              ],
+              "narrative_assessment": {
+                "overall": "This is a reality-check document, not a sales narrative. It's brutally honest about blockers and unknowns.",
+                "strengths": [
+                  "Clear task breakdown (438.5 hours estimated)",
+                  "Well-defined acceptance criteria tied to coherence audit",
+                  "Honest about single points of failure (H7: 'hardest blocker')",
+                  "Transparent tier structure makes dependencies visible",
+                  "No timeline inflation; conservative estimates"
+                ],
+                "gaps": [
+                  "No signed contract yet \u2014 major red flag for revenue certainty",
+                  "Revenue terms only on transcript, not legal documentation",
+                  "Scope is undefined (Jennifer's features unscoped)",
+                  "No explanation of WHY Rankona matters strategically to MERIDIAN",
+                  "Missing: what happens if we ship at <0.95 coherence?",
+                  "Exclusivity with JV channel not negotiated; could create future conflict"
+                ],
+                "vision_alignment": {
+                  "positioning": "Rankona is positioned as a knowledge graph + automation platform for Amazon sellers, but the strategic fit within MERIDIAN's larger vision is not articulated.",
+                  "opportunity_narrative": "The JV channel opportunity (ontology as replicable product) is mentioned but not emphasized as a key narrative. This could be THE story.",
+                  "customer_representation": "If Carl and Jennifer see this doc, they see we're professional and realistic. If a prospect sees this, it's too internal. Right audience.",
+                  "confidence": "0.79 coherence means we're selling with known gaps. Need Tier 1 human actions before we claim to be 'ready.'"
+                },
+                "ceo_narrative_missing": [
+                  "Why did we choose to partner with Rankona (vs. build solo or not at all)?",
+                  "How does Rankona fit into MERIDIAN's 5-year roadmap?",
+                  "What's the real strategic value of the profit share / exit upside?",
+                  "What do we own if Rankona fails or chooses a different partner?",
+                  "Why is the JV channel opportunity significant enough to lock exclusivity terms?"
+                ]
+              }
+            }
+          },
+          "_file": "clients/rankona-mazon/audits/csuite-audit-pdr-remaining-work.json",
+          "_client": "rankona-mazon"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-04-14T02:29:02.078370+00:00",
           "transcript_file": "clients/rankona-mazon/pdr-terminal-buildout.md",
           "transcript_length": 19927,
@@ -32337,16 +33141,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 92
+      "total": 93
     },
     "call_intelligence": {
-      "updated_at": "2026-04-14T03:12:12.270454+00:00",
+      "updated_at": "2026-04-14T03:18:07.971665+00:00",
       "signal_summary": {
         "total_objections": 65,
         "total_buying_signals": 86,
-        "total_competitors": 227,
-        "pricing_discussions": 73,
-        "calls_with_signals": 90
+        "total_competitors": 228,
+        "pricing_discussions": 74,
+        "calls_with_signals": 91
       },
       "decisions": [
         {
@@ -32428,6 +33232,21 @@
           "date": "2026-04-14",
           "call": "Pdr Work Completed",
           "decision": "Gate G0.1 added requiring exclusivity scope definition before contract signing"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "decision": "Exclusivity boundary proposed: ontology mappings, knowledge graph content, and competitive intel from Rankona's data are exclusive; code, framework, and patterns are shared with JV channel clients."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "decision": "Measurable sales lift is defined as a >=5% increase in sessions or units ordered per optimized ASIN over a rolling 14-day window vs baseline."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "decision": "Delphi utilization allocation determines delivery timeline: 100% = ~55 days, 50% = ~110 days, 30% = ~183 days, and the chosen percentage must be communicated to Carl."
         },
         {
           "date": "2026-04-03",
@@ -33717,6 +34536,36 @@
           "what": "SP-API Amazon developer account approval required before bulk upload (2-14 day external dependency)"
         },
         {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Carl to start SP-API registration immediately (2-14 day Amazon approval wait makes this a critical path item with no deadline slack)."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Jennifer to log into Seller Central and run account health check on the 43K SKU horse equipment account before bulk upload work begins."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Operator (Alexander) to provision SSH key access to 100.97.248.107, which blocks all technical execution."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Alexander and Carl to sign a contract defining scope boundary, profit share mechanics, and exclusivity before PDR can reach 0.95 coherence."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Delphi to begin Tier 2 pre-work (~19.5 hours, tasks T1\u2013T7) immediately while human-action blockers are being resolved."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "what": "Carl and Sander to obtain shareholder approval for Option B (JV/partnership) terms before invoicing the setup fee (no timeline given)."
+        },
+        {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
           "what": "Garrett Taylor: think about use cases and follow up over weekend or early next week"
@@ -34629,6 +35478,26 @@
           "date": "2026-04-14",
           "call": "Pdr Work Completed",
           "discovery": "6 dissonances were identified in the coherence audit; 4 resolved in v3, 2 require human action (exclusivity scope, approval timeline)"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "discovery": "14 claims in the evidence audit are currently unverified because deal terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) are sourced from a call transcript, not a signed legal document."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "discovery": "SP-API registration is on the critical path to first revenue and has a 2-14 day external approval wait, making it the highest-urgency action item for Carl."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "discovery": "Writing cursor agent specs for mechanical tasks is estimated to save ~100 net hours after coordination overhead, representing a significant leverage point."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "discovery": "Groq throughput at 100 calls/min is documented but unproven with Amazon-domain prompts at scale \u2014 only verifiable during the 1A-4 build phase."
         },
         {
           "date": "2026-04-03",
@@ -36227,6 +37096,94 @@
           "action": {
             "who": "Team",
             "what": "Address 6 remaining gap items to lift coherence score from projected 0.79 toward 0.95 (contract, exclusivity, account health, acquisition intent, utilization allocation, revenue terms)"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Alexander",
+            "what": "Sign contract with scope boundary covering what $4,500/mo includes, profit share mechanics, and whether post-launch maintenance is included or billed separately."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Alexander",
+            "what": "Decide and communicate to Carl what percentage of Delphi's time is allocated to Rankona vs the #1850 Knowledge Extraction Marathon."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Alexander",
+            "what": "Verify deal terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) against a term sheet or signed agreement."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Alexander + Carl",
+            "what": "Define exclusivity in the contract \u2014 specifically what is exclusive to Rankona vs. available to JV channel clients \u2014 before the first JV client onboards in the same category."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Carl",
+            "what": "Register Amazon Developer account and submit SP-API app for approval immediately, as the 2-14 day wait is on the critical path."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Carl",
+            "what": "Confirm whether Humble Group acquisition intent is active or speculative, and provide an estimated timeline if available."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Carl + Sander",
+            "what": "Obtain shareholder approval for Option B (JV/partnership) terms to unblock revenue activation and invoicing."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Jennifer",
+            "what": "Log into Seller Central, check for active performance notifications, ASIN suppressions, and open policy cases on the 43K SKU horse equipment account, and report findings."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Jennifer",
+            "what": "Export the 43K SKU category report needed for the category report parser (task 1A-2)."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Operator",
+            "what": "Provision SSH key access to 100.97.248.107 and confirm with a successful hostname test \u2014 this is the single blocker on all technical execution."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Remaining Work",
+          "action": {
+            "who": "Delphi",
+            "what": "Begin Tier 2 pre-work: design Neo4j category ontology schema (T1), document COSMO/Rufus attribute priority list (T2), write cursor agent specs for all M-classified tasks (T3), and complete remaining design tasks T4\u2013T7."
           }
         },
         {
@@ -38704,6 +39661,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "rankona-mazon"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "rankona-mazon"
         },
@@ -39063,13 +40025,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 257,
-      "total_commitments": 177,
-      "total_discoveries": 293,
-      "total_action_items": 334
+      "total_decisions": 260,
+      "total_commitments": 183,
+      "total_discoveries": 297,
+      "total_action_items": 345
     },
     "attention": {
-      "updated_at": "2026-04-14T03:12:12.295590+00:00",
+      "updated_at": "2026-04-14T03:18:08.039191+00:00",
       "items": [
         {
           "type": "blocked",
@@ -39240,7 +40202,7 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-14T03:12:12.295618+00:00",
+      "updated_at": "2026-04-14T03:18:08.039221+00:00",
       "events": [
         {
           "type": "call",
@@ -39264,6 +40226,12 @@
           "type": "call",
           "date": "2026-04-14",
           "title": "Pdr Work Completed",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-14",
+          "title": "Pdr Remaining Work",
           "detail": "external \u2014 alex"
         },
         {
@@ -39324,12 +40292,6 @@
           "type": "call",
           "date": "2026-04-03",
           "title": "02 Garrett Intel Correction",
-          "detail": "internal \u2014 alex"
-        },
-        {
-          "type": "call",
-          "date": "2026-04-03",
-          "title": "04 Garrett Next Steps",
           "detail": "internal \u2014 alex"
         }
       ],
