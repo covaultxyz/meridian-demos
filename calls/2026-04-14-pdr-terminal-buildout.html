@@ -69,7 +69,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>---</p>
 <h3>LENS — What&#x27;s Actually There</h3>
 <h4>Infrastructure Primitives Already Built</h4>
-<p>The codebase has more reusable surface than the blueprint assumed. Eight of the twelve components Station 1A+1B require already exist in production — not as prototypes, but as running services with months of operational data.</p>
+<p>The codebase has more reusable surface than the blueprint assumed. Eight of the twelve components Station 1A+1B require already exist in production — not as prototypes, but as deployed services (verified via `wc -l` and `grep` against current codebase, April 14).</p>
 <p>| Component | File | Lines | State | Reuse for Rankona |</p>
 <p>|-----------|------|-------|-------|-------------------|</p>
 <p>| Customer deploy script | `scripts/customer-deploy.sh` | 1,084 | Production (3 VPS) | Direct — `--instance-id rankona` |</p>
@@ -79,18 +79,19 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| Mutation pipeline | `brain/mutation_pipeline.py` | 1,794 | Production | Adapt — category report ingestion |</p>
 <p>| Embedding service | `services/embedding_service.py` | 133 | Production (7311420) | Direct — deploy copy on target |</p>
 <p>| Telegram bot framework | `integrations/telegram_bot.py` | 8,548 | Production (@OracleDelphiBot) | Fork — custom command vocabulary |</p>
-<p>| Appeal generator | `services/appeal_generator/` | ~19K | Production (e3b5f73) | Direct — clone with rankona seed |</p>
+<p>| Appeal generator | `services/appeal_generator/` | 3,762 | Production (e3b5f73) | Direct — clone with rankona seed |</p>
 <p>| Write validator | `brain/write_validator.py` | — | Production | Direct — workspace_id scoping |</p>
 <p>| Dashboard framework | `services/mesh_dashboard.py` | 490 | Production | Adapt — customer-facing panels |</p>
 <p>| Amazon ad reference | `docs/reference/amazon-advertising/` | 10 files | Static | Direct — knowledge seed |</p>
-<p>| Cloudflare Tunnel tooling | — | 0 | Does not exist | Build from scratch |</p>
-<p>**What this means:** Station 1A&#x27;s attribute engine is not a net-new build. It&#x27;s a domain-specific adapter on top of `fact_extractor.py` + `mutation_pipeline.py` + `neo4j_connection.py`. The plumbing exists. The domain logic doesn&#x27;t.</p>
+<p>| Cloudflare Tunnel tooling | `scripts/cloudflare-configure.py` + `deploy/cloudflare/` | 270+ | Production (systemd + launchd) | Adapt — `cloudflared` service exists, need per-customer tunnel config |</p>
+<p>| LLM offload engine | `brain/offload_llm.py` | 442 | Production | Direct — Groq + Gemini + OpenRouter fallback chain |</p>
+<p>**What this means:** Station 1A&#x27;s attribute engine is not a net-new build. It&#x27;s a domain-specific adapter on top of `fact_extractor.py` + `mutation_pipeline.py` + `neo4j_connection.py`. The plumbing exists. The domain logic doesn&#x27;t. Note: `fact_extractor.py` contains zero Amazon-specific code — the &quot;adapt&quot; claim means writing an Amazon domain extractor from scratch using the extraction framework, not modifying existing extractors.</p>
 <h4>What Doesn&#x27;t Exist (True New-Builds)</h4>
 <p>1. **Category ontology mapper** — No Amazon category taxonomy handling. No attribute schema inference. No COSMO/Rufus attribute prioritization. This is the core intellectual property of Station 1A.</p>
 <p>2. **Keyword embedding optimizer** — No multi-word phrase containment logic. No embedded keyword detection (finding &quot;leather horse saddle&quot; contains &quot;horse saddle&quot; and &quot;leather saddle&quot;). This is the core IP of Station 1B.</p>
 <p>3. **Bulk upload engine** — No Amazon Seller Central API integration. No flat file generation. No rejection diagnostics parser. This is the delivery mechanism for Station 1A.</p>
 <p>4. **Localization pipeline** — No per-market keyword research. No cross-market semantic comparison. No native proofing workflow. Station 2 is entirely new.</p>
-<p>5. **Cloudflare Tunnel automation** — Manual tunnel creation today. Need programmatic `cloudflared tunnel create` + DNS routing for customer dashboards.</p>
+<p>5. **Per-customer Cloudflare Tunnel config** — `cloudflared` service and tunnel config exist (`deploy/cloudflare/`, 270+ lines). What&#x27;s missing: scripted per-customer tunnel creation + DNS routing. Not a from-scratch build — it&#x27;s a parameterization of existing tooling.</p>
 <p>6. **Multi-user Telegram access** — Current bot is single-daemon. Rankona needs Carl + Jennifer + Johan with role-based command access.</p>
 <h4>Blockers — Real vs Perceived</h4>
 <p>| Blocker | Type | Owner | Impact |</p>
@@ -205,7 +206,12 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>4. **Scope expansion before proof.** Jennifer&#x27;s wish list (PPC, account health, image QA) expands the scope beyond 8 stations. The $4,500/month covers &quot;less than a strategist&quot; — if scope grows, the unit economics break.</p>
 <h4>Perspective 6: Operator (Executability)</h4>
 <p>Can this PDR actually be executed by the team that exists?</p>
-<p>**Delphi is the only builder.** Every task in this PDR is assigned to Delphi. That&#x27;s 359 hours of single-threaded work. If Delphi gets pulled to MERIDIAN infrastructure incidents (which is the primary job), Rankona work stops. No backup builder exists.</p>
+<p>**Delphi is the only builder.** Every task in this PDR is assigned to Delphi. That&#x27;s 370.5 build hours + 68 testing hours = 438.5 total hours of single-threaded work. If Delphi gets pulled to MERIDIAN infrastructure incidents (which is the primary job), Rankona work stops. No backup builder exists.</p>
+<p>**Utilization reality:** Delphi&#x27;s primary assignment is #1850 Knowledge Extraction Marathon (per boot-state). Realistic Rankona allocation:</p>
+<p style='padding-left:1rem'>&bull; At 50% utilization: 438.5 hrs / (8 hrs/day × 0.5) = **110 working days (~5.5 months)**</p>
+<p style='padding-left:1rem'>&bull; At 30% utilization: 438.5 hrs / (8 hrs/day × 0.3) = **183 working days (~9 months)**</p>
+<p style='padding-left:1rem'>&bull; At 100% utilization (aspirational): **~55 working days**</p>
+<p>The 55-day estimate in the Summary table assumes 100% Delphi allocation. This must be communicated to Carl as a best case, not a commitment.</p>
 <p><strong>What&#x27;s offloadable to cursor agents (mechanical work):</strong></p>
 <p style='padding-left:1rem'>&bull; Category report parser (1A-2) — well-defined CSV parsing</p>
 <p style='padding-left:1rem'>&bull; Flat file generator (1A-7) — template output</p>
@@ -218,12 +224,10 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p style='padding-left:1rem'>&bull; Keyword embedding optimizer (1B-1) — core IP, novel algorithm</p>
 <p style='padding-left:1rem'>&bull; Bulk upload safety (1A-6, 1A-8) — Amazon API errors = real money lost</p>
 <p style='padding-left:1rem'>&bull; Multi-instance architecture decisions — affects JV channel viability</p>
-<p>**Testing budget not included.** Zero hours allocated for:</p>
-<p style='padding-left:1rem'>&bull; Unit tests on parsers and generators</p>
-<p style='padding-left:1rem'>&bull; Integration tests (Neo4j + pipeline end-to-end)</p>
-<p style='padding-left:1rem'>&bull; UAT with Jennifer&#x27;s team (beyond revision rounds)</p>
-<p style='padding-left:1rem'>&bull; Load testing at 43K SKU scale</p>
-<p>**Estimate:** Add 15-20% testing overhead → ~54-72 additional hours.</p>
+<p>**Testing budget (66 hours, 18% overhead)** is included in the Summary table but NOT embedded in individual task estimates. This means:</p>
+<p style='padding-left:1rem'>&bull; Individual task &quot;Estimate&quot; columns show build-only hours</p>
+<p style='padding-left:1rem'>&bull; Testing is budgeted as a phase-level overlay (see Summary breakdown)</p>
+<p style='padding-left:1rem'>&bull; Critical path calculations should use padded totals (build + test), not raw task hours</p>
 <h4>Perspective 7: Carl (Delivery Visibility)</h4>
 <p>When does the client touch the system? What does Carl see and when?</p>
 <p>| Milestone | Date (from SSH access) | What Carl/Jennifer See | Proof Artifact |</p>
@@ -232,7 +236,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| M2: First ontology mapped | Day 6 | Category structure in Telegram query | `@RankonaBot /category saddles` returns attribute tree |</p>
 <p>| M3: First batch through pipeline | Day 10 | 50-100 optimized listings ready for review | Export file + before/after comparison |</p>
 <p>| M4: Jennifer approves first batch | Day 12-14 | Upload to Seller Central, wait for indexing | Live listing screenshots |</p>
-<p>| M5: First sales lift measurable | Day 25-30 | Revenue dashboard shows above-baseline performance | Quarterly profit share calculation starts |</p>
+<p>| M5: First sales lift measurable | Day 30-42 | Revenue dashboard shows ≥5% lift above baseline (P0-15) over rolling 14-day window | Quarterly profit share calculation starts |</p>
 <p>| M6: Listing copy engine live | Day 18-20 | Optimized copy for top sellers | Side-by-side old vs new listings |</p>
 <p>| M7: First localized listings | Day 28-32 | SE/UK/DE versions of pilot products | Per-market keyword ranking reports |</p>
 <p><strong>Handoff SOPs for Rankona team:</strong></p>
@@ -272,7 +276,7 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| # | Task | Type | Depends On | Estimate | Owner | Blocker | Acceptance Criteria |</p>
 <p>|---|------|------|-----------|----------|-------|---------|---------------------|</p>
 <p>| P0-1 | Provision SSH key access to 100.97.248.107 | H | None | 30 min | Operator | **HARD BLOCKER** | `ssh root@100.97.248.107 &#x27;hostname&#x27;` succeeds |</p>
-<p>| P0-2 | Verify machine specs (CPU, RAM, disk, OS) | M | P0-1 | 15 min | Delphi | | Specs documented: CPU cores, RAM GB, disk GB free, OS version |</p>
+<p>| P0-2 | Verify machine specs (CPU, RAM, disk, OS) + prerequisites | M | P0-1 | 15 min | Delphi | | Specs documented: CPU cores, RAM GB, disk GB free, OS version; `cloudflared --version` present; `docker --version` present; Python 3.10+ |</p>
 <p>| P0-3 | Size Neo4j heap + embedding for target specs | J | P0-2 | 1 hr | Delphi | | `config/rankona-mazon-01.yaml` has heap/memory values justified by machine specs |</p>
 <p>| P0-4 | Run `customer-deploy.sh --instance-id rankona` | M | P0-1 | 45 min | Delphi | | Neo4j container running, NATS listening on 4222, health check passes |</p>
 <p>| P0-5 | Create `config/rankona-mazon-01.yaml` instance config | J | None | 30 min | Delphi | | YAML validates against schema; `instance_id: rankona` set |</p>
@@ -285,7 +289,11 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| P0-12 | E2E smoke test — all services | J | P0-4 thru P0-11 | 1 hr | Delphi | | All 6 services healthy; Telegram query returns graph data; embed+infer roundtrip works |</p>
 <p>| P0-13 | Acquire Amazon SP-API credentials | H | None | 2-14 days | Carl | **PARALLEL BLOCKER** | Developer account registered, app approved, refresh token obtained |</p>
 <p>| P0-14 | Backup/DR setup for customer data | J | P0-4 | 2 hr | Delphi | | Daily Neo4j dump to encrypted backup; restore tested once; backup schedule documented |</p>
-<p>**Phase 0 total:** ~14 hours + SP-API wait (critical paths: SSH access AND SP-API approval, in parallel)</p>
+<p>| P0-15 | **Baseline capture** — export current Seller Central metrics | H | P0-13 | 2 hr | Jennifer + Delphi | | Per-ASIN: conversion rate, keyword ranks (top 50), sessions, units ordered, revenue. Ingested into Neo4j with timestamp. Baseline = denominator for profit share. |</p>
+<p>| P0-15a | **Amazon account health audit** — check for active warnings | H | None | 30 min | Jennifer | | No active performance notifications, no ASIN suppression, no open policy cases. If active warnings: halt bulk uploads until resolved. |</p>
+<p>| P0-16 | **TOS compliance pre-check** — verify automation approach is TOS-compliant | J | None | 2 hr | Delphi | | Review current Amazon Seller Central TOS for automated attribute updates, bulk upload policies, API usage terms. Document compliance posture before build begins. |</p>
+<p>| P0-17 | **Customer update mechanism** — CI/CD for post-launch terminal updates | J | P0-4 | 3 hr | Delphi | | Script or systemd timer that pulls MERIDIAN improvements to Rankona instance; blue-green deploy pattern; rollback capability |</p>
+<p>**Phase 0 total:** ~21.5 hours + SP-API wait (critical paths: SSH access AND SP-API approval, in parallel)</p>
 <p>---</p>
 <h4>Phase 1A: Backend Attribute Engine (Station 1A)</h4>
 <p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
@@ -383,21 +391,25 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <h3>Summary</h3>
 <p>| Phase | Stations | Build Hours | Test Hours (18%) | Total | Days | Revenue Impact |</p>
 <p>|-------|----------|-------------|------------------|-------|------|----------------|</p>
-<p>| 0 — Platform | Infra | 14 | 2 | 16 | 2 | None (prerequisite) |</p>
+<p>| 0 — Platform | Infra | 21.5 | 4 | 25.5 | 3 | None (prerequisite) |</p>
 <p>| 1A — Attributes | 1A | 64 | 12 | 76 | 10 | **Direct** — fixes listings → sales lift |</p>
 <p>| 1B — Copy | 1B | 53 | 10 | 63 | 8 | Indirect — better copy → conversion lift |</p>
 <p>| 2 — Localization | 2 | 50 | 9 | 59 | 7 | Multiplier — same product × 11 markets |</p>
 <p>| 3 — Intelligence | 3, 4, 5 | 72 | 13 | 85 | 11 | Compound — smarter decisions over time |</p>
 <p>| 4 — Growth Ops | 6, 7, 8 | 78 | 14 | 92 | 12 | Operational — launch + ad optimization |</p>
 <p>| Sentinel | Cross-cutting | 32 | 6 | 38 | 5 | Defensive — prevents losses |</p>
-<p>| **Total** | **8 stations + sentinel** | **363** | **66** | **429** | **~55 days** | |</p>
+<p>| **Total** | **8 stations + sentinel** | **370.5** | **68** | **438.5** | **~55 days** | |</p>
 <p><strong>Testing breakdown (66 hours):</strong></p>
 <p style='padding-left:1rem'>&bull; Unit tests: parsers, generators, scrapers — correctness (20 hr)</p>
 <p style='padding-left:1rem'>&bull; Integration tests: Neo4j + pipeline E2E — data flows correctly through station chain (16 hr)</p>
 <p style='padding-left:1rem'>&bull; UAT: Jennifer/Carl validate output quality, approval workflows work, dashboards render (14 hr)</p>
 <p style='padding-left:1rem'>&bull; Load test: 43K SKU scale — pipeline handles full catalog without OOM or timeout (8 hr)</p>
 <p style='padding-left:1rem'>&bull; Regression: changes to station N don&#x27;t break station N-1 (8 hr)</p>
-<p>**Critical path to first revenue:** P0 (2d) → 1A (10d) → first batch results (2d) = **~14 working days** from SSH access to measurable sales lift.</p>
+<p><strong>Critical path to first revenue (range):</strong></p>
+<p style='padding-left:1rem'>&bull; **Best case (16 working days):** SSH + SP-API both resolved in 2 days, no client review delays. P0 (2d) → 1A (10d) → first batch + review (4d).</p>
+<p style='padding-left:1rem'>&bull; **Expected case (22 working days):** SP-API takes 7 days (median), Jennifer review adds 2 days friction, one rejection iteration. P0 (2d) → SP-API wait overlaps 1A build → 1A (10d) → batch + review + iteration (5d) + indexing lag (5d).</p>
+<p style='padding-left:1rem'>&bull; **Worst case (28 working days):** SP-API takes 14 days (blocks 1A-6 until day 16), client review requires 2 rounds, first rejection rate &gt;10%.</p>
+<p style='padding-left:1rem'>&bull; **&quot;Measurable sales lift&quot; definition:** ≥5% increase in sessions or units ordered per optimized ASIN over a rolling 14-day window vs. pre-optimization baseline. Baseline captured in P0-15. This threshold and measurement window must be agreed in the contract before profit share activates.</p>
 <p>**Phases 1A+1B run parallel.** Phase 2 starts when 1A+1B output is stable. Phase 3 starts when Phase 2 has multi-market data. Phase 4 starts when intelligence layer is operational. Sentinel can start anytime after Phase 0.</p>
 <h4>Cursor Agent Offload Summary</h4>
 <p>| Type | Count | Hours | % of Build |</p>
@@ -406,12 +418,14 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| M (Mechanical — cursor offload) | 17 | ~85 | 23% |</p>
 <p>| J+M (Split — Delphi designs, cursor implements) | 9 | ~48 | 13% |</p>
 <p>| H (Human — client/operator action) | 5 | varies | — |</p>
-<p>**Offload potential:** ~133 hours (36%) of build work can be dispatched to cursor agents, freeing Delphi for the judgment-intensive 63% that defines the terminal&#x27;s intellectual property.</p>
+<p>**Gross offload:** ~133 hours (36%) of build work is classified as mechanical.</p>
+<p>**Net offload after coordination overhead (~25%):** Cursor agents require Delphi to write specs, review output, and validate integration. Net Delphi time savings: ~100 hours (27%), not 133. Delphi remains on the critical path for all J and J+M tasks — cursor offload reduces task hours, not single-thread dependency.</p>
 <p>---</p>
 <h3>Decision Gates</h3>
 <p>| Gate | Question | Decision Needed By | Blocks |</p>
 <p>|------|----------|-------------------|--------|</p>
 <p>| G0 | SSH access granted? | Before any work starts | Everything |</p>
+<p>| G0.1 | Exclusivity scope defined in contract — what is exclusive to Rankona (ontology, knowledge graph content, competitive intel) vs. shared (code, patterns, framework)? | Before contract signature | JV channel terms, future multi-client onboarding, D4 dissonance |</p>
 <p>| G0.5 | SP-API credentials obtained? | Before 1A-6 (parallel with SSH) | Bulk upload, flat file, rejection diagnostics |</p>
 <p>| G1 | Machine specs adequate for Neo4j + embedding? | After P0-2 | Service sizing |</p>
 <p>| G2 | Shareholder approval received? | Before invoicing setup fee | Revenue activation |</p>
@@ -434,7 +448,18 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>**RPO (Recovery Point Objective):** 24 hours — daily Neo4j dump</p>
 <p>**Carl&#x27;s data ownership guarantee:** Full Neo4j dump export available on request. Data leaves with the company on acquisition. No MERIDIAN mesh dependencies.</p>
 <p>---</p>
-<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (8 perspectives: engineering build sequence, revenue timeline, risk surface, reusability constraints, adversarial scenarios, operator executability, client delivery visibility, acquirer transferability). Every estimate includes 18% testing overhead. Cursor agent offload: 36% of build hours. Every task has acceptance criteria and offload classification. Assumes Delphi as primary builder with operator support for access provisioning and cursor agent capacity for mechanical work.*</p>
+<h4>Post-Launch Maintenance Budget</h4>
+<p>Build hours cover creation. Amazon is an adversarial platform — attribute requirements, SP-API versions, fee structures, and category taxonomies change without notice. Post-launch maintenance is not optional.</p>
+<p>| Component | Monthly Hours | What Changes |</p>
+<p>|-----------|--------------|--------------|</p>
+<p>| SP-API compatibility | 4-8 hr | Amazon deprecates endpoints, changes error codes, updates rate limits. 1A-6/1A-8 must track. |</p>
+<p>| Ontology updates | 2 hr | Amazon changes category attribute requirements ~2x/year. New COSMO/Rufus fields emerge. |</p>
+<p>| Compliance sentinel refresh | 1-2 hr | TOS pages change URLs, government regulation sources shift. CS-1/CS-2 scraper targets need updating. |</p>
+<p>| Rejection diagnostics tuning | 1-2 hr | New error codes, category-specific rejection patterns. 1A-8 requires continuous learning. |</p>
+<p>| **Total** | **8-14 hr/month** | |</p>
+<p>**Open question for contract:** Does the $4,500/month retainer cover maintenance, or is maintenance billed separately? At 8-14 hrs/month, maintenance alone consumes 25-44% of a $4,500 retainer (at ~$40/hr equivalent). This must be defined before Station 1A goes live — not after the first SP-API breaking change.</p>
+<p>---</p>
+<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (8 perspectives: engineering build sequence, revenue timeline, risk surface, reusability constraints, adversarial scenarios, operator executability, client delivery visibility, acquirer transferability). Every estimate includes 18% testing overhead. Cursor agent gross offload: 36% of build hours (~133 hrs); net offload after coordination: ~27% (~100 hrs). Every task has acceptance criteria and offload classification. Assumes Delphi as primary builder with operator support for access provisioning and cursor agent capacity for mechanical work. Post-launch maintenance: 8-14 hrs/month (maintenance coverage must be defined in contract).*</p>
 <p>---</p>
 <h3>COHERENCE AUDIT</h3>
 <p>**Auditor:** Sensei (coherence-director)</p>
@@ -619,5 +644,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>---</p>
 <p>*Audit performed 2026-04-13 by Sensei using 9-phase Coherence Audit Protocol. Coherence score: 0.68. Three CRITICAL gaps and four HIGH gaps identified. Primary audit confidence: 0.74.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 22:46</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 23:01</div>
 </body></html>
