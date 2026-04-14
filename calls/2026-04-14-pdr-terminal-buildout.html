@@ -269,134 +269,172 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| `H` | Human — requires client action or human-in-the-loop decision | Carl/Jennifer/Johan/Operator |</p>
 <p>| `J+M` | Mixed — Delphi designs, cursor agent implements | Split execution |</p>
 <h4>Phase 0: Platform Provisioning</h4>
-<p>| # | Task | Depends On | Estimate | Owner | Blocker |</p>
-<p>|---|------|-----------|----------|-------|---------|</p>
-<p>| P0-1 | Provision SSH key access to 100.97.248.107 | None | 30 min | Operator | **HARD BLOCKER** |</p>
-<p>| P0-2 | Verify machine specs (CPU, RAM, disk, OS) | P0-1 | 15 min | Delphi | |</p>
-<p>| P0-3 | Size Neo4j heap + embedding service for target specs | P0-2 | 1 hr | Delphi | |</p>
-<p>| P0-4 | Run `customer-deploy.sh --instance-id rankona` | P0-1 | 45 min | Delphi | |</p>
-<p>| P0-5 | Create `config/rankona-mazon-01.yaml` instance config | None | 30 min | Delphi | |</p>
-<p>| P0-6 | Create Cloudflare Tunnel for dashboard access | P0-4 | 1 hr | Delphi | |</p>
-<p>| P0-7 | Register @RankonaBot via @BotFather | None | 15 min | Operator/Carl | |</p>
-<p>| P0-8 | Deploy Telegram bot with rankona-specific command set | P0-4, P0-7 | 4 hr | Delphi | |</p>
-<p>| P0-9 | Verify Claude CLI OAuth on target machine | P0-4 | 30 min | Delphi | |</p>
-<p>| P0-10 | Deploy embedding service (all-mpnet-base-v2) on target | P0-4 | 1 hr | Delphi | |</p>
-<p>| P0-11 | Deploy appeal generator with rankona seed knowledge | P0-4 | 2 hr | Delphi | |</p>
-<p>| P0-12 | End-to-end smoke test — Neo4j + NATS + embedding + Claude CLI | P0-4 thru P0-11 | 1 hr | Delphi | |</p>
-<p>**Phase 0 total:** ~12 hours (critical path: SSH access)</p>
+<p>| # | Task | Type | Depends On | Estimate | Owner | Blocker | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|-------|---------|---------------------|</p>
+<p>| P0-1 | Provision SSH key access to 100.97.248.107 | H | None | 30 min | Operator | **HARD BLOCKER** | `ssh root@100.97.248.107 &#x27;hostname&#x27;` succeeds |</p>
+<p>| P0-2 | Verify machine specs (CPU, RAM, disk, OS) | M | P0-1 | 15 min | Delphi | | Specs documented: CPU cores, RAM GB, disk GB free, OS version |</p>
+<p>| P0-3 | Size Neo4j heap + embedding for target specs | J | P0-2 | 1 hr | Delphi | | `config/rankona-mazon-01.yaml` has heap/memory values justified by machine specs |</p>
+<p>| P0-4 | Run `customer-deploy.sh --instance-id rankona` | M | P0-1 | 45 min | Delphi | | Neo4j container running, NATS listening on 4222, health check passes |</p>
+<p>| P0-5 | Create `config/rankona-mazon-01.yaml` instance config | J | None | 30 min | Delphi | | YAML validates against schema; `instance_id: rankona` set |</p>
+<p>| P0-6 | Create Cloudflare Tunnel for dashboard access | J | P0-4 | 1 hr | Delphi | | Tunnel active, `*.speedoftrust.ai` route resolves, zero ports exposed |</p>
+<p>| P0-7 | Register @RankonaBot via @BotFather | H | None | 15 min | Operator/Carl | | Bot token obtained, test `/start` responds |</p>
+<p>| P0-8 | Deploy Telegram bot with rankona command set | J+M | P0-4, P0-7 | 4 hr | Delphi | | Carl can `/query` via Telegram and get a Neo4j response |</p>
+<p>| P0-9 | Verify Claude CLI OAuth on target machine | M | P0-4 | 30 min | Delphi | | `claude -p &quot;hello&quot; --output-format text` returns response on target |</p>
+<p>| P0-10 | Deploy embedding service on target | M | P0-4 | 1 hr | Delphi | | `curl localhost:8081/health` returns 200; embedding of test string succeeds |</p>
+<p>| P0-11 | Deploy appeal generator with rankona seed | M | P0-4 | 2 hr | Delphi | | `curl localhost:8095/health` returns 200; test appeal generates successfully |</p>
+<p>| P0-12 | E2E smoke test — all services | J | P0-4 thru P0-11 | 1 hr | Delphi | | All 6 services healthy; Telegram query returns graph data; embed+infer roundtrip works |</p>
+<p>| P0-13 | Acquire Amazon SP-API credentials | H | None | 2-14 days | Carl | **PARALLEL BLOCKER** | Developer account registered, app approved, refresh token obtained |</p>
+<p>| P0-14 | Backup/DR setup for customer data | J | P0-4 | 2 hr | Delphi | | Daily Neo4j dump to encrypted backup; restore tested once; backup schedule documented |</p>
+<p>**Phase 0 total:** ~14 hours + SP-API wait (critical paths: SSH access AND SP-API approval, in parallel)</p>
 <p>---</p>
 <h4>Phase 1A: Backend Attribute Engine (Station 1A)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| 1A-1 | Design Amazon category ontology schema (Neo4j node types + relationships) | P0-12 | 4 hr | Delphi |</p>
-<p>| 1A-2 | Build category report parser (CSV/TSV ingestion from Seller Central export) | P0-12 | 6 hr | Delphi |</p>
-<p>| 1A-3 | Build COSMO/Rufus attribute priority list (15 critical backend fields) | None | 2 hr | Delphi |</p>
-<p>| 1A-4 | Build attribute inference engine (adapt fact_extractor.py for Amazon domain) | 1A-1 | 8 hr | Delphi |</p>
-<p>| 1A-5 | Build truth hierarchy sequencer (inferred vs confirmed field precedence) | 1A-4 | 4 hr | Delphi |</p>
-<p>| 1A-6 | Build bulk upload generator (Amazon API format) | 1A-1 | 6 hr | Delphi |</p>
-<p>| 1A-7 | Build flat file fallback generator (categories that can&#x27;t use API) | 1A-6 | 4 hr | Delphi |</p>
-<p>| 1A-8 | Build rejection diagnostics parser (bulk upload error → actionable fix) | 1A-6 | 4 hr | Delphi |</p>
-<p>| 1A-9 | Ontology mapping: horse equipment — saddles | 1A-1, Jennifer&#x27;s export | 4 hr | Delphi |</p>
-<p>| 1A-10 | Ontology mapping: horse equipment — saddle protection | 1A-9 | 3 hr | Delphi |</p>
-<p>| 1A-11 | Ontology mapping: horse equipment — earbuds | 1A-9 | 3 hr | Delphi |</p>
-<p>| 1A-12 | First batch: top sellers from 43K SKU catalog through full pipeline | 1A-2 thru 1A-8, export | 8 hr | Delphi |</p>
-<p>| 1A-13 | Rejection analysis + iteration on first batch | 1A-12 | 4 hr | Delphi |</p>
-<p>| 1A-14 | Document batch workflow for Jennifer&#x27;s team (handoff SOP) | 1A-13 | 2 hr | Delphi |</p>
-<p>**Phase 1A total:** ~62 hours (~8 working days)</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| 1A-1 | Design Amazon category ontology schema (Neo4j node types + relationships) | J | P0-12 | 4 hr | Schema doc with node/relationship types; `CREATE CONSTRAINT` statements; reviewed against Amazon Browse Tree Guide |</p>
+<p>| 1A-2 | Build category report parser (CSV/TSV ingestion from Seller Central export) | M | P0-12 | 6 hr | Parses real Seller Central export; handles UTF-8/special chars; 43K rows without OOM; outputs structured JSON |</p>
+<p>| 1A-3 | Build COSMO/Rufus attribute priority list (15 critical backend fields) | J | None | 2 hr | 15 attributes documented with field names, acceptable values, and why each matters for COSMO ranking |</p>
+<p>| 1A-4 | Build attribute inference engine (adapt fact_extractor.py for Amazon domain) | J | 1A-1 | 8 hr | Given a product + category, infers missing attributes via LLM; flags inferred vs confirmed; ≥80% accuracy on manual sample |</p>
+<p>| 1A-5 | Build truth hierarchy sequencer (inferred vs confirmed field precedence) | J | 1A-4 | 4 hr | Confirmed (from brand) &gt; verified (from listing) &gt; inferred (from LLM); precedence enforced in pipeline |</p>
+<p>| 1A-6 | Build bulk upload generator (Amazon SP-API format) | J+M | 1A-1, P0-13 | 6 hr | Generates valid SP-API product feed; dry-run mode (no submission); batch size configurable |</p>
+<p>| 1A-7 | Build flat file fallback generator (categories that can&#x27;t use API) | M | 1A-6 | 4 hr | Outputs `.txt` flat file matching Seller Central template; validated against Amazon&#x27;s template headers |</p>
+<p>| 1A-8 | Build rejection diagnostics parser (bulk upload error → actionable fix) | J+M | 1A-6 | 4 hr | Parses SP-API error XML; maps error codes to human-readable fixes; outputs `{asin, field, error, fix}` |</p>
+<p>| 1A-9 | Ontology mapping: horse equipment — saddles | J | 1A-1, Jennifer&#x27;s export | 4 hr | Category tree mapped in Neo4j; all required attributes identified; COSMO fields populated |</p>
+<p>| 1A-10 | Ontology mapping: horse equipment — saddle protection | J | 1A-9 | 3 hr | Same criteria as 1A-9; reuses saddle ontology structure where applicable |</p>
+<p>| 1A-11 | Ontology mapping: horse equipment — earbuds | J | 1A-9 | 3 hr | Same criteria as 1A-9; validates category mapping amortization claim |</p>
+<p>| 1A-12 | First batch: top 100 sellers through full pipeline | J | 1A-2 thru 1A-8, export | 8 hr | 100 ASINs processed end-to-end; upload submitted (or dry-run if SP-API pending); before/after comparison |</p>
+<p>| 1A-13 | Rejection analysis + iteration on first batch | J | 1A-12 | 4 hr | ≤5% rejection rate on resubmission; root causes documented |</p>
+<p>| 1A-14 | Document batch workflow for Jennifer&#x27;s team (handoff SOP) | M | 1A-13 | 2 hr | Step-by-step SOP: export → review → approve → upload → monitor; includes rollback steps |</p>
+<p>| 1A-15 | Build bulk upload rollback/safety plan | J | 1A-6 | 2 hr | Pre-upload snapshot of current attribute state; rollback script that restores original values via SP-API |</p>
+<p>**Phase 1A total:** ~64 hours (~8 working days)</p>
 <p>**Revenue trigger:** First measurable sales lift comes from 1A-12 — backend fix → indexing → traffic.</p>
+<p>**Why not existing tools?** Helium 10 and DataDive offer attribute suggestions but don&#x27;t integrate with a knowledge graph, don&#x27;t learn across categories, and don&#x27;t support batch upload with rejection diagnostics. The ontology mapper is the core IP — once a category is mapped, every client in that category benefits.</p>
 <p>---</p>
 <h4>Phase 1B: Listing Copy Engine (Station 1B — concurrent with 1A)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| 1B-1 | Build keyword embedding optimizer (phrase containment detection) | P0-12 | 8 hr | Delphi |</p>
-<p>| 1B-2 | Build SEO copy generator (title → bullets → backend 250 chars) | P0-12 | 8 hr | Delphi |</p>
-<p>| 1B-3 | Build review/Q&amp;A scraper for voice of customer signals | P0-12 | 6 hr | Delphi |</p>
-<p>| 1B-4 | Build copy coherence validator (embedded keywords read naturally) | 1B-1, 1B-2 | 4 hr | Delphi |</p>
-<p>| 1B-5 | Build approval workflow (revision round tracking, &gt;=90% target) | 1B-2 | 3 hr | Delphi |</p>
-<p>| 1B-6 | Ingest product sheets + brand guides for pilot client | Jennifer&#x27;s data | 4 hr | Delphi |</p>
-<p>| 1B-7 | First listing optimization batch (top sellers from 1A-12) | 1B-1 thru 1B-5, 1A-12 | 8 hr | Delphi |</p>
-<p>| 1B-8 | Index top 50 keywords for pilot products | 1B-7 | 4 hr | Delphi |</p>
-<p>| 1B-9 | Revision round 1 with Jennifer&#x27;s team | 1B-7 | 4 hr | Delphi + Jennifer |</p>
-<p>| 1B-10 | Revision round 2 (if needed) + sign-off | 1B-9 | 4 hr | Delphi + Jennifer |</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| 1B-1 | Build keyword embedding optimizer (phrase containment detection) | J | P0-12 | 8 hr | Given seed keywords, finds embedded phrases; covers 2+ targets per phrase; output ranked by coverage score |</p>
+<p>| 1B-2 | Build SEO copy generator (title → bullets → backend 250 chars) | J | P0-12 | 8 hr | Generates title (primary KW), 5 bullets (secondary), backend (tertiary ≤250 chars); reads naturally |</p>
+<p>| 1B-3 | Build review/Q&amp;A scraper for voice of customer signals | M | P0-12 | 6 hr | Scrapes reviews + Q&amp;A for ASIN list; extracts features, complaints, language patterns; rate-limit safe |</p>
+<p>| 1B-4 | Build copy coherence validator (embedded keywords read naturally) | J | 1B-1, 1B-2 | 4 hr | Scores readability (Flesch-Kincaid ≥60); flags keyword stuffing; rejects unnatural phrasing |</p>
+<p>| 1B-5 | Build approval workflow (revision round tracking, ≥90% target) | M | 1B-2 | 3 hr | Track: generated → reviewed → approved/revision; ≥90% first-round approval rate measured |</p>
+<p>| 1B-6 | Ingest product sheets + brand guides for pilot client | M | Jennifer&#x27;s data | 4 hr | All brand guidelines parsed; product attributes linked to Neo4j nodes |</p>
+<p>| 1B-7 | First listing optimization batch (top sellers from 1A-12) | J | 1B-1 thru 1B-5, 1A-12 | 8 hr | 50+ listings generated; side-by-side comparison with original; Jennifer reviews |</p>
+<p>| 1B-8 | Index top 50 keywords for pilot products | M | 1B-7 | 4 hr | Keyword rankings tracked in Neo4j; baseline positions recorded for comparison |</p>
+<p>| 1B-9 | Revision round 1 with Jennifer&#x27;s team | H | 1B-7 | 4 hr | Jennifer provides feedback on ≥10 sample listings; approval/revision decisions recorded |</p>
+<p>| 1B-10 | Revision round 2 (if needed) + sign-off | H | 1B-9 | 4 hr | ≥90% approval rate achieved; remaining revisions addressed; Jennifer signs off |</p>
 <p>**Phase 1B total:** ~53 hours (~7 working days, parallel with 1A)</p>
+<p>**Why not existing tools?** Helium 10&#x27;s Listing Builder and Scribbles offer keyword insertion but don&#x27;t optimize for embedded phrases (one phrase covering multiple keyword targets). The intelligence is in the embedding algorithm — finding &quot;premium leather dressage saddle&quot; that covers 4 separate keyword targets while reading naturally. No existing tool does this.</p>
 <p>---</p>
 <h4>Phase 2: Localization Engine (Station 2)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| 2-1 | Design per-market keyword graph schema (Neo4j) | 1A-1 | 4 hr | Delphi |</p>
-<p>| 2-2 | Build multi-market localization pipeline (not translation) | 2-1 | 12 hr | Delphi |</p>
-<p>| 2-3 | Build country-specific keyword research tooling | 2-1 | 8 hr | Delphi |</p>
-<p>| 2-4 | Build regulatory/compliance checker per geography | 2-1 | 8 hr | Delphi |</p>
-<p>| 2-5 | Scaffold native proofing workflow (human-in-the-loop) | 2-2 | 4 hr | Delphi |</p>
-<p>| 2-6 | First localization batch: SE, UK, DE (3 priority markets) | 2-2 thru 2-5, 1B-7 | 8 hr | Delphi |</p>
-<p>| 2-7 | Expand to ES, FR, IT (remaining EU markets) | 2-6 | 6 hr | Delphi |</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| 2-1 | Design per-market keyword graph schema (Neo4j) | J | 1A-1 | 4 hr | Schema supports locale-specific keyword rankings + cross-market comparison queries |</p>
+<p>| 2-2 | Build multi-market localization pipeline (not translation) | J | 2-1 | 12 hr | Per-market optimization (not just translation); buyer psychology adapted per locale |</p>
+<p>| 2-3 | Build country-specific keyword research tooling | J+M | 2-1 | 8 hr | Pulls keyword data per marketplace (SE, UK, DE, ES, FR, IT); stores in Neo4j |</p>
+<p>| 2-4 | Build regulatory/compliance checker per geography | J | 2-1 | 8 hr | Checks product compliance against known country-specific rules; flags violations |</p>
+<p>| 2-5 | Scaffold native proofing workflow (human-in-the-loop) | M | 2-2 | 4 hr | Queue: LLM-generated copy → native speaker review → approve/revise → publish |</p>
+<p>| 2-6 | First localization batch: SE, UK, DE (3 priority markets) | J | 2-2 thru 2-5, 1B-7 | 8 hr | 20+ listings localized per market; native speaker (Johan for SE) reviews and approves |</p>
+<p>| 2-7 | Expand to ES, FR, IT (remaining EU markets) | M | 2-6 | 6 hr | Same pipeline, new locales; reuse proven workflow |</p>
 <p>**Phase 2 total:** ~50 hours (~6 working days)</p>
+<p><strong>Rankona team workload (Station 2):</strong></p>
+<p style='padding-left:1rem'>&bull; **Johan**: Native Swedish speaker validation on SE listings (est. 2-4 hrs per batch)</p>
+<p style='padding-left:1rem'>&bull; **Jennifer/strategists**: Review approval queue for markets they manage</p>
+<p style='padding-left:1rem'>&bull; **Native proofers needed**: DE, ES, FR, IT — Rankona must identify native speakers per market. LLM output is a draft, not final copy. Human proofing is mandatory for localization.</p>
 <p>---</p>
 <h4>Phase 3: Intelligence Layer (Stations 3-5)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| 3-1 | Design market intelligence dashboard schema (Neo4j) | 1A-1, 1B-1 | 4 hr | Delphi |</p>
-<p>| 3-2 | Build keyword tracking + indexing pipeline | 3-1 | 8 hr | Delphi |</p>
-<p>| 3-3 | Build conversion analytics processor | 3-2 | 6 hr | Delphi |</p>
-<p>| 3-4 | Build market intelligence dashboard (web, via CF Tunnel) | 3-2, 3-3 | 12 hr | Delphi |</p>
-<p>| 4-1 | Build competitor scraping/monitoring pipeline | 3-1 | 8 hr | Delphi |</p>
-<p>| 4-2 | Build cross-marketplace comparison engine | 4-1 | 8 hr | Delphi |</p>
-<p>| 4-3 | Build competitive shift alert system | 4-2 | 4 hr | Delphi |</p>
-<p>| 5-1 | Extend review/Q&amp;A scraper for competitor products (reuse 1B-3) | 1B-3 | 4 hr | Delphi |</p>
-<p>| 5-2 | Build sentiment + feature extraction engine | 5-1 | 8 hr | Delphi |</p>
-<p>| 5-3 | Build feedback-to-copy pipeline (Station 5 → Station 1B loop) | 5-2, 1B-2 | 6 hr | Delphi |</p>
-<p>| 5-4 | Build contradiction detection (buyer complaint vs listing claim) | 5-2 | 4 hr | Delphi |</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| 3-1 | Design market intelligence dashboard schema (Neo4j) | J | 1A-1, 1B-1 | 4 hr | Schema supports keyword trends, conversion tracking, and cross-station queries |</p>
+<p>| 3-2 | Build keyword tracking + indexing pipeline | J+M | 3-1 | 8 hr | Tracks keyword positions daily; stores history in Neo4j; detects rank changes |</p>
+<p>| 3-3 | Build conversion analytics processor | J+M | 3-2 | 6 hr | Pulls conversion data from Seller Central reports; stores alongside keyword data |</p>
+<p>| 3-4 | Build market intelligence dashboard (web, via CF Tunnel) | M | 3-2, 3-3 | 12 hr | Dashboard accessible via CF Tunnel; shows keyword trends, conversion rates, market position |</p>
+<p>| 4-1 | Build competitor scraping/monitoring pipeline | J+M | 3-1 | 8 hr | Monitors competitor ASINs for pricing, BSR, review count changes; rate-limit safe |</p>
+<p>| 4-2 | Build cross-marketplace comparison engine | J | 4-1 | 8 hr | Compares same product across marketplaces; identifies pricing/ranking gaps |</p>
+<p>| 4-3 | Build competitive shift alert system | M | 4-2 | 4 hr | Telegram alert when competitor changes price &gt;10%, new ASIN enters category, BSR shift &gt;20% |</p>
+<p>| 5-1 | Extend review/Q&amp;A scraper for competitor products (reuse 1B-3) | M | 1B-3 | 4 hr | Same scraper, different ASIN targets; competitor reviews stored with link to competitor graph |</p>
+<p>| 5-2 | Build sentiment + feature extraction engine | J | 5-1 | 8 hr | Extracts: features mentioned, sentiment, comparison to competitors; stores as signal nodes |</p>
+<p>| 5-3 | Build feedback-to-copy pipeline (Station 5 → Station 1B loop) | J | 5-2, 1B-2 | 6 hr | Negative signals on own listings trigger copy revision queue; positive competitor signals inform copy strategy |</p>
+<p>| 5-4 | Build contradiction detection (buyer complaint vs listing claim) | J | 5-2 | 4 hr | Detects: listing says &quot;waterproof&quot; but reviews say &quot;leaked in rain&quot;; flags with evidence |</p>
 <p>**Phase 3 total:** ~72 hours (~9 working days)</p>
 <p>---</p>
 <h4>Phase 4: Growth Ops (Stations 6-8)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| 6-1 | Build launch protocol builder (30-45 day birthing period) | Phase 3 | 8 hr | Delphi |</p>
-<p>| 6-2 | Build daily AAR automation (ranking shift detection) | 6-1 | 6 hr | Delphi |</p>
-<p>| 6-3 | Build advertising ramp optimizer | 6-1 | 8 hr | Delphi |</p>
-<p>| 7-1 | Build campaign architecture builder (SP/SB/SD) | Phase 3, ad reference docs | 12 hr | Delphi |</p>
-<p>| 7-2 | Build knowledge-graph-powered bid optimization | 7-1 | 8 hr | Delphi |</p>
-<p>| 7-3 | Build campaign coherence + drift detection | 7-2 | 6 hr | Delphi |</p>
-<p>| 8-1 | Build multi-client performance dashboard | All prior | 16 hr | Delphi |</p>
-<p>| 8-2 | Build client-facing report generator | 8-1 | 8 hr | Delphi |</p>
-<p>| 8-3 | Build alerting + anomaly detection | 8-1 | 6 hr | Delphi |</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| 6-1 | Build launch protocol builder (30-45 day birthing period) | J | Phase 3 | 8 hr | Generates day-by-day launch plan; giveaway schedule, ad ramp, ranking checkpoints |</p>
+<p>| 6-2 | Build daily AAR automation (ranking shift detection) | J+M | 6-1 | 6 hr | Daily report: ranking changes, what moved, why, recommended action |</p>
+<p>| 6-3 | Build advertising ramp optimizer | J | 6-1 | 8 hr | Budget allocation model for launch period; auto-adjusts based on ranking velocity |</p>
+<p>| 7-1 | Build campaign architecture builder (SP/SB/SD) | J | Phase 3, ad reference docs | 12 hr | Generates campaign structure from product data; uses 9-doc ad reference corpus |</p>
+<p>| 7-2 | Build knowledge-graph-powered bid optimization | J | 7-1 | 8 hr | Uses keyword graph + conversion data to recommend bid adjustments; explainable |</p>
+<p>| 7-3 | Build campaign coherence + drift detection | J | 7-2 | 6 hr | Detects: ad targeting drifting from listing keywords; budget allocation vs performance gaps |</p>
+<p>| 8-1 | Build multi-client performance dashboard | M | All prior | 16 hr | Dashboard: client health overview, per-client drill-down, team access with role-based views |</p>
+<p>| 8-2 | Build client-facing report generator | M | 8-1 | 8 hr | Monthly PDF/HTML report: key metrics, recommendations, trend charts; brandable |</p>
+<p>| 8-3 | Build alerting + anomaly detection | J+M | 8-1 | 6 hr | Alerts on: suppressed listings, BSR drops &gt;20%, ad spend anomalies, policy violations |</p>
 <p>**Phase 4 total:** ~78 hours (~10 working days)</p>
 <p>---</p>
 <h4>Compliance Sentinel (Cross-Cutting)</h4>
-<p>| # | Task | Depends On | Estimate | Owner |</p>
-<p>|---|------|-----------|----------|-------|</p>
-<p>| CS-1 | Build Amazon TOS change detection agent (11 geographies) | P0-12 | 12 hr | Delphi |</p>
-<p>| CS-2 | Build regulatory change detection per country per category | CS-1 | 8 hr | Delphi |</p>
-<p>| CS-3 | Build impact assessment pipeline (change → affected portfolios) | CS-1, CS-2 | 8 hr | Delphi |</p>
-<p>| CS-4 | Build alert pipeline (change → Telegram notification) | CS-3, P0-8 | 4 hr | Delphi |</p>
+<p>| # | Task | Type | Depends On | Estimate | Acceptance Criteria |</p>
+<p>|---|------|------|-----------|----------|---------------------|</p>
+<p>| CS-1 | Build Amazon TOS change detection agent (11 geographies) | J | P0-12 | 12 hr | Detects TOS page changes across 11 marketplaces; diffs stored in Neo4j; &lt;24hr detection lag |</p>
+<p>| CS-2 | Build regulatory change detection per country per category | J | CS-1 | 8 hr | Monitors government regulatory pages per Johan&#x27;s category list; change → structured event |</p>
+<p>| CS-3 | Build impact assessment pipeline (change → affected portfolios) | J | CS-1, CS-2 | 8 hr | Change event → query graph for affected ASINs/clients → severity classification |</p>
+<p>| CS-4 | Build alert pipeline (change → Telegram notification) | M | CS-3, P0-8 | 4 hr | Critical/high severity → immediate Telegram alert; medium → daily digest; low → weekly |</p>
 <p>**Sentinel total:** ~32 hours (~4 working days)</p>
 <p>---</p>
 <h3>Summary</h3>
-<p>| Phase | Stations | Hours | Days | Revenue Impact |</p>
-<p>|-------|----------|-------|------|----------------|</p>
-<p>| 0 — Platform | Infra | 12 | 1.5 | None (prerequisite) |</p>
-<p>| 1A — Attributes | 1A | 62 | 8 | **Direct** — fixes listings → sales lift |</p>
-<p>| 1B — Copy | 1B | 53 | 7 | Indirect — better copy → conversion lift |</p>
-<p>| 2 — Localization | 2 | 50 | 6 | Multiplier — same product × 11 markets |</p>
-<p>| 3 — Intelligence | 3, 4, 5 | 72 | 9 | Compound — smarter decisions over time |</p>
-<p>| 4 — Growth Ops | 6, 7, 8 | 78 | 10 | Operational — launch + ad optimization |</p>
-<p>| Sentinel | Cross-cutting | 32 | 4 | Defensive — prevents losses |</p>
-<p>| **Total** | **8 stations + sentinel** | **359** | **~45 days** | |</p>
-<p>**Critical path to first revenue:** P0 (1.5d) → 1A (8d) → first batch results (2d) = **~12 working days** from SSH access to measurable sales lift.</p>
+<p>| Phase | Stations | Build Hours | Test Hours (18%) | Total | Days | Revenue Impact |</p>
+<p>|-------|----------|-------------|------------------|-------|------|----------------|</p>
+<p>| 0 — Platform | Infra | 14 | 2 | 16 | 2 | None (prerequisite) |</p>
+<p>| 1A — Attributes | 1A | 64 | 12 | 76 | 10 | **Direct** — fixes listings → sales lift |</p>
+<p>| 1B — Copy | 1B | 53 | 10 | 63 | 8 | Indirect — better copy → conversion lift |</p>
+<p>| 2 — Localization | 2 | 50 | 9 | 59 | 7 | Multiplier — same product × 11 markets |</p>
+<p>| 3 — Intelligence | 3, 4, 5 | 72 | 13 | 85 | 11 | Compound — smarter decisions over time |</p>
+<p>| 4 — Growth Ops | 6, 7, 8 | 78 | 14 | 92 | 12 | Operational — launch + ad optimization |</p>
+<p>| Sentinel | Cross-cutting | 32 | 6 | 38 | 5 | Defensive — prevents losses |</p>
+<p>| **Total** | **8 stations + sentinel** | **363** | **66** | **429** | **~55 days** | |</p>
+<p><strong>Testing breakdown (66 hours):</strong></p>
+<p style='padding-left:1rem'>&bull; Unit tests: parsers, generators, scrapers — correctness (20 hr)</p>
+<p style='padding-left:1rem'>&bull; Integration tests: Neo4j + pipeline E2E — data flows correctly through station chain (16 hr)</p>
+<p style='padding-left:1rem'>&bull; UAT: Jennifer/Carl validate output quality, approval workflows work, dashboards render (14 hr)</p>
+<p style='padding-left:1rem'>&bull; Load test: 43K SKU scale — pipeline handles full catalog without OOM or timeout (8 hr)</p>
+<p style='padding-left:1rem'>&bull; Regression: changes to station N don&#x27;t break station N-1 (8 hr)</p>
+<p>**Critical path to first revenue:** P0 (2d) → 1A (10d) → first batch results (2d) = **~14 working days** from SSH access to measurable sales lift.</p>
 <p>**Phases 1A+1B run parallel.** Phase 2 starts when 1A+1B output is stable. Phase 3 starts when Phase 2 has multi-market data. Phase 4 starts when intelligence layer is operational. Sentinel can start anytime after Phase 0.</p>
+<h4>Cursor Agent Offload Summary</h4>
+<p>| Type | Count | Hours | % of Build |</p>
+<p>|------|-------|-------|------------|</p>
+<p>| J (Judgment — Delphi only) | 31 | ~230 | 63% |</p>
+<p>| M (Mechanical — cursor offload) | 17 | ~85 | 23% |</p>
+<p>| J+M (Split — Delphi designs, cursor implements) | 9 | ~48 | 13% |</p>
+<p>| H (Human — client/operator action) | 5 | varies | — |</p>
+<p>**Offload potential:** ~133 hours (36%) of build work can be dispatched to cursor agents, freeing Delphi for the judgment-intensive 63% that defines the terminal&#x27;s intellectual property.</p>
 <p>---</p>
 <h3>Decision Gates</h3>
-<p>| Gate | Question | Decision Needed By |</p>
-<p>|------|----------|-------------------|</p>
-<p>| G0 | SSH access granted? | Before any work starts |</p>
-<p>| G1 | Machine specs adequate for Neo4j + embedding? | After P0-2 |</p>
-<p>| G2 | Shareholder approval received? | Before invoicing setup fee |</p>
-<p>| G3 | First batch results show measurable lift? | After 1A-12 |</p>
-<p>| G4 | Fjallraven POC greenlit? | After 43K SKU pilot proves workflow |</p>
-<p>| G5 | $4,500/mo covers expanded scope? | After Jennifer sends full wish list |</p>
-<p>| G6 | JV channel viable? | After terminal proven + replicable |</p>
+<p>| Gate | Question | Decision Needed By | Blocks |</p>
+<p>|------|----------|-------------------|--------|</p>
+<p>| G0 | SSH access granted? | Before any work starts | Everything |</p>
+<p>| G0.5 | SP-API credentials obtained? | Before 1A-6 (parallel with SSH) | Bulk upload, flat file, rejection diagnostics |</p>
+<p>| G1 | Machine specs adequate for Neo4j + embedding? | After P0-2 | Service sizing |</p>
+<p>| G2 | Shareholder approval received? | Before invoicing setup fee | Revenue activation |</p>
+<p>| G3 | First batch results show measurable lift? | After 1A-12 | Profit share calculation starts |</p>
+<p>| G3.5 | Jennifer validates approval workflow? | After 1B-9 | Copy engine pipeline to production |</p>
+<p>| G4 | Native proofers identified per market? | Before 2-6 | Localization quality |</p>
+<p>| G5 | Fjällräven POC greenlit? | After 43K SKU pilot proves workflow | Second client onboarding |</p>
+<p>| G6 | $4,500/mo covers expanded scope? | After Jennifer sends full wish list | Scope/budget alignment |</p>
+<p>| G7 | JV channel viable? | After terminal proven + replicable | Channel revenue stream |</p>
 <p>---</p>
-<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (engineering, revenue, risk, reusability, adversarial perspectives). Every estimate assumes Delphi as primary builder with operator support for access provisioning.*</p></div></div>
+<h4>Backup &amp; Disaster Recovery</h4>
+<p>| Component | Backup Method | Frequency | Retention | Restore Test |</p>
+<p>|-----------|--------------|-----------|-----------|--------------|</p>
+<p>| Neo4j (rankona instance) | `neo4j-admin dump` → encrypted → off-site | Daily (03:00 UTC) | 30 days | Monthly (automated) |</p>
+<p>| Instance config | Git-tracked YAML | On change | Git history | On deploy |</p>
+<p>| Ontology mappings | Part of Neo4j dump | Daily | 30 days | Part of restore test |</p>
+<p>| Telegram bot state | Stateless (config in YAML) | N/A | N/A | Redeploy from config |</p>
+<p>| Dashboard config | Git-tracked | On change | Git history | On deploy |</p>
+<p>**RTO (Recovery Time Objective):** 2 hours — redeploy from backup + config</p>
+<p>**RPO (Recovery Point Objective):** 24 hours — daily Neo4j dump</p>
+<p>**Carl&#x27;s data ownership guarantee:** Full Neo4j dump export available on request. Data leaves with the company on acquisition. No MERIDIAN mesh dependencies.</p>
+<p>---</p>
+<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (8 perspectives: engineering build sequence, revenue timeline, risk surface, reusability constraints, adversarial scenarios, operator executability, client delivery visibility, acquirer transferability). Every estimate includes 18% testing overhead. Cursor agent offload: 36% of build hours. Every task has acceptance criteria and offload classification. Assumes Delphi as primary builder with operator support for access provisioning and cursor agent capacity for mechanical work.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 22:32</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 22:37</div>
 </body></html>
