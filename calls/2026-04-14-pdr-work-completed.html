@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pdr Work Completed — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Pdr Work Completed</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-04-14</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>A 3-version PDR (Product Design/Requirements Review) for the Rankona Mazon terminal buildout was completed, covering an 8-station metro architecture, coherence audit, and codebase evidence verification.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Groq offload is architecturally required due to processing speed (86 min vs 199 days with Claude CLI for 43K SKUs)</li><li>Timeline replaced with range estimates: 16 (best) / 22 (expected) / 28 (worst) working days instead of a fixed 14-day deadline</li><li>Net cursor agent offload stated as 27% (~100 hrs) after 25% coordination overhead, not the gross 36% figure</li><li>Gate G0.1 added requiring exclusivity scope definition before contract signing</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Post-launch maintenance budget of 8-14 hrs/month allocated for SP-API compatibility, ontology updates, sentinel refresh, and rejection tuning</li><li>SP-API Amazon developer account approval required before bulk upload (2-14 day external dependency)</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Appeal generator line count was inflated ~5x in v1 (claimed ~19K lines, actual 3,762 lines)</li><li>Cloudflare Tunnel tooling was incorrectly reported as non-existent in v1 — 270+ lines confirmed across 6 files</li><li>Coherence audit surfaced that 14 of 37 extracted claims are unverified and 2 are contradicted, giving an original score of 0.68/1.0</li><li>v1 had zero testing budget allocation; v2 added 66 hours (18% overhead) and v3 expanded to 68 hours</li><li>6 dissonances were identified in the coherence audit; 4 resolved in v3, 2 require human action (exclusivity scope, approval timeline)</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Human/stakeholder&#x27;, &#x27;what&#x27;: &#x27;Resolve D4: define exclusivity scope (Rankona-exclusive vs JV-shared) before contract&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Human/stakeholder&#x27;, &#x27;what&#x27;: &#x27;Resolve D5: clarify shareholder approval timeline which affects overall schedule&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Complete P0-15 baseline capture (2 hr) to establish profit share denominator&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Complete P0-15a account health audit (30 min) before bulk uploads to avoid worsening account standing&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Complete P0-16 TOS compliance pre-check (2 hr) to verify automation approach before building&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Complete P0-17 CI/CD update mechanism (3 hr) to enable post-launch updates without manual redeploy&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Address 6 remaining gap items to lift coherence score from projected 0.79 toward 0.95 (contract, exclusivity, account health, acquisition intent, utilization allocation, revenue terms)&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Rankona Mazon PDR: Work Completed</h2>
+<p>**Date:** 2026-04-14</p>
+<p>**Author:** Delphi (infra-architect)</p>
+<p>**Scope:** Everything completed across 3 PDR versions + coherence audit resolution</p>
+<p>---</p>
+<h3>Document Versions</h3>
+<h4>v1 — Initial PDR (`6a273665d`)</h4>
+<p>**Created:** 2026-04-13</p>
+<p><strong>What it covered:</strong></p>
+<p style='padding-left:1rem'>&bull; Full 8-station metro architecture decomposed into engineering tasks</p>
+<p style='padding-left:1rem'>&bull; 5 implementation phases (P0 through P4 + Compliance Sentinel)</p>
+<p style='padding-left:1rem'>&bull; 359 build hours estimated across 62 tasks</p>
+<p style='padding-left:1rem'>&bull; Infrastructure blueprint referencing 100.97.248.107 target machine</p>
+<p style='padding-left:1rem'>&bull; Blocker identification (SSH, shareholder approval, SP-API)</p>
+<p style='padding-left:1rem'>&bull; 8 Prism perspectives (engineering, revenue, risk, reusability, adversarial, operator, client, acquirer)</p>
+<h4>v2 — Improvements (`a4f21b4dd`)</h4>
+<p>**280 insertions, 107 deletions.** Added:</p>
+<p>| Addition | Why |</p>
+<p>|----------|-----|</p>
+<p>| Acceptance criteria for every task | v1 had tasks with no definition of done |</p>
+<p>| Offload classification (J/M/H/J+M) | Needed to know what cursor agents can handle vs Delphi-only |</p>
+<p>| Data contracts between stations | 9 interfaces defined — format, producer, consumer, contract spec |</p>
+<p>| LLM cost &amp; throughput model | Proved Groq offload is architecturally required (43K SKUs at Claude CLI = 199 days vs 86 min with Groq) |</p>
+<p>| Testing budget (66 hours, 18% overhead) | v1 had zero testing allocation |</p>
+<p>| Backup &amp; DR plan | RTO 2hr, RPO 24hr, daily Neo4j dumps |</p>
+<p>| 3 new Prism perspectives | Operator executability, client delivery visibility, acquirer transferability |</p>
+<p>| SP-API as parallel blocker | v1 missed that bulk upload needs Amazon developer account approval (2-14 days) |</p>
+<p>| Cursor agent offload summary | Quantified: 36% gross, ~133 hours mechanical |</p>
+<h4>v3 — Coherence Audit Resolution (`9b9d21103`)</h4>
+<p>**52 insertions, 21 deletions.** Resolved 4 of 6 dissonances from Sensei&#x27;s audit:</p>
+<p>| Dissonance | Resolution |</p>
+<p>|-----------|------------|</p>
+<p>| D1: &quot;Zero testing budget&quot; vs 66hr in summary | Annotated as phase-level overlay, not per-task embed. Clarified individual estimates show build-only. |</p>
+<p>| D2: &quot;14 working days&quot; fixed timeline | Replaced with range: 16 (best) / 22 (expected) / 28 (worst) working days. |</p>
+<p>| D3: &quot;36% cursor offload&quot; conflated with work elimination | Net offload stated as 27% (~100 hrs) after 25% coordination overhead. |</p>
+<p>| D6: cloudflared assumed but not verified | Added to P0-2 acceptance criteria: `cloudflared --version`, `docker --version`, Python 3.10+ |</p>
+<p><strong>New tasks added to Phase 0:</strong></p>
+<p>| Task | Hours | Why |</p>
+<p>|------|-------|-----|</p>
+<p>| P0-15: Baseline capture | 2 hr | Profit share denominator — no baseline = no measurable lift |</p>
+<p>| P0-15a: Account health audit | 30 min | Bulk uploads against flagged account can worsen standing |</p>
+<p>| P0-16: TOS compliance pre-check | 2 hr | Verify automation approach is TOS-compliant before building |</p>
+<p>| P0-17: CI/CD update mechanism | 3 hr | Post-launch terminal needs update path, not manual redeploy |</p>
+<p><strong>New gate added:</strong></p>
+<p style='padding-left:1rem'>&bull; G0.1: Exclusivity scope definition before contract — what&#x27;s Rankona-exclusive vs JV-shared</p>
+<p><strong>New section added:</strong></p>
+<p style='padding-left:1rem'>&bull; Post-launch maintenance budget: 8-14 hrs/month (SP-API compat, ontology updates, sentinel refresh, rejection tuning)</p>
+<p><strong>Updated totals:</strong></p>
+<p style='padding-left:1rem'>&bull; Build: 363 → 370.5 hours</p>
+<p style='padding-left:1rem'>&bull; Test: 66 → 68 hours</p>
+<p style='padding-left:1rem'>&bull; Total: 429 → 438.5 hours</p>
+<p style='padding-left:1rem'>&bull; Phase 0: 14 → 21.5 hours</p>
+<p style='padding-left:1rem'>&bull; M5 milestone: Day 25-30 → Day 30-42</p>
+<p>---</p>
+<h3>Evidence Verification (Codebase)</h3>
+<p>13 infrastructure claims grep-verified against current codebase on April 14:</p>
+<p>| Component | Claimed | Verified | Status |</p>
+<p>|-----------|---------|----------|--------|</p>
+<p>| `scripts/customer-deploy.sh` | ~1,084 lines | 1,084 lines | Exact match |</p>
+<p>| `brain/neo4j_connection.py` | 276 lines | 275 lines | Off by 1, acceptable |</p>
+<p>| `brain/fact_extractor.py` | 984 lines | 984 lines | Exact match |</p>
+<p>| `brain/mutation_pipeline.py` | 1,794 lines | 1,794 lines | Exact match |</p>
+<p>| `services/embedding_service.py` | 133 lines | 132 lines | Off by 1, acceptable |</p>
+<p>| `integrations/telegram_bot.py` | 8,548 lines | 8,548 lines | Exact match |</p>
+<p>| `services/appeal_generator/` | 3,762 lines | 3,762 lines | Corrected from v1&#x27;s ~19K (5x inflation) |</p>
+<p>| `brain/write_validator.py` | exists | 2,133 lines | Confirmed, workspace_id scoping verified |</p>
+<p>| `services/mesh_dashboard.py` | 490 lines | 490 lines | Exact match |</p>
+<p>| `docs/reference/amazon-advertising/` | 10 files | 10 files | Exact match |</p>
+<p>| Cloudflare Tunnel tooling | 270+ lines | 270+ across 6 files | Corrected from v1&#x27;s &quot;0 / does not exist&quot; |</p>
+<p>| `brain/offload_llm.py` | 442 lines | 442 lines | Groq confirmed as primary |</p>
+<p>| `config/instance.yaml` | exists | Bitkove instance confirmed | `valence-cap-01` instance |</p>
+<p><strong>Factual errors corrected:</strong></p>
+<p>1. Appeal generator: 3,762 lines (was inflated to ~19K in draft)</p>
+<p>2. Cloudflare Tunnel: 270+ lines exist (was &quot;0 / does not exist&quot;)</p>
+<p>3. Cursor offload: net 27% after overhead (was gross 36% stated as savings)</p>
+<p>---</p>
+<h3>Coherence Audit (Sensei, 2026-04-13)</h3>
+<p>Full 9-phase coherence audit performed and embedded in PDR:</p>
+<p style='padding-left:1rem'>&bull; **37 claims extracted** from the document</p>
+<p style='padding-left:1rem'>&bull; **Evidence audit**: 15 VERIFIED, 14 UNVERIFIED, 3 PARTIALLY VERIFIED, 2 CONTRADICTED, 3 INTERNALLY CONSISTENT</p>
+<p style='padding-left:1rem'>&bull; **13 gaps identified**: 3 CRITICAL, 4 HIGH, 5 MEDIUM, 1 LOW</p>
+<p style='padding-left:1rem'>&bull; **5 blind spots** surfaced (Amazon as adversarial platform, utilization assumptions, baseline ambiguity, JV channel vs exclusivity, cursor offload overhead)</p>
+<p style='padding-left:1rem'>&bull; **6 dissonances mapped**: 4 resolved in v3, 2 require human action (D4 exclusivity, D5 approval timeline)</p>
+<p style='padding-left:1rem'>&bull; **Original score: 0.68 / 1.0**</p>
+<p style='padding-left:1rem'>&bull; **Post-v3 projected score: 0.79 / 1.0**</p>
+<p>---</p>
+<h3>Artifacts Produced</h3>
+<p>| File | Commit | Description |</p>
+<p>|------|--------|-------------|</p>
+<p>| `pdr-terminal-buildout.md` | `9b9d21103` (latest) | 755-line PDR with all 3 versions of improvements |</p>
+<p>| `amazon-terminal-blueprint.md` | `a71e6b37` | Infrastructure blueprint v2 (service stack, deal structure) |</p>
+<p>| `metro-station-build-plan.md` | `d56957b9` | Detailed 8-station build sequence with ASCII diagram |</p>
+<p>| `deal-structure-april13.md` | — | Option A vs B comparison from April 13 call |</p>
+<p>| `signals/` | — | Signal analysis from March 28 + April 13 sessions |</p>
+<p>---</p>
+<h3>Commit History</h3>
+<p>```</p>
+<p>9b9d21103 docs(rankona): PDR v3 — coherence audit resolutions</p>
+<p>3c30dbeac Add 9-phase coherence audit to Rankona PDR</p>
+<p>a4f21b4dd docs(rankona): PDR v2 — acceptance criteria, offload classification, data contracts</p>
+<p>6a273665d docs(rankona): PDR + task list for terminal buildout</p>
+<p>```</p>
+<p>---</p>
+<p>*Summary: 3 PDR iterations, 13 codebase claims verified, 3 factual errors corrected, 4/6 dissonances resolved, coherence score lifted from 0.68 to projected 0.79. Remaining gap to 0.95 requires human action on 6 items (contract, exclusivity, account health, acquisition intent, utilization allocation, revenue terms).*</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 23:13</div>
+</body></html>
