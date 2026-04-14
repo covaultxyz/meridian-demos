@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T01:25:26.832779+00:00",
+  "generated_at": "2026-04-14T01:28:53.380383+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-14T01:25:23.874655+00:00",
+      "updated_at": "2026-04-14T01:28:50.450959+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1257,6 +1257,26 @@
           "buying_signal_count": 0,
           "sentiment": "positive",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "rankona-mazon",
+          "call_id": "deal-structure-april13",
+          "title": "deal-structure-april13",
+          "file": "clients/rankona-mazon/signals/deal-signals-deal-structure-april13-2026-04-14.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 1,
+            "competitor_mentions": 0,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "positive",
+            "suggested_stage": "proposal"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 1,
+          "sentiment": "positive",
+          "suggested_stage": "proposal",
           "participants": []
         },
         {
@@ -2710,14 +2730,14 @@
       ],
       "call_volume": {
         "unknown": 11,
-        "rankona-mazon": 3,
+        "rankona-mazon": 4,
         "omar": 1,
         "meridian-internal": 30,
         "mbm": 33,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 86,
+      "total_signals": 87,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3375,7 +3395,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-14T01:25:26.541741+00:00",
+      "updated_at": "2026-04-14T01:28:53.136877+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -4840,20 +4860,30 @@
         ]
       },
       "ci": {
-        "status": "queued",
+        "status": "pending",
         "conclusion": null,
-        "name": "Deploy Dashboard to GitHub Pages",
-        "created_at": "2026-04-14T01:25:23Z",
-        "head_sha": "28b6dd2a"
+        "name": "CI",
+        "created_at": "2026-04-14T01:27:00Z",
+        "head_sha": "d3069780"
       },
       "ci_recent_runs": [
         {
+          "id": 24375911635,
+          "name": "CI",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-04-14T01:27:00Z",
+          "updated_at": "2026-04-14T01:27:01Z",
+          "head_sha": "d3069780",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24375911635"
+        },
+        {
           "id": 24375864607,
           "name": "Deploy Dashboard to GitHub Pages",
-          "status": "queued",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "created_at": "2026-04-14T01:25:23Z",
-          "updated_at": "2026-04-14T01:25:23Z",
+          "updated_at": "2026-04-14T01:26:03Z",
           "head_sha": "28b6dd2a",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24375864607"
         },
@@ -4870,10 +4900,10 @@
         {
           "id": 24375670538,
           "name": "CI",
-          "status": "queued",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "created_at": "2026-04-14T01:18:40Z",
-          "updated_at": "2026-04-14T01:21:41Z",
+          "updated_at": "2026-04-14T01:27:01Z",
           "head_sha": "3afb94ae",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24375670538"
         },
@@ -4886,19 +4916,30 @@
           "updated_at": "2026-04-14T01:12:54Z",
           "head_sha": "5f2e4348",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24375449298"
-        },
-        {
-          "id": 24375394425,
-          "name": "uv in /. for pillow - Update #1321764128",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-14T01:09:05Z",
-          "updated_at": "2026-04-14T01:10:55Z",
-          "head_sha": "5f2e4348",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24375394425"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "e3344e27",
+          "message": "docs(rankona): deal structure comparison from April 13 call \u2014 Part of #1850",
+          "author": "covaultxyz",
+          "date": "2026-04-14T01:27:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e3344e270c331794a3638121f95344d6bdefddee"
+        },
+        {
+          "sha": "d3069780",
+          "message": "feat(appeal-generator): add public CORS origins + wire Cloudflare Tunnel URL",
+          "author": "covaultxyz",
+          "date": "2026-04-14T01:26:56Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d306978062b2cfe6341c7ccd663a3df1b9136636"
+        },
+        {
+          "sha": "a71e6b37",
+          "message": "Fix blueprint v2 gaps: 11 geographies, COSMO/Rufus attrs, flat file constraint, partner roles, Option A comparison, market timing",
+          "author": "covaultxyz",
+          "date": "2026-04-14T01:25:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a71e6b37fea1e44eb0c11e023c79eb13e5a8c781"
+        },
         {
           "sha": "28b6dd2a",
           "message": "intel: auto-ingested 1 transcript(s)",
@@ -4947,31 +4988,10 @@
           "author": "covaultxyz",
           "date": "2026-04-14T01:08:26Z",
           "url": "https://github.com/covaultxyz/meridian/commit/cb9762deff18695d20c15c7ccaebceb059ef4df3"
-        },
-        {
-          "sha": "9f0de402",
-          "message": "intel: auto-ingested 1 transcript(s)",
-          "author": "covaultxyz",
-          "date": "2026-04-14T01:05:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9f0de4020d6596f430dc98b3667e435bf761e091"
-        },
-        {
-          "sha": "bcb89c98",
-          "message": "Add Amazon Intelligence Terminal blueprint for Carl Helgesson / Rankona Mazon",
-          "author": "covaultxyz",
-          "date": "2026-04-14T01:02:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/bcb89c984f715b4caca772fb001f8f7e6aaaf356"
-        },
-        {
-          "sha": "0152ede0",
-          "message": "fix(mcp): watchdog stdin check kills server under MCP 1.26 stdio transport",
-          "author": "covaultxyz",
-          "date": "2026-04-14T00:55:42Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0152ede0da51afd03be0306870d8b58f8e9cdd8c"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-14T01:25:24.830097+00:00",
+        "updated_at": "2026-04-14T01:28:51.187067+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5173,7 +5193,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "members": [
         {
           "id": "alex",
@@ -5244,7 +5264,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "projects": [
         {
           "project": {
@@ -5674,7 +5694,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5759,7 +5779,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5856,7 +5876,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -9512,7 +9532,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-14T01:25:26.799859+00:00",
+      "updated_at": "2026-04-14T01:28:53.322921+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -11520,7 +11540,7 @@
       "total_docs": 332
     },
     "deals": {
-      "updated_at": "2026-04-14T01:25:26.800006+00:00",
+      "updated_at": "2026-04-14T01:28:53.323039+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -11762,7 +11782,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-14T01:25:26.541758+00:00",
+      "updated_at": "2026-04-14T01:28:53.136894+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -31471,13 +31491,13 @@
       "total": 88
     },
     "call_intelligence": {
-      "updated_at": "2026-04-14T01:25:26.810430+00:00",
+      "updated_at": "2026-04-14T01:28:53.358522+00:00",
       "signal_summary": {
         "total_objections": 65,
-        "total_buying_signals": 84,
+        "total_buying_signals": 85,
         "total_competitors": 209,
-        "pricing_discussions": 69,
-        "calls_with_signals": 86
+        "pricing_discussions": 70,
+        "calls_with_signals": 87
       },
       "decisions": [
         {
@@ -37557,6 +37577,11 @@
         },
         {
           "date": "",
+          "sentiment": "positive",
+          "client": "rankona-mazon"
+        },
+        {
+          "date": "",
           "sentiment": "neutral",
           "client": "rankona-mazon"
         },
@@ -37912,7 +37937,7 @@
       "total_action_items": 318
     },
     "attention": {
-      "updated_at": "2026-04-14T01:25:26.832722+00:00",
+      "updated_at": "2026-04-14T01:28:53.380325+00:00",
       "items": [
         {
           "type": "blocked",
@@ -38083,8 +38108,26 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-14T01:25:26.832766+00:00",
+      "updated_at": "2026-04-14T01:28:53.380371+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-14T01:27:15Z",
+          "title": "docs(rankona): deal structure comparison from April 13 call \u2014 Part of #1850",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-14T01:26:56Z",
+          "title": "feat(appeal-generator): add public CORS origins + wire Cloudflare Tunnel URL",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-14T01:25:23Z",
+          "title": "Fix blueprint v2 gaps: 11 geographies, COSMO/Rufus attrs, flat file constraint, ",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-14T01:25:14Z",
@@ -38125,24 +38168,6 @@
           "type": "commit",
           "date": "2026-04-14T01:08:26Z",
           "title": "docs(runbooks): metro fine-grained GH_TOKEN procedure [#2084] (#2093)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T01:05:19Z",
-          "title": "intel: auto-ingested 1 transcript(s)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T01:02:14Z",
-          "title": "Add Amazon Intelligence Terminal blueprint for Carl Helgesson / Rankona Mazon",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T00:55:42Z",
-          "title": "fix(mcp): watchdog stdin check kills server under MCP 1.26 stdio transport",
           "detail": "covaultxyz"
         },
         {
