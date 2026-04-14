@@ -434,7 +434,190 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>**RPO (Recovery Point Objective):** 24 hours — daily Neo4j dump</p>
 <p>**Carl&#x27;s data ownership guarantee:** Full Neo4j dump export available on request. Data leaves with the company on acquisition. No MERIDIAN mesh dependencies.</p>
 <p>---</p>
-<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (8 perspectives: engineering build sequence, revenue timeline, risk surface, reusability constraints, adversarial scenarios, operator executability, client delivery visibility, acquirer transferability). Every estimate includes 18% testing overhead. Cursor agent offload: 36% of build hours. Every task has acceptance criteria and offload classification. Assumes Delphi as primary builder with operator support for access provisioning and cursor agent capacity for mechanical work.*</p></div></div>
+<p>*PDR generated through Lens (focused observation of existing infrastructure vs gaps) and Prism (8 perspectives: engineering build sequence, revenue timeline, risk surface, reusability constraints, adversarial scenarios, operator executability, client delivery visibility, acquirer transferability). Every estimate includes 18% testing overhead. Cursor agent offload: 36% of build hours. Every task has acceptance criteria and offload classification. Assumes Delphi as primary builder with operator support for access provisioning and cursor agent capacity for mechanical work.*</p>
+<p>---</p>
+<h3>COHERENCE AUDIT</h3>
+<p>**Auditor:** Sensei (coherence-director)</p>
+<p>**Date:** 2026-04-13</p>
+<p>**Method:** 9-phase Coherence Audit Protocol</p>
+<p><strong>Overall coherence score: 0.68 / 1.0</strong></p>
+<p>---</p>
+<h4>Phase 1: Claim Extraction (37 claims extracted)</h4>
+<p>| # | Claim | Location | Type |</p>
+<p>|---|-------|----------|------|</p>
+<p>| 1 | 8 of 12 Station 1A+1B components already exist in production | Lens §&quot;Infrastructure Primitives&quot; | Explicit |</p>
+<p>| 2 | These are &quot;running services with months of operational data&quot; — not prototypes | Lens §&quot;Infrastructure Primitives&quot; | Explicit |</p>
+<p>| 3 | Cloudflare Tunnel tooling does not exist (0 lines) | Infrastructure table | Explicit |</p>
+<p>| 4 | SSH to 100.97.248.107 is a HARD blocker; everything else has a workaround | Blockers table | Explicit |</p>
+<p>| 5 | SP-API approval takes 2–14 days; cannot be parallelized | &quot;Missing From v1&quot; | Explicit |</p>
+<p>| 6 | Layer 0 (platform) is 2–3 days of infra work | Prism §&quot;Build Sequence&quot; | Explicit |</p>
+<p>| 7 | &quot;Week 1 timeline assumes Layer 0 is instant. It isn&#x27;t.&quot; | Prism §&quot;Build Sequence&quot; | Explicit |</p>
+<p>| 8 | Claude CLI rate-limited at ~45 calls per 5-hour window | LLM Cost &amp; Throughput | Explicit |</p>
+<p>| 9 | Groq offload is &quot;not optional — architecturally required&quot; for batch ops | LLM Cost &amp; Throughput | Explicit |</p>
+<p>| 10 | 43K SKUs → ~8,600 LLM calls; at Claude CLI rates = ~199 days | LLM Cost &amp; Throughput | Explicit (calculated) |</p>
+<p>| 11 | With Groq at ~100 calls/min, same batch = ~86 minutes | LLM Cost &amp; Throughput | Explicit (calculated) |</p>
+<p>| 12 | Monthly LLM cost: $50–150/month steady state; Fjällräven could 3–5× this | LLM Cost &amp; Throughput | Explicit |</p>
+<p>| 13 | Monthly retainer = $4,500; Profit share = 20% above baseline | Revenue Timeline | Explicit |</p>
+<p>| 14 | JV channel targets $10K–15K/month per $100M+/year sellers | Revenue Timeline | Explicit |</p>
+<p>| 15 | Station 1A is the only station that directly drives near-term revenue | Revenue Timeline | Explicit |</p>
+<p>| 16 | Profit share starts when sales measurably increase | Revenue Timeline | Explicit |</p>
+<p>| 17 | JV channel viable &quot;Q1 2027 earliest&quot; | Revenue Timeline | Explicit |</p>
+<p>| 18 | &quot;Critical path to first revenue = 14 working days from SSH access&quot; | Summary | Explicit |</p>
+<p>| 19 | Phases 1A+1B run parallel | Summary | Explicit |</p>
+<p>| 20 | Total build: 363 hrs; testing: 66 hrs (18%); total 429 hrs; ~55 days | Summary | Explicit |</p>
+<p>| 21 | &quot;Testing budget not included&quot; (zero hours allocated) | Perspective 6 | Explicit |</p>
+<p>| 22 | &quot;No existing tool&quot; handles embedded phrase optimization | 1B differentiation | Explicit |</p>
+<p>| 23 | &quot;Once a category is mapped, every client in that category benefits&quot; | 1A differentiation | Explicit |</p>
+<p>| 24 | Amazon bulk upload rejection rate = highest-risk item | Risk table | Explicit |</p>
+<p>| 25 | Delphi is the only builder; 359 hrs of single-threaded work | Perspective 6 | Explicit |</p>
+<p>| 26 | 36% (~133 hrs) can be offloaded to cursor agents | Cursor offload summary | Explicit |</p>
+<p>| 27 | Customer terminal is fully isolated (no MERIDIAN mesh dependencies) | Perspective 8 | Explicit |</p>
+<p>| 28 | Carl wants a &quot;tailor-made&quot; / exclusive solution | Perspective 5 | Implied |</p>
+<p>| 29 | Exit participation triggers at acquisition above $25M (50/50 split) | Perspective 8 | Explicit |</p>
+<p>| 30 | Documentation will be &quot;sufficient for a third party to operate the terminal&quot; | Perspective 8 | Implicit (future state) |</p>
+<p>| 31 | Native proofers (DE/ES/FR/IT) must be sourced by Rankona — not MERIDIAN | Phase 2 | Explicit |</p>
+<p>| 32 | Phase 2 starts when 1A+1B output is stable | Summary sequencing | Explicit |</p>
+<p>| 33 | Attribute confidence ≥ 0.8 → auto-upload; &lt; 0.8 → human review | Data contracts table | Explicit |</p>
+<p>| 34 | ≥ 90% first-round copy approval rate target | Data contracts / 1B-5 | Explicit |</p>
+<p>| 35 | RTO = 2 hrs; RPO = 24 hrs for Rankona terminal | Backup/DR | Explicit |</p>
+<p>| 36 | Humble Group due diligence will ask about terminal transferability | Perspective 8 | Implicit (assumption) |</p>
+<p>| 37 | cloudflared installed / operational on target machine (prerequisite for P0-6) | Implied by P0-6 | Implicit |</p>
+<p>---</p>
+<h4>Phase 2: Evidence Audit</h4>
+<p>| # | Category | Notes |</p>
+<p>|---|----------|-------|</p>
+<p>| 1 | PARTIALLY VERIFIED | 8 components shown in table. &quot;Production for MERIDIAN&quot; ≠ &quot;production-fit for customer deployment&quot; — higher validation bar. |</p>
+<p>| 2 | UNVERIFIED | Asserted without operational metrics (uptime, error rates, throughput). Boot-state shows daemons running — partial corroboration only. |</p>
+<p>| 3 | UNVERIFIED | Plausible given &quot;0 lines&quot; notation. Not grep-confirmed. |</p>
+<p>| 4 | VERIFIED | SSH dependency on remote deploy is architecturally correct. Soft blocker workarounds are reasonable. |</p>
+<p>| 5 | VERIFIED | Amazon SP-API Developer Program registration timelines publicly documented at 2–14 days. |</p>
+<p>| 6 | UNVERIFIED | Reasonable estimate but no precedent data for this exact stack on this target machine. |</p>
+<p>| 7 | VERIFIED | Self-referential gap identification. Internally consistent. |</p>
+<p>| 8 | VERIFIED | Matches CLAUDE.md: &quot;~45 calls per 5-hour window.&quot; |</p>
+<p>| 9 | VERIFIED | Math follows from claim 8. Groq offload is the only viable path at scale. |</p>
+<p>| 10 | VERIFIED | 43K × 0.2 calls/ASIN = 8,600; 8,600/45 × 5hr = ~956 windows → ~199 days. Arithmetic correct. |</p>
+<p>| 11 | VERIFIED | 8,600 calls / 100 calls/min = 86 minutes. Arithmetic correct. |</p>
+<p>| 12 | UNVERIFIED | No roll-up calculation from per-operation costs to $50–150/month aggregate. Fjällräven 3–5× has no stated basis. |</p>
+<p>| 13 | UNVERIFIED | Deal terms not verified against signed contract or term sheet. |</p>
+<p>| 14 | UNVERIFIED | JV channel projections not verified. |</p>
+<p>| 15 | VERIFIED | Logic is sound: backend attributes → indexing → visibility → sales. |</p>
+<p>| 16 | UNVERIFIED | &quot;Measurable increase&quot; has no defined baseline or threshold. |</p>
+<p>| 17 | UNVERIFIED | Labeled appropriately uncertain. Reasonable projection. |</p>
+<p>| 18 | CONTRADICTED | P0 padded = 2 days. 1A padded = 9.5 days. Client review friction = 1–2 days. SP-API 14-day worst case adds 12 additional days to 1A-6+. Realistic minimum: 16–18 working days; 28 worst-case. |</p>
+<p>| 19 | VERIFIED | 1A+1B have no mutual dependencies through 1A-12. Parallel is feasible. |</p>
+<p>| 20 | INTERNALLY CONSISTENT | Phase totals sum correctly. 18% testing is within industry range (15–25%). |</p>
+<p>| 21 | CONTRADICTED | Perspective 6 says &quot;zero testing budget.&quot; Summary adds 66 hours. Individual task estimates were NOT updated. Critical path uses un-padded estimates. |</p>
+<p>| 22 | UNVERIFIED | Helium 10 characterization is accurate per public docs. &quot;No existing tool does this&quot; is plausible but not confirmed — niche tools may exist. |</p>
+<p>| 23 | PARTIALLY VERIFIED | True in principle (shared ontology namespace). Different clients may need category-specific variations — not proven in practice. |</p>
+<p>| 24 | UNVERIFIED | SP-API approval failure arguably carries higher timeline risk. Prioritization not justified. |</p>
+<p>| 25 | VERIFIED | Boot-state confirms Delphi as sole Rankona builder. |</p>
+<p>| 26 | UNVERIFIED | Cursor agents require Delphi to spec, review, and validate output. Net savings after overhead ≈ 20–25%, not 36%. |</p>
+<p>| 27 | PARTIALLY VERIFIED | NATS/Neo4j isolation via `--instance-id` is supported by customer-deploy.sh design. Claude CLI OAuth isolation on target machine not yet verified. |</p>
+<p>| 28 | UNVERIFIED | No direct quote from Carl. Inferred from &quot;tailor-made&quot; reference and Perspective 5. |</p>
+<p>| 29 | UNVERIFIED | Exit terms not verified against signed contract. |</p>
+<p>| 30 | UNVERIFIED | Future-state aspiration. Documentation does not yet exist. |</p>
+<p>| 31 | VERIFIED | Explicitly stated as client responsibility in Phase 2 notes. |</p>
+<p>| 32 | VERIFIED | Phase 2 schema (2-1) depends on 1A-1. Sequencing is correct. |</p>
+<p>| 33 | VERIFIED | Threshold defined in data contracts table. Internally consistent. |</p>
+<p>| 34 | VERIFIED | Defined and measurable. |</p>
+<p>| 35 | VERIFIED | Standard DR targets for single-instance system. Consistent with MERIDIAN backup infrastructure. |</p>
+<p>| 36 | UNVERIFIED | Humble Group acquisition interest is assumed. Due diligence stage is unknown. |</p>
+<p>| 37 | UNVERIFIED | cloudflared installation on 100.97.248.107 is not in P0-2 acceptance criteria. Implicit prerequisite, not guaranteed. |</p>
+<p>---</p>
+<h4>Phase 3: Gap Analysis</h4>
+<p>| Gap | Why It Matters | Severity |</p>
+<p>|-----|---------------|----------|</p>
+<p>| **No performance baseline capture task** — Nothing captures current Seller Central metrics (conversion, keyword rank, revenue/ASIN) before any optimization runs. Gate G3 asks for &quot;measurable lift&quot; with no denominator. | Without baseline, profit share calculation becomes a negotiation, not a measurement. | **CRITICAL** |</p>
+<p>| **No signed contract / scope boundary** — Deal terms ($4,500, 20%, exit) are referenced but not locked. Jennifer&#x27;s wish list (PPC, account health, image QA) signals scope expansion before launch. | At $4,500/month, every station beyond 1A+1B reduces margin toward zero. | **CRITICAL** |</p>
+<p>| **No Amazon account health assessment** — Build assumes Rankona&#x27;s Seller Central account is healthy. Pending warnings, suppressed ASINs, or policy flags can block bulk attribute uploads regardless of code quality. | Bulk upload against a flagged account can trigger Amazon scrutiny and worsen standing. | **CRITICAL** |</p>
+<p>| **No ongoing maintenance budget** — Amazon changes category attribute requirements ~2x/year. SP-API versions update. Rejection patterns evolve. Build hours are estimated; zero maintenance hours allocated. | The rejection diagnostics parser (1A-8) requires continuous updates. Not included in $4,500/month discussion. | **HIGH** |</p>
+<p>| **Fjällräven scope leakage** — 11-geography compliance sentinel, multi-market localization, and cross-marketplace comparison infrastructure are being designed before Gate G5 (&quot;Fjällräven POC greenlit&quot;) passes. | Architecture pre-optimized for a second client not yet approved. Over-engineered for Rankona alone if Fjällräven doesn&#x27;t happen. | **HIGH** |</p>
+<p>| **Exclusivity vs. JV channel tension unresolved** — Carl wants a &quot;tailor-made&quot; solution. JV channel replicates the same terminal — and potentially the same category ontology — for multiple clients. | First multi-client onboarding in same category will surface as a contract dispute if not defined now. | **HIGH** |</p>
+<p>| **Native proofer sourcing is unowned** — Station 2 requires native speakers for DE/ES/FR/IT. Assigned to Rankona with no SLA, no timeline, no fallback. | Localization quality degrades or Phase 2 stalls if Rankona can&#x27;t source/afford native proofers. | **HIGH** |</p>
+<p>| **SP-API 14-day worst case not on critical path** — &quot;14 working days to first revenue&quot; assumes 2-day SP-API approval. At 14 days, 1A-6/1A-7/1A-8 can&#x27;t be tested in production. | Critical path becomes 26–28 working days in worst case. Stakeholder expectations anchored to 14 days. | **HIGH** |</p>
+<p>| **cloudflared prerequisite missing from P0-2** — P0-6 creates a Cloudflare Tunnel but requires cloudflared installed on target. P0-2 checks specs, not this prerequisite. | If cloudflared isn&#x27;t installed, P0-6 blocks on a 5-minute fix discovered on day 3 instead of day 1. | **MEDIUM** |</p>
+<p>| **No CI/CD for customer terminal updates** — MERIDIAN has blue-green deploys. Rankona terminal has P0 deployment and no ongoing update mechanism. | Manual redeploy for every MERIDIAN improvement is an operational risk post-launch. | **MEDIUM** |</p>
+<p>| **&quot;Measurable lift&quot; undefined** — Gate G3 triggers profit share but &quot;above baseline&quot; is not defined as a specific metric, threshold, or measurement window. | At month 3, attribution disputes emerge (seasonality, ads vs. optimization). Profit share becomes contested. | **MEDIUM** |</p>
+<p>| **Amazon TOS compliance pre-check absent** — CS-1 monitors future TOS changes. There is no assessment of whether the attribute engine&#x27;s automation approach complies with current TOS before build begins. | Building a tool that violates current Amazon TOS before the compliance monitor is live creates liability. | **MEDIUM** |</p>
+<p>| **Dashboard RBAC not designed** — Telegram role-based access is planned. Dashboard has multi-client view but no per-role access specification. | If Carl and Jennifer have different authorization levels, access control is an undesigned gap. | **LOW** |</p>
+<p>---</p>
+<h4>Phase 4: Blind Spot Analysis</h4>
+<p><strong>1. Amazon as adversarial platform (not a reliable API)</strong></p>
+<p>The PDR treats Amazon&#x27;s SP-API as a stable system. Amazon changes attribute requirements silently, suspends developer apps without warning, and inconsistently applies error codes per category. The rejection diagnostics parser (1A-8) is not a one-time build — it is a maintenance surface requiring continuous updates.</p>
+<p>*Why invisible:* Engineering framing treats external APIs as stable contracts. Amazon treats its API as a tool it owns unilaterally.</p>
+<p>*Damage:* Post-launch, 1A-8 becomes the highest-maintenance component with no maintenance budget. Competitive advantage erodes if categories change faster than ontology updates.</p>
+<p><strong>2. 55 calendar days assumes full Delphi utilization</strong></p>
+<p>The 363-hour estimate is correct for task hours. The 55-day calendar timeline assumes Delphi works on Rankona full-time. Delphi&#x27;s primary assignment per boot-state is `#1850 Knowledge Extraction Marathon`. At 50% utilization: 110 calendar days. At 30%: 180+ calendar days.</p>
+<p>*Why invisible:* Estimates are built from task decomposition, not from observed velocity or historical allocation data.</p>
+<p>*Damage:* Carl may be expecting commercial results Q2 2026. Realistic timeline is Q3–Q4. Expectation must be set now.</p>
+<p><strong>3. &quot;Measurable above baseline&quot; means different things to each party</strong></p>
+<p>The profit share trigger is &quot;measurable sales lift above baseline.&quot; But: the baseline is not captured. Amazon doesn&#x27;t separate organic lift from listing optimization vs. advertising vs. seasonality. There is no defined mechanism for who calculates the baseline, using what data source, over what time window.</p>
+<p>*Why invisible:* Commercial terms are assumed to be mutually understood. They are not — they&#x27;re implicit.</p>
+<p>*Damage:* At month 3, a 15% sales lift that Carl attributes to an ad campaign becomes a dispute about whether the 20% profit share applies.</p>
+<p><strong>4. The JV channel moat may undermine the Rankona moat</strong></p>
+<p>Category ontology &quot;once mapped, every client in that category benefits.&quot; If JV channel onboards clients in horse equipment, they benefit from ontology mappings built with Rankona&#x27;s data and Jennifer&#x27;s expertise. Carl&#x27;s &quot;tailor-made&quot; exclusivity is directly in tension with this.</p>
+<p>*Why invisible:* JV channel is framed as future upside, not as a present tension with the exclusivity promise.</p>
+<p>*Damage:* When the first JV client onboards in the same category, Rankona discovers their investment funded a competitor&#x27;s playbook. Surfaces at Carl&#x27;s next board meeting or renegotiation.</p>
+<p><strong>5. Cursor offload conflates delegation with work elimination</strong></p>
+<p>36% offload implies 36% reduction in Delphi hours. But cursor agents require Delphi to write specifications detailed enough to dispatch, review output for correctness, and validate integration with J components. Coordination overhead ≈ 20–30% of gross savings. Net savings: 20–25%.</p>
+<p>*Why invisible:* Cursor offload is a planning construct. Management overhead is not in the estimate.</p>
+<p>*Damage:* Delphi&#x27;s available capacity is wrong by ~50 hours. The pressure relief valve is smaller than planned.</p>
+<p>---</p>
+<h4>Phase 5: Coherence Scoring</h4>
+<p>| Layer | Score | Rationale |</p>
+<p>|-------|-------|-----------|</p>
+<p>| Internal consistency | 0.81 | Main dissonance: testing &quot;not included&quot; in Perspective 6 but 66 hrs in summary. Individual task estimates not updated. Critical path uses un-padded hours. |</p>
+<p>| Evidence grounding | 0.57 | Infrastructure claims rely on author&#x27;s codebase knowledge (reasonable). External claims (SP-API timeline, revenue terms) not cited. ~40% of claims UNVERIFIED. |</p>
+<p>| Completeness | 0.58 | 3 CRITICAL gaps (baseline, contract, account health), 4 HIGH gaps (maintenance, scope leakage, exclusivity tension, native proofers). |</p>
+<p>| Sequencing | 0.87 | Layer 0/1/2/3 dependency model is clean. Human review rounds (1B-9, 1B-10) are on critical path but not flagged on the 14-day path. |</p>
+<p>| Audience alignment | 0.73 | Technically fluent. Revenue and client delivery perspectives are well-written. Would not communicate to Carl without translation layer. |</p>
+<p>| Reality match | 0.63 | &quot;14 working days&quot; is optimistic by 25–50%. &quot;Months of operational data&quot; unsupported with metrics. 55 calendar days at full utilization is aspirational. |</p>
+<p><strong>Overall coherence: 0.68</strong></p>
+<p>`(0.81 × 0.15) + (0.57 × 0.25) + (0.58 × 0.20) + (0.87 × 0.15) + (0.73 × 0.10) + (0.63 × 0.15) = 0.68`</p>
+<p>---</p>
+<h4>Phase 6: Dissonance Map</h4>
+<p>| # | What vs What | Severity | Type | Resolution |</p>
+<p>|---|-------------|----------|------|------------|</p>
+<p>| D1 | &quot;Zero testing budget&quot; (Perspective 6) vs. &quot;66 hours testing&quot; (Summary table) | MEDIUM | Structural | Summary added testing hours but individual task estimates were not updated. Critical path uses un-padded estimates. Either update task estimates or annotate which baseline the critical path uses. |</p>
+<p>| D2 | &quot;14 working days to first revenue&quot; vs. padded phase totals + SP-API variance | MEDIUM | Temporal | P0 padded = 2 days. 1A padded = 9.5 days. Client review friction = 1–2 days. SP-API 14-day worst case = 12 additional days. State range: 16–28 working days. |</p>
+<p>| D3 | &quot;Delphi is the only builder / single-threaded&quot; vs. &quot;36% cursor offload&quot; | HIGH | Logical | Cursor offload does not remove Delphi from the critical path — it reduces task hours, not single-thread dependency. Net savings ≈ 20–25% after coordination overhead. |</p>
+<p>| D4 | Carl&#x27;s &quot;tailor-made&quot; exclusivity expectation vs. JV channel replication model | HIGH | Structural | Both goals are described as desirable. Neither is reconciled. Resolution: define in the contract what is exclusive (ontology per-client? knowledge per-client?) vs. shared (code, patterns). |</p>
+<p>| D5 | &quot;Month 1 retainer&quot; activates at shareholder approval vs. no projected approval date | MEDIUM | Temporal | Revenue timeline anchors to Month 1 but approval date is unknown. Add best/worst case projection to Gate G2 or anchor to an estimated date. |</p>
+<p>| D6 | cloudflared assumed available on target (P0-6) vs. not verified in P0-2 | LOW | Structural | Add `cloudflared --version` to P0-2 acceptance criteria alongside CPU/RAM/disk checks. |</p>
+<p>---</p>
+<h4>Phase 7: Confidence Assessment</h4>
+<p>| Dimension | Score | What Would Increase It |</p>
+<p>|-----------|-------|----------------------|</p>
+<p>| Completeness | 0.87 | Read `brain/fact_extractor.py` to verify &quot;adapt for Amazon domain&quot; claim; check Bitkove deployment to validate multi-instance pattern under load. |</p>
+<p>| Accuracy | 0.74 | Verify revenue terms against a term sheet; confirm Groq throughput against live `brain/offload_llm.py` performance data. |</p>
+<p>| Blind spot coverage | 0.62 | Conversation with Carl about exclusivity expectations; Rankona account health check in Seller Central before making bulk upload claims. |</p>
+<p>---</p>
+<h4>Phase 8: One-Sentence Verdict</h4>
+<p>The PDR is architecturally coherent and technically thorough, but it anchors a 14-working-day revenue claim on an optimistic timeline that ignores testing overhead and SP-API variance, leaves the revenue trigger (profit share) without a defined baseline, and carries an unresolved structural tension between Carl&#x27;s exclusivity expectations and the JV channel model that will surface as a contract dispute at first multi-client onboarding.</p>
+<p>---</p>
+<h4>Phase 9: Recommended Actions</h4>
+<p><strong>Action 1 — Add P0-15: Baseline capture before any optimization (do first)</strong></p>
+<p>Export and archive current Seller Central metrics per ASIN: conversion rate, keyword rankings (top 50), sessions, units ordered, revenue. Ingest into Neo4j with timestamp. Update Gate G3 acceptance criteria to: &quot;Sales metrics exceed baseline by ≥X% over rolling 14-day window (X defined in contract).&quot;</p>
+<p>*Owner:* Jennifer (export) + Delphi (ingest, ~2 hrs)</p>
+<p>*Blocks:* Profit share calculation validity</p>
+<p><strong>Action 2 — Resolve exclusivity scope in writing before contract signature</strong></p>
+<p>Add decision gate G0.1: &quot;Exclusivity defined in contract — what is exclusive to Rankona vs. available to JV channel clients?&quot; Suggested boundary: code and patterns are shared; ontology mappings, accumulated knowledge graph content, and competitive intelligence derived from Rankona&#x27;s data are exclusive to Rankona.</p>
+<p>*Owner:* Alex + Carl</p>
+<p>*Blocks:* D4 dissonance, future JV channel dispute</p>
+<p><strong>Action 3 — Replace &quot;14 working days&quot; with a range</strong></p>
+<p>Update critical path claim to: &quot;16–28 working days from SSH access (lower: SP-API approved in 2 days, no client review delays; upper: SP-API 14-day approval, review friction).&quot; Update Milestone M5 in the Carl visibility table accordingly.</p>
+<p>*Owner:* Delphi (edit to Summary + Perspective 7)</p>
+<p>*Blocks:* Stakeholder expectation mismatch at week 3</p>
+<p><strong>Action 4 — Add P0-15a: Amazon account health audit before bulk upload engine deploys</strong></p>
+<p>Before 1A-6 goes live, run a manual Seller Central account health check: active performance notifications, ASIN suppression, listing policy warnings, open cases. Document findings. Halt bulk uploads if active warnings exist until resolved.</p>
+<p>*Owner:* Jennifer (Seller Central access) + Delphi (acceptance criteria, 30 min)</p>
+<p>*Blocks:* Silent bulk upload failures that degrade account standing</p>
+<p><strong>Action 5 — Add post-launch maintenance budget to retainer discussion</strong></p>
+<p>The rejection diagnostics parser (1A-8), attribute inference engine (1A-4), and compliance sentinel (CS-1) require ongoing maintenance as Amazon evolves. Estimate: 4–8 hrs/month for Amazon API compatibility; 2 hrs/month for ontology updates. Define whether $4,500/month covers maintenance or whether maintenance is billed separately. Revisit at Month 1 review.</p>
+<p>*Owner:* Alex + Carl</p>
+<p>*Blocks:* Silent margin erosion as maintenance load grows post-launch</p>
+<p>---</p>
+<p>*Audit performed 2026-04-13 by Sensei using 9-phase Coherence Audit Protocol. Coherence score: 0.68. Three CRITICAL gaps and four HIGH gaps identified. Primary audit confidence: 0.74.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 22:37</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 22:46</div>
 </body></html>
