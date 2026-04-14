@@ -60,72 +60,101 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Carl currently pays $1,500–$3,000 per appeal consultant engagement, meaning the embedded appeal generator alone justifies the terminal cost at agency scale with 10+ clients.</li><li>The appeal generator is already live on e3b5f73 (100.113.222.30:8095) covering 13 violation types, making Phase 1 deployment largely a clone-and-seed operation.</li><li>Carl&#x27;s agency spans 9 countries across multiple Amazon marketplaces, making the single-user Angelo Robles model structurally incompatible without multi-client data scoping.</li></ul></div>
 <div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Operator&#x27;, &#x27;what&#x27;: &#x27;Provision SSH key access to 100.97.248.107 to unblock all deployment work&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl or Operator&#x27;, &#x27;what&#x27;: &#x27;Create Telegram bot token for @RankonaBot via @BotFather&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Sales team&#x27;, &#x27;what&#x27;: &quot;Collect Carl&#x27;s preferred Amazon industry sources (newsletters, podcasts, data feeds) for ingestion pipeline configuration&quot;}</li><li>{&#x27;who&#x27;: &#x27;Delphi&#x27;, &#x27;what&#x27;: &#x27;Verify machine specs (CPU, RAM, disk, OS) once SSH access is granted to size Neo4j heap and embedding service&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl&#x27;, &#x27;what&#x27;: &#x27;Clarify team scope — which Rankona team members need terminal access — to determine single vs. per-user bot architecture&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl&#x27;, &#x27;what&#x27;: &#x27;Clarify whether per-client data isolation within the terminal is required or agency-wide access is sufficient&#x27;}</li></ul></div>
 
-<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Amazon Intelligence Terminal — Carl Helgesson / Rankona Mazon</h2>
-<h3>Infrastructure Blueprint</h3>
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Rankona Mazon Terminal — Infrastructure Blueprint v2</h2>
+<h3>Meta</h3>
 <p>**Prepared**: 2026-04-14 | **Author**: Delphi (infra-architect)</p>
+<p>**Updated from**: v1 blueprint + April 13 call transcript (54 min, 6 participants)</p>
 <p>**Derived from**: Angelo Robles Intelligence Terminal (presented 2026-04-13)</p>
 <p>**Target node**: 100.97.248.107 (Bitler location — UPS, redundant internet)</p>
 <p>**Client**: Carl Helgesson, Rankona Mazon (Amazon Tier 1 Platinum Partner, 16-20 employees, 9 countries)</p>
+<p>**Deal status**: Option B (JV/partnership) selected. Pending shareholder approval (Sander + others).</p>
 <p>---</p>
 <h3>LENS — What&#x27;s Actually There</h3>
-<p>The Angelo Robles Intelligence Terminal is a private second brain for a single portfolio manager making allocation decisions against a $100M+ book. One person, one graph, one query interface. The domain surface is investment research — articles, theses, contradictions.</p>
-<p>Carl&#x27;s world is structurally different. He runs an *agency* — multiple team members, multiple clients, multiple Amazon marketplaces (US, UK, DE, SE, ES, FR, IT). His decisions aren&#x27;t allocation decisions — they&#x27;re *operational* decisions: which listings are at risk, which accounts face suspension, which policy changes affect which clients, which competitor moves demand response.</p>
-<p>The Intelligence Terminal concept translates. The domain surface area does not.</p>
-<p>What carries over:</p>
-<p style='padding-left:1rem'>&bull; Knowledge graph as persistent memory (not a filing cabinet — a structure)</p>
+<p>The Angelo Robles Intelligence Terminal is a private second brain for a single portfolio manager making allocation decisions against a $100M+ book. One person, one graph, one query interface. The domain surface is investment research.</p>
+<p>Carl&#x27;s world is structurally different. He runs an *agency* — multiple team members (Jennifer on operations, Johan on client accounts, strategists across countries), multiple clients, multiple Amazon marketplaces across 11 geographies. His decisions are *operational*: which listings are at risk, which accounts face suspension, which policy changes affect which clients, which competitor moves demand response.</p>
+<p><strong>What the April 13 call revealed that v1 missed:</strong></p>
+<p>The terminal isn&#x27;t a tool Carl buys. It&#x27;s a *valuation multiplier*. Carl is actively positioning for acquisition by Humble Group (47 brands, Northern European conglomerate — Rankona is their only Amazon agency). The terminal makes Rankona worth more to an acquirer because:</p>
+<p style='padding-left:1rem'>&bull; Knowledge never leaves when employees do (Carl&#x27;s words: 3 open strategist positions, 3-6 month ramp each, then they leave)</p>
+<p style='padding-left:1rem'>&bull; The terminal transfers with the company (Ely&#x27;s Salesforce analogy — seamless handoff)</p>
+<p style='padding-left:1rem'>&bull; &quot;Can we claim this is tailor-made?&quot; — Carl sees exclusivity as exit leverage</p>
+<p>The pilot client is already identified: Jennifer onboarded a 43,000 SKU horse equipment catalog TODAY (April 13). Performance-based contract (20-33% of profit above baseline). Backend is empty — suppressed listings, missing attributes. This is where the terminal proves itself.</p>
+<p>Second pipeline client: Fjällräven — billion-dollar outdoor brand. UK as proof of concept, potential global. Currently on Vendor Central, moving to Seller Central.</p>
+<p><strong>What carries over from Angelo:</strong></p>
+<p style='padding-left:1rem'>&bull; Knowledge graph as persistent memory (structure, not filing cabinet)</p>
 <p style='padding-left:1rem'>&bull; Contradiction detection (policy change invalidates a listing strategy)</p>
-<p style='padding-left:1rem'>&bull; Research compounding (every Seller Central update, every TOS change compounds)</p>
-<p style='padding-left:1rem'>&bull; Query interface via Telegram (Carl already uses mobile-first workflows)</p>
-<p>What doesn&#x27;t carry over:</p>
-<p style='padding-left:1rem'>&bull; Single-user model (Carl needs multi-user for his team)</p>
-<p style='padding-left:1rem'>&bull; Portfolio thesis framing (replace with client account health)</p>
-<p style='padding-left:1rem'>&bull; Investment-specific vocabulary (replace with Amazon seller domain)</p>
+<p style='padding-left:1rem'>&bull; Research compounding (every TOS change, every appeal outcome compounds)</p>
+<p style='padding-left:1rem'>&bull; Query interface via Telegram (Carl uses mobile-first workflows)</p>
+<p><strong>What doesn&#x27;t:</strong></p>
+<p style='padding-left:1rem'>&bull; Single-user model → multi-user (Carl, Jennifer, Johan, strategists)</p>
+<p style='padding-left:1rem'>&bull; Portfolio thesis framing → client account health + operational intelligence</p>
+<p style='padding-left:1rem'>&bull; Investment vocabulary → Amazon seller domain (ontology mapping per category)</p>
+<p style='padding-left:1rem'>&bull; Flat pricing → JV/partnership with profit share and exit participation</p>
 <p>---</p>
-<h3>PRISM — Domain Decomposition</h3>
-<h4>Facet I: Appeal Generator (BUILT — deployed today)</h4>
-<p>The appeal generator is already live on e3b5f73 (100.113.222.30:8095). It generates Plans of Action for Amazon seller suspensions across 13 violation types. Carl&#x27;s clients face suspensions regularly — this is immediate value.</p>
-<p>**For Carl&#x27;s terminal**: Clone the appeal generator to 100.97.248.107. Seed it with Rankona-specific case history as it accumulates. The knowledge graph learns from every appeal outcome, improving future POAs.</p>
-<p>**Revenue signal**: Carl currently pays $1,500-$3,000 per appeal consultant engagement. At agency scale with 10+ clients, this alone justifies the terminal.</p>
-<h4>Facet II: Amazon Policy Intelligence</h4>
-<p>Amazon&#x27;s Terms of Service change without notice. Enforcement patterns shift quarterly. A listing strategy that was compliant in January can trigger a suspension in March.</p>
-<p>**What the terminal ingests**:</p>
-<p style='padding-left:1rem'>&bull; Amazon Seller Central policy updates (scraped or forwarded)</p>
-<p style='padding-left:1rem'>&bull; Industry newsletters (Seller Sessions, Amazon Seller Society, Marketplace Pulse)</p>
-<p style='padding-left:1rem'>&bull; Rankona&#x27;s internal compliance notes</p>
-<p style='padding-left:1rem'>&bull; Appeal outcomes (what Amazon accepted vs rejected)</p>
-<p>**What it surfaces**:</p>
-<p style='padding-left:1rem'>&bull; &quot;Which of my clients&#x27; listings are exposed to the new restricted product policy?&quot;</p>
-<p style='padding-left:1rem'>&bull; &quot;What enforcement pattern changes have I seen in the last 30 days?&quot;</p>
-<p style='padding-left:1rem'>&bull; &quot;Show me every appeal we submitted for `product_authenticity` and the outcome&quot;</p>
-<h4>Facet III: Competitor &amp; Market Intelligence</h4>
-<p>Carl mentioned wanting to track competitor moves across marketplaces. The terminal structures this:</p>
-<p>**What gets ingested**:</p>
-<p style='padding-left:1rem'>&bull; Keepa/Helium 10 exports (pricing, BSR, review velocity)</p>
-<p style='padding-left:1rem'>&bull; New ASIN alerts for tracked categories</p>
-<p style='padding-left:1rem'>&bull; Brand registry changes</p>
-<p style='padding-left:1rem'>&bull; Competitor listing changes (title, images, A+ content)</p>
-<p>**What it surfaces**:</p>
-<p style='padding-left:1rem'>&bull; &quot;Which of my clients&#x27; top 10 ASINs lost Buy Box share this week?&quot;</p>
-<p style='padding-left:1rem'>&bull; &quot;Any new entrants in [client X]&#x27;s primary category in DE?&quot;</p>
-<p style='padding-left:1rem'>&bull; &quot;What pricing trends am I seeing across my EU portfolio?&quot;</p>
-<h4>Facet IV: Listing Optimization Intelligence</h4>
-<p>The AI Image Grader (already scoped — see `docs/products/image-grader-plan-v2.md`) fits here. Combined with the knowledge graph, Carl gets:</p>
-<p style='padding-left:1rem'>&bull; Image quality scoring against Amazon&#x27;s guidelines</p>
-<p style='padding-left:1rem'>&bull; Content completeness audits (bullet points, A+ content, video)</p>
-<p style='padding-left:1rem'>&bull; Keyword intelligence from accumulated search term reports</p>
-<p style='padding-left:1rem'>&bull; Cross-marketplace content gap detection</p>
-<h4>Facet V: Client Portfolio Dashboard</h4>
-<p>This is the agency differentiator — what Angelo doesn&#x27;t need but Carl does:</p>
-<p style='padding-left:1rem'>&bull; Multi-client health overview (account health rating, active warnings, recent suspensions)</p>
-<p style='padding-left:1rem'>&bull; Per-client knowledge isolation (queries scoped to client context)</p>
-<p style='padding-left:1rem'>&bull; Team access (Carl&#x27;s strategists can query on behalf of their client portfolios)</p>
-<p style='padding-left:1rem'>&bull; Quarterly reporting (structured thesis scorecards per client)</p>
-<h4>Facet VI: Advertising Intelligence</h4>
-<p>Carl&#x27;s agency manages Amazon PPC campaigns. The 9-doc advertising reference corpus (already in repo at `docs/reference/amazon-advertising/`) provides the domain seed:</p>
-<p style='padding-left:1rem'>&bull; Campaign architecture (SP, SB, SD strategies)</p>
-<p style='padding-left:1rem'>&bull; Budget optimization signals</p>
-<p style='padding-left:1rem'>&bull; ACoS/TACoS tracking with historical context</p>
-<p style='padding-left:1rem'>&bull; Cross-marketplace ad performance comparison</p>
+<h3>PRISM — Metro Station Architecture</h3>
+<p>Michael presented a &quot;subway station&quot; architecture on the call. Each station must be built in sequence, but each feeds back into earlier stations — a loop, not a pipeline. This is the client-facing framing. Infrastructure maps to it.</p>
+<h4>Line 1: Foundation</h4>
+<p>**Station 1A: Backend Attribute Engine** (FIRST PRIORITY)</p>
+<p>The 43K SKU horse equipment client has practically empty backend fields. Jennifer&#x27;s quote: &quot;We do not have any good processes for efficient backend field updates. It&#x27;s a nightmare.&quot;</p>
+<p>What the terminal does:</p>
+<p style='padding-left:1rem'>&bull; Category ontology mapping (done once per category, then reused across all clients in that category)</p>
+<p style='padding-left:1rem'>&bull; Pull category report, reconcile against Amazon&#x27;s taxonomy for gaps and errors</p>
+<p style='padding-left:1rem'>&bull; AI-assisted attribute population following truth hierarchy (inferred fields flagged)</p>
+<p style='padding-left:1rem'>&bull; Bulk upload with rejection diagnostics</p>
+<p style='padding-left:1rem'>&bull; Delivery: 100% required fields populated, zero rejections, 60-75% time reduction</p>
+<p>MERIDIAN components: Neo4j (ontology storage + reuse), Claude CLI (attribute inference), ingestion pipeline (category report parsing), batch upload engine.</p>
+<p>**Station 1B: Listing Copy Engine** (concurrent with 1A)</p>
+<p>SEO-first copy architecture: primary keywords in title, secondary in bullets, tertiary in backend (250 chars). The intelligence is in *embedded keywords* — finding longer phrases that contain shorter target terms, so one placement covers multiple keyword targets while keeping copy coherent.</p>
+<p>What the terminal does:</p>
+<p style='padding-left:1rem'>&bull; Product sheet + brand guide ingestion</p>
+<p style='padding-left:1rem'>&bull; Review/Q&amp;A scraping for voice of customer (NOT the Amazon &quot;Voice of Customer&quot; metric — Michael flagged this terminology conflict)</p>
+<p style='padding-left:1rem'>&bull; Keyword embedding optimization</p>
+<p style='padding-left:1rem'>&bull; Per-market localization (not translation)</p>
+<p style='padding-left:1rem'>&bull; Delivery: Top 50 keywords indexed, &gt;=90% first round approval, 2 revision rounds</p>
+<p>MERIDIAN components: Neo4j (keyword graph + embedding relationships), Claude CLI (copy generation), embedding service (semantic similarity for keyword grouping).</p>
+<p><strong>Station 2: Localization Engine</strong></p>
+<p>Country-specific keywords, buyer psychology, native proofing across 11 geographies. This is NOT translation — it&#x27;s per-market optimization. A listing optimized for France won&#x27;t work in Italy. The manpower to do this across all products in all markets is a nightmare no agency can staff.</p>
+<p>MERIDIAN components: Neo4j (per-market keyword graphs, locale-specific ontologies), Claude CLI (localized copy generation), embedding service (cross-market semantic comparison).</p>
+<h4>Line 2: Intelligence</h4>
+<p><strong>Station 3: Market Intelligence</strong></p>
+<p>Keyword and search intelligence dashboard. Conversion rate analysis. More sophisticated than Data Dive, Helium 10, or existing tools because it&#x27;s connected to the knowledge graph — it learns, compounds, and filters noise over time.</p>
+<p>MERIDIAN components: Neo4j (trend storage + query), ingestion pipeline (Keepa/Helium 10 exports, search term reports), dashboard (web via Cloudflare Tunnel).</p>
+<p><strong>Station 4: Competitive Position Tracking</strong></p>
+<p>Real-time competitive monitoring across marketplaces. New ASIN alerts, pricing trends, BSR shifts, Buy Box share changes.</p>
+<p>MERIDIAN components: Neo4j (competitor graph), ingestion pipeline (scraper feeds, API exports).</p>
+<p><strong>Station 5: Buyer Signal Engine</strong></p>
+<p>Reviews, Q&amp;A, feedback, Voice of Customer section data, cases, backend signals. Not just for own products — scrapes competitor buyer signals to understand WHY buyers choose competitors. Intelligence feeds back to Station 1B (listing copy improvement).</p>
+<p>MERIDIAN components: Neo4j (signal graph with feedback loops to listing nodes), Claude CLI (sentiment analysis, signal extraction), contradiction detection (buyer complaint vs listing claim).</p>
+<h4>Line 3: Growth Ops &amp; Client Output</h4>
+<p><strong>Station 6: Product Launch Protocols</strong></p>
+<p>Birthing period optimization (first 30-45 days). Giveaway strategy, advertising ramp scheduling. Daily AAR (After Action Review) with ranking shift recommendations.</p>
+<p><strong>Station 7: Advertising Architecture</strong></p>
+<p>Campaign architecture (SP, SB, SD). Knowledge graph-powered optimization. Gets smarter over time — reduces noise, increases coherence, focuses on exactly the issue being investigated. The 9-doc advertising reference corpus already in repo at `docs/reference/amazon-advertising/` seeds this.</p>
+<p><strong>Station 8: Performance Reporting &amp; Dashboard</strong></p>
+<p>Multi-client dashboard designed collaboratively as system matures. Client health overview, per-client scoping, team access.</p>
+<h4>Feedback Loops</h4>
+<p>Every station enriches earlier stations:</p>
+<p style='padding-left:1rem'>&bull; Station 5 (buyer signals) → Station 1B (listing copy) — competitor intelligence improves copy</p>
+<p style='padding-left:1rem'>&bull; Station 3 (market intelligence) → Station 1A (backend attributes) — keyword data reveals attribute gaps</p>
+<p style='padding-left:1rem'>&bull; Station 7 (advertising) → Station 3 (market intelligence) — ad performance reveals market dynamics</p>
+<p style='padding-left:1rem'>&bull; Station 2 (localization) → Station 1B (copy) — locale-specific learnings improve base copy</p>
+<p>---</p>
+<h3>DEAL STRUCTURE (Option B — JV/Partnership)</h3>
+<p>Carl selected Option B. Pending shareholder approval.</p>
+<p>| Component | Amount | Notes |</p>
+<p>|-----------|--------|-------|</p>
+<p>| Setup (one-time) | $7,500 | Stations 1A + 1B build, ontology mapping for first categories |</p>
+<p>| Monthly retainer | $4,500 | Less than a single strategist fully loaded |</p>
+<p>| Ontology mapping | $2,500/category | One-time per new category |</p>
+<p>| Profit share | 20% of net quarterly increases | Above 12-month trailing baseline |</p>
+<p>| Exit participation | 50/50 above $25M | Below $25M → zero to Meridian |</p>
+<p><strong>Four revenue streams:</strong></p>
+<p>1. Monthly retainer ($4,500/mo)</p>
+<p>2. Quarterly profit share (20% of growth above baseline)</p>
+<p>3. Exit participation (50/50 above $25M threshold)</p>
+<p>4. JV channel — selling terminal to large sellers ($100M+/year) at $10K-$15K/mo, structured as 50/50 JV with Carl</p>
+<p>**Exclusivity**: Terminal is tailor-made for Rankona. Not sold to competing agencies without joint decision. Carl&#x27;s exit valuation depends on this differentiation.</p>
+<p>**Knowledge as a Service**: Rankona&#x27;s proprietary knowledge (workflows, SOPs, category mappings) can be monetized to other agencies. Customer data stays isolated — KaaS sells process knowledge, not client data. Introduced by Alexander on the call.</p>
+<p>**Cost of standing still** (from presentation): $300K-$450K/year. 440 hours per analysis cycle. Suppressed listing risk: EUR 2,100/day. $96K-$180K/year unreachable revenue from the 40K SKU prospect alone.</p>
 <p>---</p>
 <h3>INFRASTRUCTURE ARCHITECTURE</h3>
 <h4>Target Machine: 100.97.248.107</h4>
@@ -135,74 +164,70 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>**Blocker**: SSH access denied from M1 — needs key provisioning before any deployment.</p>
 <h4>Service Stack</h4>
 <p>```</p>
-<p>┌─────────────────────────────────────────────────┐</p>
-<p>│              100.97.248.107                     │</p>
-<p>│                                                 │</p>
-<p>│  ┌─────────────────────┐  ┌──────────────────┐  │</p>
-<p>│  │  Neo4j (Docker)     │  │  NATS Server     │  │</p>
-<p>│  │  Instance: rankona  │  │  Local hub       │  │</p>
-<p>│  │  Port: 7687         │  │  Port: 4222      │  │</p>
-<p>│  │  Isolated volume    │  │  Auth token      │  │</p>
-<p>│  └─────────────────────┘  └──────────────────┘  │</p>
-<p>│                                                 │</p>
-<p>│  ┌─────────────────────┐  ┌──────────────────┐  │</p>
-<p>│  │  Appeal Generator   │  │  Ingestion       │  │</p>
-<p>│  │  Port: 8095         │  │  Pipeline        │  │</p>
-<p>│  │  Claude CLI for LLM │  │  Email→Graph     │  │</p>
-<p>│  └─────────────────────┘  │  File→Graph      │  │</p>
-<p>│                           │  RSS→Graph       │  │</p>
-<p>│  ┌─────────────────────┐  └──────────────────┘  │</p>
-<p>│  │  Telegram Bot       │                        │</p>
-<p>│  │  @RankonaBot        │  ┌──────────────────┐  │</p>
-<p>│  │  Query interface    │  │  Claude CLI      │  │</p>
-<p>│  └─────────────────────┘  │  OAuth auth      │  │</p>
-<p>│                           │  Haiku + Sonnet  │  │</p>
-<p>│  ┌─────────────────────┐  └──────────────────┘  │</p>
-<p>│  │  Embedding Service  │                        │</p>
-<p>│  │  all-mpnet-base-v2  │  ┌──────────────────┐  │</p>
-<p>│  │  Port: 8081         │  │  Cloudflare      │  │</p>
-<p>│  └─────────────────────┘  │  Tunnel (outbound)│  │</p>
-<p>│                           │  Zero ports open  │  │</p>
-<p>│                           └──────────────────┘  │</p>
-<p>└─────────────────────────────────────────────────┘</p>
+<p>+---------------------------------------------------+</p>
+<p>|              100.97.248.107                        |</p>
+<p>|                                                    |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|  |  Neo4j (Docker)     |  |  NATS Server       |  |</p>
+<p>|  |  Instance: rankona  |  |  Local hub         |  |</p>
+<p>|  |  Port: 7687         |  |  Port: 4222        |  |</p>
+<p>|  |  Isolated volume    |  |  Auth token        |  |</p>
+<p>|  |  Ontology store     |  |  NOT connected to  |  |</p>
+<p>|  |  Keyword graphs     |  |  MERIDIAN mesh     |  |</p>
+<p>|  |  Signal loops       |  +--------------------+  |</p>
+<p>|  +---------------------+                           |</p>
+<p>|                                                    |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|  |  Appeal Generator   |  |  Ingestion         |  |</p>
+<p>|  |  Port: 8095         |  |  Pipeline          |  |</p>
+<p>|  |  Claude CLI for LLM |  |  Category reports  |  |</p>
+<p>|  +---------------------+  |  Keyword exports   |  |</p>
+<p>|                           |  Product sheets    |  |</p>
+<p>|  +---------------------+  |  Review scraping   |  |</p>
+<p>|  |  Telegram Bot       |  |  Competitor feeds  |  |</p>
+<p>|  |  @RankonaBot        |  +--------------------+  |</p>
+<p>|  |  Query interface    |                           |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|                           |  Claude CLI        |  |</p>
+<p>|  +---------------------+  |  OAuth auth        |  |</p>
+<p>|  |  Embedding Service  |  |  Haiku + Sonnet    |  |</p>
+<p>|  |  all-mpnet-base-v2  |  +--------------------+  |</p>
+<p>|  |  Port: 8081         |                           |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|                           |  Cloudflare Tunnel |  |</p>
+<p>|  +---------------------+  |  Outbound-only     |  |</p>
+<p>|  |  Attribute Engine   |  |  Zero ports open   |  |</p>
+<p>|  |  Batch processor    |  |  Dashboard access  |  |</p>
+<p>|  |  Upload validator   |  +--------------------+  |</p>
+<p>|  +---------------------+                           |</p>
+<p>+---------------------------------------------------+</p>
 <p>```</p>
 <h4>Deployment Method</h4>
 <p>Use `customer-deploy.sh --instance-id rankona`:</p>
 <p>1. **Neo4j**: Isolated Docker container `neo4j-rankona`, separate volume, TLS enabled</p>
-<p>2. **NATS**: Local hub (not connected to MERIDIAN mesh — customer data isolation)</p>
+<p>2. **NATS**: Local hub (NOT connected to MERIDIAN mesh — customer data isolation)</p>
 <p>3. **Appeal Generator**: Clone of `services/appeal_generator/` with rankona-specific seed knowledge</p>
 <p>4. **Telegram Bot**: New bot via @BotFather, registered to Carl&#x27;s Telegram</p>
 <p>5. **Embedding**: Local all-mpnet-base-v2 for semantic search</p>
-<p>6. **Cloudflare Tunnel**: Outbound-only access for any web interfaces (zero open ports — SOC2 compliant)</p>
+<p>6. **Cloudflare Tunnel**: Outbound-only access for dashboard (zero open ports — SOC2 compliant)</p>
 <p>7. **Claude CLI**: OAuth authenticated for LLM calls</p>
+<p>8. **Attribute Engine**: Batch processor for category report parsing, ontology mapping, bulk upload generation</p>
 <h4>Data Isolation</h4>
 <p>Carl&#x27;s data stays on 100.97.248.107. Period.</p>
 <p style='padding-left:1rem'>&bull; Separate Neo4j instance (not shared with MERIDIAN mesh)</p>
 <p style='padding-left:1rem'>&bull; Separate NATS server (no cross-connect to prime)</p>
-<p style='padding-left:1rem'>&bull; Full export capability (Neo4j dump → Carl owns his data)</p>
+<p style='padding-left:1rem'>&bull; Full export capability (Neo4j dump — Carl owns his data)</p>
 <p style='padding-left:1rem'>&bull; No commingling with other customer instances or MERIDIAN operations</p>
+<p style='padding-left:1rem'>&bull; On acquisition: new owner picks up the terminal seamlessly (Salesforce model)</p>
 <h4>Knowledge Seed</h4>
 <p>Initial ingestion before handoff:</p>
 <p>| Source | Content | Ingestion Method |</p>
 <p>|--------|---------|-----------------|</p>
 <p>| Amazon Advertising corpus | 9 reference docs (campaign architecture through client management) | Batch ingest at setup |</p>
 <p>| Appeal case templates | 14 violation-type POA templates from seed_knowledge.py | Schema migration |</p>
-<p>| Rankona call intelligence | Signal analysis, research brief, deal context from March 28 session | Selective ingest (Carl-relevant only) |</p>
-<p>| Amazon TOS current | Latest Seller Central policies | Manual ingestion at onboarding |</p>
-<p>---</p>
-<h3>REVENUE MODEL</h3>
-<p>Adapted from Angelo Robles pricing, adjusted for agency scale:</p>
-<p>| Tier | Amount | What It Covers |</p>
-<p>|------|--------|----------------|</p>
-<p>| Setup (one-time) | $5,000 | Knowledge base provisioning, Amazon domain seed, appeal generator, Telegram bot, onboarding (2 sessions) |</p>
-<p>| Monthly (flat) | $2,500 | Unlimited ingestion + queries, appeal generation, policy intelligence, contradiction detection, monthly system review |</p>
-<p>| Per-appeal add-on | $99 | Individual appeal generation with quality gate (vs $1,500-$3,000 consultant) |</p>
-<p>| Phase 2 (optional) | TBD | Image Grader integration, multi-user team access, client-scoped dashboards |</p>
-<p>**Justification for higher pricing vs Angelo**:</p>
-<p style='padding-left:1rem'>&bull; Angelo is one user, one domain (portfolio). Carl is an agency with team access needs.</p>
-<p style='padding-left:1rem'>&bull; Appeal generator is a standalone revenue product embedded in the terminal.</p>
-<p style='padding-left:1rem'>&bull; Multi-marketplace complexity (9 countries) requires more domain coverage.</p>
-<p style='padding-left:1rem'>&bull; Agency multiplier: Carl can offer terminal-derived insights to HIS clients.</p>
+<p>| Rankona call intelligence | Signal analysis from March 28 + April 13 sessions | Selective ingest |</p>
+<p>| Amazon TOS current | Latest Seller Central policies (all 11 geographies) | Manual ingestion at onboarding |</p>
+<p>| 43K SKU category report | Horse equipment taxonomy (Jennifer to export) | First ontology mapping |</p>
 <p>---</p>
 <h3>IMPLEMENTATION PHASES</h3>
 <h4>Phase 0: Access &amp; Provisioning (Day 1)</h4>
@@ -210,39 +235,63 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p style='padding-left:1rem'>&bull; [ ] Verify machine specs (CPU, RAM, disk, OS version)</p>
 <p style='padding-left:1rem'>&bull; [ ] Install Tailscale (if not already present)</p>
 <p style='padding-left:1rem'>&bull; [ ] Run `customer-deploy.sh --instance-id rankona`</p>
-<h4>Phase 1: Core Terminal (Week 1)</h4>
-<p style='padding-left:1rem'>&bull; [ ] Neo4j instance running with Amazon-specific schema</p>
-<p style='padding-left:1rem'>&bull; [ ] Appeal generator deployed and seeded with 14 templates</p>
-<p style='padding-left:1rem'>&bull; [ ] Telegram bot created and connected to Carl</p>
+<h4>Phase 1: Station 1A — Backend Attribute Engine (Week 1)</h4>
+<p style='padding-left:1rem'>&bull; [ ] Neo4j instance running with Amazon category ontology schema</p>
+<p style='padding-left:1rem'>&bull; [ ] Category report parser built (ingests Jennifer&#x27;s export)</p>
+<p style='padding-left:1rem'>&bull; [ ] Ontology mapping for horse equipment categories (saddles, saddle protection, earbuds)</p>
+<p style='padding-left:1rem'>&bull; [ ] AI-assisted attribute population pipeline (Claude CLI + truth hierarchy)</p>
+<p style='padding-left:1rem'>&bull; [ ] Bulk upload generator with rejection diagnostics</p>
+<p style='padding-left:1rem'>&bull; [ ] First batch: top sellers from 43K SKU catalog</p>
+<p style='padding-left:1rem'>&bull; [ ] Appeal generator deployed and seeded (parallel — already proven on e3b5f73)</p>
+<h4>Phase 2: Station 1B — Listing Copy Engine (Week 2-3)</h4>
+<p style='padding-left:1rem'>&bull; [ ] Keyword embedding optimizer built</p>
+<p style='padding-left:1rem'>&bull; [ ] SEO-first copy generator (title → bullets → backend)</p>
+<p style='padding-left:1rem'>&bull; [ ] Review/Q&amp;A scraper for voice of customer signals</p>
+<p style='padding-left:1rem'>&bull; [ ] Telegram bot created and connected to Carl&#x27;s team</p>
 <p style='padding-left:1rem'>&bull; [ ] Embedding service operational</p>
-<p style='padding-left:1rem'>&bull; [ ] Initial knowledge seed ingested (Amazon advertising corpus + TOS)</p>
-<h4>Phase 2: Ingestion Pipeline (Week 2)</h4>
-<p style='padding-left:1rem'>&bull; [ ] Email-to-graph pipeline (Carl forwards articles, newsletters)</p>
-<p style='padding-left:1rem'>&bull; [ ] File drop ingestion (Seller Central reports, competitor exports)</p>
-<p style='padding-left:1rem'>&bull; [ ] RSS feed monitoring (configurable per Carl&#x27;s preferred sources)</p>
-<p style='padding-left:1rem'>&bull; [ ] First 50 documents ingested and queryable</p>
-<h4>Phase 3: Agency Features (Week 3-4)</h4>
-<p style='padding-left:1rem'>&bull; [ ] Multi-client data scoping in queries</p>
-<p style='padding-left:1rem'>&bull; [ ] Team access via additional Telegram accounts</p>
+<p style='padding-left:1rem'>&bull; [ ] First listing optimization batch through the pipeline</p>
+<p style='padding-left:1rem'>&bull; [ ] Top 50 keywords indexed for pilot products</p>
+<h4>Phase 3: Station 2 + Intelligence Foundations (Week 3-4)</h4>
+<p style='padding-left:1rem'>&bull; [ ] Localization engine scaffolded (SE, UK, DE markets first)</p>
+<p style='padding-left:1rem'>&bull; [ ] Competitive position tracking data pipeline</p>
 <p style='padding-left:1rem'>&bull; [ ] Client health dashboard (web, via Cloudflare Tunnel)</p>
-<p style='padding-left:1rem'>&bull; [ ] Monthly review cadence established</p>
+<p style='padding-left:1rem'>&bull; [ ] Monthly review cadence established with Jennifer + Carl</p>
+<h4>Phase 4+: Remaining Stations (ongoing)</h4>
+<p style='padding-left:1rem'>&bull; Stations 3-8 built iteratively based on pilot results</p>
+<p style='padding-left:1rem'>&bull; Each station enriches earlier stations via feedback loops</p>
+<p style='padding-left:1rem'>&bull; Build sequence adjusted based on Carl&#x27;s and Jennifer&#x27;s priority signals</p>
+<p>---</p>
+<h3>COMPLIANCE SENTINEL (from Johan&#x27;s feedback)</h3>
+<p>Johan flagged category-specific compliance as a critical pain point. Not just Amazon rules — government regulations per country (supplements across EU, different ingredient rules, labeling requirements).</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Continuous monitoring agent (&quot;a full-time bot&quot; — Michael&#x27;s words)</p>
+<p style='padding-left:1rem'>&bull; Amazon TOS change detection across 11 geographies</p>
+<p style='padding-left:1rem'>&bull; Government regulatory change detection per country per category</p>
+<p style='padding-left:1rem'>&bull; FBA fee changes, box fee changes, restricted product reclassifications</p>
+<p style='padding-left:1rem'>&bull; Alert pipeline: change detected → impact assessment across client portfolios → action items</p>
+<p>**Product opportunity:** This sentinel could be a standalone product (&quot;Amazon Policy Intelligence&quot;) sold as a newsletter/feed to the broader Amazon seller community. Michael and Ely both flagged this on the call as a brand awareness driver.</p>
 <p>---</p>
 <h3>OPEN QUESTIONS</h3>
 <p>1. **Machine access**: SSH to 100.97.248.107 is currently denied. Need operator to provision key access.</p>
 <p>2. **Machine specs**: Unknown — need to verify CPU, RAM, disk before sizing Neo4j heap and embedding service.</p>
-<p>3. **Carl&#x27;s preferred sources**: Which newsletters, podcasts, data feeds does he already consume? Needed for ingestion pipeline configuration.</p>
-<p>4. **Team scope**: Which Rankona team members get terminal access? Affects bot architecture (single bot vs per-user).</p>
-<p>5. **Client data sensitivity**: Does Carl need per-client data isolation within his terminal, or is agency-wide sufficient?</p>
+<p>3. **Category report format**: Jennifer needs to export the 43K SKU category listing report. Unknown if it&#x27;ll crash at that size. Start with top sellers batch.</p>
+<p>4. **Shareholder approval**: Carl needs Sander + other shareholders to approve Option B terms. No timeline given.</p>
+<p>5. **Team access scope**: Carl, Jennifer, Johan confirmed. How many strategists? Single Telegram bot vs per-user?</p>
+<p>6. **Fjällräven timeline**: UK POC scope and timeline unknown. Potential to become larger than 43K SKU client.</p>
+<p>7. **Additional stations budget**: Jennifer asked whether $4,500/mo covers everything. Ely said calibration needed once full wish list is mapped. Jennifer to send complete wish list (PPC, account health, image QA).</p>
+<p>8. **Ontology count at launch**: Michael asked &quot;2 categories, 3 categories?&quot; Jennifer said horse equipment has sub-categories (saddles, protection, earbuds) — may absorb into one mapping. Alignment needed.</p>
 <p>---</p>
 <h3>BLOCKERS</h3>
 <p>| Blocker | Owner | Status |</p>
 <p>|---------|-------|--------|</p>
 <p>| SSH access to 100.97.248.107 | Operator | BLOCKED — key provisioning needed |</p>
+<p>| Shareholder approval of Option B | Carl / Sander | PENDING — internal discussion |</p>
 <p>| Telegram bot token for @RankonaBot | Carl/Operator | NOT STARTED |</p>
 <p>| Claude CLI OAuth on target machine | Delphi | Blocked on SSH access |</p>
-<p>| Carl&#x27;s source list for ingestion | Sales team | NOT STARTED |</p>
+<p>| 43K SKU category report export | Jennifer | IN PROGRESS — just got account access April 13 |</p>
+<p>| Full station wish list from Jennifer | Jennifer/Carl | NOT STARTED — next steps from call |</p>
 <p>---</p>
-<p>*This blueprint adapts proven infrastructure (Angelo Robles Intelligence Terminal + MERIDIAN appeal generator) to the Amazon seller domain. The target machine has power resilience. The deployment is SOC2-compliant by design — isolated instance, no open ports, full data export. Ready to execute once SSH access is provisioned.*</p></div></div>
+<p>*v2 incorporates April 13 call intelligence: Option B deal structure, metro station architecture, 43K SKU pilot client, exit valuation positioning, JV channel, compliance sentinel, and Knowledge as a Service model. Infrastructure unchanged from v1 — isolated instance on 100.97.248.107, zero open ports, full data export, SOC2 compliant.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 21:05</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 21:21</div>
 </body></html>
