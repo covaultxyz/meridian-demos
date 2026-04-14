@@ -66,26 +66,26 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>**Updated from**: v1 blueprint + April 13 call transcript (54 min, 6 participants)</p>
 <p>**Derived from**: Angelo Robles Intelligence Terminal (presented 2026-04-13)</p>
 <p>**Target node**: 100.97.248.107 (Bitler location — UPS, redundant internet)</p>
-<p>**Client**: Carl Helgesson, Rankona Mazon (Amazon Tier 1 Platinum Partner, 16-20 employees, 9 countries)</p>
+<p>**Client**: Carl Helgesson, Rankona Mazon (Amazon Tier 1 Platinum Partner, 16-20 employees, 11 geographies)</p>
 <p>**Deal status**: Option B (JV/partnership) selected. Pending shareholder approval (Sander + others).</p>
 <p>---</p>
 <h3>LENS — What&#x27;s Actually There</h3>
 <p>The Angelo Robles Intelligence Terminal is a private second brain for a single portfolio manager making allocation decisions against a $100M+ book. One person, one graph, one query interface. The domain surface is investment research.</p>
-<p>Carl&#x27;s world is structurally different. He runs an *agency* — multiple team members (Jennifer on operations, Johan on client accounts, strategists across countries), multiple clients, multiple Amazon marketplaces across 11 geographies. His decisions are *operational*: which listings are at risk, which accounts face suspension, which policy changes affect which clients, which competitor moves demand response.</p>
+<p>Carl&#x27;s world is structurally different. He runs an *agency* — multiple partners (Jennifer S on operations, Johan Hallberg on client accounts — both are shareholders), plus strategists across countries, multiple clients, multiple Amazon marketplaces across 11 geographies. His decisions are *operational*: which listings are at risk, which accounts face suspension, which policy changes affect which clients, which competitor moves demand response.</p>
 <p><strong>What the April 13 call revealed that v1 missed:</strong></p>
 <p>The terminal isn&#x27;t a tool Carl buys. It&#x27;s a *valuation multiplier*. Carl is actively positioning for acquisition by Humble Group (47 brands, Northern European conglomerate — Rankona is their only Amazon agency). The terminal makes Rankona worth more to an acquirer because:</p>
 <p style='padding-left:1rem'>&bull; Knowledge never leaves when employees do (Carl&#x27;s words: 3 open strategist positions, 3-6 month ramp each, then they leave)</p>
 <p style='padding-left:1rem'>&bull; The terminal transfers with the company (Ely&#x27;s Salesforce analogy — seamless handoff)</p>
 <p style='padding-left:1rem'>&bull; &quot;Can we claim this is tailor-made?&quot; — Carl sees exclusivity as exit leverage</p>
-<p>The pilot client is already identified: Jennifer onboarded a 43,000 SKU horse equipment catalog TODAY (April 13). Performance-based contract (20-33% of profit above baseline). Backend is empty — suppressed listings, missing attributes. This is where the terminal proves itself.</p>
-<p>Second pipeline client: Fjällräven — billion-dollar outdoor brand. UK as proof of concept, potential global. Currently on Vendor Central, moving to Seller Central.</p>
+<p>The pilot client is already identified: Jennifer onboarded a 43,000 SKU horse equipment catalog TODAY (April 13). Performance-based contract (20-33% of profit above baseline). Backend is empty — suppressed listings, missing attributes. This is where the terminal proves itself. Critical detail: Rankona itself has skin in the game on this client — they earn a percentage of every profit dollar above baseline. Terminal success compounds Rankona&#x27;s own revenue.</p>
+<p>Second pipeline client: Fjällräven — billion-dollar outdoor brand. Johan&#x27;s client. UK as proof of concept, potential global. Currently on Vendor Central, moving to Seller Central. Carl: &quot;that could potentially be actually a bigger account than Jennifer&#x27;s in the end.&quot;</p>
 <p><strong>What carries over from Angelo:</strong></p>
 <p style='padding-left:1rem'>&bull; Knowledge graph as persistent memory (structure, not filing cabinet)</p>
 <p style='padding-left:1rem'>&bull; Contradiction detection (policy change invalidates a listing strategy)</p>
 <p style='padding-left:1rem'>&bull; Research compounding (every TOS change, every appeal outcome compounds)</p>
 <p style='padding-left:1rem'>&bull; Query interface via Telegram (Carl uses mobile-first workflows)</p>
 <p><strong>What doesn&#x27;t:</strong></p>
-<p style='padding-left:1rem'>&bull; Single-user model → multi-user (Carl, Jennifer, Johan, strategists)</p>
+<p style='padding-left:1rem'>&bull; Single-user model → multi-user (Carl, Jennifer [partner], Johan [partner], Sander [shareholder], strategists)</p>
 <p style='padding-left:1rem'>&bull; Portfolio thesis framing → client account health + operational intelligence</p>
 <p style='padding-left:1rem'>&bull; Investment vocabulary → Amazon seller domain (ontology mapping per category)</p>
 <p style='padding-left:1rem'>&bull; Flat pricing → JV/partnership with profit share and exit participation</p>
@@ -99,9 +99,11 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p style='padding-left:1rem'>&bull; Category ontology mapping (done once per category, then reused across all clients in that category)</p>
 <p style='padding-left:1rem'>&bull; Pull category report, reconcile against Amazon&#x27;s taxonomy for gaps and errors</p>
 <p style='padding-left:1rem'>&bull; AI-assisted attribute population following truth hierarchy (inferred fields flagged)</p>
+<p style='padding-left:1rem'>&bull; **COSMO/Rufus priority**: Jennifer identified 15 specific backend attributes critical for Amazon&#x27;s COSMO engine (which feeds Rufus AI). These are the first optimization target — horse equipment category.</p>
 <p style='padding-left:1rem'>&bull; Bulk upload with rejection diagnostics</p>
+<p style='padding-left:1rem'>&bull; **Flat file fallback**: Certain categories can&#x27;t go through API — terminal generates flat files that are manually approved and uploaded by the team. This is a technical constraint, not a limitation.</p>
 <p style='padding-left:1rem'>&bull; Delivery: 100% required fields populated, zero rejections, 60-75% time reduction</p>
-<p>MERIDIAN components: Neo4j (ontology storage + reuse), Claude CLI (attribute inference), ingestion pipeline (category report parsing), batch upload engine.</p>
+<p>MERIDIAN components: Neo4j (ontology storage + reuse), Claude CLI (attribute inference), ingestion pipeline (category report parsing), batch upload engine, flat file generator.</p>
 <p>**Station 1B: Listing Copy Engine** (concurrent with 1A)</p>
 <p>SEO-first copy architecture: primary keywords in title, secondary in bullets, tertiary in backend (250 chars). The intelligence is in *embedded keywords* — finding longer phrases that contain shorter target terms, so one placement covers multiple keyword targets while keeping copy coherent.</p>
 <p>What the terminal does:</p>
@@ -147,11 +149,13 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>| Ontology mapping | $2,500/category | One-time per new category |</p>
 <p>| Profit share | 20% of net quarterly increases | Above 12-month trailing baseline |</p>
 <p>| Exit participation | 50/50 above $25M | Below $25M → zero to Meridian |</p>
+<p>**Option A comparison** (not selected): $27,000 setup ($24,500 stations + $2,500 ontology), $13,000/mo ($9,500 terminal + $3,500 EU activation), first year all-in $183,000.</p>
 <p><strong>Four revenue streams:</strong></p>
 <p>1. Monthly retainer ($4,500/mo)</p>
 <p>2. Quarterly profit share (20% of growth above baseline)</p>
 <p>3. Exit participation (50/50 above $25M threshold)</p>
 <p>4. JV channel — selling terminal to large sellers ($100M+/year) at $10K-$15K/mo, structured as 50/50 JV with Carl</p>
+<p>**Market timing**: Nordic Amazon agency market collapsed — 12 agencies → 2-3 in Sweden (inflation). Window for Rankona to dominate with terminal leverage. JV channel launch should target Q1 2027 (Michael: &quot;nobody&#x27;s going to be interested in Q4 putting in a new system&quot;). Carl has warm distribution: MDS group + 80-person mastermind ($50M-$600M sellers).</p>
 <p>**Exclusivity**: Terminal is tailor-made for Rankona. Not sold to competing agencies without joint decision. Carl&#x27;s exit valuation depends on this differentiation.</p>
 <p>**Knowledge as a Service**: Rankona&#x27;s proprietary knowledge (workflows, SOPs, category mappings) can be monetized to other agencies. Customer data stays isolated — KaaS sells process knowledge, not client data. Introduced by Alexander on the call.</p>
 <p>**Cost of standing still** (from presentation): $300K-$450K/year. 440 hours per analysis cycle. Suppressed listing risk: EUR 2,100/day. $96K-$180K/year unreachable revenue from the 40K SKU prospect alone.</p>
@@ -293,5 +297,5 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <p>---</p>
 <p>*v2 incorporates April 13 call intelligence: Option B deal structure, metro station architecture, 43K SKU pilot client, exit valuation positioning, JV channel, compliance sentinel, and Knowledge as a Service model. Infrastructure unchanged from v1 — isolated instance on 100.97.248.107, zero open ports, full data export, SOC2 compliant.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 21:21</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-13 21:27</div>
 </body></html>
