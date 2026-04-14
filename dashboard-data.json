@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T03:01:10.693641+00:00",
+  "generated_at": "2026-04-14T03:12:12.295632+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-14T03:01:07.692839+00:00",
+      "updated_at": "2026-04-14T03:12:11.835136+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1257,6 +1257,26 @@
           "buying_signal_count": 0,
           "sentiment": "positive",
           "suggested_stage": "evaluation",
+          "participants": []
+        },
+        {
+          "client": "rankona-mazon",
+          "call_id": "pdr-work-completed",
+          "title": "pdr-work-completed",
+          "file": "clients/rankona-mazon/signals/deal-signals-pdr-work-completed-2026-04-14.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -2770,14 +2790,14 @@
       ],
       "call_volume": {
         "unknown": 11,
-        "rankona-mazon": 6,
+        "rankona-mazon": 7,
         "omar": 1,
         "meridian-internal": 30,
         "mbm": 33,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 89,
+      "total_signals": 90,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -2969,20 +2989,6 @@
         },
         {
           "daemon": "sensei",
-          "pid": "87274",
-          "terminal": "ttys198",
-          "launched": "2026-04-14T00:58",
-          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
-        },
-        {
-          "daemon": "atlas",
-          "pid": "16797",
-          "terminal": "ttys200",
-          "launched": "2026-04-14T01:01",
-          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
-        },
-        {
-          "daemon": "sensei",
           "pid": "55557",
           "terminal": "ttys202",
           "launched": "2026-04-14T01:14",
@@ -3035,6 +3041,13 @@
           "pid": "28788",
           "terminal": "ttys183",
           "launched": "2026-04-14T02:58",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "17340",
+          "terminal": "ttys198",
+          "launched": "2026-04-14T03:08",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
@@ -3386,1814 +3399,23 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-14T03:01:10.450412+00:00",
-      "open_issues": {
-        "total": 50,
-        "by_label": {
-          "grade/C": 12,
-          "daemon/sensei": 1,
-          "checkpoint": 2,
-          "in-progress": 2,
-          "auto-created": 3,
-          "enhancement": 11,
-          "grade/B": 18,
-          "grade/A": 3,
-          "dependencies": 6,
-          "python:uv": 1,
-          "high": 5,
-          "security": 8,
-          "infrastructure": 6,
-          "medium": 6,
-          "architecture": 1,
-          "brain": 1,
-          "safety": 1,
-          "sentinel-review:fail": 5,
-          "sentinel-review:warn": 1,
-          "cursor-bench": 5,
-          "daemon/sandman": 1,
-          "ci": 1,
-          "sentinel-review:pass": 1,
-          "token-efficiency": 4,
-          "documentation": 1,
-          "dashboard": 6,
-          "low": 2
-        }
-      },
-      "recent_issues": [
-        {
-          "number": 2127,
-          "title": "CHECKPOINT: Sensei \u2014 NATS/MCP boot fix + Apr 13 coherence pass",
-          "state": "open",
-          "created_at": "2026-04-14T01:58:26Z",
-          "updated_at": "2026-04-14T02:19:45Z",
-          "labels": [
-            "grade/C",
-            "daemon/sensei",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2127",
-          "project_slug": "pulse-sentinels"
-        },
-        {
-          "number": 2126,
-          "title": "Metric below target: CI Pass Rate (0.0)",
-          "state": "open",
-          "created_at": "2026-04-14T00:00:29Z",
-          "updated_at": "2026-04-14T00:21:52Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2126",
-          "project_slug": null
-        },
-        {
-          "number": 2125,
-          "title": "feat(reviewshield): Phase 4 \u2014 Client portal + Telegram onboarding",
-          "state": "open",
-          "created_at": "2026-04-13T23:52:55Z",
-          "updated_at": "2026-04-13T23:52:55Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2125",
-          "project_slug": null
-        },
-        {
-          "number": 2124,
-          "title": "feat(reviewshield): Phase 3C \u2014 Auto-invoicing on successful removal",
-          "state": "open",
-          "created_at": "2026-04-13T23:52:49Z",
-          "updated_at": "2026-04-13T23:52:49Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2124",
-          "project_slug": null
-        },
-        {
-          "number": 2123,
-          "title": "feat(reviewshield): Phase 3B \u2014 Outcome tracker (daily removal check sentinel)",
-          "state": "open",
-          "created_at": "2026-04-13T23:47:58Z",
-          "updated_at": "2026-04-13T23:47:58Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2123",
-          "project_slug": null
-        },
-        {
-          "number": 2122,
-          "title": "feat(reviewshield): Phase 3A \u2014 Submission pipeline (human-in-the-loop v1)",
-          "state": "open",
-          "created_at": "2026-04-13T23:47:13Z",
-          "updated_at": "2026-04-13T23:47:13Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2122",
-          "project_slug": null
-        },
-        {
-          "number": 2119,
-          "title": "feat(reviewshield): Phase 2A \u2014 Review scanner (Helium 10 / Amazon intake)",
-          "state": "open",
-          "created_at": "2026-04-13T23:46:00Z",
-          "updated_at": "2026-04-14T02:39:24Z",
-          "labels": [
-            "enhancement",
-            "grade/A"
-          ],
-          "assignee": "covaultxyz",
-          "url": "https://github.com/covaultxyz/meridian/issues/2119",
-          "project_slug": null
-        },
-        {
-          "number": 2115,
-          "title": "test(ci): verify CodeQL passes with upload:never [DO NOT MERGE]",
-          "state": "open",
-          "created_at": "2026-04-13T21:47:56Z",
-          "updated_at": "2026-04-14T01:33:30Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2115",
-          "project_slug": null
-        },
-        {
-          "number": 2114,
-          "title": "chore(deps): bump pytest from 9.0.2 to 9.0.3",
-          "state": "open",
-          "created_at": "2026-04-13T21:44:55Z",
-          "updated_at": "2026-04-14T01:12:51Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2114",
-          "project_slug": null
-        },
-        {
-          "number": 2112,
-          "title": "security: Immutable audit log storage + 90-day retention (CMMC2 AU)",
-          "state": "open",
-          "created_at": "2026-04-13T21:25:14Z",
-          "updated_at": "2026-04-13T21:30:30Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2112",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2111,
-          "title": "security: Tailscale ACL network segmentation \u2014 restrict Neo4j and NATS to authorized nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:25:00Z",
-          "updated_at": "2026-04-13T21:30:45Z",
-          "labels": [
-            "medium",
-            "security",
-            "architecture",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2111",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2110,
-          "title": "security: Verify FileVault (macOS) + BitLocker (Windows) encryption across all nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:24:37Z",
-          "updated_at": "2026-04-13T21:30:57Z",
-          "labels": [
-            "medium",
-            "security",
-            "infrastructure",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2110",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2109,
-          "title": "security: Write wazuh-nats-bridge.py \u2014 bridge Wazuh alerts to NATS security.alerts",
-          "state": "open",
-          "created_at": "2026-04-13T21:21:57Z",
-          "updated_at": "2026-04-13T21:31:10Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2109",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2108,
-          "title": "security: Deploy mSCP NIST 800-171 hardening baseline on macOS nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:21:47Z",
-          "updated_at": "2026-04-13T21:31:22Z",
-          "labels": [
-            "medium",
-            "security",
-            "infrastructure",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2108",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2107,
-          "title": "security: Install OpenSCAP nightly CIS L2 compliance scans on all Ubuntu nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:21:38Z",
-          "updated_at": "2026-04-13T21:31:34Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2107",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2106,
-          "title": "security: Deploy Wazuh EDR manager on 7311420 + agents on all 10 nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:21:25Z",
-          "updated_at": "2026-04-13T21:31:47Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2106",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2104,
-          "title": "Source external research for agent_architecture domain \u2014 AgentVox customer readiness prerequisite",
-          "state": "open",
-          "created_at": "2026-04-13T20:33:09Z",
-          "updated_at": "2026-04-13T20:45:32Z",
-          "labels": [
-            "high",
-            "brain",
-            "grade/A"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2104",
-          "project_slug": "graph-intelligence"
-        },
-        {
-          "number": 2103,
-          "title": "Safety gate: retire stale 'guaranteed arbitrage profit' claim in capital_markets before live capital",
-          "state": "open",
-          "created_at": "2026-04-13T20:32:21Z",
-          "updated_at": "2026-04-13T20:45:45Z",
-          "labels": [
-            "grade/A",
-            "safety"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2103",
-          "project_slug": null
-        },
-        {
-          "number": 2101,
-          "title": "deps: update sse-starlette requirement from >=1.6.0 to >=3.3.4",
-          "state": "open",
-          "created_at": "2026-04-13T14:07:22Z",
-          "updated_at": "2026-04-13T14:07:24Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2101",
-          "project_slug": null
-        },
-        {
-          "number": 2100,
-          "title": "deps: update rich requirement from >=13.9.0 to >=15.0.0",
-          "state": "open",
-          "created_at": "2026-04-13T14:07:17Z",
-          "updated_at": "2026-04-13T14:07:18Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2100",
-          "project_slug": null
-        },
-        {
-          "number": 2099,
-          "title": "deps: update twilio requirement from >=9.0.0 to >=9.10.4",
-          "state": "open",
-          "created_at": "2026-04-13T14:07:12Z",
-          "updated_at": "2026-04-13T14:07:13Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2099",
-          "project_slug": null
-        },
-        {
-          "number": 2098,
-          "title": "deps: update pytest-xdist requirement from >=3.5.0 to >=3.8.0",
-          "state": "open",
-          "created_at": "2026-04-13T14:07:05Z",
-          "updated_at": "2026-04-13T14:07:06Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2098",
-          "project_slug": null
-        },
-        {
-          "number": 2097,
-          "title": "deps: update pyobjc-framework-cocoa requirement from >=10.0 to >=12.1",
-          "state": "open",
-          "created_at": "2026-04-13T14:07:01Z",
-          "updated_at": "2026-04-13T14:07:02Z",
-          "labels": [
-            "dependencies"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2097",
-          "project_slug": null
-        },
-        {
-          "number": 2096,
-          "title": "Metric below target: Graph Orphan Rate (0.16573050920157684)",
-          "state": "open",
-          "created_at": "2026-04-13T12:00:43Z",
-          "updated_at": "2026-04-14T00:00:31Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2096",
-          "project_slug": null
-        },
-        {
-          "number": 2091,
-          "title": "docs(kairos): #2030 axiom calibration record (thresholds unchanged)",
-          "state": "open",
-          "created_at": "2026-04-13T05:41:04Z",
-          "updated_at": "2026-04-13T05:45:40Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2091",
-          "project_slug": null
-        },
-        {
-          "number": 2090,
-          "title": "feat(#2033): Dashboard Phase 0.1 \u2014 auditor script",
-          "state": "open",
-          "created_at": "2026-04-13T04:40:52Z",
-          "updated_at": "2026-04-13T04:46:03Z",
-          "labels": [
-            "sentinel-review:warn"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2090",
-          "project_slug": null
-        },
-        {
-          "number": 2088,
-          "title": "feat(#2042): Dashboard audit log PII masking + CSV export + MIG export log",
-          "state": "open",
-          "created_at": "2026-04-13T04:30:22Z",
-          "updated_at": "2026-04-14T01:33:22Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2088",
-          "project_slug": null
-        },
-        {
-          "number": 2084,
-          "title": "[Metro P3] Scope GH_TOKEN to fine-grained deploy token (repo:read only)",
-          "state": "open",
-          "created_at": "2026-04-13T04:06:49Z",
-          "updated_at": "2026-04-13T14:38:13Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2084",
-          "project_slug": null
-        },
-        {
-          "number": 2082,
-          "title": "[Metro P2] Activity feed: collapse rapid same-author commits",
-          "state": "open",
-          "created_at": "2026-04-13T04:06:30Z",
-          "updated_at": "2026-04-13T15:34:33Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2082",
-          "project_slug": null
-        },
-        {
-          "number": 2081,
-          "title": "[Metro P2] DLQ panel: link to per-stream/consumer lag",
-          "state": "open",
-          "created_at": "2026-04-13T04:06:28Z",
-          "updated_at": "2026-04-13T15:34:33Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2081",
-          "project_slug": null
-        },
-        {
-          "number": 2080,
-          "title": "[Metro P2] Issues panel drill-down with /v1/issues/top endpoint",
-          "state": "open",
-          "created_at": "2026-04-13T04:06:27Z",
-          "updated_at": "2026-04-13T15:34:34Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2080",
-          "project_slug": null
-        },
-        {
-          "number": 2074,
-          "title": "CHECKPOINT: Sandman COO \u2014 KAIROS fleet verification + Bitler mesh arc",
-          "state": "open",
-          "created_at": "2026-04-13T03:50:09Z",
-          "updated_at": "2026-04-13T04:00:15Z",
-          "labels": [
-            "grade/C",
-            "daemon/sandman",
-            "checkpoint",
-            "in-progress"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2074",
-          "project_slug": "memory-gardener"
-        },
-        {
-          "number": 2071,
-          "title": "ci: PR commit dump gate \u2014 enforce data/transcript file separation from code PRs",
-          "state": "open",
-          "created_at": "2026-04-13T02:23:58Z",
-          "updated_at": "2026-04-13T02:30:15Z",
-          "labels": [
-            "grade/C",
-            "ci",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2071",
-          "project_slug": null
-        },
-        {
-          "number": 2070,
-          "title": "Metro dashboard: remediation actions for stuck/drift sessions (Telegram push + in-browser nudge)",
-          "state": "open",
-          "created_at": "2026-04-12T22:59:10Z",
-          "updated_at": "2026-04-14T02:07:04Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2070",
-          "project_slug": null
-        },
-        {
-          "number": 2069,
-          "title": "Telegram bridge: continue CC sessions from phone via claude -p --resume",
-          "state": "open",
-          "created_at": "2026-04-12T22:59:05Z",
-          "updated_at": "2026-04-12T23:00:30Z",
-          "labels": [
-            "enhancement",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2069",
-          "project_slug": null
-        },
-        {
-          "number": 2066,
-          "title": "Metric below target: Research Claim Density (0.46)",
-          "state": "open",
-          "created_at": "2026-04-12T12:01:14Z",
-          "updated_at": "2026-04-14T00:00:32Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2066",
-          "project_slug": null
-        },
-        {
-          "number": 2064,
-          "title": "feat(#2053): Demonstrate Policy Enforcement in settings.yaml",
-          "state": "open",
-          "created_at": "2026-04-12T05:47:58Z",
-          "updated_at": "2026-04-13T01:53:36Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2064",
-          "project_slug": null
-        },
-        {
-          "number": 2062,
-          "title": "feat(#2035): Create Customer Asks Markdown File",
-          "state": "open",
-          "created_at": "2026-04-12T05:02:54Z",
-          "updated_at": "2026-04-13T04:14:12Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2062",
-          "project_slug": null
-        },
-        {
-          "number": 2058,
-          "title": "feat(#2040): Phase 4 \u2014 default session role (viewer) + ruff F823",
-          "state": "open",
-          "created_at": "2026-04-12T05:01:30Z",
-          "updated_at": "2026-04-13T22:48:04Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2058",
-          "project_slug": null
-        },
-        {
-          "number": 2057,
-          "title": "feat(#2049): Global pytest mock for claude -p subprocess",
-          "state": "open",
-          "created_at": "2026-04-12T04:20:41Z",
-          "updated_at": "2026-04-13T01:08:39Z",
-          "labels": [
-            "sentinel-review:pass"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2057",
-          "project_slug": null
-        },
-        {
-          "number": 2056,
-          "title": "Governance: Unified CLI budget visibility \u2014 dashboard or alert",
-          "state": "open",
-          "created_at": "2026-04-12T03:56:08Z",
-          "updated_at": "2026-04-12T04:00:18Z",
-          "labels": [
-            "grade/C",
-            "token-efficiency"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2056",
-          "project_slug": null
-        },
-        {
-          "number": 2055,
-          "title": "Governance: No always-running LLM consumers without budget caps",
-          "state": "open",
-          "created_at": "2026-04-12T03:55:58Z",
-          "updated_at": "2026-04-12T04:00:36Z",
-          "labels": [
-            "grade/C",
-            "token-efficiency"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2055",
-          "project_slug": null
-        },
-        {
-          "number": 2054,
-          "title": "Governance: Per-daemon LLM model access control",
-          "state": "open",
-          "created_at": "2026-04-12T03:55:51Z",
-          "updated_at": "2026-04-12T04:00:49Z",
-          "labels": [
-            "grade/C",
-            "token-efficiency"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2054",
-          "project_slug": null
-        },
-        {
-          "number": 2053,
-          "title": "Governance: Default-safe config \u2014 new features must ship disabled",
-          "state": "open",
-          "created_at": "2026-04-12T03:55:47Z",
-          "updated_at": "2026-04-12T04:01:00Z",
-          "labels": [
-            "grade/C",
-            "token-efficiency"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2053",
-          "project_slug": null
-        },
-        {
-          "number": 2048,
-          "title": "Dashboard meta: 9-phase coherence audit of prior enterprise-gap analysis",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:58Z",
-          "updated_at": "2026-04-12T02:30:13Z",
-          "labels": [
-            "documentation",
-            "grade/C",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2048",
-          "project_slug": null
-        },
-        {
-          "number": 2047,
-          "title": "Dashboard Phase 6.4: Add CSP, X-Frame-Options, X-Content-Type-Options via Next.js config",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:57Z",
-          "updated_at": "2026-04-12T02:30:21Z",
-          "labels": [
-            "medium",
-            "security",
-            "grade/B",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2047",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2046,
-          "title": "Dashboard Phase 6.3: Add Sentry (or PostHog) for client error reporting",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:55Z",
-          "updated_at": "2026-04-12T02:30:31Z",
-          "labels": [
-            "medium",
-            "grade/B",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2046",
-          "project_slug": null
-        },
-        {
-          "number": 2045,
-          "title": "Dashboard Phase 6.2: Run Lighthouse mobile + fix table overflow",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:54Z",
-          "updated_at": "2026-04-12T02:30:42Z",
-          "labels": [
-            "low",
-            "grade/B",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2045",
-          "project_slug": null
-        },
-        {
-          "number": 2044,
-          "title": "Dashboard Phase 6.1: Run axe-core a11y audit + fix violations",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:53Z",
-          "updated_at": "2026-04-12T02:30:50Z",
-          "labels": [
-            "low",
-            "grade/B",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2044",
-          "project_slug": null
-        },
-        {
-          "number": 2043,
-          "title": "Dashboard Phase 5: Live data wiring (per-page, decided from Phase 0.1 CSV)",
-          "state": "open",
-          "created_at": "2026-04-12T02:20:51Z",
-          "updated_at": "2026-04-12T02:30:59Z",
-          "labels": [
-            "medium",
-            "grade/C",
-            "dashboard"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2043",
-          "project_slug": null
-        }
-      ],
-      "issues_by_project": {
-        "pulse-sentinels": [
-          {
-            "number": 2127,
-            "title": "CHECKPOINT: Sensei \u2014 NATS/MCP boot fix + Apr 13 coherence pass",
-            "state": "open",
-            "created_at": "2026-04-14T01:58:26Z",
-            "updated_at": "2026-04-14T02:19:45Z",
-            "labels": [
-              "grade/C",
-              "daemon/sensei",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2127",
-            "project_slug": "pulse-sentinels"
-          }
-        ],
-        "unassigned": [
-          {
-            "number": 2126,
-            "title": "Metric below target: CI Pass Rate (0.0)",
-            "state": "open",
-            "created_at": "2026-04-14T00:00:29Z",
-            "updated_at": "2026-04-14T00:21:52Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2126",
-            "project_slug": null
-          },
-          {
-            "number": 2125,
-            "title": "feat(reviewshield): Phase 4 \u2014 Client portal + Telegram onboarding",
-            "state": "open",
-            "created_at": "2026-04-13T23:52:55Z",
-            "updated_at": "2026-04-13T23:52:55Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2125",
-            "project_slug": null
-          },
-          {
-            "number": 2124,
-            "title": "feat(reviewshield): Phase 3C \u2014 Auto-invoicing on successful removal",
-            "state": "open",
-            "created_at": "2026-04-13T23:52:49Z",
-            "updated_at": "2026-04-13T23:52:49Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2124",
-            "project_slug": null
-          },
-          {
-            "number": 2123,
-            "title": "feat(reviewshield): Phase 3B \u2014 Outcome tracker (daily removal check sentinel)",
-            "state": "open",
-            "created_at": "2026-04-13T23:47:58Z",
-            "updated_at": "2026-04-13T23:47:58Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2123",
-            "project_slug": null
-          },
-          {
-            "number": 2122,
-            "title": "feat(reviewshield): Phase 3A \u2014 Submission pipeline (human-in-the-loop v1)",
-            "state": "open",
-            "created_at": "2026-04-13T23:47:13Z",
-            "updated_at": "2026-04-13T23:47:13Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2122",
-            "project_slug": null
-          },
-          {
-            "number": 2119,
-            "title": "feat(reviewshield): Phase 2A \u2014 Review scanner (Helium 10 / Amazon intake)",
-            "state": "open",
-            "created_at": "2026-04-13T23:46:00Z",
-            "updated_at": "2026-04-14T02:39:24Z",
-            "labels": [
-              "enhancement",
-              "grade/A"
-            ],
-            "assignee": "covaultxyz",
-            "url": "https://github.com/covaultxyz/meridian/issues/2119",
-            "project_slug": null
-          },
-          {
-            "number": 2115,
-            "title": "test(ci): verify CodeQL passes with upload:never [DO NOT MERGE]",
-            "state": "open",
-            "created_at": "2026-04-13T21:47:56Z",
-            "updated_at": "2026-04-14T01:33:30Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2115",
-            "project_slug": null
-          },
-          {
-            "number": 2114,
-            "title": "chore(deps): bump pytest from 9.0.2 to 9.0.3",
-            "state": "open",
-            "created_at": "2026-04-13T21:44:55Z",
-            "updated_at": "2026-04-14T01:12:51Z",
-            "labels": [
-              "dependencies",
-              "python:uv"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2114",
-            "project_slug": null
-          },
-          {
-            "number": 2103,
-            "title": "Safety gate: retire stale 'guaranteed arbitrage profit' claim in capital_markets before live capital",
-            "state": "open",
-            "created_at": "2026-04-13T20:32:21Z",
-            "updated_at": "2026-04-13T20:45:45Z",
-            "labels": [
-              "grade/A",
-              "safety"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2103",
-            "project_slug": null
-          },
-          {
-            "number": 2101,
-            "title": "deps: update sse-starlette requirement from >=1.6.0 to >=3.3.4",
-            "state": "open",
-            "created_at": "2026-04-13T14:07:22Z",
-            "updated_at": "2026-04-13T14:07:24Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2101",
-            "project_slug": null
-          },
-          {
-            "number": 2100,
-            "title": "deps: update rich requirement from >=13.9.0 to >=15.0.0",
-            "state": "open",
-            "created_at": "2026-04-13T14:07:17Z",
-            "updated_at": "2026-04-13T14:07:18Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2100",
-            "project_slug": null
-          },
-          {
-            "number": 2099,
-            "title": "deps: update twilio requirement from >=9.0.0 to >=9.10.4",
-            "state": "open",
-            "created_at": "2026-04-13T14:07:12Z",
-            "updated_at": "2026-04-13T14:07:13Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2099",
-            "project_slug": null
-          },
-          {
-            "number": 2098,
-            "title": "deps: update pytest-xdist requirement from >=3.5.0 to >=3.8.0",
-            "state": "open",
-            "created_at": "2026-04-13T14:07:05Z",
-            "updated_at": "2026-04-13T14:07:06Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2098",
-            "project_slug": null
-          },
-          {
-            "number": 2097,
-            "title": "deps: update pyobjc-framework-cocoa requirement from >=10.0 to >=12.1",
-            "state": "open",
-            "created_at": "2026-04-13T14:07:01Z",
-            "updated_at": "2026-04-13T14:07:02Z",
-            "labels": [
-              "dependencies"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2097",
-            "project_slug": null
-          },
-          {
-            "number": 2096,
-            "title": "Metric below target: Graph Orphan Rate (0.16573050920157684)",
-            "state": "open",
-            "created_at": "2026-04-13T12:00:43Z",
-            "updated_at": "2026-04-14T00:00:31Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2096",
-            "project_slug": null
-          },
-          {
-            "number": 2091,
-            "title": "docs(kairos): #2030 axiom calibration record (thresholds unchanged)",
-            "state": "open",
-            "created_at": "2026-04-13T05:41:04Z",
-            "updated_at": "2026-04-13T05:45:40Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2091",
-            "project_slug": null
-          },
-          {
-            "number": 2090,
-            "title": "feat(#2033): Dashboard Phase 0.1 \u2014 auditor script",
-            "state": "open",
-            "created_at": "2026-04-13T04:40:52Z",
-            "updated_at": "2026-04-13T04:46:03Z",
-            "labels": [
-              "sentinel-review:warn"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2090",
-            "project_slug": null
-          },
-          {
-            "number": 2088,
-            "title": "feat(#2042): Dashboard audit log PII masking + CSV export + MIG export log",
-            "state": "open",
-            "created_at": "2026-04-13T04:30:22Z",
-            "updated_at": "2026-04-14T01:33:22Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2088",
-            "project_slug": null
-          },
-          {
-            "number": 2084,
-            "title": "[Metro P3] Scope GH_TOKEN to fine-grained deploy token (repo:read only)",
-            "state": "open",
-            "created_at": "2026-04-13T04:06:49Z",
-            "updated_at": "2026-04-13T14:38:13Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2084",
-            "project_slug": null
-          },
-          {
-            "number": 2082,
-            "title": "[Metro P2] Activity feed: collapse rapid same-author commits",
-            "state": "open",
-            "created_at": "2026-04-13T04:06:30Z",
-            "updated_at": "2026-04-13T15:34:33Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2082",
-            "project_slug": null
-          },
-          {
-            "number": 2081,
-            "title": "[Metro P2] DLQ panel: link to per-stream/consumer lag",
-            "state": "open",
-            "created_at": "2026-04-13T04:06:28Z",
-            "updated_at": "2026-04-13T15:34:33Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2081",
-            "project_slug": null
-          },
-          {
-            "number": 2080,
-            "title": "[Metro P2] Issues panel drill-down with /v1/issues/top endpoint",
-            "state": "open",
-            "created_at": "2026-04-13T04:06:27Z",
-            "updated_at": "2026-04-13T15:34:34Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2080",
-            "project_slug": null
-          },
-          {
-            "number": 2071,
-            "title": "ci: PR commit dump gate \u2014 enforce data/transcript file separation from code PRs",
-            "state": "open",
-            "created_at": "2026-04-13T02:23:58Z",
-            "updated_at": "2026-04-13T02:30:15Z",
-            "labels": [
-              "grade/C",
-              "ci",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2071",
-            "project_slug": null
-          },
-          {
-            "number": 2070,
-            "title": "Metro dashboard: remediation actions for stuck/drift sessions (Telegram push + in-browser nudge)",
-            "state": "open",
-            "created_at": "2026-04-12T22:59:10Z",
-            "updated_at": "2026-04-14T02:07:04Z",
-            "labels": [
-              "enhancement",
-              "grade/B",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2070",
-            "project_slug": null
-          },
-          {
-            "number": 2069,
-            "title": "Telegram bridge: continue CC sessions from phone via claude -p --resume",
-            "state": "open",
-            "created_at": "2026-04-12T22:59:05Z",
-            "updated_at": "2026-04-12T23:00:30Z",
-            "labels": [
-              "enhancement",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2069",
-            "project_slug": null
-          },
-          {
-            "number": 2066,
-            "title": "Metric below target: Research Claim Density (0.46)",
-            "state": "open",
-            "created_at": "2026-04-12T12:01:14Z",
-            "updated_at": "2026-04-14T00:00:32Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2066",
-            "project_slug": null
-          },
-          {
-            "number": 2064,
-            "title": "feat(#2053): Demonstrate Policy Enforcement in settings.yaml",
-            "state": "open",
-            "created_at": "2026-04-12T05:47:58Z",
-            "updated_at": "2026-04-13T01:53:36Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2064",
-            "project_slug": null
-          },
-          {
-            "number": 2062,
-            "title": "feat(#2035): Create Customer Asks Markdown File",
-            "state": "open",
-            "created_at": "2026-04-12T05:02:54Z",
-            "updated_at": "2026-04-13T04:14:12Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2062",
-            "project_slug": null
-          },
-          {
-            "number": 2058,
-            "title": "feat(#2040): Phase 4 \u2014 default session role (viewer) + ruff F823",
-            "state": "open",
-            "created_at": "2026-04-12T05:01:30Z",
-            "updated_at": "2026-04-13T22:48:04Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2058",
-            "project_slug": null
-          },
-          {
-            "number": 2057,
-            "title": "feat(#2049): Global pytest mock for claude -p subprocess",
-            "state": "open",
-            "created_at": "2026-04-12T04:20:41Z",
-            "updated_at": "2026-04-13T01:08:39Z",
-            "labels": [
-              "sentinel-review:pass"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2057",
-            "project_slug": null
-          },
-          {
-            "number": 2056,
-            "title": "Governance: Unified CLI budget visibility \u2014 dashboard or alert",
-            "state": "open",
-            "created_at": "2026-04-12T03:56:08Z",
-            "updated_at": "2026-04-12T04:00:18Z",
-            "labels": [
-              "grade/C",
-              "token-efficiency"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2056",
-            "project_slug": null
-          },
-          {
-            "number": 2055,
-            "title": "Governance: No always-running LLM consumers without budget caps",
-            "state": "open",
-            "created_at": "2026-04-12T03:55:58Z",
-            "updated_at": "2026-04-12T04:00:36Z",
-            "labels": [
-              "grade/C",
-              "token-efficiency"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2055",
-            "project_slug": null
-          },
-          {
-            "number": 2054,
-            "title": "Governance: Per-daemon LLM model access control",
-            "state": "open",
-            "created_at": "2026-04-12T03:55:51Z",
-            "updated_at": "2026-04-12T04:00:49Z",
-            "labels": [
-              "grade/C",
-              "token-efficiency"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2054",
-            "project_slug": null
-          },
-          {
-            "number": 2053,
-            "title": "Governance: Default-safe config \u2014 new features must ship disabled",
-            "state": "open",
-            "created_at": "2026-04-12T03:55:47Z",
-            "updated_at": "2026-04-12T04:01:00Z",
-            "labels": [
-              "grade/C",
-              "token-efficiency"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2053",
-            "project_slug": null
-          },
-          {
-            "number": 2048,
-            "title": "Dashboard meta: 9-phase coherence audit of prior enterprise-gap analysis",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:58Z",
-            "updated_at": "2026-04-12T02:30:13Z",
-            "labels": [
-              "documentation",
-              "grade/C",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2048",
-            "project_slug": null
-          },
-          {
-            "number": 2046,
-            "title": "Dashboard Phase 6.3: Add Sentry (or PostHog) for client error reporting",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:55Z",
-            "updated_at": "2026-04-12T02:30:31Z",
-            "labels": [
-              "medium",
-              "grade/B",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2046",
-            "project_slug": null
-          },
-          {
-            "number": 2045,
-            "title": "Dashboard Phase 6.2: Run Lighthouse mobile + fix table overflow",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:54Z",
-            "updated_at": "2026-04-12T02:30:42Z",
-            "labels": [
-              "low",
-              "grade/B",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2045",
-            "project_slug": null
-          },
-          {
-            "number": 2044,
-            "title": "Dashboard Phase 6.1: Run axe-core a11y audit + fix violations",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:53Z",
-            "updated_at": "2026-04-12T02:30:50Z",
-            "labels": [
-              "low",
-              "grade/B",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2044",
-            "project_slug": null
-          },
-          {
-            "number": 2043,
-            "title": "Dashboard Phase 5: Live data wiring (per-page, decided from Phase 0.1 CSV)",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:51Z",
-            "updated_at": "2026-04-12T02:30:59Z",
-            "labels": [
-              "medium",
-              "grade/C",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2043",
-            "project_slug": null
-          }
-        ],
-        "openclaw": [
-          {
-            "number": 2112,
-            "title": "security: Immutable audit log storage + 90-day retention (CMMC2 AU)",
-            "state": "open",
-            "created_at": "2026-04-13T21:25:14Z",
-            "updated_at": "2026-04-13T21:30:30Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2112",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2111,
-            "title": "security: Tailscale ACL network segmentation \u2014 restrict Neo4j and NATS to authorized nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:25:00Z",
-            "updated_at": "2026-04-13T21:30:45Z",
-            "labels": [
-              "medium",
-              "security",
-              "architecture",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2111",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2110,
-            "title": "security: Verify FileVault (macOS) + BitLocker (Windows) encryption across all nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:24:37Z",
-            "updated_at": "2026-04-13T21:30:57Z",
-            "labels": [
-              "medium",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2110",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2109,
-            "title": "security: Write wazuh-nats-bridge.py \u2014 bridge Wazuh alerts to NATS security.alerts",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:57Z",
-            "updated_at": "2026-04-13T21:31:10Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2109",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2108,
-            "title": "security: Deploy mSCP NIST 800-171 hardening baseline on macOS nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:47Z",
-            "updated_at": "2026-04-13T21:31:22Z",
-            "labels": [
-              "medium",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2108",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2107,
-            "title": "security: Install OpenSCAP nightly CIS L2 compliance scans on all Ubuntu nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:38Z",
-            "updated_at": "2026-04-13T21:31:34Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2107",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2106,
-            "title": "security: Deploy Wazuh EDR manager on 7311420 + agents on all 10 nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:25Z",
-            "updated_at": "2026-04-13T21:31:47Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2106",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2047,
-            "title": "Dashboard Phase 6.4: Add CSP, X-Frame-Options, X-Content-Type-Options via Next.js config",
-            "state": "open",
-            "created_at": "2026-04-12T02:20:57Z",
-            "updated_at": "2026-04-12T02:30:21Z",
-            "labels": [
-              "medium",
-              "security",
-              "grade/B",
-              "dashboard"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2047",
-            "project_slug": "openclaw"
-          }
-        ],
-        "graph-intelligence": [
-          {
-            "number": 2104,
-            "title": "Source external research for agent_architecture domain \u2014 AgentVox customer readiness prerequisite",
-            "state": "open",
-            "created_at": "2026-04-13T20:33:09Z",
-            "updated_at": "2026-04-13T20:45:32Z",
-            "labels": [
-              "high",
-              "brain",
-              "grade/A"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2104",
-            "project_slug": "graph-intelligence"
-          }
-        ],
-        "memory-gardener": [
-          {
-            "number": 2074,
-            "title": "CHECKPOINT: Sandman COO \u2014 KAIROS fleet verification + Bitler mesh arc",
-            "state": "open",
-            "created_at": "2026-04-13T03:50:09Z",
-            "updated_at": "2026-04-13T04:00:15Z",
-            "labels": [
-              "grade/C",
-              "daemon/sandman",
-              "checkpoint",
-              "in-progress"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2074",
-            "project_slug": "memory-gardener"
-          }
-        ]
-      },
+      "updated_at": "2026-04-14T03:12:11.848914+00:00",
+      "open_issues": "GitHub issues query failed or gh CLI unavailable",
+      "recent_issues": [],
+      "issues_by_project": {},
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-04-14T02:39:15Z",
-        "head_sha": "17ca2123"
+        "error": "GitHub CI query failed or gh CLI unavailable",
+        "updated_at": null
       },
-      "ci_recent_runs": [
-        {
-          "id": 24378017870,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-14T02:39:15Z",
-          "updated_at": "2026-04-14T02:39:15Z",
-          "head_sha": "17ca2123",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24378017870"
-        },
-        {
-          "id": 24377836754,
-          "name": "Deploy Dashboard to GitHub Pages",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-14T02:32:56Z",
-          "updated_at": "2026-04-14T02:33:35Z",
-          "head_sha": "2be17352",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24377836754"
-        },
-        {
-          "id": 24377764515,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-14T02:30:23Z",
-          "updated_at": "2026-04-14T02:30:25Z",
-          "head_sha": "d3f87c44",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24377764515"
-        },
-        {
-          "id": 24377444310,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-04-14T02:19:20Z",
-          "updated_at": "2026-04-14T02:25:08Z",
-          "head_sha": "1f7a827a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24377444310"
-        },
-        {
-          "id": 24377439596,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-14T02:19:10Z",
-          "updated_at": "2026-04-14T02:19:11Z",
-          "head_sha": "65a49880",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24377439596"
-        }
-      ],
-      "recent_commits": [
-        {
-          "sha": "3c30dbea",
-          "message": "Add 9-phase coherence audit to Rankona PDR \u2014 score 0.68, 3 CRITICAL gaps, 5 recommended actions",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:46:44Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3c30dbeacf6bedc6066cdbeeada9335c0bfed729"
-        },
-        {
-          "sha": "17ca2123",
-          "message": "fix(#2128): Add migration_059_review_removal_schema.py \u2014 resolves Sensei ontology gate",
-          "author": "Glasshaus",
-          "date": "2026-04-14T02:39:12Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/17ca2123ed1afd44485817953ebf549d9642d685"
-        },
-        {
-          "sha": "a4f21b4d",
-          "message": "docs(rankona): PDR v2 \u2014 acceptance criteria, offload classification, data contracts, LLM cost model, testing budget, DR plan",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:37:05Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a4f21b4dd4eea8cc4b482495c852ad2babdc52a6"
-        },
-        {
-          "sha": "2be17352",
-          "message": "intel: auto-ingested 1 transcript(s)",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:32:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/2be173528f6196841a9aa297eb2ed86599be3309"
-        },
-        {
-          "sha": "d3f87c44",
-          "message": "docs(sensei): session recap + todo \u2014 ReviewShield P2, appeal API, CPU audit, pending work",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:28:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d3f87c44f03cf0c71f814a43697d1caa608d20bb"
-        },
-        {
-          "sha": "6a273665",
-          "message": "docs(rankona): PDR + task list for terminal buildout \u2014 8 stations, 5 phases, 359 hours",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:25:29Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6a273665d224d377cc806dfe158b6991574d803a"
-        },
-        {
-          "sha": "13fd18eb",
-          "message": "docs(appeal-generator): add DONE.md and TODO.md with full status + roadmap",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:20:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/13fd18eb3b8d5ab9c1f7dc9dfade07325134d401"
-        },
-        {
-          "sha": "60faa4ef",
-          "message": "docs(team-state): sensei boot pass Apr 14 \u2014 HEAD 65a49880, deploy gap, ReviewShield ontology gate (#2128)",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:19:15Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/60faa4efde2d09178ee9688bf1f96972666131ec"
-        },
-        {
-          "sha": "1f7a827a",
-          "message": "fix(reviewshield): scanner Cypher queries, lazy aiohttp import, test fixes \u2014 Part of #2119",
-          "author": "Glasshaus",
-          "date": "2026-04-14T02:15:26Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1f7a827ad8e1d6e025f5f0a2029b8b35e29a4e6b"
-        },
-        {
-          "sha": "65a49880",
-          "message": "deploy(rankona): add terminal blueprint + metro station plan to speedoftrust.ai",
-          "author": "covaultxyz",
-          "date": "2026-04-14T02:14:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/65a498802183e39bcf5924f4fe9aebcc0cd3778c"
-        }
-      ],
+      "ci_recent_runs": [],
+      "recent_commits": [],
       "github_project": {
-        "updated_at": "2026-04-14T03:01:08.683776+00:00",
-        "source": "github_project_13",
-        "deals": [
-          {
-            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-            "number": 1675,
-            "url": "https://github.com/covaultxyz/meridian/issues/1675",
-            "state": "CLOSED",
-            "created_at": "2026-03-22T03:44:34Z",
-            "labels": [
-              "grade/B",
-              "verified",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-              "Status": "In Progress",
-              "Stage": "Engaged",
-              "Revenue": "$5K/mo ($60K/yr) \u2014 75% probability",
-              "Next Action": "Confirm $2K retainer payment; finalize scope doc; P1 phone tests",
-              "Deadline": "2026-04-14",
-              "Owner": "Joint",
-              "Risk": "Data handoff delayed; scope doc still not written",
-              "Velocity": "Advancing",
-              "Last Activity": "2026-04-03",
-              "Client": "Denver Griffin"
-            }
-          },
-          {
-            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-            "number": 1676,
-            "url": "https://github.com/covaultxyz/meridian/issues/1676",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:50Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-              "Status": "Todo",
-              "Stage": "Lead",
-              "Next Action": "Deep research EHR needs; re-engage when Gordon returns",
-              "Deadline": "2026-04-18",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-10",
-              "Revenue": "TBD \u2014 Lead stage, not yet qualified",
-              "Risk": "No activity since March; lead may be cold",
-              "Client": "Gordon (GCC)"
-            }
-          },
-          {
-            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-            "number": 1677,
-            "url": "https://github.com/covaultxyz/meridian/issues/1677",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:56Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-              "Status": "In Progress",
-              "Stage": "Proposal",
-              "Next Action": "Bitler re-engage Brian Cook or declare cold by Apr 14",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$5K/mo ($60K/yr) \u2014 60% probability",
-              "Risk": "No response to decision prompt \u2014 23 days since last activity",
-              "Deadline": "2026-04-14",
-              "Client": "Brian Cook"
-            }
-          },
-          {
-            "title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
-            "number": 2001,
-            "url": "https://github.com/covaultxyz/meridian/issues/2001",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:50:52Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
-              "Status": "In Progress",
-              "Stage": "Discovery",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-31",
-              "Revenue": "$3K/mo ($36K/yr) \u2014 35% probability",
-              "Next Action": "Confirm meeting happened; get outcome from Bitler",
-              "Deadline": "2026-04-14",
-              "Risk": "Meeting scheduled but no outcome reported in 11+ days",
-              "Client": "Luis Lamba"
-            }
-          },
-          {
-            "title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
-            "number": 2002,
-            "url": "https://github.com/covaultxyz/meridian/issues/2002",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:51:01Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
-              "Status": "In Progress",
-              "Stage": "Discovery",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$10K/mo ($120K/yr) \u2014 25% probability",
-              "Next Action": "Bitler to confirm status or declare cold",
-              "Deadline": "2026-04-14",
-              "Risk": "No activity in 23+ days \u2014 may be cold",
-              "Client": "Nate"
-            }
-          },
-          {
-            "title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
-            "number": 2003,
-            "url": "https://github.com/covaultxyz/meridian/issues/2003",
-            "state": "CLOSED",
-            "created_at": "2026-04-11T18:51:09Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
-              "Status": "Done",
-              "Stage": "Qualified",
-              "Owner": "Joint",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$10.5K/mo ($126K/yr) \u2014 20% probability",
-              "Next Action": "Confirm if pilot ran; get results from Ely/Bitler",
-              "Deadline": "2026-04-14",
-              "Risk": "Review classifier pilot deadline (April 1) passed with no results",
-              "Client": "Amazon Sellers"
-            }
-          },
-          {
-            "title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
-            "number": 2004,
-            "url": "https://github.com/covaultxyz/meridian/issues/2004",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:51:17Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
-              "Status": "Todo",
-              "Stage": "Discovery",
-              "Owner": "Joint",
-              "Velocity": "New",
-              "Last Activity": "2026-04-03",
-              "Revenue": "$3K/mo ($36K/yr) \u2014 30% probability",
-              "Next Action": "Build KaaS prototype demo; schedule 30-min follow-up call",
-              "Deadline": "2026-04-18",
-              "Risk": "Downsizing agency work, focused on Zestify food brand \u2014 unclear fit",
-              "Client": "Garrett Taylor"
-            }
-          },
-          {
-            "title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
-            "number": 474,
-            "url": "https://github.com/covaultxyz/meridian/issues/474",
-            "state": "CLOSED",
-            "created_at": "2026-02-16T21:53:01Z",
-            "labels": [
-              "enhancement",
-              "phase/2",
-              "grade/B",
-              "source/human"
-            ],
-            "fields": {
-              "Title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
-              "Status": "In Progress",
-              "Stage": "Active",
-              "Owner": "Alex",
-              "Velocity": "Active",
-              "Last Activity": "2026-04-11",
-              "Revenue": "Internal \u2014 no direct revenue (infrastructure)",
-              "Next Action": "Complete confidence calibration; wire ACH workflow",
-              "Risk": "MDB + ACH workflow + OSINT Watchtower all pending",
-              "Client": "Cassian"
-            }
-          }
-        ],
-        "total_items": 8
+        "error": "GitHub Project #13 query failed or gh CLI unavailable",
+        "updated_at": null
       }
     },
     "team": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "members": [
         {
           "id": "alex",
@@ -5264,7 +3486,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "projects": [
         {
           "project": {
@@ -5694,7 +3916,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5779,7 +4001,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5876,7 +4098,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6319,6 +4541,65 @@
           ],
           "detail_page": "calls/2026-04-14-pdr-terminal-buildout.html",
           "preview": "A pre-development review of the Rankona Mazon Terminal Buildout found 8 of 12 required components already in production, identified SSH access as the sole hard blocker, and mapped a ~12 working-day critical path to first revenue through Station 1A."
+        },
+        {
+          "date": "2026-04-14",
+          "title": "Pdr Work Completed",
+          "type": "external",
+          "file": "clients/rankona-mazon/pdr-work-completed.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "A 3-version PDR (Product Design/Requirements Review) for the Rankona Mazon terminal buildout was completed, covering an 8-station metro architecture, coherence audit, and codebase evidence verification.",
+          "decisions": [
+            "Groq offload is architecturally required due to processing speed (86 min vs 199 days with Claude CLI for 43K SKUs)",
+            "Timeline replaced with range estimates: 16 (best) / 22 (expected) / 28 (worst) working days instead of a fixed 14-day deadline",
+            "Net cursor agent offload stated as 27% (~100 hrs) after 25% coordination overhead, not the gross 36% figure",
+            "Gate G0.1 added requiring exclusivity scope definition before contract signing"
+          ],
+          "commitments": [
+            "Post-launch maintenance budget of 8-14 hrs/month allocated for SP-API compatibility, ontology updates, sentinel refresh, and rejection tuning",
+            "SP-API Amazon developer account approval required before bulk upload (2-14 day external dependency)"
+          ],
+          "discoveries": [
+            "Appeal generator line count was inflated ~5x in v1 (claimed ~19K lines, actual 3,762 lines)",
+            "Cloudflare Tunnel tooling was incorrectly reported as non-existent in v1 \u2014 270+ lines confirmed across 6 files",
+            "Coherence audit surfaced that 14 of 37 extracted claims are unverified and 2 are contradicted, giving an original score of 0.68/1.0",
+            "v1 had zero testing budget allocation; v2 added 66 hours (18% overhead) and v3 expanded to 68 hours",
+            "6 dissonances were identified in the coherence audit; 4 resolved in v3, 2 require human action (exclusivity scope, approval timeline)"
+          ],
+          "action_items": [
+            {
+              "who": "Human/stakeholder",
+              "what": "Resolve D4: define exclusivity scope (Rankona-exclusive vs JV-shared) before contract"
+            },
+            {
+              "who": "Human/stakeholder",
+              "what": "Resolve D5: clarify shareholder approval timeline which affects overall schedule"
+            },
+            {
+              "who": "Team",
+              "what": "Complete P0-15 baseline capture (2 hr) to establish profit share denominator"
+            },
+            {
+              "who": "Team",
+              "what": "Complete P0-15a account health audit (30 min) before bulk uploads to avoid worsening account standing"
+            },
+            {
+              "who": "Team",
+              "what": "Complete P0-16 TOS compliance pre-check (2 hr) to verify automation approach before building"
+            },
+            {
+              "who": "Team",
+              "what": "Complete P0-17 CI/CD update mechanism (3 hr) to enable post-launch updates without manual redeploy"
+            },
+            {
+              "who": "Team",
+              "what": "Address 6 remaining gap items to lift coherence score from projected 0.79 toward 0.95 (contract, exclusivity, account health, acquisition intent, utilization allocation, revenue terms)"
+            }
+          ],
+          "detail_page": "calls/2026-04-14-pdr-work-completed.html",
+          "preview": "A 3-version PDR (Product Design/Requirements Review) for the Rankona Mazon terminal buildout was completed, covering an 8-station metro architecture, coherence audit, and codebase evidence verification."
         },
         {
           "date": "2026-04-03",
@@ -9597,15 +7878,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 82,
+        "total_calls": 83,
         "internal_calls": 39,
-        "external_calls": 22,
+        "external_calls": 23,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-14T03:01:10.627606+00:00",
+      "updated_at": "2026-04-14T03:12:12.256340+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -11613,7 +9894,7 @@
       "total_docs": 332
     },
     "deals": {
-      "updated_at": "2026-04-14T03:01:10.628392+00:00",
+      "updated_at": "2026-04-14T03:12:12.256474+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -11855,7 +10136,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-14T03:01:10.450427+00:00",
+      "updated_at": "2026-04-14T03:12:11.848935+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -31409,6 +29690,762 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-14T03:09:14.785455+00:00",
+          "transcript_file": "clients/rankona-mazon/pdr-work-completed.md",
+          "transcript_length": 6708,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [],
+            "call_topic": ""
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "id": "A1",
+                  "description": "Define exclusivity scope (Rankona-exclusive vs JV-shared)",
+                  "owner": "Unassigned - requires product/commercial decision",
+                  "deadline": "Before contract signature (Gate G0.1)",
+                  "priority": "CRITICAL",
+                  "dependencies": [
+                    "deal structure finalization"
+                  ]
+                },
+                {
+                  "id": "A2",
+                  "description": "Resolve approval timeline (D5: shareholder/stakeholder sign-off)",
+                  "owner": "Unassigned - executive decision",
+                  "deadline": "Before Phase 0 start",
+                  "priority": "CRITICAL",
+                  "dependencies": [
+                    "shareholder alignment"
+                  ]
+                },
+                {
+                  "id": "A3",
+                  "description": "Submit Amazon developer account for bulk upload approval",
+                  "owner": "Delphi (infra-architect)",
+                  "deadline": "Immediate - 2-14 day SLA from Amazon",
+                  "priority": "CRITICAL",
+                  "hours": "~4 (application prep)",
+                  "dependencies": [
+                    "Amazon account access",
+                    "TOS compliance pre-check (P0-16)"
+                  ]
+                },
+                {
+                  "id": "A4",
+                  "description": "Baseline capture for profit share measurement",
+                  "owner": "Delphi",
+                  "deadline": "Phase 0 (within 21.5 hours of start)",
+                  "priority": "CRITICAL",
+                  "hours": 2.0,
+                  "task_id": "P0-15",
+                  "note": "Without baseline, cannot measure M5 success"
+                },
+                {
+                  "id": "A5",
+                  "description": "Account health audit (pre-launch)",
+                  "owner": "Delphi",
+                  "deadline": "Phase 0 (before bulk uploads)",
+                  "priority": "HIGH",
+                  "hours": 0.5,
+                  "task_id": "P0-15a",
+                  "dependencies": [
+                    "Amazon account approval"
+                  ]
+                },
+                {
+                  "id": "A6",
+                  "description": "TOS compliance pre-check (automation approach)",
+                  "owner": "Delphi",
+                  "deadline": "Phase 0",
+                  "priority": "CRITICAL",
+                  "hours": 2.0,
+                  "task_id": "P0-16",
+                  "dependencies": [
+                    "Amazon documentation review",
+                    "SP-API terms"
+                  ]
+                },
+                {
+                  "id": "A7",
+                  "description": "CI/CD update mechanism (post-launch)",
+                  "owner": "Delphi",
+                  "deadline": "Phase 0",
+                  "priority": "HIGH",
+                  "hours": 3.0,
+                  "task_id": "P0-17",
+                  "note": "Required for production maintenance without manual redeploy"
+                },
+                {
+                  "id": "A8",
+                  "description": "Verify cloudflared, Docker, Python 3.10+ on 100.97.248.107",
+                  "owner": "Delphi",
+                  "deadline": "Phase 0 (acceptance gate)",
+                  "priority": "CRITICAL",
+                  "hours": "~1 (verification)",
+                  "dependencies": [
+                    "SSH access to target machine"
+                  ]
+                },
+                {
+                  "id": "A9",
+                  "description": "Clarify SP-API access requirement and approval path",
+                  "owner": "Delphi or commercial lead",
+                  "deadline": "Before Phase 1 (parallel blocker)",
+                  "priority": "HIGH",
+                  "dependencies": [
+                    "Amazon developer account"
+                  ]
+                },
+                {
+                  "id": "A10",
+                  "description": "Assign ongoing maintenance owner (8-14 hrs/month post-launch)",
+                  "owner": "Unassigned",
+                  "deadline": "Before M5 completion",
+                  "priority": "MEDIUM",
+                  "recurring": true,
+                  "monthly_hours": "8-14",
+                  "scope": "SP-API compat, ontology updates, sentinel refresh, rejection tuning"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "No decision authority assigned for human-action items (A2, D4, D5)",
+                  "impact": "2/6 dissonances unresolved; cannot proceed to contract",
+                  "owner": "Executive/Commercial",
+                  "recommendation": "Establish decision authority (who decides exclusivity, approval timeline, acquisition intent)"
+                },
+                {
+                  "gap": "No explicit deadline for Phase 0 start or M5 milestone dates",
+                  "impact": "Timeline is relative (days 30-42) not calendar dates; dependencies cannot be tracked against calendar",
+                  "owner": "Delphi + Executive",
+                  "recommendation": "Pin Phase 0 start date \u2192 calculate M5 window (Day 30-42 = DATE_START + 30-42 working days)"
+                },
+                {
+                  "gap": "Account health audit (P0-15a) happens after Amazon approval may arrive",
+                  "impact": "Risk: bulk uploads against flagged account can worsen standing; audit should precede approval",
+                  "owner": "Delphi",
+                  "recommendation": "Reorder: TOS pre-check \u2192 Account health audit \u2192 Amazon developer approval application"
+                },
+                {
+                  "gap": "Baseline capture (P0-15) is listed as P0 task but depends on live account state",
+                  "impact": "Cannot capture baseline until account is healthy and approved; may slip Phase 0 completion",
+                  "owner": "Delphi",
+                  "recommendation": "Move P0-15 to early Phase 1 (post-approval confirmation); Phase 0 focuses on compliance & infrastructure"
+                },
+                {
+                  "gap": "Post-launch maintenance (8-14 hrs/month) owner not assigned",
+                  "impact": "No owner means responsibility falls to Delphi by default; unclear if sustainable long-term",
+                  "owner": "Executive/Program",
+                  "recommendation": "Assign maintenance owner or allocate budget for ops team; document in delivery contract"
+                },
+                {
+                  "gap": "Cursor agent offload (27% / ~100 hrs) requires coordination overhead not assigned",
+                  "impact": "Delphi must manage agent dispatch; no backup if Delphi unavailable",
+                  "owner": "Delphi + Commercial",
+                  "recommendation": "Define cursor agent supervision process; identify backup infra lead"
+                },
+                {
+                  "gap": "JV vs exclusive (D4) and acquisition intent (D5) are unresolved human-decision dependencies",
+                  "impact": "Both affect contract scope, pricing, and feature set; architecture assumes clarity",
+                  "owner": "Executive/Commercial",
+                  "recommendation": "Schedule decision meeting before Phase 0 start; document decision in deal-structure memo"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "phase": "Phase 0 (Verification & Infrastructure)",
+                  "hours": 21.5,
+                  "tasks": "Baseline capture, account health, TOS pre-check, CI/CD, cloudflared verify, exclusivity gate",
+                  "owner": "Delphi",
+                  "calendar_estimate": "3-5 working days (parallelized)",
+                  "blocker": "Amazon approval (can proceed in parallel, blocks Phase 1 start)"
+                },
+                {
+                  "phase": "Phase 1-4 (Core Build)",
+                  "hours": 370.5,
+                  "tasks": "8-station metro architecture, data contracts, integrations, alerting",
+                  "owner": "Delphi + cursor agents (~27% mechanical work)",
+                  "calendar_estimate": "18-24 working days",
+                  "blocker": "SP-API access, Amazon account health confirmation"
+                },
+                {
+                  "phase": "Testing & Validation",
+                  "hours": 68,
+                  "tasks": "Unit, integration, E2E, penetration, ontology compliance",
+                  "owner": "Delphi + QA",
+                  "calendar_estimate": "6-8 working days (overlaps Phase 4)",
+                  "blocker": "None (internal)"
+                },
+                {
+                  "phase": "M5 Milestone (Go-Live Ready)",
+                  "target": "Day 30-42 (working days from Phase 0 start)",
+                  "calendar_estimate": "Late May / early June (assuming 2026-04-14 start)",
+                  "contingency": "Best 16 days / Expected 22 days / Worst 28 days",
+                  "blocker": "Baseline capture must complete before M5 declared"
+                },
+                {
+                  "phase": "Post-Launch Maintenance",
+                  "recurring": true,
+                  "monthly_hours": "8-14",
+                  "duration": "Indefinite (post-contract)",
+                  "owner": "Unassigned",
+                  "tasks": "SP-API compat, ontology updates, sentinel refresh, rejection tuning"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "Delphi (infra-architect, primary builder)",
+                  "allocation": "Full-time Phase 0-4, then 8-14 hrs/month post-launch",
+                  "availability": "Assumed available (not confirmed)",
+                  "risk": "Single point of failure; no backup identified"
+                },
+                {
+                  "resource": "Cursor agents (mechanical task offload)",
+                  "allocation": "27% of total work (~100 hours)",
+                  "tasks": "Data entry, schema generation, test scaffolding, integration boilerplate",
+                  "constraint": "Requires Delphi supervision; 25% coordination overhead factored in"
+                },
+                {
+                  "resource": "Amazon developer account access",
+                  "status": "Pending approval (2-14 day SLA)",
+                  "blocker": "TRUE - blocks Phase 1 start",
+                  "owner": "Commercial lead (not specified)"
+                },
+                {
+                  "resource": "SP-API access & quota",
+                  "status": "Pending (parallel blocker mentioned in v2)",
+                  "blocker": "TRUE - blocks bulk upload phase",
+                  "owner": "Commercial lead (not specified)"
+                },
+                {
+                  "resource": "Infrastructure machine (100.97.248.107)",
+                  "spec": "cloudflared, Docker, Python 3.10+",
+                  "status": "Assumed available; verification required",
+                  "blocker": "Phase 0 gate"
+                },
+                {
+                  "resource": "Decision authority (exclusivity & approval)",
+                  "role": "Executive/Commercial",
+                  "criticality": "CRITICAL - blocks contract signature",
+                  "status": "Unassigned"
+                },
+                {
+                  "resource": "Neo4j MIG instance",
+                  "referenced_in": "PDR write validator, ontology checks",
+                  "status": "Assumed available (existing infra)",
+                  "requirement": "Ontology compliance verified before M5"
+                },
+                {
+                  "resource": "Testing environment",
+                  "requirement": "Sandbox for Phase 3-4 validation",
+                  "status": "Assumed separate from production (100.97.248.107)",
+                  "blocker": "Phase 3 gate"
+                }
+              ],
+              "dependencies": [
+                {
+                  "type": "EXTERNAL",
+                  "dependency": "Amazon developer account bulk upload approval",
+                  "duration": "2-14 days (SLA from Amazon)",
+                  "blocks": "Phase 1 start",
+                  "owner": "Amazon (external)",
+                  "mitigation": "File application immediately; prepare account health audit in parallel"
+                },
+                {
+                  "type": "EXTERNAL",
+                  "dependency": "SP-API access & quota approval",
+                  "duration": "Unknown (vendor dependent)",
+                  "blocks": "Bulk upload automation (Phase 2-3)",
+                  "owner": "Amazon (external)",
+                  "mitigation": "Request simultaneously with developer account; assume 5-10 business days"
+                },
+                {
+                  "type": "EXECUTIVE",
+                  "dependency": "D4: Exclusivity scope definition (Rankona vs JV)",
+                  "decision": "Contract scope, pricing tier, feature set",
+                  "blocks": "Contract signature, Phase 0 gate G0.1",
+                  "owner": "Unassigned - requires commercial + exec alignment",
+                  "impact": "Affects architecture design, revenue model, platform integration"
+                },
+                {
+                  "type": "EXECUTIVE",
+                  "dependency": "D5: Shareholder/stakeholder approval timeline",
+                  "decision": "Go/no-go, timeline assumptions, resource allocation",
+                  "blocks": "Phase 0 start",
+                  "owner": "Unassigned - requires shareholder vote or exec sign-off",
+                  "impact": "Delays entire project if not resolved upfront"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "SSH access to 100.97.248.107",
+                  "blocks": "Phase 0 infrastructure verification",
+                  "owner": "Infrastructure team",
+                  "mitigation": "Request access before Phase 0 start"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "TOS compliance determination (Amazon advertising automation)",
+                  "blocks": "Phase 0-2 architecture decisions",
+                  "owner": "Delphi + Legal (external review recommended)",
+                  "duration": "2-5 days",
+                  "mitigation": "Run pre-check early; escalate to Amazon legal if unclear"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "Account health audit (pre-bulk upload)",
+                  "blocks": "Phase 1 bulk upload initiation",
+                  "owner": "Delphi",
+                  "mitigation": "Can run in parallel with Amazon approval, but results must be reviewed before proceeding"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "Baseline capture (profit share denominator)",
+                  "blocks": "M5 milestone declaration",
+                  "owner": "Delphi",
+                  "criticality": "CRITICAL - no baseline = cannot measure success",
+                  "mitigation": "Schedule baseline capture for early Phase 1 (immediately post-approval)"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "Cursor agent availability & supervision",
+                  "blocks": "Mechanical task acceleration (27% of work)",
+                  "owner": "Delphi (dispatcher) + Cursor CLI",
+                  "duration": "Distributed across Phases 1-4",
+                  "mitigation": "Delphi must scope cursor tasks explicitly; no ad-hoc offloading"
+                },
+                {
+                  "type": "TECHNICAL",
+                  "dependency": "Ontology compliance (MIG validation)",
+                  "blocks": "Phase 4 sign-off, M5 declaration",
+                  "owner": "Sensei (automated) + Delphi (resolution)",
+                  "mitigation": "Run coherence audit at Phase 3 completion; resolve gaps before M5"
+                },
+                {
+                  "type": "OPERATIONAL",
+                  "dependency": "Post-launch maintenance owner assignment",
+                  "duration": "Ongoing 8-14 hrs/month",
+                  "blocks": "Contract closure (no owner = default fallback)",
+                  "owner": "Unassigned - Executive must assign",
+                  "mitigation": "Include in delivery contract; budget for ops team"
+                }
+              ],
+              "critical_path": {
+                "sequence": [
+                  "1. Executive decision (D4 exclusivity + D5 approval) \u2192 0-2 days",
+                  "2. Amazon developer approval application (P0-16 TOS pre-check first) \u2192 2-14 days (parallel)",
+                  "3. Phase 0: Infrastructure verification, baseline capture, account health \u2192 3-5 days",
+                  "4. Phase 1-4: Core build + testing (18-24 days, cursor offload at 27%) \u2192 18-24 days",
+                  "5. M5 Milestone: Baseline confirmed, ontology validated, go-live ready \u2192 Day 30-42 from Phase 0 start"
+                ],
+                "total_duration_working_days": "22 (expected) / 16 (best) / 28 (worst)",
+                "calendar_estimate": "Late May 2026 (if Phase 0 starts 2026-04-14)",
+                "earliest_risk": "Amazon approval SLA (2-14 days adds to timeline length)",
+                "latest_risk": "Unresolved executive decisions (D4, D5) \u2192 project blocked at gate"
+              },
+              "overall_coherence": {
+                "baseline_score": "0.68 / 1.0 (v1 pre-audit)",
+                "post_v3_score": "0.79 / 1.0 (projected)",
+                "target_score": "0.95 / 1.0 (requires resolution of A2, D4, D5)",
+                "unresolved_gaps": 3,
+                "gap_categories": {
+                  "CRITICAL": [
+                    "D4: Exclusivity scope",
+                    "D5: Approval timeline",
+                    "Amazon account approval"
+                  ],
+                  "HIGH": [
+                    "SP-API access",
+                    "Maintenance owner assignment"
+                  ],
+                  "MEDIUM": [
+                    "Baseline capture scheduling",
+                    "Post-launch ops clarity"
+                  ]
+                }
+              }
+            },
+            "CTO": {
+              "tech_requirements": [
+                "8-station metro architecture (decomposed, sequenced)",
+                "Neo4j graph database with backup/DR (RTO 2hr, RPO 24hr)",
+                "Bulk upload automation (Amazon SP-API)",
+                "LLM offload pipeline (Groq primary, Claude CLI fallback)",
+                "Embedding & fact extraction services (neural core)",
+                "Mesh dashboard (real-time monitoring)",
+                "Post-launch terminal auto-update mechanism (not manual redeploy)",
+                "Baseline capture system (denominator for profit share measurement)",
+                "Sentinel refresh system (ontology + rejection tuning)",
+                "Data contract validation (9 station interfaces)",
+                "CloudFlare Tunnel deployment (verified present, 270+ lines)",
+                "CI/CD pipeline update path for terminal deployments",
+                "Account health audit tooling (pre-bulk-upload validation)"
+              ],
+              "integrations": [
+                {
+                  "system": "Amazon SP-API",
+                  "type": "seller operations / bulk upload",
+                  "blocker": "Developer account approval (2-14 days)",
+                  "risk": "Bulk uploads against flagged account worsen standing"
+                },
+                {
+                  "system": "Groq LLM",
+                  "type": "inference offload",
+                  "rationale": "43K SKUs: Claude CLI = 199 days, Groq = 86 min (architecturally required)"
+                },
+                {
+                  "system": "Claude API",
+                  "type": "LLM fallback",
+                  "pattern": "claude -p CLI only (not SDK)"
+                },
+                {
+                  "system": "Neo4j",
+                  "type": "graph persistence",
+                  "scope": "write_validator enforces workspace_id"
+                },
+                {
+                  "system": "Telegram",
+                  "type": "notifications/bot interface",
+                  "footprint": "8,548 lines"
+                },
+                {
+                  "system": "CloudFlare Tunnel",
+                  "type": "secure outbound proxy",
+                  "verified": true
+                },
+                {
+                  "system": "GitHub",
+                  "type": "CI/CD orchestration",
+                  "requirement": "Terminal auto-update without manual redeploy (Phase 0 task)"
+                }
+              ],
+              "security_compliance": [
+                {
+                  "requirement": "TOS compliance pre-check",
+                  "effort": "2 hours (Phase 0)",
+                  "rationale": "Automation approach must validate against Amazon TOS before build"
+                },
+                {
+                  "requirement": "Account health audit",
+                  "effort": "0.5 hours (Phase 0)",
+                  "rationale": "Flag accounts before bulk upload to avoid standing degradation"
+                },
+                {
+                  "requirement": "SP-API developer approval",
+                  "blocker": "2-14 days (parallel path)",
+                  "impact": "Blocks Phase 2 onset"
+                },
+                {
+                  "requirement": "Data contracts (9 station interfaces)",
+                  "spec": "format, producer, consumer, contract validation",
+                  "status": "v2 addition, now embedded in PDR"
+                },
+                {
+                  "requirement": "Workspace scoping",
+                  "implementation": "write_validator.py enforces workspace_id",
+                  "verified": true
+                },
+                {
+                  "requirement": "Exclusivity scope definition",
+                  "blocker": "G0.1 gate before contract signature",
+                  "impact": "Revenue terms, channel allocation (JV vs exclusive)"
+                }
+              ],
+              "build_vs_buy": [
+                {
+                  "component": "Appeal generator",
+                  "decision": "BUILD",
+                  "footprint": "3,762 lines custom code",
+                  "note": "Corrected from v1's 19K inflation"
+                },
+                {
+                  "component": "Fact extractor (brain/)",
+                  "decision": "BUILD",
+                  "footprint": "984 lines",
+                  "leverage": "Existing MERIDIAN infra"
+                },
+                {
+                  "component": "Embedding service",
+                  "decision": "BUILD",
+                  "footprint": "132 lines",
+                  "leverage": "Neural core"
+                },
+                {
+                  "component": "Neo4j connection layer",
+                  "decision": "BUILD",
+                  "footprint": "275 lines",
+                  "leverage": "Existing driver + write_validator"
+                },
+                {
+                  "component": "LLM offload (Groq vs Claude CLI)",
+                  "decision": "BUY/USE_GROQ",
+                  "rationale": "Cost-per-token + throughput: 199 days vs 86 min for 43K SKUs",
+                  "note": "Cursor agents can handle 36% gross (27% net after coordination overhead)"
+                },
+                {
+                  "component": "Mesh dashboard",
+                  "decision": "BUILD",
+                  "footprint": "490 lines",
+                  "leverage": "Real-time ops visibility"
+                },
+                {
+                  "component": "CloudFlare Tunnel",
+                  "decision": "USE (COTS)",
+                  "footprint": "270+ lines integration",
+                  "status": "Verified present"
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Amazon as adversarial platform",
+                  "category": "BLIND_SPOT (Sensei audit)",
+                  "mitigation": "TOS compliance check + account health pre-audit",
+                  "impact": "HIGH"
+                },
+                {
+                  "risk": "SP-API approval blocker (2-14 days)",
+                  "category": "CRITICAL_GATE",
+                  "mitigation": "Parallel track: apply immediately (Phase 0)",
+                  "impact": "CRITICAL"
+                },
+                {
+                  "risk": "Baseline ambiguity for profit share denominator",
+                  "category": "MEASUREMENT_DEBT",
+                  "mitigation": "P0-15: Baseline capture (2 hr)",
+                  "impact": "HIGH"
+                },
+                {
+                  "risk": "Cursor offload 25% coordination overhead",
+                  "category": "ESTIMATION_RISK",
+                  "details": "Gross 36% becomes net 27% after overhead",
+                  "impact": "MEDIUM (accuracy, not viability)"
+                },
+                {
+                  "risk": "Utilization assumptions not validated",
+                  "category": "BLIND_SPOT",
+                  "impact": "Affects ROI, revenue projection accuracy"
+                },
+                {
+                  "risk": "JV channel vs exclusivity scope undefined",
+                  "category": "CONTRACT_GATE",
+                  "blocker": "G0.1 before signature",
+                  "impact": "CRITICAL (channel strategy, revenue terms)"
+                },
+                {
+                  "risk": "Post-launch maintenance burden (8-14 hrs/month)",
+                  "category": "OPERATIONAL_DEBT",
+                  "drivers": "SP-API compat, ontology updates, sentinel refresh, rejection tuning",
+                  "impact": "MEDIUM (ongoing TCO)"
+                },
+                {
+                  "risk": "RTO/RPO constraints (2hr/24hr)",
+                  "category": "INFRASTRUCTURE_REQUIREMENT",
+                  "impact": "Neo4j backup cadence, failover orchestration",
+                  "cost": "Embedded in Phase 0-2 (2.5 hours)"
+                },
+                {
+                  "risk": "Terminal auto-update mechanism not yet built",
+                  "category": "DEPLOYMENT_RISK",
+                  "task": "P0-17: CI/CD update mechanism (3 hr)",
+                  "impact": "MEDIUM (post-launch flexibility)"
+                },
+                {
+                  "risk": "Appeal generator footprint inflation (19K \u2192 3.7K actual)",
+                  "category": "ESTIMATION_DEBT_RESOLVED",
+                  "note": "v1 error corrected in v3; actual scope confirmed via grep"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "Cursor agents at scale (net 27% offload)",
+                  "implication": "Rankona is proof-of-concept for cursor-agent workflow; validates infrastructure investment",
+                  "confidence": "high",
+                  "action_item": null
+                },
+                {
+                  "decision": "Groq as primary LLM offload for this workload",
+                  "implication": "43K SKUs: Claude CLI = 199 days, Groq = 86 min. Economics force architectural decision",
+                  "confidence": "high",
+                  "action_item": "Validate Groq API SLA before launch"
+                },
+                {
+                  "decision": "Baseline capture required before launch (P0-15)",
+                  "implication": "Profit-share denominator must be measurable; decision to instrument ROI from day 1",
+                  "confidence": "medium",
+                  "action_item": "Schedule P0-15 immediately; defines success metrics for partnership"
+                },
+                {
+                  "decision": "Post-launch maintenance: 8\u201314 hrs/month budgeted",
+                  "implication": "Rankona is recurring revenue stream, not one-off build",
+                  "confidence": "medium",
+                  "action_item": "Clarify: Is this Delphi-only or can it be cursor-offloaded? Budget assumes Delphi."
+                },
+                {
+                  "decision_NEEDED": "Exclusivity scope (D4)",
+                  "implication": "Rankona-exclusive vs JV-shared affects contract, SLAs, and margin",
+                  "blocking": true,
+                  "action_item": "Define before signing: what parts are exclusive to Rankona?"
+                },
+                {
+                  "decision_NEEDED": "Approval timeline clarity (D5)",
+                  "implication": "Amazon account approval (2\u201314 days) is on critical path but not in timeline range",
+                  "blocking": true,
+                  "action_item": "Parallel-path SP-API approval request immediately; don't let it slip Phase 0"
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "Metro architecture validation",
+                  "why": "First real-scale 8-station deployment; proves decomposition, data contracts, cost modeling",
+                  "revenue_uplift": "Replicable pattern for Amazon, Shopify, eBay verticals",
+                  "confidence": "high"
+                },
+                {
+                  "opportunity": "Cursor agent playbook commoditization",
+                  "why": "133 net mechanical hours removed; 27% net savings quantified; patterns documented in PDR",
+                  "revenue_uplift": "Licensable skill library for MERIDIAN platform",
+                  "confidence": "medium"
+                },
+                {
+                  "opportunity": "Data contracts framework",
+                  "why": "9 interfaces defined between stations; reusable for any multi-service decomposition",
+                  "revenue_uplift": "Selling data contracts as IP / architecture consulting",
+                  "confidence": "medium"
+                },
+                {
+                  "opportunity": "Amazon channel as beachhead",
+                  "why": "If Rankona succeeds, Rankona becomes reference customer; opens Amazon seller ecosystem",
+                  "revenue_uplift": "10K+ SMB sellers \u00d7 $X/month ACV",
+                  "confidence": "medium",
+                  "note": "Contingent on exclusivity clarity and Amazon account approval"
+                },
+                {
+                  "opportunity": "Groq partnership visibility",
+                  "why": "43K SKUs / 86 min proves Groq's viability for enterprise automation; case study asset",
+                  "revenue_uplift": "Co-marketing with Groq, potential integration partnership",
+                  "confidence": "low"
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "Amazon SP-API approval blocker (2\u201314 days)",
+                  "severity": "CRITICAL",
+                  "impact": "Slips M5 milestone by 14 days in worst case; makes 28-day timeline unrealistic",
+                  "mitigation": "Submit SP-API approval request in Phase 0, parallel to build. Don't wait for pre-check."
+                },
+                {
+                  "threat": "Amazon account health unknown (P0-15a not yet run)",
+                  "severity": "HIGH",
+                  "impact": "Bulk uploads against flagged account can worsen standing; could trigger account lock mid-campaign",
+                  "mitigation": "Run P0-15a (30 min audit) immediately; check seller-central for warnings"
+                },
+                {
+                  "threat": "TOS compliance not pre-validated",
+                  "severity": "HIGH",
+                  "impact": "Automation approach may violate Amazon Terms of Service; legal risk for Rankona",
+                  "mitigation": "Run P0-16 (2hr TOS check) in Phase 0 before writing production code"
+                },
+                {
+                  "threat": "Exclusivity scope undefined (D4)",
+                  "severity": "HIGH",
+                  "impact": "Contract ambiguity; if Rankona expects exclusivity but we build JV-shared, partnership breaks",
+                  "mitigation": "Schedule contract review call; nail down exclusive vs shared before Phase 1"
+                },
+                {
+                  "threat": "Approval timeline confidence low (D5)",
+                  "severity": "MEDIUM",
+                  "impact": "Internal timeline range (16\u201328 days) doesn't account for Amazon approval dependency; market messaging will be wrong",
+                  "mitigation": "Quantify Amazon approval risk in communication; set expectation as 22\u201340 days"
+                },
+                {
+                  "threat": "Acquisition intent unclear",
+                  "severity": "MEDIUM",
+                  "impact": "We don't know if Amazon intends to acquire this capability or just license it; affects valuation, scope, and IP ownership",
+                  "mitigation": "Ask directly: 'Is this a feature buy, a team hire, or a long-term SaaS relationship?'"
+                },
+                {
+                  "threat": "Coherence score 0.79/1.0 (16% gap to investor-ready)",
+                  "severity": "MEDIUM",
+                  "impact": "Document is green for build but not for fundraising/partnership announcement. Residual blind spots exist.",
+                  "mitigation": "Close 6 human-action items before publicizing; use PDR internally only until coherence > 0.85"
+                }
+              ],
+              "commitments": [
+                {
+                  "commitment": "Timeline: 16\u201328 working days (Phase 0 to M5 complete)",
+                  "who": "Delphi + cursor agents",
+                  "when": "Est. 2026-05-08 (expected case)",
+                  "confidence": "medium",
+                  "note": "Assumes SP-API approval doesn't slip past 14 days"
+                },
+                {
+                  "commitment": "Post-launch maintenance: 8\u201314 hrs/month",
+                  "who": "Delphi",
+                  "when": "Ongoing post-launch",
+                  "confidence": "medium",
+                  "note": "Includes SP-API compatibility, ontology updates, sentinel refresh, rejection tuning"
+                },
+                {
+                  "commitment": "Disaster recovery: RTO 2hr, RPO 24hr",
+                  "who": "Delphi",
+                  "when": "Daily Neo4j dumps + backup infrastructure pre-launch",
+                  "confidence": "high"
+                },
+                {
+                  "commitment": "Testing: 68 hours (18% overhead)",
+                  "who": "QA + Delphi",
+                  "when": "Embedded in phases",
+                  "confidence": "medium",
+                  "note": "Critical path: acceptance criteria defined for all 62 tasks"
+                },
+                {
+                  "commitment": "Baseline ROI measurement (P0-15)",
+                  "who": "Rankona + analytics",
+                  "when": "Pre-launch",
+                  "confidence": "low",
+                  "note": "Required for profit-share calculation; currently unscheduled"
+                }
+              ],
+              "narrative_assessment": {
+                "summary": "Technically sound, strategically incomplete. Strong for build greenlight, not investor-ready.",
+                "strengths": [
+                  "Transparent dissonance discovery (found problems ourselves, didn't hide them)",
+                  "Evidence-verified 13 infrastructure claims against actual codebase",
+                  "Quantified everything: costs (438.5 hrs), timelines (16\u201328 days), risks (3 CRITICAL, 4 HIGH)",
+                  "Corrected factual errors proactively (appeal generator 5x inflation, cloudflare tooling existence)",
+                  "Acceptance criteria added to every task (v1 had none)",
+                  "Economics prove business model (199 days \u2192 86 min with Groq; automation is profitable)"
+                ],
+                "gaps": [
+                  "Exclusivity scope undefined (affects contract + margin)",
+                  "Approval timeline doesn't account for Amazon dependencies (22-day estimate needs buffer)",
+                  "Acquisition intent not surfaced (buy vs partner vs license affects IP ownership)",
+                  "Utilization assumptions not validated (profit-share is forecast, not actuals)",
+                  "Account health not yet audited (P0-15a blocks greenlight)",
+                  "TOS compliance not pre-validated (legal risk unquantified)"
+                ],
+                "external_readiness": "60%",
+                "internal_readiness": "80% (ready to build, not ready to announce)",
+                "recommendation": "PDR is green for Phase 0 kickoff. Before external communication (press, partnership announcement, investor update), close D4 (exclusivity), D5 (timeline), and run P0-15/P0-16 (baseline + TOS). Target coherence > 0.85 before publicizing.",
+                "narrative_tone": "Competent + transparent. We represented ourselves as engineers who ask hard questions, not salespeople who paper over them. That's credible."
+              }
+            }
+          },
+          "_file": "clients/rankona-mazon/audits/csuite-audit-pdr-work-completed.json",
+          "_client": "rankona-mazon"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-28T17:25:14.916417+00:00",
           "transcript_file": "clients/rankona-mazon/signals/signal-analysis-march28-2026.md",
           "transcript_length": 27192,
@@ -33300,16 +32337,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 91
+      "total": 92
     },
     "call_intelligence": {
-      "updated_at": "2026-04-14T03:01:10.670962+00:00",
+      "updated_at": "2026-04-14T03:12:12.270454+00:00",
       "signal_summary": {
         "total_objections": 65,
         "total_buying_signals": 86,
-        "total_competitors": 226,
-        "pricing_discussions": 72,
-        "calls_with_signals": 89
+        "total_competitors": 227,
+        "pricing_discussions": 73,
+        "calls_with_signals": 90
       },
       "decisions": [
         {
@@ -33371,6 +32408,26 @@
           "date": "2026-04-14",
           "call": "Pdr Terminal Buildout",
           "decision": "Fjallraven POC is hard-gated behind the 43K SKU pilot proving the workflow first."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "decision": "Groq offload is architecturally required due to processing speed (86 min vs 199 days with Claude CLI for 43K SKUs)"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "decision": "Timeline replaced with range estimates: 16 (best) / 22 (expected) / 28 (worst) working days instead of a fixed 14-day deadline"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "decision": "Net cursor agent offload stated as 27% (~100 hrs) after 25% coordination overhead, not the gross 36% figure"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "decision": "Gate G0.1 added requiring exclusivity scope definition before contract signing"
         },
         {
           "date": "2026-04-03",
@@ -34650,6 +33707,16 @@
           "what": "Jennifer: Provide 43K SKU category report export to unblock ontology mapping and first-batch validation."
         },
         {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "what": "Post-launch maintenance budget of 8-14 hrs/month allocated for SP-API compatibility, ontology updates, sentinel refresh, and rejection tuning"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "what": "SP-API Amazon developer account approval required before bulk upload (2-14 day external dependency)"
+        },
+        {
           "date": "2026-04-03",
           "call": "Garretbitlerglassy",
           "what": "Garrett Taylor: think about use cases and follow up over weekend or early next week"
@@ -35537,6 +34604,31 @@
           "date": "2026-04-14",
           "call": "Pdr Terminal Buildout",
           "discovery": "Ontology drift is a structural risk: category mappings built for horse equipment may not transfer to new clients, making the 'done once per category' promise potentially 'done once per client per category'."
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "discovery": "Appeal generator line count was inflated ~5x in v1 (claimed ~19K lines, actual 3,762 lines)"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "discovery": "Cloudflare Tunnel tooling was incorrectly reported as non-existent in v1 \u2014 270+ lines confirmed across 6 files"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "discovery": "Coherence audit surfaced that 14 of 37 extracted claims are unverified and 2 are contradicted, giving an original score of 0.68/1.0"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "discovery": "v1 had zero testing budget allocation; v2 added 66 hours (18% overhead) and v3 expanded to 68 hours"
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "discovery": "6 dissonances were identified in the coherence audit; 4 resolved in v3, 2 require human action (exclusivity scope, approval timeline)"
         },
         {
           "date": "2026-04-03",
@@ -37079,6 +36171,62 @@
           "action": {
             "who": "Delphi",
             "what": "Document batch workflow and produce handoff SOP for Jennifer's team after first batch completes."
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Human/stakeholder",
+            "what": "Resolve D4: define exclusivity scope (Rankona-exclusive vs JV-shared) before contract"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Human/stakeholder",
+            "what": "Resolve D5: clarify shareholder approval timeline which affects overall schedule"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Team",
+            "what": "Complete P0-15 baseline capture (2 hr) to establish profit share denominator"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Team",
+            "what": "Complete P0-15a account health audit (30 min) before bulk uploads to avoid worsening account standing"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Team",
+            "what": "Complete P0-16 TOS compliance pre-check (2 hr) to verify automation approach before building"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Team",
+            "what": "Complete P0-17 CI/CD update mechanism (3 hr) to enable post-launch updates without manual redeploy"
+          }
+        },
+        {
+          "date": "2026-04-14",
+          "call": "Pdr Work Completed",
+          "action": {
+            "who": "Team",
+            "what": "Address 6 remaining gap items to lift coherence score from projected 0.79 toward 0.95 (contract, exclusivity, account health, acquisition intent, utilization allocation, revenue terms)"
           }
         },
         {
@@ -39551,6 +38699,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "rankona-mazon"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "rankona-mazon"
         },
@@ -39910,13 +39063,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 253,
-      "total_commitments": 175,
-      "total_discoveries": 288,
-      "total_action_items": 327
+      "total_decisions": 257,
+      "total_commitments": 177,
+      "total_discoveries": 293,
+      "total_action_items": 334
     },
     "attention": {
-      "updated_at": "2026-04-14T03:01:10.693583+00:00",
+      "updated_at": "2026-04-14T03:12:12.295590+00:00",
       "items": [
         {
           "type": "blocked",
@@ -40087,68 +39240,8 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-14T03:01:10.693628+00:00",
+      "updated_at": "2026-04-14T03:12:12.295618+00:00",
       "events": [
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:46:44Z",
-          "title": "Add 9-phase coherence audit to Rankona PDR \u2014 score 0.68, 3 CRITICAL gaps, 5 reco",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:39:12Z",
-          "title": "fix(#2128): Add migration_059_review_removal_schema.py \u2014 resolves Sensei ontolog",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:37:05Z",
-          "title": "docs(rankona): PDR v2 \u2014 acceptance criteria, offload classification, data contra",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:32:49Z",
-          "title": "intel: auto-ingested 1 transcript(s)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:28:54Z",
-          "title": "docs(sensei): session recap + todo \u2014 ReviewShield P2, appeal API, CPU audit, pen",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:25:29Z",
-          "title": "docs(rankona): PDR + task list for terminal buildout \u2014 8 stations, 5 phases, 359",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:20:54Z",
-          "title": "docs(appeal-generator): add DONE.md and TODO.md with full status + roadmap",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:19:15Z",
-          "title": "docs(team-state): sensei boot pass Apr 14 \u2014 HEAD 65a49880, deploy gap, ReviewShi",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:15:26Z",
-          "title": "fix(reviewshield): scanner Cypher queries, lazy aiohttp import, test fixes \u2014 Par",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-14T02:14:11Z",
-          "title": "deploy(rankona): add terminal blueprint + metro station plan to speedoftrust.ai",
-          "detail": "covaultxyz"
-        },
         {
           "type": "call",
           "date": "2026-04-14",
@@ -40168,49 +39261,79 @@
           "detail": "external \u2014 alex"
         },
         {
-          "type": "issue",
+          "type": "call",
           "date": "2026-04-14",
-          "title": "#2127 CHECKPOINT: Sensei \u2014 NATS/MCP boot fix + Apr 13 coherence pa",
-          "detail": "open"
+          "title": "Pdr Work Completed",
+          "detail": "external \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-14",
-          "title": "#2126 Metric below target: CI Pass Rate (0.0)",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "Garretbitlerglassy",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-13",
-          "title": "#2125 feat(reviewshield): Phase 4 \u2014 Client portal + Telegram onboa",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Garrett Call Grade Report",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-13",
-          "title": "#2124 feat(reviewshield): Phase 3C \u2014 Auto-invoicing on successful ",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "02 Garrett Intel Correction",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-13",
-          "title": "#2123 feat(reviewshield): Phase 3B \u2014 Outcome tracker (daily remova",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Call Grade Report",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-13",
-          "title": "#2122 feat(reviewshield): Phase 3A \u2014 Submission pipeline (human-in",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "04 Garrett Next Steps",
+          "detail": "internal \u2014 alex"
         },
         {
-          "type": "issue",
-          "date": "2026-04-13",
-          "title": "#2119 feat(reviewshield): Phase 2A \u2014 Review scanner (Helium 10 / A",
-          "detail": "open"
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "03 What Worked What Didnt",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "05 Playbook Updates",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "03 Garrett What Worked What Didnt",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "01 Garrett Call Grade Report",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "02 Garrett Intel Correction",
+          "detail": "internal \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-03",
+          "title": "04 Garrett Next Steps",
+          "detail": "internal \u2014 alex"
         }
       ],
-      "total": 35
+      "total": 15
     }
   }
 }
