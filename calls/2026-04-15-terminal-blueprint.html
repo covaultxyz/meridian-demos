@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Blueprint — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Terminal Blueprint</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-04-15</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Blueprint document for RPM Capital&#x27;s Ghost Terminal — a standalone capital markets intelligence system with a 7-daemon architecture, 6-station knowledge graph, and phased build-out plan.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>RPM Capital terminal will be a fully isolated ghost terminal with no live connection to the MERIDIAN production mesh.</li><li>Seven daemons selected: las, delphi, watcher, sandman, avery, vale, and lex across P0/P1 priority tiers.</li><li>Data isolation is absolute — separate Neo4j instance, separate NATS server, local embedding generation.</li><li>MIG seed will be a partial clone of 104,536 knowledge-layer nodes from MERIDIAN with embeddings stripped.</li><li>Zero open ports enforced via Cloudflare Tunnel for SOC2-compliant architecture.</li><li>DocuSeal used as external SaaS for NDA signing rather than self-hosted document signing.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Atlas/Delphi: MIG seed transfer is ready and staged on racknerd-e3b5f73 port 7688.</li><li>Phase 0 infrastructure targets Week 1 completion.</li><li>Phase 1 core daemons (las, delphi, watcher) target Week 1-2 completion.</li><li>Phase 1.5 operational daemons (sandman, avery, vale, lex) target Week 2-3 completion.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>The terminal is architected around &#x27;judgment compounding&#x27; — every deal analyzed enriches the graph for future decisions, making the system more valuable over time.</li><li>An 18-document legal cortex is already built and staged, covering Delaware entity law through fund economics, ready for lex daemon activation.</li><li>The MIG seed already contains capital markets research (51K ResearchMemory nodes) sourced from MERIDIAN, giving the terminal a pre-loaded knowledge advantage at launch.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Operator/Delphi&#x27;, &#x27;what&#x27;: &#x27;Place RackNerd VPS order and begin provisioning runbook from issue #2169.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Avery/Operator&#x27;, &#x27;what&#x27;: &#x27;Schedule and conduct client onboarding call with RPM Capital.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Avery&#x27;, &#x27;what&#x27;: &#x27;Develop CRM data migration plan — determine if existing CRM data exists and in what format.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Lex/Operator&#x27;, &#x27;what&#x27;: &#x27;Rank the 18 staged legal cortex documents by priority for initial lex daemon activation.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Operator&#x27;, &#x27;what&#x27;: &#x27;Resolve open questions: compliance jurisdiction scope, LP data source/format, deal pipeline volume, and voice interface preference.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>RPM Capital Terminal — Ghost Terminal Blueprint v1</h2>
+<h3>Meta</h3>
+<p>**Prepared**: 2026-04-14 | **Author**: Atlas (CIO)</p>
+<p>**Type**: Ghost Terminal — fully standalone, drydock-only connection to core mesh</p>
+<p>**MIG Seed**: Partial clone from MERIDIAN production MIG (104,536 nodes, 764,785 rels — knowledge layer only, embeddings stripped)</p>
+<p>**MIG Seed Location**: Staged on racknerd-e3b5f73 (port 7688), ready for transfer</p>
+<p>**Related Issues**: #2155, #2162-#2169</p>
+<p>---</p>
+<h3>LENS — What&#x27;s Actually There</h3>
+<p>RPM Capital is a finance firm operating in capital markets — deal origination, fund structuring, compliance, and investor relations. The terminal serves as a persistent intelligence layer for capital markets decision-making: what deals are worth pursuing, what compliance requirements govern them, what the competitive landscape looks like, and what the legal architecture should be.</p>
+<p>Unlike Rankona (operational intelligence for Amazon seller agency), RPM Capital&#x27;s terminal is about *judgment compounding* — every deal analyzed, every compliance question resolved, every fund structure evaluated enriches the graph for the next decision. The domain surface is capital markets, legal compliance, and deal analytics.</p>
+<p><strong>What carries over from MERIDIAN core mesh:</strong></p>
+<p style='padding-left:1rem'>&bull; Knowledge graph as persistent memory (7 research domains, 51K ResearchMemory nodes)</p>
+<p style='padding-left:1rem'>&bull; Contradiction detection (regulatory change invalidates a fund structure assumption)</p>
+<p style='padding-left:1rem'>&bull; Corroboration system (multiple sources confirm a market signal → higher confidence)</p>
+<p style='padding-left:1rem'>&bull; Research pipeline (automated sourcing → extraction → claims → graph enrichment)</p>
+<p style='padding-left:1rem'>&bull; Daemon architecture (specialized agents for distinct operational domains)</p>
+<p><strong>What&#x27;s domain-specific:</strong></p>
+<p style='padding-left:1rem'>&bull; Capital markets vocabulary and ontology (fund types, SEC regulations, deal stages)</p>
+<p style='padding-left:1rem'>&bull; Legal compliance infrastructure (18-doc legal cortex already built, unified instruction set)</p>
+<p style='padding-left:1rem'>&bull; Deal flow analytics (pipeline velocity, conversion rates, deal scoring)</p>
+<p style='padding-left:1rem'>&bull; Investor relations intelligence (LP profiles, commitment patterns, communication cadence)</p>
+<p>---</p>
+<h3>PRISM — Service Architecture</h3>
+<h4>7-Daemon Roster</h4>
+<p>| Daemon | Role | Priority | Reference |</p>
+<p>|--------|------|----------|-----------|</p>
+<p>| **las** | Ingest &amp; Write Orchestration — sole write path into Neo4j | P0 | #2163 |</p>
+<p>| **delphi** | Retrieval &amp; Dossier Assembly — all query workflows | P0 | #2163 |</p>
+<p>| **watcher** | Service Health Monitor — 60s poll loop, alert escalation | P0 | #2163 |</p>
+<p>| **sandman** | Health, Backup &amp; Ops — operational oversight | P1 | #2163 |</p>
+<p>| **avery** | Deal Director — Twenty CRM integration, pipeline management | P1 | #2163 |</p>
+<p>| **vale** | Finance Intelligence — capital markets analysis, deal analytics, fund economics | P1 | #2168 |</p>
+<p>| **lex** | Legal Daemon — compliance, contract analysis, regulatory monitoring | P1 | #2165 |</p>
+<h4>Metro Station Architecture</h4>
+<p><strong>Line 1: Deal Intelligence</strong></p>
+<p><strong>Station 1A: Deal Origination &amp; Scoring</strong></p>
+<p style='padding-left:1rem'>&bull; Ingest deal opportunities from CRM (Twenty), email, and manual entry</p>
+<p style='padding-left:1rem'>&bull; AI-assisted deal scoring (market fit, compliance complexity, return profile)</p>
+<p style='padding-left:1rem'>&bull; Automatic dossier assembly for qualified deals</p>
+<p style='padding-left:1rem'>&bull; Pipeline velocity tracking and bottleneck detection</p>
+<p><strong>Station 1B: Due Diligence Engine</strong></p>
+<p style='padding-left:1rem'>&bull; Structured due diligence workflow (financial, legal, operational, market)</p>
+<p style='padding-left:1rem'>&bull; Document ingestion and claim extraction from deal materials</p>
+<p style='padding-left:1rem'>&bull; Red flag detection (contradictions between pitch deck and financials)</p>
+<p style='padding-left:1rem'>&bull; Comparable deal analysis from knowledge graph history</p>
+<p><strong>Station 2: Fund Structure Intelligence</strong></p>
+<p style='padding-left:1rem'>&bull; Fund economics modeling (waterfall structures, carry calculations, fee analysis)</p>
+<p style='padding-left:1rem'>&bull; Entity structure recommendation (Delaware LLC, LP, Series LLC — from legal cortex)</p>
+<p style='padding-left:1rem'>&bull; Tax optimization pathway analysis (federal tax law reference docs already ingested)</p>
+<p style='padding-left:1rem'>&bull; Subscription document generation scaffolding</p>
+<p><strong>Line 2: Compliance &amp; Legal</strong></p>
+<p><strong>Station 3: Regulatory Intelligence</strong></p>
+<p style='padding-left:1rem'>&bull; SEC regulation monitoring (Reg D, Reg A+, Reg CF — private placement focus)</p>
+<p style='padding-left:1rem'>&bull; State-level blue sky compliance tracking</p>
+<p style='padding-left:1rem'>&bull; Regulatory change detection → impact assessment across active deals</p>
+<p style='padding-left:1rem'>&bull; Compliance checklist generation per deal type</p>
+<p><strong>Station 4: Contract Intelligence</strong></p>
+<p style='padding-left:1rem'>&bull; Operating agreement analysis and generation scaffolding</p>
+<p style='padding-left:1rem'>&bull; Service agreement / SOW architecture (from legal cortex doc 05)</p>
+<p style='padding-left:1rem'>&bull; NDA workflow (DocuSeal integration)</p>
+<p style='padding-left:1rem'>&bull; IP and licensing analysis for technology-heavy deals</p>
+<p><strong>Line 3: Market &amp; Investor Operations</strong></p>
+<p><strong>Station 5: Market Intelligence</strong></p>
+<p style='padding-left:1rem'>&bull; Competitive landscape monitoring (who&#x27;s raising, who&#x27;s deploying, at what terms)</p>
+<p style='padding-left:1rem'>&bull; Market signal aggregation (interest rate impact, sector rotation, LP appetite shifts)</p>
+<p style='padding-left:1rem'>&bull; Trend detection from ingested research (corroboration system surfaces consensus)</p>
+<p><strong>Station 6: Investor Relations</strong></p>
+<p style='padding-left:1rem'>&bull; LP profile management (commitment history, communication preferences, sector interest)</p>
+<p style='padding-left:1rem'>&bull; Automated investor update generation (quarterly letters, deal-by-deal reports)</p>
+<p style='padding-left:1rem'>&bull; Capital call and distribution tracking</p>
+<p style='padding-left:1rem'>&bull; Investor meeting prep dossiers (auto-generated from MIG)</p>
+<h4>Feedback Loops</h4>
+<p style='padding-left:1rem'>&bull; Station 1B (due diligence) → Station 3 (regulatory) — compliance findings inform deal scoring</p>
+<p style='padding-left:1rem'>&bull; Station 5 (market intelligence) → Station 1A (deal origination) — market signals reprioritize pipeline</p>
+<p style='padding-left:1rem'>&bull; Station 4 (contract) → Station 2 (fund structure) — legal constraints shape entity choices</p>
+<p style='padding-left:1rem'>&bull; Station 6 (investor relations) → Station 1A (deal origination) — LP appetite guides sourcing</p>
+<p>---</p>
+<h3>INFRASTRUCTURE ARCHITECTURE</h3>
+<h4>Target Machine</h4>
+<p>TBD — RackNerd VPS (provisioning runbook in #2169)</p>
+<h4>Service Stack</h4>
+<p>```</p>
+<p>+---------------------------------------------------+</p>
+<p>|              RPM Capital Ghost Terminal            |</p>
+<p>|                                                    |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|  |  Neo4j (Docker)     |  |  NATS Server       |  |</p>
+<p>|  |  Instance: rpm      |  |  Local hub         |  |</p>
+<p>|  |  Port: 7687         |  |  Port: 4222        |  |</p>
+<p>|  |  Isolated volume    |  |  Auth: shared token|  |</p>
+<p>|  |  Seeded from MIG    |  |  NOT connected to  |  |</p>
+<p>|  |  104K nodes         |  |  MERIDIAN mesh     |  |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|                                                    |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|  |  Twenty CRM         |  |  Embedding Service |  |</p>
+<p>|  |  Docker Compose     |  |  nomic-embed-text  |  |</p>
+<p>|  |  Deal pipeline      |  |  or all-mpnet      |  |</p>
+<p>|  |  LP management      |  |  Port: 8081        |  |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|                                                    |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>|  |  Claude CLI         |  |  Cloudflare Tunnel |  |</p>
+<p>|  |  OAuth auth         |  |  Outbound-only     |  |</p>
+<p>|  |  Haiku + Sonnet     |  |  Zero ports open   |  |</p>
+<p>|  +---------------------+  |  Dashboard + API   |  |</p>
+<p>|                           +--------------------+  |</p>
+<p>|  +---------------------+                          |</p>
+<p>|  |  Telegram Bot       |  +--------------------+  |</p>
+<p>|  |  Query interface    |  |  DocuSeal (ext)    |  |</p>
+<p>|  |  Alert delivery     |  |  NDA signing       |  |</p>
+<p>|  +---------------------+  +--------------------+  |</p>
+<p>+---------------------------------------------------+</p>
+<p>```</p>
+<h4>Data Isolation</h4>
+<p>RPM Capital data stays on the ghost terminal. Period.</p>
+<p style='padding-left:1rem'>&bull; Separate Neo4j instance (seeded from MERIDIAN MIG, then fully independent)</p>
+<p style='padding-left:1rem'>&bull; Separate NATS server (no cross-connect to MERIDIAN mesh)</p>
+<p style='padding-left:1rem'>&bull; Ghost terminal generates its own embeddings locally (stripped from seed)</p>
+<p style='padding-left:1rem'>&bull; Full export capability (Neo4j dump — client owns their data)</p>
+<p style='padding-left:1rem'>&bull; Only connection to core mesh: drydock (controlled, audited, one-directional updates)</p>
+<h4>Knowledge Seed</h4>
+<p>| Source | Content | Ingestion Method |</p>
+<p>|--------|---------|-----------------|</p>
+<p>| MERIDIAN MIG partial clone | 104,536 knowledge-layer nodes (Memory 26K, ResearchMemory 51K, Claim 16K, Concept 9K) | ghost_import_fast_rels.py |</p>
+<p>| Legal cortex | 18 reference docs (Delaware entity law through fund economics) | Already in config/cortices/legal-compliance/ |</p>
+<p>| Capital markets research | Domain-specific ResearchMemory + Claims from MERIDIAN graph | Included in MIG seed |</p>
+<p>| Deal templates | Fund structure templates, subscription docs, operating agreements | Manual ingestion at setup |</p>
+<p>| Twenty CRM seed | Deal pipeline schema, LP profiles, contact records | CRM import at setup |</p>
+<p>---</p>
+<h3>IMPLEMENTATION PHASES</h3>
+<h4>Phase 0: Infrastructure (Week 1)</h4>
+<p style='padding-left:1rem'>&bull; [ ] Provision RackNerd VPS (runbook #2169)</p>
+<p style='padding-left:1rem'>&bull; [ ] Install Neo4j, NATS, Tailscale, systemd units</p>
+<p style='padding-left:1rem'>&bull; [ ] Deploy MIG seed (ghost_nodes.cypher + ghost_rels.cypher → ghost_import_fast_rels.py)</p>
+<p style='padding-left:1rem'>&bull; [ ] Generate local embeddings for seeded nodes</p>
+<p style='padding-left:1rem'>&bull; [ ] Twenty CRM Docker Compose up</p>
+<p style='padding-left:1rem'>&bull; [ ] Cloudflare Tunnel configured (zero open ports)</p>
+<p style='padding-left:1rem'>&bull; [ ] Claude CLI OAuth provisioned</p>
+<h4>Phase 1: Core Daemons (Week 1-2)</h4>
+<p style='padding-left:1rem'>&bull; [ ] las (ingest/write orchestrator) — sole Neo4j write path</p>
+<p style='padding-left:1rem'>&bull; [ ] delphi (retrieval/query) — dossier assembly, MIG search</p>
+<p style='padding-left:1rem'>&bull; [ ] watcher (health monitor) — 60s poll, alert escalation</p>
+<p style='padding-left:1rem'>&bull; [ ] Telegram bot created and connected</p>
+<p style='padding-left:1rem'>&bull; [ ] Station 1A (Deal Origination) operational</p>
+<p style='padding-left:1rem'>&bull; [ ] Station 3 (Regulatory Intelligence) scaffolded with legal cortex</p>
+<h4>Phase 1.5: Operational Daemons (Week 2-3)</h4>
+<p style='padding-left:1rem'>&bull; [ ] sandman (ops/backup) — backup schedule, health oversight</p>
+<p style='padding-left:1rem'>&bull; [ ] avery (deal director) — Twenty CRM pipeline wired</p>
+<p style='padding-left:1rem'>&bull; [ ] vale (finance intelligence) — fund economics, deal analytics</p>
+<p style='padding-left:1rem'>&bull; [ ] lex (legal daemon) — legal cortex activated, compliance workflows</p>
+<p style='padding-left:1rem'>&bull; [ ] Stations 1B, 2, 4 operational</p>
+<h4>Phase 2: Platform Intelligence Layer</h4>
+<p><strong>2A: Vox Agent — Voice Intelligence Interface</strong></p>
+<p>Voice briefings for deal principals and investor relations. Removes dashboard dependency for time-sensitive intelligence.</p>
+<p>What it does:</p>
+<p style='padding-left:1rem'>&bull; Morning market briefing (overnight signals, regulatory changes, deal pipeline status)</p>
+<p style='padding-left:1rem'>&bull; On-demand voice queries (&quot;what&#x27;s the compliance status on the Series A for [company]?&quot;)</p>
+<p style='padding-left:1rem'>&bull; Alert escalations via voice (regulatory deadline approaching, deal red flag detected, LP commitment received)</p>
+<p style='padding-left:1rem'>&bull; Investor meeting prep delivered as voice brief (5-min summary before LP calls)</p>
+<p>MERIDIAN components: Vox agent (text-to-speech pipeline), Claude CLI (query → structured answer → voice script), Telegram voice message API, NATS event triggers.</p>
+<p><strong>2B: Boardroom Reports — Automated Executive Intelligence</strong></p>
+<p>Periodic intelligence briefings auto-generated from the knowledge graph. Designed for principals, LPs, and board-level audiences.</p>
+<p>What it does:</p>
+<p style='padding-left:1rem'>&bull; Weekly deal pipeline digest (new opportunities, stage movements, red flags, closed deals)</p>
+<p style='padding-left:1rem'>&bull; Monthly market intelligence brief (sector trends, competitive landscape, regulatory changes)</p>
+<p style='padding-left:1rem'>&bull; Quarterly LP reports (fund performance, deal-by-deal attribution, capital deployment pace)</p>
+<p style='padding-left:1rem'>&bull; Ad-hoc board memos (auto-generated from MIG for specific topics — regulatory impact, market thesis validation)</p>
+<p style='padding-left:1rem'>&bull; Due diligence summary reports (auto-assembled from Station 1B findings)</p>
+<p>MERIDIAN components: Report generation pipeline (MIG query → Claude CLI summarization → HTML/PDF render), md-to-html converter (dark glass-card design system), auto-deploy to `reports.rpm-capital.speedoftrust.ai` via Cloudflare Tunnel.</p>
+<p><strong>2C: Website &amp; Report Generation — Client-Facing Deliverables</strong></p>
+<p>Auto-generated investor-facing materials and deal documentation.</p>
+<p>What it does:</p>
+<p style='padding-left:1rem'>&bull; Deal room pages (per-deal secure sites with materials, timeline, status)</p>
+<p style='padding-left:1rem'>&bull; Fund fact sheets (auto-updated from MIG — AUM, deployment pace, return metrics)</p>
+<p style='padding-left:1rem'>&bull; Investor portal pages (LP-specific views — commitments, distributions, communications)</p>
+<p style='padding-left:1rem'>&bull; Compliance documentation packages (auto-assembled per jurisdiction)</p>
+<p style='padding-left:1rem'>&bull; Exportable PDF/HTML for distribution to investors and counterparties</p>
+<p>MERIDIAN components: Static site generator (Ronin worker pattern), Cloudflare Pages deployment, MIG-to-report pipeline, scheduled generation via NATS cron triggers.</p>
+<p><strong>2D: Research Subway Lines — Automated Knowledge Compounding</strong></p>
+<p>The stations define WHAT the terminal knows. Research subway lines define HOW it learns. Continuous automated intelligence gathering.</p>
+<p>What it does:</p>
+<p style='padding-left:1rem'>&bull; SEC filing monitoring (new fund registrations, regulatory actions, enforcement trends)</p>
+<p style='padding-left:1rem'>&bull; Market signal aggregation (deal flow databases, LP commitment reports, sector analysis)</p>
+<p style='padding-left:1rem'>&bull; Legal precedent tracking (case law updates relevant to fund structures and compliance)</p>
+<p style='padding-left:1rem'>&bull; Claim extraction from ingested research (analyst reports, market studies, regulatory guidance)</p>
+<p style='padding-left:1rem'>&bull; Contradiction detection (new regulation invalidates existing fund structure assumption → auto-flag)</p>
+<p style='padding-left:1rem'>&bull; Corroboration discovery (multiple sources confirm market signal → promoted to high-confidence)</p>
+<p>Research subway line mapping:</p>
+<p>```</p>
+<p>Line A: Regulatory &amp; Compliance   → SEC monitoring, state compliance, tax law changes</p>
+<p>Line B: Market &amp; Competition      → Deal flow, LP appetite, sector trends, competitive intel</p>
+<p>Line C: Legal &amp; Structural        → Case law, entity structures, contract patterns</p>
+<p>Line D: Investment &amp; Performance  → Fund economics, return attribution, portfolio analytics</p>
+<p>```</p>
+<p>Station feed map:</p>
+<p style='padding-left:1rem'>&bull; Line A → Station 3 (Regulatory Intelligence) + Station 4 (Contract Intelligence)</p>
+<p style='padding-left:1rem'>&bull; Line B → Station 5 (Market Intelligence) + Station 1A (Deal Origination)</p>
+<p style='padding-left:1rem'>&bull; Line C → Station 4 (Contract Intelligence) + Station 2 (Fund Structure)</p>
+<p style='padding-left:1rem'>&bull; Line D → Station 6 (Investor Relations) + Station 1B (Due Diligence)</p>
+<p>---</p>
+<h3>COMPLIANCE &amp; SECURITY</h3>
+<p style='padding-left:1rem'>&bull; SOC2-compliant architecture (zero open ports via Cloudflare Tunnel)</p>
+<p style='padding-left:1rem'>&bull; All LLM calls via Claude CLI OAuth (no API keys on terminal)</p>
+<p style='padding-left:1rem'>&bull; Neo4j TLS enabled (bolt+ssc)</p>
+<p style='padding-left:1rem'>&bull; Full audit trail (every MIG write validated via write_validator.py)</p>
+<p style='padding-left:1rem'>&bull; Data classification: all deal materials and LP data are confidential</p>
+<p style='padding-left:1rem'>&bull; DocuSeal for NDA signing (external SaaS — no self-hosted document signing)</p>
+<p style='padding-left:1rem'>&bull; Backup encryption via restic with offsite storage</p>
+<p>---</p>
+<h3>OPEN QUESTIONS</h3>
+<p>1. **VPS selection**: RackNerd node TBD — sizing depends on expected MIG growth rate and embedding compute requirements.</p>
+<p>2. **Twenty CRM migration**: Does RPM Capital have existing CRM data to import? If so, what format?</p>
+<p>3. **Legal cortex activation**: 18 docs are staged — which are highest priority for initial lex daemon activation?</p>
+<p>4. **LP data ingestion**: Source and format of existing investor records?</p>
+<p>5. **Compliance jurisdiction scope**: Which states/countries for blue sky compliance tracking?</p>
+<p>6. **Deal pipeline volume**: Expected number of concurrent active deals (affects Neo4j sizing)?</p>
+<p>7. **Voice interface preference**: Telegram voice messages vs dedicated voice endpoint vs both?</p>
+<p>---</p>
+<h3>BLOCKERS</h3>
+<p>| Blocker | Owner | Status |</p>
+<p>|---------|-------|--------|</p>
+<p>| VPS provisioning | Operator/Delphi | NOT STARTED — need RackNerd order |</p>
+<p>| Client onboarding call | Avery/Operator | NOT STARTED |</p>
+<p>| CRM data migration plan | Avery | NOT STARTED |</p>
+<p>| Legal cortex priority ranking | Lex/Operator | NOT STARTED — 18 docs staged |</p>
+<p>| MIG seed transfer | Atlas/Delphi | READY — staged on e3b5f73 |</p>
+<p>---</p>
+<p>*v1 establishes ghost terminal architecture, 7-daemon roster, 6-station metro layout, Phase 2 platform intelligence capabilities (vox, boardroom, websites, research subway), and MIG seed strategy. Infrastructure mirrors Rankona pattern (isolated Neo4j, local NATS, Cloudflare Tunnel, Claude CLI OAuth) adapted to capital markets domain.*</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-14 23:19</div>
+</body></html>
