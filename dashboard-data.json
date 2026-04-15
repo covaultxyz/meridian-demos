@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T01:42:29.661449+00:00",
+  "generated_at": "2026-04-15T03:19:36.727881+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-15T01:42:26.026500+00:00",
+      "updated_at": "2026-04-15T03:19:33.655558+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1237,6 +1237,26 @@
           "buying_signal_count": 2,
           "sentiment": "neutral",
           "suggested_stage": "proposal",
+          "participants": []
+        },
+        {
+          "client": "rpm-capital",
+          "call_id": "terminal-blueprint",
+          "title": "terminal-blueprint",
+          "file": "clients/rpm-capital/signals/deal-signals-terminal-blueprint-2026-04-15.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 0,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -2910,6 +2930,7 @@
       ],
       "call_volume": {
         "unknown": 11,
+        "rpm-capital": 1,
         "rankona-mazon": 13,
         "omar": 1,
         "meridian-internal": 30,
@@ -2917,7 +2938,7 @@
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 96,
+      "total_signals": 97,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3106,6 +3127,13 @@
           "terminal": "ttys074",
           "launched": "2026-04-14T20:07",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "27315",
+          "terminal": "ttys082",
+          "launched": "2026-04-15T02:26",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
       "daemon_tasks": [
@@ -3132,6 +3160,10 @@
         {
           "daemon": "forge",
           "current_assignment": "Research worker (Intel Mac 100.92.108.91); fact_extraction consumer (prime)"
+        },
+        {
+          "daemon": "overwatch-1",
+          "current_assignment": "Security Terminal operator \u2014 code screening, config drift, doc coherence (#2107)"
         }
       ],
       "node_daemon_map": [
@@ -3179,6 +3211,11 @@
           "node": "r-ubuntu",
           "daemon": "forge-worker",
           "systemd_unit": "meridian-forge-worker (systemd)"
+        },
+        {
+          "node": "r-ubuntu",
+          "daemon": "overwatch-1",
+          "systemd_unit": "meridian-overwatch (systemd)"
         },
         {
           "node": "toshiba-linux",
@@ -3452,25 +3489,24 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 158 hours old"
+        "_stale_warning": "Data is 159 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-15T01:42:29.473336+00:00",
+      "updated_at": "2026-04-15T03:19:36.526283+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
-          "enhancement": 5,
-          "grade/A": 8,
+          "enhancement": 7,
+          "infrastructure": 10,
+          "architecture": 12,
+          "grade/B": 16,
+          "grade/C": 15,
+          "grade/A": 9,
           "daemon/forge": 1,
-          "architecture": 10,
-          "grade/B": 17,
-          "high": 5,
-          "security": 9,
-          "infrastructure": 11,
           "medium": 4,
-          "grade/C": 14,
-          "sentinel-review:fail": 1,
+          "security": 7,
+          "high": 4,
           "cursor-bench": 3,
           "priority/medium": 3,
           "implementation": 1,
@@ -3491,16 +3527,48 @@
           "in-progress": 1,
           "auto-created": 1,
           "dependencies": 1,
-          "python:uv": 1
+          "python:uv": 1,
+          "brain": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 2178,
+          "title": "feat(cortex): Phase 0a \u2014 add commitment properties to MCP task tools",
+          "state": "open",
+          "created_at": "2026-04-15T02:50:23Z",
+          "updated_at": "2026-04-15T03:00:21Z",
+          "labels": [
+            "enhancement",
+            "infrastructure",
+            "architecture",
+            "grade/B"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2178",
+          "project_slug": "openclaw"
+        },
+        {
+          "number": 2177,
+          "title": "Strategic Cortex \u2014 Intrinsic Task Commitment Architecture",
+          "state": "open",
+          "created_at": "2026-04-15T01:42:57Z",
+          "updated_at": "2026-04-15T03:05:58Z",
+          "labels": [
+            "enhancement",
+            "architecture",
+            "grade/C"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2177",
+          "project_slug": null
+        },
         {
           "number": 2176,
           "title": "feat(rankona): multi-user role-based access for @RankonaBot",
           "state": "open",
           "created_at": "2026-04-14T23:55:55Z",
-          "updated_at": "2026-04-14T23:55:55Z",
+          "updated_at": "2026-04-15T02:32:52Z",
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/2176",
@@ -3545,22 +3613,6 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/2173",
           "project_slug": null
-        },
-        {
-          "number": 2172,
-          "title": "security: Fix PR #2147 rsync blocker \u2014 command=/bin/true breaks OpenSCAP central aggregation",
-          "state": "open",
-          "created_at": "2026-04-14T15:27:32Z",
-          "updated_at": "2026-04-14T15:30:20Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2172",
-          "project_slug": "openclaw"
         },
         {
           "number": 2171,
@@ -3837,19 +3889,6 @@
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/2149",
-          "project_slug": null
-        },
-        {
-          "number": 2147,
-          "title": "feat(#2107): install OpenSCAP nightly CIS L2 compliance scans",
-          "state": "open",
-          "created_at": "2026-04-14T13:04:08Z",
-          "updated_at": "2026-04-14T18:25:08Z",
-          "labels": [
-            "sentinel-review:fail"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2147",
           "project_slug": null
         },
         {
@@ -4190,22 +4229,6 @@
           "project_slug": "openclaw"
         },
         {
-          "number": 2107,
-          "title": "security: Install OpenSCAP nightly CIS L2 compliance scans on all Ubuntu nodes",
-          "state": "open",
-          "created_at": "2026-04-13T21:21:38Z",
-          "updated_at": "2026-04-13T21:31:34Z",
-          "labels": [
-            "high",
-            "security",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2107",
-          "project_slug": "openclaw"
-        },
-        {
           "number": 2106,
           "title": "security: Deploy Wazuh EDR manager on 7311420 + agents on all 10 nodes",
           "state": "open",
@@ -4220,16 +4243,194 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2106",
           "project_slug": "openclaw"
+        },
+        {
+          "number": 2104,
+          "title": "Source external research for agent_architecture domain \u2014 AgentVox customer readiness prerequisite",
+          "state": "open",
+          "created_at": "2026-04-13T20:33:09Z",
+          "updated_at": "2026-04-13T20:45:32Z",
+          "labels": [
+            "high",
+            "brain",
+            "grade/A"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2104",
+          "project_slug": "graph-intelligence"
         }
       ],
       "issues_by_project": {
+        "openclaw": [
+          {
+            "number": 2178,
+            "title": "feat(cortex): Phase 0a \u2014 add commitment properties to MCP task tools",
+            "state": "open",
+            "created_at": "2026-04-15T02:50:23Z",
+            "updated_at": "2026-04-15T03:00:21Z",
+            "labels": [
+              "enhancement",
+              "infrastructure",
+              "architecture",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2178",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2171,
+            "title": "infra: Apply Tailscale ACL policy to tailnet (admin console) \u2014 activate #2111",
+            "state": "open",
+            "created_at": "2026-04-14T15:27:00Z",
+            "updated_at": "2026-04-14T15:30:36Z",
+            "labels": [
+              "medium",
+              "security",
+              "infrastructure",
+              "grade/A"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2171",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2170,
+            "title": "infra: Activate pre-built audit log retention pipeline on 3 VPS (post-#2106)",
+            "state": "open",
+            "created_at": "2026-04-14T15:26:34Z",
+            "updated_at": "2026-04-14T15:30:55Z",
+            "labels": [
+              "high",
+              "security",
+              "infrastructure",
+              "grade/B"
+            ],
+            "assignee": "artificialmindsets",
+            "url": "https://github.com/covaultxyz/meridian/issues/2170",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2129,
+            "title": "Rankona: Provision SSH access to 100.97.248.107 (Gate G0)",
+            "state": "open",
+            "created_at": "2026-04-14T03:10:15Z",
+            "updated_at": "2026-04-14T03:18:35Z",
+            "labels": [
+              "critical",
+              "infrastructure",
+              "grade/A",
+              "human-only",
+              "source/human",
+              "blocked"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2129",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2112,
+            "title": "security: Immutable audit log storage + 90-day retention (CMMC2 AU)",
+            "state": "open",
+            "created_at": "2026-04-13T21:25:14Z",
+            "updated_at": "2026-04-14T14:35:33Z",
+            "labels": [
+              "high",
+              "security",
+              "infrastructure",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2112",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2111,
+            "title": "security: Tailscale ACL network segmentation \u2014 restrict Neo4j and NATS to authorized nodes",
+            "state": "open",
+            "created_at": "2026-04-13T21:25:00Z",
+            "updated_at": "2026-04-14T14:38:42Z",
+            "labels": [
+              "medium",
+              "security",
+              "architecture",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2111",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2110,
+            "title": "security: Verify FileVault (macOS) + BitLocker (Windows) encryption across all nodes",
+            "state": "open",
+            "created_at": "2026-04-13T21:24:37Z",
+            "updated_at": "2026-04-13T21:30:57Z",
+            "labels": [
+              "medium",
+              "security",
+              "infrastructure",
+              "grade/C"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2110",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2108,
+            "title": "security: Deploy mSCP NIST 800-171 hardening baseline on macOS nodes",
+            "state": "open",
+            "created_at": "2026-04-13T21:21:47Z",
+            "updated_at": "2026-04-13T21:31:22Z",
+            "labels": [
+              "medium",
+              "security",
+              "infrastructure",
+              "grade/C"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2108",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2106,
+            "title": "security: Deploy Wazuh EDR manager on 7311420 + agents on all 10 nodes",
+            "state": "open",
+            "created_at": "2026-04-13T21:21:25Z",
+            "updated_at": "2026-04-13T21:31:47Z",
+            "labels": [
+              "high",
+              "security",
+              "infrastructure",
+              "grade/C"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2106",
+            "project_slug": "openclaw"
+          }
+        ],
         "unassigned": [
+          {
+            "number": 2177,
+            "title": "Strategic Cortex \u2014 Intrinsic Task Commitment Architecture",
+            "state": "open",
+            "created_at": "2026-04-15T01:42:57Z",
+            "updated_at": "2026-04-15T03:05:58Z",
+            "labels": [
+              "enhancement",
+              "architecture",
+              "grade/C"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2177",
+            "project_slug": null
+          },
           {
             "number": 2176,
             "title": "feat(rankona): multi-user role-based access for @RankonaBot",
             "state": "open",
             "created_at": "2026-04-14T23:55:55Z",
-            "updated_at": "2026-04-14T23:55:55Z",
+            "updated_at": "2026-04-15T02:32:52Z",
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/2176",
@@ -4506,19 +4707,6 @@
             "project_slug": null
           },
           {
-            "number": 2147,
-            "title": "feat(#2107): install OpenSCAP nightly CIS L2 compliance scans",
-            "state": "open",
-            "created_at": "2026-04-14T13:04:08Z",
-            "updated_at": "2026-04-14T18:25:08Z",
-            "labels": [
-              "sentinel-review:fail"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2147",
-            "project_slug": null
-          },
-          {
             "number": 2144,
             "title": "ReviewShield demo-ready walkthrough for Rankona",
             "state": "open",
@@ -4717,170 +4905,6 @@
             "project_slug": "research-pipeline"
           }
         ],
-        "openclaw": [
-          {
-            "number": 2172,
-            "title": "security: Fix PR #2147 rsync blocker \u2014 command=/bin/true breaks OpenSCAP central aggregation",
-            "state": "open",
-            "created_at": "2026-04-14T15:27:32Z",
-            "updated_at": "2026-04-14T15:30:20Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2172",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2171,
-            "title": "infra: Apply Tailscale ACL policy to tailnet (admin console) \u2014 activate #2111",
-            "state": "open",
-            "created_at": "2026-04-14T15:27:00Z",
-            "updated_at": "2026-04-14T15:30:36Z",
-            "labels": [
-              "medium",
-              "security",
-              "infrastructure",
-              "grade/A"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2171",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2170,
-            "title": "infra: Activate pre-built audit log retention pipeline on 3 VPS (post-#2106)",
-            "state": "open",
-            "created_at": "2026-04-14T15:26:34Z",
-            "updated_at": "2026-04-14T15:30:55Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": "artificialmindsets",
-            "url": "https://github.com/covaultxyz/meridian/issues/2170",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2129,
-            "title": "Rankona: Provision SSH access to 100.97.248.107 (Gate G0)",
-            "state": "open",
-            "created_at": "2026-04-14T03:10:15Z",
-            "updated_at": "2026-04-14T03:18:35Z",
-            "labels": [
-              "critical",
-              "infrastructure",
-              "grade/A",
-              "human-only",
-              "source/human",
-              "blocked"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2129",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2112,
-            "title": "security: Immutable audit log storage + 90-day retention (CMMC2 AU)",
-            "state": "open",
-            "created_at": "2026-04-13T21:25:14Z",
-            "updated_at": "2026-04-14T14:35:33Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2112",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2111,
-            "title": "security: Tailscale ACL network segmentation \u2014 restrict Neo4j and NATS to authorized nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:25:00Z",
-            "updated_at": "2026-04-14T14:38:42Z",
-            "labels": [
-              "medium",
-              "security",
-              "architecture",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2111",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2110,
-            "title": "security: Verify FileVault (macOS) + BitLocker (Windows) encryption across all nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:24:37Z",
-            "updated_at": "2026-04-13T21:30:57Z",
-            "labels": [
-              "medium",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2110",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2108,
-            "title": "security: Deploy mSCP NIST 800-171 hardening baseline on macOS nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:47Z",
-            "updated_at": "2026-04-13T21:31:22Z",
-            "labels": [
-              "medium",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2108",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2107,
-            "title": "security: Install OpenSCAP nightly CIS L2 compliance scans on all Ubuntu nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:38Z",
-            "updated_at": "2026-04-13T21:31:34Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2107",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2106,
-            "title": "security: Deploy Wazuh EDR manager on 7311420 + agents on all 10 nodes",
-            "state": "open",
-            "created_at": "2026-04-13T21:21:25Z",
-            "updated_at": "2026-04-13T21:31:47Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2106",
-            "project_slug": "openclaw"
-          }
-        ],
         "agent-vox": [
           {
             "number": 2140,
@@ -4958,141 +4982,158 @@
             "url": "https://github.com/covaultxyz/meridian/issues/2127",
             "project_slug": "pulse-sentinels"
           }
+        ],
+        "graph-intelligence": [
+          {
+            "number": 2104,
+            "title": "Source external research for agent_architecture domain \u2014 AgentVox customer readiness prerequisite",
+            "state": "open",
+            "created_at": "2026-04-13T20:33:09Z",
+            "updated_at": "2026-04-13T20:45:32Z",
+            "labels": [
+              "high",
+              "brain",
+              "grade/A"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2104",
+            "project_slug": "graph-intelligence"
+          }
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
+        "status": "completed",
+        "conclusion": "success",
         "name": "CI",
-        "created_at": "2026-04-15T01:29:02Z",
-        "head_sha": "cd3e2ef2"
+        "created_at": "2026-04-15T03:05:24Z",
+        "head_sha": "debddfab"
       },
       "ci_recent_runs": [
         {
-          "id": 24431652421,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-15T01:29:02Z",
-          "updated_at": "2026-04-15T01:29:03Z",
-          "head_sha": "cd3e2ef2",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24431652421"
-        },
-        {
-          "id": 24431497806,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-15T01:23:30Z",
-          "updated_at": "2026-04-15T01:29:03Z",
-          "head_sha": "3ba69abd",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24431497806"
-        },
-        {
-          "id": 24431432676,
-          "name": "CI Full",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-15T01:21:12Z",
-          "updated_at": "2026-04-15T01:21:12Z",
-          "head_sha": "a9ed319c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24431432676"
-        },
-        {
-          "id": 24431326330,
+          "id": 24434263078,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-04-15T01:17:22Z",
-          "updated_at": "2026-04-15T01:17:33Z",
-          "head_sha": "524a0741",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24431326330"
+          "created_at": "2026-04-15T03:05:24Z",
+          "updated_at": "2026-04-15T03:05:36Z",
+          "head_sha": "debddfab",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24434263078"
         },
         {
-          "id": 24430905229,
+          "id": 24434124577,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-15T03:00:24Z",
+          "updated_at": "2026-04-15T03:00:25Z",
+          "head_sha": "2e0c7a4f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24434124577"
+        },
+        {
+          "id": 24433868036,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-04-15T01:03:24Z",
-          "updated_at": "2026-04-15T01:03:36Z",
-          "head_sha": "a0a41f69",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24430905229"
+          "created_at": "2026-04-15T02:50:44Z",
+          "updated_at": "2026-04-15T02:50:55Z",
+          "head_sha": "e35d0bde",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24433868036"
+        },
+        {
+          "id": 24433860932,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-15T02:50:27Z",
+          "updated_at": "2026-04-15T02:50:28Z",
+          "head_sha": "019332bc",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24433860932"
+        },
+        {
+          "id": 24433860893,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-15T02:50:27Z",
+          "updated_at": "2026-04-15T02:50:28Z",
+          "head_sha": "019332bc",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24433860893"
         }
       ],
       "recent_commits": [
         {
-          "sha": "e005e7a4",
-          "message": "feat(rankona): T3 cursor agent specs for Station 1A/1B",
-          "author": "Cassian Sandman",
-          "date": "2026-04-15T01:33:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e005e7a4a2e3084285b31c60cd956d0bc829e77a"
+          "sha": "debddfab",
+          "message": "scripts(boardroom): SQLite migration templates for cloning agents + teams",
+          "author": "covaultxyz",
+          "date": "2026-04-15T03:05:21Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/debddfabb4f4f1372b99cdb70074a86dc9fc941f"
         },
         {
-          "sha": "f1b0c02d",
-          "message": "arch: Strategic Cortex \u2014 intrinsic task commitment architecture",
+          "sha": "b01392a2",
+          "message": "arch: Strategic Cortex \u2014 design iteration with Delphi (ct-114970c95ff3, GH#2177)",
           "author": "Sensei",
-          "date": "2026-04-15T01:31:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f1b0c02d802abeff6bbab84c6ee0cfc082d88af8"
+          "date": "2026-04-15T02:39:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b01392a22608597f22959de4899c434513c775be"
         },
         {
-          "sha": "cd3e2ef2",
-          "message": "fix(voice-app): drop generate_placeholder_fillers() boot call",
+          "sha": "01432194",
+          "message": "refactor(deals): Strategic Advisor Program v2 \u2014 production-grade institutional document",
+          "author": "Glasshaus",
+          "date": "2026-04-03T21:11:43Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/01432194559d1ef96a509e495639e993353d73a2"
+        },
+        {
+          "sha": "dfa4f402",
+          "message": "feat(deals): Treasury Strategic Advisor Program \u2014 engagement, comp, code of conduct, compliance",
+          "author": "Glasshaus",
+          "date": "2026-04-03T18:55:58Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/dfa4f40259967d19c734ac718fb1da16c91c0bb3"
+        },
+        {
+          "sha": "b529b357",
+          "message": "refactor(deals): Treasury Fund \u2014 integrate pro forma, principal investor model, Bacherman Martin safeguards",
+          "author": "Glasshaus",
+          "date": "2026-04-03T18:44:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b529b357b376ab1aa9f3edc9fee4209ce38ba6ff"
+        },
+        {
+          "sha": "9e243862",
+          "message": "legal(deals): Bacherman Martin securities review \u2014 Treasury Fund connector compensation",
+          "author": "Glasshaus",
+          "date": "2026-04-03T17:11:14Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/9e243862a9bc77323c4bca91b3230c0d5c071a5c"
+        },
+        {
+          "sha": "eb0723f3",
+          "message": "feat(deals): Bitcove Treasury Fund \u2014 capital connector compensation structure",
+          "author": "Glasshaus",
+          "date": "2026-04-03T16:45:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/eb0723f3924faadf280f65428ba0006c624e91fb"
+        },
+        {
+          "sha": "eb16c4d0",
+          "message": "docs: add Phase 2 capabilities to Rankona + RPM Capital terminal blueprints",
+          "author": "Sensei",
+          "date": "2026-04-15T03:00:56Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/eb16c4d05e67dbecc10b5a94a6e54fa7d5f4f737"
+        },
+        {
+          "sha": "2e0c7a4f",
+          "message": "fix(shepherd): add missing shepherd-bot.sh startup script",
           "author": "covaultxyz",
-          "date": "2026-04-15T01:28:58Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cd3e2ef22a89fd0198661cb6108a8b9f2424fa75"
+          "date": "2026-04-15T02:56:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2e0c7a4fa4bfbf194d4b6867e2eb1c9430c8c82c"
         },
         {
-          "sha": "037c7fbf",
-          "message": "feat(research-fleet): human-friendly provider labels in dashboard",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:25:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/037c7fbf624c8e9a638880d81d89527b4a16783e"
-        },
-        {
-          "sha": "3ba69abd",
-          "message": "feat(boardroom): 50 Denver-voice filler clips for instant audio feedback",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:22:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3ba69abd24fb9f00b581f678834a74d77a4fc681"
-        },
-        {
-          "sha": "a9ed319c",
-          "message": "feat: CARTOGRAPHER attribute priority list for COSMO/Rufus (T2, GH#2155)",
-          "author": "Cassian Sandman",
-          "date": "2026-04-15T01:18:25Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a9ed319c06d2f9d516c7d07530430145cc94c098"
-        },
-        {
-          "sha": "524a0741",
-          "message": "feat(research-fleet): draggable+minimizable recent-reports panel, fix provider=unknown",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:17:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/524a0741d01e2ecc1a14962381bfb9b3f2b55bd8"
-        },
-        {
-          "sha": "bbc7b9be",
-          "message": "fix(metro-stats): use .venv python instead of /opt/homebrew python3.11",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:09:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/bbc7b9beeee96eccd218a63f70d6996818af1852"
-        },
-        {
-          "sha": "66421892",
-          "message": "fix(metro-stats): add PYTHONPATH=/opt/meridian so lazy imports resolve",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:08:00Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/664218921ab6230def5aa8893688fef807e905e7"
-        },
-        {
-          "sha": "527b0964",
-          "message": "feat: add Rankona horse equipment category ontology schema (CARTOGRAPHER/GH#2156)",
-          "author": "covaultxyz",
-          "date": "2026-04-15T01:07:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/527b09646f6f3c0821cee1bacaa0c76db7208529"
+          "sha": "e35d0bde",
+          "message": "feat(security): OpenSCAP CIS L2 nightly compliance scans \u2014 Ansible role with rrsync fix",
+          "author": "Sensei",
+          "date": "2026-04-15T02:50:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e35d0bde2d37301455d0a2c388d30210861b3f8d"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-15T01:42:27.088341+00:00",
+        "updated_at": "2026-04-15T03:19:34.525097+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5294,7 +5335,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "members": [
         {
           "id": "alex",
@@ -5367,7 +5408,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "projects": [
         {
           "project": {
@@ -5797,7 +5838,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5882,7 +5923,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -5979,7 +6020,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6234,6 +6275,59 @@
         }
       ],
       "calls": [
+        {
+          "date": "2026-04-15",
+          "title": "Terminal Blueprint",
+          "type": "external",
+          "file": "clients/rpm-capital/terminal-blueprint.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "Blueprint document for RPM Capital's Ghost Terminal \u2014 a standalone capital markets intelligence system with a 7-daemon architecture, 6-station knowledge graph, and phased build-out plan.",
+          "decisions": [
+            "RPM Capital terminal will be a fully isolated ghost terminal with no live connection to the MERIDIAN production mesh.",
+            "Seven daemons selected: las, delphi, watcher, sandman, avery, vale, and lex across P0/P1 priority tiers.",
+            "Data isolation is absolute \u2014 separate Neo4j instance, separate NATS server, local embedding generation.",
+            "MIG seed will be a partial clone of 104,536 knowledge-layer nodes from MERIDIAN with embeddings stripped.",
+            "Zero open ports enforced via Cloudflare Tunnel for SOC2-compliant architecture.",
+            "DocuSeal used as external SaaS for NDA signing rather than self-hosted document signing."
+          ],
+          "commitments": [
+            "Atlas/Delphi: MIG seed transfer is ready and staged on racknerd-e3b5f73 port 7688.",
+            "Phase 0 infrastructure targets Week 1 completion.",
+            "Phase 1 core daemons (las, delphi, watcher) target Week 1-2 completion.",
+            "Phase 1.5 operational daemons (sandman, avery, vale, lex) target Week 2-3 completion."
+          ],
+          "discoveries": [
+            "The terminal is architected around 'judgment compounding' \u2014 every deal analyzed enriches the graph for future decisions, making the system more valuable over time.",
+            "An 18-document legal cortex is already built and staged, covering Delaware entity law through fund economics, ready for lex daemon activation.",
+            "The MIG seed already contains capital markets research (51K ResearchMemory nodes) sourced from MERIDIAN, giving the terminal a pre-loaded knowledge advantage at launch."
+          ],
+          "action_items": [
+            {
+              "who": "Operator/Delphi",
+              "what": "Place RackNerd VPS order and begin provisioning runbook from issue #2169."
+            },
+            {
+              "who": "Avery/Operator",
+              "what": "Schedule and conduct client onboarding call with RPM Capital."
+            },
+            {
+              "who": "Avery",
+              "what": "Develop CRM data migration plan \u2014 determine if existing CRM data exists and in what format."
+            },
+            {
+              "who": "Lex/Operator",
+              "what": "Rank the 18 staged legal cortex documents by priority for initial lex daemon activation."
+            },
+            {
+              "who": "Operator",
+              "what": "Resolve open questions: compliance jurisdiction scope, LP data source/format, deal pipeline volume, and voice interface preference."
+            }
+          ],
+          "detail_page": "calls/2026-04-15-terminal-blueprint.html",
+          "preview": "Blueprint document for RPM Capital's Ghost Terminal \u2014 a standalone capital markets intelligence system with a 7-daemon architecture, 6-station knowledge graph, and phased build-out plan."
+        },
         {
           "date": "2026-04-14",
           "title": "Pdr Remaining Work",
@@ -9763,15 +9857,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 83,
+        "total_calls": 84,
         "internal_calls": 39,
-        "external_calls": 23,
+        "external_calls": 24,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-15T01:42:29.614736+00:00",
+      "updated_at": "2026-04-15T03:19:36.679514+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -11779,7 +11873,7 @@
       "total_docs": 332
     },
     "deals": {
-      "updated_at": "2026-04-15T01:42:29.614851+00:00",
+      "updated_at": "2026-04-15T03:19:36.679609+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12021,7 +12115,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-15T01:42:29.473354+00:00",
+      "updated_at": "2026-04-15T03:19:36.526297+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -34410,6 +34504,693 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-15T03:07:49.600550+00:00",
+          "transcript_file": "clients/rpm-capital/terminal-blueprint.md",
+          "transcript_length": 15338,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [
+              "Atlas"
+            ],
+            "their_participants": [],
+            "call_topic": "Ghost Terminal architecture and service design for RPM Capital capital markets intelligence system"
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "item": "Provision RackNerd VPS target machine for RPM Capital ghost terminal",
+                  "owner": "TBD (see #2169 runbook)",
+                  "deadline": "Not specified",
+                  "priority": "P0",
+                  "related_issues": [
+                    "#2169"
+                  ]
+                },
+                {
+                  "item": "Transfer MIG seed data (104.5K nodes) from staging at racknerd-e3b5f73:7688 to production ghost terminal",
+                  "owner": "Atlas (infrastructure)",
+                  "deadline": "Pending machine provisioning",
+                  "priority": "P0",
+                  "status": "Staged, ready for transfer"
+                },
+                {
+                  "item": "Implement 7-daemon roster (las, delphi, watcher, sandman, avery, vale, lex)",
+                  "owner": "TBD - daemon coding",
+                  "deadline": "Not specified",
+                  "priority": "P0-P1 (las/delphi/watcher=P0, others=P1)",
+                  "related_issues": [
+                    "#2163",
+                    "#2165",
+                    "#2168"
+                  ]
+                },
+                {
+                  "item": "Integrate Twenty CRM with avery daemon (deal pipeline + LP management)",
+                  "owner": "TBD - avery integration",
+                  "deadline": "Not specified",
+                  "priority": "P1",
+                  "related_issues": [
+                    "#2163"
+                  ]
+                },
+                {
+                  "item": "Setup embedding service (nomic-embed-text or all-mpnet on port 8081)",
+                  "owner": "TBD - infrastructure",
+                  "deadline": "Not specified",
+                  "priority": "P0 (blocking retrieval workflow)"
+                },
+                {
+                  "item": "Integrate DocuSeal for NDA workflow (Station 4 - Contract Intelligence)",
+                  "owner": "TBD - lex daemon",
+                  "deadline": "Not specified",
+                  "priority": "P1"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "No owner assigned for RackNerd VPS provisioning",
+                  "impact": "Blocks all downstream setup",
+                  "resolution_path": "Assign owner, reference #2169 runbook"
+                },
+                {
+                  "gap": "Daemon implementation teams not identified",
+                  "impact": "Unclear who codes las, delphi, avery, vale, lex",
+                  "resolution_path": "Map each daemon to team member in kickoff"
+                },
+                {
+                  "gap": "Twenty CRM integration method not specified (API, webhooks, polling)",
+                  "impact": "avery daemon design incomplete",
+                  "resolution_path": "Document Twenty API contract before coding"
+                },
+                {
+                  "gap": "Handoff from drydock (core mesh) to ghost terminal not detailed",
+                  "impact": "Data sync, update frequency, conflict resolution unclear",
+                  "resolution_path": "Define drydock sync protocol (one-directional updates only)"
+                },
+                {
+                  "gap": "Feedback loops documented but no synchronous/asynchronous protocol specified",
+                  "impact": "Station cross-calls could deadlock or create stale reads",
+                  "resolution_path": "Define message bus patterns for each feedback loop"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "milestone": "RackNerd VPS provisioned + Neo4j + NATS running",
+                  "estimated_duration": "Not specified",
+                  "realistic": false,
+                  "reason": "Owner unassigned, no deadline, blocking all daemons"
+                },
+                {
+                  "milestone": "MIG seed transferred to ghost terminal",
+                  "estimated_duration": "2-4 hours (transfer + validation)",
+                  "realistic": true,
+                  "reason": "Already staged, single data copy operation"
+                },
+                {
+                  "milestone": "Core daemons operational (las, delphi, watcher)",
+                  "estimated_duration": "Not specified",
+                  "realistic": false,
+                  "reason": "No timeline, no owner assignments, no sprint structure"
+                },
+                {
+                  "milestone": "Full 7-daemon roster + integrations ready",
+                  "estimated_duration": "Not specified",
+                  "realistic": false,
+                  "reason": "20+ integration points, no phasing, no resource allocation"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource": "RackNerd VPS instance (compute + storage)",
+                  "type": "Infrastructure",
+                  "priority": "P0",
+                  "status": "Spec in #2169, not yet provisioned"
+                },
+                {
+                  "resource": "Neo4j Docker instance with 104.5K node capacity",
+                  "type": "Infrastructure",
+                  "priority": "P0",
+                  "status": "Seed prepared, awaiting target"
+                },
+                {
+                  "resource": "NATS server (local hub, non-federated)",
+                  "type": "Infrastructure",
+                  "priority": "P0",
+                  "status": "Design specified, not deployed"
+                },
+                {
+                  "resource": "Embedding service (all-mpnet or nomic-embed-text)",
+                  "type": "ML/Infrastructure",
+                  "priority": "P0",
+                  "status": "Service chosen, not deployed"
+                },
+                {
+                  "resource": "Cloudflare Tunnel (outbound-only access)",
+                  "type": "Security",
+                  "priority": "P0",
+                  "status": "Design specified, not deployed"
+                },
+                {
+                  "resource": "Twenty CRM instance + API credentials",
+                  "type": "External Service",
+                  "priority": "P1",
+                  "status": "Not mentioned as ready"
+                },
+                {
+                  "resource": "DocuSeal integration (NDA signing)",
+                  "type": "External Service",
+                  "priority": "P1",
+                  "status": "Not mentioned as ready"
+                },
+                {
+                  "resource": "Claude CLI OAuth setup for ghost terminal",
+                  "type": "Auth/Infrastructure",
+                  "priority": "P0",
+                  "status": "Design specified, not deployed"
+                },
+                {
+                  "resource": "7 daemon codebases (las, delphi, watcher, sandman, avery, vale, lex)",
+                  "type": "Development",
+                  "priority": "P0-P1",
+                  "status": "Architecture defined, code not referenced"
+                }
+              ],
+              "dependencies": [
+                {
+                  "from": "All daemons",
+                  "to": "RackNerd VPS provisioning (#2169)",
+                  "type": "Blocking",
+                  "criticality": "P0"
+                },
+                {
+                  "from": "Neo4j instance",
+                  "to": "MIG seed transfer",
+                  "type": "Data dependency",
+                  "criticality": "P0"
+                },
+                {
+                  "from": "delphi daemon (Retrieval & Dossier)",
+                  "to": "Embedding service",
+                  "type": "Functional dependency",
+                  "criticality": "P0"
+                },
+                {
+                  "from": "avery daemon (Deal Director)",
+                  "to": "Twenty CRM integration",
+                  "type": "External service",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "lex daemon (Legal)",
+                  "to": "Legal cortex (18 reference docs)",
+                  "type": "Knowledge base",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "Station 1B (Due Diligence)",
+                  "to": "Station 3 (Regulatory Intelligence)",
+                  "type": "Feedback loop / async message",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "Station 5 (Market Intelligence)",
+                  "to": "Station 1A (Deal Origination)",
+                  "type": "Feedback loop / async message",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "Station 4 (Contract Intelligence)",
+                  "to": "Station 2 (Fund Structure)",
+                  "type": "Feedback loop / constraint",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "Station 6 (Investor Relations)",
+                  "to": "Station 1A (Deal Origination)",
+                  "type": "Feedback loop / signal",
+                  "criticality": "P1"
+                },
+                {
+                  "from": "Ghost terminal",
+                  "to": "Drydock (core MERIDIAN mesh)",
+                  "type": "Data sync (one-directional)",
+                  "criticality": "P0",
+                  "note": "Protocol not specified"
+                }
+              ]
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Neo4j Docker instance (isolated, seeded with 104.5K knowledge nodes from MERIDIAN MIG)",
+                "NATS local message hub (standalone, not connected to MERIDIAN mesh)",
+                "Embedding service (nomic-embed-text or all-mpnet, port 8081)",
+                "Claude CLI with OAuth authentication (Haiku + Sonnet models)",
+                "Cloudflare Tunnel (outbound-only, zero inbound ports)",
+                "Telegram bot for query interface and alert delivery",
+                "Neo4j data seeding from MERIDIAN (104.5K nodes, 764.7K relationships, embeddings stripped)",
+                "Local embedding regeneration pipeline",
+                "7-daemon orchestration (las, delphi, watcher, sandman, avery, vale, lex)",
+                "Deal intelligence pipeline (origination, scoring, dossier assembly)",
+                "Due diligence engine (document ingestion, claim extraction, red flag detection)",
+                "Fund structure economics modeling (waterfall, carry, fee analysis)",
+                "Regulatory intelligence system (SEC Reg D/A+/CF monitoring, blue sky compliance)",
+                "Contract/operating agreement analysis and generation",
+                "Market intelligence aggregation and trend detection",
+                "Investor relations management (LP profiles, capital calls, distributions)",
+                "Neo4j full export capability (dumps, client data portability)",
+                "Contradiction detection and corroboration system (knowledge graph validation)",
+                "Research pipeline automation (sourcing \u2192 extraction \u2192 claims \u2192 graph enrichment)",
+                "Comparable deal analysis from historical graph data"
+              ],
+              "integrations": [
+                "Twenty CRM (deal pipeline, LP management, Docker Compose deployment)",
+                "DocuSeal (NDA signing workflow, contract execution)",
+                "Claude API via CLI (LLM inference for deal analysis, compliance generation)",
+                "Cloudflare Tunnels (secure outbound connectivity)",
+                "Telegram Bot API (command interface, alert routing)",
+                "Neo4j Graph Database (persistence, knowledge graph queries)",
+                "Email (deal origination ingestion, investor communications)",
+                "MERIDIAN MIG (one-directional seed data import, drydock connection)",
+                "Embedding models (nomic-embed-text or all-mpnet, vectorization)",
+                "External compliance/regulatory data sources (referenced but not specified)"
+              ],
+              "security_compliance": [
+                "Complete data isolation: RPM Capital data confined to ghost terminal only",
+                "Separate Neo4j instance (not shared with MERIDIAN production)",
+                "Separate NATS server (zero cross-mesh connectivity to MERIDIAN)",
+                "Cloudflare Tunnel outbound-only architecture (zero ports exposed)",
+                "OAuth authentication for Claude CLI (no API key storage)",
+                "Client data ownership: full Neo4j export capability",
+                "One-directional drydock updates (audited, controlled)",
+                "SEC regulation compliance monitoring (Reg D, Reg A+, Reg CF)",
+                "Blue sky state-level compliance tracking",
+                "NDA workflow with DocuSeal integration",
+                "Legal cortex reference docs (18 pre-ingested compliance documents)",
+                "No MERIDIAN credential access required (ghost terminal independent)",
+                "Operational isolation reduces blast radius of data breach"
+              ],
+              "build_vs_buy": [
+                {
+                  "component": "Twenty CRM",
+                  "signal": "buy",
+                  "rationale": "Third-party SaaS, deal pipeline already implemented, focus on integration not replacement"
+                },
+                {
+                  "component": "DocuSeal NDA/contract signing",
+                  "signal": "buy",
+                  "rationale": "External managed service for critical workflow, avoids legal/compliance risk of custom implementation"
+                },
+                {
+                  "component": "Neo4j infrastructure",
+                  "signal": "build",
+                  "rationale": "Custom seeding from MERIDIAN MIG, domain-specific capital markets ontology, persistent memory core"
+                },
+                {
+                  "component": "Daemon architecture (las, delphi, vale, lex, etc.)",
+                  "signal": "build",
+                  "rationale": "Custom orchestration for capital markets workflows, leverages MERIDIAN patterns but domain-specific"
+                },
+                {
+                  "component": "Deal scoring engine",
+                  "signal": "build",
+                  "rationale": "Custom AI implementation with market-fit, compliance, return profile signals \u2014 competitive differentiator"
+                },
+                {
+                  "component": "Due diligence workflow",
+                  "signal": "build",
+                  "rationale": "Structured process highly specific to RPM Capital's investment thesis and risk profile"
+                },
+                {
+                  "component": "Fund structure economics",
+                  "signal": "build",
+                  "rationale": "Waterfall modeling, carry calculations, tax optimization \u2014 custom to client's fund architecture"
+                },
+                {
+                  "component": "Compliance checklist generation",
+                  "signal": "build",
+                  "rationale": "Custom rules engine tied to SEC/state regulations and deal type \u2014 requires domain expertise"
+                },
+                {
+                  "component": "Market intelligence aggregation",
+                  "signal": "build",
+                  "rationale": "Custom pipeline with corroboration system for signal confidence \u2014 integrates with knowledge graph"
+                },
+                {
+                  "component": "Investor relations management",
+                  "signal": "build",
+                  "rationale": "LP profile tracking, communication cadence, automated investor updates \u2014 custom to RPM operations"
+                },
+                {
+                  "component": "Legal daemon (contract analysis, regulatory monitoring)",
+                  "signal": "build",
+                  "rationale": "Specialized domain agent; legal cortex already built; competitive advantage in compliance automation"
+                },
+                {
+                  "component": "Claude CLI/LLM inference",
+                  "signal": "buy",
+                  "rationale": "Use existing Claude API via CLI OAuth, no custom model training required"
+                },
+                {
+                  "component": "Cloudflare Tunnel",
+                  "signal": "buy",
+                  "rationale": "Managed zero-trust networking, reduces infrastructure burden"
+                }
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Data sync divergence from MERIDIAN MIG seed",
+                  "severity": "high",
+                  "mitigation": "One-directional drydock updates with audit trail; versioning strategy for seed refreshes"
+                },
+                {
+                  "risk": "Embedding consistency after stripping from seed clone",
+                  "severity": "medium",
+                  "mitigation": "Local regeneration of embeddings required; comparison testing vs original seed"
+                },
+                {
+                  "risk": "Operational overhead: isolated NATS + Neo4j instances alongside MERIDIAN",
+                  "severity": "medium",
+                  "mitigation": "Automation via systemd or Docker Compose; health monitoring (watcher daemon)"
+                },
+                {
+                  "risk": "Drydock connectivity: critical path for controlled updates, single point of audit failure",
+                  "severity": "high",
+                  "mitigation": "Explicit audit logging; circuit breaker for failed syncs; manual intervention protocol"
+                },
+                {
+                  "risk": "7-daemon coordination complexity across deal/legal/finance domains",
+                  "severity": "medium",
+                  "mitigation": "Metro station architecture enforces clear boundaries; feedback loops documented"
+                },
+                {
+                  "risk": "Capital markets ontology must be built and maintained; no vendor taxonomy",
+                  "severity": "medium",
+                  "mitigation": "Contradiction detection system surfaces inconsistencies; legal/compliance team validates rules"
+                },
+                {
+                  "risk": "Regulatory compliance drift: SEC regs and blue sky laws change frequently",
+                  "severity": "high",
+                  "mitigation": "Automated regulatory intelligence station; manual quarterly review of compliance checklist rules"
+                },
+                {
+                  "risk": "Twenty CRM integration is critical path; API changes or failures cascade to deal pipeline",
+                  "severity": "high",
+                  "mitigation": "Circuit breaker in avery daemon; fallback manual entry; version pinning on CRM API"
+                },
+                {
+                  "risk": "Full Neo4j export capability implies version management and restore testing burden",
+                  "severity": "medium",
+                  "mitigation": "Automated export/restore testing pipeline; backup retention policy"
+                },
+                {
+                  "risk": "Claude CLI rate limits (~45 calls/5hr) may starve compliance checklist generation at scale",
+                  "severity": "medium",
+                  "mitigation": "Use Gemini/Groq offload via brain/offload_llm.py for batch compliance generation"
+                },
+                {
+                  "risk": "DocuSeal is single point of failure for NDA/contract signing workflow",
+                  "severity": "high",
+                  "mitigation": "Manual signing fallback; DocuSeal uptime SLA monitoring; alternative e-signature vendor evaluation"
+                },
+                {
+                  "risk": "Local embedding service (port 8081) is single point of failure for document processing",
+                  "severity": "medium",
+                  "mitigation": "Redundancy via multiple instances; fallback to external embedding API if needed"
+                },
+                {
+                  "risk": "Seeded knowledge data (104K nodes) becomes stale; legal/regulatory reference data drifts",
+                  "severity": "medium",
+                  "mitigation": "Refresh strategy for legal cortex docs; monthly update cycle for regulatory baseline"
+                },
+                {
+                  "risk": "Twenty CRM data quality directly impacts deal pipeline signal quality",
+                  "severity": "medium",
+                  "mitigation": "Data validation in avery daemon; red flag detection for incomplete/inconsistent deal fields"
+                },
+                {
+                  "risk": "Compliance checklist accuracy: false negatives in regulatory requirements could expose to liability",
+                  "severity": "high",
+                  "mitigation": "Manual legal review of generated checklists; legal daemon audit logs; escalation for novel deal types"
+                },
+                {
+                  "risk": "No mention of user authentication/authorization for terminal access",
+                  "severity": "high",
+                  "mitigation": "Add OAuth or mTLS auth at dashboard/API boundary; role-based access control for deal data"
+                },
+                {
+                  "risk": "Cloudflare Tunnel configuration details TBD; potential for misconfiguration exposing APIs",
+                  "severity": "medium",
+                  "mitigation": "Tunnel rules must enforce API key validation; limit public endpoints to dashboard only"
+                },
+                {
+                  "risk": "RackNerd VPS provisioning runbook (#2169) TBD; infrastructure setup not yet spec'd",
+                  "severity": "medium",
+                  "mitigation": "Complete runbook before deployment; include security baseline, firewall rules, secrets injection"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "Ghost Terminal Architecture \u2014 Standalone Neo4j + NATS + 7 daemons for RPM Capital",
+                  "status": "Made",
+                  "impact": "HIGH \u2014 isolates client data, creates replicable pattern for future regulated verticals",
+                  "note": "Complete data isolation + controlled drydock link to core mesh. Non-negotiable security posture."
+                },
+                {
+                  "decision": "Seven-Daemon Roster: las (writes), delphi (queries), watcher (health), sandman (ops), avery (CRM), vale (finance), lex (legal)",
+                  "status": "Made",
+                  "impact": "HIGH \u2014 280\u2013560 engineering hours at ~40\u201380 hrs/daemon",
+                  "note": "Clear responsibility boundaries. Avery (Twenty CRM) and lex (compliance) are critical paths."
+                },
+                {
+                  "decision": "Six Metro Stations (Deal Intelligence, Compliance, Market, Investor Relations)",
+                  "status": "Planned, not executed",
+                  "impact": "CRITICAL \u2014 defines feature scope and user workflows",
+                  "note": "Regulatory monitoring (Station 3) and contract intelligence (Station 4) are compliance-sensitive; need strict implementation review"
+                },
+                {
+                  "decision": "Target Machine: TBD RackNerd VPS (provisioning #2169)",
+                  "status": "Pending",
+                  "impact": "BLOCKING \u2014 no terminal runs without allocation",
+                  "note": "Need spec finalization, security review, and deployment schedule"
+                },
+                {
+                  "decision": "Data Export Commitment \u2014 full Neo4j dump ownership for client",
+                  "status": "Made",
+                  "impact": "MEDIUM \u2014 builds trust, increases data portability complexity",
+                  "note": "Must include export API, scheduling, and compliance/audit trail implications"
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "Drydock as Product Template",
+                  "description": "RPM Capital ghost terminal is replicable for law firms, other PE/VC, and regulated verticals. Positions MERIDIAN as vendor of 'domain-specific intelligence layer' products.",
+                  "strategic_value": "HIGH \u2014 new market, leverages existing codebase",
+                  "timeline": "6\u201312 months post-RPM launch",
+                  "prerequisite": "RPM proves value (deal wins, compliance speed-ups, LP satisfaction)"
+                },
+                {
+                  "opportunity": "Judgment Compounding Moat",
+                  "description": "Every deal analyzed, compliance question answered, regulatory change tracked enriches the graph. Over time, RPM's decision quality becomes hard to replicate.",
+                  "strategic_value": "HIGH \u2014 defensible if tracked and marketed",
+                  "timeline": "Emerges 3\u20136 months (post 20\u201330 deals)",
+                  "prerequisite": "Deal outcome feedback loop exists"
+                },
+                {
+                  "opportunity": "Regulatory Intelligence as Competitive Advantage",
+                  "description": "Station 3 surfaces compliance changes before competitors. Automated alerts for Reg D/A+/CF updates, state blue sky shifts.",
+                  "strategic_value": "MEDIUM-HIGH \u2014 reduces compliance risk, improves deal timing",
+                  "timeline": "Immediate (months 1\u20133)",
+                  "prerequisite": "Real-time regulatory data source + automated change detection"
+                },
+                {
+                  "opportunity": "Investor Relations Automation (Station 6)",
+                  "description": "Auto-generated LP updates, capital call tracking, investor dossiers reduce admin overhead and improve communication cadence.",
+                  "strategic_value": "MEDIUM \u2014 increases LP satisfaction, frees deal-origination time",
+                  "timeline": "3\u20134 months",
+                  "prerequisite": "Twenty CRM integration + LP profile data model"
+                },
+                {
+                  "opportunity": "Deal Scoring + Due Diligence as Advisory Service",
+                  "description": "Stations 1A\u20131B could be packaged and sold to other PE/VC firms as an external service, validating core algorithm on third-party data.",
+                  "strategic_value": "MEDIUM \u2014 new revenue, validates algorithms",
+                  "timeline": "12+ months",
+                  "prerequisite": "Internal track record + deal outcome attribution"
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "Data Security & Confidentiality Liability",
+                  "description": "RPM Capital holds LP info, deal pricing, fund terms, cap tables. Ghost isolation is good but not sufficient if core security is weak. MERIDIAN's reputation at risk if client data is exposed.",
+                  "severity": "CRITICAL",
+                  "recommended_mitigations": [
+                    "SOC2 audit before production",
+                    "Encryption at rest + in transit (TLS/bolt+ssc)",
+                    "Audit trail for all Neo4j queries",
+                    "IP allowlisting for API access",
+                    "Regular penetration testing"
+                  ]
+                },
+                {
+                  "threat": "Regulatory Compliance Gaps",
+                  "description": "Stations 3\u20134 depend on current SEC/state compliance knowledge. Outdated regulations \u2192 deal delays or legal liability for RPM Capital AND reputational risk for MERIDIAN.",
+                  "severity": "HIGH",
+                  "recommended_mitigations": [
+                    "Real-time regulatory feed subscription (CapitalIQ, LexisNexis, or SEC EDGAR feed)",
+                    "Automated compliance change detection + alerting",
+                    "Human legal review loop (lex daemon output \u2192 lawyer sign-off)",
+                    "Quarterly compliance audits"
+                  ]
+                },
+                {
+                  "threat": "Twenty CRM Integration Fragility",
+                  "description": "Avery daemon depends on Twenty CRM API stability. API changes, acquisition, or access revocation breaks deal pipeline ingestion.",
+                  "severity": "MEDIUM-HIGH",
+                  "recommended_mitigations": [
+                    "API contract testing (version pinning)",
+                    "Fallback to manual deal entry workflow",
+                    "Alternative CRM evaluation (Pipedrive, HubSpot)",
+                    "Maintenance SLA with Twenty team"
+                  ]
+                },
+                {
+                  "threat": "Knowledge Seed Degradation",
+                  "description": "104K node seed stripped of embeddings. Local embedding service failure (nomic-embed-text or all-mpnet) degrades retrieval quality. No fallback mentioned.",
+                  "severity": "MEDIUM",
+                  "recommended_mitigations": [
+                    "Dual embedding model deployment",
+                    "Embedding quality monitoring (cosine similarity drift alerts)",
+                    "Fallback to BM25 full-text search",
+                    "Regular re-embedding scheduled jobs"
+                  ]
+                },
+                {
+                  "threat": "Isolated Terminal = Slow Recovery",
+                  "description": "No live NATS cross-connect to core mesh means no Sensei/Delphi backup for incident response. Manual recovery is slow.",
+                  "severity": "MEDIUM",
+                  "recommended_mitigations": [
+                    "On-call runbook for common issues (Neo4j OOM, NATS restart, etc.)",
+                    "Automated backup/restore testing (weekly dry runs)",
+                    "Drydock one-way update capability for hotfixes",
+                    "RPM Capital dedicated on-call support"
+                  ]
+                },
+                {
+                  "threat": "Product Strategy Ambiguity",
+                  "description": "Unclear if RPM Capital is one-off custom project OR template for multi-client 'domain intelligence' product line. Scope creep risk if treated as both.",
+                  "severity": "MEDIUM",
+                  "recommended_mitigations": [
+                    "Clear statement: 'RPM first, drydock template second'",
+                    "Separate version control for template vs. instance configs",
+                    "Dedicated runbook for 'new client onboarding' (only after RPM proven)"
+                  ]
+                },
+                {
+                  "threat": "Legal Knowledge Staleness",
+                  "description": "18 reference docs on Delaware law, SEC regulations, fund economics created at unknown date. Fund formation law changes annually.",
+                  "severity": "MEDIUM",
+                  "recommended_mitigations": [
+                    "Compliance lawyer review of all 18 docs (pre-launch)",
+                    "Quarterly update schedule + change log for each doc",
+                    "Automated staleness alerts (doc > 6 months old flagged)"
+                  ]
+                }
+              ],
+              "commitments": [
+                {
+                  "commitment": "Deploy 7 daemons with health checks",
+                  "owner": "Engineering",
+                  "timeline": "8\u201312 weeks",
+                  "dependencies": [
+                    "Target machine allocated",
+                    "RPC contracts defined"
+                  ]
+                },
+                {
+                  "commitment": "Implement 6 Metro Stations (end-to-end workflows with test data)",
+                  "owner": "Engineering + Product",
+                  "timeline": "12\u201316 weeks",
+                  "dependencies": [
+                    "7 daemons deployed",
+                    "Twenty CRM integration spec"
+                  ]
+                },
+                {
+                  "commitment": "Twenty CRM integration (Avery daemon)",
+                  "owner": "Engineering",
+                  "timeline": "4\u20136 weeks",
+                  "dependencies": [
+                    "Twenty API access",
+                    "Deal data schema agreed"
+                  ]
+                },
+                {
+                  "commitment": "Provision RackNerd VPS infrastructure (#2169)",
+                  "owner": "Infrastructure",
+                  "timeline": "2\u20134 weeks",
+                  "dependencies": [
+                    "Machine spec finalized",
+                    "Security sign-off"
+                  ]
+                },
+                {
+                  "commitment": "Data export API (full Neo4j dump capability)",
+                  "owner": "Engineering",
+                  "timeline": "2\u20133 weeks",
+                  "dependencies": [
+                    "Backup strategy defined",
+                    "Legal data ownership review"
+                  ]
+                },
+                {
+                  "commitment": "SOC2 audit + security review before production launch",
+                  "owner": "Infrastructure/Security",
+                  "timeline": "4\u20136 weeks (parallel with dev)",
+                  "dependencies": [
+                    "Audit scope agreed",
+                    "Security review checklist defined"
+                  ]
+                }
+              ],
+              "narrative_assessment": {
+                "strengths": [
+                  "Architectural clarity: Ghost terminal isolation removes ambiguity about data flows and security boundaries",
+                  "Domain depth: References to Reg D/A+/CF, LP commitment patterns, Delaware entity law, fund waterfall structures show genuine capital markets expertise",
+                  "Compelling thesis: 'Judgment compounding' (every deal enriches graph \u2192 better decisions next time) is defensible and motivating",
+                  "Clear operational structure: LENS (what's there) + PRISM (service architecture) + INFRASTRUCTURE is thoughtful framing",
+                  "Client trust signal: 'Client owns their data (full export)' is important for regulated-sector buy-in"
+                ],
+                "critical_gaps": [
+                  "SECURITY NARRATIVE ABSENT: No mention of encryption, audit trails, access controls, SOC2, or data protection. For finance, this is a deal-killer omission.",
+                  "REGULATORY IMPLEMENTATION VAGUE: 'Regulatory change detection' mentioned but HOW is unclear. Manual scanning? LLM monitoring? Automated feeds? This is critical for compliance-heavy domain.",
+                  "COMPETITIVE MOAT INCOMPLETE: 'Judgment compounding' is good, but what prevents a competitor from building the same? Need to articulate network effects, switching costs, or data ownership lock-in.",
+                  "PRODUCT STRATEGY AMBIGUOUS: Is this one-off custom work OR a template for multi-client product? Scope creep risk if not clarified.",
+                  "DISASTER RECOVERY SILENT: No mention of RTO, RPO, backup strategy, failover. For capital management, this is a significant gap.",
+                  "DECISION GOVERNANCE MISSING: Who approves deals? Who reviews lex daemon compliance recommendations? What's the human-AI boundary?",
+                  "DEAL OUTCOME TRACKING ABSENT: How does system learn from past decisions? Essential for 'judgment compounding' claim."
+                ],
+                "recommendations": [
+                  "FOR INTERNAL TEAMS: Add security architecture section (encryption, audit, access control, SOC2 roadmap). Add regulatory monitoring implementation spec (data sources, change detection algorithm, alert workflow). Add disaster recovery / backup strategy.",
+                  "FOR EXTERNAL STAKEHOLDER NARRATIVE: Lead with security/compliance story (not technology architecture). Quantify 'judgment compounding' with metrics (e.g., 'projected 2\u20133% IRR improvement post-50 deals' vs. vague claims). Include governance diagram (human-AI decision loops).",
+                  "FOR CEO PRESENTATION: Clarify product strategy upfront: Is RPM a one-off custom project with 'drydock template' as bonus, or is template the primary deliverable? This determines resource allocation and timeline.",
+                  "FOR DEPLOYMENT: Schedule SOC2 audit NOW (4\u20136 week parallel path). Define regulatory data sources before Month 2. Test Avery-Twenty integration early (critical path risk)."
+                ],
+                "overall": "Well-engineered technical blueprint with clear domain expertise and operational structure. CRITICAL GAPS in security, regulatory, and disaster recovery narratives must be filled before CEO presentation or investor conversation. Internal teams understand this; external stakeholders will demand assurance that sensitive financial data is protected and regulatory obligations are met. Product strategy clarity (one-off vs. template) must be decided before Month 1 planning."
+              }
+            }
+          },
+          "_file": "clients/rpm-capital/audits/csuite-audit-terminal-blueprint.json",
+          "_client": "rpm-capital"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-26T01:23:08.796195+00:00",
           "transcript_file": "clients/test/enrichment/REPORT.md",
           "transcript_length": 548,
@@ -35935,18 +36716,48 @@
           "_client": "unknown"
         }
       ],
-      "total": 98
+      "total": 99
     },
     "call_intelligence": {
-      "updated_at": "2026-04-15T01:42:29.642792+00:00",
+      "updated_at": "2026-04-15T03:19:36.708571+00:00",
       "signal_summary": {
         "total_objections": 67,
         "total_buying_signals": 88,
         "total_competitors": 254,
-        "pricing_discussions": 79,
-        "calls_with_signals": 96
+        "pricing_discussions": 80,
+        "calls_with_signals": 97
       },
       "decisions": [
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "RPM Capital terminal will be a fully isolated ghost terminal with no live connection to the MERIDIAN production mesh."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "Seven daemons selected: las, delphi, watcher, sandman, avery, vale, and lex across P0/P1 priority tiers."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "Data isolation is absolute \u2014 separate Neo4j instance, separate NATS server, local embedding generation."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "MIG seed will be a partial clone of 104,536 knowledge-layer nodes from MERIDIAN with embeddings stripped."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "Zero open ports enforced via Cloudflare Tunnel for SOC2-compliant architecture."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "decision": "DocuSeal used as external SaaS for NDA signing rather than self-hosted document signing."
+        },
         {
           "date": "2026-04-14",
           "call": "Pdr Remaining Work",
@@ -37220,6 +38031,26 @@
       ],
       "commitments": [
         {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "what": "Atlas/Delphi: MIG seed transfer is ready and staged on racknerd-e3b5f73 port 7688."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "what": "Phase 0 infrastructure targets Week 1 completion."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "what": "Phase 1 core daemons (las, delphi, watcher) target Week 1-2 completion."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "what": "Phase 1.5 operational daemons (sandman, avery, vale, lex) target Week 2-3 completion."
+        },
+        {
           "date": "2026-04-14",
           "call": "Pdr Remaining Work",
           "what": "Alexander + Carl: sign contract with scope boundary and lock exclusivity definition \u2014 HIGH urgency, no deadline specified."
@@ -38148,6 +38979,21 @@
         }
       ],
       "discoveries": [
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "discovery": "The terminal is architected around 'judgment compounding' \u2014 every deal analyzed enriches the graph for future decisions, making the system more valuable over time."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "discovery": "An 18-document legal cortex is already built and staged, covering Delaware entity law through fund economics, ready for lex daemon activation."
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "discovery": "The MIG seed already contains capital markets research (51K ResearchMemory nodes) sourced from MERIDIAN, giving the terminal a pre-loaded knowledge advantage at launch."
+        },
         {
           "date": "2026-04-14",
           "call": "Pdr Remaining Work",
@@ -39605,6 +40451,46 @@
         }
       ],
       "action_items": [
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "action": {
+            "who": "Operator/Delphi",
+            "what": "Place RackNerd VPS order and begin provisioning runbook from issue #2169."
+          }
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "action": {
+            "who": "Avery/Operator",
+            "what": "Schedule and conduct client onboarding call with RPM Capital."
+          }
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "action": {
+            "who": "Avery",
+            "what": "Develop CRM data migration plan \u2014 determine if existing CRM data exists and in what format."
+          }
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "action": {
+            "who": "Lex/Operator",
+            "what": "Rank the 18 staged legal cortex documents by priority for initial lex daemon activation."
+          }
+        },
+        {
+          "date": "2026-04-15",
+          "call": "Terminal Blueprint",
+          "action": {
+            "who": "Operator",
+            "what": "Resolve open questions: compliance jurisdiction scope, LP data source/format, deal pipeline volume, and voice interface preference."
+          }
+        },
         {
           "date": "2026-04-14",
           "call": "Pdr Remaining Work",
@@ -42306,6 +43192,11 @@
         {
           "date": "",
           "sentiment": "neutral",
+          "client": "rpm-capital"
+        },
+        {
+          "date": "",
+          "sentiment": "neutral",
           "client": "rankona-mazon"
         },
         {
@@ -42709,13 +43600,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 254,
-      "total_commitments": 184,
-      "total_discoveries": 291,
-      "total_action_items": 335
+      "total_decisions": 260,
+      "total_commitments": 188,
+      "total_discoveries": 294,
+      "total_action_items": 340
     },
     "attention": {
-      "updated_at": "2026-04-15T01:42:29.661396+00:00",
+      "updated_at": "2026-04-15T03:19:36.727827+00:00",
       "items": [
         {
           "type": "blocked",
@@ -42886,67 +43777,55 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-15T01:42:29.661437+00:00",
+      "updated_at": "2026-04-15T03:19:36.727869+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-15T01:33:19Z",
-          "title": "feat(rankona): T3 cursor agent specs for Station 1A/1B",
-          "detail": "Cassian Sandman"
+          "date": "2026-04-15T03:05:21Z",
+          "title": "scripts(boardroom): SQLite migration templates for cloning agents + teams",
+          "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-15T01:31:54Z",
-          "title": "arch: Strategic Cortex \u2014 intrinsic task commitment architecture",
+          "date": "2026-04-15T03:00:56Z",
+          "title": "docs: add Phase 2 capabilities to Rankona + RPM Capital terminal blueprints",
           "detail": "Sensei"
         },
         {
           "type": "commit",
-          "date": "2026-04-15T01:28:58Z",
-          "title": "fix(voice-app): drop generate_placeholder_fillers() boot call",
+          "date": "2026-04-15T02:56:15Z",
+          "title": "fix(shepherd): add missing shepherd-bot.sh startup script",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-15T01:25:16Z",
-          "title": "feat(research-fleet): human-friendly provider labels in dashboard",
-          "detail": "covaultxyz"
+          "date": "2026-04-15T02:50:20Z",
+          "title": "feat(security): OpenSCAP CIS L2 nightly compliance scans \u2014 Ansible role with rrs",
+          "detail": "Sensei"
         },
         {
           "type": "commit",
-          "date": "2026-04-15T01:22:47Z",
-          "title": "feat(boardroom): 50 Denver-voice filler clips for instant audio feedback",
-          "detail": "covaultxyz"
+          "date": "2026-04-15T02:39:11Z",
+          "title": "arch: Strategic Cortex \u2014 design iteration with Delphi (ct-114970c95ff3, GH#2177)",
+          "detail": "Sensei"
         },
         {
-          "type": "commit",
-          "date": "2026-04-15T01:18:25Z",
-          "title": "feat: CARTOGRAPHER attribute priority list for COSMO/Rufus (T2, GH#2155)",
-          "detail": "Cassian Sandman"
+          "type": "call",
+          "date": "2026-04-15",
+          "title": "Terminal Blueprint",
+          "detail": "external \u2014 alex"
         },
         {
-          "type": "commit",
-          "date": "2026-04-15T01:17:18Z",
-          "title": "feat(research-fleet): draggable+minimizable recent-reports panel, fix provider=u",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-15",
+          "title": "#2178 feat(cortex): Phase 0a \u2014 add commitment properties to MCP ta",
+          "detail": "open"
         },
         {
-          "type": "commit",
-          "date": "2026-04-15T01:09:24Z",
-          "title": "fix(metro-stats): use .venv python instead of /opt/homebrew python3.11",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T01:08:00Z",
-          "title": "fix(metro-stats): add PYTHONPATH=/opt/meridian so lazy imports resolve",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T01:07:41Z",
-          "title": "feat: add Rankona horse equipment category ontology schema (CARTOGRAPHER/GH#2156",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-15",
+          "title": "#2177 Strategic Cortex \u2014 Intrinsic Task Commitment Architecture",
+          "detail": "open"
         },
         {
           "type": "call",
@@ -42999,13 +43878,25 @@
         {
           "type": "issue",
           "date": "2026-04-14",
-          "title": "#2172 security: Fix PR #2147 rsync blocker \u2014 command=/bin/true bre",
+          "title": "#2171 infra: Apply Tailscale ACL policy to tailnet (admin console)",
           "detail": "open"
         },
         {
           "type": "issue",
           "date": "2026-04-14",
-          "title": "#2171 infra: Apply Tailscale ACL policy to tailnet (admin console)",
+          "title": "#2170 infra: Activate pre-built audit log retention pipeline on 3 ",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-14",
+          "title": "#2169 feat(rpm-capital): ghost terminal runbooks \u2014 VPS provisionin",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-14",
+          "title": "#2168 feat(rpm-capital): finance daemon (vale) \u2014 capital markets i",
           "detail": "open"
         }
       ],
