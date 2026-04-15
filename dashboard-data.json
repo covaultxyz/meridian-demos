@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T13:00:12.227128+00:00",
+  "generated_at": "2026-04-15T14:28:09.315314+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-15T13:00:08.793144+00:00",
+      "updated_at": "2026-04-15T14:28:05.192821+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3134,6 +3134,13 @@
           "terminal": "ttys082",
           "launched": "2026-04-15T02:26",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "sandman",
+          "pid": "2984",
+          "terminal": "ttys083",
+          "launched": "2026-04-15T13:49",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/sandman"
         }
       ],
       "daemon_tasks": [
@@ -3489,11 +3496,11 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 169 hours old"
+        "_stale_warning": "Data is 170 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-15T13:00:11.928101+00:00",
+      "updated_at": "2026-04-15T14:28:08.312112+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -5002,20 +5009,50 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-15T12:57:52Z",
-        "head_sha": "aabaedc9"
+        "status": "completed",
+        "conclusion": "success",
+        "name": "CI",
+        "created_at": "2026-04-15T14:01:58Z",
+        "head_sha": "6d3df0c4"
       },
       "ci_recent_runs": [
         {
+          "id": 24458926247,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-04-15T14:01:58Z",
+          "updated_at": "2026-04-15T14:02:10Z",
+          "head_sha": "6d3df0c4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24458926247"
+        },
+        {
+          "id": 24458867606,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-04-15T14:00:51Z",
+          "updated_at": "2026-04-15T14:01:05Z",
+          "head_sha": "82a2c5a9",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24458867606"
+        },
+        {
+          "id": 24457415162,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-04-15T13:31:43Z",
+          "updated_at": "2026-04-15T13:31:57Z",
+          "head_sha": "600f75f6",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24457415162"
+        },
+        {
           "id": 24455800602,
           "name": "CI Full",
-          "status": "queued",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "created_at": "2026-04-15T12:57:52Z",
-          "updated_at": "2026-04-15T12:57:52Z",
+          "updated_at": "2026-04-15T13:31:46Z",
           "head_sha": "aabaedc9",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24455800602"
         },
@@ -5028,39 +5065,44 @@
           "updated_at": "2026-04-15T12:20:03Z",
           "head_sha": "f97abb43",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24453133982"
-        },
-        {
-          "id": 24453004953,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-15T11:53:46Z",
-          "updated_at": "2026-04-15T11:56:52Z",
-          "head_sha": "c646db44",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24453004953"
-        },
-        {
-          "id": 24452699096,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-15T11:46:13Z",
-          "updated_at": "2026-04-15T12:19:50Z",
-          "head_sha": "23ead9d5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24452699096"
-        },
-        {
-          "id": 24448631263,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-15T10:07:06Z",
-          "updated_at": "2026-04-15T10:39:30Z",
-          "head_sha": "23ead9d5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24448631263"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "95995b0b",
+          "message": "collab: audit-first plan for cross-daemon coordination",
+          "author": "covaultxyz",
+          "date": "2026-04-15T14:28:04Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/95995b0bc63558936078c57b3206bd8d674ed57e"
+        },
+        {
+          "sha": "6d3df0c4",
+          "message": "fix(research_gate): move _seen_hashes insertion post-ack to close retry trap",
+          "author": "covaultxyz",
+          "date": "2026-04-15T14:01:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/6d3df0c4603e9e83bb8f0649c52c0b109315aea3"
+        },
+        {
+          "sha": "82a2c5a9",
+          "message": "feat(research): surface mig_node_created on research.processed event",
+          "author": "covaultxyz",
+          "date": "2026-04-15T14:00:45Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/82a2c5a911dcf3dd5dc10cf1ca87df03284be2bb"
+        },
+        {
+          "sha": "f376f31e",
+          "message": "cursor: dispatch dashboard observability tracks E/F/G",
+          "author": "covaultxyz",
+          "date": "2026-04-15T13:51:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f376f31e600c8a36285baef4ba79343c9af5358d"
+        },
+        {
+          "sha": "600f75f6",
+          "message": "feat(research): propagate trace_id end-to-end through pipeline",
+          "author": "covaultxyz",
+          "date": "2026-04-15T13:31:38Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/600f75f6ed056ceaabeff961bd22b67d03b0b794"
+        },
         {
           "sha": "aabaedc9",
           "message": "chore: update boot-state files \u2014 deployed f97abb430",
@@ -5095,45 +5137,10 @@
           "author": "covaultxyz",
           "date": "2026-04-15T03:47:07Z",
           "url": "https://github.com/covaultxyz/meridian/commit/1d206ab8f7062715f9906de6389623d6ab2cc8ff"
-        },
-        {
-          "sha": "9cee1b23",
-          "message": "deal(avery): JV Option B structure for Brian Cook + Denver Griffin",
-          "author": "covaultxyz",
-          "date": "2026-04-15T03:44:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9cee1b2340c113e5c2c8141e9f476ba5ee98ecea"
-        },
-        {
-          "sha": "ea4a4b52",
-          "message": "deal(avery): rebuild both proposals \u2014 Lens/Prism gaps closed",
-          "author": "covaultxyz",
-          "date": "2026-04-15T03:19:32Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ea4a4b526503ef392732a2d834d97aaf757ad573"
-        },
-        {
-          "sha": "debddfab",
-          "message": "scripts(boardroom): SQLite migration templates for cloning agents + teams",
-          "author": "covaultxyz",
-          "date": "2026-04-15T03:05:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/debddfabb4f4f1372b99cdb70074a86dc9fc941f"
-        },
-        {
-          "sha": "b01392a2",
-          "message": "arch: Strategic Cortex \u2014 design iteration with Delphi (ct-114970c95ff3, GH#2177)",
-          "author": "Sensei",
-          "date": "2026-04-15T02:39:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b01392a22608597f22959de4899c434513c775be"
-        },
-        {
-          "sha": "01432194",
-          "message": "refactor(deals): Strategic Advisor Program v2 \u2014 production-grade institutional document",
-          "author": "Glasshaus",
-          "date": "2026-04-03T21:11:43Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/01432194559d1ef96a509e495639e993353d73a2"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-15T13:00:09.775277+00:00",
+        "updated_at": "2026-04-15T14:28:06.310530+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5335,7 +5342,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "members": [
         {
           "id": "alex",
@@ -5408,7 +5415,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "projects": [
         {
           "project": {
@@ -5838,7 +5845,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -5923,7 +5930,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6020,7 +6027,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -7975,7 +7982,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -8001,7 +8008,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -8338,7 +8345,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -8431,7 +8438,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -8494,7 +8501,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -8591,7 +8598,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -8653,7 +8660,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -8713,7 +8720,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -8768,7 +8775,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -8863,7 +8870,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -8905,7 +8912,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -9032,7 +9039,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -9175,7 +9182,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -9348,7 +9355,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -9865,7 +9872,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-15T13:00:12.152256+00:00",
+      "updated_at": "2026-04-15T14:28:09.255997+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10154,8 +10161,8 @@
         {
           "name": "Context Laundering Prevention",
           "file": "docs/runbooks/context-laundering-prevention.md",
-          "size": 7029,
-          "modified": "2026-04-01"
+          "size": 11004,
+          "modified": "2026-04-15"
         },
         {
           "name": "Cortex Creation Sop",
@@ -11873,7 +11880,7 @@
       "total_docs": 332
     },
     "deals": {
-      "updated_at": "2026-04-15T13:00:12.152366+00:00",
+      "updated_at": "2026-04-15T14:28:09.256117+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12115,7 +12122,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-15T13:00:11.928119+00:00",
+      "updated_at": "2026-04-15T14:28:08.312132+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -36719,7 +36726,7 @@
       "total": 99
     },
     "call_intelligence": {
-      "updated_at": "2026-04-15T13:00:12.203131+00:00",
+      "updated_at": "2026-04-15T14:28:09.295004+00:00",
       "signal_summary": {
         "total_objections": 67,
         "total_buying_signals": 88,
@@ -43606,7 +43613,7 @@
       "total_action_items": 340
     },
     "attention": {
-      "updated_at": "2026-04-15T13:00:12.227074+00:00",
+      "updated_at": "2026-04-15T14:28:09.315253+00:00",
       "items": [
         {
           "type": "blocked",
@@ -43777,8 +43784,38 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-15T13:00:12.227116+00:00",
+      "updated_at": "2026-04-15T14:28:09.315301+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-15T14:28:04Z",
+          "title": "collab: audit-first plan for cross-daemon coordination",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-15T14:01:53Z",
+          "title": "fix(research_gate): move _seen_hashes insertion post-ack to close retry trap",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-15T14:00:45Z",
+          "title": "feat(research): surface mig_node_created on research.processed event",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-15T13:51:49Z",
+          "title": "cursor: dispatch dashboard observability tracks E/F/G",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-15T13:31:38Z",
+          "title": "feat(research): propagate trace_id end-to-end through pipeline",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-15T12:25:48Z",
@@ -43808,30 +43845,6 @@
           "date": "2026-04-15T03:47:07Z",
           "title": "cursor: dispatch research pipeline tracks B/C/D",
           "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T03:44:41Z",
-          "title": "deal(avery): JV Option B structure for Brian Cook + Denver Griffin",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T03:19:32Z",
-          "title": "deal(avery): rebuild both proposals \u2014 Lens/Prism gaps closed",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T03:05:21Z",
-          "title": "scripts(boardroom): SQLite migration templates for cloning agents + teams",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-15T02:39:11Z",
-          "title": "arch: Strategic Cortex \u2014 design iteration with Delphi (ct-114970c95ff3, GH#2177)",
-          "detail": "Sensei"
         },
         {
           "type": "call",
@@ -43891,12 +43904,6 @@
           "type": "issue",
           "date": "2026-04-14",
           "title": "#2174 daemon/harbor: Platform Conductor \u2014 Rankona Ghost Terminal",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-14",
-          "title": "#2173 feat(rankona): per-customer Cloudflare Tunnel parameterizati",
           "detail": "open"
         }
       ],
