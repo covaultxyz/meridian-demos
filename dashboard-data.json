@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-16T13:33:15.548832+00:00",
+  "generated_at": "2026-04-16T13:45:38.853209+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-16T13:33:12.200328+00:00",
+      "updated_at": "2026-04-16T13:45:35.659289+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1576,6 +1576,26 @@
           "objection_count": 1,
           "buying_signal_count": 0,
           "sentiment": "negative",
+          "suggested_stage": "discovery",
+          "participants": []
+        },
+        {
+          "client": "nate-broker",
+          "call_id": "TODO",
+          "title": "TODO",
+          "file": "clients/nate-broker/signals/deal-signals-TODO-2026-04-16.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 3,
+            "sentiment": "positive",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "positive",
           "suggested_stage": "discovery",
           "participants": []
         },
@@ -3073,13 +3093,13 @@
         "rpm-capital": 1,
         "rankona-mazon": 15,
         "omar": 1,
-        "nate-broker": 2,
+        "nate-broker": 3,
         "meridian-internal": 33,
         "mbm": 33,
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 104,
+      "total_signals": 105,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3170,31 +3190,31 @@
         {
           "node": "racknerd-7311420",
           "release": "2026-04-13",
-          "commit": "6e31d0526",
+          "commit": "5dc70da48",
           "status": "\u2705 active \u2014 sandman + atlas, autopull converged"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-13",
-          "commit": "6e31d0526",
+          "commit": "5dc70da48",
           "status": "\u2705 active \u2014 delphi + avery, autopull converged"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-13",
-          "commit": "6e31d0526",
+          "commit": "5dc70da48",
           "status": "\u2705 active \u2014 sensei, Neo4j Docker healthy, autopull converged"
         },
         {
           "node": "r-ubuntu",
           "release": "2026-04-10",
-          "commit": "6e31d0526",
+          "commit": "5dc70da48",
           "status": "\u2705 active \u2014 forge-worker connected to NATS, Ubuntu 24.04, Tailscale 100.79.107.77"
         },
         {
           "node": "toshiba-linux",
           "release": "2026-04-10",
-          "commit": "6e31d0526",
+          "commit": "5dc70da48",
           "status": "\u2705 active \u2014 forge-worker online (14 capabilities), Ubuntu 24.04, Tailscale 100.101.165.88"
         },
         {
@@ -3694,27 +3714,27 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-16T13:33:15.159278+00:00",
+      "updated_at": "2026-04-16T13:45:38.654224+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
           "low": 3,
           "business/opportunity": 13,
-          "grade/C": 6,
+          "grade/C": 8,
           "documentation": 2,
-          "infrastructure": 6,
-          "medium": 8,
-          "testing": 2,
-          "grade/B": 5,
+          "infrastructure": 5,
+          "medium": 7,
+          "grade/B": 25,
           "high": 7,
           "question": 1,
-          "grade/A": 3,
+          "grade/A": 17,
           "P1": 7,
           "client:nate-broker": 19,
           "P2": 7,
           "collaboration": 2,
           "research-pipeline": 4,
           "P0": 5,
+          "cursor-bench": 4,
           "needs-review": 2,
           "dashboard": 1,
           "mcp-daemon-fix": 1,
@@ -3726,10 +3746,12 @@
           "blocked": 2,
           "client": 5,
           "daemon/avery": 5,
+          "testing": 1,
           "critical": 1,
           "brain": 1,
           "human-only": 3,
-          "source/human": 3
+          "source/human": 3,
+          "daemon/delphi": 1
         }
       },
       "recent_issues": [
@@ -3778,22 +3800,6 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2269",
           "project_slug": null
-        },
-        {
-          "number": 2268,
-          "title": "Pre-commit hook smoke-test: verify Playwright MCP guard fires",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:52Z",
-          "updated_at": "2026-04-16T13:30:54Z",
-          "labels": [
-            "medium",
-            "testing",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2268",
-          "project_slug": "openclaw"
         },
         {
           "number": 2267,
@@ -3951,8 +3957,9 @@
           "title": "Nate Lind T3.6 \u2014 Benchmark data package for stage",
           "state": "open",
           "created_at": "2026-04-16T13:19:58Z",
-          "updated_at": "2026-04-16T13:19:58Z",
+          "updated_at": "2026-04-16T13:33:17Z",
           "labels": [
+            "grade/B",
             "P2",
             "client:nate-broker"
           ],
@@ -3965,8 +3972,9 @@
           "title": "Nate Lind T3.5 \u2014 April 30 deck delivery prep session (Michael + Alexander)",
           "state": "open",
           "created_at": "2026-04-16T13:19:57Z",
-          "updated_at": "2026-04-16T13:19:57Z",
+          "updated_at": "2026-04-16T13:33:31Z",
           "labels": [
+            "grade/B",
             "P1",
             "client:nate-broker"
           ],
@@ -3979,8 +3987,9 @@
           "title": "Nate Lind T3.4 \u2014 FE/Flippa enterprise flag (no outreach)",
           "state": "open",
           "created_at": "2026-04-16T13:19:55Z",
-          "updated_at": "2026-04-16T13:19:55Z",
+          "updated_at": "2026-04-16T13:33:44Z",
           "labels": [
+            "grade/C",
             "P2",
             "client:nate-broker"
           ],
@@ -3993,8 +4002,9 @@
           "title": "Nate Lind T3.3 \u2014 Terminal build timeline vs Nate's cash flow",
           "state": "open",
           "created_at": "2026-04-16T13:19:54Z",
-          "updated_at": "2026-04-16T13:19:54Z",
+          "updated_at": "2026-04-16T13:33:58Z",
           "labels": [
+            "grade/B",
             "P2",
             "client:nate-broker"
           ],
@@ -4007,8 +4017,9 @@
           "title": "Nate Lind T3.2 \u2014 Tier 1 corpus ingest ontology session with Nate",
           "state": "open",
           "created_at": "2026-04-16T13:19:52Z",
-          "updated_at": "2026-04-16T13:19:52Z",
+          "updated_at": "2026-04-16T13:34:14Z",
           "labels": [
+            "grade/B",
             "P2",
             "client:nate-broker"
           ],
@@ -4021,8 +4032,9 @@
           "title": "Nate Lind T3.1 \u2014 Write April 30 demo runbook",
           "state": "open",
           "created_at": "2026-04-16T13:19:50Z",
-          "updated_at": "2026-04-16T13:19:50Z",
+          "updated_at": "2026-04-16T13:34:27Z",
           "labels": [
+            "grade/A",
             "P1",
             "client:nate-broker"
           ],
@@ -4035,8 +4047,9 @@
           "title": "Nate Lind T2.4 \u2014 MIG memories: deal structure + IP terms",
           "state": "open",
           "created_at": "2026-04-16T13:19:25Z",
-          "updated_at": "2026-04-16T13:19:25Z",
+          "updated_at": "2026-04-16T13:34:40Z",
           "labels": [
+            "grade/B",
             "P1",
             "client:nate-broker"
           ],
@@ -4049,8 +4062,9 @@
           "title": "Nate Lind T2.3 \u2014 April 30 live-demo design (spec only)",
           "state": "open",
           "created_at": "2026-04-16T13:19:24Z",
-          "updated_at": "2026-04-16T13:19:24Z",
+          "updated_at": "2026-04-16T13:34:54Z",
           "labels": [
+            "grade/A",
             "P1",
             "client:nate-broker"
           ],
@@ -4063,8 +4077,9 @@
           "title": "Nate Lind T2.2 \u2014 TwentyCRM entry with full deal signals",
           "state": "open",
           "created_at": "2026-04-16T13:19:22Z",
-          "updated_at": "2026-04-16T13:19:22Z",
+          "updated_at": "2026-04-16T13:35:09Z",
           "labels": [
+            "grade/A",
             "P1",
             "client:nate-broker"
           ],
@@ -4077,9 +4092,10 @@
           "title": "ops(gateway8): R1/R2/R4 operator decisions \u2014 deploy key, borg key, CF CNAME",
           "state": "open",
           "created_at": "2026-04-16T13:19:21Z",
-          "updated_at": "2026-04-16T13:19:21Z",
+          "updated_at": "2026-04-16T13:35:23Z",
           "labels": [
-            "infrastructure"
+            "infrastructure",
+            "grade/B"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2248",
@@ -4090,8 +4106,9 @@
           "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
           "state": "open",
           "created_at": "2026-04-16T13:19:20Z",
-          "updated_at": "2026-04-16T13:19:20Z",
+          "updated_at": "2026-04-16T13:35:39Z",
           "labels": [
+            "grade/B",
             "P1",
             "client:nate-broker"
           ],
@@ -4104,9 +4121,10 @@
           "title": "ops: dispatch cursor agents for Tracks B, C, I, J \u2014 pending 4 prompts",
           "state": "open",
           "created_at": "2026-04-16T13:19:05Z",
-          "updated_at": "2026-04-16T13:19:05Z",
+          "updated_at": "2026-04-16T13:36:01Z",
           "labels": [
             "collaboration",
+            "grade/B",
             "research-pipeline"
           ],
           "assignee": null,
@@ -4118,8 +4136,9 @@
           "title": "Nate Lind T1.5 \u2014 Michael close-deck rehearsal",
           "state": "open",
           "created_at": "2026-04-16T13:19:01Z",
-          "updated_at": "2026-04-16T13:19:01Z",
+          "updated_at": "2026-04-16T13:36:16Z",
           "labels": [
+            "grade/B",
             "P0",
             "client:nate-broker"
           ],
@@ -4132,8 +4151,9 @@
           "title": "Nate Lind T1.4 \u2014 Pre-warm demo infrastructure for tomorrow's call",
           "state": "open",
           "created_at": "2026-04-16T13:18:59Z",
-          "updated_at": "2026-04-16T13:18:59Z",
+          "updated_at": "2026-04-16T13:36:31Z",
           "labels": [
+            "grade/A",
             "P0",
             "client:nate-broker"
           ],
@@ -4146,8 +4166,9 @@
           "title": "Nate Lind T1.3 \u2014 Avery call-grade + BANT + per-speaker NLP return",
           "state": "open",
           "created_at": "2026-04-16T13:18:58Z",
-          "updated_at": "2026-04-16T13:18:58Z",
+          "updated_at": "2026-04-16T13:36:46Z",
           "labels": [
+            "grade/B",
             "P0",
             "client:nate-broker"
           ],
@@ -4160,8 +4181,9 @@
           "title": "Nate Lind T1.2 \u2014 Finalize three engagement shapes (A/B/C) with real numbers",
           "state": "open",
           "created_at": "2026-04-16T13:18:56Z",
-          "updated_at": "2026-04-16T13:18:56Z",
+          "updated_at": "2026-04-16T13:37:00Z",
           "labels": [
+            "grade/A",
             "P0",
             "client:nate-broker"
           ],
@@ -4174,10 +4196,12 @@
           "title": "[Apr 22] Schedule Withers Bergman intro call via Xander \u2192 Levine",
           "state": "open",
           "created_at": "2026-04-16T13:18:50Z",
-          "updated_at": "2026-04-16T13:18:50Z",
+          "updated_at": "2026-04-16T13:37:20Z",
           "labels": [
             "medium",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/B",
+            "cursor-bench"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2241",
@@ -4188,10 +4212,11 @@
           "title": "[Apr 22] Select second attorney target \u2014 boutique tech-forward firm",
           "state": "open",
           "created_at": "2026-04-16T13:18:50Z",
-          "updated_at": "2026-04-16T13:18:50Z",
+          "updated_at": "2026-04-16T13:37:34Z",
           "labels": [
             "medium",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/B"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2240",
@@ -4202,9 +4227,10 @@
           "title": "gate(track-h): Delphi hard-gate review for collab primitive audit",
           "state": "open",
           "created_at": "2026-04-16T13:18:42Z",
-          "updated_at": "2026-04-16T13:18:42Z",
+          "updated_at": "2026-04-16T13:37:50Z",
           "labels": [
             "collaboration",
+            "grade/B",
             "needs-review"
           ],
           "assignee": null,
@@ -4216,8 +4242,9 @@
           "title": "Nate Lind T1.1 \u2014 Fix voice-bot VAD truncation or switch demo to text mode",
           "state": "open",
           "created_at": "2026-04-16T13:18:35Z",
-          "updated_at": "2026-04-16T13:18:35Z",
+          "updated_at": "2026-04-16T13:38:05Z",
           "labels": [
+            "grade/A",
             "P0",
             "client:nate-broker"
           ],
@@ -4230,8 +4257,9 @@
           "title": "ops(track-f): Sandman F2/F3 \u2014 endpoint review + deploy for MIG truth surface",
           "state": "open",
           "created_at": "2026-04-16T13:18:32Z",
-          "updated_at": "2026-04-16T13:18:32Z",
+          "updated_at": "2026-04-16T13:38:20Z",
           "labels": [
+            "grade/B",
             "research-pipeline",
             "dashboard"
           ],
@@ -4244,9 +4272,10 @@
           "title": "[TRACKER] MCP daemon registration fix \u2014 follow-ups",
           "state": "open",
           "created_at": "2026-04-16T13:18:32Z",
-          "updated_at": "2026-04-16T13:18:32Z",
+          "updated_at": "2026-04-16T13:38:37Z",
           "labels": [
             "infrastructure",
+            "grade/B",
             "mcp-daemon-fix"
           ],
           "assignee": null,
@@ -4258,13 +4287,15 @@
           "title": "Booking Loop Track F \u2014 Security, compliance, abuse prevention (SOC2)",
           "state": "open",
           "created_at": "2026-04-16T13:18:30Z",
-          "updated_at": "2026-04-16T13:18:30Z",
+          "updated_at": "2026-04-16T13:38:54Z",
           "labels": [
             "enhancement",
             "high",
             "security",
             "phase/2",
-            "voice"
+            "grade/B",
+            "voice",
+            "cursor-bench"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2235",
@@ -4275,9 +4306,10 @@
           "title": "[DEAL] Denver Griffin \u2014 pricing confirmation + content inventory + Option B baseline",
           "state": "open",
           "created_at": "2026-04-16T13:18:22Z",
-          "updated_at": "2026-04-16T13:18:22Z",
+          "updated_at": "2026-04-16T13:39:09Z",
           "labels": [
             "business/opportunity",
+            "grade/B",
             "priority/high",
             "blocked",
             "client",
@@ -4292,10 +4324,11 @@
           "title": "[BEFORE WITHERS INTRO] Execute Finder's Fee Agreement with Xander",
           "state": "open",
           "created_at": "2026-04-16T13:18:22Z",
-          "updated_at": "2026-04-16T13:18:22Z",
+          "updated_at": "2026-04-16T13:39:25Z",
           "labels": [
             "high",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/A"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2233",
@@ -4306,10 +4339,11 @@
           "title": "[Apr 18] Build Withers Bergman-specific one-pager \u2014 private client law framing",
           "state": "open",
           "created_at": "2026-04-16T13:18:22Z",
-          "updated_at": "2026-04-16T13:18:22Z",
+          "updated_at": "2026-04-16T13:39:40Z",
           "labels": [
             "high",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/A"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2232",
@@ -4320,8 +4354,9 @@
           "title": "gate(track-d): Sensei coherence review for PR #2182 rejection visibility panel",
           "state": "open",
           "created_at": "2026-04-16T13:18:17Z",
-          "updated_at": "2026-04-16T13:18:17Z",
+          "updated_at": "2026-04-16T13:39:56Z",
           "labels": [
+            "grade/B",
             "needs-review",
             "research-pipeline"
           ],
@@ -4334,12 +4369,14 @@
           "title": "Booking Loop Track E \u2014 Observability + conversion funnel + pre-meeting briefing",
           "state": "open",
           "created_at": "2026-04-16T13:18:09Z",
-          "updated_at": "2026-04-16T13:18:09Z",
+          "updated_at": "2026-04-16T13:40:18Z",
           "labels": [
             "enhancement",
             "medium",
             "phase/2",
-            "voice"
+            "grade/B",
+            "voice",
+            "cursor-bench"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2230",
@@ -4350,9 +4387,10 @@
           "title": "test(track-g): add stage_heartbeat asyncio safety tests",
           "state": "open",
           "created_at": "2026-04-16T13:18:06Z",
-          "updated_at": "2026-04-16T13:18:06Z",
+          "updated_at": "2026-04-16T13:40:33Z",
           "labels": [
             "testing",
+            "grade/B",
             "research-pipeline"
           ],
           "assignee": null,
@@ -4364,9 +4402,10 @@
           "title": "[DEAL] Brian Cook / StretchMed \u2014 Option A vs Option B JV decision + baseline disclosure",
           "state": "open",
           "created_at": "2026-04-16T13:18:03Z",
-          "updated_at": "2026-04-16T13:18:03Z",
+          "updated_at": "2026-04-16T13:40:48Z",
           "labels": [
             "business/opportunity",
+            "grade/A",
             "priority/high",
             "client",
             "daemon/avery"
@@ -4380,10 +4419,11 @@
           "title": "[OVERDUE] Send Xander transcript analysis \u2014 speedoftrust.ai/xander/april16/",
           "state": "open",
           "created_at": "2026-04-16T13:17:50Z",
-          "updated_at": "2026-04-16T13:17:50Z",
+          "updated_at": "2026-04-16T13:41:04Z",
           "labels": [
             "critical",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/A"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2227",
@@ -4394,10 +4434,11 @@
           "title": "[Apr 18] Get Levine's contact info from Xander \u2014 Withers Bergman entry",
           "state": "open",
           "created_at": "2026-04-16T13:17:49Z",
-          "updated_at": "2026-04-16T13:17:49Z",
+          "updated_at": "2026-04-16T13:41:19Z",
           "labels": [
             "high",
-            "business/opportunity"
+            "business/opportunity",
+            "grade/A"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2226",
@@ -4408,13 +4449,15 @@
           "title": "Booking Loop Track D \u2014 Agent prompt engineering (never ask for PII verbally)",
           "state": "open",
           "created_at": "2026-04-16T13:17:48Z",
-          "updated_at": "2026-04-16T13:17:48Z",
+          "updated_at": "2026-04-16T13:41:37Z",
           "labels": [
             "enhancement",
             "high",
             "brain",
             "phase/2",
-            "voice"
+            "grade/B",
+            "voice",
+            "cursor-bench"
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2225",
@@ -4425,8 +4468,9 @@
           "title": "[OVERDUE] Deal: Synadia/Jeff Chu \u2014 Ely sends follow-up (23 days stalled)",
           "state": "open",
           "created_at": "2026-04-16T13:17:43Z",
-          "updated_at": "2026-04-16T13:17:43Z",
+          "updated_at": "2026-04-16T13:41:50Z",
           "labels": [
+            "grade/A",
             "human-only",
             "priority/high",
             "source/human",
@@ -4442,8 +4486,9 @@
           "title": "[CRITICAL] Deal: Bitler four-way alignment call \u2014 26+ days stalled, compound blocker",
           "state": "open",
           "created_at": "2026-04-16T13:17:30Z",
-          "updated_at": "2026-04-16T13:17:30Z",
+          "updated_at": "2026-04-16T13:42:02Z",
           "labels": [
+            "grade/A",
             "human-only",
             "priority/high",
             "source/human",
@@ -4460,8 +4505,9 @@
           "title": "[URGENT] Deal: Garrett Taylor \u2014 book 30-min demo call by April 18",
           "state": "open",
           "created_at": "2026-04-16T13:17:14Z",
-          "updated_at": "2026-04-16T13:17:14Z",
+          "updated_at": "2026-04-16T13:42:14Z",
           "labels": [
+            "grade/A",
             "human-only",
             "priority/high",
             "source/human",
@@ -4471,6 +4517,20 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2222",
           "project_slug": null
+        },
+        {
+          "number": 2221,
+          "title": "Fleet observability extension: promtail + node_exporter to edge Linux and macOS",
+          "state": "open",
+          "created_at": "2026-04-16T13:17:04Z",
+          "updated_at": "2026-04-16T13:42:28Z",
+          "labels": [
+            "grade/C",
+            "daemon/delphi"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2221",
+          "project_slug": "agent-vox"
         }
       ],
       "issues_by_project": {
@@ -4630,8 +4690,9 @@
             "title": "Nate Lind T3.6 \u2014 Benchmark data package for stage",
             "state": "open",
             "created_at": "2026-04-16T13:19:58Z",
-            "updated_at": "2026-04-16T13:19:58Z",
+            "updated_at": "2026-04-16T13:33:17Z",
             "labels": [
+              "grade/B",
               "P2",
               "client:nate-broker"
             ],
@@ -4644,8 +4705,9 @@
             "title": "Nate Lind T3.5 \u2014 April 30 deck delivery prep session (Michael + Alexander)",
             "state": "open",
             "created_at": "2026-04-16T13:19:57Z",
-            "updated_at": "2026-04-16T13:19:57Z",
+            "updated_at": "2026-04-16T13:33:31Z",
             "labels": [
+              "grade/B",
               "P1",
               "client:nate-broker"
             ],
@@ -4658,8 +4720,9 @@
             "title": "Nate Lind T3.4 \u2014 FE/Flippa enterprise flag (no outreach)",
             "state": "open",
             "created_at": "2026-04-16T13:19:55Z",
-            "updated_at": "2026-04-16T13:19:55Z",
+            "updated_at": "2026-04-16T13:33:44Z",
             "labels": [
+              "grade/C",
               "P2",
               "client:nate-broker"
             ],
@@ -4672,8 +4735,9 @@
             "title": "Nate Lind T3.3 \u2014 Terminal build timeline vs Nate's cash flow",
             "state": "open",
             "created_at": "2026-04-16T13:19:54Z",
-            "updated_at": "2026-04-16T13:19:54Z",
+            "updated_at": "2026-04-16T13:33:58Z",
             "labels": [
+              "grade/B",
               "P2",
               "client:nate-broker"
             ],
@@ -4686,8 +4750,9 @@
             "title": "Nate Lind T3.2 \u2014 Tier 1 corpus ingest ontology session with Nate",
             "state": "open",
             "created_at": "2026-04-16T13:19:52Z",
-            "updated_at": "2026-04-16T13:19:52Z",
+            "updated_at": "2026-04-16T13:34:14Z",
             "labels": [
+              "grade/B",
               "P2",
               "client:nate-broker"
             ],
@@ -4700,8 +4765,9 @@
             "title": "Nate Lind T3.1 \u2014 Write April 30 demo runbook",
             "state": "open",
             "created_at": "2026-04-16T13:19:50Z",
-            "updated_at": "2026-04-16T13:19:50Z",
+            "updated_at": "2026-04-16T13:34:27Z",
             "labels": [
+              "grade/A",
               "P1",
               "client:nate-broker"
             ],
@@ -4714,8 +4780,9 @@
             "title": "Nate Lind T2.4 \u2014 MIG memories: deal structure + IP terms",
             "state": "open",
             "created_at": "2026-04-16T13:19:25Z",
-            "updated_at": "2026-04-16T13:19:25Z",
+            "updated_at": "2026-04-16T13:34:40Z",
             "labels": [
+              "grade/B",
               "P1",
               "client:nate-broker"
             ],
@@ -4728,8 +4795,9 @@
             "title": "Nate Lind T2.3 \u2014 April 30 live-demo design (spec only)",
             "state": "open",
             "created_at": "2026-04-16T13:19:24Z",
-            "updated_at": "2026-04-16T13:19:24Z",
+            "updated_at": "2026-04-16T13:34:54Z",
             "labels": [
+              "grade/A",
               "P1",
               "client:nate-broker"
             ],
@@ -4742,8 +4810,9 @@
             "title": "Nate Lind T2.2 \u2014 TwentyCRM entry with full deal signals",
             "state": "open",
             "created_at": "2026-04-16T13:19:22Z",
-            "updated_at": "2026-04-16T13:19:22Z",
+            "updated_at": "2026-04-16T13:35:09Z",
             "labels": [
+              "grade/A",
               "P1",
               "client:nate-broker"
             ],
@@ -4756,8 +4825,9 @@
             "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
             "state": "open",
             "created_at": "2026-04-16T13:19:20Z",
-            "updated_at": "2026-04-16T13:19:20Z",
+            "updated_at": "2026-04-16T13:35:39Z",
             "labels": [
+              "grade/B",
               "P1",
               "client:nate-broker"
             ],
@@ -4770,9 +4840,10 @@
             "title": "ops: dispatch cursor agents for Tracks B, C, I, J \u2014 pending 4 prompts",
             "state": "open",
             "created_at": "2026-04-16T13:19:05Z",
-            "updated_at": "2026-04-16T13:19:05Z",
+            "updated_at": "2026-04-16T13:36:01Z",
             "labels": [
               "collaboration",
+              "grade/B",
               "research-pipeline"
             ],
             "assignee": null,
@@ -4784,8 +4855,9 @@
             "title": "Nate Lind T1.5 \u2014 Michael close-deck rehearsal",
             "state": "open",
             "created_at": "2026-04-16T13:19:01Z",
-            "updated_at": "2026-04-16T13:19:01Z",
+            "updated_at": "2026-04-16T13:36:16Z",
             "labels": [
+              "grade/B",
               "P0",
               "client:nate-broker"
             ],
@@ -4798,8 +4870,9 @@
             "title": "Nate Lind T1.4 \u2014 Pre-warm demo infrastructure for tomorrow's call",
             "state": "open",
             "created_at": "2026-04-16T13:18:59Z",
-            "updated_at": "2026-04-16T13:18:59Z",
+            "updated_at": "2026-04-16T13:36:31Z",
             "labels": [
+              "grade/A",
               "P0",
               "client:nate-broker"
             ],
@@ -4812,8 +4885,9 @@
             "title": "Nate Lind T1.3 \u2014 Avery call-grade + BANT + per-speaker NLP return",
             "state": "open",
             "created_at": "2026-04-16T13:18:58Z",
-            "updated_at": "2026-04-16T13:18:58Z",
+            "updated_at": "2026-04-16T13:36:46Z",
             "labels": [
+              "grade/B",
               "P0",
               "client:nate-broker"
             ],
@@ -4826,8 +4900,9 @@
             "title": "Nate Lind T1.2 \u2014 Finalize three engagement shapes (A/B/C) with real numbers",
             "state": "open",
             "created_at": "2026-04-16T13:18:56Z",
-            "updated_at": "2026-04-16T13:18:56Z",
+            "updated_at": "2026-04-16T13:37:00Z",
             "labels": [
+              "grade/A",
               "P0",
               "client:nate-broker"
             ],
@@ -4840,10 +4915,12 @@
             "title": "[Apr 22] Schedule Withers Bergman intro call via Xander \u2192 Levine",
             "state": "open",
             "created_at": "2026-04-16T13:18:50Z",
-            "updated_at": "2026-04-16T13:18:50Z",
+            "updated_at": "2026-04-16T13:37:20Z",
             "labels": [
               "medium",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/B",
+              "cursor-bench"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2241",
@@ -4854,10 +4931,11 @@
             "title": "[Apr 22] Select second attorney target \u2014 boutique tech-forward firm",
             "state": "open",
             "created_at": "2026-04-16T13:18:50Z",
-            "updated_at": "2026-04-16T13:18:50Z",
+            "updated_at": "2026-04-16T13:37:34Z",
             "labels": [
               "medium",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/B"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2240",
@@ -4868,9 +4946,10 @@
             "title": "gate(track-h): Delphi hard-gate review for collab primitive audit",
             "state": "open",
             "created_at": "2026-04-16T13:18:42Z",
-            "updated_at": "2026-04-16T13:18:42Z",
+            "updated_at": "2026-04-16T13:37:50Z",
             "labels": [
               "collaboration",
+              "grade/B",
               "needs-review"
             ],
             "assignee": null,
@@ -4882,8 +4961,9 @@
             "title": "Nate Lind T1.1 \u2014 Fix voice-bot VAD truncation or switch demo to text mode",
             "state": "open",
             "created_at": "2026-04-16T13:18:35Z",
-            "updated_at": "2026-04-16T13:18:35Z",
+            "updated_at": "2026-04-16T13:38:05Z",
             "labels": [
+              "grade/A",
               "P0",
               "client:nate-broker"
             ],
@@ -4896,8 +4976,9 @@
             "title": "ops(track-f): Sandman F2/F3 \u2014 endpoint review + deploy for MIG truth surface",
             "state": "open",
             "created_at": "2026-04-16T13:18:32Z",
-            "updated_at": "2026-04-16T13:18:32Z",
+            "updated_at": "2026-04-16T13:38:20Z",
             "labels": [
+              "grade/B",
               "research-pipeline",
               "dashboard"
             ],
@@ -4910,9 +4991,10 @@
             "title": "[DEAL] Denver Griffin \u2014 pricing confirmation + content inventory + Option B baseline",
             "state": "open",
             "created_at": "2026-04-16T13:18:22Z",
-            "updated_at": "2026-04-16T13:18:22Z",
+            "updated_at": "2026-04-16T13:39:09Z",
             "labels": [
               "business/opportunity",
+              "grade/B",
               "priority/high",
               "blocked",
               "client",
@@ -4927,10 +5009,11 @@
             "title": "[BEFORE WITHERS INTRO] Execute Finder's Fee Agreement with Xander",
             "state": "open",
             "created_at": "2026-04-16T13:18:22Z",
-            "updated_at": "2026-04-16T13:18:22Z",
+            "updated_at": "2026-04-16T13:39:25Z",
             "labels": [
               "high",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/A"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2233",
@@ -4941,10 +5024,11 @@
             "title": "[Apr 18] Build Withers Bergman-specific one-pager \u2014 private client law framing",
             "state": "open",
             "created_at": "2026-04-16T13:18:22Z",
-            "updated_at": "2026-04-16T13:18:22Z",
+            "updated_at": "2026-04-16T13:39:40Z",
             "labels": [
               "high",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/A"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2232",
@@ -4955,8 +5039,9 @@
             "title": "gate(track-d): Sensei coherence review for PR #2182 rejection visibility panel",
             "state": "open",
             "created_at": "2026-04-16T13:18:17Z",
-            "updated_at": "2026-04-16T13:18:17Z",
+            "updated_at": "2026-04-16T13:39:56Z",
             "labels": [
+              "grade/B",
               "needs-review",
               "research-pipeline"
             ],
@@ -4969,9 +5054,10 @@
             "title": "test(track-g): add stage_heartbeat asyncio safety tests",
             "state": "open",
             "created_at": "2026-04-16T13:18:06Z",
-            "updated_at": "2026-04-16T13:18:06Z",
+            "updated_at": "2026-04-16T13:40:33Z",
             "labels": [
               "testing",
+              "grade/B",
               "research-pipeline"
             ],
             "assignee": null,
@@ -4983,9 +5069,10 @@
             "title": "[DEAL] Brian Cook / StretchMed \u2014 Option A vs Option B JV decision + baseline disclosure",
             "state": "open",
             "created_at": "2026-04-16T13:18:03Z",
-            "updated_at": "2026-04-16T13:18:03Z",
+            "updated_at": "2026-04-16T13:40:48Z",
             "labels": [
               "business/opportunity",
+              "grade/A",
               "priority/high",
               "client",
               "daemon/avery"
@@ -4999,10 +5086,11 @@
             "title": "[OVERDUE] Send Xander transcript analysis \u2014 speedoftrust.ai/xander/april16/",
             "state": "open",
             "created_at": "2026-04-16T13:17:50Z",
-            "updated_at": "2026-04-16T13:17:50Z",
+            "updated_at": "2026-04-16T13:41:04Z",
             "labels": [
               "critical",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/A"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2227",
@@ -5013,10 +5101,11 @@
             "title": "[Apr 18] Get Levine's contact info from Xander \u2014 Withers Bergman entry",
             "state": "open",
             "created_at": "2026-04-16T13:17:49Z",
-            "updated_at": "2026-04-16T13:17:49Z",
+            "updated_at": "2026-04-16T13:41:19Z",
             "labels": [
               "high",
-              "business/opportunity"
+              "business/opportunity",
+              "grade/A"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2226",
@@ -5027,8 +5116,9 @@
             "title": "[OVERDUE] Deal: Synadia/Jeff Chu \u2014 Ely sends follow-up (23 days stalled)",
             "state": "open",
             "created_at": "2026-04-16T13:17:43Z",
-            "updated_at": "2026-04-16T13:17:43Z",
+            "updated_at": "2026-04-16T13:41:50Z",
             "labels": [
+              "grade/A",
               "human-only",
               "priority/high",
               "source/human",
@@ -5044,8 +5134,9 @@
             "title": "[CRITICAL] Deal: Bitler four-way alignment call \u2014 26+ days stalled, compound blocker",
             "state": "open",
             "created_at": "2026-04-16T13:17:30Z",
-            "updated_at": "2026-04-16T13:17:30Z",
+            "updated_at": "2026-04-16T13:42:02Z",
             "labels": [
+              "grade/A",
               "human-only",
               "priority/high",
               "source/human",
@@ -5062,8 +5153,9 @@
             "title": "[URGENT] Deal: Garrett Taylor \u2014 book 30-min demo call by April 18",
             "state": "open",
             "created_at": "2026-04-16T13:17:14Z",
-            "updated_at": "2026-04-16T13:17:14Z",
+            "updated_at": "2026-04-16T13:42:14Z",
             "labels": [
+              "grade/A",
               "human-only",
               "priority/high",
               "source/human",
@@ -5090,22 +5182,6 @@
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2270",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2268,
-            "title": "Pre-commit hook smoke-test: verify Playwright MCP guard fires",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:52Z",
-            "updated_at": "2026-04-16T13:30:54Z",
-            "labels": [
-              "medium",
-              "testing",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2268",
             "project_slug": "openclaw"
           },
           {
@@ -5144,9 +5220,10 @@
             "title": "ops(gateway8): R1/R2/R4 operator decisions \u2014 deploy key, borg key, CF CNAME",
             "state": "open",
             "created_at": "2026-04-16T13:19:21Z",
-            "updated_at": "2026-04-16T13:19:21Z",
+            "updated_at": "2026-04-16T13:35:23Z",
             "labels": [
-              "infrastructure"
+              "infrastructure",
+              "grade/B"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2248",
@@ -5157,9 +5234,10 @@
             "title": "[TRACKER] MCP daemon registration fix \u2014 follow-ups",
             "state": "open",
             "created_at": "2026-04-16T13:18:32Z",
-            "updated_at": "2026-04-16T13:18:32Z",
+            "updated_at": "2026-04-16T13:38:37Z",
             "labels": [
               "infrastructure",
+              "grade/B",
               "mcp-daemon-fix"
             ],
             "assignee": null,
@@ -5173,13 +5251,15 @@
             "title": "Booking Loop Track F \u2014 Security, compliance, abuse prevention (SOC2)",
             "state": "open",
             "created_at": "2026-04-16T13:18:30Z",
-            "updated_at": "2026-04-16T13:18:30Z",
+            "updated_at": "2026-04-16T13:38:54Z",
             "labels": [
               "enhancement",
               "high",
               "security",
               "phase/2",
-              "voice"
+              "grade/B",
+              "voice",
+              "cursor-bench"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2235",
@@ -5190,15 +5270,31 @@
             "title": "Booking Loop Track E \u2014 Observability + conversion funnel + pre-meeting briefing",
             "state": "open",
             "created_at": "2026-04-16T13:18:09Z",
-            "updated_at": "2026-04-16T13:18:09Z",
+            "updated_at": "2026-04-16T13:40:18Z",
             "labels": [
               "enhancement",
               "medium",
               "phase/2",
-              "voice"
+              "grade/B",
+              "voice",
+              "cursor-bench"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2230",
+            "project_slug": "agent-vox"
+          },
+          {
+            "number": 2221,
+            "title": "Fleet observability extension: promtail + node_exporter to edge Linux and macOS",
+            "state": "open",
+            "created_at": "2026-04-16T13:17:04Z",
+            "updated_at": "2026-04-16T13:42:28Z",
+            "labels": [
+              "grade/C",
+              "daemon/delphi"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2221",
             "project_slug": "agent-vox"
           }
         ],
@@ -5208,13 +5304,15 @@
             "title": "Booking Loop Track D \u2014 Agent prompt engineering (never ask for PII verbally)",
             "state": "open",
             "created_at": "2026-04-16T13:17:48Z",
-            "updated_at": "2026-04-16T13:17:48Z",
+            "updated_at": "2026-04-16T13:41:37Z",
             "labels": [
               "enhancement",
               "high",
               "brain",
               "phase/2",
-              "voice"
+              "grade/B",
+              "voice",
+              "cursor-bench"
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2225",
@@ -5226,62 +5324,69 @@
         "status": "completed",
         "conclusion": "skipped",
         "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-04-16T13:33:07Z",
-        "head_sha": "2e5840e5"
+        "created_at": "2026-04-16T13:44:32Z",
+        "head_sha": "df841cdd"
       },
       "ci_recent_runs": [
         {
-          "id": 24513171900,
+          "id": 24513732452,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-16T13:33:07Z",
-          "updated_at": "2026-04-16T13:33:08Z",
-          "head_sha": "2e5840e5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513171900"
+          "created_at": "2026-04-16T13:44:32Z",
+          "updated_at": "2026-04-16T13:44:34Z",
+          "head_sha": "df841cdd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513732452"
         },
         {
-          "id": 24513163385,
+          "id": 24513721618,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-16T13:32:56Z",
-          "updated_at": "2026-04-16T13:32:58Z",
-          "head_sha": "2e5840e5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513163385"
+          "created_at": "2026-04-16T13:44:19Z",
+          "updated_at": "2026-04-16T13:44:20Z",
+          "head_sha": "df841cdd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513721618"
         },
         {
-          "id": 24513152583,
+          "id": 24513718868,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-16T13:32:42Z",
-          "updated_at": "2026-04-16T13:32:43Z",
-          "head_sha": "2e5840e5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513152583"
+          "created_at": "2026-04-16T13:44:15Z",
+          "updated_at": "2026-04-16T13:44:16Z",
+          "head_sha": "df841cdd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513718868"
         },
         {
-          "id": 24513142016,
+          "id": 24513709147,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-16T13:32:29Z",
-          "updated_at": "2026-04-16T13:32:29Z",
-          "head_sha": "2e5840e5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513142016"
+          "created_at": "2026-04-16T13:44:04Z",
+          "updated_at": "2026-04-16T13:44:05Z",
+          "head_sha": "df841cdd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513709147"
         },
         {
-          "id": 24513132277,
+          "id": 24513697958,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-16T13:32:16Z",
-          "updated_at": "2026-04-16T13:32:18Z",
-          "head_sha": "2e5840e5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513132277"
+          "created_at": "2026-04-16T13:43:50Z",
+          "updated_at": "2026-04-16T13:43:51Z",
+          "head_sha": "df841cdd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24513697958"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "df841cdd",
+          "message": "fix(hooks): add Playwright MCP guard to canonical pre-commit hook \u2014 Closes #2268",
+          "author": "Sensei",
+          "date": "2026-04-16T13:33:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/df841cdda2a9851390b104b56b8192fca0928fc4"
+        },
         {
           "sha": "5dc70da4",
           "message": "Track A scaffold: BOOKING_EVENTS stream + Calendly webhook endpoint (#2218)",
@@ -5344,17 +5449,10 @@
           "author": "covaultxyz",
           "date": "2026-04-16T13:17:23Z",
           "url": "https://github.com/covaultxyz/meridian/commit/0b671b906642ccb3a480ebd5b25b8cde5dda446c"
-        },
-        {
-          "sha": "5b269755",
-          "message": "docs(forge): update session log + remaining doc with J/B3/H additions + umbrella issues",
-          "author": "covaultxyz",
-          "date": "2026-04-16T13:17:22Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/5b269755e47c27f9504792d65a573131690ad6a3"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-16T13:33:13.087687+00:00",
+        "updated_at": "2026-04-16T13:45:36.633255+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5556,7 +5654,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "members": [
         {
           "id": "alex",
@@ -5629,7 +5727,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "projects": [
         {
           "project": {
@@ -6059,7 +6157,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6144,7 +6242,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6241,7 +6339,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -6666,6 +6764,136 @@
           ],
           "detail_page": "calls/2026-04-16-vps-architecture-blueprint.html",
           "preview": "Architecture blueprint for a 2-node Rankona cluster with an 8GB VPS as the public-facing edge node and a dedicated machine at 100.97.248.107 as the compute core."
+        },
+        {
+          "date": "2026-04-16",
+          "title": "Done",
+          "type": "external",
+          "file": "clients/nate-broker/DONE.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "Meridian team deployed a six-page client intelligence brief, a 12-slide close deck, and a 15-slide April 30 event deck for M&A broker prospect Nate Lind ahead of a close attempt call on April 16.",
+          "decisions": [
+            "April 30 event deck refocused from a Nate-centric case study to an audience-centric 'Promise vs Delivery' arc with Nate as one of three proof operators",
+            "Michael will lead the close attempt on the April 16 2:00 PM ET call",
+            "April 30 speaker event is positioned inside the deal structure, not as a separate next step"
+          ],
+          "commitments": [
+            "Michael to lead close call on 2026-04-16 at 2:00 PM ET targeting a yes-by-Friday commitment from Nate",
+            "Avery (Deal Director) tasked with delivering full call grade, BANT scoring, per-speaker NLP, and deal signals for TwentyCRM \u2014 awaiting async return"
+          ],
+          "discoveries": [
+            "Rankona benchmark shows 45-hour workflow compressed to 45 minutes, used as core proof-of-value data point in the close deck",
+            "$200B was spent on enterprise AI in 2025 yet buyers report consistent delivery failures, framing Meridian's memory-graph differentiation"
+          ],
+          "action_items": [
+            {
+              "who": "Michael",
+              "what": "Lead close attempt on April 16 2:00 PM ET call using the deployed 12-slide close deck"
+            },
+            {
+              "who": "Avery",
+              "what": "Return full call grade, BANT scoring, per-speaker NLP analysis, and deal signals for TwentyCRM"
+            },
+            {
+              "who": "Michael / Ely",
+              "what": "Present to Nate's 40\u201360 entrepreneur audience at the April 30 Denver event"
+            }
+          ],
+          "detail_page": "calls/2026-04-16-done.html",
+          "preview": "Meridian team deployed a six-page client intelligence brief, a 12-slide close deck, and a 15-slide April 30 event deck for M&A broker prospect Nate Lind ahead of a close attempt call on April 16."
+        },
+        {
+          "date": "2026-04-16",
+          "title": "Todo",
+          "type": "external",
+          "file": "clients/nate-broker/TODO.md",
+          "participants": [
+            "alex"
+          ],
+          "summary": "Pre-close preparation document for a 2026-04-16 2PM ET sales call with Nate Lind, a business broker, covering demo readiness, pricing structures, and a 90-day post-close roadmap.",
+          "decisions": [
+            "If voice-bot VAD truncation cannot be fixed in under 2 hours, disable voice demo and run the call in text-stream mode instead.",
+            "Three engagement shapes (Fixed Build, JV revenue-share, 90-Day Boot Camp) will be presented with real numbers on a one-page PDF.",
+            "FE International and Flippa enterprise angles are flagged but no outreach is authorized until Nate explicitly permits it.",
+            "Demo menu for April 30 stage event is narrowed to Oracle via Telegram, 2-min pitch graded report, and break-time corpus ingest."
+          ],
+          "commitments": [
+            "Alexander to fix VAD truncation or disable voice demo and complete a dry-run by 1:45PM ET on 2026-04-16.",
+            "Michael and Ely to finalize three engagement shapes with real numbers before the 2PM ET call on 2026-04-16.",
+            "Avery to deliver written call grade and BANT signals to clients/nate-broker/signals/ before 1PM ET on 2026-04-16.",
+            "Delphi to pre-warm demo infrastructure and confirm green status before the 2PM ET call on 2026-04-16.",
+            "Michael to complete a full close-deck rehearsal under 18 minutes before 1:30PM ET on 2026-04-16.",
+            "Ely to draft Statement of Work same day if a shape is selected on the call.",
+            "Michael and Alexander to run a full April 30 deck rehearsal the week of 2026-04-22 before the Denver event."
+          ],
+          "discoveries": [
+            "Voice bot truncated mid-answer on the 2026-04-15 call, posing a critical risk if not resolved before the close call.",
+            "Nate has a 75-deal corpus pre-staged, is NEPQ-literate, has a family-provision motive surfaced twice, and has an April 30 speaker slot offered \u2014 signals of high intent.",
+            "Nate's YouTube channel contains thousands of hours of content and he has a published book, both representing high-value corpus assets if a shape commits.",
+            "Pipeline estimate for Nate is $120k with FE International and Flippa as potential enterprise channel partners."
+          ],
+          "action_items": [
+            {
+              "who": "Alexander",
+              "what": "Reproduce VAD truncation, push silence threshold to 900ms and retest, or disable voice demo and confirm text-mode dry-run completes cleanly by 1:45PM ET."
+            },
+            {
+              "who": "Michael + Ely",
+              "what": "Finalize three engagement shapes (A/B/C) with real numbers and produce a one-page PDF for the close deck before the 2PM ET call."
+            },
+            {
+              "who": "Avery",
+              "what": "Deliver formal call grade, BANT assessment, and per-speaker NLP output to clients/nate-broker/signals/ before 1PM ET on 2026-04-16."
+            },
+            {
+              "who": "Delphi",
+              "what": "Pre-warm demo infrastructure: verify OracleDelphiBot responds in under 5 seconds, warm the post-call-report pipeline, and load a Nate corpus email in processed state."
+            },
+            {
+              "who": "Michael",
+              "what": "Complete one full out-loud rehearsal of the close deck, under 18 minutes, before 1:30PM ET, focusing on slides 6 and 11."
+            },
+            {
+              "who": "Ely + Sensei + Michael",
+              "what": "Draft, review, and sign Statement of Work same day if Nate selects a shape, incorporating IP/data guardrails, Cloudflare Tunnel posture, and per-channel identity clauses."
+            },
+            {
+              "who": "Avery",
+              "what": "Create TwentyCRM entry for Nate with stage, pipeline estimate, signals, and contacts within 24 hours of shape commitment."
+            },
+            {
+              "who": "Alexander + Ely",
+              "what": "Write the April 30 demo runbook covering three demos with inputs, outputs, kill-switches, fallbacks, and stage timing, then dry-run with an outside volunteer."
+            },
+            {
+              "who": "Ely + Nate",
+              "what": "Conduct an ontology mapping session to align Nate's Deal/Party/Business/Channel/Referral objects with Meridian's ontology and produce a one-page map at clients/nate-broker/ontology.md."
+            },
+            {
+              "who": "Michael",
+              "what": "Confirm with Nate whether Shape A build delivery is one payment or milestone-based based on his cash flow preference."
+            },
+            {
+              "who": "Avery",
+              "what": "Note FE International and Flippa enterprise angle in TwentyCRM signals but take no outreach action until Nate authorizes."
+            },
+            {
+              "who": "Alexander",
+              "what": "Produce benchmark data package for April 30 stage including Rankona 45hr-to-22min case write-up and CCDx analysis output sample."
+            },
+            {
+              "who": "Forge",
+              "what": "Queue transcription, embedding, and ingest of Nate's YouTube channel corpus and published book, activated if Shape A or B is committed."
+            },
+            {
+              "who": "Avery",
+              "what": "Set up UTM and QR attribution for the April 30 Denver event to measure inbound pipeline conversion within 14 days, targeting at least 3 qualified follow-ups."
+            }
+          ],
+          "detail_page": "calls/2026-04-16-todo.html",
+          "preview": "Pre-close preparation document for a 2026-04-16 2PM ET sales call with Nate Lind, a business broker, covering demo readiness, pricing structures, and a 90-day post-close roadmap."
         },
         {
           "date": "2026-04-15",
@@ -10377,15 +10605,15 @@
         "research_projects": 0,
         "active": 10,
         "blocked": 1,
-        "total_calls": 90,
+        "total_calls": 92,
         "internal_calls": 42,
-        "external_calls": 27,
+        "external_calls": 29,
         "total_revenue_closed": 2000,
         "total_revenue_pipeline": 396000
       }
     },
     "docs": {
-      "updated_at": "2026-04-16T13:33:15.483449+00:00",
+      "updated_at": "2026-04-16T13:45:38.802844+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12417,7 +12645,7 @@
       "total_docs": 336
     },
     "deals": {
-      "updated_at": "2026-04-16T13:33:15.483561+00:00",
+      "updated_at": "2026-04-16T13:45:38.802939+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12659,7 +12887,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-16T13:33:15.159291+00:00",
+      "updated_at": "2026-04-16T13:45:38.654235+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -31177,6 +31405,648 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-16T13:44:14.659277+00:00",
+          "transcript_file": "clients/nate-broker/TODO.md",
+          "transcript_length": 9014,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [],
+            "call_topic": ""
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "id": "T1.1",
+                  "title": "Fix voice-bot VAD/truncation OR switch demo to text mode",
+                  "owner": "Alexander (A)",
+                  "deadline": "2026-04-16 14:00 ET",
+                  "days_until": 0,
+                  "acceptance_criteria": "No truncation on 30-second dry-run OR voice demo explicitly off agenda",
+                  "risk": "CRITICAL",
+                  "notes": "Truncated mid-answer on 2026-04-15 call. If not fixable in <2h, disable voice demo and run text-only."
+                },
+                {
+                  "id": "T1.2",
+                  "title": "Finalize three engagement shapes (A/B/C) with pricing",
+                  "owner": "Michael (M) + Ely (E)",
+                  "deadline": "2026-04-16 14:00 ET",
+                  "days_until": 0,
+                  "acceptance_criteria": "One-page PDF with shapes, pricing, 'best fit if' column; attached to close deck slide 6",
+                  "risk": "CRITICAL",
+                  "notes": "Shape A=fixed build, B=JV, C=90-day bootcamp. Nate asked about billing; numbers non-negotiable."
+                },
+                {
+                  "id": "T1.3",
+                  "title": "Avery call-grade + BANT + per-speaker NLP",
+                  "owner": "Avery (Av)",
+                  "deadline": "2026-04-16 13:00 ET",
+                  "days_until": 0,
+                  "acceptance_criteria": "Written grade in clients/nate-broker/signals/",
+                  "risk": "CRITICAL",
+                  "notes": "Deal Director's formal read feeds close strategy. If >24h stale, re-dispatch via Sensei."
+                },
+                {
+                  "id": "T1.4",
+                  "title": "Pre-warm demo infrastructure",
+                  "owner": "Delphi (D)",
+                  "deadline": "2026-04-16 14:00 ET",
+                  "days_until": 0,
+                  "acceptance_criteria": "@OracleDelphiBot <5s response, post-call-report pipeline warm, one real Nate email processed",
+                  "risk": "HIGH",
+                  "notes": "Can't cold-start research worker on live call. Green across all three before demo."
+                },
+                {
+                  "id": "T1.5",
+                  "title": "Michael close-deck rehearsal",
+                  "owner": "Michael (M), Alexander (A) standby",
+                  "deadline": "2026-04-16 13:30 ET",
+                  "days_until": 0,
+                  "acceptance_criteria": "One full pass <18min; Michael comfortable with slides 6 (shapes) and 11 (trial close)",
+                  "risk": "HIGH",
+                  "notes": "Cold reading tanks close. Two landing points: shapes and trial close."
+                },
+                {
+                  "id": "T2.1",
+                  "title": "Statement of Work (if shape selected)",
+                  "owner": "Ely (E) drafts, Sensei review, Michael (M) signs",
+                  "deadline": "2026-04-18",
+                  "days_until": 2,
+                  "acceptance_criteria": "SOW with IP/data guards, Cloudflare Tunnel posture, kill switch, audit trail, silos for FE/Flippa",
+                  "risk": "HIGH",
+                  "dependencies": [
+                    "Call outcome (T1.2 shape selection)"
+                  ]
+                },
+                {
+                  "id": "T2.2",
+                  "title": "TwentyCRM entry for Nate",
+                  "owner": "Avery (Av)",
+                  "deadline": "2026-04-18",
+                  "days_until": 2,
+                  "acceptance_criteria": "Stage, pipeline est. ($120k), signals (NEPQ-literate, 75-deal corpus, April 30 speaker, family-provision), contacts",
+                  "risk": "MEDIUM"
+                },
+                {
+                  "id": "T2.3",
+                  "title": "April 30 live-demo design",
+                  "owner": "Alexander (A) + Ely (E)",
+                  "deadline": "2026-04-18",
+                  "days_until": 2,
+                  "acceptance_criteria": "Demo designs for April 30 stage",
+                  "risk": "MEDIUM",
+                  "dependencies": [
+                    "T3.1 (demo runbook)"
+                  ]
+                },
+                {
+                  "id": "T2.4",
+                  "title": "MIG memories: deal structure + IP terms",
+                  "owner": "Delphi (D)",
+                  "deadline": "2026-04-18",
+                  "days_until": 2,
+                  "acceptance_criteria": "Shape-selected, pricing anchor, exclusivity, data-handling guards in MIG",
+                  "risk": "MEDIUM",
+                  "dependencies": [
+                    "Call outcome (T1.2)"
+                  ]
+                },
+                {
+                  "id": "T3.1",
+                  "title": "Write April 30 demo runbook",
+                  "owner": "Alexander (A) + Ely (E)",
+                  "deadline": "2026-04-30",
+                  "days_until": 14,
+                  "acceptance_criteria": "Runbook for 3 demos: inputs/outputs, kill-switch, fallback, timing; demo laptop pre-staged; end-to-end dry-run with volunteer",
+                  "risk": "HIGH",
+                  "notes": "Demo recommendation: Oracle/Telegram, 2-min pitch\u2192graded report, break-time corpus ingest. Demos > slides."
+                },
+                {
+                  "id": "T3.2",
+                  "title": "Scope Tier 1 corpus ingest \u2014 ontology session with Nate",
+                  "owner": "Ely (E) with Nate",
+                  "deadline": "2026-04-30",
+                  "days_until": 14,
+                  "acceptance_criteria": "One-page ontology map + ingest job list (500 transcripts + 15k emails) committed to clients/nate-broker/ontology.md",
+                  "risk": "MEDIUM"
+                },
+                {
+                  "id": "T3.3",
+                  "title": "Terminal build timeline vs. Nate's cash flow",
+                  "owner": "Michael (M)",
+                  "deadline": "2026-04-30",
+                  "days_until": 14,
+                  "acceptance_criteria": "Confirmed: one payment vs. milestoned",
+                  "risk": "MEDIUM"
+                },
+                {
+                  "id": "T3.4",
+                  "title": "FE International/Flippa enterprise flag",
+                  "owner": "Avery (Av)",
+                  "deadline": "2026-04-30",
+                  "days_until": 14,
+                  "acceptance_criteria": "Enterprise angle noted in TwentyCRM; no outreach",
+                  "risk": "LOW",
+                  "notes": "Do not reach out until Nate authorizes. His partnerships off-limits for prospecting."
+                },
+                {
+                  "id": "T3.5",
+                  "title": "April 30 deck delivery prep session",
+                  "owner": "Michael (M) + Alexander (A)",
+                  "deadline": "week of 2026-04-22",
+                  "days_until": 6,
+                  "acceptance_criteria": "Full runthrough with A as audience; timings tightened; three landing beats identified",
+                  "risk": "MEDIUM",
+                  "notes": "Three landing beats: '45hr\u219222min', 'you've already generated the data', three-operators slide."
+                },
+                {
+                  "id": "T3.6",
+                  "title": "Benchmark data package for stage",
+                  "owner": "Alexander (A)",
+                  "deadline": "2026-04-30",
+                  "days_until": 14,
+                  "acceptance_criteria": "Rankona 45hr\u219222min case (1 slide + receipt), CCDx sample, 1\u20132 reference outputs",
+                  "risk": "MEDIUM",
+                  "notes": "Backup for additional questions at April 30."
+                },
+                {
+                  "id": "T4.1",
+                  "title": "YouTube corpus transcription + embedding",
+                  "owner": "Forge (F)",
+                  "deadline": "post-2026-04-30",
+                  "days_until": null,
+                  "acceptance_criteria": "Nate's YouTube channel transcribed, embedded, retrievable for Nate-bot",
+                  "risk": "LOW",
+                  "dependencies": [
+                    "Shape A or B selected; T3.2 ontology mapping"
+                  ]
+                },
+                {
+                  "id": "T4.2",
+                  "title": "Book OCR + chapter segmentation",
+                  "owner": "Forge (F)",
+                  "deadline": "post-2026-04-30",
+                  "days_until": null,
+                  "acceptance_criteria": "Nate's book OCR'd, chapter-segmented, embedded",
+                  "risk": "LOW",
+                  "dependencies": [
+                    "Shape A or B selected; T3.2 ontology mapping"
+                  ]
+                },
+                {
+                  "id": "T4.3",
+                  "title": "April 30 attribution + pipeline measurement",
+                  "owner": "Avery (Av)",
+                  "deadline": "post-2026-04-30",
+                  "days_until": null,
+                  "acceptance_criteria": "UTM/QR codes deployed; measure 40\u201360 attendees into pipeline within 14 days; target \u22653 qualified follow-ups",
+                  "risk": "LOW",
+                  "dependencies": [
+                    "April 30 event execution (T3)"
+                  ]
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Demo infrastructure not tested before live calls",
+                  "evidence": "Voice bot truncated mid-answer on 2026-04-15; could repeat tomorrow and cost deal",
+                  "impact": "CRITICAL \u2014 demo credibility failure in front of customer",
+                  "mitigation": "T1.4: pre-warm all infrastructure; T3.1: demo runbook with kill-switches and fallbacks"
+                },
+                {
+                  "gap": "Call analysis not systematic before closing strategy",
+                  "evidence": "T1.3: 'Without formal read we fly on instinct'; no automated escalation if >24h stale",
+                  "impact": "HIGH \u2014 close strategy improvised; data-driven decisions delayed",
+                  "mitigation": "Integrate 24h TTL on call-grade task; Sensei auto-escalate if >24h stale"
+                },
+                {
+                  "gap": "Pricing/engagement shapes not finalized before customer asks",
+                  "evidence": "T1.2: 'Nate asked about billing. Deck without numbers reads as evasion.'",
+                  "impact": "HIGH \u2014 credibility loss; loses ability to close on first call",
+                  "mitigation": "Pricing decision owners assigned (M + E); deliverable due before call"
+                },
+                {
+                  "gap": "Demo execution disconnected from deck planning",
+                  "evidence": "T3.1: 'Deck slides are scaffolding. The demos are what land.' Demos not scripted.",
+                  "impact": "MEDIUM \u2014 April 30 event may lack cohesive demo narrative; audience confusion",
+                  "mitigation": "T3.1: write demo runbook separate from deck; T3.5: rehearse with actual demos"
+                },
+                {
+                  "gap": "April 30 event logistics not assigned",
+                  "evidence": "No owner for demo laptop, power, WiFi, volunteer runners, post-event data ingest",
+                  "impact": "MEDIUM \u2014 event infrastructure may fail; demos may not run on stage",
+                  "mitigation": "ASSIGN event logistics owner NOW; create pre-event checklist"
+                },
+                {
+                  "gap": "SOW template may not be standardized",
+                  "evidence": "T2.1 specifies content but no SOW template path referenced; each may vary",
+                  "impact": "LOW\u2013MEDIUM \u2014 risk of missing clauses (IP guards, kill switch, audit trail)",
+                  "mitigation": "Create/standardize SOW template; store at canonical path (not copied)"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "tier": "T1 (Tomorrow, 2026-04-16)",
+                  "timeline": "<24 hours (5 items)",
+                  "realistic": "HIGH RISK",
+                  "assessment": "T1.1 (voice-bot <2h or drop) is blocker. If decision made by 9am ET, others feasible. T1.3 (Avery grade by 1pm) very tight; assumes already in progress. T1.5 (rehearsal) routine. RECOMMEND: prioritize T1.1 decision immediately; fall back to text-only if needed."
+                },
+                {
+                  "tier": "T2 (48h after call, by 2026-04-18)",
+                  "timeline": "2 days (4 items)",
+                  "realistic": "FEASIBLE",
+                  "assessment": "All follow-on; contingent on T1 call completion. SOW and CRM depend on shape selection (call outcome). RECOMMEND: have templates and checklists ready for same-day post-call execution."
+                },
+                {
+                  "tier": "T3 (2 weeks, by 2026-04-30)",
+                  "timeline": "14 days (6 items)",
+                  "realistic": "REALISTIC WITH SEQUENCING",
+                  "assessment": "Demo runbook (T3.1) blocks rehearsal (T3.5). Ontology session (T3.2) parallel. ~12 hours T3.1, ~6 hours T3.5, ~3 hours T3.2. 6 items across M, A, E, Av. RECOMMEND: T3.1 starts immediately post-call; T3.2 session week of 2026-04-23; rehearsal week of 2026-04-27."
+                },
+                {
+                  "tier": "T4 (Post-2026-04-30)",
+                  "timeline": "Open-ended, contingent",
+                  "realistic": "REALISTIC IF SHAPE A/B SELECTED",
+                  "assessment": "YouTube + Book (T4.1/T4.2) low priority, contingent on Shape A or B. Attribution (T4.3) post-event. RECOMMEND: deprioritize T4 until shape confirmed."
+                }
+              ],
+              "resource_needs": [
+                {
+                  "item": "Voice-bot fix or fallback decision",
+                  "owner": "Alexander (A)",
+                  "effort": "2\u20134 hours",
+                  "requirements": "Developer time, test environment, Nate's voice sample, VAD parameter access",
+                  "blocker": true,
+                  "deadline": "2026-04-16 14:00 ET"
+                },
+                {
+                  "item": "Engagement shape pricing + positioning",
+                  "owner": "Michael (M) + Ely (E)",
+                  "effort": "4\u20136 hours",
+                  "requirements": "Pricing expertise (M), technical scoping (E), one-page PDF template",
+                  "blocker": true,
+                  "deadline": "2026-04-16 14:00 ET"
+                },
+                {
+                  "item": "Call-grade analysis (BANT + NLP)",
+                  "owner": "Avery (Av)",
+                  "effort": "2\u20133 hours",
+                  "requirements": "Avery availability, Sensei capacity, call recording, escalation protocol if stale",
+                  "blocker": true,
+                  "deadline": "2026-04-16 13:00 ET"
+                },
+                {
+                  "item": "Demo infrastructure pre-warming",
+                  "owner": "Delphi (D)",
+                  "effort": "1\u20132 hours",
+                  "requirements": "@OracleDelphiBot uptime, post-call-report pipeline, sample Nate email processed",
+                  "blocker": false,
+                  "deadline": "2026-04-16 14:00 ET"
+                },
+                {
+                  "item": "April 30 event logistics (UNASSIGNED)",
+                  "owner": "UNASSIGNED",
+                  "effort": "UNKNOWN (estimate 8\u201312 hours coordination)",
+                  "requirements": "Demo laptop, power, WiFi, volunteer runners, post-event data ingest staging, load equipment",
+                  "blocker": true,
+                  "deadline": "2026-04-30"
+                },
+                {
+                  "item": "Demo runbook (April 30)",
+                  "owner": "Alexander (A) + Ely (E)",
+                  "effort": "10\u201312 hours total",
+                  "requirements": "Demo laptop pre-staged, offline ingest path, external volunteer, demo script template",
+                  "blocker": true,
+                  "deadline": "2026-04-30"
+                },
+                {
+                  "item": "Ontology mapping session (with Nate)",
+                  "owner": "Ely (E) + Nate",
+                  "effort": "2\u20133 hours",
+                  "requirements": "Ely + Nate joint availability, ontology template, corpus pre-inventoried (500 transcripts + 15k emails)",
+                  "blocker": false,
+                  "deadline": "2026-04-30"
+                },
+                {
+                  "item": "YouTube corpus pipeline (T4.1)",
+                  "owner": "Forge (F)",
+                  "effort": "20\u201340 hours (contingent)",
+                  "requirements": "Forge dev time, transcription service (whisper), embedding infra",
+                  "blocker": false,
+                  "deadline": "post-2026-04-30"
+                }
+              ],
+              "dependencies": [
+                {
+                  "from": "T1.1 (voice-bot fix decision)",
+                  "to": "T1.4 (demo pre-warming)",
+                  "type": "gates",
+                  "description": "If voice demo disabled, pre-warming must reflect text-only mode"
+                },
+                {
+                  "from": "T1.2 (shape selection from call)",
+                  "to": "T2.1 (SOW draft)",
+                  "type": "blocks",
+                  "description": "SOW cannot be drafted until Nate selects a shape"
+                },
+                {
+                  "from": "T1.2 (shape selection)",
+                  "to": "T2.2 (CRM) + T2.4 (MIG memories)",
+                  "type": "blocks",
+                  "description": "Deal stage, pipeline, and pricing only known after shape selection"
+                },
+                {
+                  "from": "T1.3 (call-grade + BANT)",
+                  "to": "T2.4 (MIG memories deal structure)",
+                  "type": "informs",
+                  "description": "Call analysis informs deal structure and close strategy"
+                },
+                {
+                  "from": "T1.5 (Michael rehearsal)",
+                  "to": "T3.5 (April 30 deck prep)",
+                  "type": "informs",
+                  "description": "Michael owns both Nate close and April 30 deck; rehearsal prepares narrative"
+                },
+                {
+                  "from": "T2.3 (demo design)",
+                  "to": "T3.1 (demo runbook)",
+                  "type": "informs",
+                  "description": "April 30 demo design feeds demo runbook specification"
+                },
+                {
+                  "from": "T3.1 (demo runbook complete)",
+                  "to": "T3.5 (April 30 rehearsal)",
+                  "type": "blocks",
+                  "description": "Runbook must be finalized before rehearsal so A+M can walk actual demos"
+                },
+                {
+                  "from": "T3.2 (ontology mapping with Nate)",
+                  "to": "T4.1 (YouTube) + T4.2 (Book OCR)",
+                  "type": "blocks",
+                  "description": "Ontology defines ingest structure for corpus work"
+                },
+                {
+                  "from": "Shape A or B selected (call outcome)",
+                  "to": "T4 (corpus pipelines)",
+                  "type": "gates",
+                  "description": "T4 only executes if customer commits to Shape A (build) or B (JV)"
+                },
+                {
+                  "from": "April 30 event execution (T3)",
+                  "to": "T4.3 (attribution measurement)",
+                  "type": "blocks",
+                  "description": "Attribution depends on event happening and attendees receiving QR codes"
+                }
+              ],
+              "summary": {
+                "overview": "Nate Lind close call 2026-04-16 followed by April 30 in-person demo in Denver. Three deal shapes proposed; voice-bot at risk; April 30 event logistics UNASSIGNED.",
+                "critical_path": "T1.1 decision \u2192 T1.2 shapes finalized \u2192 Call outcome \u2192 T2.1 SOW + T2.2 CRM \u2192 T3 event prep (demo runbook + rehearsal) \u2192 T4 contingent corpus work",
+                "highest_risk_items": [
+                  "T1.1: Voice-bot fix (2h window; else text-only fallback required)",
+                  "T1.3: Avery call-grade (1pm ET deadline, very tight turnaround)",
+                  "April 30 event logistics (UNASSIGNED; no owner for demo laptop, power, volunteers)"
+                ],
+                "coo_action_items": [
+                  "1. IMMEDIATE: Confirm T1.1 voice-bot fix timeline. If not <2h, approve text-only fallback now.",
+                  "2. Verify Avery is working on T1.3 call-grade. If not, escalate.",
+                  "3. ASSIGN April 30 event logistics owner (demo laptop, power, WiFi, volunteers).",
+                  "4. Have SOW template + engagement-shape pricing ready for same-day post-call execution.",
+                  "5. Schedule Ely + Nate ontology session for week of 2026-04-23 (T3.2) to unblock T3 timeline."
+                ]
+              }
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Fix Voice Activity Detection (VAD) truncation on voice bot OR disable voice demo and switch to text-stream mode entirely",
+                "Per-speaker NLP analysis + BANT scoring for call transcripts",
+                "Pre-warm demo infrastructure for live call performance (sub-5s response times)",
+                "Email threading and processing pipeline with corpus-loading capability",
+                "Post-call-report generation pipeline (automated)",
+                "Three live demos with defined fallback-if-fails paths and kill switches",
+                "Demo laptop profile with offline ingest capability",
+                "YouTube channel transcription + embedding pipeline (bulk)",
+                "Book OCR + chapter segmentation + embedding pipeline",
+                "UTM/QR code attribution tracking for April 30 event inbound\u2192pipeline conversion",
+                "Nate ontology mapping: Deal/Party/Business/Channel/Referral objects \u2192 Meridian graph schema"
+              ],
+              "integrations": [
+                "Sensei daemon for call-grade analysis (MIG-backed, NATS mesh)",
+                "OracleDelphiBot on Telegram for live inference during demos",
+                "TwentyCRM for deal pipeline CRM entry and tracking",
+                "MIG (Neo4j memory system) for deal structure + IP terms storage",
+                "Meridian ontology for corpus ingest (500 transcripts + 15k emails)",
+                "Email ingest pipeline (threading, classification, draft generation)",
+                "YouTube Data API or transcript service (T4.1 scope)",
+                "Post-call-report template system (automated slide/email generation)"
+              ],
+              "security_compliance": [
+                "Cloudflare Tunnel posture for all demo infrastructure",
+                "Kill switch and audit trail requirements in SOW (T2.1)",
+                "Per-channel identity clauses (likely: separate identities for FE International vs Flippa data silos)",
+                "IP/data guardrails for Nate's proprietary business data (transcripts, email corpus, YouTube library, book content)",
+                "Data compartmentalization between FE/Flippa channel partners",
+                "Audit trail for ingest pipeline (who/when ingested which documents)"
+              ],
+              "build_vs_buy": [
+                "Voice bot (VAD truncation): BUILT IN-HOUSE \u2014 fix in-place or disable",
+                "Call analysis (NLP, BANT, grade): BUILT IN-HOUSE via Sensei daemon",
+                "Demo infrastructure & pipeline: BUILT IN-HOUSE",
+                "CRM system: BUY SIGNAL \u2014 using TwentyCRM (SaaS, likely third-party)",
+                "Ingest pipeline (corpus loading): BUILT IN-HOUSE (Meridian)",
+                "YouTube transcription: BUILD vs BUY decision pending (T4.1 owner = Forge, low priority)"
+              ],
+              "tech_risks": [
+                {
+                  "risk": "Voice bot VAD truncation blocks demo credibility",
+                  "severity": "CRITICAL",
+                  "mitigation": "2-hour fix window or fallback to text-only mode; dry-run before call mandatory"
+                },
+                {
+                  "risk": "Demo infrastructure cold-start on live call (research worker warmup time)",
+                  "severity": "HIGH",
+                  "mitigation": "Pre-warm pipeline 10min before call; have sample email pre-processed"
+                },
+                {
+                  "risk": "Email threading/draft pipeline untested at scale (15k email corpus)",
+                  "severity": "MEDIUM",
+                  "mitigation": "Stage one real email from Nate's corpus in processed state before demo"
+                },
+                {
+                  "risk": "Nate ontology mismatch \u2014 500 transcripts + 15k emails may not align with Meridian's entity model",
+                  "severity": "MEDIUM",
+                  "mitigation": "T3.2 ontology session required before bulk ingest; produce mapping doc first"
+                },
+                {
+                  "risk": "April 30 demo fallback paths not pre-tested (three demos need kill switches)",
+                  "severity": "MEDIUM",
+                  "mitigation": "T3.1 runbook must include fallback scripts; dry-run against external volunteer"
+                }
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                {
+                  "decision": "Voice demo mode for tomorrow's call",
+                  "context": "VAD truncation failed on 2026-04-15; will cost deal if repeated",
+                  "options": [
+                    "Fix VAD threshold (if <2h)",
+                    "Switch to text-only demo"
+                  ],
+                  "owner": "Alexander",
+                  "deadline": "2026-04-16 1:45pm ET"
+                },
+                {
+                  "decision": "Three engagement shapes pricing (A/B/C)",
+                  "context": "Nate asked about billing. Numbers are non-negotiable.",
+                  "options": [
+                    "Shape A: Fixed Build (upfront + monthly retainer)",
+                    "Shape B: JV (reduced upfront + rev-share + seller-readiness program)",
+                    "Shape C: 90-Day Boot Camp (cohort fee + upgrade credit)"
+                  ],
+                  "owner": "Michael + Ely",
+                  "deadline": "2026-04-16 by call time",
+                  "deliverable": "One-page PDF with all three shapes + 'best fit if...' self-selection criteria"
+                },
+                {
+                  "decision": "April 30 demo runbook (3 demos locked)",
+                  "context": "Deck is scaffolding; demos are what land. Currently unwritten.",
+                  "owner": "Alexander + Ely",
+                  "deadline": "Before April 30 event",
+                  "deliverable": "Runbook with inputs/outputs/kill-switch/fallback/timing + external volunteer dry-run"
+                },
+                {
+                  "decision": "Nate ontology mapping scope",
+                  "context": "Must map his Deal/Party/Business/Channel/Referral objects to Meridian's before 500 transcripts + 15k emails ingest",
+                  "owner": "Ely (with Nate)",
+                  "deadline": "Before April 30 (contingent on tomorrow's shape selection)",
+                  "risk": "Post-signature scope creep / ingestion stall if not mapped pre-close"
+                },
+                {
+                  "decision": "FE International / Flippa partnership approach",
+                  "decision_made": "DO NOT outreach directly. Note as signal in CRM. Wait for Nate explicit authorization.",
+                  "owner": "Avery",
+                  "why": "His partnerships are not ours to prospect. Burning this damages trust."
+                }
+              ],
+              "opportunities": [
+                {
+                  "opportunity": "YouTube corpus moat",
+                  "description": "Nate's 'thousands of hours' transcribed + embedded + retrievable = defensible product differentiation + public Nate-bot",
+                  "activation": "Post-engagement (T4.1), if Shape A/B selected",
+                  "owner": "Forge"
+                },
+                {
+                  "opportunity": "Rankona 45hr\u219222min case study social proof",
+                  "description": "Concrete proof of transcript-to-insight velocity. Anchors 'we do this all the time' and de-risks Nate's deployment.",
+                  "usage": "Benchmark package (T3.6) + April 30 event mention",
+                  "impact": "Most customers need 4\u20136 week ramp; Nate's 75-deal pre-staged corpus is weeks ahead"
+                },
+                {
+                  "opportunity": "FE International + Flippa referral channels",
+                  "description": "Post-close, if Nate becomes successful reference, his channel relationships become distribution",
+                  "scope": "40\u201360 April 30 attendees likely include deal brokers",
+                  "timeline": "Post-Nate-success activation"
+                },
+                {
+                  "opportunity": "High-quality prospect profile",
+                  "description": "Nate is NEPQ-literate (technical sophistication) + family-provision motive (2x, emotional drive). Low churn risk + high deployment discipline.",
+                  "positioning": "Treat as reference customer, not vendor relationship"
+                },
+                {
+                  "opportunity": "April 30 event attribution",
+                  "description": "Direct pipeline measurement: 40\u201360 attendees \u2192 UTM/QR tracking \u2192 14-day conversion goal \u22653 qualified follow-ups",
+                  "owner": "Avery",
+                  "timeline": "Post-event (T4.3)"
+                }
+              ],
+              "threats": [
+                {
+                  "threat": "Voice-bot VAD truncation (CRITICAL PATH)",
+                  "severity": "DEAL-KILLING",
+                  "mitigation": "T1.1 immediate: reproduce + fix (<2h) OR confirm text-only fallback rehearsed",
+                  "deadline": "2026-04-16 1:45pm ET",
+                  "owner": "Alexander"
+                },
+                {
+                  "threat": "No engagement pricing in deck",
+                  "severity": "HIGH",
+                  "context": "Nate asked about billing. 'A deck without numbers reads as evasion.'",
+                  "mitigation": "T1.2: finalize shapes + one-page PDF with prices",
+                  "deadline": "2026-04-16 by call time",
+                  "owner": "Michael + Ely"
+                },
+                {
+                  "threat": "Cold infrastructure startup on live call",
+                  "severity": "MEDIUM-HIGH",
+                  "context": "Telegram bot, post-call-report pipeline, email corpus not pre-warmed",
+                  "mitigation": "T1.4: verify Telegram <5s, pre-warm pipeline 10min before call, load real email",
+                  "deadline": "2026-04-16 before call",
+                  "owner": "Delphi"
+                },
+                {
+                  "threat": "Michael close-deck rehearsal not locked",
+                  "severity": "MEDIUM-HIGH",
+                  "context": "'Cold reading tanks the close.' Slides 6 (three shapes) + 11 (trial close) are landing points.",
+                  "mitigation": "T1.5: full rehearsal pass <18min, focused on slides 6 + 11",
+                  "deadline": "2026-04-16 before 1:30pm ET",
+                  "owner": "Michael"
+                },
+                {
+                  "threat": "Post-close SOW legal complexity (48h turnaround)",
+                  "severity": "MEDIUM",
+                  "context": "T2.1 requires IP/guardrails, Cloudflare Tunnel posture, kill switch, audit trail, per-channel identity, FE/Flippa silos.",
+                  "mitigation": "Pre-draft SOW template NOW (don't wait for post-close scramble)",
+                  "deadline": "Before 2026-04-16 call",
+                  "owner": "Ely (with Sensei review, Michael signature)"
+                },
+                {
+                  "threat": "Ontology mapping unknowns post-close",
+                  "severity": "MEDIUM",
+                  "context": "If Deal/Party/Business/Channel/Referral mapping friction emerges, 500 transcripts + 15k emails ingestion could stall or balloon scope.",
+                  "mitigation": "T3.2 session (Ely + Nate) before April 30 to lock ingest plan",
+                  "timeline": "Post-close but before April 30"
+                },
+                {
+                  "threat": "April 30 demo runbook not yet written",
+                  "severity": "MEDIUM (event reputational risk)",
+                  "context": "Public event, 40\u201360 attendees. Demo failure = lost lead gen.",
+                  "mitigation": "T3.1: lock 3 demos, write runbook with kill-switch/fallback, dry-run with external volunteer",
+                  "deadline": "Before April 30",
+                  "owner": "Alexander + Ely"
+                },
+                {
+                  "threat": "Execution velocity vs. strategic depth mismatch",
+                  "severity": "LOW-MEDIUM",
+                  "context": "T1 due 24h, T2 due 48h, T3 by April 30. Multiple deferred items (T3.1, T3.2, SOW template).",
+                  "mitigation": "Front-load T1\u2013T2 aggressively tomorrow. T3 is acceptable if April 30 event lands cleanly.",
+                  "recommendation": "Treat Nate as reference customer: he'll probe harder on quality + business fit because he's emotionally invested (family provision 2x) and technically savvy (NEPQ-literate)."
+                }
+              ],
+              "commitments": [
+                "Close call tomorrow 2026-04-16 2:00pm ET (Michael lead, Ely technical, Alexander demo ops)",
+                "Post-close Statement of Work within 48h if shape selected (Ely draft, Sensei review, Michael sign)",
+                "TwentyCRM pipeline entry within 24h with stage STRUCTURE\u2192IC, $120k estimate, full contact/signal data (Avery)",
+                "April 30 live-demo event: 3 pre-staged demos + runbook + external dry-run + benchmark data package (Alexander + Ely)",
+                "Nate ontology mapping session before April 30 to lock 500-transcript + 15k-email ingest plan (Ely with Nate)",
+                "Post-event 14-day inbound attribution measurement, target \u22653 qualified follow-ups (Avery)",
+                "YouTube corpus transcription + Nate-bot (post-engagement, if Shape A/B, Forge owner)",
+                "Book OCR + chapter segmentation (post-engagement, if Shape A/B, Forge owner)",
+                "FE International / Flippa: NO direct outreach until Nate explicitly authorizes (Avery)"
+              ],
+              "narrative_assessment": "MEDIUM ALIGNMENT with slight cracks showing. Positioned correctly: enterprise-grade (Cloudflare, audit trail, kill switches, identity silos), flexible pricing (A/B/C with self-selection), data-first (ontology mapping, 75-deal pre-stage). Positive proof: Rankona 45hr\u219222min case study is concrete + credible. Concern: (1) VAD failure on April 15 contradicts 'we're dialed in'\u2014suggests reactive demo validation, not proactive; (2) Cold-start infrastructure risk tomorrow (Telegram pre-warming, pipeline staging not done) implies prep was last-minute; (3) SOW template not pre-drafted means post-close negotiation will be on Nate's terms, not ours\u2014risky with NEPQ-literate customer; (4) Ontology mapping still TBD post-close could balloon scope if Deal/Party/Channel objects don't map cleanly. Nate's profile (emotionally motivated via family provision 2x + technically sophisticated) means he will probe deeper on both quality and business fit than a typical prospect. If April 30 event or post-close ingest slips, we look unprepared despite positioning as enterprise-ready. RECOMMENDATION: Lock T1\u2013T2 aggressively tomorrow. Pre-draft SOW template NOW. Treat him as reference customer, not transaction."
+            }
+          },
+          "_file": "clients/nate-broker/audits/csuite-audit-todo.json",
+          "_client": "nate-broker"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-03-25T01:09:35.297187+00:00",
           "transcript_file": "clients/omar/agreement audit/audit1.md",
           "transcript_length": 16585,
@@ -39670,16 +40540,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 106
+      "total": 107
     },
     "call_intelligence": {
-      "updated_at": "2026-04-16T13:33:15.526556+00:00",
+      "updated_at": "2026-04-16T13:45:38.832492+00:00",
       "signal_summary": {
         "total_objections": 71,
         "total_buying_signals": 95,
-        "total_competitors": 284,
-        "pricing_discussions": 86,
-        "calls_with_signals": 104
+        "total_competitors": 285,
+        "pricing_discussions": 87,
+        "calls_with_signals": 105
       },
       "decisions": [
         {
@@ -39726,6 +40596,41 @@
           "date": "2026-04-16",
           "call": "Vps Architecture Blueprint",
           "decision": "VPS-to-core communication uses Tailscale private tunnel only; SSH from VPS to core is disabled."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "decision": "April 30 event deck refocused from a Nate-centric case study to an audience-centric 'Promise vs Delivery' arc with Nate as one of three proof operators"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "decision": "Michael will lead the close attempt on the April 16 2:00 PM ET call"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "decision": "April 30 speaker event is positioned inside the deal structure, not as a separate next step"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "decision": "If voice-bot VAD truncation cannot be fixed in under 2 hours, disable voice demo and run the call in text-stream mode instead."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "decision": "Three engagement shapes (Fixed Build, JV revenue-share, 90-Day Boot Camp) will be presented with real numbers on a one-page PDF."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "decision": "FE International and Flippa enterprise angles are flagged but no outreach is authorized until Nate explicitly permits it."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "decision": "Demo menu for April 30 stage event is narrowed to Oracle via Telegram, 2-min pitch graded report, and break-time corpus ingest."
         },
         {
           "date": "2026-04-15",
@@ -41115,6 +42020,51 @@
           "what": "Operator to configure restic repo and offsite backup target (NOT STARTED, no deadline)."
         },
         {
+          "date": "2026-04-16",
+          "call": "Done",
+          "what": "Michael to lead close call on 2026-04-16 at 2:00 PM ET targeting a yes-by-Friday commitment from Nate"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "what": "Avery (Deal Director) tasked with delivering full call grade, BANT scoring, per-speaker NLP, and deal signals for TwentyCRM \u2014 awaiting async return"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Alexander to fix VAD truncation or disable voice demo and complete a dry-run by 1:45PM ET on 2026-04-16."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Michael and Ely Beckman to finalize three engagement shapes with real numbers before the 2PM ET call on 2026-04-16."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Avery to deliver written call grade and BANT signals to clients/nate-broker/signals/ before 1PM ET on 2026-04-16."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Delphi to pre-warm demo infrastructure and confirm green status before the 2PM ET call on 2026-04-16."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Michael to complete a full close-deck rehearsal under 18 minutes before 1:30PM ET on 2026-04-16."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Ely Beckman to draft Statement of Work same day if a shape is selected on the call."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "what": "Michael and Alexander to run a full April 30 deck rehearsal the week of 2026-04-22 before the Denver event."
+        },
+        {
           "date": "2026-04-15",
           "call": "Terminal Blueprint",
           "what": "Atlas/Delphi: MIG seed transfer is ready and staged on racknerd-e3b5f73 port 7688."
@@ -42172,6 +43122,36 @@
           "date": "2026-04-16",
           "call": "Vps Architecture Blueprint",
           "discovery": "VPS recovery SLA is approximately 15 minutes with zero data loss due to NATS message buffering."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "discovery": "Rankona benchmark shows 45-hour workflow compressed to 45 minutes, used as core proof-of-value data point in the close deck"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "discovery": "$200B was spent on enterprise AI in 2025 yet buyers report consistent delivery failures, framing Meridian's memory-graph differentiation"
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "discovery": "Voice bot truncated mid-answer on the 2026-04-15 call, posing a critical risk if not resolved before the close call."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "discovery": "Nate has a 75-deal corpus pre-staged, is NEPQ-literate, has a family-provision motive surfaced twice, and has an April 30 speaker slot offered \u2014 signals of high intent."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "discovery": "Nate's YouTube channel contains thousands of hours of content and he has a published book, both representing high-value corpus assets if a shape commits."
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "discovery": "Pipeline estimate for Nate is $120k with FE International and Flippa as potential enterprise channel partners."
         },
         {
           "date": "2026-04-15",
@@ -43828,6 +44808,142 @@
           "action": {
             "who": "Atlas/team",
             "what": "Decide on offsite backup target (Backblaze B2, S3, or Cloudflare R2)."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "action": {
+            "who": "Michael",
+            "what": "Lead close attempt on April 16 2:00 PM ET call using the deployed 12-slide close deck"
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "action": {
+            "who": "Avery",
+            "what": "Return full call grade, BANT scoring, per-speaker NLP analysis, and deal signals for TwentyCRM"
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Done",
+          "action": {
+            "who": "Michael / Ely",
+            "what": "Present to Nate's 40\u201360 entrepreneur audience at the April 30 Denver event"
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Alexander",
+            "what": "Reproduce VAD truncation, push silence threshold to 900ms and retest, or disable voice demo and confirm text-mode dry-run completes cleanly by 1:45PM ET."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Michael + Ely",
+            "what": "Finalize three engagement shapes (A/B/C) with real numbers and produce a one-page PDF for the close deck before the 2PM ET call."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Avery",
+            "what": "Deliver formal call grade, BANT assessment, and per-speaker NLP output to clients/nate-broker/signals/ before 1PM ET on 2026-04-16."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Delphi",
+            "what": "Pre-warm demo infrastructure: verify OracleDelphiBot responds in under 5 seconds, warm the post-call-report pipeline, and load a Nate corpus email in processed state."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Michael",
+            "what": "Complete one full out-loud rehearsal of the close deck, under 18 minutes, before 1:30PM ET, focusing on slides 6 and 11."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Ely + Sensei + Michael",
+            "what": "Draft, review, and sign Statement of Work same day if Nate selects a shape, incorporating IP/data guardrails, Cloudflare Tunnel posture, and per-channel identity clauses."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Avery",
+            "what": "Create TwentyCRM entry for Nate with stage, pipeline estimate, signals, and contacts within 24 hours of shape commitment."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Alexander + Ely",
+            "what": "Write the April 30 demo runbook covering three demos with inputs, outputs, kill-switches, fallbacks, and stage timing, then dry-run with an outside volunteer."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Ely + Nate",
+            "what": "Conduct an ontology mapping session to align Nate's Deal/Party/Business/Channel/Referral objects with Meridian's ontology and produce a one-page map at clients/nate-broker/ontology.md."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Michael",
+            "what": "Confirm with Nate whether Shape A build delivery is one payment or milestone-based based on his cash flow preference."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Avery",
+            "what": "Note FE International and Flippa enterprise angle in TwentyCRM signals but take no outreach action until Nate authorizes."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Alexander",
+            "what": "Produce benchmark data package for April 30 stage including Rankona 45hr-to-22min case write-up and CCDx analysis output sample."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Forge",
+            "what": "Queue transcription, embedding, and ingest of Nate's YouTube channel corpus and published book, activated if Shape A or B is committed."
+          }
+        },
+        {
+          "date": "2026-04-16",
+          "call": "Todo",
+          "action": {
+            "who": "Avery",
+            "what": "Set up UTM and QR attribution for the April 30 Denver event to measure inbound pipeline conversion within 14 days, targeting at least 3 qualified follow-ups."
           }
         },
         {
@@ -46759,6 +47875,11 @@
         },
         {
           "date": "",
+          "sentiment": "positive",
+          "client": "nate-broker"
+        },
+        {
+          "date": "",
           "sentiment": "neutral",
           "client": "nate-broker"
         },
@@ -47118,13 +48239,13 @@
           "client": "denver-griffin"
         }
       ],
-      "total_decisions": 274,
-      "total_commitments": 210,
-      "total_discoveries": 311,
-      "total_action_items": 373
+      "total_decisions": 281,
+      "total_commitments": 219,
+      "total_discoveries": 317,
+      "total_action_items": 390
     },
     "attention": {
-      "updated_at": "2026-04-16T13:33:15.548745+00:00",
+      "updated_at": "2026-04-16T13:45:38.853157+00:00",
       "items": [
         {
           "type": "blocked",
@@ -47295,8 +48416,14 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-16T13:33:15.548815+00:00",
+      "updated_at": "2026-04-16T13:45:38.853198+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-16T13:33:28Z",
+          "title": "fix(hooks): add Playwright MCP guard to canonical pre-commit hook \u2014 Closes #2268",
+          "detail": "Sensei"
+        },
         {
           "type": "commit",
           "date": "2026-04-16T13:33:11Z",
@@ -47352,12 +48479,6 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-16T13:17:22Z",
-          "title": "docs(forge): update session log + remaining doc with J/B3/H additions + umbrella",
-          "detail": "covaultxyz"
-        },
-        {
           "type": "call",
           "date": "2026-04-16",
           "title": "Avery Session 2026 04 16 Done",
@@ -47373,6 +48494,18 @@
           "type": "call",
           "date": "2026-04-16",
           "title": "Vps Architecture Blueprint",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-16",
+          "title": "Done",
+          "detail": "external \u2014 alex"
+        },
+        {
+          "type": "call",
+          "date": "2026-04-16",
+          "title": "Todo",
           "detail": "external \u2014 alex"
         },
         {
@@ -47396,12 +48529,6 @@
         {
           "type": "issue",
           "date": "2026-04-16",
-          "title": "#2268 Pre-commit hook smoke-test: verify Playwright MCP guard fire",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-16",
           "title": "#2267 fireworks-tech-graph skill: team rollout decision (A/B/C)",
           "detail": "open"
         },
@@ -47409,12 +48536,6 @@
           "type": "issue",
           "date": "2026-04-16",
           "title": "#2266 VPS fleet expansion: Ashburn DR + Strasbourg Rankona (operat",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-16",
-          "title": "#2265 Rankona boardroom: verify runtime MIG callback path (gates V",
           "detail": "open"
         }
       ],
