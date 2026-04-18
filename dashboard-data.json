@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T01:30:37.748896+00:00",
+  "generated_at": "2026-04-18T02:47:52.501547+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-18T01:30:34.655443+00:00",
+      "updated_at": "2026-04-18T02:47:49.287794+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3230,31 +3230,31 @@
         {
           "node": "racknerd-7311420",
           "release": "2026-04-13",
-          "commit": "5fcbd6724",
+          "commit": "aee03b2e4",
           "status": "\u2705 active \u2014 sandman + atlas, autopull converged"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-13",
-          "commit": "5fcbd6724",
+          "commit": "aee03b2e4",
           "status": "\u2705 active \u2014 delphi + avery + evelyn, autopull converged"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-13",
-          "commit": "5fcbd6724",
+          "commit": "aee03b2e4",
           "status": "\u2705 active \u2014 sensei, Neo4j Docker healthy, autopull converged"
         },
         {
           "node": "r-ubuntu",
           "release": "2026-04-10",
-          "commit": "5fcbd6724",
+          "commit": "aee03b2e4",
           "status": "\u2705 active \u2014 forge-worker connected to NATS, Ubuntu 24.04, Tailscale 100.79.107.77"
         },
         {
           "node": "toshiba-linux",
           "release": "2026-04-10",
-          "commit": "5fcbd6724",
+          "commit": "aee03b2e4",
           "status": "\u2705 active \u2014 forge-worker online (14 capabilities), Ubuntu 24.04, Tailscale 100.101.165.88"
         },
         {
@@ -3273,18 +3273,39 @@
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         },
         {
-          "daemon": "sensei",
-          "pid": "91439",
-          "terminal": "ttys014",
-          "launched": "2026-04-17T23:37",
-          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
-        },
-        {
           "daemon": "delphi",
           "pid": "66165",
           "terminal": "ttys016",
           "launched": "2026-04-18T01:16",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "10562",
+          "terminal": "ttys017",
+          "launched": "2026-04-18T01:51",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "29214",
+          "terminal": "ttys019",
+          "launched": "2026-04-18T02:06",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "25931",
+          "terminal": "ttys021",
+          "launched": "2026-04-18T02:18",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
+        },
+        {
+          "daemon": "forge",
+          "pid": "28064",
+          "terminal": "ttys023",
+          "launched": "2026-04-18T02:18",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/forge"
         }
       ],
       "daemon_tasks": [
@@ -3659,27 +3680,27 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 230 hours old"
+        "_stale_warning": "Data is 231 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-18T01:30:37.565797+00:00",
+      "updated_at": "2026-04-18T02:47:52.339084+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "medium": 4,
+          "infrastructure": 6,
+          "grade/A": 8,
+          "bug": 4,
+          "critical": 1,
           "sentinel-review:fail": 2,
           "sentinel-review:pass": 1,
           "sentinel-review:warn": 5,
-          "medium": 3,
           "testing": 1,
-          "grade/B": 21,
+          "grade/B": 20,
           "enhancement": 3,
           "low": 4,
           "cursor-bench": 4,
-          "bug": 4,
-          "high": 4,
-          "infrastructure": 5,
-          "grade/A": 7,
           "ops": 1,
           "brain": 2,
           "checkpoint": 2,
@@ -3689,22 +3710,54 @@
           "audit": 1,
           "documentation": 2,
           "grade/C": 7,
+          "high": 3,
           "human-only": 1,
           "daemon/sensei": 1,
           "needs-review": 2,
           "business/opportunity": 4,
-          "P1": 7,
-          "client:nate-broker": 12,
+          "P1": 6,
+          "client:nate-broker": 11,
           "P2": 5
         }
       },
       "recent_issues": [
         {
+          "number": 2408,
+          "title": "Add max_connection_pool_size to all Neo4j driver instantiations across workers",
+          "state": "open",
+          "created_at": "2026-04-18T02:16:31Z",
+          "updated_at": "2026-04-18T02:30:19Z",
+          "labels": [
+            "medium",
+            "infrastructure",
+            "grade/A"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2408",
+          "project_slug": "openclaw"
+        },
+        {
+          "number": 2407,
+          "title": "meridian-prime load crisis: 5 root causes identified and remediated",
+          "state": "open",
+          "created_at": "2026-04-18T02:11:50Z",
+          "updated_at": "2026-04-18T02:15:17Z",
+          "labels": [
+            "bug",
+            "critical",
+            "infrastructure",
+            "grade/A"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2407",
+          "project_slug": "openclaw"
+        },
+        {
           "number": 2406,
           "title": "feat(#2359): ronin on Canonical Node-Daemon Map",
           "state": "open",
           "created_at": "2026-04-18T00:22:47Z",
-          "updated_at": "2026-04-18T00:24:49Z",
+          "updated_at": "2026-04-18T01:57:29Z",
           "labels": [
             "sentinel-review:fail"
           ],
@@ -3717,7 +3770,7 @@
           "title": "fix(#2354): Task Resolution Rate \u2014 exclude GitHub PRs from issue counts",
           "state": "open",
           "created_at": "2026-04-18T00:10:15Z",
-          "updated_at": "2026-04-18T00:14:57Z",
+          "updated_at": "2026-04-18T01:57:23Z",
           "labels": [
             "sentinel-review:pass"
           ],
@@ -3768,22 +3821,6 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2400",
           "project_slug": null
-        },
-        {
-          "number": 2398,
-          "title": "Deploy web scraper bridge fixes to production (domain_hints + source_url)",
-          "state": "open",
-          "created_at": "2026-04-17T21:10:03Z",
-          "updated_at": "2026-04-17T21:16:05Z",
-          "labels": [
-            "bug",
-            "high",
-            "infrastructure",
-            "grade/A"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2398",
-          "project_slug": "openclaw"
         },
         {
           "number": 2397,
@@ -4391,31 +4428,125 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2249",
           "project_slug": null
-        },
-        {
-          "number": 2247,
-          "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:20Z",
-          "updated_at": "2026-04-16T13:35:39Z",
-          "labels": [
-            "grade/B",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2247",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
+        "openclaw": [
+          {
+            "number": 2408,
+            "title": "Add max_connection_pool_size to all Neo4j driver instantiations across workers",
+            "state": "open",
+            "created_at": "2026-04-18T02:16:31Z",
+            "updated_at": "2026-04-18T02:30:19Z",
+            "labels": [
+              "medium",
+              "infrastructure",
+              "grade/A"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2408",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2407,
+            "title": "meridian-prime load crisis: 5 root causes identified and remediated",
+            "state": "open",
+            "created_at": "2026-04-18T02:11:50Z",
+            "updated_at": "2026-04-18T02:15:17Z",
+            "labels": [
+              "bug",
+              "critical",
+              "infrastructure",
+              "grade/A"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2407",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2390,
+            "title": "infra: gateway8 (100.73.1.114) unreachable via Tailscale \u2014 Loki/Prometheus/Grafana dark",
+            "state": "open",
+            "created_at": "2026-04-17T13:15:29Z",
+            "updated_at": "2026-04-17T13:30:18Z",
+            "labels": [
+              "infrastructure",
+              "grade/B",
+              "ops"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2390",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2361,
+            "title": "Adversary gate: Phase 1 readiness review \u2014 7-day shadow data gate (2026-04-23)",
+            "state": "open",
+            "created_at": "2026-04-17T02:21:54Z",
+            "updated_at": "2026-04-17T23:56:46Z",
+            "labels": [
+              "security",
+              "grade/A"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2361",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2342,
+            "title": "PR #2182: operator action required \u2014 approve RejectedResearch in ontology.yaml + author fix ExecStart",
+            "state": "open",
+            "created_at": "2026-04-16T22:05:43Z",
+            "updated_at": "2026-04-16T22:15:33Z",
+            "labels": [
+              "high",
+              "infrastructure",
+              "grade/B",
+              "human-only"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2342",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2270,
+            "title": "Diagram atlas maintenance: ownership + refresh cadence",
+            "state": "open",
+            "created_at": "2026-04-16T13:21:54Z",
+            "updated_at": "2026-04-16T13:30:29Z",
+            "labels": [
+              "documentation",
+              "low",
+              "infrastructure",
+              "grade/C"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2270",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 2266,
+            "title": "VPS fleet expansion: Ashburn DR + Strasbourg Rankona (operator decision)",
+            "state": "open",
+            "created_at": "2026-04-16T13:21:49Z",
+            "updated_at": "2026-04-16T14:12:00Z",
+            "labels": [
+              "high",
+              "infrastructure",
+              "grade/B"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2266",
+            "project_slug": "openclaw"
+          }
+        ],
         "unassigned": [
           {
             "number": 2406,
             "title": "feat(#2359): ronin on Canonical Node-Daemon Map",
             "state": "open",
             "created_at": "2026-04-18T00:22:47Z",
-            "updated_at": "2026-04-18T00:24:49Z",
+            "updated_at": "2026-04-18T01:57:29Z",
             "labels": [
               "sentinel-review:fail"
             ],
@@ -4428,7 +4559,7 @@
             "title": "fix(#2354): Task Resolution Rate \u2014 exclude GitHub PRs from issue counts",
             "state": "open",
             "created_at": "2026-04-18T00:10:15Z",
-            "updated_at": "2026-04-18T00:14:57Z",
+            "updated_at": "2026-04-18T01:57:23Z",
             "labels": [
               "sentinel-review:pass"
             ],
@@ -4962,115 +5093,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2249",
             "project_slug": null
-          },
-          {
-            "number": 2247,
-            "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:20Z",
-            "updated_at": "2026-04-16T13:35:39Z",
-            "labels": [
-              "grade/B",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2247",
-            "project_slug": null
-          }
-        ],
-        "openclaw": [
-          {
-            "number": 2398,
-            "title": "Deploy web scraper bridge fixes to production (domain_hints + source_url)",
-            "state": "open",
-            "created_at": "2026-04-17T21:10:03Z",
-            "updated_at": "2026-04-17T21:16:05Z",
-            "labels": [
-              "bug",
-              "high",
-              "infrastructure",
-              "grade/A"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2398",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2390,
-            "title": "infra: gateway8 (100.73.1.114) unreachable via Tailscale \u2014 Loki/Prometheus/Grafana dark",
-            "state": "open",
-            "created_at": "2026-04-17T13:15:29Z",
-            "updated_at": "2026-04-17T13:30:18Z",
-            "labels": [
-              "infrastructure",
-              "grade/B",
-              "ops"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2390",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2361,
-            "title": "Adversary gate: Phase 1 readiness review \u2014 7-day shadow data gate (2026-04-23)",
-            "state": "open",
-            "created_at": "2026-04-17T02:21:54Z",
-            "updated_at": "2026-04-17T23:56:46Z",
-            "labels": [
-              "security",
-              "grade/A"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2361",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2342,
-            "title": "PR #2182: operator action required \u2014 approve RejectedResearch in ontology.yaml + author fix ExecStart",
-            "state": "open",
-            "created_at": "2026-04-16T22:05:43Z",
-            "updated_at": "2026-04-16T22:15:33Z",
-            "labels": [
-              "high",
-              "infrastructure",
-              "grade/B",
-              "human-only"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2342",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2270,
-            "title": "Diagram atlas maintenance: ownership + refresh cadence",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:54Z",
-            "updated_at": "2026-04-16T13:30:29Z",
-            "labels": [
-              "documentation",
-              "low",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2270",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2266,
-            "title": "VPS fleet expansion: Ashburn DR + Strasbourg Rankona (operator decision)",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:49Z",
-            "updated_at": "2026-04-16T14:12:00Z",
-            "labels": [
-              "high",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2266",
-            "project_slug": "openclaw"
           }
         ],
         "graph-intelligence": [
@@ -5127,65 +5149,93 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-18T01:17:51Z",
-        "head_sha": "5fcbd672"
+        "status": "completed",
+        "conclusion": "success",
+        "name": "CI",
+        "created_at": "2026-04-18T02:43:15Z",
+        "head_sha": "aee03b2e"
       },
       "ci_recent_runs": [
         {
-          "id": 24593566885,
-          "name": "CI Full",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-18T01:17:51Z",
-          "updated_at": "2026-04-18T01:17:51Z",
-          "head_sha": "5fcbd672",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24593566885"
-        },
-        {
-          "id": 24592129062,
+          "id": 24595138397,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-04-18T00:10:18Z",
-          "updated_at": "2026-04-18T00:24:40Z",
-          "head_sha": "c46a3355",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24592129062"
+          "created_at": "2026-04-18T02:43:15Z",
+          "updated_at": "2026-04-18T02:43:27Z",
+          "head_sha": "aee03b2e",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24595138397"
         },
         {
-          "id": 24591147195,
-          "name": "CI Full",
+          "id": 24594918419,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-17T23:29:42Z",
-          "updated_at": "2026-04-18T00:30:09Z",
-          "head_sha": "705cc309",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24591147195"
+          "conclusion": "skipped",
+          "created_at": "2026-04-18T02:30:22Z",
+          "updated_at": "2026-04-18T02:30:23Z",
+          "head_sha": "13c9ec4b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24594918419"
         },
         {
-          "id": 24590680752,
+          "id": 24594679827,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-18T02:16:35Z",
+          "updated_at": "2026-04-18T02:16:35Z",
+          "head_sha": "13c9ec4b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24594679827"
+        },
+        {
+          "id": 24594679872,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-18T02:16:35Z",
+          "updated_at": "2026-04-18T02:16:35Z",
+          "head_sha": "13c9ec4b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24594679872"
+        },
+        {
+          "id": 24594673682,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-04-17T23:11:51Z",
-          "updated_at": "2026-04-17T23:47:55Z",
-          "head_sha": "705cc309",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24590680752"
-        },
-        {
-          "id": 24589860966,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-17T22:42:23Z",
-          "updated_at": "2026-04-17T23:11:52Z",
-          "head_sha": "b795179d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24589860966"
+          "created_at": "2026-04-18T02:16:14Z",
+          "updated_at": "2026-04-18T02:16:25Z",
+          "head_sha": "13c9ec4b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24594673682"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "c86d574c",
+          "message": "chore: update boot-state files \u2014 deployed aee03b2e4",
+          "author": "covaultxyz",
+          "date": "2026-04-18T02:47:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c86d574c3e67705ceb42876f320dcf80aec61b9a"
+        },
+        {
+          "sha": "aee03b2e",
+          "message": "fix(#2408): add max_connection_pool_size=5 to 14 Neo4j driver sites in long-running services",
+          "author": "covaultxyz",
+          "date": "2026-04-18T02:43:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/aee03b2e410b7f9ad0e566b882ac7288bc435f39"
+        },
+        {
+          "sha": "13c9ec4b",
+          "message": "fix: prime load incident remediation \u2014 pool caps + axiom offload",
+          "author": "covaultxyz",
+          "date": "2026-04-18T02:16:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/13c9ec4b669b639c16b9e93812a20b785fa3bc4f"
+        },
+        {
+          "sha": "73575ba0",
+          "message": "Fix: redirect buyer team+practice URL to Meridian Sales Boardroom; hide buyer team from selector",
+          "author": "covaultxyz",
+          "date": "2026-04-18T01:39:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/73575ba000a7ca57ad0054c7e9d6e47614dcc06b"
+        },
         {
           "sha": "9a9e0f35",
           "message": "chore: update boot-state files \u2014 deployed 5fcbd6724",
@@ -5227,38 +5277,10 @@
           "author": "covaultxyz",
           "date": "2026-04-18T00:33:16Z",
           "url": "https://github.com/covaultxyz/meridian/commit/b3d8b9fcafc56eb1d8b2f08237e82aa145aff66e"
-        },
-        {
-          "sha": "7908d085",
-          "message": "feat: monthly fleet maintenance script + LaunchAgent",
-          "author": "covaultxyz",
-          "date": "2026-04-18T00:25:53Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7908d0859839c57ed2c814d0c2c452e267ba168e"
-        },
-        {
-          "sha": "0bd5ed11",
-          "message": "fix(boardroom): iOS audio codec compatibility \u2014 dynamic MIME type for Chrome/Brave on iPhone",
-          "author": "covaultxyz",
-          "date": "2026-04-18T00:23:54Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0bd5ed11ac3d7fbccf57a060c618617bbe03cde5"
-        },
-        {
-          "sha": "c46a3355",
-          "message": "fix(metrics): exclude auto-created issues from closed count for symmetric task_resolution_rate",
-          "author": "covaultxyz",
-          "date": "2026-04-18T00:10:10Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c46a3355cfca84fd85a8a8c8efb7f043222c452d"
-        },
-        {
-          "sha": "d4f45916",
-          "message": "feat(boardroom): preflight contact form before Cal.com booking modal",
-          "author": "covaultxyz",
-          "date": "2026-04-17T23:51:08Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d4f4591686a36d10b57e8d5ae761ec87a7d26928"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-18T01:30:35.438321+00:00",
+        "updated_at": "2026-04-18T02:47:50.094149+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5460,7 +5482,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "members": [
         {
           "id": "alex",
@@ -5533,7 +5555,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "projects": [
         {
           "project": {
@@ -5963,7 +5985,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6048,7 +6070,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6145,7 +6167,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -9937,7 +9959,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-18T01:30:37.700447+00:00",
+      "updated_at": "2026-04-18T02:47:52.473252+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12077,7 +12099,7 @@
       "total_docs": 354
     },
     "deals": {
-      "updated_at": "2026-04-18T01:30:37.700549+00:00",
+      "updated_at": "2026-04-18T02:47:52.473349+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12319,7 +12341,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-18T01:30:37.565809+00:00",
+      "updated_at": "2026-04-18T02:47:52.339096+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -36705,7 +36727,7 @@
       "total": 99
     },
     "call_intelligence": {
-      "updated_at": "2026-04-18T01:30:37.729708+00:00",
+      "updated_at": "2026-04-18T02:47:52.483346+00:00",
       "signal_summary": {
         "total_objections": 71,
         "total_buying_signals": 95,
@@ -43537,7 +43559,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-18T01:30:37.748844+00:00",
+      "updated_at": "2026-04-18T02:47:52.501499+00:00",
       "items": [
         {
           "type": "blocked",
@@ -43708,8 +43730,32 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-18T01:30:37.748885+00:00",
+      "updated_at": "2026-04-18T02:47:52.501537+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-18T02:47:48Z",
+          "title": "chore: update boot-state files \u2014 deployed aee03b2e4",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-18T02:43:05Z",
+          "title": "fix(#2408): add max_connection_pool_size=5 to 14 Neo4j driver sites in long-runn",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-18T02:16:05Z",
+          "title": "fix: prime load incident remediation \u2014 pool caps + axiom offload",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-18T01:39:23Z",
+          "title": "Fix: redirect buyer team+practice URL to Meridian Sales Boardroom; hide buyer te",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-18T01:30:34Z",
@@ -43747,22 +43793,16 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-18T00:25:53Z",
-          "title": "feat: monthly fleet maintenance script + LaunchAgent",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-18",
+          "title": "#2408 Add max_connection_pool_size to all Neo4j driver instantiati",
+          "detail": "open"
         },
         {
-          "type": "commit",
-          "date": "2026-04-18T00:23:54Z",
-          "title": "fix(boardroom): iOS audio codec compatibility \u2014 dynamic MIME type for Chrome/Bra",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-18T00:10:10Z",
-          "title": "fix(metrics): exclude auto-created issues from closed count for symmetric task_r",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-18",
+          "title": "#2407 meridian-prime load crisis: 5 root causes identified and rem",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -43775,12 +43815,6 @@
           "date": "2026-04-18",
           "title": "#2405 fix(#2354): Task Resolution Rate \u2014 exclude GitHub PRs from i",
           "detail": "open"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-17T23:51:08Z",
-          "title": "feat(boardroom): preflight contact form before Cal.com booking modal",
-          "detail": "covaultxyz"
         },
         {
           "type": "issue",
@@ -43803,12 +43837,6 @@
         {
           "type": "issue",
           "date": "2026-04-17",
-          "title": "#2398 Deploy web scraper bridge fixes to production (domain_hints ",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-17",
           "title": "#2397 feat(#2262): Phase 4: CLI Entrypoint and Testing",
           "detail": "open"
         },
@@ -43822,12 +43850,6 @@
           "type": "issue",
           "date": "2026-04-17",
           "title": "#2394 feat(#2264): Phase 2 \u2014 TwentyCRM channel partner worker",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2393 Fix: sifu zombie sessions \u2014 cursor-agent PTY spawns inherit ",
           "detail": "open"
         }
       ],
