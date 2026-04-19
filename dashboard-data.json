@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T15:57:56.916907+00:00",
+  "generated_at": "2026-04-19T16:09:31.435295+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-19T15:57:53.957492+00:00",
+      "updated_at": "2026-04-19T16:09:28.735736+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1757,6 +1757,26 @@
           "buying_signal_count": 1,
           "sentiment": "positive",
           "suggested_stage": "proposal",
+          "participants": []
+        },
+        {
+          "client": "rankona-mazon",
+          "call_id": "deal-scenarios-april19",
+          "title": "deal-scenarios-april19",
+          "file": "clients/rankona-mazon/signals/deal-signals-deal-scenarios-april19-2026-04-19.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -3431,7 +3451,7 @@
       "call_volume": {
         "unknown": 11,
         "rpm-capital": 1,
-        "rankona-mazon": 31,
+        "rankona-mazon": 32,
         "omar": 1,
         "nate-broker": 4,
         "meridian-internal": 33,
@@ -3439,7 +3459,7 @@
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 122,
+      "total_signals": 123,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -4021,7 +4041,7 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-19T15:57:56.720482+00:00",
+      "updated_at": "2026-04-19T16:09:31.250124+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -5471,13 +5491,23 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI Full",
-        "created_at": "2026-04-19T15:28:29Z",
-        "head_sha": "5c4dfcf1"
+        "status": "completed",
+        "conclusion": "failure",
+        "name": "Deploy Dashboard to GitHub Pages",
+        "created_at": "2026-04-19T15:58:01Z",
+        "head_sha": "066aecbd"
       },
       "ci_recent_runs": [
+        {
+          "id": 24633149266,
+          "name": "Deploy Dashboard to GitHub Pages",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-04-19T15:58:01Z",
+          "updated_at": "2026-04-19T15:58:52Z",
+          "head_sha": "066aecbd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24633149266"
+        },
         {
           "id": 24632559365,
           "name": "CI Full",
@@ -5517,19 +5547,30 @@
           "updated_at": "2026-04-19T13:23:38Z",
           "head_sha": "5c4dfcf1",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24629234664"
-        },
-        {
-          "id": 24627974410,
-          "name": "CI Full",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-19T11:26:46Z",
-          "updated_at": "2026-04-19T12:12:08Z",
-          "head_sha": "5c4dfcf1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24627974410"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "f5ff9183",
+          "message": "fix: force Gemini Live API v1alpha \u2014 gemini-2.0-flash-live-001 not in v1beta",
+          "author": "covaultxyz",
+          "date": "2026-04-19T16:09:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f5ff91839222da7c22f6b25cb3762457a563b33e"
+        },
+        {
+          "sha": "066aecbd",
+          "message": "Add Rankona deal scenario modeling \u2014 8 risk scenarios, 4 outcome bundles (April 19)",
+          "author": "covaultxyz",
+          "date": "2026-04-19T15:57:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/066aecbdd14f7d445a2dee6fedbd7e4288cec323"
+        },
+        {
+          "sha": "e6992757",
+          "message": "auto-commit(cursor-agent): #2419: #2419 human-os: Calendar Prep \u2014 15-min pre-brief via Telegram before every meeting",
+          "author": "covaultxyz",
+          "date": "2026-04-19T09:03:08Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e69927576f2f4c4fab5bfadc691cd6c17be5ab19"
+        },
         {
           "sha": "5c4dfcf1",
           "message": "chore: update boot-state files \u2014 deployed 49c5fc981",
@@ -5578,31 +5619,10 @@
           "author": "covaultxyz",
           "date": "2026-04-19T06:08:17Z",
           "url": "https://github.com/covaultxyz/meridian/commit/8c165d1bce0214404e0f4f9bc7c2e72f4ee7d5cb"
-        },
-        {
-          "sha": "70a6b2f4",
-          "message": "Fix phase number cross-references in federation SOP",
-          "author": "covaultxyz",
-          "date": "2026-04-19T05:45:31Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/70a6b2f46fa9d38e770ba9fd5d376802be95d925"
-        },
-        {
-          "sha": "8610e988",
-          "message": "Improve federation SOP: fix 4 contradictions, add 9 gaps, cover 6 blind spots",
-          "author": "covaultxyz",
-          "date": "2026-04-19T05:40:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8610e988e753df39acdd780c83d1d6030192b3c0"
-        },
-        {
-          "sha": "6766d649",
-          "message": "boardroom: iPhone incoming-call overlay redesign \u2014 large phone, vibration ring, CSS orbs blue\u2192orange",
-          "author": "covaultxyz",
-          "date": "2026-04-19T05:38:24Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6766d649bbd22ec95f3d5805018c37fc32ffca1a"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-19T15:57:54.924218+00:00",
+        "updated_at": "2026-04-19T16:09:29.453837+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5804,7 +5824,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "members": [
         {
           "id": "alex",
@@ -5877,7 +5897,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "projects": [
         {
           "project": {
@@ -6307,7 +6327,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6392,7 +6412,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6489,7 +6509,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -10281,7 +10301,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-19T15:57:56.859227+00:00",
+      "updated_at": "2026-04-19T16:09:31.383836+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12427,7 +12447,7 @@
       "total_docs": 355
     },
     "deals": {
-      "updated_at": "2026-04-19T15:57:56.859340+00:00",
+      "updated_at": "2026-04-19T16:09:31.383953+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12669,7 +12689,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-19T15:57:56.720498+00:00",
+      "updated_at": "2026-04-19T16:09:31.250135+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -31397,6 +31417,369 @@
         },
         {
           "audit_version": "1.0",
+          "audited_at": "2026-04-19T16:01:06.265209+00:00",
+          "transcript_file": "clients/rankona-mazon/deal-scenarios-april19.md",
+          "transcript_length": 16550,
+          "classification": {
+            "call_type": "internal",
+            "our_participants": [],
+            "their_participants": [],
+            "call_topic": ""
+          },
+          "personas_run": [
+            "COO",
+            "CTO",
+            "CEO"
+          ],
+          "persona_insights": {
+            "COO": {
+              "action_items": [
+                {
+                  "item": "Obtain Rankona's actual quarterly net profit baseline",
+                  "owner": "Avery Vale / Michael",
+                  "deadline": "Before May 2026 contract execution",
+                  "priority": "CRITICAL",
+                  "reason": "Deal structure example used illustrative $100K but actual baseline unknown. Blocks realistic Year 1 cash modeling and break-even analysis.",
+                  "source": "Section 1B, 2B: 'The open question nobody has answered: What is Rankona's actual quarterly net profit?'"
+                },
+                {
+                  "item": "Finalize vesting structure (3-year vs. December 31 checkpoint)",
+                  "owner": "Avery Vale / Michael",
+                  "deadline": "Before May 2026 contract execution",
+                  "priority": "CRITICAL",
+                  "reason": "Currently 'under negotiation.' December checkpoint creates November exit cliff (month 7 work = $0 to MERIDIAN).",
+                  "source": "Baseline Assumptions table, Section 2C risk analysis"
+                },
+                {
+                  "item": "Implement dual-trigger exit vesting: (exit after month 6) OR (December 31 if no exit)",
+                  "owner": "Avery Vale / Michael / Legal",
+                  "deadline": "Before contract execution",
+                  "priority": "CRITICAL",
+                  "reason": "RISK-2 mitigation. Current structure pays zero if exit occurs in November. Must separate exit-event trigger from calendar checkpoint.",
+                  "source": "Section 2C: 'The checkpoint should be: vest triggers on exit event occurring after month 6, OR on December 31 if no exit occurs.'"
+                },
+                {
+                  "item": "Establish Q4 survival clause for profit share",
+                  "owner": "Avery Vale / Michael / Legal",
+                  "deadline": "Before contract execution",
+                  "priority": "HIGH",
+                  "reason": "RISK-1 mitigation (probability 35%). Prevents Carl from wind-down in January 2027 without paying Q4 accruals.",
+                  "source": "Section 3, RISK-1: 'Survival clause required \u2014 Q4 profit share is owed to MERIDIAN regardless of termination date...'"
+                },
+                {
+                  "item": "Define attribution methodology: lock 30-day pre-engagement P&L baseline",
+                  "owner": "Avery Vale / Legal",
+                  "deadline": "Before contract execution",
+                  "priority": "HIGH",
+                  "reason": "RISK-3 mitigation (probability 60%). Eliminates seasonal dispute over Q2-Q3 improvements. Contract language must state: any improvement above baseline snapshot from execution date forward is profit-shareable.",
+                  "source": "Section 3, RISK-3 Mitigation: 'Remove 12-month trailing baseline \u2014 replace with 30-day pre-engagement snapshot'"
+                },
+                {
+                  "item": "Deploy @RankonaBot weekly optimization logging",
+                  "owner": "MERIDIAN operations / engineering",
+                  "deadline": "Week 1 of engagement (early May 2026)",
+                  "priority": "HIGH",
+                  "reason": "RISK-3 mitigation. Creates audit trail (listing changes, dates, sales movement) to defend profit share attribution claims.",
+                  "source": "Section 3, RISK-3 Mitigation: 'Weekly optimization logs via @RankonaBot create a paper trail connecting MERIDIAN actions to listing changes to sales movement'"
+                },
+                {
+                  "item": "Negotiate exclusivity framework with Carl",
+                  "owner": "Avery Vale / Michael",
+                  "deadline": "Before contract execution",
+                  "priority": "HIGH",
+                  "reason": "RISK-4 (probability 70% if unaddressed). Prevent day-1 exclusivity that blocks MERIDIAN from concurrent Amazon seller deals.",
+                  "source": "Section 3, RISK-4: 'exclusivity blocking MERIDIAN from working with other Amazon sellers...If engagement fails or Carl delays access provisioning, MERIDIAN has foregone alternative revenue for nothing'"
+                }
+              ],
+              "process_gaps": [
+                {
+                  "gap": "Rankona baseline profit unknown",
+                  "impact": "Year 1 cash forecasts span $43.5K\u2013$143.5K depending on unknown baseline tier. Cannot validate deal viability.",
+                  "evidence": "Section 1A-1B: 'What is Rankona's actual quarterly net profit? The deal structure example used $100K but that was illustrative.'",
+                  "required_by": "May 2026 execution",
+                  "resolution": "Request Q1 2026 P&L + Q2 YTD snapshot from Carl; lock as baseline reference in contract"
+                },
+                {
+                  "gap": "Exit timing cliff in December checkpoint structure",
+                  "impact": "November 2026 exit (month 7) = $0 to MERIDIAN despite 7 months work. At $30M exit = $5M loss.",
+                  "evidence": "Section 2C: 'An exit in November 2026 (month 7)...still pays MERIDIAN zero if the checkpoint structure is used as written.'",
+                  "required_by": "May 2026 execution",
+                  "resolution": "Use dual-trigger: vest on (exit after month 6) OR (December 31), not either/or"
+                },
+                {
+                  "gap": "Vesting structure decision still open",
+                  "impact": "Three scenarios (3-year, checkpoint, exit-triggered) have different Year 1 cash and exit participation outcomes. No decision framework or owner named.",
+                  "evidence": "Baseline table: 'Vesting structure | Under negotiation (3-yr vs Dec 31 checkpoint) | Open'",
+                  "required_by": "April 2026 (to finalize contract terms)",
+                  "resolution": "Avery to model all three, present recommendation with financials, get Michael sign-off by April 15"
+                },
+                {
+                  "gap": "Attribution methodology not pre-established",
+                  "impact": "Carl will dispute Q2-Q3 profit share (RISK-3: 60% probability). Without baseline snapshot or audit trail, MERIDIAN cannot defend claims.",
+                  "evidence": "Section 3, RISK-3: 'MERIDIAN begins optimizing from Week 1...Carl argues improvements are seasonal market recovery \u2014 not MERIDIAN's contribution. Profit share disputed for first 2\u20133 quarters.'",
+                  "required_by": "May 2026 contract execution (methodology) + May week 1 (logging deployment)",
+                  "resolution": "Lock contract language + deploy @RankonaBot day 1"
+                },
+                {
+                  "gap": "@RankonaBot deployment timeline undefined",
+                  "impact": "Audit trail for attribution defense is planned but no deployment date, integration spec, or reporting format stated.",
+                  "evidence": "RISK-3 mitigation references tool but no implementation schedule",
+                  "required_by": "May 2026 week 1",
+                  "resolution": "MERIDIAN ops to define integration by April 30, deploy day-1 post-contract"
+                },
+                {
+                  "gap": "Exclusivity terms incomplete",
+                  "impact": "RISK-4 cuts off mid-mitigation. If Carl demands day-1 category exclusivity and engagement falters, MERIDIAN loses 2\u20133 months alternative revenue (probability 70%).",
+                  "evidence": "Section 3, RISK-4: incomplete (last sentence cuts off)",
+                  "required_by": "May 2026 execution",
+                  "resolution": "Define three options: (a) category exclusivity with 6-mo revert on termination, (b) seller-only not category, (c) underutilization carve-out"
+                },
+                {
+                  "gap": "No post-IC approval workflow",
+                  "impact": "Document is pre-IC but shareholder approval is gating item. No stated handoff: IC approval \u2192 shareholder approval \u2192 MERIDIAN final sign-off \u2192 contract signature.",
+                  "evidence": "Project memory: 'IC stage pending shareholder approval' + Section 1: 'Status: Internal analysis. Pre-IC. Do not distribute.'",
+                  "required_by": "April 2026",
+                  "resolution": "Define MERIDIAN decision gates (Michael + Avery) and approval criteria before shareholder vote"
+                },
+                {
+                  "gap": "Staffing plan not detailed",
+                  "impact": "Document notes 'at 2\u20133 people touching this account' but engagement economics are below viable unless baseline is Tier 2+ with 30%+ growth. No resource allocation for optimization work.",
+                  "evidence": "Section 1A: 'At 2\u20133 people touching this account, that is below minimum viable engagement economics.'",
+                  "required_by": "May 2026 execution",
+                  "resolution": "Confirm staffing plan and confirm Year 1 cash forecast is above $80K before signing"
+                }
+              ],
+              "delivery_timelines": [
+                {
+                  "milestone": "Rankona shareholder approval",
+                  "target_date": "Mid-April 2026",
+                  "stated_condition": "IC stage pending shareholder approval",
+                  "realism_assessment": "MEDIUM \u2014 no explicit shareholder vote timeline provided. Assumes approval imminent, not weeks-long delay.",
+                  "risk": "If vote delayed past April 20, May 2026 execution date compressed"
+                },
+                {
+                  "milestone": "Contract execution",
+                  "target_date": "May 2026",
+                  "stated_condition": "Post shareholder approval",
+                  "realism_assessment": "MEDIUM \u2014 tight window if vesting structure decision, legal review, and exclusivity negotiation are sequential (not parallel). 4-week window for all three.",
+                  "risk": "If vesting decision or legal review slips to late April, May execution at risk. No buffer stated."
+                },
+                {
+                  "milestone": "First profit share payout",
+                  "target_date": "August 2026 (for July sales)",
+                  "stated_condition": "Q3 profit achieved, baseline established, attribution clear",
+                  "realism_assessment": "MEDIUM \u2014 assumes baseline is disclosed by May 1, @RankonaBot is live by June 1, no attribution disputes in Q2-Q3. All dependent on RISK-3 mitigations being in place.",
+                  "risk": "If baseline is still unknown in June or @RankonaBot not deployed, August payout will be disputed or delayed. RISK-3 probability (attribution dispute): 60% in months 1-3."
+                },
+                {
+                  "milestone": "Year 1 financial close & December checkpoint (if applicable)",
+                  "target_date": "December 31, 2026",
+                  "stated_condition": "All Q1-Q4 profit shares paid; vesting checkpoint trigger evaluated",
+                  "realism_assessment": "MEDIUM \u2014 assumes Carl pays all quarterly accruals on time, Q4 rug pull is prevented by survival clause, no early exit occurs before December.",
+                  "risk": "RISK-1 probability (Q4 wind-down): 35%. If triggered, Q4 profit share disputed. Early exit before December (RISK-2, 20% probability) pays MERIDIAN zero under current checkpoint-only structure."
+                },
+                {
+                  "milestone": "Exit participation trigger window",
+                  "target_date": "18 months total (May 2026 \u2013 December 2027)",
+                  "stated_condition": "Exit value exceeds $20M threshold; EBITDA grows 67% ($1.5M \u2192 $2.5M at 8x multiple)",
+                  "realism_assessment": "LOW \u2014 67% EBITDA growth in 18 months is aggressive. Estimated probability of clearing $20M threshold: 35\u201350%.",
+                  "risk": "Exit participation may yield $0 if growth targets miss or if exit occurs before month 6 (RISK-2: 20% probability of early exit). Section 2B: 'Probability of clearing $20M threshold within 18 months: ~35\u201350%.'"
+                }
+              ],
+              "resource_needs": [
+                {
+                  "resource_type": "Deal Director / Decision-maker",
+                  "role": "Vesting structure recommendation, exclusivity negotiation, final approval",
+                  "assigned_to": "Avery Vale (implied) + Michael",
+                  "timeline": "April 2026",
+                  "capacity_notes": "CRITICAL PATH \u2014 all contract terms gate on this decision. Cannot proceed to legal review without vesting finalized.",
+                  "hours_estimated": "20\u201330 hours (discovery, modeling, negotiation)"
+                },
+                {
+                  "resource_type": "Legal / Contract review",
+                  "role": "Vesting language, survival clause, exit triggers, attribution methodology, exclusivity framework",
+                  "assigned_to": "Not identified",
+                  "timeline": "April 15\u2013May 1, 2026",
+                  "capacity_notes": "Dependency on vesting decision (must be made by April 15 to allow 2-week legal review)",
+                  "hours_estimated": "15\u201320 hours (initial draft + 2\u20133 negotiation rounds)"
+                },
+                {
+                  "resource_type": "Optimization team",
+                  "role": "Day-1 Rankona engagement: listing optimization, tagging, pricing strategy",
+                  "assigned_to": "Not identified (general MERIDIAN ops)",
+                  "timeline": "May 2026 onwards (8-month minimum engagement)",
+                  "capacity_notes": "2\u20133 people required. Engagement is below cost of engagement ($43.5K\u2013$51.5K Year 1) unless baseline is Tier 2+ with 30%+ growth (Section 1B: break-even requires $80K+ Year 1 cash).",
+                  "hours_estimated": "600\u2013800 hours/month (optimization + reporting)"
+                },
+                {
+                  "resource_type": "@RankonaBot engineering",
+                  "role": "Weekly optimization logging, audit trail for profit share defense",
+                  "assigned_to": "MERIDIAN engineering",
+                  "timeline": "May 1\u20137, 2026 (week 1 post-contract)",
+                  "capacity_notes": "Must be live before Q2 optimization begins (to establish audit trail for RISK-3 mitigation)",
+                  "hours_estimated": "20\u201330 hours (development + integration testing)"
+                },
+                {
+                  "resource_type": "Rankona financial data",
+                  "role": "Q1 2026 P&L + Q2 YTD snapshot (actual baseline profit)",
+                  "assigned_to": "Carl / Rankona finance (EXTERNAL)",
+                  "timeline": "Before May 2026 contract execution",
+                  "capacity_notes": "One-time disclosure. BLOCKING for Year 1 cash modeling and staffing ROI justification.",
+                  "hours_estimated": "N/A (external)"
+                },
+                {
+                  "resource_type": "Weekly reporting",
+                  "role": "Optimization logs, profit share accrual tracking, attribution documentation",
+                  "assigned_to": "MERIDIAN ops (ongoing)",
+                  "timeline": "June 2026 onwards (Q2-Q4)",
+                  "capacity_notes": "Supports RISK-3 mitigation (attribution defense). ~4\u20135 hours/week.",
+                  "hours_estimated": "200+ hours Year 1"
+                }
+              ],
+              "dependencies": [
+                {
+                  "dependency_type": "External approval",
+                  "from": "Rankona shareholder vote",
+                  "to": "Contract execution (May 2026)",
+                  "owner": "Rankona (external)",
+                  "current_status": "In-flight (IC stage pending approval per project memory)",
+                  "risk_level": "MEDIUM \u2014 no explicit vote date provided",
+                  "mitigation": "Confirm shareholder vote scheduled for April. If delayed past April 20, escalate to Michael."
+                },
+                {
+                  "dependency_type": "Data disclosure",
+                  "from": "Rankona baseline profit disclosure",
+                  "to": "Year 1 cash modeling, ROI validation, staffing decision",
+                  "owner": "Carl / Rankona (external request)",
+                  "current_status": "Unknown (not mentioned as in-flight)",
+                  "risk_level": "CRITICAL \u2014 missing this blocks all financial validation",
+                  "mitigation": "Include as hard contractual requirement. No signature without Q1 2026 P&L + Q2 YTD snapshot."
+                },
+                {
+                  "dependency_type": "Internal decision",
+                  "from": "Vesting structure choice (3-yr vs. checkpoint)",
+                  "to": "Legal contract review, term sheet to Carl",
+                  "owner": "Avery Vale / Michael",
+                  "current_status": "Open \u2014 three options modeled but no decision",
+                  "risk_level": "CRITICAL \u2014 blocks contract drafting",
+                  "mitigation": "Avery to present modeling of all three scenarios + recommendation by April 10. Michael approves by April 15. Unblock legal review."
+                },
+                {
+                  "dependency_type": "Risk mitigation",
+                  "from": "Exit vesting dual-trigger framework",
+                  "to": "Contract terms (Section 2C)",
+                  "owner": "Avery Vale / legal",
+                  "current_status": "Identified gap (December checkpoint cliff) but no resolution framework stated",
+                  "risk_level": "CRITICAL \u2014 without fix, November exit = $0 to MERIDIAN (RISK-2, 20% probability)",
+                  "mitigation": "Propose dual-trigger to Carl: (exit after month 6) OR (December 31), presented as MERIDIAN best-practice, not counter-proposal."
+                },
+                {
+                  "dependency_type": "Risk mitigation",
+                  "from": "Attribution methodology + @RankonaBot logging",
+                  "to": "Q2-Q3 profit share defensibility",
+                  "owner": "MERIDIAN ops (ops agreement + engineering deployment)",
+                  "current_status": "Methodology identified but deployment timeline undefined",
+                  "risk_level": "HIGH \u2014 RISK-3 probability 60% in first 3 quarters",
+                  "mitigation": "Lock attribution language in contract (April). Deploy @RankonaBot day-1 (May 1). Weekly logs to Carl + internal."
+                },
+                {
+                  "dependency_type": "Negotiation",
+                  "from": "Exclusivity framework negotiation",
+                  "to": "Final contract terms",
+                  "owner": "Avery Vale / Michael (negotiation with Carl)",
+                  "current_status": "INCOMPLETE \u2014 Section 3 RISK-4 cuts off",
+                  "risk_level": "HIGH \u2014 RISK-4 probability 70% if unaddressed",
+                  "mitigation": "Define three scenarios (category-only, 6-mo revert, underutilization carve-out) by April 15. Get Carl's preference by April 20."
+                },
+                {
+                  "dependency_type": "Internal process",
+                  "from": "Legal contract drafting",
+                  "to": "Term sheet delivery to Carl",
+                  "owner": "Internal legal (not identified)",
+                  "current_status": "Not started (gated on vesting structure decision)",
+                  "risk_level": "MEDIUM \u2014 2-week legal cycle required (Apr 15\u201329)",
+                  "mitigation": "Vesting decision must complete by April 15 to allow legal review + 1-week buffer before May execution."
+                }
+              ]
+            },
+            "CTO": {
+              "tech_requirements": [
+                "Amazon Seller Central API integration for real-time listing and sales data extraction",
+                "Pre-engagement baseline capture system (30-day snapshot of listings, metrics, sales state)",
+                "Quarterly profit/EBITDA tracking and delta calculation against baseline",
+                "Weekly optimization log system (@RankonaBot) to create attribution audit trail",
+                "Profit-share calculation engine (20% of net quarterly increases above baseline)",
+                "Exit valuation monitoring (track acquisition signals, trigger payout at $20M+ threshold)",
+                "Payout scheduling system (Q4 profit share survival clause, 30-day post-quarter-end execution)",
+                "Dashboard for Carl (real-time view of baseline, current quarter metrics, projected profit share)"
+              ],
+              "integrations": [
+                "Amazon Seller Central API (listings, sales, FBA metrics)",
+                "Slack or Discord bot (@RankonaBot) for weekly optimization log delivery",
+                "Email system (profit share notifications, payout confirmations, quarterly statements)",
+                "Accounting/spreadsheet system (profit calculations, vesting schedules, exit scenario modeling)",
+                "CRM/deal tracking for Humble Group and other potential acquirer signals"
+              ],
+              "security_compliance": [
+                "API credential management for Amazon Seller Central (never in logs, use pass store or env vars per CLAUDE.md)",
+                "Data isolation: Rankona data partitioned from other seller accounts (exclusivity clause implies air-gapped infrastructure)",
+                "Financial audit trail: all profit-share calculations logged with date, methodology, baseline used, calculation hash",
+                "Payout reconciliation: signed statements of profit-share amount owed, paid date, authorization trail",
+                "Baseline immutability: pre-engagement snapshot locked at contract execution, signed by both parties, no retroactive changes"
+              ],
+              "build_vs_buy": [
+                "Attribution system: BUILD \u2014 requires proprietary baseline capture and delta calculation tied to MERIDIAN-specific optimizations; no off-the-shelf seller tools provide this",
+                "Weekly log aggregation (@RankonaBot): BUILD \u2014 custom integration with optimization pipeline to auto-generate weekly summaries",
+                "Profit-share calculation engine: BUILD \u2014 deal-specific terms (20%, quarterly, conditional vesting) don't fit standard accounting software",
+                "Amazon data extraction: HYBRID \u2014 use Amazon API (off-the-shelf) but layer custom baseline tracking and delta calculation",
+                "Dashboard: BUY or BUILD-LIGHT \u2014 could use Tableau/Looker for real-time metrics, or custom Python dashboard if tighter integration needed"
+              ],
+              "tech_risks": [
+                "Attribution causation: Amazon sales driven by seasonality, Carl's other efforts, or market conditions \u2014 difficult to isolate MERIDIAN's contribution quantitatively. Mitigation: weekly log audit trail + pre-engagement baseline lock.",
+                "Baseline manipulation: Carl could claim older baseline to reduce profit-share owed. Mitigation: signed pre-engagement snapshot immutable at contract execution.",
+                "Amazon API access revocation: Carl revokes API credentials mid-engagement, blocking profit verification. Mitigation: require read-only API access as contract term.",
+                "Data freshness lag: Amazon Seller Central updates on 24-48hr delay. Payout timing disputes if monthly data not finalized. Mitigation: define 'quarter-end' as 5 calendar days after quarter close (allows API catch-up).",
+                "Exclusivity data silo: Carl's account is isolated; MERIDIAN cannot apply learnings to other sellers. Mitigation: negotiate carve-out for de-identified benchmarks (aggregated trends, not Carl's data).",
+                "Exit detection: Humble Group acquisition happens via secondary market; MERIDIAN misses trigger. Mitigation: quarterly scan of Carl's LinkedIn, Amazon business filings, SEC databases; escalate to human queue if acquisition signals detected.",
+                "Payout timing cliff: December checkpoint misses October 2026 exit by 2 months. MERIDIAN receives zero despite 6 months' work. Mitigation: dual-trigger vesting (exit after month 6 OR December 31, whichever occurs first).",
+                "Q4 profit-share non-payment: Carl terminates January 2027, disputes Q4 payout as 'pending quarter close'. Mitigation: survival clause \u2014 Q4 profit share owed if engagement was active any point in Q4, paid within 30 days of quarter-end, regardless of contract status."
+              ]
+            },
+            "CEO": {
+              "decisions": [
+                "Vesting structure: Recommend hybrid trigger (exit event after month 6 OR December 31) vs. pure checkpoint. Current proposal creates cliff risk where month 7 exit pays zero.",
+                "Baseline financial viability: Set minimum threshold at Tier 2 baseline ($300K/Q net) + 30% growth OR Tier 3 + 20% growth to justify engagement economics. Tier 1 baseline falls below cost of engagement ($6,437/mo all-in).",
+                "Add Q4 survival clause: Profit share owed regardless of termination date if engagement was active during Q4. Non-negotiable.",
+                "Lock attribution methodology: 30-day pre-engagement baseline + weekly optimization logs via bot create audit trail. Remove 12-month trailing baseline which is disputed."
+              ],
+              "opportunities": [
+                "Profit share alignment: Creates recurring quarterly revenue with upside capped at MERIDIAN's incremental value. At Tier 2 baseline + 50% growth, Year 1 = $103.5K cash flow.",
+                "Exit participation: $20M threshold realistic at 67% EBITDA growth (achievable through systematization premium). Exit at $35M-$50M = $7.5M-$15M payout.",
+                "Amazon channel leverage: High-margin, scalable category. Rankona is proof-of-concept for repeatable seller optimization playbook. Portfolio expansion potential.",
+                "Systematization premium: Moving Rankona from 4x multiple (current) to 8x multiple (systematized) is entirely defensible. MERIDIAN's infrastructure is the re-rating catalyst."
+              ],
+              "threats": [
+                "Q4 rug pull (35% probability): Carl terminates after peak Q4 while disputing $30K profit share payout. Survival clause currently absent.",
+                "Early exit timing cliff (20% probability): Exit in Q3 2026 triggers zero participation under December checkpoint structure despite 5+ months of work. Loses $5M+ upside.",
+                "Attribution war (60% probability, months 1-3): Carl credits seasonal market recovery, not MERIDIAN. Profit share disputed for first 2-3 quarters ($18K+ at risk).",
+                "Exclusivity trap (70% probability): Day-1 exclusivity blocks other Amazon seller deals. If Carl delays access, MERIDIAN forfeits 2-3 month runway to alternative revenue.",
+                "Unknown baseline: 'The open question nobody has answered: What is Rankona's actual quarterly net profit?' Without this, deal economics are modeled but unvalidated. Engagement could be uneconomical if actual baseline is Tier 1."
+              ],
+              "commitments": [
+                "$4,500/month retainer (May 2026 onward)",
+                "$7,500 setup fee",
+                "20% of quarterly net increases above baseline (quarterly payout, first payout August 2026 per Michael's position)",
+                "50% of exit proceeds exceeding $20M threshold (vesting structure under negotiation)",
+                "Vesting: 3-year vs. December checkpoint (still open, requires CEO decision)"
+              ],
+              "narrative_assessment": "Professional, data-driven. This analysis demonstrates mature deal engineering: scenario modeling by baseline tier, clear risk taxonomy with probabilities, mitigation recommendations tied to specific contractual language. Represents MERIDIAN as a partner who protects both sides' interests. However, one material gap surfaces: we don't know Rankona's actual quarterly net profit \u2014 the deal is modeled on illustrative $100K-$500K ranges without validation. As CEO, you need to flag this to the deal director: either (1) we obtained this number and chose not to model it, or (2) we haven't asked. Either case needs clarification before IC. The analysis is sound; the underlying assumption set is incomplete."
+            }
+          },
+          "_file": "clients/rankona-mazon/audits/csuite-audit-deal-scenarios-april19.json",
+          "_client": "rankona-mazon"
+        },
+        {
+          "audit_version": "1.0",
           "audited_at": "2026-04-14T14:26:35.786785+00:00",
           "transcript_file": "clients/rankona-mazon/deal-structure-april13.md",
           "transcript_length": 5215,
@@ -41052,16 +41435,16 @@
           "_client": "unknown"
         }
       ],
-      "total": 114
+      "total": 115
     },
     "call_intelligence": {
-      "updated_at": "2026-04-19T15:57:56.896001+00:00",
+      "updated_at": "2026-04-19T16:09:31.415676+00:00",
       "signal_summary": {
         "total_objections": 72,
         "total_buying_signals": 102,
-        "total_competitors": 289,
-        "pricing_discussions": 100,
-        "calls_with_signals": 122
+        "total_competitors": 290,
+        "pricing_discussions": 101,
+        "calls_with_signals": 123
       },
       "decisions": [
         {
@@ -47567,6 +47950,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "rankona-mazon"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "rankona-mazon"
         },
@@ -47962,7 +48350,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-19T15:57:56.916852+00:00",
+      "updated_at": "2026-04-19T16:09:31.435239+00:00",
       "items": [
         {
           "type": "blocked",
@@ -48133,8 +48521,26 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-19T15:57:56.916895+00:00",
+      "updated_at": "2026-04-19T16:09:31.435285+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-19T16:09:28Z",
+          "title": "fix: force Gemini Live API v1alpha \u2014 gemini-2.0-flash-live-001 not in v1beta",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T15:57:53Z",
+          "title": "Add Rankona deal scenario modeling \u2014 8 risk scenarios, 4 outcome bundles (April ",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T09:03:08Z",
+          "title": "auto-commit(cursor-agent): #2419: #2419 human-os: Calendar Prep \u2014 15-min pre-bri",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-19T06:46:08Z",
@@ -48175,24 +48581,6 @@
           "type": "commit",
           "date": "2026-04-19T06:08:17Z",
           "title": "Fix a2a: rollback Gemini model, cancel zombie tasks, fix AudioWorklet leak",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T05:45:31Z",
-          "title": "Fix phase number cross-references in federation SOP",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T05:40:16Z",
-          "title": "Improve federation SOP: fix 4 contradictions, add 9 gaps, cover 6 blind spots",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T05:38:24Z",
-          "title": "boardroom: iPhone incoming-call overlay redesign \u2014 large phone, vibration ring, ",
           "detail": "covaultxyz"
         },
         {
