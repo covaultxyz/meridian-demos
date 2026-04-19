@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T06:11:31.518208+00:00",
+  "generated_at": "2026-04-19T06:24:51.769082+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-19T06:11:28.588963+00:00",
+      "updated_at": "2026-04-19T06:24:49.168158+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -1697,6 +1697,26 @@
           "buying_signal_count": 1,
           "sentiment": "positive",
           "suggested_stage": "proposal",
+          "participants": []
+        },
+        {
+          "client": "rankona-mazon",
+          "call_id": "exit-participation-addendum-april19",
+          "title": "exit-participation-addendum-april19",
+          "file": "clients/rankona-mazon/signals/deal-signals-exit-participation-addendum-april19-2026-04-19.json",
+          "deal_signals": {
+            "objection_count": 0,
+            "buying_signal_count": 0,
+            "competitor_mentions": 1,
+            "pricing_discussed": true,
+            "action_items_count": 0,
+            "sentiment": "neutral",
+            "suggested_stage": "discovery"
+          },
+          "objection_count": 0,
+          "buying_signal_count": 0,
+          "sentiment": "neutral",
+          "suggested_stage": "discovery",
           "participants": []
         },
         {
@@ -3411,7 +3431,7 @@
       "call_volume": {
         "unknown": 11,
         "rpm-capital": 1,
-        "rankona-mazon": 30,
+        "rankona-mazon": 31,
         "omar": 1,
         "nate-broker": 4,
         "meridian-internal": 33,
@@ -3419,7 +3439,7 @@
         "gordon-gcc": 1,
         "denver-griffin": 7
       },
-      "total_signals": 121,
+      "total_signals": 122,
       "clients": [
         {
           "slug": "denver-griffin",
@@ -3994,22 +4014,23 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-19T06:11:31.308250+00:00",
+      "updated_at": "2026-04-19T06:24:51.578449+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "federation": 6,
+          "enhancement": 15,
+          "infrastructure": 4,
           "sentinel-review:fail": 3,
           "bug": 4,
           "critical": 1,
-          "infrastructure": 5,
-          "grade/A": 7,
+          "grade/A": 3,
           "sentinel-review:pass": 1,
           "sentinel-review:warn": 5,
-          "medium": 3,
+          "medium": 1,
           "testing": 1,
-          "grade/B": 20,
-          "enhancement": 3,
-          "low": 4,
+          "grade/B": 12,
+          "low": 1,
           "cursor-bench": 4,
           "ops": 1,
           "brain": 2,
@@ -4018,19 +4039,262 @@
           "daemon/claude-code": 1,
           "security": 1,
           "audit": 1,
-          "documentation": 2,
-          "grade/C": 7,
-          "high": 3,
+          "documentation": 1,
+          "grade/C": 1,
+          "high": 2,
           "human-only": 1,
           "daemon/sensei": 1,
-          "needs-review": 1,
-          "business/opportunity": 4,
-          "P1": 7,
-          "client:nate-broker": 12,
-          "P2": 5
+          "needs-review": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 2433,
+          "title": "B6: Encrypted off-node backup for federated Neo4j",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:49Z",
+          "updated_at": "2026-04-19T06:20:49Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2433",
+          "project_slug": null
+        },
+        {
+          "number": 2432,
+          "title": "B5: Customer provisioning CLI (provision-workspace.sh)",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:38Z",
+          "updated_at": "2026-04-19T06:20:38Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2432",
+          "project_slug": null
+        },
+        {
+          "number": 2431,
+          "title": "B4: Intelligence Gateway wrapper app (gateway/intelligence_gateway.py)",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:31Z",
+          "updated_at": "2026-04-19T06:20:31Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2431",
+          "project_slug": null
+        },
+        {
+          "number": 2430,
+          "title": "B3: API key \u2192 workspace binding with rate limiting",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:22Z",
+          "updated_at": "2026-04-19T06:20:22Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2430",
+          "project_slug": null
+        },
+        {
+          "number": 2429,
+          "title": "B2: WorkspaceRouter class for federated Neo4j routing",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:14Z",
+          "updated_at": "2026-04-19T06:20:14Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2429",
+          "project_slug": null
+        },
+        {
+          "number": 2428,
+          "title": "B1: workspace_id query scoping for federated nodes",
+          "state": "open",
+          "created_at": "2026-04-19T06:20:05Z",
+          "updated_at": "2026-04-19T06:20:05Z",
+          "labels": [
+            "federation"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2428",
+          "project_slug": null
+        },
+        {
+          "number": 2427,
+          "title": "human-os: Context Handoff Daemon \u2014 store session summary to MIG on Claude Code exit",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:44Z",
+          "updated_at": "2026-04-19T06:19:44Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2427",
+          "project_slug": null
+        },
+        {
+          "number": 2426,
+          "title": "human-os: Browser Extension \u2014 MIG sidebar + right-click capture in Chrome/Safari",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:42Z",
+          "updated_at": "2026-04-19T06:19:42Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2426",
+          "project_slug": null
+        },
+        {
+          "number": 2425,
+          "title": "human-os: Scheduling Agent \u2014 auto-accept/decline calendar invites based on deal priority + phase focus",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:24Z",
+          "updated_at": "2026-04-19T06:19:24Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2425",
+          "project_slug": null
+        },
+        {
+          "number": 2424,
+          "title": "human-os: Session Launcher \u2014 one command opens full MERIDIAN work environment in 30s",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:23Z",
+          "updated_at": "2026-04-19T06:19:23Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2424",
+          "project_slug": null
+        },
+        {
+          "number": 2423,
+          "title": "human-os: Screenshot Intelligence \u2014 OCR screenshots \u2192 MIG + rename files descriptively",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:07Z",
+          "updated_at": "2026-04-19T06:19:07Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2423",
+          "project_slug": null
+        },
+        {
+          "number": 2422,
+          "title": "human-os: Context Bar \u2014 menu bar icon showing mesh health + top tasks (rumps)",
+          "state": "open",
+          "created_at": "2026-04-19T06:19:06Z",
+          "updated_at": "2026-04-19T06:19:06Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2422",
+          "project_slug": null
+        },
+        {
+          "number": 2421,
+          "title": "thinkpadgen9: Cloudflare Tunnel setup (Phase 4)",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:57Z",
+          "updated_at": "2026-04-19T06:18:57Z",
+          "labels": [
+            "infrastructure"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2421",
+          "project_slug": "openclaw"
+        },
+        {
+          "number": 2420,
+          "title": "human-os: Passive Observer \u2014 ambient app/URL tracking \u2192 MIG via atlas classification",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:50Z",
+          "updated_at": "2026-04-19T06:18:50Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2420",
+          "project_slug": null
+        },
+        {
+          "number": 2419,
+          "title": "human-os: Calendar Prep \u2014 15-min pre-brief via Telegram before every meeting",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:49Z",
+          "updated_at": "2026-04-19T06:18:49Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2419",
+          "project_slug": null
+        },
+        {
+          "number": 2418,
+          "title": "human-os: Daily Digest \u2014 08:00 Telegram brief (tasks, deals, mesh health)",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:33Z",
+          "updated_at": "2026-04-19T06:18:33Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2418",
+          "project_slug": null
+        },
+        {
+          "number": 2417,
+          "title": "human-os: Voice Drain \u2014 hold \u2318\u21e7V to record, release to store transcript in MIG",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:32Z",
+          "updated_at": "2026-04-19T06:18:32Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2417",
+          "project_slug": null
+        },
+        {
+          "number": 2416,
+          "title": "human-os: Quick Capture \u2014 Raycast \u2318\u21e7M hotkey to MIG from anywhere in OS",
+          "state": "open",
+          "created_at": "2026-04-19T06:18:07Z",
+          "updated_at": "2026-04-19T06:18:07Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2416",
+          "project_slug": null
+        },
+        {
+          "number": 2415,
+          "title": "human-os: Clipboard Drain \u2014 passive capture of clipboard content to MIG",
+          "state": "open",
+          "created_at": "2026-04-19T06:17:57Z",
+          "updated_at": "2026-04-19T06:17:57Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2415",
+          "project_slug": null
+        },
         {
           "number": 2409,
           "title": "feat(#2408): Phase 1 \u2014 Neo4j driver call sites in workers/",
@@ -4455,292 +4719,244 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/2277",
           "project_slug": null
-        },
-        {
-          "number": 2272,
-          "title": "test(hooks): pytest regression for Playwright MCP guard (#2268)",
-          "state": "open",
-          "created_at": "2026-04-16T13:59:10Z",
-          "updated_at": "2026-04-18T03:09:00Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/2272",
-          "project_slug": null
-        },
-        {
-          "number": 2271,
-          "title": "[After Pilot Signed] Legal Terminal Product Build \u2014 on-premise law firm deployment",
-          "state": "open",
-          "created_at": "2026-04-16T13:22:17Z",
-          "updated_at": "2026-04-16T13:30:17Z",
-          "labels": [
-            "low",
-            "business/opportunity",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2271",
-          "project_slug": null
-        },
-        {
-          "number": 2270,
-          "title": "Diagram atlas maintenance: ownership + refresh cadence",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:54Z",
-          "updated_at": "2026-04-16T13:30:29Z",
-          "labels": [
-            "documentation",
-            "low",
-            "infrastructure",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2270",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2269,
-          "title": "[After First Legal Client] Raiders Entry Strategy \u2014 concessions pilot at Allegiance Stadium",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:53Z",
-          "updated_at": "2026-04-16T13:30:41Z",
-          "labels": [
-            "low",
-            "business/opportunity",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2269",
-          "project_slug": null
-        },
-        {
-          "number": 2266,
-          "title": "VPS fleet expansion: Ashburn DR + Strasbourg Rankona (operator decision)",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:49Z",
-          "updated_at": "2026-04-16T14:12:00Z",
-          "labels": [
-            "high",
-            "infrastructure",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2266",
-          "project_slug": "openclaw"
-        },
-        {
-          "number": 2264,
-          "title": "[Post-First Intro] Formal Channel Partner Evaluation \u2014 Xander referral structure",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:40Z",
-          "updated_at": "2026-04-16T13:31:45Z",
-          "labels": [
-            "medium",
-            "business/opportunity",
-            "grade/B"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2264",
-          "project_slug": null
-        },
-        {
-          "number": 2263,
-          "title": "[Conditional] Xander Active Lawsuit Demo \u2014 privilege-protected transcript analysis",
-          "state": "open",
-          "created_at": "2026-04-16T13:21:19Z",
-          "updated_at": "2026-04-16T13:31:57Z",
-          "labels": [
-            "medium",
-            "business/opportunity",
-            "grade/C"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2263",
-          "project_slug": null
-        },
-        {
-          "number": 2261,
-          "title": "Nate Lind \u2014 Tracking meta-issue (DONE.md + TODO.md + child issues)",
-          "state": "open",
-          "created_at": "2026-04-16T13:20:28Z",
-          "updated_at": "2026-04-16T13:32:26Z",
-          "labels": [
-            "grade/A",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2261",
-          "project_slug": null
-        },
-        {
-          "number": 2259,
-          "title": "Nate Lind T4.2 \u2014 Book OCR + chapter segmentation",
-          "state": "open",
-          "created_at": "2026-04-16T13:20:24Z",
-          "updated_at": "2026-04-16T13:32:52Z",
-          "labels": [
-            "grade/C",
-            "P2",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2259",
-          "project_slug": null
-        },
-        {
-          "number": 2258,
-          "title": "Nate Lind T4.1 \u2014 YouTube corpus transcription + embedding",
-          "state": "open",
-          "created_at": "2026-04-16T13:20:22Z",
-          "updated_at": "2026-04-16T13:33:05Z",
-          "labels": [
-            "grade/C",
-            "P2",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2258",
-          "project_slug": null
-        },
-        {
-          "number": 2257,
-          "title": "Nate Lind T3.6 \u2014 Benchmark data package for stage",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:58Z",
-          "updated_at": "2026-04-16T13:33:17Z",
-          "labels": [
-            "grade/B",
-            "P2",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2257",
-          "project_slug": null
-        },
-        {
-          "number": 2256,
-          "title": "Nate Lind T3.5 \u2014 April 30 deck delivery prep session (Michael + Alexander)",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:57Z",
-          "updated_at": "2026-04-16T13:33:31Z",
-          "labels": [
-            "grade/B",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2256",
-          "project_slug": null
-        },
-        {
-          "number": 2254,
-          "title": "Nate Lind T3.3 \u2014 Terminal build timeline vs Nate's cash flow",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:54Z",
-          "updated_at": "2026-04-16T15:50:24Z",
-          "labels": [
-            "grade/B",
-            "P2",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2254",
-          "project_slug": null
-        },
-        {
-          "number": 2253,
-          "title": "Nate Lind T3.2 \u2014 Tier 1 corpus ingest ontology session with Nate",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:52Z",
-          "updated_at": "2026-04-16T13:34:14Z",
-          "labels": [
-            "grade/B",
-            "P2",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2253",
-          "project_slug": null
-        },
-        {
-          "number": 2252,
-          "title": "Nate Lind T3.1 \u2014 Write April 30 demo runbook",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:50Z",
-          "updated_at": "2026-04-16T13:34:27Z",
-          "labels": [
-            "grade/A",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2252",
-          "project_slug": null
-        },
-        {
-          "number": 2251,
-          "title": "Nate Lind T2.4 \u2014 MIG memories: deal structure + IP terms",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:25Z",
-          "updated_at": "2026-04-16T13:34:40Z",
-          "labels": [
-            "grade/B",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2251",
-          "project_slug": null
-        },
-        {
-          "number": 2250,
-          "title": "Nate Lind T2.3 \u2014 April 30 live-demo design (spec only)",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:24Z",
-          "updated_at": "2026-04-16T13:34:54Z",
-          "labels": [
-            "grade/A",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2250",
-          "project_slug": null
-        },
-        {
-          "number": 2249,
-          "title": "Nate Lind T2.2 \u2014 TwentyCRM entry with full deal signals",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:22Z",
-          "updated_at": "2026-04-16T13:35:09Z",
-          "labels": [
-            "grade/A",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2249",
-          "project_slug": null
-        },
-        {
-          "number": 2247,
-          "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
-          "state": "open",
-          "created_at": "2026-04-16T13:19:20Z",
-          "updated_at": "2026-04-16T13:35:39Z",
-          "labels": [
-            "grade/B",
-            "P1",
-            "client:nate-broker"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2247",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 2433,
+            "title": "B6: Encrypted off-node backup for federated Neo4j",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:49Z",
+            "updated_at": "2026-04-19T06:20:49Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2433",
+            "project_slug": null
+          },
+          {
+            "number": 2432,
+            "title": "B5: Customer provisioning CLI (provision-workspace.sh)",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:38Z",
+            "updated_at": "2026-04-19T06:20:38Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2432",
+            "project_slug": null
+          },
+          {
+            "number": 2431,
+            "title": "B4: Intelligence Gateway wrapper app (gateway/intelligence_gateway.py)",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:31Z",
+            "updated_at": "2026-04-19T06:20:31Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2431",
+            "project_slug": null
+          },
+          {
+            "number": 2430,
+            "title": "B3: API key \u2192 workspace binding with rate limiting",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:22Z",
+            "updated_at": "2026-04-19T06:20:22Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2430",
+            "project_slug": null
+          },
+          {
+            "number": 2429,
+            "title": "B2: WorkspaceRouter class for federated Neo4j routing",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:14Z",
+            "updated_at": "2026-04-19T06:20:14Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2429",
+            "project_slug": null
+          },
+          {
+            "number": 2428,
+            "title": "B1: workspace_id query scoping for federated nodes",
+            "state": "open",
+            "created_at": "2026-04-19T06:20:05Z",
+            "updated_at": "2026-04-19T06:20:05Z",
+            "labels": [
+              "federation"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2428",
+            "project_slug": null
+          },
+          {
+            "number": 2427,
+            "title": "human-os: Context Handoff Daemon \u2014 store session summary to MIG on Claude Code exit",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:44Z",
+            "updated_at": "2026-04-19T06:19:44Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2427",
+            "project_slug": null
+          },
+          {
+            "number": 2426,
+            "title": "human-os: Browser Extension \u2014 MIG sidebar + right-click capture in Chrome/Safari",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:42Z",
+            "updated_at": "2026-04-19T06:19:42Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2426",
+            "project_slug": null
+          },
+          {
+            "number": 2425,
+            "title": "human-os: Scheduling Agent \u2014 auto-accept/decline calendar invites based on deal priority + phase focus",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:24Z",
+            "updated_at": "2026-04-19T06:19:24Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2425",
+            "project_slug": null
+          },
+          {
+            "number": 2424,
+            "title": "human-os: Session Launcher \u2014 one command opens full MERIDIAN work environment in 30s",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:23Z",
+            "updated_at": "2026-04-19T06:19:23Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2424",
+            "project_slug": null
+          },
+          {
+            "number": 2423,
+            "title": "human-os: Screenshot Intelligence \u2014 OCR screenshots \u2192 MIG + rename files descriptively",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:07Z",
+            "updated_at": "2026-04-19T06:19:07Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2423",
+            "project_slug": null
+          },
+          {
+            "number": 2422,
+            "title": "human-os: Context Bar \u2014 menu bar icon showing mesh health + top tasks (rumps)",
+            "state": "open",
+            "created_at": "2026-04-19T06:19:06Z",
+            "updated_at": "2026-04-19T06:19:06Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2422",
+            "project_slug": null
+          },
+          {
+            "number": 2420,
+            "title": "human-os: Passive Observer \u2014 ambient app/URL tracking \u2192 MIG via atlas classification",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:50Z",
+            "updated_at": "2026-04-19T06:18:50Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2420",
+            "project_slug": null
+          },
+          {
+            "number": 2419,
+            "title": "human-os: Calendar Prep \u2014 15-min pre-brief via Telegram before every meeting",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:49Z",
+            "updated_at": "2026-04-19T06:18:49Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2419",
+            "project_slug": null
+          },
+          {
+            "number": 2418,
+            "title": "human-os: Daily Digest \u2014 08:00 Telegram brief (tasks, deals, mesh health)",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:33Z",
+            "updated_at": "2026-04-19T06:18:33Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2418",
+            "project_slug": null
+          },
+          {
+            "number": 2417,
+            "title": "human-os: Voice Drain \u2014 hold \u2318\u21e7V to record, release to store transcript in MIG",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:32Z",
+            "updated_at": "2026-04-19T06:18:32Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2417",
+            "project_slug": null
+          },
+          {
+            "number": 2416,
+            "title": "human-os: Quick Capture \u2014 Raycast \u2318\u21e7M hotkey to MIG from anywhere in OS",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:07Z",
+            "updated_at": "2026-04-19T06:18:07Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2416",
+            "project_slug": null
+          },
+          {
+            "number": 2415,
+            "title": "human-os: Clipboard Drain \u2014 passive capture of clipboard content to MIG",
+            "state": "open",
+            "created_at": "2026-04-19T06:17:57Z",
+            "updated_at": "2026-04-19T06:17:57Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2415",
+            "project_slug": null
+          },
           {
             "number": 2409,
             "title": "feat(#2408): Phase 1 \u2014 Neo4j driver call sites in workers/",
@@ -5056,260 +5272,22 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/2277",
             "project_slug": null
-          },
-          {
-            "number": 2272,
-            "title": "test(hooks): pytest regression for Playwright MCP guard (#2268)",
-            "state": "open",
-            "created_at": "2026-04-16T13:59:10Z",
-            "updated_at": "2026-04-18T03:09:00Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/2272",
-            "project_slug": null
-          },
-          {
-            "number": 2271,
-            "title": "[After Pilot Signed] Legal Terminal Product Build \u2014 on-premise law firm deployment",
-            "state": "open",
-            "created_at": "2026-04-16T13:22:17Z",
-            "updated_at": "2026-04-16T13:30:17Z",
-            "labels": [
-              "low",
-              "business/opportunity",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2271",
-            "project_slug": null
-          },
-          {
-            "number": 2269,
-            "title": "[After First Legal Client] Raiders Entry Strategy \u2014 concessions pilot at Allegiance Stadium",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:53Z",
-            "updated_at": "2026-04-16T13:30:41Z",
-            "labels": [
-              "low",
-              "business/opportunity",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2269",
-            "project_slug": null
-          },
-          {
-            "number": 2264,
-            "title": "[Post-First Intro] Formal Channel Partner Evaluation \u2014 Xander referral structure",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:40Z",
-            "updated_at": "2026-04-16T13:31:45Z",
-            "labels": [
-              "medium",
-              "business/opportunity",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2264",
-            "project_slug": null
-          },
-          {
-            "number": 2263,
-            "title": "[Conditional] Xander Active Lawsuit Demo \u2014 privilege-protected transcript analysis",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:19Z",
-            "updated_at": "2026-04-16T13:31:57Z",
-            "labels": [
-              "medium",
-              "business/opportunity",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2263",
-            "project_slug": null
-          },
-          {
-            "number": 2261,
-            "title": "Nate Lind \u2014 Tracking meta-issue (DONE.md + TODO.md + child issues)",
-            "state": "open",
-            "created_at": "2026-04-16T13:20:28Z",
-            "updated_at": "2026-04-16T13:32:26Z",
-            "labels": [
-              "grade/A",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2261",
-            "project_slug": null
-          },
-          {
-            "number": 2259,
-            "title": "Nate Lind T4.2 \u2014 Book OCR + chapter segmentation",
-            "state": "open",
-            "created_at": "2026-04-16T13:20:24Z",
-            "updated_at": "2026-04-16T13:32:52Z",
-            "labels": [
-              "grade/C",
-              "P2",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2259",
-            "project_slug": null
-          },
-          {
-            "number": 2258,
-            "title": "Nate Lind T4.1 \u2014 YouTube corpus transcription + embedding",
-            "state": "open",
-            "created_at": "2026-04-16T13:20:22Z",
-            "updated_at": "2026-04-16T13:33:05Z",
-            "labels": [
-              "grade/C",
-              "P2",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2258",
-            "project_slug": null
-          },
-          {
-            "number": 2257,
-            "title": "Nate Lind T3.6 \u2014 Benchmark data package for stage",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:58Z",
-            "updated_at": "2026-04-16T13:33:17Z",
-            "labels": [
-              "grade/B",
-              "P2",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2257",
-            "project_slug": null
-          },
-          {
-            "number": 2256,
-            "title": "Nate Lind T3.5 \u2014 April 30 deck delivery prep session (Michael + Alexander)",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:57Z",
-            "updated_at": "2026-04-16T13:33:31Z",
-            "labels": [
-              "grade/B",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2256",
-            "project_slug": null
-          },
-          {
-            "number": 2254,
-            "title": "Nate Lind T3.3 \u2014 Terminal build timeline vs Nate's cash flow",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:54Z",
-            "updated_at": "2026-04-16T15:50:24Z",
-            "labels": [
-              "grade/B",
-              "P2",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2254",
-            "project_slug": null
-          },
-          {
-            "number": 2253,
-            "title": "Nate Lind T3.2 \u2014 Tier 1 corpus ingest ontology session with Nate",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:52Z",
-            "updated_at": "2026-04-16T13:34:14Z",
-            "labels": [
-              "grade/B",
-              "P2",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2253",
-            "project_slug": null
-          },
-          {
-            "number": 2252,
-            "title": "Nate Lind T3.1 \u2014 Write April 30 demo runbook",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:50Z",
-            "updated_at": "2026-04-16T13:34:27Z",
-            "labels": [
-              "grade/A",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2252",
-            "project_slug": null
-          },
-          {
-            "number": 2251,
-            "title": "Nate Lind T2.4 \u2014 MIG memories: deal structure + IP terms",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:25Z",
-            "updated_at": "2026-04-16T13:34:40Z",
-            "labels": [
-              "grade/B",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2251",
-            "project_slug": null
-          },
-          {
-            "number": 2250,
-            "title": "Nate Lind T2.3 \u2014 April 30 live-demo design (spec only)",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:24Z",
-            "updated_at": "2026-04-16T13:34:54Z",
-            "labels": [
-              "grade/A",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2250",
-            "project_slug": null
-          },
-          {
-            "number": 2249,
-            "title": "Nate Lind T2.2 \u2014 TwentyCRM entry with full deal signals",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:22Z",
-            "updated_at": "2026-04-16T13:35:09Z",
-            "labels": [
-              "grade/A",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2249",
-            "project_slug": null
-          },
-          {
-            "number": 2247,
-            "title": "Nate Lind T2.1 \u2014 Statement of Work (if shape selected)",
-            "state": "open",
-            "created_at": "2026-04-16T13:19:20Z",
-            "updated_at": "2026-04-16T13:35:39Z",
-            "labels": [
-              "grade/B",
-              "P1",
-              "client:nate-broker"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2247",
-            "project_slug": null
           }
         ],
         "openclaw": [
+          {
+            "number": 2421,
+            "title": "thinkpadgen9: Cloudflare Tunnel setup (Phase 4)",
+            "state": "open",
+            "created_at": "2026-04-19T06:18:57Z",
+            "updated_at": "2026-04-19T06:18:57Z",
+            "labels": [
+              "infrastructure"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2421",
+            "project_slug": "openclaw"
+          },
           {
             "number": 2407,
             "title": "meridian-prime load crisis: 5 root causes identified and remediated",
@@ -5370,37 +5348,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2342",
             "project_slug": "openclaw"
-          },
-          {
-            "number": 2270,
-            "title": "Diagram atlas maintenance: ownership + refresh cadence",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:54Z",
-            "updated_at": "2026-04-16T13:30:29Z",
-            "labels": [
-              "documentation",
-              "low",
-              "infrastructure",
-              "grade/C"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2270",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 2266,
-            "title": "VPS fleet expansion: Ashburn DR + Strasbourg Rankona (operator decision)",
-            "state": "open",
-            "created_at": "2026-04-16T13:21:49Z",
-            "updated_at": "2026-04-16T14:12:00Z",
-            "labels": [
-              "high",
-              "infrastructure",
-              "grade/B"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2266",
-            "project_slug": "openclaw"
           }
         ],
         "graph-intelligence": [
@@ -5457,65 +5404,93 @@
         ]
       },
       "ci": {
-        "status": "queued",
+        "status": "pending",
         "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-04-19T06:08:26Z",
-        "head_sha": "8c165d1b"
+        "name": "CI Full",
+        "created_at": "2026-04-19T06:23:34Z",
+        "head_sha": "0c8427d5"
       },
       "ci_recent_runs": [
         {
-          "id": 24622497056,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-19T06:08:26Z",
-          "updated_at": "2026-04-19T06:08:26Z",
-          "head_sha": "8c165d1b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622497056"
-        },
-        {
-          "id": 24622289519,
+          "id": 24622743071,
           "name": "CI Full",
-          "status": "queued",
+          "status": "pending",
           "conclusion": null,
-          "created_at": "2026-04-19T05:55:35Z",
-          "updated_at": "2026-04-19T05:55:35Z",
-          "head_sha": "70a6b2f4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622289519"
+          "created_at": "2026-04-19T06:23:34Z",
+          "updated_at": "2026-04-19T06:23:35Z",
+          "head_sha": "0c8427d5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622743071"
         },
         {
-          "id": 24621390568,
-          "name": "CI",
+          "id": 24622698745,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-04-19T04:58:20Z",
-          "updated_at": "2026-04-19T05:23:42Z",
-          "head_sha": "39afd3c3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24621390568"
+          "conclusion": "skipped",
+          "created_at": "2026-04-19T06:20:52Z",
+          "updated_at": "2026-04-19T06:20:53Z",
+          "head_sha": "aa51d27f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622698745"
         },
         {
-          "id": 24621212790,
-          "name": "CI",
+          "id": 24622695744,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "cancelled",
-          "created_at": "2026-04-19T04:46:25Z",
-          "updated_at": "2026-04-19T04:58:21Z",
-          "head_sha": "1ea30a96",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24621212790"
+          "conclusion": "skipped",
+          "created_at": "2026-04-19T06:20:41Z",
+          "updated_at": "2026-04-19T06:20:42Z",
+          "head_sha": "aa51d27f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622695744"
         },
         {
-          "id": 24621152616,
-          "name": "CI Full",
+          "id": 24622693952,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-04-19T04:42:26Z",
-          "updated_at": "2026-04-19T05:29:48Z",
-          "head_sha": "e8267577",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24621152616"
+          "conclusion": "skipped",
+          "created_at": "2026-04-19T06:20:34Z",
+          "updated_at": "2026-04-19T06:20:34Z",
+          "head_sha": "aa51d27f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622693952"
+        },
+        {
+          "id": 24622691540,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-04-19T06:20:25Z",
+          "updated_at": "2026-04-19T06:20:26Z",
+          "head_sha": "aa51d27f",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622691540"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "0c8427d5",
+          "message": "docs(federation): thinkpadgen9 COMPLETED.md + TODO.md \u2014 full federation documentation",
+          "author": "covaultxyz",
+          "date": "2026-04-19T06:21:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0c8427d595fc52620f4ffdc4d53354bba679464f"
+        },
+        {
+          "sha": "aa51d27f",
+          "message": "Add human-OS arc docs \u2014 done state + 13-build todo with GH issues",
+          "author": "covaultxyz",
+          "date": "2026-04-19T06:20:01Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/aa51d27f15fca0e3f23ddf66114900e61e9fb561"
+        },
+        {
+          "sha": "86762640",
+          "message": "Add NATS notification bridge + human-OS optimization doc",
+          "author": "covaultxyz",
+          "date": "2026-04-19T06:12:36Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/867626402ddfd626ee326f8a0eff8da73b4008fb"
+        },
+        {
+          "sha": "a3e8fa68",
+          "message": "feat(infra): promote thinkpadgen9 to federated node \u2014 boot-state update",
+          "author": "covaultxyz",
+          "date": "2026-04-19T06:11:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a3e8fa68b6d12f00525a2ffe68d967a82e6c852e"
+        },
         {
           "sha": "8c165d1b",
           "message": "Fix a2a: rollback Gemini model, cancel zombie tasks, fix AudioWorklet leak",
@@ -5557,38 +5532,10 @@
           "author": "covaultxyz",
           "date": "2026-04-19T05:21:05Z",
           "url": "https://github.com/covaultxyz/meridian/commit/0784396a3f28830d933b13aa52409b2afcaf8ea0"
-        },
-        {
-          "sha": "74280aeb",
-          "message": "Redesign boardroom overlay: particle canvas bg + phone-call UI for Jeff funnel",
-          "author": "covaultxyz",
-          "date": "2026-04-19T05:08:36Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/74280aeb6f509c4e2c5f4266f73dc0d79f005796"
-        },
-        {
-          "sha": "b6a10add",
-          "message": "fix(sop): Federation promotion SOP \u2014 Lens/Prism corrections",
-          "author": "covaultxyz",
-          "date": "2026-04-19T05:08:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b6a10add8803750ec5a7afe3c46be50791f68d1f"
-        },
-        {
-          "sha": "39afd3c3",
-          "message": "Fix: EdgeTTS fallback in greeting path + overlay redesign",
-          "author": "covaultxyz",
-          "date": "2026-04-19T04:58:12Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/39afd3c3e24ff7bbfab8cf533b5bc391d0a941d1"
-        },
-        {
-          "sha": "857891e7",
-          "message": "Add SOP: Edge node to federated mesh node promotion",
-          "author": "covaultxyz",
-          "date": "2026-04-19T04:50:12Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/857891e78b25ad21f573495fc8fba11faaaf3469"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-19T06:11:29.318771+00:00",
+        "updated_at": "2026-04-19T06:24:49.847979+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5790,7 +5737,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "members": [
         {
           "id": "alex",
@@ -5863,7 +5810,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "projects": [
         {
           "project": {
@@ -6293,7 +6240,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6378,7 +6325,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6475,7 +6422,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -10267,7 +10214,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-19T06:11:31.445141+00:00",
+      "updated_at": "2026-04-19T06:24:51.716542+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12413,7 +12360,7 @@
       "total_docs": 355
     },
     "deals": {
-      "updated_at": "2026-04-19T06:11:31.445247+00:00",
+      "updated_at": "2026-04-19T06:24:51.716651+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12655,7 +12602,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-19T06:11:31.308260+00:00",
+      "updated_at": "2026-04-19T06:24:51.578463+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -40664,13 +40611,13 @@
       "total": 113
     },
     "call_intelligence": {
-      "updated_at": "2026-04-19T06:11:31.498415+00:00",
+      "updated_at": "2026-04-19T06:24:51.750385+00:00",
       "signal_summary": {
         "total_objections": 72,
         "total_buying_signals": 102,
-        "total_competitors": 288,
-        "pricing_discussions": 99,
-        "calls_with_signals": 121
+        "total_competitors": 289,
+        "pricing_discussions": 100,
+        "calls_with_signals": 122
       },
       "decisions": [
         {
@@ -47146,6 +47093,11 @@
         },
         {
           "date": "",
+          "sentiment": "neutral",
+          "client": "rankona-mazon"
+        },
+        {
+          "date": "",
           "sentiment": "positive",
           "client": "rankona-mazon"
         },
@@ -47566,7 +47518,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-19T06:11:31.518151+00:00",
+      "updated_at": "2026-04-19T06:24:51.769030+00:00",
       "items": [
         {
           "type": "blocked",
@@ -47737,8 +47689,32 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-19T06:11:31.518196+00:00",
+      "updated_at": "2026-04-19T06:24:51.769068+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-19T06:21:05Z",
+          "title": "docs(federation): thinkpadgen9 COMPLETED.md + TODO.md \u2014 full federation document",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T06:20:01Z",
+          "title": "Add human-OS arc docs \u2014 done state + 13-build todo with GH issues",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T06:12:36Z",
+          "title": "Add NATS notification bridge + human-OS optimization doc",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T06:11:28Z",
+          "title": "feat(infra): promote thinkpadgen9 to federated node \u2014 boot-state update",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-19T06:08:17Z",
@@ -47776,87 +47752,63 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-19T05:08:36Z",
-          "title": "Redesign boardroom overlay: particle canvas bg + phone-call UI for Jeff funnel",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T05:08:04Z",
-          "title": "fix(sop): Federation promotion SOP \u2014 Lens/Prism corrections",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T04:58:12Z",
-          "title": "Fix: EdgeTTS fallback in greeting path + overlay redesign",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T04:50:12Z",
-          "title": "Add SOP: Edge node to federated mesh node promotion",
-          "detail": "covaultxyz"
-        },
-        {
           "type": "issue",
-          "date": "2026-04-18",
-          "title": "#2409 feat(#2408): Phase 1 \u2014 Neo4j driver call sites in workers/",
+          "date": "2026-04-19",
+          "title": "#2433 B6: Encrypted off-node backup for federated Neo4j",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-18",
-          "title": "#2407 meridian-prime load crisis: 5 root causes identified and rem",
+          "date": "2026-04-19",
+          "title": "#2432 B5: Customer provisioning CLI (provision-workspace.sh)",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-18",
-          "title": "#2406 feat(#2359): ronin on Canonical Node-Daemon Map",
+          "date": "2026-04-19",
+          "title": "#2431 B4: Intelligence Gateway wrapper app (gateway/intelligence_g",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-18",
-          "title": "#2405 fix(#2354): Task Resolution Rate \u2014 exclude GitHub PRs from i",
+          "date": "2026-04-19",
+          "title": "#2430 B3: API key \u2192 workspace binding with rate limiting",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2402 feat(#2259): Book OCR + chapter segmentation pipeline",
+          "date": "2026-04-19",
+          "title": "#2429 B2: WorkspaceRouter class for federated Neo4j routing",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2401 web_scraper: E2E domain_hints verification \u2014 confirm routing",
+          "date": "2026-04-19",
+          "title": "#2428 B1: workspace_id query scoping for federated nodes",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2400 web_scraper: URL dedup pre-check against MIG before fetch",
+          "date": "2026-04-19",
+          "title": "#2427 human-os: Context Handoff Daemon \u2014 store session summary to ",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2397 feat(#2262): Phase 4: CLI Entrypoint and Testing",
+          "date": "2026-04-19",
+          "title": "#2426 human-os: Browser Extension \u2014 MIG sidebar + right-click capt",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2396 feat(#2261): Client metadata utility placeholder (nate-broke",
+          "date": "2026-04-19",
+          "title": "#2425 human-os: Scheduling Agent \u2014 auto-accept/decline calendar in",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-04-17",
-          "title": "#2394 feat(#2264): Phase 2 \u2014 TwentyCRM channel partner worker",
+          "date": "2026-04-19",
+          "title": "#2424 human-os: Session Launcher \u2014 one command opens full MERIDIAN",
           "detail": "open"
         }
       ],
