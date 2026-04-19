@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-19T05:13:44.765596+00:00",
+  "generated_at": "2026-04-19T06:11:31.518208+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-19T05:13:41.432008+00:00",
+      "updated_at": "2026-04-19T06:11:28.588963+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3545,9 +3545,9 @@
         },
         {
           "node": "thinkpadgen9",
-          "release": "2026-04-18",
+          "release": "2026-04-19",
           "commit": "7246e3f16",
-          "status": "\u2705 active \u2014 forge-worker online, Ubuntu 24.04.2, Tailscale 100.97.96.44"
+          "status": "\u2705 active \u2014 federated node (forge-worker + neo4j + gateway), Ubuntu 24.04.2, Tailscale 100.97.96.44"
         }
       ],
       "active_sessions": [
@@ -3757,6 +3757,11 @@
           "node": "thinkpadgen9",
           "daemon": "forge-worker",
           "systemd_unit": "meridian-forge-worker (systemd)"
+        },
+        {
+          "node": "thinkpadgen9",
+          "daemon": "neo4j-federated",
+          "systemd_unit": "neo4j-federated (docker)"
         }
       ],
       "mesh_live": {
@@ -3985,11 +3990,11 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 257 hours old"
+        "_stale_warning": "Data is 258 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-19T05:13:44.531299+00:00",
+      "updated_at": "2026-04-19T06:11:31.308250+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -5455,17 +5460,37 @@
         "status": "queued",
         "conclusion": null,
         "name": "CI",
-        "created_at": "2026-04-19T04:58:20Z",
-        "head_sha": "39afd3c3"
+        "created_at": "2026-04-19T06:08:26Z",
+        "head_sha": "8c165d1b"
       },
       "ci_recent_runs": [
         {
-          "id": 24621390568,
+          "id": 24622497056,
           "name": "CI",
           "status": "queued",
           "conclusion": null,
+          "created_at": "2026-04-19T06:08:26Z",
+          "updated_at": "2026-04-19T06:08:26Z",
+          "head_sha": "8c165d1b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622497056"
+        },
+        {
+          "id": 24622289519,
+          "name": "CI Full",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-04-19T05:55:35Z",
+          "updated_at": "2026-04-19T05:55:35Z",
+          "head_sha": "70a6b2f4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24622289519"
+        },
+        {
+          "id": 24621390568,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
           "created_at": "2026-04-19T04:58:20Z",
-          "updated_at": "2026-04-19T05:01:22Z",
+          "updated_at": "2026-04-19T05:23:42Z",
           "head_sha": "39afd3c3",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24621390568"
         },
@@ -5482,35 +5507,57 @@
         {
           "id": 24621152616,
           "name": "CI Full",
-          "status": "queued",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "created_at": "2026-04-19T04:42:26Z",
-          "updated_at": "2026-04-19T04:42:26Z",
+          "updated_at": "2026-04-19T05:29:48Z",
           "head_sha": "e8267577",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24621152616"
-        },
-        {
-          "id": 24620162445,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-04-19T03:36:46Z",
-          "updated_at": "2026-04-19T03:37:00Z",
-          "head_sha": "7b34e69f",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24620162445"
-        },
-        {
-          "id": 24619607840,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-19T03:02:40Z",
-          "updated_at": "2026-04-19T03:02:41Z",
-          "head_sha": "304acb24",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24619607840"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "8c165d1b",
+          "message": "Fix a2a: rollback Gemini model, cancel zombie tasks, fix AudioWorklet leak",
+          "author": "covaultxyz",
+          "date": "2026-04-19T06:08:17Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8c165d1bce0214404e0f4f9bc7c2e72f4ee7d5cb"
+        },
+        {
+          "sha": "70a6b2f4",
+          "message": "Fix phase number cross-references in federation SOP",
+          "author": "covaultxyz",
+          "date": "2026-04-19T05:45:31Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/70a6b2f46fa9d38e770ba9fd5d376802be95d925"
+        },
+        {
+          "sha": "8610e988",
+          "message": "Improve federation SOP: fix 4 contradictions, add 9 gaps, cover 6 blind spots",
+          "author": "covaultxyz",
+          "date": "2026-04-19T05:40:16Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8610e988e753df39acdd780c83d1d6030192b3c0"
+        },
+        {
+          "sha": "6766d649",
+          "message": "boardroom: iPhone incoming-call overlay redesign \u2014 large phone, vibration ring, CSS orbs blue\u2192orange",
+          "author": "covaultxyz",
+          "date": "2026-04-19T05:38:24Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/6766d649bbd22ec95f3d5805018c37fc32ffca1a"
+        },
+        {
+          "sha": "ec0b3b92",
+          "message": "Add 9-phase coherence audit of federation SOP",
+          "author": "covaultxyz",
+          "date": "2026-04-19T05:19:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ec0b3b92804d1a58d3671f2a1d9e0ab246423330"
+        },
+        {
+          "sha": "0784396a",
+          "message": "Redesign Jeff overlay: proper smartphone device frame (dynamic island, side buttons, home indicator)",
+          "author": "covaultxyz",
+          "date": "2026-04-19T05:21:05Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0784396a3f28830d933b13aa52409b2afcaf8ea0"
+        },
         {
           "sha": "74280aeb",
           "message": "Redesign boardroom overlay: particle canvas bg + phone-call UI for Jeff funnel",
@@ -5538,52 +5585,10 @@
           "author": "covaultxyz",
           "date": "2026-04-19T04:50:12Z",
           "url": "https://github.com/covaultxyz/meridian/commit/857891e78b25ad21f573495fc8fba11faaaf3469"
-        },
-        {
-          "sha": "1ea30a96",
-          "message": "Fix EdgeTTS voice passthrough \u2014 Neural names weren't passed through to MS API",
-          "author": "covaultxyz",
-          "date": "2026-04-19T04:46:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1ea30a967e5aa26b9f5781c7b619c6fce01ece2c"
-        },
-        {
-          "sha": "e8267577",
-          "message": "chore: update boot-state files \u2014 deployed 7246e3f16",
-          "author": "covaultxyz",
-          "date": "2026-04-19T04:13:07Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e82675773dd88fcef18463551a80e3344043bc6b"
-        },
-        {
-          "sha": "7246e3f1",
-          "message": "fix(infra): correct NATS CLI auth pattern in borg failure notification",
-          "author": "covaultxyz",
-          "date": "2026-04-19T03:55:32Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7246e3f165bbeeb684a70d75112e93d2506c74b4"
-        },
-        {
-          "sha": "7b34e69f",
-          "message": "fix(adversary-gate): add 25% medium-tier shadow sampling + fix test timeout assertion",
-          "author": "covaultxyz",
-          "date": "2026-04-19T03:36:39Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7b34e69f6539aa6acd5620c2502bae7fa0cd32ab"
-        },
-        {
-          "sha": "304acb24",
-          "message": "chore: update boot-state files \u2014 deployed 5afca6cc2",
-          "author": "covaultxyz",
-          "date": "2026-04-19T02:43:29Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/304acb2436f7c7107f64112723d97c87a3f75257"
-        },
-        {
-          "sha": "5afca6cc",
-          "message": "fix(neo4j): add label constraints to 8 more MATCH queries \u2014 prevent full 265K+ node scans",
-          "author": "covaultxyz",
-          "date": "2026-04-19T02:29:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/5afca6cc245812544eedd95cdbf9359729ba65fc"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-19T05:13:42.502950+00:00",
+        "updated_at": "2026-04-19T06:11:29.318771+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5785,7 +5790,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "members": [
         {
           "id": "alex",
@@ -5858,7 +5863,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "projects": [
         {
           "project": {
@@ -6288,7 +6293,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6373,7 +6378,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6470,7 +6475,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -8372,7 +8377,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -8398,7 +8403,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -8735,7 +8740,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -8828,7 +8833,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -8891,7 +8896,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -8988,7 +8993,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -9050,7 +9055,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -9110,7 +9115,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -9165,7 +9170,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -9260,7 +9265,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -9302,7 +9307,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -9429,7 +9434,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -9572,7 +9577,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -9745,7 +9750,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -10262,7 +10267,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-19T05:13:44.732923+00:00",
+      "updated_at": "2026-04-19T06:11:31.445141+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -10315,7 +10320,7 @@
         {
           "name": "Edge To Federation Promotion",
           "file": "docs/sops/SOP-edge-to-federation-promotion.md",
-          "size": 29611,
+          "size": 35154,
           "modified": "2026-04-19"
         },
         {
@@ -12408,7 +12413,7 @@
       "total_docs": 355
     },
     "deals": {
-      "updated_at": "2026-04-19T05:13:44.733010+00:00",
+      "updated_at": "2026-04-19T06:11:31.445247+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12650,7 +12655,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-19T05:13:44.531312+00:00",
+      "updated_at": "2026-04-19T06:11:31.308260+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -40659,7 +40664,7 @@
       "total": 113
     },
     "call_intelligence": {
-      "updated_at": "2026-04-19T05:13:44.743943+00:00",
+      "updated_at": "2026-04-19T06:11:31.498415+00:00",
       "signal_summary": {
         "total_objections": 72,
         "total_buying_signals": 102,
@@ -47561,7 +47566,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-19T05:13:44.765550+00:00",
+      "updated_at": "2026-04-19T06:11:31.518151+00:00",
       "items": [
         {
           "type": "blocked",
@@ -47732,8 +47737,44 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-19T05:13:44.765586+00:00",
+      "updated_at": "2026-04-19T06:11:31.518196+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-19T06:08:17Z",
+          "title": "Fix a2a: rollback Gemini model, cancel zombie tasks, fix AudioWorklet leak",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T05:45:31Z",
+          "title": "Fix phase number cross-references in federation SOP",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T05:40:16Z",
+          "title": "Improve federation SOP: fix 4 contradictions, add 9 gaps, cover 6 blind spots",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T05:38:24Z",
+          "title": "boardroom: iPhone incoming-call overlay redesign \u2014 large phone, vibration ring, ",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T05:21:05Z",
+          "title": "Redesign Jeff overlay: proper smartphone device frame (dynamic island, side butt",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-19T05:19:11Z",
+          "title": "Add 9-phase coherence audit of federation SOP",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-19T05:08:36Z",
@@ -47756,42 +47797,6 @@
           "type": "commit",
           "date": "2026-04-19T04:50:12Z",
           "title": "Add SOP: Edge node to federated mesh node promotion",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T04:46:21Z",
-          "title": "Fix EdgeTTS voice passthrough \u2014 Neural names weren't passed through to MS API",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T04:13:07Z",
-          "title": "chore: update boot-state files \u2014 deployed 7246e3f16",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T03:55:32Z",
-          "title": "fix(infra): correct NATS CLI auth pattern in borg failure notification",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T03:36:39Z",
-          "title": "fix(adversary-gate): add 25% medium-tier shadow sampling + fix test timeout asse",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T02:43:29Z",
-          "title": "chore: update boot-state files \u2014 deployed 5afca6cc2",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-19T02:29:06Z",
-          "title": "fix(neo4j): add label constraints to 8 more MATCH queries \u2014 prevent full 265K+ n",
           "detail": "covaultxyz"
         },
         {
