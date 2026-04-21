@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T17:12:30.887165+00:00",
+  "generated_at": "2026-04-21T19:02:27.582193+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-21T17:12:27.571994+00:00",
+      "updated_at": "2026-04-21T19:02:24.484599+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3629,9 +3629,9 @@
       "nodes": [
         {
           "node": "racknerd-9165277",
-          "release": "2026-04-19",
-          "commit": "d01b31159",
-          "status": "\u2705 active \u2014 sandman + atlas, migrated from 9165277 (GH#2442), Tailscale 100.95.16.63"
+          "release": "2026-04-21",
+          "commit": "55e06b318",
+          "status": "\u2705 active \u2014 sandman + atlas + pulse-consumer + telegram bots + TwentyCRM + Cal.com + voice + remote-mcp + shepherd-bot, replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
         },
         {
           "node": "racknerd-e3b5f73",
@@ -3693,10 +3693,24 @@
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi"
         },
         {
+          "daemon": "forge",
+          "pid": "45948",
+          "terminal": "ttys044",
+          "launched": "2026-04-21T18:41",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/forge"
+        },
+        {
+          "daemon": "atlas",
+          "pid": "3302",
+          "terminal": "ttys046",
+          "launched": "2026-04-21T18:48",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/atlas"
+        },
+        {
           "daemon": "sensei",
-          "pid": "72258",
-          "terminal": "ttys037",
-          "launched": "2026-04-21T16:54",
+          "pid": "9744",
+          "terminal": "ttys041",
+          "launched": "2026-04-21T18:59",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
@@ -3768,7 +3782,37 @@
         {
           "node": "racknerd-9165277",
           "daemon": "research-mig-writer",
-          "systemd_unit": "meridian-research-mig-writer (systemd)"
+          "systemd_unit": "meridian-research-mig-writer (systemd, INACTIVE)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "pulse-consumer",
+          "systemd_unit": "meridian-pulse-consumer@sandman (systemd)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "telegram-atlas",
+          "systemd_unit": "meridian-telegram@atlas (systemd)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "telegram-sandman",
+          "systemd_unit": "meridian-telegram@sandman (systemd)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "remote-mcp",
+          "systemd_unit": "meridian-remote-mcp (systemd)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "shepherd-bot",
+          "systemd_unit": "meridian-shepherd-bot (systemd)"
+        },
+        {
+          "node": "racknerd-9165277",
+          "daemon": "voice-gateway",
+          "systemd_unit": "meridian-voice (systemd)"
         },
         {
           "node": "yakiras-mac-mini",
@@ -4082,19 +4126,21 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 317 hours old"
+        "_stale_warning": "Data is 319 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-21T17:12:30.694900+00:00",
+      "updated_at": "2026-04-21T19:02:27.385537+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
-          "enhancement": 33,
-          "brain": 6,
-          "grade/A": 17,
-          "daemon/ronin": 4,
-          "daemon/forge": 3,
+          "sentinel-review:warn": 4,
+          "dependencies": 1,
+          "python:uv": 1,
+          "enhancement": 30,
+          "brain": 4,
+          "grade/A": 14,
+          "daemon/ronin": 3,
           "priority/high": 4,
           "revenue": 4,
           "daemon/avery": 5,
@@ -4106,8 +4152,8 @@
           "daemon/delphi": 3,
           "daemon/atlas": 2,
           "sentinel-review:fail": 1,
-          "sentinel-review:warn": 1,
           "reliability": 1,
+          "daemon/forge": 2,
           "daemon/sensei": 2,
           "compliance": 1,
           "grade/B": 12,
@@ -4116,17 +4162,57 @@
           "checkpoint": 2,
           "in-progress": 2,
           "ontology": 1,
-          "cursor-bench": 11,
+          "cursor-bench": 10,
           "grade/C": 6
         }
       },
       "recent_issues": [
         {
+          "number": 2506,
+          "title": "feat(#2500): Forge ML v2 inference, ModelVersion validation, tests",
+          "state": "open",
+          "created_at": "2026-04-21T18:46:26Z",
+          "updated_at": "2026-04-21T18:52:09Z",
+          "labels": [
+            "sentinel-review:warn"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/2506",
+          "project_slug": null
+        },
+        {
+          "number": 2505,
+          "title": "feat(#2499): Avery enterprise pilot pipeline (Prospect \u2192 Contract)",
+          "state": "open",
+          "created_at": "2026-04-21T18:12:50Z",
+          "updated_at": "2026-04-21T18:14:59Z",
+          "labels": [
+            "sentinel-review:warn"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/2505",
+          "project_slug": null
+        },
+        {
+          "number": 2504,
+          "title": "chore(deps): bump python-dotenv from 1.2.1 to 1.2.2",
+          "state": "open",
+          "created_at": "2026-04-21T17:16:08Z",
+          "updated_at": "2026-04-21T17:16:09Z",
+          "labels": [
+            "dependencies",
+            "python:uv"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/2504",
+          "project_slug": null
+        },
+        {
           "number": 2503,
           "title": "Boardroom voice architecture rebuild \u2014 cascade pipeline + 3-tier TTS",
           "state": "open",
           "created_at": "2026-04-21T17:09:06Z",
-          "updated_at": "2026-04-21T17:09:06Z",
+          "updated_at": "2026-04-21T17:38:47Z",
           "labels": [
             "enhancement"
           ],
@@ -4139,8 +4225,10 @@
           "title": "feat(#2485): adversary hook daemon identity + systemd DAEMON_NAME",
           "state": "open",
           "created_at": "2026-04-21T17:08:50Z",
-          "updated_at": "2026-04-21T17:08:50Z",
-          "labels": [],
+          "updated_at": "2026-04-21T17:16:47Z",
+          "labels": [
+            "sentinel-review:warn"
+          ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/2502",
           "project_slug": null
@@ -4162,27 +4250,11 @@
           "project_slug": "graph-intelligence"
         },
         {
-          "number": 2500,
-          "title": "forge: Fine-tune domain-specific reranker + classifier on MERIDIAN corpus (proprietary ML)",
-          "state": "open",
-          "created_at": "2026-04-21T16:55:44Z",
-          "updated_at": "2026-04-21T16:55:44Z",
-          "labels": [
-            "enhancement",
-            "brain",
-            "grade/A",
-            "daemon/forge"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2500",
-          "project_slug": "graph-intelligence"
-        },
-        {
           "number": 2499,
           "title": "avery: close first enterprise pilot ($25-75k band) \u2014 from validated loop to signed contract",
           "state": "open",
           "created_at": "2026-04-21T16:55:16Z",
-          "updated_at": "2026-04-21T16:55:16Z",
+          "updated_at": "2026-04-21T17:41:37Z",
           "labels": [
             "grade/A",
             "priority/high",
@@ -4215,7 +4287,7 @@
           "title": "delphi: Customer-Ready Deployment System \u2014 multi-tenant provisioning with scoped NATS + MIG + SOC2 evidence",
           "state": "open",
           "created_at": "2026-04-21T16:53:59Z",
-          "updated_at": "2026-04-21T16:53:59Z",
+          "updated_at": "2026-04-21T17:15:08Z",
           "labels": [
             "high",
             "security",
@@ -4285,22 +4357,6 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2492",
           "project_slug": "memory-gardener"
-        },
-        {
-          "number": 2491,
-          "title": "ronin: ingestion pipeline hardening \u2014 preventative dedup + provenance + ontology gates",
-          "state": "open",
-          "created_at": "2026-04-21T16:09:20Z",
-          "updated_at": "2026-04-21T16:09:20Z",
-          "labels": [
-            "enhancement",
-            "brain",
-            "grade/A",
-            "daemon/ronin"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2491",
-          "project_slug": "graph-intelligence"
         },
         {
           "number": 2490,
@@ -4849,31 +4905,56 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2419",
           "project_slug": null
-        },
-        {
-          "number": 2418,
-          "title": "human-os: Daily Digest \u2014 08:00 Telegram brief (tasks, deals, mesh health)",
-          "state": "open",
-          "created_at": "2026-04-19T06:18:33Z",
-          "updated_at": "2026-04-19T06:34:06Z",
-          "labels": [
-            "enhancement",
-            "grade/A",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2418",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
           {
+            "number": 2506,
+            "title": "feat(#2500): Forge ML v2 inference, ModelVersion validation, tests",
+            "state": "open",
+            "created_at": "2026-04-21T18:46:26Z",
+            "updated_at": "2026-04-21T18:52:09Z",
+            "labels": [
+              "sentinel-review:warn"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/2506",
+            "project_slug": null
+          },
+          {
+            "number": 2505,
+            "title": "feat(#2499): Avery enterprise pilot pipeline (Prospect \u2192 Contract)",
+            "state": "open",
+            "created_at": "2026-04-21T18:12:50Z",
+            "updated_at": "2026-04-21T18:14:59Z",
+            "labels": [
+              "sentinel-review:warn"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/2505",
+            "project_slug": null
+          },
+          {
+            "number": 2504,
+            "title": "chore(deps): bump python-dotenv from 1.2.1 to 1.2.2",
+            "state": "open",
+            "created_at": "2026-04-21T17:16:08Z",
+            "updated_at": "2026-04-21T17:16:09Z",
+            "labels": [
+              "dependencies",
+              "python:uv"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/2504",
+            "project_slug": null
+          },
+          {
             "number": 2503,
             "title": "Boardroom voice architecture rebuild \u2014 cascade pipeline + 3-tier TTS",
             "state": "open",
             "created_at": "2026-04-21T17:09:06Z",
-            "updated_at": "2026-04-21T17:09:06Z",
+            "updated_at": "2026-04-21T17:38:47Z",
             "labels": [
               "enhancement"
             ],
@@ -4886,8 +4967,10 @@
             "title": "feat(#2485): adversary hook daemon identity + systemd DAEMON_NAME",
             "state": "open",
             "created_at": "2026-04-21T17:08:50Z",
-            "updated_at": "2026-04-21T17:08:50Z",
-            "labels": [],
+            "updated_at": "2026-04-21T17:16:47Z",
+            "labels": [
+              "sentinel-review:warn"
+            ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/2502",
             "project_slug": null
@@ -4897,7 +4980,7 @@
             "title": "avery: close first enterprise pilot ($25-75k band) \u2014 from validated loop to signed contract",
             "state": "open",
             "created_at": "2026-04-21T16:55:16Z",
-            "updated_at": "2026-04-21T16:55:16Z",
+            "updated_at": "2026-04-21T17:41:37Z",
             "labels": [
               "grade/A",
               "priority/high",
@@ -5307,21 +5390,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2419",
             "project_slug": null
-          },
-          {
-            "number": 2418,
-            "title": "human-os: Daily Digest \u2014 08:00 Telegram brief (tasks, deals, mesh health)",
-            "state": "open",
-            "created_at": "2026-04-19T06:18:33Z",
-            "updated_at": "2026-04-19T06:34:06Z",
-            "labels": [
-              "enhancement",
-              "grade/A",
-              "cursor-bench"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2418",
-            "project_slug": null
           }
         ],
         "graph-intelligence": [
@@ -5339,38 +5407,6 @@
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2501",
-            "project_slug": "graph-intelligence"
-          },
-          {
-            "number": 2500,
-            "title": "forge: Fine-tune domain-specific reranker + classifier on MERIDIAN corpus (proprietary ML)",
-            "state": "open",
-            "created_at": "2026-04-21T16:55:44Z",
-            "updated_at": "2026-04-21T16:55:44Z",
-            "labels": [
-              "enhancement",
-              "brain",
-              "grade/A",
-              "daemon/forge"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2500",
-            "project_slug": "graph-intelligence"
-          },
-          {
-            "number": 2491,
-            "title": "ronin: ingestion pipeline hardening \u2014 preventative dedup + provenance + ontology gates",
-            "state": "open",
-            "created_at": "2026-04-21T16:09:20Z",
-            "updated_at": "2026-04-21T16:09:20Z",
-            "labels": [
-              "enhancement",
-              "brain",
-              "grade/A",
-              "daemon/ronin"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2491",
             "project_slug": "graph-intelligence"
           },
           {
@@ -5477,7 +5513,7 @@
             "title": "delphi: Customer-Ready Deployment System \u2014 multi-tenant provisioning with scoped NATS + MIG + SOC2 evidence",
             "state": "open",
             "created_at": "2026-04-21T16:53:59Z",
-            "updated_at": "2026-04-21T16:53:59Z",
+            "updated_at": "2026-04-21T17:15:08Z",
             "labels": [
               "high",
               "security",
@@ -5627,138 +5663,138 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "skipped",
-        "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-04-21T17:09:10Z",
-        "head_sha": "3b690d15"
+        "status": "queued",
+        "conclusion": null,
+        "name": "CI",
+        "created_at": "2026-04-21T18:56:58Z",
+        "head_sha": "9c7fe8fd"
       },
       "ci_recent_runs": [
         {
-          "id": 24735912226,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-21T17:09:10Z",
-          "updated_at": "2026-04-21T17:09:11Z",
-          "head_sha": "3b690d15",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24735912226"
-        },
-        {
-          "id": 24735901451,
+          "id": 24740759929,
           "name": "CI",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-04-21T17:08:56Z",
-          "updated_at": "2026-04-21T17:08:57Z",
-          "head_sha": "3b690d15",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24735901451"
+          "created_at": "2026-04-21T18:56:58Z",
+          "updated_at": "2026-04-21T18:56:59Z",
+          "head_sha": "9c7fe8fd",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24740759929"
         },
         {
-          "id": 24735721256,
+          "id": 24740742519,
           "name": "CI",
           "status": "completed",
           "conclusion": "cancelled",
-          "created_at": "2026-04-21T17:04:53Z",
-          "updated_at": "2026-04-21T17:08:58Z",
-          "head_sha": "33aff915",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24735721256"
+          "created_at": "2026-04-21T18:56:34Z",
+          "updated_at": "2026-04-21T18:57:00Z",
+          "head_sha": "945eb5ed",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24740742519"
         },
         {
-          "id": 24735571906,
+          "id": 24740704756,
+          "name": "CI Full",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-04-21T18:55:45Z",
+          "updated_at": "2026-04-21T18:55:46Z",
+          "head_sha": "4f64d2dc",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24740704756"
+        },
+        {
+          "id": 24740615887,
           "name": "CI",
           "status": "completed",
           "conclusion": "cancelled",
-          "created_at": "2026-04-21T17:01:34Z",
-          "updated_at": "2026-04-21T17:04:54Z",
-          "head_sha": "3171c316",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24735571906"
+          "created_at": "2026-04-21T18:53:48Z",
+          "updated_at": "2026-04-21T18:56:36Z",
+          "head_sha": "4f64d2dc",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24740615887"
         },
         {
-          "id": 24735332368,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "id": 24740337635,
+          "name": "CI",
           "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-21T16:56:15Z",
-          "updated_at": "2026-04-21T16:56:16Z",
-          "head_sha": "d1e90216",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24735332368"
+          "conclusion": "cancelled",
+          "created_at": "2026-04-21T18:47:40Z",
+          "updated_at": "2026-04-21T18:53:49Z",
+          "head_sha": "45af19f1",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24740337635"
         }
       ],
       "recent_commits": [
         {
-          "sha": "3b690d15",
-          "message": "feat(sensei): SOC2 Phase 2 remediation \u2014 close G-03/G-05/G-10, Type I audit package (Closes #2498)",
-          "author": "Sensei",
-          "date": "2026-04-21T17:08:52Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3b690d15f2ae2d3bb2ae07dfd048833109a73cf8"
-        },
-        {
-          "sha": "33aff915",
-          "message": "fix(atlas-brief): harden GH#2483 \u2014 safe queries, no VPS git push, fix hypothesis trigger",
-          "author": "Sensei",
-          "date": "2026-04-21T17:04:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/33aff91596bc510fa72227d6cdb9d2c0d5b7f321"
-        },
-        {
-          "sha": "3171c316",
-          "message": "fix(Q4): query Claim nodes with per-node half_life_days (#2482)",
+          "sha": "9c7fe8fd",
+          "message": "fix(voice/stt): use regional Speech API endpoint for chirp_3/chirp_2",
           "author": "covaultxyz",
-          "date": "2026-04-21T16:59:39Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3171c3165bf8240d202752208c94473acb305c9a"
+          "date": "2026-04-21T18:56:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/9c7fe8fd1be58518546aa5ae99342d6d3b332b08"
         },
         {
-          "sha": "93dbd5d1",
-          "message": "feat(avery): GH#2489 Phase 1-3 \u2014 cohort scored, reply handler (Step 8), follow-up sequence (Step 9). Part of #2489",
-          "author": "Sensei",
-          "date": "2026-04-21T16:56:51Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/93dbd5d1d8d6538a79c602d16a3909a2dabaf1af"
-        },
-        {
-          "sha": "d1e90216",
-          "message": "feat(sensei): SOC2 Type II readiness \u2014 all 5 phases (Part of #2488)",
-          "author": "Sensei",
-          "date": "2026-04-21T16:55:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d1e902164f54cf382c03b70fdcc3a67e1906fa16"
-        },
-        {
-          "sha": "70c9b819",
-          "message": "fix(adversary-gate): tier calibration fixes + test harness \u2014 part of GH#2485 GH#2487",
-          "author": "Sensei",
-          "date": "2026-04-21T16:55:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/70c9b8199518032e0da03e6b1d8999017f1faf7a"
-        },
-        {
-          "sha": "6fa6e3cd",
-          "message": "fix(claims): add half_life_days to basic claim MERGE path (#2482)",
+          "sha": "945eb5ed",
+          "message": "Add integrations/voxer_extractor.py \u2014 Playwright-based Voxer audio extraction",
           "author": "covaultxyz",
-          "date": "2026-04-21T16:54:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6fa6e3cdc38ed2598efdfbc7303111f4a8072bdb"
+          "date": "2026-04-21T18:56:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/945eb5ed027b4d89af4e02932756c993ecda584b"
         },
         {
-          "sha": "d0f78d7d",
-          "message": "fix(avery/outbound): align boutique law firms pain+validation with icp.yaml \u2014 closes #2437",
-          "author": "Sensei",
-          "date": "2026-04-21T16:54:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d0f78d7d4e2d7df5c621fc0b7c65559b5b042457"
-        },
-        {
-          "sha": "55e06b31",
-          "message": "feat(#2486): mesh-wide cost observability + budget enforcement \u2014 all 4 phases",
-          "author": "Sensei",
-          "date": "2026-04-21T16:49:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/55e06b3188d97a7ad794eece62f427df4316fc9e"
-        },
-        {
-          "sha": "535208d0",
-          "message": "docs: add target node capacity analysis to 7311420 inventory",
+          "sha": "4f64d2dc",
+          "message": "fix(voice/cascade): Puck voice-name normalization + offload_llm kwargs",
           "author": "covaultxyz",
-          "date": "2026-04-21T16:47:37Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/535208d0d01c564322939dbff4a1792ef31e4b17"
+          "date": "2026-04-21T18:53:43Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4f64d2dc76280d5876eeb28d3b11070b193c8b97"
+        },
+        {
+          "sha": "45af19f1",
+          "message": "fix(voice/cascade): VAD frame accumulator + Puck greeting replaces Guy PCM",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:47:13Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/45af19f16ec8ceece3ee0b55cb122e2e5d7c8994"
+        },
+        {
+          "sha": "8b55116f",
+          "message": "feat(gateway/auth): extend ClientIdentity with rate_limit_rpm + datetime expires_at",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:44:46Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8b55116f643f68692893032d801b77afab287c0e"
+        },
+        {
+          "sha": "b41fa7c1",
+          "message": "shepherd: Phase A per-user MIG memory (writer, feature-flagged)",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:25:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b41fa7c1fc2d3428d26b95fec3453bb2ce43ce57"
+        },
+        {
+          "sha": "d68c9710",
+          "message": "feat(forge): fine-tune domain reranker + classifier \u2014 GH#2500 all phases",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:16:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d68c971058ba956cef218d7d0a52bb672b394ed1"
+        },
+        {
+          "sha": "34e2e68f",
+          "message": "fix(voice/cascade): stream Jeff opener PCM + pre-emit ready for instant-pickup",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:14:56Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/34e2e68f0101ad2b819bdb2c1d051f4fcafa0357"
+        },
+        {
+          "sha": "5ee1d11b",
+          "message": "feat(shepherd): multi-user scale hardening \u2014 concurrent handlers, error handler, Chatterbox semaphore, SQLite WAL",
+          "author": "covaultxyz",
+          "date": "2026-04-21T18:00:18Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5ee1d11bf6d81b1d5a67a70c988ff9f85155e2c8"
+        },
+        {
+          "sha": "bb80d6ca",
+          "message": "fix(voice/cascade): emit orientation_done after ready so browser opens mic",
+          "author": "covaultxyz",
+          "date": "2026-04-21T17:56:54Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bb80d6cac9b32830b29a76c56ccf7ff72f5526a8"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-21T17:12:28.563846+00:00",
+        "updated_at": "2026-04-21T19:02:25.369326+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -5960,7 +5996,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "members": [
         {
           "id": "alex",
@@ -6033,7 +6069,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "projects": [
         {
           "project": {
@@ -6463,7 +6499,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6548,7 +6584,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6645,7 +6681,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -10437,7 +10473,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-21T17:12:30.835332+00:00",
+      "updated_at": "2026-04-21T19:02:27.521815+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12625,7 +12661,7 @@
       "total_docs": 362
     },
     "deals": {
-      "updated_at": "2026-04-21T17:12:30.835436+00:00",
+      "updated_at": "2026-04-21T19:02:27.521935+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -12867,7 +12903,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-21T17:12:30.694914+00:00",
+      "updated_at": "2026-04-21T19:02:27.385545+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -43344,7 +43380,7 @@
       "total": 119
     },
     "call_intelligence": {
-      "updated_at": "2026-04-21T17:12:30.868362+00:00",
+      "updated_at": "2026-04-21T19:02:27.559233+00:00",
       "signal_summary": {
         "total_objections": 74,
         "total_buying_signals": 102,
@@ -50276,7 +50312,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-21T17:12:30.887117+00:00",
+      "updated_at": "2026-04-21T19:02:27.582132+00:00",
       "items": [
         {
           "type": "blocked",
@@ -50447,67 +50483,85 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-21T17:12:30.887155+00:00",
+      "updated_at": "2026-04-21T19:02:27.582181+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-21T17:08:52Z",
-          "title": "feat(sensei): SOC2 Phase 2 remediation \u2014 close G-03/G-05/G-10, Type I audit pack",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T17:04:49Z",
-          "title": "fix(atlas-brief): harden GH#2483 \u2014 safe queries, no VPS git push, fix hypothesis",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:59:39Z",
-          "title": "fix(Q4): query Claim nodes with per-node half_life_days (#2482)",
+          "date": "2026-04-21T18:56:54Z",
+          "title": "fix(voice/stt): use regional Speech API endpoint for chirp_3/chirp_2",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-21T16:56:51Z",
-          "title": "feat(avery): GH#2489 Phase 1-3 \u2014 cohort scored, reply handler (Step 8), follow-u",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:55:40Z",
-          "title": "feat(sensei): SOC2 Type II readiness \u2014 all 5 phases (Part of #2488)",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:55:04Z",
-          "title": "fix(adversary-gate): tier calibration fixes + test harness \u2014 part of GH#2485 GH#",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:54:28Z",
-          "title": "fix(claims): add half_life_days to basic claim MERGE path (#2482)",
+          "date": "2026-04-21T18:56:23Z",
+          "title": "Add integrations/voxer_extractor.py \u2014 Playwright-based Voxer audio extraction",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-04-21T16:54:11Z",
-          "title": "fix(avery/outbound): align boutique law firms pain+validation with icp.yaml \u2014 cl",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:49:19Z",
-          "title": "feat(#2486): mesh-wide cost observability + budget enforcement \u2014 all 4 phases",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-21T16:47:37Z",
-          "title": "docs: add target node capacity analysis to 7311420 inventory",
+          "date": "2026-04-21T18:53:43Z",
+          "title": "fix(voice/cascade): Puck voice-name normalization + offload_llm kwargs",
           "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:47:13Z",
+          "title": "fix(voice/cascade): VAD frame accumulator + Puck greeting replaces Guy PCM",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:44:46Z",
+          "title": "feat(gateway/auth): extend ClientIdentity with rate_limit_rpm + datetime expires",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:25:54Z",
+          "title": "shepherd: Phase A per-user MIG memory (writer, feature-flagged)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:16:49Z",
+          "title": "feat(forge): fine-tune domain reranker + classifier \u2014 GH#2500 all phases",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:14:56Z",
+          "title": "fix(voice/cascade): stream Jeff opener PCM + pre-emit ready for instant-pickup",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T18:00:18Z",
+          "title": "feat(shepherd): multi-user scale hardening \u2014 concurrent handlers, error handler,",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-21T17:56:54Z",
+          "title": "fix(voice/cascade): emit orientation_done after ready so browser opens mic",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-21",
+          "title": "#2506 feat(#2500): Forge ML v2 inference, ModelVersion validation,",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-21",
+          "title": "#2505 feat(#2499): Avery enterprise pilot pipeline (Prospect \u2192 Con",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-21",
+          "title": "#2504 chore(deps): bump python-dotenv from 1.2.1 to 1.2.2",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -50525,12 +50579,6 @@
           "type": "issue",
           "date": "2026-04-21",
           "title": "#2501 ronin: Proactive Research Agenda \u2014 close Atlas's blind spots",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-21",
-          "title": "#2500 forge: Fine-tune domain-specific reranker + classifier on ME",
           "detail": "open"
         },
         {
@@ -50555,18 +50603,6 @@
           "type": "issue",
           "date": "2026-04-21",
           "title": "#2495 atlas: Client Intelligence Layer \u2014 per-deal strategic briefi",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-21",
-          "title": "#2494 feat(#2487): Add Unit Tests for Tier Classifier",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-21",
-          "title": "#2493 feat(#2492): Sandman reliability ledger \u2014 SLOs, error budget",
           "detail": "open"
         }
       ],
