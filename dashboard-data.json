@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T17:03:01.204225+00:00",
+  "generated_at": "2026-04-24T17:27:45.187706+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-24T17:02:58.271689+00:00",
+      "updated_at": "2026-04-24T17:27:40.413235+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3831,6 +3831,20 @@
           "terminal": "ttys033",
           "launched": "2026-04-24T16:59",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "39578",
+          "terminal": "ttys035",
+          "launched": "2026-04-24T17:11",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/delphi-39578"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "23512",
+          "terminal": "ttys036",
+          "launched": "2026-04-24T17:19",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
       "daemon_tasks": [
@@ -4276,17 +4290,17 @@
       }
     },
     "development": {
-      "updated_at": "2026-04-24T17:03:01.016399+00:00",
+      "updated_at": "2026-04-24T17:27:44.993213+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
           "infrastructure": 6,
           "daemon/delphi": 6,
           "security": 5,
-          "enhancement": 23,
+          "enhancement": 22,
           "sentinel-review:fail": 2,
           "sentinel-review:warn": 6,
-          "grade/A": 16,
+          "grade/A": 15,
           "revenue": 10,
           "grade/B": 4,
           "daemon/sandman": 6,
@@ -4296,9 +4310,9 @@
           "python:uv": 2,
           "brain": 2,
           "daemon/ronin": 2,
-          "priority/high": 2,
-          "daemon/avery": 3,
-          "stall-flag": 6,
+          "priority/high": 1,
+          "daemon/avery": 2,
+          "stall-flag": 5,
           "high": 5,
           "daemon/atlas": 1,
           "reliability": 1,
@@ -4309,6 +4323,17 @@
         }
       },
       "recent_issues": [
+        {
+          "number": 2552,
+          "title": "fix(routing): keyword scoring formula + 3 domain routing failures (cross_domain_router)",
+          "state": "open",
+          "created_at": "2026-04-24T17:26:50Z",
+          "updated_at": "2026-04-24T17:26:50Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2552",
+          "project_slug": null
+        },
         {
           "number": 2551,
           "title": "recover: stash@{9} Denver Griffin dashboard data (2026-04-16 crash, 6247 lines)",
@@ -5008,27 +5033,21 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2469",
           "project_slug": null
-        },
-        {
-          "number": 2467,
-          "title": "avery: Outbound-Prospector hardening arc \u2014 ICP validation, reply tracking, follow-ups, enrichment fix",
-          "state": "open",
-          "created_at": "2026-04-21T11:37:45Z",
-          "updated_at": "2026-04-24T12:00:38Z",
-          "labels": [
-            "enhancement",
-            "grade/A",
-            "priority/high",
-            "daemon/avery",
-            "stall-flag"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2467",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 2552,
+            "title": "fix(routing): keyword scoring formula + 3 domain routing failures (cross_domain_router)",
+            "state": "open",
+            "created_at": "2026-04-24T17:26:50Z",
+            "updated_at": "2026-04-24T17:26:50Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2552",
+            "project_slug": null
+          },
           {
             "number": 2551,
             "title": "recover: stash@{9} Denver Griffin dashboard data (2026-04-16 crash, 6247 lines)",
@@ -5406,23 +5425,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2469",
             "project_slug": null
-          },
-          {
-            "number": 2467,
-            "title": "avery: Outbound-Prospector hardening arc \u2014 ICP validation, reply tracking, follow-ups, enrichment fix",
-            "state": "open",
-            "created_at": "2026-04-21T11:37:45Z",
-            "updated_at": "2026-04-24T12:00:38Z",
-            "labels": [
-              "enhancement",
-              "grade/A",
-              "priority/high",
-              "daemon/avery",
-              "stall-flag"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2467",
-            "project_slug": null
           }
         ],
         "openclaw": [
@@ -5763,13 +5765,33 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "skipped",
-        "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-04-24T17:00:52Z",
-        "head_sha": "513a49f6"
+        "status": "queued",
+        "conclusion": null,
+        "name": "CI",
+        "created_at": "2026-04-24T17:22:09Z",
+        "head_sha": "568274b2"
       },
       "ci_recent_runs": [
+        {
+          "id": 24902627848,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-04-24T17:22:09Z",
+          "updated_at": "2026-04-24T17:22:10Z",
+          "head_sha": "568274b2",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24902627848"
+        },
+        {
+          "id": 24902252306,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-04-24T17:13:24Z",
+          "updated_at": "2026-04-24T17:22:10Z",
+          "head_sha": "59d6ac11",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24902252306"
+        },
         {
           "id": 24901710975,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
@@ -5799,29 +5821,37 @@
           "updated_at": "2026-04-24T17:00:49Z",
           "head_sha": "513a49f6",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/24901708215"
-        },
-        {
-          "id": 24901707420,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-24T17:00:47Z",
-          "updated_at": "2026-04-24T17:00:48Z",
-          "head_sha": "513a49f6",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24901707420"
-        },
-        {
-          "id": 24901520958,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-24T16:56:25Z",
-          "updated_at": "2026-04-24T16:56:25Z",
-          "head_sha": "513a49f6",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24901520958"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "568274b2",
+          "message": "compass-ask: use mesh TLS context + fix venv path + route via ask.covault.xyz",
+          "author": "covaultxyz",
+          "date": "2026-04-24T17:21:57Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/568274b27258616719a74807147bb13fc5fe522a"
+        },
+        {
+          "sha": "18c5efe7",
+          "message": "Add sensei watchdog \u2014 auto-relaunch on exit with exponential backoff (GH#2542)",
+          "author": "covaultxyz",
+          "date": "2026-04-24T17:19:09Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/18c5efe7bceedc6e3fd00befebc88de704b15e02"
+        },
+        {
+          "sha": "59d6ac11",
+          "message": "Fix Kimi automation: lower thresholds, add text-change detection, guard Strategy 3, add phone-number login script",
+          "author": "covaultxyz",
+          "date": "2026-04-24T17:13:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/59d6ac1156a6097d84d17a9655b231aac8555432"
+        },
+        {
+          "sha": "d445c78b",
+          "message": "chore: update boot-state files \u2014 deployed e3dc9a6ca",
+          "author": "covaultxyz",
+          "date": "2026-04-24T16:52:13Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d445c78ba2aa0fffad55e9411ffe84e5fb101d5a"
+        },
         {
           "sha": "513a49f6",
           "message": "feat(compass): Ask backend \u2014 FastAPI service + systemd + CF Tunnel wiring",
@@ -5863,38 +5893,10 @@
           "author": "covaultxyz",
           "date": "2026-04-24T15:57:32Z",
           "url": "https://github.com/covaultxyz/meridian/commit/1af15c1a1a1db254e1ed0a21beeb91909ae7f78e"
-        },
-        {
-          "sha": "38400b5c",
-          "message": "fix(daemon-shell): --persistent flag wraps launch in detached tmux (#2543)",
-          "author": "covaultxyz",
-          "date": "2026-04-24T15:48:00Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/38400b5c3d7d0f5a80907a1001a206437baa7f62"
-        },
-        {
-          "sha": "1838b259",
-          "message": "feat(compass): V3 \u2014 heat signals + deal cards + drawer + filters + auto-gen",
-          "author": "covaultxyz",
-          "date": "2026-04-24T15:31:51Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1838b259914d7ff3394bf68e9e48c20f583ccfbe"
-        },
-        {
-          "sha": "4bfe5371",
-          "message": "feat(compass): clustered layout \u2014 pod-based pos per node",
-          "author": "covaultxyz",
-          "date": "2026-04-24T14:58:35Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/4bfe537157eca213dbdec7f85c253121e5b9475e"
-        },
-        {
-          "sha": "96bc56a3",
-          "message": "feat(compass): add MERIDIAN Compass V0 demo \u2014 tldraw visual project map",
-          "author": "covaultxyz",
-          "date": "2026-04-24T14:40:26Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/96bc56a38e00d9c6dffc1839599af646f92074bf"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-24T17:02:59.079311+00:00",
+        "updated_at": "2026-04-24T17:27:41.402646+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -6096,7 +6098,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "members": [
         {
           "id": "alex",
@@ -6169,7 +6171,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "projects": [
         {
           "project": {
@@ -6599,7 +6601,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6684,7 +6686,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6781,7 +6783,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -10573,7 +10575,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-24T17:03:01.150801+00:00",
+      "updated_at": "2026-04-24T17:27:45.131601+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12809,7 +12811,7 @@
       "total_docs": 370
     },
     "deals": {
-      "updated_at": "2026-04-24T17:03:01.150913+00:00",
+      "updated_at": "2026-04-24T17:27:45.131707+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -13051,7 +13053,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-24T17:03:01.016410+00:00",
+      "updated_at": "2026-04-24T17:27:44.993232+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -42355,7 +42357,7 @@
       "total": 116
     },
     "call_intelligence": {
-      "updated_at": "2026-04-24T17:03:01.185689+00:00",
+      "updated_at": "2026-04-24T17:27:45.168849+00:00",
       "signal_summary": {
         "total_objections": 74,
         "total_buying_signals": 105,
@@ -49317,7 +49319,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-24T17:03:01.204175+00:00",
+      "updated_at": "2026-04-24T17:27:45.187651+00:00",
       "items": [
         {
           "type": "blocked",
@@ -49488,8 +49490,32 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-24T17:03:01.204212+00:00",
+      "updated_at": "2026-04-24T17:27:45.187693+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-04-24T17:21:57Z",
+          "title": "compass-ask: use mesh TLS context + fix venv path + route via ask.covault.xyz",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T17:19:09Z",
+          "title": "Add sensei watchdog \u2014 auto-relaunch on exit with exponential backoff (GH#2542)",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T17:13:15Z",
+          "title": "Fix Kimi automation: lower thresholds, add text-change detection, guard Strategy",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T16:52:13Z",
+          "title": "chore: update boot-state files \u2014 deployed e3dc9a6ca",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-04-24T16:52:11Z",
@@ -49527,28 +49553,10 @@
           "detail": "covaultxyz"
         },
         {
-          "type": "commit",
-          "date": "2026-04-24T15:48:00Z",
-          "title": "fix(daemon-shell): --persistent flag wraps launch in detached tmux (#2543)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-24T15:31:51Z",
-          "title": "feat(compass): V3 \u2014 heat signals + deal cards + drawer + filters + auto-gen",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-24T14:58:35Z",
-          "title": "feat(compass): clustered layout \u2014 pod-based pos per node",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-24T14:40:26Z",
-          "title": "feat(compass): add MERIDIAN Compass V0 demo \u2014 tldraw visual project map",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-04-24",
+          "title": "#2552 fix(routing): keyword scoring formula + 3 domain routing fai",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -49602,12 +49610,6 @@
           "type": "issue",
           "date": "2026-04-24",
           "title": "#2533 feat: Coherence Coach Phase 1 \u2014 internal pilot + Chrome Web ",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-24",
-          "title": "#2532 feat: Coherence Coach \u2014 Chrome extension product tracking & ",
           "detail": "open"
         }
       ],
