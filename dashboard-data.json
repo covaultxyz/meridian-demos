@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-23T22:23:09.324333+00:00",
+  "generated_at": "2026-04-24T02:06:50.463469+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1017,7 +1017,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-04-23T22:23:06.292541+00:00",
+      "updated_at": "2026-04-24T02:06:43.973363+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -3790,31 +3790,31 @@
         {
           "node": "racknerd-9165277",
           "release": "2026-04-21",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 sandman + atlas + pulse-consumer + telegram bots + TwentyCRM + Cal.com + voice + remote-mcp + shepherd-bot, replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
         },
         {
           "node": "racknerd-e3b5f73",
           "release": "2026-04-13",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 delphi + avery + evelyn, autopull converged"
         },
         {
           "node": "meridian-prime",
           "release": "2026-04-13",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 sensei, Neo4j Docker healthy, autopull converged"
         },
         {
           "node": "r-ubuntu",
           "release": "2026-04-10",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 forge-worker connected to NATS, Ubuntu 24.04, Tailscale 100.79.107.77"
         },
         {
           "node": "toshiba-linux",
           "release": "2026-04-10",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 forge-worker online (14 capabilities), Ubuntu 24.04, Tailscale 100.101.165.88"
         },
         {
@@ -3826,8 +3826,14 @@
         {
           "node": "thinkpadgen9",
           "release": "2026-04-19",
-          "commit": "400466cf4",
+          "commit": "a6fdb06bc",
           "status": "\u2705 active \u2014 federated node (forge-worker + neo4j + gateway), Ubuntu 24.04.2, Tailscale 100.97.96.44"
+        },
+        {
+          "node": "racknerd-e583987",
+          "release": "2026-04-23",
+          "commit": "84bd272eb",
+          "status": "\u2705 active \u2014 martin (legal) + sterling (finance), Strasbourg 8GB KVM, Ubuntu 24.04, Tailscale 100.88.179.96"
         }
       ],
       "active_sessions": [
@@ -3949,6 +3955,13 @@
           "terminal": "ttys081",
           "launched": "2026-04-23T19:33",
           "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian/.claude/daemon-worktrees/avery-54566"
+        },
+        {
+          "daemon": "sensei",
+          "pid": "82750",
+          "terminal": "ttys085",
+          "launched": "2026-04-24T01:16",
+          "worktree": "/Users/alexandermazzei2020/Documents/cursor projects/meridian"
         }
       ],
       "daemon_tasks": [
@@ -3983,6 +3996,18 @@
         {
           "daemon": "evelyn",
           "current_assignment": "Client Support Liaison \u2014 ticket intake, triage, SLA tracking, escalation"
+        },
+        {
+          "daemon": "talon",
+          "current_assignment": "Master Librarian \u2014 ontology stewardship, proposal triage, schema health, reference desk"
+        },
+        {
+          "daemon": "martin",
+          "current_assignment": "Legal Counsel \u2014 contract review, NDA/DocuSeal, compliance"
+        },
+        {
+          "daemon": "sterling",
+          "current_assignment": "Finance Officer \u2014 invoicing, budgets, financial analysis"
         }
       ],
       "node_daemon_map": [
@@ -4005,6 +4030,11 @@
           "node": "racknerd-e3b5f73",
           "daemon": "evelyn",
           "systemd_unit": "meridian-daemon@evelyn"
+        },
+        {
+          "node": "racknerd-e3b5f73",
+          "daemon": "talon",
+          "systemd_unit": "meridian-daemon@talon"
         },
         {
           "node": "racknerd-9165277",
@@ -4110,6 +4140,16 @@
           "node": "desktop-36mhmhk",
           "daemon": "vox",
           "systemd_unit": "agentvox-daemon (NSSM)"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "martin",
+          "systemd_unit": "meridian-daemon@martin"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "sterling",
+          "systemd_unit": "meridian-daemon@sterling"
         },
         {
           "node": "desktop-oetudo1",
@@ -4363,19 +4403,19 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 370 hours old"
+        "_stale_warning": "Data is 374 hours old"
       }
     },
     "development": {
-      "updated_at": "2026-04-23T22:23:09.038695+00:00",
+      "updated_at": "2026-04-24T02:06:50.190516+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "deployment": 1,
+          "enhancement": 31,
           "security": 4,
           "infrastructure": 5,
           "daemon/delphi": 3,
-          "enhancement": 31,
-          "auto-created": 1,
           "dependencies": 2,
           "python:uv": 2,
           "sentinel-review:warn": 4,
@@ -4394,15 +4434,54 @@
           "daemon/forge": 2,
           "daemon/sensei": 1,
           "compliance": 1,
-          "grade/B": 13,
+          "grade/B": 12,
           "deploy-failure": 2,
           "checkpoint": 2,
           "in-progress": 2,
-          "cursor-bench": 13,
-          "grade/C": 7
+          "cursor-bench": 11,
+          "grade/C": 6
         }
       },
       "recent_issues": [
+        {
+          "number": 2517,
+          "title": "deploy: Talon daemon \u2014 daemon-shell.sh wiring + VPS deploy to e3b5f73",
+          "state": "open",
+          "created_at": "2026-04-24T01:10:01Z",
+          "updated_at": "2026-04-24T01:10:01Z",
+          "labels": [
+            "deployment"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2517",
+          "project_slug": null
+        },
+        {
+          "number": 2516,
+          "title": "feat: Talon daemon designed \u2014 Master Librarian for ontology stewardship",
+          "state": "open",
+          "created_at": "2026-04-24T01:09:41Z",
+          "updated_at": "2026-04-24T01:09:41Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2516",
+          "project_slug": null
+        },
+        {
+          "number": 2515,
+          "title": "feat: bootstrap France node (racknerd-e583987) as Martin + Sterling host",
+          "state": "open",
+          "created_at": "2026-04-23T22:47:39Z",
+          "updated_at": "2026-04-23T22:47:39Z",
+          "labels": [
+            "enhancement"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/2515",
+          "project_slug": null
+        },
         {
           "number": 2514,
           "title": "security: update lxml (6.0.4\u21926.1.0, XXE) and protobufjs (\u21928.0.1, RCE)",
@@ -4429,19 +4508,6 @@
           ],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2511",
-          "project_slug": null
-        },
-        {
-          "number": 2510,
-          "title": "Metric below target: Task Resolution Rate (0.6)",
-          "state": "open",
-          "created_at": "2026-04-22T00:01:06Z",
-          "updated_at": "2026-04-23T12:00:35Z",
-          "labels": [
-            "auto-created"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2510",
           "project_slug": null
         },
         {
@@ -4545,7 +4611,7 @@
           "title": "avery: close first enterprise pilot ($25-75k band) \u2014 from validated loop to signed contract",
           "state": "open",
           "created_at": "2026-04-21T16:55:16Z",
-          "updated_at": "2026-04-21T17:41:37Z",
+          "updated_at": "2026-04-23T22:42:38Z",
           "labels": [
             "grade/A",
             "priority/high",
@@ -4595,7 +4661,7 @@
           "title": "atlas: Client Intelligence Layer \u2014 per-deal strategic briefings for every Avery engagement",
           "state": "open",
           "created_at": "2026-04-21T16:53:34Z",
-          "updated_at": "2026-04-21T16:53:34Z",
+          "updated_at": "2026-04-23T22:42:42Z",
           "labels": [
             "enhancement",
             "grade/A",
@@ -4671,7 +4737,7 @@
           "title": "avery: outbound-prospector first production scale run + reply/follow-up loop closure",
           "state": "open",
           "created_at": "2026-04-21T16:08:16Z",
-          "updated_at": "2026-04-21T16:08:16Z",
+          "updated_at": "2026-04-24T00:26:41Z",
           "labels": [
             "enhancement",
             "grade/A",
@@ -5109,91 +5175,49 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/2418",
           "project_slug": null
-        },
-        {
-          "number": 2417,
-          "title": "human-os: Voice Drain \u2014 hold \u2318\u21e7V to record, release to store transcript in MIG",
-          "state": "open",
-          "created_at": "2026-04-19T06:18:32Z",
-          "updated_at": "2026-04-19T06:34:21Z",
-          "labels": [
-            "enhancement",
-            "grade/C",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2417",
-          "project_slug": null
-        },
-        {
-          "number": 2416,
-          "title": "human-os: Quick Capture \u2014 Raycast \u2318\u21e7M hotkey to MIG from anywhere in OS",
-          "state": "open",
-          "created_at": "2026-04-19T06:18:07Z",
-          "updated_at": "2026-04-19T06:34:35Z",
-          "labels": [
-            "enhancement",
-            "grade/B",
-            "cursor-bench"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/2416",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
-        "agent-vox": [
-          {
-            "number": 2514,
-            "title": "security: update lxml (6.0.4\u21926.1.0, XXE) and protobufjs (\u21928.0.1, RCE)",
-            "state": "open",
-            "created_at": "2026-04-23T21:59:09Z",
-            "updated_at": "2026-04-23T21:59:09Z",
-            "labels": [
-              "security",
-              "infrastructure",
-              "daemon/delphi"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2514",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 2496,
-            "title": "delphi: Customer-Ready Deployment System \u2014 multi-tenant provisioning with scoped NATS + MIG + SOC2 evidence",
-            "state": "open",
-            "created_at": "2026-04-21T16:53:59Z",
-            "updated_at": "2026-04-23T20:14:11Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/A",
-              "daemon/delphi"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2496",
-            "project_slug": "agent-vox"
-          },
-          {
-            "number": 2484,
-            "title": "delphi: evacuate racknerd-7311420 + convert to federated security sandbox (closes #2205)",
-            "state": "open",
-            "created_at": "2026-04-21T16:06:56Z",
-            "updated_at": "2026-04-21T22:07:17Z",
-            "labels": [
-              "high",
-              "security",
-              "infrastructure",
-              "grade/B",
-              "daemon/delphi"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2484",
-            "project_slug": "agent-vox"
-          }
-        ],
         "unassigned": [
+          {
+            "number": 2517,
+            "title": "deploy: Talon daemon \u2014 daemon-shell.sh wiring + VPS deploy to e3b5f73",
+            "state": "open",
+            "created_at": "2026-04-24T01:10:01Z",
+            "updated_at": "2026-04-24T01:10:01Z",
+            "labels": [
+              "deployment"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2517",
+            "project_slug": null
+          },
+          {
+            "number": 2516,
+            "title": "feat: Talon daemon designed \u2014 Master Librarian for ontology stewardship",
+            "state": "open",
+            "created_at": "2026-04-24T01:09:41Z",
+            "updated_at": "2026-04-24T01:09:41Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2516",
+            "project_slug": null
+          },
+          {
+            "number": 2515,
+            "title": "feat: bootstrap France node (racknerd-e583987) as Martin + Sterling host",
+            "state": "open",
+            "created_at": "2026-04-23T22:47:39Z",
+            "updated_at": "2026-04-23T22:47:39Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2515",
+            "project_slug": null
+          },
           {
             "number": 2511,
             "title": "feat: Kimi K2.6 Claw integration \u2014 paid subscription deep research",
@@ -5205,19 +5229,6 @@
             ],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2511",
-            "project_slug": null
-          },
-          {
-            "number": 2510,
-            "title": "Metric below target: Task Resolution Rate (0.6)",
-            "state": "open",
-            "created_at": "2026-04-22T00:01:06Z",
-            "updated_at": "2026-04-23T12:00:35Z",
-            "labels": [
-              "auto-created"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2510",
             "project_slug": null
           },
           {
@@ -5305,7 +5316,7 @@
             "title": "avery: close first enterprise pilot ($25-75k band) \u2014 from validated loop to signed contract",
             "state": "open",
             "created_at": "2026-04-21T16:55:16Z",
-            "updated_at": "2026-04-21T17:41:37Z",
+            "updated_at": "2026-04-23T22:42:38Z",
             "labels": [
               "grade/A",
               "priority/high",
@@ -5348,7 +5359,7 @@
             "title": "avery: outbound-prospector first production scale run + reply/follow-up loop closure",
             "state": "open",
             "created_at": "2026-04-21T16:08:16Z",
-            "updated_at": "2026-04-21T16:08:16Z",
+            "updated_at": "2026-04-24T00:26:41Z",
             "labels": [
               "enhancement",
               "grade/A",
@@ -5677,36 +5688,57 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/2418",
             "project_slug": null
-          },
+          }
+        ],
+        "agent-vox": [
           {
-            "number": 2417,
-            "title": "human-os: Voice Drain \u2014 hold \u2318\u21e7V to record, release to store transcript in MIG",
+            "number": 2514,
+            "title": "security: update lxml (6.0.4\u21926.1.0, XXE) and protobufjs (\u21928.0.1, RCE)",
             "state": "open",
-            "created_at": "2026-04-19T06:18:32Z",
-            "updated_at": "2026-04-19T06:34:21Z",
+            "created_at": "2026-04-23T21:59:09Z",
+            "updated_at": "2026-04-23T21:59:09Z",
             "labels": [
-              "enhancement",
-              "grade/C",
-              "cursor-bench"
+              "security",
+              "infrastructure",
+              "daemon/delphi"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2417",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/2514",
+            "project_slug": "agent-vox"
           },
           {
-            "number": 2416,
-            "title": "human-os: Quick Capture \u2014 Raycast \u2318\u21e7M hotkey to MIG from anywhere in OS",
+            "number": 2496,
+            "title": "delphi: Customer-Ready Deployment System \u2014 multi-tenant provisioning with scoped NATS + MIG + SOC2 evidence",
             "state": "open",
-            "created_at": "2026-04-19T06:18:07Z",
-            "updated_at": "2026-04-19T06:34:35Z",
+            "created_at": "2026-04-21T16:53:59Z",
+            "updated_at": "2026-04-23T20:14:11Z",
             "labels": [
-              "enhancement",
+              "high",
+              "security",
+              "infrastructure",
+              "grade/A",
+              "daemon/delphi"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/2496",
+            "project_slug": "agent-vox"
+          },
+          {
+            "number": 2484,
+            "title": "delphi: evacuate racknerd-7311420 + convert to federated security sandbox (closes #2205)",
+            "state": "open",
+            "created_at": "2026-04-21T16:06:56Z",
+            "updated_at": "2026-04-21T22:07:17Z",
+            "labels": [
+              "high",
+              "security",
+              "infrastructure",
               "grade/B",
-              "cursor-bench"
+              "daemon/delphi"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/2416",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/2484",
+            "project_slug": "agent-vox"
           }
         ],
         "graph-intelligence": [
@@ -5814,7 +5846,7 @@
             "title": "atlas: Client Intelligence Layer \u2014 per-deal strategic briefings for every Avery engagement",
             "state": "open",
             "created_at": "2026-04-21T16:53:34Z",
-            "updated_at": "2026-04-21T16:53:34Z",
+            "updated_at": "2026-04-23T22:42:42Z",
             "labels": [
               "enhancement",
               "grade/A",
@@ -5895,138 +5927,138 @@
         ]
       },
       "ci": {
-        "status": "queued",
-        "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-04-23T22:07:51Z",
-        "head_sha": "770fb797"
+        "status": "completed",
+        "conclusion": "skipped",
+        "name": "Agent HQ \u2192 MERIDIAN Bridge",
+        "created_at": "2026-04-24T01:45:44Z",
+        "head_sha": "99d37189"
       },
       "ci_recent_runs": [
         {
-          "id": 24861318213,
-          "name": "CI",
-          "status": "queued",
-          "conclusion": null,
-          "created_at": "2026-04-23T22:07:51Z",
-          "updated_at": "2026-04-23T22:10:53Z",
-          "head_sha": "770fb797",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24861318213"
-        },
-        {
-          "id": 24860990012,
+          "id": 24867989342,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-04-23T21:59:12Z",
-          "updated_at": "2026-04-23T21:59:12Z",
-          "head_sha": "672280a8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24860990012"
+          "created_at": "2026-04-24T01:45:44Z",
+          "updated_at": "2026-04-24T01:45:45Z",
+          "head_sha": "99d37189",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24867989342"
         },
         {
-          "id": 24860990021,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-23T21:59:12Z",
-          "updated_at": "2026-04-23T21:59:12Z",
-          "head_sha": "672280a8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24860990021"
-        },
-        {
-          "id": 24860989992,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-04-23T21:59:11Z",
-          "updated_at": "2026-04-23T21:59:12Z",
-          "head_sha": "672280a8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24860989992"
-        },
-        {
-          "id": 24860105218,
+          "id": 24867487125,
           "name": "CI Full",
           "status": "pending",
           "conclusion": null,
-          "created_at": "2026-04-23T21:36:33Z",
-          "updated_at": "2026-04-23T21:36:34Z",
-          "head_sha": "4e229755",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/24860105218"
+          "created_at": "2026-04-24T01:27:06Z",
+          "updated_at": "2026-04-24T01:27:07Z",
+          "head_sha": "2960383d",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24867487125"
+        },
+        {
+          "id": 24867399612,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-04-24T01:23:51Z",
+          "updated_at": "2026-04-24T01:23:52Z",
+          "head_sha": "cdeb201c",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24867399612"
+        },
+        {
+          "id": 24867286199,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-04-24T01:19:39Z",
+          "updated_at": "2026-04-24T01:23:52Z",
+          "head_sha": "be900c4d",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24867286199"
+        },
+        {
+          "id": 24867223078,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-04-24T01:17:17Z",
+          "updated_at": "2026-04-24T01:19:40Z",
+          "head_sha": "438dde08",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/24867223078"
         }
       ],
       "recent_commits": [
         {
-          "sha": "770fb797",
-          "message": "Fix GH#2512: 3 routing bugs in run_daemon/workflow_driver/sentinel_forge",
-          "author": "Sensei",
-          "date": "2026-04-23T22:07:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/770fb7974450fead08c686c5cf708518b0ab5be9"
-        },
-        {
-          "sha": "672280a8",
-          "message": "fix(observability): update prometheus scrape targets to Tailscale IPs",
-          "author": "Sensei",
-          "date": "2026-04-23T21:57:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/672280a8c59f165221178c83d29bd51d0eff842e"
-        },
-        {
-          "sha": "4e229755",
-          "message": "fix: bind mesh exporter to MESH_EXPORTER_BIND_ADDR (default 127.0.0.1)",
-          "author": "Sensei",
-          "date": "2026-04-23T21:11:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/4e2297553595843688eace1dacbacdeaf2207da0"
-        },
-        {
-          "sha": "af03c664",
-          "message": "fix: adversary gate daemon identity resolution via PID breadcrumb files",
-          "author": "Sensei",
-          "date": "2026-04-23T21:01:56Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/af03c664299a3cbbfb68c89e3c0ef15822487bdb"
-        },
-        {
-          "sha": "596f8e1f",
-          "message": "feat(observability): SLO breach watcher sentinel + NATS topics + runbook (Part of #2464)",
-          "author": "Sensei",
-          "date": "2026-04-23T20:38:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/596f8e1f5d34bfcab75949f1e482dd02d34d1c33"
-        },
-        {
-          "sha": "8a31c7d6",
-          "message": "chore: update boot-state files \u2014 deployed 400466cf4",
-          "author": "Sensei",
-          "date": "2026-04-23T20:32:53Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8a31c7d6fee69af6a5964799b1077e2d50d0e2d0"
-        },
-        {
-          "sha": "400466cf",
-          "message": "feat(atlas): weekly signal worker + Ronin blind-spot backlog",
-          "author": "Sensei",
-          "date": "2026-04-23T20:27:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/400466cf45bd1adc0d95d6fc9fd5b63dbfcb2c06"
-        },
-        {
-          "sha": "d983a85c",
-          "message": "Merge branch 'main' of https://github.com/covaultxyz/meridian",
-          "author": "Sensei",
-          "date": "2026-04-23T20:13:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d983a85c525c7e98fcbb3e5cb5729ecfec3547ed"
-        },
-        {
-          "sha": "46c28f19",
-          "message": "docs: add infra inventory to multi-tenant spec, update node count \u2014 GH#2496 Phase 1",
-          "author": "Sensei",
-          "date": "2026-04-23T20:13:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/46c28f1939171823af6ce49f2194f1a486abebbe"
-        },
-        {
-          "sha": "14a5bc19",
-          "message": "coherence-coach: visible card borders + p-5 inner padding (BUILD 1460)",
+          "sha": "0ec5add8",
+          "message": "fix(daemon-shell): rewrite signaled exit to exit 1 with diagnostic",
           "author": "covaultxyz",
-          "date": "2026-04-23T20:05:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/14a5bc19cd34e7d2a886f66c4c1f2e7905c3339a"
+          "date": "2026-04-24T01:46:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0ec5add86606e589bcd14d14d4f2eb35e07b0573"
+        },
+        {
+          "sha": "99d37189",
+          "message": "ops: move talon from e3b5f73 to 9165277 \u2014 more RAM headroom",
+          "author": "Sensei",
+          "date": "2026-04-24T01:44:58Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/99d3718956e1beb22c92cb0b877ce38fd16cf62d"
+        },
+        {
+          "sha": "02d82c13",
+          "message": "Denver sitemap: drop Tailwind CDN, self-contained CSS \u2014 CDN was silently failing",
+          "author": "covaultxyz",
+          "date": "2026-04-24T01:43:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/02d82c13d5d918448bb754a5eeb4d60af54c90f6"
+        },
+        {
+          "sha": "97c521a1",
+          "message": "Denver: strip defer from Tailwind CDN \u2014 ios-compat hook added it, breaking layout",
+          "author": "covaultxyz",
+          "date": "2026-04-24T01:36:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/97c521a17ba2ad4959e7a11ae89b6a570b925f52"
+        },
+        {
+          "sha": "7472803c",
+          "message": "Denver Griffin site: 93% satisfaction update + credentials + sitemap rewrite",
+          "author": "covaultxyz",
+          "date": "2026-04-24T01:29:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7472803c43302023876fc615eacb5023e2f80ef8"
+        },
+        {
+          "sha": "2960383d",
+          "message": "fix(health): add talon to valid_daemon_names allowlist",
+          "author": "Sensei",
+          "date": "2026-04-24T01:24:25Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2960383d711ad7ae9b81588520c49e52cbe9e845"
+        },
+        {
+          "sha": "cdeb201c",
+          "message": "feat(etl): courtlistener + lepard + state parsers, import orchestrator \u2014 Part of #2459",
+          "author": "Sensei",
+          "date": "2026-04-24T01:23:42Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/cdeb201c2daf96e3c98df18aeb4e4a768a91642c"
+        },
+        {
+          "sha": "be900c4d",
+          "message": "feat(mesh): add talon + martin + sterling to health config and mesh_status",
+          "author": "Sensei",
+          "date": "2026-04-24T01:19:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/be900c4d4b869d5fcf03bb908d68f61fcffff3b7"
+        },
+        {
+          "sha": "c307a663",
+          "message": "fix(denver): apply 6 copy changes to index.html \u2014 93% satisfaction, new story, credentials bullets, methodology, hero subtitle",
+          "author": "covaultxyz",
+          "date": "2026-04-24T01:18:00Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c307a6630df3a191f34340eb30376d02bf90906f"
+        },
+        {
+          "sha": "438dde08",
+          "message": "fix(forge-gateway): bind to Tailscale IP + circuit breaker side-effect",
+          "author": "Sensei",
+          "date": "2026-04-24T01:17:12Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/438dde08dad5a1df9eeab6d45a6e7d1313759a66"
         }
       ],
       "github_project": {
-        "updated_at": "2026-04-23T22:23:07.115994+00:00",
+        "updated_at": "2026-04-24T02:06:46.480263+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -6228,7 +6260,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "members": [
         {
           "id": "alex",
@@ -6301,7 +6333,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "projects": [
         {
           "project": {
@@ -6731,7 +6763,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -6816,7 +6848,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -6913,7 +6945,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -10705,7 +10737,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-04-23T22:23:09.260957+00:00",
+      "updated_at": "2026-04-24T02:06:50.392457+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -12929,7 +12961,7 @@
       "total_docs": 368
     },
     "deals": {
-      "updated_at": "2026-04-23T22:23:09.261060+00:00",
+      "updated_at": "2026-04-24T02:06:50.392556+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -13171,7 +13203,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-04-23T22:23:09.038709+00:00",
+      "updated_at": "2026-04-24T02:06:50.190529+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -46983,7 +47015,7 @@
       "total": 127
     },
     "call_intelligence": {
-      "updated_at": "2026-04-23T22:23:09.303611+00:00",
+      "updated_at": "2026-04-24T02:06:50.437270+00:00",
       "signal_summary": {
         "total_objections": 74,
         "total_buying_signals": 105,
@@ -53955,7 +53987,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-04-23T22:23:09.324295+00:00",
+      "updated_at": "2026-04-24T02:06:50.463418+00:00",
       "items": [
         {
           "type": "blocked",
@@ -53967,13 +53999,13 @@
           "type": "overdue",
           "severity": "red",
           "title": "Denver Griffin deadline overdue",
-          "description": "19 days past 2026-04-04"
+          "description": "20 days past 2026-04-04"
         },
         {
           "type": "overdue",
           "severity": "red",
           "title": "Gordon (GCC) deadline overdue",
-          "description": "26 days past 2026-03-28"
+          "description": "27 days past 2026-03-28"
         },
         {
           "type": "revenue_risk",
@@ -54126,67 +54158,85 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-04-23T22:23:09.324326+00:00",
+      "updated_at": "2026-04-24T02:06:50.463458+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-04-23T22:07:41Z",
-          "title": "Fix GH#2512: 3 routing bugs in run_daemon/workflow_driver/sentinel_forge",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T21:57:23Z",
-          "title": "fix(observability): update prometheus scrape targets to Tailscale IPs",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T21:11:23Z",
-          "title": "fix: bind mesh exporter to MESH_EXPORTER_BIND_ADDR (default 127.0.0.1)",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T21:01:56Z",
-          "title": "fix: adversary gate daemon identity resolution via PID breadcrumb files",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:38:11Z",
-          "title": "feat(observability): SLO breach watcher sentinel + NATS topics + runbook (Part o",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:32:53Z",
-          "title": "chore: update boot-state files \u2014 deployed 400466cf4",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:27:09Z",
-          "title": "feat(atlas): weekly signal worker + Ronin blind-spot backlog",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:13:55Z",
-          "title": "Merge branch 'main' of https://github.com/covaultxyz/meridian",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:13:41Z",
-          "title": "docs: add infra inventory to multi-tenant spec, update node count \u2014 GH#2496 Phas",
-          "detail": "Sensei"
-        },
-        {
-          "type": "commit",
-          "date": "2026-04-23T20:05:23Z",
-          "title": "coherence-coach: visible card borders + p-5 inner padding (BUILD 1460)",
+          "date": "2026-04-24T01:46:20Z",
+          "title": "fix(daemon-shell): rewrite signaled exit to exit 1 with diagnostic",
           "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:44:58Z",
+          "title": "ops: move talon from e3b5f73 to 9165277 \u2014 more RAM headroom",
+          "detail": "Sensei"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:43:53Z",
+          "title": "Denver sitemap: drop Tailwind CDN, self-contained CSS \u2014 CDN was silently failing",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:36:11Z",
+          "title": "Denver: strip defer from Tailwind CDN \u2014 ios-compat hook added it, breaking layou",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:29:53Z",
+          "title": "Denver Griffin site: 93% satisfaction update + credentials + sitemap rewrite",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:24:25Z",
+          "title": "fix(health): add talon to valid_daemon_names allowlist",
+          "detail": "Sensei"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:23:42Z",
+          "title": "feat(etl): courtlistener + lepard + state parsers, import orchestrator \u2014 Part of",
+          "detail": "Sensei"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:19:32Z",
+          "title": "feat(mesh): add talon + martin + sterling to health config and mesh_status",
+          "detail": "Sensei"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:18:00Z",
+          "title": "fix(denver): apply 6 copy changes to index.html \u2014 93% satisfaction, new story, c",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-04-24T01:17:12Z",
+          "title": "fix(forge-gateway): bind to Tailscale IP + circuit breaker side-effect",
+          "detail": "Sensei"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-24",
+          "title": "#2517 deploy: Talon daemon \u2014 daemon-shell.sh wiring + VPS deploy t",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-24",
+          "title": "#2516 feat: Talon daemon designed \u2014 Master Librarian for ontology ",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-04-23",
+          "title": "#2515 feat: bootstrap France node (racknerd-e583987) as Martin + S",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -54198,12 +54248,6 @@
           "type": "issue",
           "date": "2026-04-22",
           "title": "#2511 feat: Kimi K2.6 Claw integration \u2014 paid subscription deep re",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-22",
-          "title": "#2510 Metric below target: Task Resolution Rate (0.6)",
           "detail": "open"
         },
         {
@@ -54234,18 +54278,6 @@
           "type": "issue",
           "date": "2026-04-21",
           "title": "#2503 Boardroom voice architecture rebuild \u2014 cascade pipeline + 3-",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-21",
-          "title": "#2502 feat(#2485): adversary hook daemon identity + systemd DAEMON",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-04-21",
-          "title": "#2501 ronin: Proactive Research Agenda \u2014 close Atlas's blind spots",
           "detail": "open"
         }
       ],
