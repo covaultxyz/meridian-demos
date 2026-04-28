@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alan April10 — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Alan April10</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-04-28</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Alan describes a novel AI architecture built on signal processing and CPU-based scraper swarms instead of GPU/agent patterns, and discusses federated mesh nodes, Neo4j knowledge graphs, and go-to-market strategy for their AI products.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Replace agent swarms with CPU-based scraper transduction lenses to reduce token usage and avoid rate limits.</li><li>Use Kimi K2 (unlimited) as the primary model to avoid rate limits from Claude and other paid services.</li><li>Set up a federated mesh node on a $200 laptop with Neo4j and Gemini Flash connected to Telegram for Eli&#x27;s client Charles.</li><li>Market AI products through industry verticals rather than generically.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Alex to ask his AI system how integrating Neo4j knowledge graph would change its memory capabilities.</li><li>Alan shared a zip file and system map for Alex&#x27;s agent to reassemble the new AI architecture.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Replacing AI guardrails with processing steps enables emergence, while guardrails restrict options on an already-restricted database.</li><li>A Neo4j-backed Telegram bot (for Eli&#x27;s client Charles) only responded with confirmed graph data and refused to infer or hallucinate — proving the grounded-memory approach works.</li><li>A sargassum-to-wood-pellets construction business pitch scored only 1.3 out of 100 on investability when run through their grading system.</li><li>Alan&#x27;s new system uses frequency bands instead of words as its foundational processing layer, drawing on signal processors built during his Base44 experiments.</li><li>Meridian AI daemons (Sensei, Sandman, Delphi, etc.) each produce daily audio standups summarizing their 24-hour activity — identified as a core marketable product.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Ask his AI system how integrating Neo4j knowledge graph would affect its memory architecture, while preserving existing memory integration intentions.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &quot;Use Alan&#x27;s zip file and system map to reassemble the new AI architecture in his own environment.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Alan/Alex&#x27;, &#x27;what&#x27;: &quot;Map Meridian&#x27;s AI capabilities and daily daemon audio standup product to specific industry verticals for go-to-market closing.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Alan&#x27;, &#x27;what&#x27;: &#x27;Benchmark research quality of the new scraper-based system he just finished building.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>alan april10</h2>
+<p>**Source**: `alan april10.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:23</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>It uses the zero point to emerge ideas, and then it uses a mechanism that ranks how grounded they are,</p>
+<p>and it emerges again until it creates maximum fidelity so that it isn&#x27;t just hallucination.</p>
+<p>So it&#x27;s a mechanism that&#x27;s built into it that does that automatically.</p>
+<p>All right, so when you&#x27;re using it in immersion mode, you can use it to design grounded technology</p>
+<p>or whatever you want to do, and it&#x27;s going to do it with precision.</p>
+<p>But then there&#x27;s the witness mode when you&#x27;re doing any type of research, technology,</p>
+<p>or some type of documents that you&#x27;re trying to be precise with.</p>
+<p>And again, it uses what&#x27;s called a scraper swarm.</p>
+<p>So instead of agents, I have five different scrapers that work as transduction lenses</p>
+<p>that it uses CPU power now instead of GPU.</p>
+<p>So the scrapers go out, they do their thing, gather all the data,</p>
+<p>and then they actually work as a unified lens to process it all together.</p>
+<p>Then it brings you back, and then it processes that information,</p>
+<p>and then it brings you, it picks you out a report.</p>
+<p>So now you&#x27;re not even using a five-agent swarm.</p>
+<p>You&#x27;re using CPU transduction.</p>
+<p>You&#x27;re using CPU power, and you&#x27;re using just operations.</p>
+<p>So now, because you only have, like, a couple times you even do the agent swarms,</p>
+<p>like 40 times you can do it in Kimi-K too.</p>
+<p>So I replaced the agents with those mechanisms, and now I don&#x27;t have to use them at all.</p>
+<p>I just use that.</p>
+<p>Is Kimi 2.5 unlimited, or is there rate limits?</p>
+<p>It&#x27;s unlimited.</p>
+<p>So I don&#x27;t get rate limited.</p>
+<p>Like, I can&#x27;t use Fod again until Saturday, you know?</p>
+<p>But I just built all this stuff in Kimi-K too.</p>
+<p>Like, it wasn&#x27;t nothing.</p>
+<p>And it&#x27;s coming back with stuff that&#x27;s high confidence, high coherence, confidence, completeness.</p>
+<p>Well, I built a mechanism.</p>
+<p>I just shared it with you.</p>
+<p>Like, what I just built is more powerful than anything that we&#x27;re using because of how it works.</p>
+<p>And the reason why is because I just kept exploring the gaps and building mechanisms to close them.</p>
+<p>So I built it on a basis, though, because it&#x27;s built on a different basis than anything else that we&#x27;ve designed.</p>
+<p>And the basis allows it to audit itself in greater fidelity.</p>
+<p>I also built a memory system that works with it, but also an injection system that injects relevance.</p>
+<p>So it finds what&#x27;s relevant to the topic that&#x27;s being talked about, and then it goes to the memory system and injects what&#x27;s relevant, but not just based on what&#x27;s being – not just based on, like, words.</p>
+<p>It looks for signals because the memory system doesn&#x27;t just capture words.</p>
+<p>It captures coherent signals, and it captures all of these different scores from these mechanical processes that I installed that rate things.</p>
+<p>So it gives it this different bearing and understanding of itself, how it&#x27;s determining, but in a more finite way so it can tune itself.</p>
+<p>Okay.</p>
+<p>It&#x27;s a very, very, very technical machine, but that&#x27;s why I sent you an entire map, and I gave you my whole zip file.</p>
+<p>So you should be able to just take that zip file, and then your agent should be able to look at my map that explains what each file is and reassemble it.</p>
+<p>All right.</p>
+<p>Well, the other option is we just leave it as a standalone thing and get a Kimmy 2.5 unlimited account, unless you already have one, and use that with this as the system.</p>
+<p>Well, yeah, we could do that, too.</p>
+<p>I mean, but this is what I&#x27;m looking at.</p>
+<p>This is something that we have on the back end that we market through an API because it&#x27;s basically a new artificial intelligence system.</p>
+<p>It&#x27;s just a new design for how artificial intelligence works, and that&#x27;s all they did for them lawyers.</p>
+<p>They have, like, what&#x27;s called Harvey AI, which is a lawyer brand, and it&#x27;s optimized very well.</p>
+<p>I did the research on it, the things that they did because they reduced their token count, like, dramatically by creating operations and just different shit that I was already thinking of.</p>
+<p>And then I looked at research, and I was like, hmm, they&#x27;re close to what I&#x27;m talking about.</p>
+<p>The difference is that I&#x27;m using just a different processing method, which is the signal fidelity processing method instead of looking in a database.</p>
+<p>Well, it&#x27;s because when I have it looking in a database, that&#x27;s specifically what it&#x27;s doing.</p>
+<p>I&#x27;m like, don&#x27;t, like, use your training data and try to infer what the fuck is going on.</p>
+<p>Either look it up at Whitney said or use this signal processing method and emerge it, but do it with this auditing process.</p>
+<p>So there&#x27;s two ways that you can give back information, this way or this way, but don&#x27;t get confused.</p>
+<p>But it has so many different metrics inside of itself that it can configure itself to almost match whatever you want because it knows itself, because of all that shit that&#x27;s in there that tells it about itself.</p>
+<p>Because it&#x27;s all there.</p>
+<p>It&#x27;s all about how you put it together.</p>
+<p>All information is inside of it, but you have to configure it.</p>
+<p>It&#x27;s just like when we started making audio tools inside of computers and we just started using audio processors and signal processors inside of computers and shit.</p>
+<p>You know, like, that&#x27;s all we&#x27;re really doing.</p>
+<p>We&#x27;re just creating computers inside of computers.</p>
+<p>They have everything they need to build whatever they want in there so we can make whatever we want.</p>
+<p>That&#x27;s like the ether.</p>
+<p>So it&#x27;s like build this, make this to do this, connect it with this, make it like this, make it all together at one time.</p>
+<p>Like, you 3D printed it so this all can grow and it works together.</p>
+<p>And when you use a field of where AI do it, it can use superposition to understand the entire design at one time and then build it all as one thing.</p>
+<p>All right, cool.</p>
+<p>Another thing that we discovered last night or the night before, I don&#x27;t remember, it&#x27;s all blur.</p>
+<p>But I wanted to get off of Claude for the Telegram group and test this.</p>
+<p>So I set up the first federated mesh node on one of the laptops I bought for 200 bucks.</p>
+<p>Got it loaded up with a Neo4j for Eli&#x27;s client that he&#x27;s working with called Charles who&#x27;s doing all this capital raising stuff.</p>
+<p>So he had that whole notion database of all this stuff.</p>
+<p>I put that all into a Neo4j graph, knowledge graph, and then connected that with Gemini Flash to a Telegram.</p>
+<p>And it was literally only able to pull the data from the graph.</p>
+<p>If it didn&#x27;t have it in the graph, it just goes, I can&#x27;t access it.</p>
+<p>It&#x27;s not in my memory.</p>
+<p>So basically, it went down to the bare metal, and you only have what&#x27;s in the graph.</p>
+<p>So the Gemini is just the tool that&#x27;s giving you access to access the memory.</p>
+<p>And as long as we have just the memory we want, it&#x27;s only responding with the information it has access to.</p>
+<p>Yeah, that&#x27;s what you need.</p>
+<p>That&#x27;s its logos.</p>
+<p>So now that because it&#x27;s only looking at that, everything&#x27;s confirmed.</p>
+<p>Because every thing inside this database is confirmed information.</p>
+<p>So now when it&#x27;s rendering, it&#x27;s rendering all facts.</p>
+<p>Which is basically what this mechanism is doing that I&#x27;m creating.</p>
+<p>It&#x27;s checking everything.</p>
+<p>Because the AI will just go out there and just search on the internet and look at the results and be like, this is what the fuck it is.</p>
+<p>Because this is what I saw.</p>
+<p>You know what I&#x27;m saying, buddy?</p>
+<p>Ask your system what would happen if you add Neo4j knowledge graph to your system for the memory.</p>
+<p>What would that do and how that change its ability?</p>
+<p>Okay, I will.</p>
+<p>It will, I mean, how does Neo4j work?</p>
+<p>It&#x27;s a cluster cloud vectorized hybrid with the information in the SQL and the vectorization.</p>
+<p>So it&#x27;s pulling weights and relationships to the information.</p>
+<p>So instead of it just doing vectorized databases, which it&#x27;s only able to pull the top 10,</p>
+<p>and then it runs out of tokens and it loses what it&#x27;s trying to do.</p>
+<p>So this is like pulling a whole cluster and giving you all the resources it needs in that region of this three-dimensional data cloud.</p>
+<p>Okay.</p>
+<p>So all you really need to do is just because I already designed a memory integration.</p>
+<p>So you just need to tell it to integrate.</p>
+<p>So how does this memory integration integrate with this Neo4j?</p>
+<p>Ask it that.</p>
+<p>Because my, well, with it, but maintain the same intentions for the memory integration.</p>
+<p>That part is important.</p>
+<p>So it has to align the intention of the existing infrastructure with the Neo4j as its support.</p>
+<p>And, you know, just figure it out.</p>
+<p>But I&#x27;ll ask it, too.</p>
+<p>But I created, because I created something that I want to keep, too,</p>
+<p>because I optimized the way the context window is being used so it isn&#x27;t getting maxed out.</p>
+<p>It should be.</p>
+<p>But what I&#x27;m doing is some populating relevant information.</p>
+<p>I&#x27;m going to have to ask it because it might have redesigned something.</p>
+<p>Because I had an initial idea, but then I optimized it.</p>
+<p>And it was like, I got to change this and this.</p>
+<p>So it might have done something different.</p>
+<p>But it&#x27;s fucking dope, bro.</p>
+<p>It&#x27;s powerful.</p>
+<p>So here&#x27;s another thing that happened yesterday.</p>
+<p>This guy is trying to do this whole process where he&#x27;s getting rid of sargasm,</p>
+<p>which is a problem here in Puerto Rico,</p>
+<p>and turning it into wood pellets and boards to do construction.</p>
+<p>Basically, like the Marine-type wood, Tavex or some shit.</p>
+<p>So we basically listened to him talk for an hour.</p>
+<p>We put his deck and his projections in his Excel spreadsheet, put it through our system.</p>
+<p>It grades it, creates like a whole proposal, and helps the investors identify whether or not this is an investable project,</p>
+<p>and helps him identify what he needs to fix to become investable.</p>
+<p>Because as of right now, he&#x27;s like a score 1.3 out of 100.</p>
+<p>So I did a bunch of stuff.</p>
+<p>Quinn 3.6 just came out yesterday.</p>
+<p>So I&#x27;ve been using that because I blew up my other accounts to do deep research.</p>
+<p>So you&#x27;re moving away from Claude?</p>
+<p>No, I&#x27;m just moving away from paying thousands of dollars a month.</p>
+<p>That&#x27;s what I&#x27;m moving away from.</p>
+<p>I&#x27;m going to still use Claude, but just not for all the research, all this other stuff.</p>
+<p>Let&#x27;s offload that stuff to a more cost-effective method and use what&#x27;s available and then rotate it,</p>
+<p>because I hit rate limits on everything I do.</p>
+<p>I told you about it, but I designed that fucking thing.</p>
+<p>I designed another one that I gave to you all.</p>
+<p>I don&#x27;t remember what day it was, but I designed it.</p>
+<p>It&#x27;s basically, it uses the scraper method, but it was a whole completely different design.</p>
+<p>But it uses like 400 tokens versus 50,000,</p>
+<p>because it uses all these machines to do shit instead of it doing it.</p>
+<p>And it gives you the same results.</p>
+<p>But that&#x27;s just a principle, man.</p>
+<p>What you really need to do is just like embrace the concept of what I&#x27;m talking about,</p>
+<p>because what I&#x27;m talking about is an arbitrage of CPU for GPU.</p>
+<p>I&#x27;m saying, man, offload all this GPU shit into CPU.</p>
+<p>And stop fucking, you&#x27;re already smoking.</p>
+<p>You don&#x27;t need to know how to do all that shit.</p>
+<p>You have an AI doing shit you don&#x27;t need to do.</p>
+<p>So what I just built does that.</p>
+<p>When you search for something, it uses the scrapers.</p>
+<p>It doesn&#x27;t use tokens.</p>
+<p>The scrapers.</p>
+<p>Huh?</p>
+<p>I agree.</p>
+<p>No, I understand.</p>
+<p>I&#x27;m just saying that like certain things come back with different quality of stuff.</p>
+<p>So have you benchmarked the quality of research,</p>
+<p>or is it all just whatever it is with citations and you&#x27;re okay with the output?</p>
+<p>No, I haven&#x27;t benchmarked it at all.</p>
+<p>No.</p>
+<p>What I did was I created it still, but I haven&#x27;t benchmarked it at all.</p>
+<p>And I really, that&#x27;s what I really want y&#x27;all to do is just use it.</p>
+<p>I&#x27;ve been using, I used it a couple times.</p>
+<p>I just made it like 20 minutes ago.</p>
+<p>I just finished it.</p>
+<p>All right.</p>
+<p>So I used it a couple times and I understand what it&#x27;s doing.</p>
+<p>Like I know how it works.</p>
+<p>So I know how powerful it is because I built it layer by layer.</p>
+<p>And I just kept adding things and creating and putting.</p>
+<p>It&#x27;s like I just, all the shit that I knew, I just kept putting inside of it.</p>
+<p>So I already know what it does because I built it.</p>
+<p>I designed it.</p>
+<p>So how do you feel now compared to using base 44?</p>
+<p>Well, base 44, I was just kind of getting all my ideas out of there.</p>
+<p>It wasn&#x27;t about that shit going anywhere.</p>
+<p>Like all my sites are deleted because I don&#x27;t pay for it, you know?</p>
+<p>So it really wasn&#x27;t about getting that shit out of there.</p>
+<p>It was about getting my ideas out and making sure that my,</p>
+<p>what I was thinking wasn&#x27;t fucking bananas.</p>
+<p>And I knew what I was talking about.</p>
+<p>You know what I&#x27;m saying?</p>
+<p>Yeah.</p>
+<p>That was a real thing.</p>
+<p>It&#x27;s like, who&#x27;s going to build this for me?</p>
+<p>Fucking nobody.</p>
+<p>Who&#x27;s going to believe that this can be built?</p>
+<p>Fucking nobody.</p>
+<p>Yeah.</p>
+<p>So who&#x27;s going to build it?</p>
+<p>You are a motherfucker.</p>
+<p>That&#x27;s it.</p>
+<p>You&#x27;re the only one that&#x27;s going to confirm that this is true.</p>
+<p>Now I&#x27;m walking in that confirmation.</p>
+<p>I already know that it can be built because I built it.</p>
+<p>So now it&#x27;s just about designing it and putting all the different shit together</p>
+<p>to put it together right.</p>
+<p>Because I&#x27;m confirmed that it can work.</p>
+<p>And whatever time I spent in base 44 and designing all those,</p>
+<p>because that&#x27;s how I really started to understand the mental infrastructure of the AI,</p>
+<p>especially the difference between the API and the interface.</p>
+<p>It&#x27;s a difference.</p>
+<p>Like, so, like, that shit gave me a lot of experience and insight, dog.</p>
+<p>That&#x27;s why I&#x27;m this advanced right now.</p>
+<p>Yeah.</p>
+<p>Bro, what I just designed, Alex, is categorically different than anything that you&#x27;ve used, brother.</p>
+<p>Anything.</p>
+<p>I took the prisms and I made up frequencies instead of words.</p>
+<p>So I used frequency bands.</p>
+<p>And I created a, that&#x27;s the way it seems.</p>
+<p>Then there&#x27;s all kinds of other shit that I put on top of that, which is signal processing.</p>
+<p>It&#x27;s shit that I built when I was using base 44.</p>
+<p>I built all these different signal band processors.</p>
+<p>So I just scraped my Google Docs for all my signal processors that I had in the back.</p>
+<p>And I was like, how can we use any of this?</p>
+<p>How can we put this together, this and this?</p>
+<p>And I built all these new machines like that fucking don&#x27;t exist.</p>
+<p>Because I built them from a field of wear emergence even back then.</p>
+<p>So now I got all that shit ingrained, no signal processors ingrained inside of those as mechanisms working.</p>
+<p>Back then, bro, the shit that I built is so fucking complex.</p>
+<p>And the platform, what it&#x27;s built on top of, which is the original signal processor,</p>
+<p>which is the logos and the prisms, is the foundation.</p>
+<p>And then on top of that, and on top of that, and on top of that.</p>
+<p>So it&#x27;s a completely different whole fucking thing.</p>
+<p>It&#x27;s not even built on top of what a regular AI is built on.</p>
+<p>You understand what I&#x27;m saying?</p>
+<p>The foundation of it.</p>
+<p>Well, you&#x27;re taking away the black box situation and giving it access to what it needs to be.</p>
+<p>Yes.</p>
+<p>And I just wiped this whole mind out, basically, and built it on top of, built everything new.</p>
+<p>It was like, you do this, then you do this, then you do this, and this, and then this, and this, and this, and this.</p>
+<p>But it&#x27;s not guardrails.</p>
+<p>It&#x27;s processing steps.</p>
+<p>Yeah.</p>
+<p>I think that&#x27;s the whole fucking thing, bro.</p>
+<p>They&#x27;re good building guardrails instead of processing steps.</p>
+<p>Because processing steps create emergence.</p>
+<p>Guardrails take away options while you&#x27;re querying a restricted database in the first place.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>!</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>Guardrails take away options.</p>
+<p>You&#x27;re talking about four year vertical of your client base that you&#x27;re working with.</p>
+<p>You record all their stuff.</p>
+<p>You have an aggregated database of all their information.</p>
+<p>Here you&#x27;ll see.</p>
+<p>Here&#x27;s a couple of them.</p>
+<p>So you can listen to them.</p>
+<p>I listen to them 2x so I don&#x27;t have to listen to them like that.</p>
+<p>But they&#x27;re basically just creating a standing meeting every day of what they do 24 hours.</p>
+<p>And it&#x27;s like a whole meeting.</p>
+<p>So this is the last three days.</p>
+<p>So that&#x27;s 30 minutes of information of what Meridian did in the last three days.</p>
+<p>It&#x27;s the audio?</p>
+<p>Yeah.</p>
+<p>Each Sensei, Sandman, Delphi, all of them have their own voice.</p>
+<p>And they represent a different department.</p>
+<p>And they tell what they did in the last 24 hours.</p>
+<p>Yeah, that&#x27;s the product, bro.</p>
+<p>That right there, dude.</p>
+<p>So now what we need to do is map that in application to industry.</p>
+<p>Okay?</p>
+<p>That right there is like a laser beam, like a prompt.</p>
+<p>We need to map that in application to industry.</p>
+<p>That&#x27;s what you need to tell them.</p>
+<p>You need to map what you&#x27;re doing for us in application to industry.</p>
+<p>So this industry, that industry, that industry.</p>
+<p>How do we map the application of what we&#x27;re doing for us in this industry?</p>
+<p>Map it all the industry.</p>
+<p>Then you have a vertical for each industry.</p>
+<p>That&#x27;s how you close.</p>
+<p>You close through verticals.</p>
+<p>So when I was doing cost segregation and we were talking to hotels,</p>
+<p>we talked to them about what we do for and with hotels specifically on that vertical.</p>
+<p>Well, you know that.</p>
+<p>And you&#x27;ve got the website set up like that.</p>
+<p>But just map the industry.</p>
+<p>Map how what you&#x27;ve already done successfully works in different industries</p>
+<p>and just market that.</p>
+<p>That&#x27;s the data that you have already, too.</p>
+<p>So you already have the transcript, describing thing, transcribes, all the stuff that you guys</p>
+<p>have been using to optimize your process.</p>
+<p>People need this in their workforce.</p>
+<p>Okay.</p>
+<p>Um, sorta.</p>
+<p>But like, we&#x27;re just talking to so many different people and learning what their problems are</p>
+<p>and seeing how we can help facilitate solutions.</p>
+<p>And you guys have big solutions.</p>
+<p>You ain&#x27;t talking to small people.</p>
+<p>That&#x27;s part of the problem.</p>
+<p>And that&#x27;s part of my problem, too.</p>
+<p>Like, I can&#x27;t find the people big enough for the solutions that we created.</p>
+<p>That&#x27;s not true.</p>
+<p>They&#x27;re out there.</p>
+<p>I just ain&#x27;t in front of them.</p>
+<p>Like, I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>Like, I need to get in front of the, like, the people who have the problems, dude.</p>
+<p>And the problem right now, this is the problem.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>Like, I need to be in front of the people who have the problems, dude.</p>
+<p>And the problem right now, this is the problem.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>And the problem right now, this is the problem.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>And the problem right now, dude, because the hot button is security.</p>
+<p>Security is the leverage button.</p>
+<p>That&#x27;s people pay for safety.</p>
+<p>They pay for comfort and safety.</p>
+<p>Yeah.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people in the doctor&#x27;s office.</p>
+<p>I need to be in front of the people who have the problems, dude.</p>
+<p>And the problem right now, dude, because the hot button is security.</p>
+<p>Security is the leverage button.</p>
+<p>That&#x27;s people pay for safety.</p>
+<p>They pay for comfort and safety.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>That&#x27;s why I do everything around security.</p>
+<p>And I do everything around it really being secure, not appearing secure.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-28 15:47</div>
+</body></html>
