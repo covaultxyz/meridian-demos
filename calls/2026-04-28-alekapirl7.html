@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alekapirl7 — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Alekapirl7</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-04-28</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Pablo pitches an AI-powered website rebuild and local SEO service for La Fortuna restaurant (owned by Alex/Valentino&#x27;s contact), targeting a Planet Fitness-style $199/month recurring revenue model with a goal of 1,000 restaurant clients.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Pablo&#x27;s company will build a new WordPress site for La Fortuna at no cost as a case study.</li><li>The real money in the restaurant-tech model is not charging restaurants directly but monetizing the customer traffic they bring in through local service business advertising.</li><li>They will not pursue building a POS system or competing with Toast/OpenTable due to capital and trust barriers.</li><li>Pricing set at $199/month per restaurant with a $1,500-$2,000 setup fee, paying $1,000 referral commissions to sales reps.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Pablo will build La Fortuna&#x27;s new site on a staging server and send the dev link to Alex and Valentino for approval before going live.</li><li>Pablo&#x27;s team will handle DNS migration by updating the A record to point lafortuna.ct.com from GoNation to SiteGround once the site is approved.</li><li>Valentino (Pablo&#x27;s contact) will cancel the GoNation account once the new site is ready to launch.</li><li>Pablo aims to reach 1,000 restaurant clients within two years.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>GoNation already controls roughly two-thirds of Connecticut restaurant websites at $62/month, suggesting a large incumbent with weak product-market fit and an exit-seeking owner.</li><li>La Fortuna&#x27;s current website still has COVID-era content from 2023, making it appear dated and eroding customer trust.</li><li>Alex (on the call) lives in Puerto Rico full-time as a tax haven and is not returning to the mainland, which surprised the other participants who thought he was on vacation.</li><li>Alex uses a deep-research plus AI voice-simulation workflow to pre-profile new clients before calls, generating a predicted conversation map before getting on the phone.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Pablo&#x27;, &#x27;what&#x27;: &quot;Build La Fortuna&#x27;s new WordPress site with AI chatbot on a staging server and send the dev link to Alex and Valentino.&quot;}</li><li>{&#x27;who&#x27;: &quot;Pablo&#x27;s team&quot;, &#x27;what&#x27;: &#x27;Download and archive all existing La Fortuna site assets from GoNation as the starting point for the rebuild.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alex&#x27;, &#x27;what&#x27;: &#x27;Review the staging site and provide feedback or approval to proceed to live launch.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Valentino&#x27;, &#x27;what&#x27;: &#x27;Cancel the GoNation account once the new site is approved and ready to go live.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Pablo&#x27;, &#x27;what&#x27;: &#x27;Set up an A record DNS update pointing lafortuna.ct.com to SiteGround once site is approved.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>alekapirl7</h2>
+<p>**Source**: `alekapirl7.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:30</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>Yeah.</p>
+<p>Legally?</p>
+<p>I said that to you last night, Alex.</p>
+<p>I said it&#x27;s very complicated.</p>
+<p>We could track them through a geo-fence.</p>
+<p>No matter what you&#x27;re doing, there&#x27;s always going to be an ad spend.</p>
+<p>Because in order to do this and track them and get in front of them, you have to pay the piper.</p>
+<p>You&#x27;ve got to pay somebody to put them in front of them.</p>
+<p>So you&#x27;re pixeling them by going to the website.</p>
+<p>You&#x27;re collecting their information when they scan the menu and you&#x27;re putting a pixel on that.</p>
+<p>You&#x27;re paying to show it in a geo-fence location.</p>
+<p>So you geo-fence the restaurants and then if they go into that restaurant, then you can continue to add more stuff.</p>
+<p>You can do the Facebook.</p>
+<p>If they go on Facebook and they see what&#x27;s going on and they&#x27;re pixeled on Facebook,</p>
+<p>you can retarget your audience to only see your stuff.</p>
+<p>Then you need to be able to create the content that&#x27;s going to be constantly being shown to them.</p>
+<p>He&#x27;s talking about the people that come to the restaurants, how to collect that data.</p>
+<p>With that data, if you go on the Wi-Fi, it&#x27;s extremely extreme.</p>
+<p>What data do you think you&#x27;re going to track from them?</p>
+<p>Right.</p>
+<p>I mean, we can set up systems where they&#x27;re being tracked by the Wi-Fi signal and that part.</p>
+<p>But then what information are you looking to track and how are you going to monetize it?</p>
+<p>And another question I have for both of you.</p>
+<p>Go ahead.</p>
+<p>Something that makes money.</p>
+<p>What does that mean?</p>
+<p>You know, you get a data with a big number, you could sell it big time.</p>
+<p>I don&#x27;t know what it is that you think.</p>
+<p>Like in order to sell data, they need to have specific things.</p>
+<p>So they&#x27;re looking for the ability to reach that audience in a specific way.</p>
+<p>And what way are you going to be able to connect with them?</p>
+<p>They all have cell phones, most likely on their body.</p>
+<p>And they also have internet that they most likely, if they don&#x27;t have a cellular signal strong enough in the building, would connect to a Wi-Fi.</p>
+<p>So from those two mechanisms, what information do you think is going to be valuable to an aggregator who&#x27;s going to buy that information from you?</p>
+<p>And how much are you looking to sell it for?</p>
+<p>And I don&#x27;t know if you have enough of a data set.</p>
+<p>The other question I have for both of you is, you&#x27;re looking at solving this problem for the restaurants, but the restaurants don&#x27;t have the money.</p>
+<p>I discovered this a long time ago.</p>
+<p>And the question was always, the restaurants are a feeding ground for other opportunities.</p>
+<p>If you remember going to a diner and they had those little placemats and they had all the advertising for that.</p>
+<p>They still do.</p>
+<p>Yeah, but there&#x27;s more money into using the restaurant as a waterhole where all the animals from that neighbor could come to.</p>
+<p>And then you&#x27;re basically doing other plays once you get them into the ecosystem.</p>
+<p>The money&#x27;s not in, hey, how can I charge money and solve this problem for the restaurant?</p>
+<p>The question is, is how do we monetize all of these people that walk in the door and sell them things or provide them what user experience is that&#x27;s going to make it make sense?</p>
+<p>And somebody else is paying the bill.</p>
+<p>Yeah, that&#x27;s an idea.</p>
+<p>Because you&#x27;re not going to make it off of a coffee shop.</p>
+<p>You&#x27;re not.</p>
+<p>They don&#x27;t have the there&#x27;s not enough spread.</p>
+<p>Right.</p>
+<p>So like you&#x27;re going to take all this time, energy and effort and you&#x27;re going to get it up the hill about 45, maybe 50 percent of the way.</p>
+<p>And then the weight of the the the consistence of the thing.</p>
+<p>They just don&#x27;t have what it takes.</p>
+<p>And then they got a byproduct or front and money.</p>
+<p>They&#x27;re just making it through their inventory to just make it to the next week.</p>
+<p>And then if they have a bad week now, all of a sudden, they&#x27;re like, bro, I don&#x27;t have it when it&#x27;s good.</p>
+<p>OK.</p>
+<p>All right.</p>
+<p>So what you&#x27;re clear with Pablo&#x27;s request because he needs those things.</p>
+<p>Yeah.</p>
+<p>Yes.</p>
+<p>When he&#x27;s ready.</p>
+<p>The A record is easy.</p>
+<p>You just put a button, you push it and then it aggregates it and then you&#x27;re done.</p>
+<p>We could do that.</p>
+<p>No problem.</p>
+<p>OK.</p>
+<p>Any ideas you have, Alex?</p>
+<p>What else we could do on La Fortuna?</p>
+<p>The only thing I could suggest is finding a way.</p>
+<p>What what is the common denominator that everybody that&#x27;s in that area would be capable being upsell to something outside like like contracting or like landscaping or anything like that?</p>
+<p>Like these guys all need leads.</p>
+<p>All these other companies need an opportunity to get in front of customers and they don&#x27;t have a way to do that.</p>
+<p>And you have five thousand people coming in every day.</p>
+<p>And if you&#x27;re able to sell them a package where when they go to your website, you&#x27;re creating a local community business outreach page or something like that.</p>
+<p>And then you&#x27;re able to now sell the HVAC guys.</p>
+<p>They got money.</p>
+<p>The landscapers, the painters, the different people in the community is helping, you know, do different service based industries.</p>
+<p>Those guys have bigger budgets than restaurants to be able to provide with a service.</p>
+<p>So if you use the restaurant as a as like a back door into the community, you&#x27;re going to be able to facilitate bigger deals and opportunities.</p>
+<p>The restaurants are just like a like a case study.</p>
+<p>And then you&#x27;re making your money off of the businesses that have the cash flow that need to get in front of the people.</p>
+<p>And it&#x27;s all local businesses.</p>
+<p>Oh, you mean for like for for us, for rent mode to drum up more business for anything advertising models like getting the right people to see what&#x27;s going on and making it personal to Stratford and whatever location those restaurants.</p>
+<p>And it&#x27;s relevant because it&#x27;s those people who are going to be their customer base.</p>
+<p>You&#x27;re not going to hire somebody from Manhattan to come paint your apartment.</p>
+<p>It&#x27;s just you got to find somebody locally.</p>
+<p>But how do you localize it and vet them?</p>
+<p>It&#x27;s like, hey, this is a community and we all know each other and we&#x27;re providing you an opportunity to get in front of our audience that we have.</p>
+<p>Like he has an audience that trusts him.</p>
+<p>Interesting.</p>
+<p>Yeah.</p>
+<p>Like I said, on our end, you know, with our clients, I mean, we&#x27;re blessed.</p>
+<p>We have we have great clients.</p>
+<p>We have global clients, local clients in the country, you know, on the on the on that end.</p>
+<p>This this investment that I decided to make and work on for the restaurant industry just found it interesting.</p>
+<p>I&#x27;ll be honest with you.</p>
+<p>It&#x27;s sort of like, you know, you know, and I know you saw those prices, but that&#x27;s actually just starting.</p>
+<p>We cut we slash everything in half.</p>
+<p>But to ultimately to do, you know, let&#x27;s say one ninety nine a month.</p>
+<p>I&#x27;m going after I&#x27;ll be honest with you.</p>
+<p>I&#x27;m going after the Planet Fitness model.</p>
+<p>You know, the planet.</p>
+<p>I have a Planet Fitness.</p>
+<p>You know, I have actually a powerhouse in North Haven account and I have a Planet Fitness account across the street from my office in Branford.</p>
+<p>And I go once every six months, but they still, you know, run my card.</p>
+<p>So when a lot of restaurants and Alex, maybe you might be different, but there&#x27;s a lot of that.</p>
+<p>That just when, you know, we sit there and we we&#x27;ve asked a lot of people.</p>
+<p>Right.</p>
+<p>And what they&#x27;ve cost.</p>
+<p>They don&#x27;t know.</p>
+<p>Like, what do you spend?</p>
+<p>I don&#x27;t know.</p>
+<p>Oh, my friend handles all my daughter does that.</p>
+<p>Oh, I got this guy.</p>
+<p>I know this guy.</p>
+<p>They just have no no connection.</p>
+<p>And and if the whole idea there are eight thousand six hundred and thirty restaurants just in Connecticut alone, just in Connecticut alone.</p>
+<p>Right.</p>
+<p>So the numbers on a national level just to provide this tiny little service.</p>
+<p>I mean, I mean, Alexander, I mean, you you you you go back.</p>
+<p>Right.</p>
+<p>You can attest back in 1995, 1994.</p>
+<p>We&#x27;ll build a website.</p>
+<p>This is how I built my first.</p>
+<p>Well, I&#x27;m fifty three.</p>
+<p>Fifty three.</p>
+<p>I&#x27;m going to.</p>
+<p>So build a site with a company that I was with in 95.</p>
+<p>Back then you it was twenty, thirty, forty, fifty thousand, a hundred, a hundred thousand a website.</p>
+<p>Right.</p>
+<p>Because everybody the the Internet was born.</p>
+<p>And and, you know, today, yeah, you get depending on the quality of the site, you can either hire somebody on Craigslist or Fiverr, five hundred, a thousand, two thousand, depending on what you want.</p>
+<p>But that need is still there.</p>
+<p>Restaurants, however, they tend to forget about their website.</p>
+<p>And it&#x27;s such a powerful area.</p>
+<p>Alex, I&#x27;m not selling you either of both.</p>
+<p>Alex, I&#x27;m not selling either of you.</p>
+<p>I just want to explain the madness between this model and kind of just fly.</p>
+<p>Well, everybody.</p>
+<p>I mean, and like I said before, when you hopped off the call, you know, we&#x27;re we&#x27;re over here.</p>
+<p>You&#x27;re I mean, we&#x27;re over here on the land.</p>
+<p>You&#x27;re like in a spaceship.</p>
+<p>You&#x27;re on a whole different level of what you&#x27;re doing.</p>
+<p>You&#x27;re doing big, big stuff.</p>
+<p>I mean, the kind of stuff that you&#x27;re doing is the kind of stuff that ultimately creates unicorns and you go from zero to billion dollar valuations.</p>
+<p>That&#x27;s the space that you&#x27;re in.</p>
+<p>Yeah, we&#x27;re we&#x27;re we&#x27;re we&#x27;re flying.</p>
+<p>What we&#x27;re doing is we want to build something that has, you know, longevity, if you will.</p>
+<p>Just like I mean, web hosting today, everything just changed domain.</p>
+<p>I sold a domain name I used to own for I used to buy to go.</p>
+<p>I bought the virtual muscle dot com in 1997 from various dot com.</p>
+<p>That was like the today ago daddy.</p>
+<p>And they bought it for one hundred dollars.</p>
+<p>I registered for one hundred dollars.</p>
+<p>A month later, I sold it for thirty eight thousand to vitamin world.</p>
+<p>They actually reached out to me.</p>
+<p>Make a long story short today.</p>
+<p>I mean, very rarely you get, you know, those kinds of those kinds of things.</p>
+<p>But we&#x27;re still doing it.</p>
+<p>I want to be able to create a system for these restaurant owners who&#x27;ve forgotten about, you know, about their website.</p>
+<p>And, you know, the guy, you know, Matt Matt is the other guy, right from Go Nation.</p>
+<p>And my sister, when we took over Gabby, I&#x27;m a good guy.</p>
+<p>They have something at sixty two dollars a month, whatever they&#x27;re charging.</p>
+<p>They&#x27;re selling POS systems they&#x27;re doing.</p>
+<p>And it seems like it&#x27;s a side hustle.</p>
+<p>But every Go Nation website, just about all of them, they all have.</p>
+<p>It&#x27;s a template.</p>
+<p>It&#x27;s a template.</p>
+<p>You know, back in the two thousands, there was a company called Mednets, Mednets dot com.</p>
+<p>And they had this ugly template and they sold to every doctor in New York.</p>
+<p>Every doctor had a Mednets and they charged them two fifty a month.</p>
+<p>So this model, this residual model that I&#x27;m trying to that we&#x27;re working on building, carving out.</p>
+<p>We&#x27;re working. We do a legion for companies.</p>
+<p>We work a lot on manufacturing companies.</p>
+<p>So we&#x27;re doing that&#x27;s what pays the bills.</p>
+<p>This right here. It&#x27;s something that can that can get us that residual, that planet fitness money.</p>
+<p>You know, what is that number a month?</p>
+<p>One ninety nine, two, you know, in between times a thousand times ten.</p>
+<p>It&#x27;s going to take some time.</p>
+<p>And that&#x27;s what it is.</p>
+<p>And the lead in is a new website and the AI because everybody now is using chat GPT.</p>
+<p>So there and we see it with AIDA.</p>
+<p>We launched AIDA, you know, eight, nine months ago in Gabiano.</p>
+<p>She was lucky to have a conversation, one conversation a week.</p>
+<p>Now she&#x27;s doing five to ten a day.</p>
+<p>And she&#x27;s you know, she&#x27;s I mean, if I&#x27;ll show you the back end, it&#x27;s amazing.</p>
+<p>Now, we don&#x27;t collect.</p>
+<p>And I said this, we don&#x27;t collect any data.</p>
+<p>The only thing we get, we get is a timestamp and we get a town and the country.</p>
+<p>We don&#x27;t we don&#x27;t know who this person is.</p>
+<p>You&#x27;re going to say, well, you&#x27;re crazy.</p>
+<p>Why can&#x27;t we do it?</p>
+<p>A, if the minute we start asking people, you know, give me your name and information, they&#x27;re going to back out.</p>
+<p>It&#x27;s a simple conversation.</p>
+<p>Yes. How can I help you?</p>
+<p>Oh, what&#x27;s the specials for tomorrow?</p>
+<p>The only way to get their information is if you&#x27;re able to provide them with something of value that they&#x27;re willing to trade their data for.</p>
+<p>That&#x27;s not that&#x27;s in the next.</p>
+<p>That&#x27;s the next phase at the end.</p>
+<p>Hey, you know, do you if you want us?</p>
+<p>Because right now she&#x27;s designed if you if you want to book a party, she can take your name and number.</p>
+<p>She can have somebody call you.</p>
+<p>That&#x27;s like that.</p>
+<p>That&#x27;s, you know, right now people are booking the parties through our website because they find it.</p>
+<p>They go to the contact form and the leads come in.</p>
+<p>They lead. That&#x27;s what I say. The leads.</p>
+<p>It&#x27;s a lead.</p>
+<p>Right. They fill out the form.</p>
+<p>They fill out the information.</p>
+<p>Pablo, I want to book a baptism for my grandson.</p>
+<p>April 29th.</p>
+<p>20 people.</p>
+<p>Right.</p>
+<p>And then it gets it gets sent to Valentino&#x27;s team.</p>
+<p>We set up.</p>
+<p>We set up a printer there.</p>
+<p>Automatic printer because just to make sure they get it and they call in it.</p>
+<p>They start to book these parties.</p>
+<p>That&#x27;s what he wants.</p>
+<p>So all at the end coming down to search.</p>
+<p>It&#x27;s local search.</p>
+<p>Local SEO is the oldest form.</p>
+<p>So we&#x27;re good at it.</p>
+<p>That&#x27;s that&#x27;s where we&#x27;re good at our SEO.</p>
+<p>And that&#x27;s what we&#x27;re using.</p>
+<p>But like I said, you&#x27;re creating this little system for these restaurants that have crappy websites.</p>
+<p>We&#x27;re going to come in and give them a give them a brand and take all that over from them and let the website work for them.</p>
+<p>That&#x27;s that&#x27;s our that&#x27;s our pitch.</p>
+<p>That&#x27;s where we&#x27;re coming from.</p>
+<p>I&#x27;ve been listen, I&#x27;ve been in business 24 years and I can&#x27;t tell you we have had I started tech companies before.</p>
+<p>And, you know, it&#x27;s always it&#x27;s always either either you build the right team or you have the funds, you know, you know, Alexander, you understand you can relate to that.</p>
+<p>Right.</p>
+<p>You either have to raise capital, which I&#x27;ve done in the past, and then you have a team that doesn&#x27;t see the vision and then you&#x27;re ahead of the curve and you have a product that&#x27;s too advanced or you lost the race.</p>
+<p>Today at 53, I&#x27;m tired of that.</p>
+<p>I just want to build a business that&#x27;s scalable, that kind of rides, you know, with the with what&#x27;s current and that that makes me money that makes that makes us money.</p>
+<p>Me and my team money every month.</p>
+<p>Right.</p>
+<p>And that residual that mailbox money.</p>
+<p>That&#x27;s what I&#x27;m after.</p>
+<p>That&#x27;s, you know, it&#x27;s small amount.</p>
+<p>How do you become scalable if you&#x27;re not using templates?</p>
+<p>Well, we are.</p>
+<p>That&#x27;s the whole point.</p>
+<p>That&#x27;s what we&#x27;ve been building.</p>
+<p>That&#x27;s what we&#x27;ve been building.</p>
+<p>That&#x27;s what we&#x27;ve been working on.</p>
+<p>That&#x27;s what I said before, like maintenance.</p>
+<p>We just we have a system.</p>
+<p>Right.</p>
+<p>We have a framework system.</p>
+<p>We don&#x27;t use Elementor.</p>
+<p>Elementor.</p>
+<p>The way we built this, that&#x27;s the whole idea.</p>
+<p>Even the backing of how to build a native.</p>
+<p>I can we test it.</p>
+<p>I can take somebody from the street.</p>
+<p>It takes 30 minutes and hire them and they could build it.</p>
+<p>So that&#x27;s how.</p>
+<p>So this has been going on for a while.</p>
+<p>That&#x27;s why this is taking a while to be able to scale it out.</p>
+<p>Obviously, I have, you know, four engineers and, you know, in New Delhi and I have access</p>
+<p>to more if I need to.</p>
+<p>But within just to get an native package and to build it, deploy it within two weeks.</p>
+<p>And that&#x27;s it.</p>
+<p>That&#x27;s that&#x27;s the whole idea.</p>
+<p>That&#x27;s the whole process.</p>
+<p>Why do I want to do it?</p>
+<p>I could have missed send the proposal to Alex.</p>
+<p>He would have sent it to you.</p>
+<p>You would have said, no, this guy&#x27;s a loony.</p>
+<p>He&#x27;s a friend.</p>
+<p>But no, I like him.</p>
+<p>I like him.</p>
+<p>We&#x27;re from the same area of the Bronx and it&#x27;s it&#x27;ll be a good case study for us.</p>
+<p>I&#x27;m not I don&#x27;t want to make money off of him.</p>
+<p>You know, he&#x27;s a good guy.</p>
+<p>We met his wife.</p>
+<p>He met my wife.</p>
+<p>And that&#x27;s it.</p>
+<p>There&#x27;s no there&#x27;s no there&#x27;s no there&#x27;s no catch other than to be able to get it to</p>
+<p>work.</p>
+<p>Now, what what if it doesn&#x27;t work?</p>
+<p>If it doesn&#x27;t work for him at the end of the day is Pablo, you build me this.</p>
+<p>What&#x27;s the loss?</p>
+<p>You got a website.</p>
+<p>I&#x27;ll give him a year&#x27;s free hosting.</p>
+<p>It&#x27;s nothing.</p>
+<p>It&#x27;s nine dollars a month.</p>
+<p>And that&#x27;s it.</p>
+<p>And nobody lost anything.</p>
+<p>OK, it didn&#x27;t work.</p>
+<p>He just started getting leads out Pablo.</p>
+<p>You gave me a new website.</p>
+<p>But we take that.</p>
+<p>We take that away from the restaurant owner.</p>
+<p>We update the menus.</p>
+<p>We update at the same time with the menus.</p>
+<p>All of a sudden, Easter, he has a new Easter menu.</p>
+<p>He sends it to us.</p>
+<p>We train at it with it.</p>
+<p>Now she knows what to say when people start asking.</p>
+<p>It&#x27;s a little little little ecosystem that we take away from the restaurant owner because</p>
+<p>they forget about this web.</p>
+<p>They forget about the website.</p>
+<p>That&#x27;s really what it comes down to.</p>
+<p>And there&#x27;s so much value in the search when it comes to that.</p>
+<p>Like I said, it&#x27;s what you&#x27;re doing is you&#x27;re you&#x27;re high up there.</p>
+<p>And I&#x27;ve tried doing that in the past.</p>
+<p>And we raised capital and, you know, we&#x27;re built.</p>
+<p>We built.</p>
+<p>So one day one day we&#x27;ll I&#x27;ll show you all this stuff.</p>
+<p>Right.</p>
+<p>And and it just either could not build the right network, the right team or we just ran out of fun.</p>
+<p>We just couldn&#x27;t raise enough money to build this today today.</p>
+<p>Today, like today, like today.</p>
+<p>You have access to a lot of tools.</p>
+<p>But let&#x27;s go back 15, 18, 20 years ago.</p>
+<p>We had to raise capital to build everything from ground up.</p>
+<p>You know, there wasn&#x27;t.</p>
+<p>I mean, A.I. has changed everything.</p>
+<p>You know, when it comes to coding and building things, everyone&#x27;s now using freaking, you know, what&#x27;s that?</p>
+<p>Go high network, whatever that is.</p>
+<p>Go high level.</p>
+<p>Go high level.</p>
+<p>Right.</p>
+<p>Everyone&#x27;s using that.</p>
+<p>But, you know, we use that to to do the RPAs and connect and things like this and automate things.</p>
+<p>And there&#x27;s no there&#x27;s no secret anymore.</p>
+<p>Everyone&#x27;s using everything.</p>
+<p>Everyone&#x27;s becoming an A.I. expert.</p>
+<p>And they started in these companies.</p>
+<p>I want to I want to focus on the restaurant industry.</p>
+<p>Like I said, listen, I&#x27;m going to we&#x27;re we&#x27;re sending emails.</p>
+<p>We&#x27;re doing a campaign right now.</p>
+<p>We&#x27;re going to do a paid ad.</p>
+<p>We&#x27;re running a billboard and our billboard, you know, for eight of a restaurant.</p>
+<p>Not that.</p>
+<p>I mean, our billboard is right there near Camacho garage in in New Haven.</p>
+<p>You know, like I said, just to just to promote to, you know, to restaurants and to keep it simple for them and for us to make money on a small scale times.</p>
+<p>Like you guys said it last night at the meeting, Alex, with Valentino, when when Arturo said when you guys were arguing Albanian, I picked up a little of that.</p>
+<p>You were talking about the martinis.</p>
+<p>Right. And Arturo said, oh, you know, I got this.</p>
+<p>I&#x27;m going to make a dollar.</p>
+<p>And Valley said, well, we make a dollar of something, then make nothing.</p>
+<p>Right. So you sell 500 martinis, you make $500.</p>
+<p>Right. Times five times 10 times whatever.</p>
+<p>All right.</p>
+<p>That&#x27;s the I&#x27;m kind of looking at that model.</p>
+<p>It adds up.</p>
+<p>Okay.</p>
+<p>What else, Alex?</p>
+<p>When you coming down?</p>
+<p>I have no plans on coming back to America anytime soon.</p>
+<p>Alex, you&#x27;re not in the States?</p>
+<p>Hell no.</p>
+<p>Where are you?</p>
+<p>Where are you?</p>
+<p>I live in Puerto Rico where everybody goes to vacation.</p>
+<p>You live.</p>
+<p>I thought you were on vacation.</p>
+<p>You coming back.</p>
+<p>No, I was shooting a job on the other side of the island for a multimillionaire who was doing a sweet 15 party for his niece that they had horses and Bad Bunny and all the other people show up at this event.</p>
+<p>It was nuts.</p>
+<p>Good for you, man.</p>
+<p>Good for you.</p>
+<p>I think I...</p>
+<p>Me and my family, we went down there just to see Jesus.</p>
+<p>Yeah.</p>
+<p>She&#x27;s good.</p>
+<p>I could bring her to you.</p>
+<p>Hold on.</p>
+<p>Okay.</p>
+<p>Hi.</p>
+<p>Happy Easter.</p>
+<p>I know.</p>
+<p>Cooking.</p>
+<p>Of course, we&#x27;re in the kitchen.</p>
+<p>What else we&#x27;re doing?</p>
+<p>Cooking and cleaning.</p>
+<p>Happy Easter.</p>
+<p>Happy Easter.</p>
+<p>Happy Easter.</p>
+<p>Yeah, I&#x27;ll bring you to me now.</p>
+<p>You&#x27;re going to make ice cream for Uncle Alex?</p>
+<p>You&#x27;re going to say hi?</p>
+<p>Mia?</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to go ahead and get me.</p>
+<p>I&#x27;m going to move into Puerto Rico because it&#x27;s the only place an American can live for a tax haven.</p>
+<p>I live amongst 5,000 of the biggest A personality people.</p>
+<p>They&#x27;re all trying to figure out this AI stuff.</p>
+<p>I&#x27;m watching what they&#x27;re doing and I&#x27;m seeing how they&#x27;re interacting with stuff.</p>
+<p>Just because you figured it out today, you make one change in one code.</p>
+<p>They&#x27;re all trying to use TypeScript because they&#x27;re using Lovable or all these other things.</p>
+<p>You make one little error and then once you get it developed, where are you going to host it?</p>
+<p>Oh, you&#x27;re going to get banged out because they&#x27;re going to charge you all this.</p>
+<p>So nobody&#x27;s really found a solution to really help these people.</p>
+<p>Then you&#x27;ve got Cloud Code that was hacked and released a leak and then they&#x27;re going to release Mythos in the next couple of weeks.</p>
+<p>Do you know anything about Palantir?</p>
+<p>Yes, actually, believe it or not, one of our clients, his daughter is the CEO of a company called Indeco North America.</p>
+<p>She works and she works there and she actually got me this.</p>
+<p>They&#x27;re doing this. Maybe I&#x27;ll send it to you.</p>
+<p>They&#x27;re doing this Palantir, the next entrepreneur kind of a thing.</p>
+<p>And I did the whole interview.</p>
+<p>Obviously, you&#x27;ve got to have security clearance.</p>
+<p>And I answered the ask. I went through the whole process and who knows, I&#x27;ll know in two weeks.</p>
+<p>Yes, I admire the company. Alex Karp, part of the PayPal mafia.</p>
+<p>I think he&#x27;s brilliant.</p>
+<p>They&#x27;re a big company. I don&#x27;t know how you feel.</p>
+<p>Have you looked into his ontology? Do you understand what they&#x27;re doing?</p>
+<p>It&#x27;s data.</p>
+<p>But do you understand the word ontology?</p>
+<p>Yeah, no. Actually, no. I don&#x27;t know what their endgame is.</p>
+<p>But all I know is that they&#x27;re making $365 billion a year.</p>
+<p>They don&#x27;t need no endgame.</p>
+<p>Yeah. Well, you&#x27;re right. Sorry, my dog.</p>
+<p>I guess.</p>
+<p>No, but once you understand what Palantir is and how it works, you&#x27;re going to be able to understand how to take the data and map it to all your data objects and everything to be able to create a blueprint of everything that&#x27;s going on in the business.</p>
+<p>Everything from down to the forks, to the spoons, to the plates, like you&#x27;re mapping everything.</p>
+<p>You know everything about everything.</p>
+<p>And this is what we&#x27;re helping with some of these people with these family offices is being able to manage and monitor all these different assets and all these different things that they got going on.</p>
+<p>So you can track and predict and simulate different experiences.</p>
+<p>So another thing that we have, and I don&#x27;t know how this is helpful in the restaurant industry, but when I get a new client, they give me their name and their phone number.</p>
+<p>That&#x27;s all I get.</p>
+<p>Then I do a deep research on them, put together a thing, and then I basically have my system do an audit and identify all the ways that we can help that individual with our system.</p>
+<p>Then I have him basically create a voice phone call simulation of them talking to us and it&#x27;s framing it.</p>
+<p>So when I listen to it, when I get on the phone with them, I actually understand where we should be driving the conversation towards because it already has all the information already dialed in.</p>
+<p>That is, that is, that is insane.</p>
+<p>But how do you do that for restaurants?</p>
+<p>I don&#x27;t know.</p>
+<p>I&#x27;m not really in the thought process or the mindset of a restaurant industry anymore.</p>
+<p>No, I get that.</p>
+<p>Like I said, you&#x27;re, you&#x27;re, you&#x27;re, you&#x27;re, you&#x27;re, look, my next, my next investment into an employee at the office is to bring in part time.</p>
+<p>And I&#x27;ve been talking to a few people, actually, one of my, my employees, our boyfriend is majoring in data science is to bring in somebody that specializes in the field of data and they, you know, the data science part.</p>
+<p>And, and, and how, like exactly what you just said, how do we, you know, next level is how do we, how do we now figure out how to capture this data?</p>
+<p>Because right now we&#x27;re, we&#x27;re just, it&#x27;s just a conversation between, between native and the person asking questions about the food and, you know, Easter and the menus and stuff like that.</p>
+<p>But how do you, like, you would just, how do you take it to a whole, let&#x27;s start really create a map and understand that will be valuable to like, again, at the end, open table could turn around and crush us.</p>
+<p>You know, the, the, the largest in, in the world, uh, POS.</p>
+<p>How do we create our own app for reservation, open table, like open table?</p>
+<p>Yeah, you gotta raise, gotta raise money.</p>
+<p>We need hardware.</p>
+<p>At that point, it&#x27;s just, you gotta raise money.</p>
+<p>You gotta put together the team, because you need hardware.</p>
+<p>And how do we go, how do we go, how do we go to other companies and talk them out of toast?</p>
+<p>How do I go, how do I tell, how do I walk into your plate and talk you out of toast?</p>
+<p>Well, we gotta save you money.</p>
+<p>You&#x27;re not gonna walk anybody out of anything until you have a proof of concept and you&#x27;re actually able to do anything.</p>
+<p>And they&#x27;re not, so, you were saying you bought domains.</p>
+<p>I just bought the speed of trust.ai.</p>
+<p>Um, everything has to work off of trust.</p>
+<p>If you don&#x27;t trust anybody, I don&#x27;t care what your product is, they&#x27;re not even gonna give you a chance,</p>
+<p>unless there&#x27;s some sort of proof that you can do who, whatever it is that you&#x27;re saying.</p>
+<p>So, nobody&#x27;s gonna just leave their system and give themselves a vulnerability,</p>
+<p>unless you&#x27;re actually bringing that money to replace the money that they&#x27;re losing by leaving that thing.</p>
+<p>So, there has to be a staged, um, phases, where they&#x27;re moving from what they have now,</p>
+<p>and then you&#x27;re introducing something until it becomes, uh, dominant, and then they can remove.</p>
+<p>But, at that point, what&#x27;s the point of removing it?</p>
+<p>You&#x27;re just adding a supplemental income with having a system.</p>
+<p>You&#x27;re just not paying for the clicks to send it somewhere else.</p>
+<p>That&#x27;s, that&#x27;s correct.</p>
+<p>Listen, what this kid did, this Albanian kid did with Slice, uh, that was, that was pretty smart.</p>
+<p>Just, but he&#x27;s, he&#x27;s focused on only on plate, on restaurants with pizza, right?</p>
+<p>That&#x27;s what, and he&#x27;s blowing up.</p>
+<p>He&#x27;s really, really is, he&#x27;s doing a great job across the country.</p>
+<p>He&#x27;s aggressive and a good friend.</p>
+<p>I think it&#x27;s a, it&#x27;s a great, what are the chances of, you know, he started in 2018.</p>
+<p>Like, what are the, you&#x27;re right.</p>
+<p>You need to build trust.</p>
+<p>It needs to, it needs to, it, there&#x27;s a lot of money, a lot.</p>
+<p>It takes a lot of money to, to do that, to be able to build that.</p>
+<p>So, again, that&#x27;s why we spent so much time with Valley and creating.</p>
+<p>At the end of the day, we&#x27;re going to, we&#x27;re going to restaurants that don&#x27;t, that have websites that are five, seven year old.</p>
+<p>And we&#x27;re, we&#x27;re going to give them a new site with AI.</p>
+<p>So we&#x27;re giving them an improvement.</p>
+<p>You know, we&#x27;re saving them money and then we&#x27;re going to take over all the other stuff.</p>
+<p>At least that&#x27;s the part on our own.</p>
+<p>But you&#x27;re right on the POS system, regardless, you, you, it&#x27;s, it&#x27;s, we, we looked into it and it&#x27;s just not, it doesn&#x27;t make any sense.</p>
+<p>Pablo, 20 years ago, I would have said, yeah, let&#x27;s, let&#x27;s go, let&#x27;s raise money.</p>
+<p>Let&#x27;s try it.</p>
+<p>I would have failed.</p>
+<p>So it&#x27;s, it&#x27;s, you&#x27;re right.</p>
+<p>You, you, you&#x27;re going to, you&#x27;re going to do anything.</p>
+<p>You got to build trust.</p>
+<p>And that&#x27;s why it&#x27;s taken us the time that it&#x27;s taken us to, to launch this.</p>
+<p>And listen, it&#x27;s nothing special, right?</p>
+<p>It&#x27;s just, just an AI.</p>
+<p>Uh, you want to call it a bot.</p>
+<p>It&#x27;s all right.</p>
+<p>Uh, I&#x27;m calling it for what it is from their point of view.</p>
+<p>They don&#x27;t know anything.</p>
+<p>They just see the surface.</p>
+<p>It&#x27;s just a chat bot that is on the website that they&#x27;ve seen on other websites.</p>
+<p>That&#x27;s the only relationship they have.</p>
+<p>They don&#x27;t understand anything about the backend or what it does after they talk to it.</p>
+<p>So, you know, we&#x27;re, we&#x27;re, we&#x27;re showing it how we&#x27;re tying it into search, AEO, how it</p>
+<p>improves their process.</p>
+<p>And it&#x27;s a new website and we, we handle everything for them.</p>
+<p>Unlike the other companies they&#x27;re dealing with now, where they leave them out to drive</p>
+<p>for $62 a month.</p>
+<p>They&#x27;re leaving them out to drive and they, uh, look at, you know, La Fortuna site.</p>
+<p>The last shot up there was a shout out system was from 2023.</p>
+<p>So it makes the site look dated and people like lose trust in it.</p>
+<p>And listen, we, we, you know, we&#x27;re doing it.</p>
+<p>We&#x27;re doing it now with other restaurants and it&#x27;s, uh, we haven&#x27;t, you know, it&#x27;s, it&#x27;s</p>
+<p>on a small scale because we&#x27;re, we&#x27;re going, you know, we&#x27;re, we&#x27;re picking our battles, if you will.</p>
+<p>And like I said, I feel good about it.</p>
+<p>Uh, I feel good about it from, from where I stand.</p>
+<p>Uh, you know, it&#x27;s like I said, on the level where you are, yes, you&#x27;re going to sit there</p>
+<p>and, and, you know, pictures that Elon Musk is going to be like, yeah, it&#x27;s a chop, but get up.</p>
+<p>But you know, to other restaurants, it&#x27;s, it&#x27;s, it&#x27;s new.</p>
+<p>It&#x27;s whatever.</p>
+<p>There&#x27;s just getting used to chat GBT.</p>
+<p>And that&#x27;s, there&#x27;s room, there&#x27;s room for it.</p>
+<p>There&#x27;s room for it.</p>
+<p>There&#x27;s room to make money.</p>
+<p>And, and that&#x27;s, that&#x27;s where I&#x27;ll, that&#x27;s where I&#x27;m, I&#x27;m heading.</p>
+<p>Uh, you know, at the end of the day, like I said, how the conversation started, um, you</p>
+<p>know, we want to help Alex La Fortuna at, at value, as value as we can.</p>
+<p>And it&#x27;s not going to cost them anything.</p>
+<p>And like I said, when I just, that&#x27;s all it is, the return is that we get a case study.</p>
+<p>Uh, he&#x27;s happy.</p>
+<p>He&#x27;s, he can say, Hey, you know what?</p>
+<p>This actually helped us.</p>
+<p>People started calling us.</p>
+<p>We started getting booking more parties.</p>
+<p>And then he introduces us to his other restaurant friends and we&#x27;ll make money from them.</p>
+<p>And, and that helps us, you know, continue, continue the process.</p>
+<p>So we&#x27;re, like I said, that&#x27;s, that&#x27;s the, that&#x27;s the part.</p>
+<p>That&#x27;s, that&#x27;s all this.</p>
+<p>We&#x27;ll build, like I said, we&#x27;re going to build a stage.</p>
+<p>We&#x27;re going to build a site on the stage and we&#x27;ll send it to you guys to take a look at it.</p>
+<p>Take it forward.</p>
+<p>You like it, you like it.</p>
+<p>You choose to go live.</p>
+<p>You don&#x27;t, you don&#x27;t like it.</p>
+<p>So you&#x27;re building it on WordPress.</p>
+<p>Yeah.</p>
+<p>We only do WordPress sites.</p>
+<p>It&#x27;s not, it&#x27;s not, she&#x27;s not agnostic yet.</p>
+<p>Uh, I don&#x27;t plan on that yet.</p>
+<p>I mean, to go and compete with Wix and Squarespace, that&#x27;s an uphill battle.</p>
+<p>I mean, they&#x27;re doing their own stuff.</p>
+<p>They&#x27;re their own, you know, text me now, those, those widgets that they do, you know, contact us, text me, you know, ask me whatever.</p>
+<p>So yeah, it&#x27;s a word for us.</p>
+<p>It&#x27;s, it&#x27;s.</p>
+<p>Pablo, I have a question.</p>
+<p>Uh, Alex is family.</p>
+<p>So, uh, treat him the way you treat me in the conversation.</p>
+<p>100%.</p>
+<p>100%.</p>
+<p>What&#x27;s the goal that you, you, you shoot in, uh, and, and next two years?</p>
+<p>How many restaurants you want to have in the board?</p>
+<p>I want a thousand.</p>
+<p>Over a thousand?</p>
+<p>Thousand restaurants.</p>
+<p>That&#x27;s, that&#x27;s our goal.</p>
+<p>Uh, we&#x27;re in the right circle.</p>
+<p>Uh, like I said, I have a salesperson in Seattle, I have a salesperson, salesperson in Alabama.</p>
+<p>And now that we opened up our little office, uh, at 55, uh, uh, you know, on Atlantic Avenue, 55 Delray, uh, as of April 1st.</p>
+<p>And we&#x27;re going to go down, then we&#x27;ll spend a week out of the month down there and just a million restaurants down there.</p>
+<p>And yeah, a thousand restaurants across the country in two years.</p>
+<p>At, at $199 a month times a thousand, that&#x27;s familiar.</p>
+<p>Let me tell you, let me tell you something.</p>
+<p>If I start, if I start working as a salesperson within two years, I will get myself a thousand restaurants.</p>
+<p>There it is.</p>
+<p>You know, but I gotta focus on it.</p>
+<p>I can get a thousand restaurants between New York and, uh, between New York and, uh, Connecticut.</p>
+<p>I&#x27;ll tell you, $199 times a thousand.</p>
+<p>Like I said, for me, that&#x27;s, that&#x27;s, that&#x27;s good money.</p>
+<p>That&#x27;s real money.</p>
+<p>I&#x27;m up.</p>
+<p>And that&#x27;s not counting the development, that&#x27;s developed, you know, the development, uh, you know, the fee, the setup fee, 1500, 2000.</p>
+<p>That&#x27;s what I&#x27;m using to peel off to give the commission.</p>
+<p>Whoever&#x27;s bringing us native site, I&#x27;m giving them a thousand dollars.</p>
+<p>So they do 10, they got 10,000.</p>
+<p>That&#x27;s it.</p>
+<p>Done.</p>
+<p>Easy.</p>
+<p>And I&#x27;ll peel it from there.</p>
+<p>And I&#x27;ll, I&#x27;ll, I&#x27;ll take the crumbs, the $199 a month.</p>
+<p>Like I said, we just have to, you can&#x27;t throw it all out there and just say, oh, yeah, come, come take me.</p>
+<p>Right?</p>
+<p>So we, we set up a price.</p>
+<p>I gotta, I gotta, I gotta see it.</p>
+<p>I gotta feel it.</p>
+<p>Because I&#x27;m, I agree with Alex.</p>
+<p>And not just in this type of field, but every type of field, the people that you do business with gotta be a trust.</p>
+<p>You know?</p>
+<p>If you don&#x27;t, uh, I, I mean, I changed garbage company because I don&#x27;t trust them.</p>
+<p>You know?</p>
+<p>Yeah, but I mean, you, your website right now is doing nothing for you.</p>
+<p>So there&#x27;s nothing, there&#x27;s nothing to it.</p>
+<p>I understand.</p>
+<p>No, I&#x27;m not talking about my, don&#x27;t take it in a personal manner.</p>
+<p>I&#x27;m talking about, uh, concept.</p>
+<p>You, uh, if I go, if I go to somebody to sell, to sell, uh, gas, they gotta trust me.</p>
+<p>Correct.</p>
+<p>Okay.</p>
+<p>Uh, I used to be, uh, I told you the story about, with the oil company.</p>
+<p>I used to knock on the door of the house and I said, only thing what I want you, I want you to trust me.</p>
+<p>You, you, uh, your, your furnace works with oil.</p>
+<p>You&#x27;re gonna buy oil from me, pay whenever you want.</p>
+<p>Do whatever you want, but you&#x27;re buying the oil from me.</p>
+<p>You gotta trust me.</p>
+<p>So, I wanna see this website because, first, to sell something you have to believe it.</p>
+<p>If you don&#x27;t believe it, you&#x27;re, doesn&#x27;t matter what kind of salesperson are you, you&#x27;re not gonna, you&#x27;re not gonna have the, the, the, the full capacity of, of, of the energy.</p>
+<p>You know?</p>
+<p>You know?</p>
+<p>So, let&#x27;s see how this goes.</p>
+<p>And, uh, then we can, we can, it&#x27;s, it&#x27;s a roll of the dice.</p>
+<p>We&#x27;re gonna build it.</p>
+<p>We&#x27;re gonna send you the, the dev link.</p>
+<p>It&#x27;s gonna be, you know, blah, blah, blah.com.</p>
+<p>And you look at it, and you say, you know what, you like it.</p>
+<p>If you don&#x27;t like it, you still have your, you, you know, but I know you&#x27;re gonna like it.</p>
+<p>But we&#x27;re not, we&#x27;re not change, Alex, we&#x27;re not changing, uh, it&#x27;s gonna be the same, the website, lafortuna.ct.com, right?</p>
+<p>The domain, the, the domain name that they type in doesn&#x27;t change, what it&#x27;s pointing to is changing.</p>
+<p>Okay.</p>
+<p>Well, which, uh, I don&#x27;t care about that.</p>
+<p>Yeah, right now it&#x27;s pointing to, uh, GoNation.</p>
+<p>So, because it has an address, it points to them, the IP address, once we point it to, to one of our SiteGround servers, it points to us.</p>
+<p>And then, you know, within 24, whatever, long it takes to propagate, Alex, you know that, uh, normally it takes an hour or two, depending.</p>
+<p>I mean, the domain&#x27;s been sitting there for a long time.</p>
+<p>It makes it a full, once we&#x27;re ready to launch your, your point, uh, lafortuna.ct.com to your point, then what do we have to do?</p>
+<p>We, we have to disconnect with GoNation, how, how it goes on.</p>
+<p>We just stopped paying the bill.</p>
+<p>You stopped paying them.</p>
+<p>That&#x27;s it.</p>
+<p>You said you have no, you have no contract with them, so you just, uh, I mean, I would tell them.</p>
+<p>Oh, I could call, I could call.</p>
+<p>You&#x27;re saying.</p>
+<p>Before, before we do anything, I would back up the site.</p>
+<p>I would find a way to just back it up in case of anything you have the ability to just have it as a skeleton thing if you need to go back to it.</p>
+<p>But.</p>
+<p>Well, it&#x27;s a temp, it&#x27;s their template, so you can&#x27;t really download anything.</p>
+<p>I can recreate anything.</p>
+<p>We already downloaded it at the office, so we already have the whole site already downloaded, because that&#x27;s how we start building the new ones.</p>
+<p>So, yeah, we did that, we did that already.</p>
+<p>Alright.</p>
+<p>Yeah, that&#x27;s, that&#x27;s, that&#x27;s the first part that we do, uh, is we take down all the assets and put everything into a folder, blah, blah, blah.</p>
+<p>And obviously everything&#x27;s gonna get rewritten.</p>
+<p>None of that text is gonna get reused, because it&#x27;s all like COVID.</p>
+<p>You know, the safest restaurant, blah, blah, blah, it kind of makes it seem like, you know.</p>
+<p>So, everything&#x27;s gonna be changing, then, uh, like I said, you guys approve.</p>
+<p>You look at it, you say, you know what, change this, let&#x27;s change that.</p>
+<p>And, and that&#x27;s, and that&#x27;s it.</p>
+<p>There&#x27;s no, uh, but yeah, that&#x27;s, they have, they have, it&#x27;s not a, they, they, they built their own, you know, their own system.</p>
+<p>You know, uh, which works for them.</p>
+<p>Good for them, man.</p>
+<p>I mean, they&#x27;re charging what, $62 a month?</p>
+<p>You know, they have, they have, they gotta have a couple hundred restaurants in Connecticut alone.</p>
+<p>I think I&#x27;m, they got two thirds of the state.</p>
+<p>Huh?</p>
+<p>They have two thirds of the state of Connecticut.</p>
+<p>Yeah, there it is.</p>
+<p>So, you know, so then, they did something right, then listen.</p>
+<p>But he has sales reps, he has all these other things, he has overhead, and then he has to sit there and babysit every single one of those accounts, which, it&#x27;s like a lot of work for these guys and.</p>
+<p>No, I hear you.</p>
+<p>Well, listen, this is my, like I said, it&#x27;s my company and I have this, I have sales reps that I&#x27;m watching out.</p>
+<p>And yes, like anything, anything is going to take, it&#x27;s going to take some, uh, some time and, and it takes money.</p>
+<p>And like I said, uh, it&#x27;s, it&#x27;s okay.</p>
+<p>But like on, for Alex, you know, for La Fortuna, it could only, it&#x27;s only going to benefit him.</p>
+<p>Because right now that website&#x27;s doing absolutely nothing.</p>
+<p>I don&#x27;t mean it in a bad way, but, uh, it&#x27;s gonna, it&#x27;s going to work for you.</p>
+<p>That&#x27;s the promise.</p>
+<p>It&#x27;s going to work.</p>
+<p>It&#x27;s going to help.</p>
+<p>Well, look, hear me, hear me out.</p>
+<p>I&#x27;m calling, you&#x27;re writing in a group text message.</p>
+<p>It will take five minutes.</p>
+<p>I promise.</p>
+<p>What?</p>
+<p>I&#x27;m reading in a text message.</p>
+<p>Would you send the group to me and Alex at, uh, at 535.</p>
+<p>You said, you said five minutes for the call.</p>
+<p>We&#x27;ve been on the call.</p>
+<p>We&#x27;ve been on the call hour and a half, buddy.</p>
+<p>I didn&#x27;t.</p>
+<p>Well, listen, you said, Alex is the video guy.</p>
+<p>He has access to my domain name.</p>
+<p>So I said, it&#x27;s very simple.</p>
+<p>Alex is the talent.</p>
+<p>We&#x27;re going to fill the side.</p>
+<p>I didn&#x27;t know that I was sitting with Elon Musk.</p>
+<p>In Puerto Rico.</p>
+<p>Alex is a schmuck boy.</p>
+<p>He&#x27;s my schmuck.</p>
+<p>He&#x27;s my schmuck brother.</p>
+<p>No, no, no, no, no.</p>
+<p>He&#x27;s a very, very smart guy.</p>
+<p>You&#x27;re very lucky.</p>
+<p>You&#x27;re very lucky to have someone like that.</p>
+<p>Boo!</p>
+<p>He&#x27;s lucky.</p>
+<p>He&#x27;s lucky.</p>
+<p>Well, listen, I thank you guys for taking the time.</p>
+<p>Alex in Puerto Rico.</p>
+<p>You have little ones that, you know, enjoy.</p>
+<p>They grow fast.</p>
+<p>Um, and like I said, we&#x27;ll, we&#x27;ll, we&#x27;ll stay in touch.</p>
+<p>Uh, we&#x27;ll, we&#x27;ll send the link to the development stage.</p>
+<p>And we&#x27;ll send the link to the development stage.</p>
+<p>We&#x27;ll send the link to the development stage.</p>
+<p>And we&#x27;ll send the link to the development stage.</p>
+<p>And we&#x27;ll send the link to the development stage.</p>
+<p>And we&#x27;ll send the link to the development stage.</p>
+<p>We&#x27;ll send the link to the development stage.</p>
+<p>You like it?</p>
+<p>You like it?</p>
+<p>You don&#x27;t?</p>
+<p>Okay.</p>
+<p>I said it&#x27;s, it&#x27;ll be okay.</p>
+<p>Uh, you&#x27;re gonna like it.</p>
+<p>You&#x27;re gonna like it.</p>
+<p>And, uh, and we&#x27;re gonna, we&#x27;re gonna, we&#x27;re gonna, we&#x27;re gonna, we&#x27;re gonna help La Fortuna get found and get you some, some party leads, which, which is what you want.</p>
+<p>It&#x27;s gonna be the focus.</p>
+<p>La Fortuna.</p>
+<p>La Fortuna.</p>
+<p>Okay, guys.</p>
+<p>All right, gentlemen.</p>
+<p>Have a great evening.</p>
+<p>Alexander, great meeting you, man.</p>
+<p>Have a great evening.</p>
+<p>Likewise.</p>
+<p>You have a good night.</p>
+<p>Thank you for your conversation, your wisdom and everything else.</p>
+<p>Well taken.</p>
+<p>Absolutely.</p>
+<p>All right.</p>
+<p>You guys have a good night.</p>
+<p>Good night.</p>
+<p>Take care.</p>
+<p>Great.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>Good night.</p>
+<p>He loves you, the guy.</p>
+<p>You drove him crazy.</p>
+<p>You were driving him crazy, bro.</p>
+<p>Listen, this guy is all right.</p>
+<p>He knows what he&#x27;s talking about, but he doesn&#x27;t really understand what he&#x27;s getting</p>
+<p>himself into.</p>
+<p>But what do I have to lose?</p>
+<p>You have nothing to lose.</p>
+<p>You&#x27;re going to get the win.</p>
+<p>We&#x27;re going to gain a lot more.</p>
+<p>He&#x27;s going to get more gray hairs than he can count on his head.</p>
+<p>That&#x27;s what he&#x27;s going to get.</p>
+<p>He&#x27;s going to realize, I mean, AI doing shit like this is a lot of work.</p>
+<p>I mean, like you were saying, it&#x27;s the guy who owns Go Nation, he&#x27;s got to sit there and</p>
+<p>babysit.</p>
+<p>How many of you said he has?</p>
+<p>Two thirds of Connecticut?</p>
+<p>Yeah, dude.</p>
+<p>Dude, Chaz is trying to basically sell this to BC.</p>
+<p>He&#x27;s trying to get market share so he has the user base and he can sell it and exit.</p>
+<p>He&#x27;s been doing that since I&#x27;ve been there, which was freaking since COVID.</p>
+<p>What year was that?</p>
+<p>2014?</p>
+<p>I don&#x27;t know.</p>
+<p>I&#x27;m just saying that the guy is still trying to grind and he tried to open up the TVs and</p>
+<p>do all this other stuff, but you&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p>
+<p>You&#x27;re dealing with humans.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-28 15:47</div>
+</body></html>
