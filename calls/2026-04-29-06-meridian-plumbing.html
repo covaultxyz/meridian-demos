@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>06 Meridian Plumbing — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>06 Meridian Plumbing</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-04-29</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Technical runbook for wiring the MERIDIAN intelligence stack into the Rankona Mazon ghost terminal across a 2-node cluster (core + edge VPS).</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>6 daemons split 3/3 across core (forge, atlas, sensei) and edge (watcher, sandman, delphi) nodes.</li><li>NATS hub lives on the edge VPS; core daemons connect via Tailscale.</li><li>Edge daemons use claude-haiku for light ops; core daemons use claude-sonnet for high-judgment tasks.</li><li>Snapshot archiver enforces 90-day rolling retention on high-frequency Amazon graph nodes.</li><li>Evelyn client support integration deferred to Phase 2 and runs on MERIDIAN mesh, not Rankona nodes.</li></ul></div>
+
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>At target scale the graph reaches ~91M nodes, with KeywordRankSnapshot alone comprising ~50M nodes, requiring aggressive retention management.</li><li>Tailscale disconnection causes core daemons to lose NATS entirely, necessitating a local-only fallback mode.</li><li>Evelyn on MERIDIAN will create tickets in Rankona&#x27;s Neo4j via Tailscale cross-mesh bridge without exposing the full Rankona graph.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Provision /etc/rankona/env on both nodes with actual Tailscale IPs, Neo4j password, and NATS auth token.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Run all Neo4j index and constraint creation scripts on rankona-core (Phase 2).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Provision NATS JetStream streams and KV buckets on rankona-edge (Phase 3).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Install and configure MCP server on both nodes (Phase 4).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Create and enable systemd units for all 6 daemons on their respective nodes (Phase 5).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Enable GDS and APOC plugins on the Neo4j Docker instance for PageRank and community detection (Phase 8).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Write daemon context .md files for all 6 daemons covering identity, boot protocol, and Amazon domain knowledge (Phase 12).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;operator&#x27;, &#x27;what&#x27;: &#x27;Run the full Phase 13 verification checklist across both nodes after all phases are complete.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Jennifer&#x27;, &#x27;what&#x27;: &#x27;Provide category report format spec needed by forge for Station 1A backend attribute engine.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Rankona Mazon Terminal — MERIDIAN Plumbing Runbook</h2>
+<p>**Purpose**: Wire the full MERIDIAN intelligence stack into the Rankona Mazon ghost terminal. Covers everything between &quot;Neo4j + NATS are installed on both nodes&quot; and &quot;daemons are functional with all bells and whistles.&quot;</p>
+<p>**Prerequisite**: Core machine (100.97.248.107) provisioned with Neo4j, embedding service, Claude CLI. Edge VPS provisioned with NATS, Cloudflare Tunnel, Caddy. SSH access confirmed on both nodes. Tailscale mesh between nodes operational.</p>
+<p>**Topology**: 2-node cluster — core (100.97.248.107 via Tailscale) + edge (VPS, public-facing)</p>
+<p>**Companion docs**: `amazon-terminal-blueprint.md`, `vps-architecture-blueprint.md`, `hardware-sizing-75k-skus.md`</p>
+<p>---</p>
+<h3>Proposed Daemon Roster</h3>
+<p>The blueprint defines 8 metro stations but no daemon roster. This runbook proposes 6 daemons split 3/3 across the core/edge topology:</p>
+<p><strong>Core (rankona-core, 100.97.248.107):</strong></p>
+<p>| Daemon | Role | Stations Served |</p>
+<p>|--------|------|-----------------|</p>
+<p>| `forge` | Station operator — batch attribute processing, listing copy generation, localization, ontology mapping, research extraction | 1A, 1B, 2 |</p>
+<p>| `atlas` | Intelligence synthesis — market analysis, competitive tracking, buyer signals, boardroom reports, research subway routing | 3, 4, 5, 6, 7 |</p>
+<p>| `sensei` | Coherence gate — quality control across all stations, session oversight, plan review | All (cross-cutting) |</p>
+<p><strong>Edge (rankona-edge, VPS):</strong></p>
+<p>| Daemon | Role | Stations Served |</p>
+<p>|--------|------|-----------------|</p>
+<p>| `watcher` | Compliance sentinel — TOS monitoring across 11 geographies, regulatory change detection, system health, alert pipeline | Compliance Sentinel |</p>
+<p>| `sandman` | Operations — backup coordination, queue health, deploy verification, system metrics | 8 (Performance Reporting) |</p>
+<p>| `delphi` | Query &amp; retrieval — Telegram bot backend (@RankonaBot), semantic search routing, briefing assembly, client-facing query handling | All (query interface) |</p>
+<p>**Growth path**: Add `avery` (client pipeline management) and `sterling` (profit-share tracking) when JV channel activates. Add second `forge-worker` on core if batch processing saturates.</p>
+<p>---</p>
+<h3>Phase 1 — Environment &amp; Configuration</h3>
+<h4>1.1 — Core Node Environment File</h4>
+<p>Create `/etc/rankona/env` on rankona-core (100.97.248.107):</p>
+<p>```bash</p>
+<p>sudo mkdir -p /etc/rankona</p>
+<p>cat &lt;&lt;&#x27;EOF&#x27; | sudo tee /etc/rankona/env</p>
+<h2>Rankona Mazon Ghost Terminal — Core Node Environment</h2>
+<h2>Sourced by all systemd units and daemon-wrapper.sh</h2>
+<h2>Neo4j (local instance on core)</h2>
+<p>NEO4J_URI=bolt://localhost:7687</p>
+<p>NEO4J_USER=neo4j</p>
+<p>NEO4J_PASSWORD=&lt;set-during-provisioning&gt;</p>
+<h2>NATS (edge VPS is the hub — connect via Tailscale)</h2>
+<p>NATS_URL=nats://&lt;rankona-edge-tailscale-ip&gt;:4222</p>
+<p>NATS_AUTH_TOKEN=&lt;generate-shared-token&gt;</p>
+<h2>Embedding (local all-mpnet-base-v2)</h2>
+<p>EMBEDDING_SERVICE_URL=http://localhost:8081</p>
+<p>EMBED_MODEL=all-mpnet-base-v2</p>
+<h2>LLM (Claude CLI via OAuth — no API keys)</h2>
+<p>CLAUDE_MODEL=claude-sonnet-4-6</p>
+<h2>Terminal identity</h2>
+<p>RANKONA_TERMINAL_ID=rankona</p>
+<p>WORKSPACE_ID=rankona</p>
+<h2>Paths</h2>
+<p>RANKONA_ROOT=/opt/rankona</p>
+<p>RANKONA_DATA=/data/rankona</p>
+<h2>Ollama (for bulk classification if needed)</h2>
+<p>OLLAMA_URL=http://localhost:11434</p>
+<p>EOF</p>
+<p>```</p>
+<h4>1.2 — Edge Node Environment File</h4>
+<p>Create `/etc/rankona/env` on rankona-edge (VPS):</p>
+<p>```bash</p>
+<p>sudo mkdir -p /etc/rankona</p>
+<p>cat &lt;&lt;&#x27;EOF&#x27; | sudo tee /etc/rankona/env</p>
+<h2>Rankona Mazon Ghost Terminal — Edge Node Environment</h2>
+<h2>Sourced by all systemd units and daemon-wrapper.sh</h2>
+<h2>Neo4j (remote on core via Tailscale — TLS required)</h2>
+<p>NEO4J_URI=bolt+ssc://&lt;rankona-core-tailscale-ip&gt;:7687</p>
+<p>NEO4J_USER=neo4j</p>
+<p>NEO4J_PASSWORD=&lt;same-as-core&gt;</p>
+<h2>NATS (local hub on edge)</h2>
+<p>NATS_URL=nats://localhost:4222</p>
+<p>NATS_AUTH_TOKEN=&lt;same-shared-token&gt;</p>
+<h2>Embedding (remote on core via Tailscale)</h2>
+<p>EMBEDDING_SERVICE_URL=http://&lt;rankona-core-tailscale-ip&gt;:8081</p>
+<p>EMBED_MODEL=all-mpnet-base-v2</p>
+<h2>LLM (Claude CLI via OAuth — light ops only on edge)</h2>
+<p>CLAUDE_MODEL=claude-haiku-4-5-20251001</p>
+<h2>Terminal identity</h2>
+<p>RANKONA_TERMINAL_ID=rankona</p>
+<p>WORKSPACE_ID=rankona</p>
+<h2>Paths</h2>
+<p>RANKONA_ROOT=/opt/rankona</p>
+<p>RANKONA_DATA=/data/rankona</p>
+<p>EOF</p>
+<p>```</p>
+<p>Permissions (both nodes):</p>
+<p>```bash</p>
+<p>sudo chmod 600 /etc/rankona/env</p>
+<p>sudo chown root:root /etc/rankona/env</p>
+<p>```</p>
+<h4>1.3 — Config Files</h4>
+<p>Copy and adapt config files from the MERIDIAN repo. These go to `/opt/rankona/config/` on both nodes.</p>
+<p>**health.yaml** — Daemon identity allowlist and health thresholds:</p>
+<p>```yaml</p>
+<p>version: 1</p>
+<p>valid_daemon_names:</p>
+<p style='padding-left:1rem'>&bull; forge</p>
+<p style='padding-left:1rem'>&bull; atlas</p>
+<p style='padding-left:1rem'>&bull; sensei</p>
+<p style='padding-left:1rem'>&bull; watcher</p>
+<p style='padding-left:1rem'>&bull; sandman</p>
+<p style='padding-left:1rem'>&bull; delphi</p>
+<p style='padding-left:1rem'>&bull; claude-code</p>
+<p>defaults:</p>
+<p>health_threshold: 0.6</p>
+<p>weights:</p>
+<p>ping_success: 0.35</p>
+<p>ping_latency: 0.03</p>
+<p>task_completion: 0.25</p>
+<p>activity_recency: 0.15</p>
+<p>infra_dependency: 0.10</p>
+<p>circuit_breaker: 0.12</p>
+<p>verification_delays: [45, 75, 150]</p>
+<p>restart_sla_seconds: 35</p>
+<p>daemons:</p>
+<p>forge:</p>
+<p>health_threshold: 0.65</p>
+<p>dependencies: [nats, neo4j, embedding]</p>
+<p>max_concurrent_tasks: 4</p>
+<p>node: core</p>
+<p>atlas:</p>
+<p>health_threshold: 0.6</p>
+<p>dependencies: [nats, neo4j, embedding]</p>
+<p>max_concurrent_tasks: 2</p>
+<p>node: core</p>
+<p>sensei:</p>
+<p>health_threshold: 0.65</p>
+<p>dependencies: [nats, neo4j]</p>
+<p>max_concurrent_tasks: 3</p>
+<p>node: core</p>
+<p>watcher:</p>
+<p>health_threshold: 0.55</p>
+<p>dependencies: [nats]</p>
+<p>max_concurrent_tasks: 1</p>
+<p>node: edge</p>
+<p>sandman:</p>
+<p>health_threshold: 0.55</p>
+<p>dependencies: [nats, neo4j]</p>
+<p>max_concurrent_tasks: 1</p>
+<p>node: edge</p>
+<p>delphi:</p>
+<p>health_threshold: 0.6</p>
+<p>dependencies: [nats, neo4j, embedding]</p>
+<p>max_concurrent_tasks: 2</p>
+<p>node: edge</p>
+<p>infrastructure:</p>
+<p>neo4j:</p>
+<p>critical: true</p>
+<p>nats:</p>
+<p>critical: true</p>
+<p>embedding:</p>
+<p>critical: false</p>
+<p>url: http://localhost:8081</p>
+<p>circuit_breakers:</p>
+<p>neo4j:</p>
+<p>failure_threshold: 5</p>
+<p>open_duration_seconds: 60</p>
+<p>half_open_max_calls: 2</p>
+<p>claude_api:</p>
+<p>failure_threshold: 3</p>
+<p>open_duration_seconds: 120</p>
+<p>half_open_max_calls: 1</p>
+<p>daemon_request:</p>
+<p>failure_threshold: 5</p>
+<p>open_duration_seconds: 30</p>
+<p>half_open_max_calls: 3</p>
+<p>```</p>
+<p>**llm_routing.yaml** — LLM tier routing:</p>
+<p>```yaml</p>
+<p>llm_routing:</p>
+<p>enabled: true</p>
+<p>dry_run: false</p>
+<p>tiers:</p>
+<p>high_judgment:</p>
+<p>description: &quot;Coherence review, ontology mapping validation, complex reasoning&quot;</p>
+<p>provider: claude_cli</p>
+<p>model: claude-sonnet-4-6</p>
+<p>standard:</p>
+<p>description: &quot;Listing copy generation, attribute inference, market analysis&quot;</p>
+<p>provider: claude_cli</p>
+<p>model: claude-haiku-4-5-20251001</p>
+<p>bulk:</p>
+<p>description: &quot;Classification, extraction, keyword grouping, sentiment tagging&quot;</p>
+<p>provider: ollama</p>
+<p>model: all-mpnet-base-v2</p>
+<p>fallback: claude_cli</p>
+<p>embedding:</p>
+<p>description: &quot;Text embeddings — all-mpnet-base-v2 via local service&quot;</p>
+<p>provider: embedding_service</p>
+<p>endpoint: http://localhost:8081</p>
+<p>task_routing:</p>
+<p>category_ontology_mapping: high_judgment</p>
+<p>attribute_inference: standard</p>
+<p>listing_copy_generation: standard</p>
+<p>keyword_embedding: bulk</p>
+<p>review_sentiment: bulk</p>
+<p>competitor_analysis: standard</p>
+<p>tos_change_assessment: high_judgment</p>
+<p>compliance_check: standard</p>
+<p>fact_extraction: standard</p>
+<p>coherence_review: high_judgment</p>
+<p>report_generation: standard</p>
+<p>metrics:</p>
+<p>log_provider_choice: true</p>
+<p>log_token_counts: true</p>
+<p>log_latency: true</p>
+<p>```</p>
+<p>**daemon-budgets.yaml** — Inference spend caps:</p>
+<p>```yaml</p>
+<p>daily_usd_cap:</p>
+<p>daemon/forge: 5.00</p>
+<p>daemon/atlas: 3.00</p>
+<p>daemon/sensei: 2.00</p>
+<p>daemon/watcher: 1.50</p>
+<p>daemon/sandman: 0.50</p>
+<p>daemon/delphi: 2.00</p>
+<p>background_total: 10.00</p>
+<p>escalation:</p>
+<p>consecutive_days_over_cap: 2</p>
+<p>alert_channel: telegram</p>
+<p>soft_cap_downgrade:</p>
+<p>enabled: true</p>
+<p>sonnet_to_haiku: true</p>
+<p>```</p>
+<p>**importance_rubric.yaml** — Copy verbatim from MERIDIAN (`config/importance_rubric.yaml`). Controls memory decay and recall budgets. No Rankona-specific changes needed.</p>
+<p>**streams.yaml** — JetStream stream definitions (see Phase 3). Auto-provisioned by the stream registry at boot.</p>
+<p>**ontology.yaml** — Rankona uses `amazon_seller` as primary domain. Additional domains: `compliance`, `market_intelligence`, `advertising`, `client_ops`.</p>
+<p>**research_routing.yaml** — Research subway line definitions:</p>
+<p>```yaml</p>
+<p>research_routing:</p>
+<p>workspace_id: rankona</p>
+<p>lines:</p>
+<p>line_a:</p>
+<p>name: &quot;Compliance &amp; Policy&quot;</p>
+<p>domains: [compliance, regulatory]</p>
+<p>feeds_stations: [compliance_sentinel, station_5]</p>
+<p>cadence_budget: 20</p>
+<p>line_b:</p>
+<p>name: &quot;Market &amp; Competition&quot;</p>
+<p>domains: [market_intelligence, competitive]</p>
+<p>feeds_stations: [station_3, station_4]</p>
+<p>cadence_budget: 15</p>
+<p>line_c:</p>
+<p>name: &quot;Operations &amp; Process&quot;</p>
+<p>domains: [operations, category_mapping]</p>
+<p>feeds_stations: [station_1a, station_1b]</p>
+<p>cadence_budget: 10</p>
+<p>line_d:</p>
+<p>name: &quot;Advertising &amp; Growth&quot;</p>
+<p>domains: [advertising, launch_ops]</p>
+<p>feeds_stations: [station_7, station_6]</p>
+<p>cadence_budget: 10</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 2 — Neo4j Indexes &amp; Constraints</h3>
+<p>Run on rankona-core (100.97.248.107) where Neo4j lives. These power search, analytics, and write validation across both the MERIDIAN knowledge layer and the Amazon-specific domain schema.</p>
+<h4>2.1 — Full-Text Indexes (BM25 — powers mig_search)</h4>
+<p>```cypher</p>
+<p>-- Memory full-text index</p>
+<p>CREATE FULLTEXT INDEX memory_fulltext IF NOT EXISTS</p>
+<p>FOR (m:Memory)</p>
+<p>ON EACH [m.content, m.category, m.domain]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>-- ResearchMemory full-text index</p>
+<p>CREATE FULLTEXT INDEX research_memory_fulltext IF NOT EXISTS</p>
+<p>FOR (r:ResearchMemory)</p>
+<p>ON EACH [r.content, r.domain, r.source_title]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>-- ResearchDocument full-text index</p>
+<p>CREATE FULLTEXT INDEX research_document_fulltext IF NOT EXISTS</p>
+<p>FOR (d:ResearchDocument)</p>
+<p>ON EACH [d.title, d.summary, d.domain]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>-- Claim full-text index</p>
+<p>CREATE FULLTEXT INDEX claim_fulltext IF NOT EXISTS</p>
+<p>FOR (c:Claim)</p>
+<p>ON EACH [c.content, c.domain]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>-- Product full-text index (Amazon-specific)</p>
+<p>CREATE FULLTEXT INDEX product_fulltext IF NOT EXISTS</p>
+<p>FOR (p:Product)</p>
+<p>ON EACH [p.title, p.asin, p.sku]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>-- Category full-text index (Amazon-specific)</p>
+<p>CREATE FULLTEXT INDEX category_fulltext IF NOT EXISTS</p>
+<p>FOR (cat:Category)</p>
+<p>ON EACH [cat.name, cat.path, cat.item_type_keyword]</p>
+<p>OPTIONS {indexConfig: {`fulltext.analyzer`: &#x27;standard-no-stop-words&#x27;}};</p>
+<p>```</p>
+<h4>2.2 — Vector Indexes (powers mig_recall semantic re-ranking, mig_hybrid_search)</h4>
+<p>```cypher</p>
+<p>-- Memory vector index (768-dim for all-mpnet-base-v2)</p>
+<p>CREATE VECTOR INDEX memory_embedding IF NOT EXISTS</p>
+<p>FOR (m:Memory) ON (m.embedding)</p>
+<p>OPTIONS {indexConfig: {</p>
+<p>`vector.dimensions`: 768,</p>
+<p>`vector.similarity_function`: &#x27;cosine&#x27;</p>
+<p>}};</p>
+<p>-- ResearchMemory vector index</p>
+<p>CREATE VECTOR INDEX research_memory_embedding IF NOT EXISTS</p>
+<p>FOR (r:ResearchMemory) ON (r.embedding)</p>
+<p>OPTIONS {indexConfig: {</p>
+<p>`vector.dimensions`: 768,</p>
+<p>`vector.similarity_function`: &#x27;cosine&#x27;</p>
+<p>}};</p>
+<p>```</p>
+<h4>2.3 — Property Indexes (powers filtering and lookups)</h4>
+<p>```cypher</p>
+<p>-- MERIDIAN knowledge layer indexes</p>
+<p>CREATE INDEX memory_workspace IF NOT EXISTS FOR (m:Memory) ON (m.workspace_id);</p>
+<p>CREATE INDEX memory_category IF NOT EXISTS FOR (m:Memory) ON (m.category);</p>
+<p>CREATE INDEX memory_domain IF NOT EXISTS FOR (m:Memory) ON (m.domain);</p>
+<p>CREATE INDEX memory_importance IF NOT EXISTS FOR (m:Memory) ON (m.importance);</p>
+<p>CREATE INDEX memory_created IF NOT EXISTS FOR (m:Memory) ON (m.created_at);</p>
+<p>CREATE INDEX memory_archived IF NOT EXISTS FOR (m:Memory) ON (m.archived);</p>
+<p>CREATE INDEX claim_domain IF NOT EXISTS FOR (c:Claim) ON (c.domain);</p>
+<p>CREATE INDEX concept_name IF NOT EXISTS FOR (c:Concept) ON (c.name);</p>
+<p>CREATE INDEX entity_name IF NOT EXISTS FOR (e:Entity) ON (e.name);</p>
+<p>CREATE INDEX task_status IF NOT EXISTS FOR (t:Task) ON (t.status);</p>
+<p>CREATE INDEX task_daemon IF NOT EXISTS FOR (t:Task) ON (t.assigned_daemon);</p>
+<p>CREATE INDEX session_id IF NOT EXISTS FOR (s:Session) ON (s.session_id);</p>
+<p>-- Amazon domain indexes (from schema/001_category_ontology.cypher)</p>
+<p>CREATE INDEX product_asin IF NOT EXISTS FOR (p:Product) ON (p.asin);</p>
+<p>CREATE INDEX product_marketplace IF NOT EXISTS FOR (p:Product) ON (p.marketplace_id);</p>
+<p>CREATE INDEX product_status IF NOT EXISTS FOR (p:Product) ON (p.status);</p>
+<p>CREATE INDEX product_workspace IF NOT EXISTS FOR (p:Product) ON (p.workspace_id);</p>
+<p>CREATE INDEX category_browse_node IF NOT EXISTS FOR (cat:Category) ON (cat.browse_node_id);</p>
+<p>CREATE INDEX category_marketplace IF NOT EXISTS FOR (cat:Category) ON (cat.marketplace_id);</p>
+<p>CREATE INDEX category_workspace IF NOT EXISTS FOR (cat:Category) ON (cat.workspace_id);</p>
+<p>CREATE INDEX attribute_field IF NOT EXISTS FOR (a:Attribute) ON (a.field_name);</p>
+<p>CREATE INDEX attribute_cosmo IF NOT EXISTS FOR (a:Attribute) ON (a.cosmo_field);</p>
+<p>CREATE INDEX keyword_term IF NOT EXISTS FOR (k:Keyword) ON (k.term);</p>
+<p>CREATE INDEX keyword_marketplace IF NOT EXISTS FOR (k:Keyword) ON (k.marketplace_id);</p>
+<p>CREATE INDEX review_asin IF NOT EXISTS FOR (r:Review) ON (r.asin);</p>
+<p>CREATE INDEX competitor_asin IF NOT EXISTS FOR (ca:CompetitorASIN) ON (ca.asin);</p>
+<p>CREATE INDEX listing_snapshot_date IF NOT EXISTS FOR (ls:ListingSnapshot) ON (ls.snapshot_date);</p>
+<p>CREATE INDEX policy_event_date IF NOT EXISTS FOR (pe:PolicyEvent) ON (pe.detected_at);</p>
+<p>-- Uniqueness constraints</p>
+<p>CREATE CONSTRAINT memory_id_unique IF NOT EXISTS FOR (m:Memory) REQUIRE m.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT claim_id_unique IF NOT EXISTS FOR (c:Claim) REQUIRE c.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT task_id_unique IF NOT EXISTS FOR (t:Task) REQUIRE t.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT session_id_unique IF NOT EXISTS FOR (s:Session) REQUIRE s.session_id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT product_id_unique IF NOT EXISTS FOR (p:Product) REQUIRE p.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT category_id_unique IF NOT EXISTS FOR (cat:Category) REQUIRE cat.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT attribute_id_unique IF NOT EXISTS FOR (a:Attribute) REQUIRE a.id IS UNIQUE;</p>
+<p>```</p>
+<h4>2.4 — Verify Indexes</h4>
+<p>```bash</p>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD \</p>
+<p>&quot;SHOW INDEXES YIELD name, type, state WHERE state = &#x27;ONLINE&#x27; RETURN name, type ORDER BY name;&quot;</p>
+<p>```</p>
+<p>Expected: 6 fulltext + 2 vector + 28 property + 7 constraint = 43 indexes, all ONLINE.</p>
+<p>---</p>
+<h3>Phase 3 — NATS JetStream Streams</h3>
+<p>Run on rankona-edge (VPS) where the NATS hub lives. Core daemons connect here as clients via Tailscale.</p>
+<h4>3.1 — Core Streams (same as MERIDIAN)</h4>
+<p>```bash</p>
+<h2>Core work queue — task dispatch between daemons</h2>
+<p>nats stream add WORK_QUEUE \</p>
+<p>--subjects &quot;work.tasks.*,work.results.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 50000 \</p>
+<p>--max-age 7d \</p>
+<p>--defaults</p>
+<h2>Task dispatch — daemon-specific routing</h2>
+<p>nats stream add TASK_DISPATCH \</p>
+<p>--subjects &quot;dispatch.daemon.*,dispatch.global&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 5000 \</p>
+<p>--max-age 24h \</p>
+<p>--defaults</p>
+<h2>Pulse — heartbeat and daemon activity</h2>
+<p>nats stream add PULSE \</p>
+<p>--subjects &quot;pulse.tick.&gt;&quot; \</p>
+<p>--retention limits \</p>
+<p>--storage file \</p>
+<p>--max-age 24h \</p>
+<p>--defaults</p>
+<h2>Dead letter queue — failed messages after retry exhaustion</h2>
+<p>nats stream add MESH_DLQ \</p>
+<p>--subjects &quot;dlq.&gt;&quot; \</p>
+<p>--retention limits \</p>
+<p>--storage file \</p>
+<p>--max-age 30d \</p>
+<p>--defaults</p>
+<h2>CLI inbox — session messaging for Claude Code sessions</h2>
+<p>nats stream add CLI_INBOX \</p>
+<p>--subjects &quot;cli.inbox.&gt;&quot; \</p>
+<p>--retention limits \</p>
+<p>--storage file \</p>
+<p>--max-age 72h \</p>
+<p>--defaults</p>
+<h2>Fact extraction pipeline</h2>
+<p>nats stream add FACT_EXTRACT \</p>
+<p>--subjects &quot;fact.extract.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 10000 \</p>
+<p>--max-age 7d \</p>
+<p>--defaults</p>
+<h2>Research pipeline</h2>
+<p>nats stream add RESEARCH_INGEST \</p>
+<p>--subjects &quot;research.raw.*,research.structured.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 10000 \</p>
+<p>--max-age 7d \</p>
+<p>--defaults</p>
+<p>```</p>
+<h4>3.2 — Amazon-Specific Streams</h4>
+<p>```bash</p>
+<h2>Attribute processing pipeline — category report → parsed attributes → validation → upload</h2>
+<p>nats stream add ATTRIBUTE_PIPELINE \</p>
+<p>--subjects &quot;attribute.parse.*,attribute.validate.*,attribute.upload.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 100000 \</p>
+<p>--max-age 7d \</p>
+<p>--defaults</p>
+<h2>Listing optimization — copy generation, keyword embedding, localization batches</h2>
+<p>nats stream add LISTING_OPS \</p>
+<p>--subjects &quot;listing.copy.*,listing.keywords.*,listing.localize.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 50000 \</p>
+<p>--max-age 7d \</p>
+<p>--defaults</p>
+<h2>Compliance signals — TOS changes, regulatory alerts, policy events</h2>
+<p>nats stream add COMPLIANCE \</p>
+<p>--subjects &quot;compliance.signal.*,compliance.alert.*,compliance.tos.*&quot; \</p>
+<p>--retention limits \</p>
+<p>--storage file \</p>
+<p>--max-age 90d \</p>
+<p>--defaults</p>
+<h2>Competitor intelligence — ASIN tracking, pricing, BSR shifts</h2>
+<p>nats stream add COMPETITOR_INTEL \</p>
+<p>--subjects &quot;competitor.asin.*,competitor.pricing.*,competitor.bsr.*&quot; \</p>
+<p>--retention limits \</p>
+<p>--storage file \</p>
+<p>--max-age 30d \</p>
+<p>--defaults</p>
+<h2>Ingestion pipeline — category reports, keyword exports, product sheets, scraper feeds</h2>
+<p>nats stream add INGESTION \</p>
+<p>--subjects &quot;ingest.category.*,ingest.keyword.*,ingest.product.*,ingest.review.*,ingest.scraper.*&quot; \</p>
+<p>--retention work \</p>
+<p>--storage file \</p>
+<p>--max-msgs 200000 \</p>
+<p>--max-age 14d \</p>
+<p>--defaults</p>
+<p>```</p>
+<h4>3.3 — KV Buckets</h4>
+<p>```bash</p>
+<h2>Session coordination KV buckets</h2>
+<p>nats kv add DAEMON_CLAIMS --ttl 30s</p>
+<p>nats kv add DAEMON_ACTIVITY --ttl 60s</p>
+<p>nats kv add TASK_PROGRESS --ttl 300s</p>
+<p>nats kv add CLAUDE_SESSIONS --ttl 3600s</p>
+<p>nats kv add SESSION_LOGS --ttl 86400s</p>
+<p>```</p>
+<h4>3.4 — Verify</h4>
+<p>```bash</p>
+<p>nats stream ls</p>
+<p>nats kv ls</p>
+<p>```</p>
+<p>Expected: 12 streams (7 core + 5 Amazon-specific) + 5 KV buckets.</p>
+<p>---</p>
+<h3>Phase 4 — MCP Server</h3>
+<p>The MCP server is how Claude Code sessions (and operator terminals) access the full MERIDIAN toolkit on the Rankona terminal.</p>
+<h4>4.1 — Install MCP Server</h4>
+<p>```bash</p>
+<h2>On both nodes — the MCP server connects to Neo4j (remote from edge via Tailscale) and NATS</h2>
+<p>cd /opt/rankona</p>
+<p>pip install -e &quot;.[mcp]&quot;</p>
+<h2>Verify</h2>
+<p>source /etc/rankona/env</p>
+<p>python -m meridian_mcp.mig_lite_server --help</p>
+<p>```</p>
+<h4>4.2 — MCP Server Configuration</h4>
+<p>**Core node** — `/opt/rankona/.mcp.json`:</p>
+<p>```json</p>
+<p>{</p>
+<p>&quot;mcpServers&quot;: {</p>
+<p>&quot;mig&quot;: {</p>
+<p>&quot;command&quot;: &quot;/opt/rankona/.venv/bin/python&quot;,</p>
+<p>&quot;args&quot;: [&quot;-m&quot;, &quot;meridian_mcp.mig_lite_server&quot;],</p>
+<p>&quot;env&quot;: {</p>
+<p>&quot;NEO4J_URI&quot;: &quot;bolt://localhost:7687&quot;,</p>
+<p>&quot;NEO4J_USER&quot;: &quot;neo4j&quot;,</p>
+<p>&quot;NEO4J_PASSWORD&quot;: &quot;${NEO4J_PASSWORD}&quot;,</p>
+<p>&quot;NATS_URL&quot;: &quot;nats://&lt;rankona-edge-tailscale-ip&gt;:4222&quot;,</p>
+<p>&quot;NATS_AUTH_TOKEN&quot;: &quot;${NATS_AUTH_TOKEN}&quot;,</p>
+<p>&quot;EMBEDDING_SERVICE_URL&quot;: &quot;http://localhost:8081&quot;,</p>
+<p>&quot;WORKSPACE_ID&quot;: &quot;rankona&quot;</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>```</p>
+<p>**Edge node** — `/opt/rankona/.mcp.json`:</p>
+<p>```json</p>
+<p>{</p>
+<p>&quot;mcpServers&quot;: {</p>
+<p>&quot;mig&quot;: {</p>
+<p>&quot;command&quot;: &quot;/opt/rankona/.venv/bin/python&quot;,</p>
+<p>&quot;args&quot;: [&quot;-m&quot;, &quot;meridian_mcp.mig_lite_server&quot;],</p>
+<p>&quot;env&quot;: {</p>
+<p>&quot;NEO4J_URI&quot;: &quot;bolt+ssc://&lt;rankona-core-tailscale-ip&gt;:7687&quot;,</p>
+<p>&quot;NEO4J_USER&quot;: &quot;neo4j&quot;,</p>
+<p>&quot;NEO4J_PASSWORD&quot;: &quot;${NEO4J_PASSWORD}&quot;,</p>
+<p>&quot;NATS_URL&quot;: &quot;nats://localhost:4222&quot;,</p>
+<p>&quot;NATS_AUTH_TOKEN&quot;: &quot;${NATS_AUTH_TOKEN}&quot;,</p>
+<p>&quot;EMBEDDING_SERVICE_URL&quot;: &quot;http://&lt;rankona-core-tailscale-ip&gt;:8081&quot;,</p>
+<p>&quot;WORKSPACE_ID&quot;: &quot;rankona&quot;</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>```</p>
+<h4>4.3 — Verify MCP Tools</h4>
+<p>From a Claude Code session on either node:</p>
+<p>```</p>
+<p>mig_health()         → should show neo4j: true, node counts</p>
+<p>mig_search(&quot;amazon&quot;) → should return BM25 results (if seeded)</p>
+<p>mesh_status()         → should show which Rankona daemons are online</p>
+<p>mig_tasks()           → should return empty list (clean start)</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 5 — Daemon Infrastructure</h3>
+<h4>5.1 — Daemon Wrapper</h4>
+<p>Create `/opt/rankona/scripts/daemon-wrapper.sh` on both nodes:</p>
+<p>```bash</p>
+<p>#!/usr/bin/env bash</p>
+<p>set -euo pipefail</p>
+<p>DAEMON_NAME=&quot;${1:?Usage: daemon-wrapper.sh &lt;daemon-name&gt;}&quot;</p>
+<h2>Source environment</h2>
+<p>source /etc/rankona/env</p>
+<h2>Allowlist gate</h2>
+<p>ALLOW_FILE=&quot;/etc/rankona/daemons.allow&quot;</p>
+<p>if [[ -f &quot;$ALLOW_FILE&quot; ]] &amp;&amp; ! grep -qx &quot;$DAEMON_NAME&quot; &quot;$ALLOW_FILE&quot;; then</p>
+<p>echo &quot;BLOCKED: $DAEMON_NAME not in $ALLOW_FILE&quot; &gt;&amp;2</p>
+<p>exit 1</p>
+<p>fi</p>
+<p>echo &quot;[$(date -Iseconds)] Starting $DAEMON_NAME&quot;</p>
+<h2>Hand off to Python daemon runner</h2>
+<p>exec /opt/rankona/.venv/bin/python \</p>
+<p>/opt/rankona/scripts/run_daemon.py &quot;$DAEMON_NAME&quot;</p>
+<p>```</p>
+<p>Create allowlists per node:</p>
+<p>**Core** — `/etc/rankona/daemons.allow`:</p>
+<p>```</p>
+<p>forge</p>
+<p>atlas</p>
+<p>sensei</p>
+<p>```</p>
+<p>**Edge** — `/etc/rankona/daemons.allow`:</p>
+<p>```</p>
+<p>watcher</p>
+<p>sandman</p>
+<p>delphi</p>
+<p>```</p>
+<h4>5.2 — Systemd Unit Template</h4>
+<p>Create on **both nodes** — `/etc/systemd/system/rankona-daemon@.service`:</p>
+<p>```ini</p>
+<p>[Unit]</p>
+<p>Description=Rankona Daemon — %i</p>
+<p>After=network.target</p>
+<p>Wants=network.target</p>
+<p>[Service]</p>
+<p>Type=simple</p>
+<p>User=meridian</p>
+<p>EnvironmentFile=/etc/rankona/env</p>
+<p>WorkingDirectory=/opt/rankona</p>
+<p>ExecStart=/opt/rankona/scripts/daemon-wrapper.sh %i</p>
+<p>Restart=on-failure</p>
+<p>RestartSec=30</p>
+<p>MemoryMax=384M</p>
+<p>MemorySwapMax=256M</p>
+<p>KillMode=mixed</p>
+<p>TimeoutStopSec=30</p>
+<p>StandardOutput=journal</p>
+<p>StandardError=journal</p>
+<p>SyslogIdentifier=rankona-%i</p>
+<p>[Install]</p>
+<p>WantedBy=multi-user.target</p>
+<p>```</p>
+<p><strong>Core-specific overrides:</strong></p>
+<p>```bash</p>
+<h2>forge gets more memory (batch processing, ontology mapping)</h2>
+<p>mkdir -p /etc/systemd/system/rankona-daemon@forge.service.d</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-daemon@forge.service.d/memory.conf</p>
+<p>[Service]</p>
+<p>MemoryMax=1024M</p>
+<p>MemorySwapMax=512M</p>
+<p>EOF</p>
+<h2>sensei gets more memory (coherence work)</h2>
+<p>mkdir -p /etc/systemd/system/rankona-daemon@sensei.service.d</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-daemon@sensei.service.d/memory.conf</p>
+<p>[Service]</p>
+<p>MemoryMax=768M</p>
+<p>MemorySwapMax=384M</p>
+<p>EOF</p>
+<h2>atlas gets more memory (intelligence synthesis, report generation)</h2>
+<p>mkdir -p /etc/systemd/system/rankona-daemon@atlas.service.d</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-daemon@atlas.service.d/memory.conf</p>
+<p>[Service]</p>
+<p>MemoryMax=768M</p>
+<p>MemorySwapMax=384M</p>
+<p>EOF</p>
+<p>```</p>
+<p><strong>Edge-specific dependencies:</strong></p>
+<p>```bash</p>
+<h2>Edge daemons depend on local NATS</h2>
+<p>mkdir -p /etc/systemd/system/rankona-daemon@watcher.service.d</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-daemon@watcher.service.d/deps.conf</p>
+<p>[Unit]</p>
+<p>After=nats.service</p>
+<p>Wants=nats.service</p>
+<p>EOF</p>
+<h2>Same for sandman and delphi</h2>
+<p>for d in sandman delphi; do</p>
+<p>mkdir -p /etc/systemd/system/rankona-daemon@$d.service.d</p>
+<p>cp /etc/systemd/system/rankona-daemon@watcher.service.d/deps.conf \</p>
+<p>/etc/systemd/system/rankona-daemon@$d.service.d/deps.conf</p>
+<p>done</p>
+<p>```</p>
+<p>Enable daemons per node:</p>
+<p>```bash</p>
+<p>systemctl daemon-reload</p>
+<h2>On core:</h2>
+<p>for d in forge atlas sensei; do</p>
+<p>systemctl enable rankona-daemon@$d</p>
+<p>done</p>
+<h2>On edge:</h2>
+<p>for d in watcher sandman delphi; do</p>
+<p>systemctl enable rankona-daemon@$d</p>
+<p>done</p>
+<p>```</p>
+<h4>5.3 — Write Validator</h4>
+<p>The write validator (`brain/write_validator.py`) prevents junk writes. It works automatically through the MCP server — called internally by `mig_remember()`. Validates:</p>
+<p style='padding-left:1rem'>&bull; Category validation (fact, decision, preference, observation, learning)</p>
+<p style='padding-left:1rem'>&bull; Binary content detection (rejects base64, binary blobs)</p>
+<p style='padding-left:1rem'>&bull; Importance soft-demote for unprivileged categories</p>
+<p style='padding-left:1rem'>&bull; Domain validation against ontology.yaml</p>
+<p>No separate setup beyond having `config/ontology.yaml` in place.</p>
+<h4>5.4 — RPMDaemon Base Class Adaptation</h4>
+<p>The `clients/rankona-mazon/daemons/base.py` should follow the same pattern as RPM&#x27;s `base.py` but with Rankona-specific defaults:</p>
+<p>```python</p>
+<h2>Key differences from RPMDaemon:</h2>
+<p>NATS_URL = os.environ.get(&quot;NATS_URL&quot;, &quot;nats://&lt;edge-tailscale-ip&gt;:4222&quot;)  # NATS on edge</p>
+<p>EMBEDDING_URL = os.environ.get(&quot;EMBEDDING_SERVICE_URL&quot;, &quot;http://localhost:8081&quot;)  # all-mpnet-base-v2</p>
+<p>EMBED_MODEL = os.environ.get(&quot;EMBED_MODEL&quot;, &quot;all-mpnet-base-v2&quot;)</p>
+<p>```</p>
+<p>The embedding call differs — all-mpnet-base-v2 runs as a standalone service (not Ollama). The `embed()` method should call the embedding service HTTP endpoint directly rather than Ollama&#x27;s `/api/embeddings`.</p>
+<p>---</p>
+<h3>Phase 6 — Session Coordination</h3>
+<p>Session coordination enables multi-daemon awareness across both nodes.</p>
+<h4>6.1 — Session Register at Boot</h4>
+<p>Every daemon calls `session_register()` at boot. This publishes to the `CLAUDE_SESSIONS` KV bucket on the edge NATS hub. Core daemons reach it via Tailscale.</p>
+<h4>6.2 — Boot Protocol for Daemon Contexts</h4>
+<p>Each daemon&#x27;s context file includes:</p>
+<p>```</p>
+<h3>Boot Protocol</h3>
+<p>1. session_register(task_description=&quot;&lt;daemon role&gt;&quot;)</p>
+<p style='padding-left:1rem'>&bull; If had_compaction: true → call /resume-session</p>
+<p>2. mig_recall(category=&quot;calibration&quot;, importance_min=7, limit=3)</p>
+<p>3. session_inbox() — catch operator/peer messages</p>
+<p>4. Declare ready in ≤30 words</p>
+<p>```</p>
+<h4>6.3 — Session Tools Available After Phase 4</h4>
+<p>| Tool | Purpose |</p>
+<p>|------|---------|</p>
+<p>| `session_register()` | Register with mesh, enable visibility |</p>
+<p>| `session_inbox()` | Read messages from other sessions |</p>
+<p>| `session_send(to, message)` | Send message to another session/daemon |</p>
+<p>| `session_broadcast(message)` | Broadcast to all active sessions |</p>
+<p>| `session_handoff(description, next_steps)` | Create handoff for another session |</p>
+<p>| `session_accept_handoff(from)` | Accept a handoff |</p>
+<p>| `session_check_conflict(file_path)` | Check if another session is editing a file |</p>
+<p>| `session_gate(daemon, action, message)` | Halt/redirect/clear another daemon |</p>
+<p>| `session_map()` | Operator view of all sessions + progress |</p>
+<p>| `session_report(accomplishment, blocked, action)` | Report progress |</p>
+<h4>6.4 — Cross-Node Session Visibility</h4>
+<p>Because NATS hub is on edge, all sessions (core and edge) are visible in one mesh. The Tailscale tunnel is the only requirement — no additional config for cross-node awareness.</p>
+<p>**Failure mode**: If Tailscale drops between core and edge, core daemons lose NATS connectivity. Session messages queue on edge until Tailscale reconnects. Core daemons should detect NATS disconnect and enter local-only mode.</p>
+<h4>6.5 — Gate Hooks (Recommended)</h4>
+<p>```json</p>
+<p>// .claude/settings.json on both nodes</p>
+<p>{</p>
+<p>&quot;hooks&quot;: {</p>
+<p>&quot;PreToolUse&quot;: [</p>
+<p>{</p>
+<p>&quot;matcher&quot;: &quot;Bash|Edit|Write&quot;,</p>
+<p>&quot;command&quot;: &quot;/opt/rankona/scripts/check-gate.sh&quot;</p>
+<p>}</p>
+<p>]</p>
+<p>}</p>
+<p>}</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 7 — Task Management &amp; Work Arcs</h3>
+<h4>7.1 — Task System</h4>
+<p>Works via MCP tools — no additional setup beyond Phase 2 indexes:</p>
+<p>| Tool | Purpose |</p>
+<p>|------|---------|</p>
+<p>| `mig_task_create(title, daemon, priority, description)` | Create a task |</p>
+<p>| `mig_tasks()` | List pending/in_progress tasks |</p>
+<p>| `mig_task_claim(task_id)` | Atomically claim a task (CAS lock) |</p>
+<p>| `mig_task_complete(task_id, notes, self_assessment)` | Mark done with self-assessment |</p>
+<p>| `mig_task_bulk_complete(pattern, notes)` | Bulk-complete matching tasks |</p>
+<h4>7.2 — Work Arc Tracking</h4>
+<p>For multi-phase station buildout (e.g., Station 1A has 6 sub-tasks):</p>
+<p>```</p>
+<p>workarc_start(title=&quot;Station 1A — Backend Attribute Engine&quot;,</p>
+<p>total_phases=6,</p>
+<p>phase_labels=[&quot;Schema Deploy&quot;, &quot;Category Parser&quot;, &quot;Ontology Mapping&quot;,</p>
+<p>&quot;Attribute Inference Pipeline&quot;, &quot;Bulk Upload Engine&quot;,</p>
+<p>&quot;First Batch Processing&quot;])</p>
+<p>```</p>
+<h4>7.3 — Human Queue</h4>
+<p>When daemons need client input (Jennifer&#x27;s category report, Carl&#x27;s priority decision):</p>
+<p>| Tool | Purpose |</p>
+<p>|------|---------|</p>
+<p>| `human_queue_add(question, daemon, priority)` | Escalate to operator |</p>
+<p>| `human_queue_list()` | List pending human items |</p>
+<p>| `human_queue_resolve(item_id, resolution)` | Operator resolves |</p>
+<h4>7.4 — Collab Threads</h4>
+<p>Structured multi-daemon deliberation:</p>
+<p>```</p>
+<p>collab_thread(action=&quot;create&quot;, title=&quot;Ontology Mapping Strategy — Horse Equipment&quot;,</p>
+<p>goal=&quot;Determine attribute mapping approach for sub-categories&quot;,</p>
+<p>thread_type=&quot;discussion&quot;,</p>
+<p>participants=[&quot;forge&quot;, &quot;atlas&quot;, &quot;sensei&quot;])</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 8 — Graph Analytics (Intelligence Queries Q1-Q7)</h3>
+<p>These make the knowledge graph actively useful — not just storage but intelligence. All powered by the MCP server.</p>
+<p>| Tool | Query | What It Does for Rankona |</p>
+<p>|------|-------|--------------------------|</p>
+<p>| `mig_convergence()` | Q1 | Find claims where 3+ sources agree — validates market trends, keyword strategies |</p>
+<p>| `mig_contradictions()` | Q2 | Surface conflicting claims — TOS change invalidates a listing strategy, competitor data conflicts |</p>
+<p>| `mig_evidence_chain(claim_id)` | Q3 | Full provenance: Claim → Evidence → Source → Method |</p>
+<p>| `mig_stale_claims()` | Q4 | Claims past evidence half-life — outdated keyword rankings, expired TOS interpretations |</p>
+<p>| `mig_entity_landscape(entity)` | Q5 | Everything about an entity (product, category, competitor, marketplace) |</p>
+<p>| `mig_knowledge_fitness(domain)` | Q6+ | Composite health: convergence + contradictions + staleness + reliability |</p>
+<p>| `mig_source_reliability()` | Q6 | Source type reliability by corroboration vs contradiction rates |</p>
+<p>| `mig_knowledge_frontier()` | Q7 | High claim density + low evidence coverage — where to focus research subway lines |</p>
+<p>| `mig_pagerank()` | — | Most connected concepts (which categories/keywords are most central) |</p>
+<p>| `mig_communities()` | — | Concept clusters (related product groups, keyword families) |</p>
+<p>| `mig_impact(target)` | — | Pre-action blast radius (e.g., before changing a category mapping) |</p>
+<p>| `mig_graph_neighbors(query)` | — | 2-hop concept exploration |</p>
+<h4>8.1 — Amazon-Specific Query Patterns</h4>
+<p>These analytics have specific value in the Amazon seller domain:</p>
+<p style='padding-left:1rem'>&bull; **Q1 (Convergence)**: Multiple data sources confirming a keyword trend → high-confidence listing optimization signal</p>
+<p style='padding-left:1rem'>&bull; **Q2 (Contradictions)**: TOS change contradicting existing listing strategy → immediate action required</p>
+<p style='padding-left:1rem'>&bull; **Q4 (Stale Claims)**: Keyword ranking data older than 14 days → refresh before using for listing optimization</p>
+<p style='padding-left:1rem'>&bull; **Q7 (Knowledge Frontier)**: Categories with high product count but low ontology mapping coverage → next ontology mapping target</p>
+<h4>8.2 — GDS + APOC Plugins</h4>
+<p>Required for PageRank and community detection:</p>
+<p>```bash</p>
+<h2>Docker Neo4j on core:</h2>
+<h2>Set NEO4J_PLUGINS=&#x27;[&quot;apoc&quot;, &quot;graph-data-science&quot;]&#x27; in docker env</h2>
+<h2>Restart container</h2>
+<h2>Verify:</h2>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD &quot;RETURN gds.version();&quot;</p>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD &quot;RETURN apoc.version();&quot;</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 9 — Monitoring &amp; Health</h3>
+<h4>9.1 — Watcher Daemon (Edge)</h4>
+<p>The Watcher daemon serves double duty on the Rankona terminal:</p>
+<p>**System health** (standard MERIDIAN pattern):</p>
+<p style='padding-left:1rem'>&bull; 60s health poll of all 6 daemons via NATS heartbeat</p>
+<p style='padding-left:1rem'>&bull; Neo4j connectivity check (via Tailscale to core)</p>
+<p style='padding-left:1rem'>&bull; NATS JetStream stream health (local)</p>
+<p style='padding-left:1rem'>&bull; Telegram alert on daemon failure or infrastructure degradation</p>
+<p>**Compliance sentinel** (Amazon-specific):</p>
+<p style='padding-left:1rem'>&bull; Continuous TOS change detection across 11 Amazon geographies</p>
+<p style='padding-left:1rem'>&bull; Government regulatory change detection per country per category</p>
+<p style='padding-left:1rem'>&bull; FBA fee change monitoring</p>
+<p style='padding-left:1rem'>&bull; Restricted product reclassification alerts</p>
+<p style='padding-left:1rem'>&bull; Alert pipeline: change detected → impact assessment → `compliance.alert.*` NATS publish → forge ingests when online</p>
+<h4>9.2 — Sentinel Monitors</h4>
+<p>| Sentinel | Node | Priority | Purpose |</p>
+<p>|----------|------|----------|---------|</p>
+<p>| `sentinel_health` | Edge | P0 | Health check orchestration, broadcasts status |</p>
+<p>| `sentinel_medic` | Edge | P0 | Failure detection + auto-restart coordination |</p>
+<p>| `sentinel_compliance` | Edge | P0 | TOS + regulatory monitoring (11 geographies) |</p>
+<p>| `sentinel_metrics` | Edge | P1 | Publish daemon metrics (tasks/sec, coherence, spend) |</p>
+<p>| `sentinel_config_drift` | Core | P1 | Detect config changes that violate governance |</p>
+<p>| `sentinel_research_indexer` | Core | P2 | Index new research into MIG |</p>
+<p>| `sentinel_entity_dedup` | Core | P2 | Flag duplicate entities (products, keywords) |</p>
+<p>| `sentinel_snapshot_archiver` | Core | P2 | Rolling 90-day retention on high-frequency snapshot labels |</p>
+<h4>9.3 — Snapshot Archiver (Amazon-Specific)</h4>
+<p>The 91M-node graph at target scale requires aggressive retention management. Per `hardware-sizing-75k-skus.md`, enforce 90-day rolling retention on:</p>
+<p style='padding-left:1rem'>&bull; `:ListingSnapshot` (20.25M nodes at target)</p>
+<p style='padding-left:1rem'>&bull; `:KeywordRankSnapshot` (50M nodes — largest class)</p>
+<p style='padding-left:1rem'>&bull; `:AdSnapshot` (8.1M nodes)</p>
+<p style='padding-left:1rem'>&bull; `:CompetitorSnapshot` (675K nodes)</p>
+<p>```bash</p>
+<h2>Runs daily at 02:00 UTC (before gardener)</h2>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-archiver.timer</p>
+<p>[Unit]</p>
+<p>Description=Rankona Snapshot Archiver Timer</p>
+<p>[Timer]</p>
+<p>OnCalendar=*-*-* 02:00:00 UTC</p>
+<p>Persistent=true</p>
+<p>[Install]</p>
+<p>WantedBy=timers.target</p>
+<p>EOF</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-archiver.service</p>
+<p>[Unit]</p>
+<p>Description=Rankona Snapshot Archiver</p>
+<p>[Service]</p>
+<p>Type=oneshot</p>
+<p>User=meridian</p>
+<p>EnvironmentFile=/etc/rankona/env</p>
+<p>WorkingDirectory=/opt/rankona</p>
+<p>ExecStart=/opt/rankona/.venv/bin/python -m brain.archiver \</p>
+<p>--workspace rankona \</p>
+<p>--labels ListingSnapshot,KeywordRankSnapshot,AdSnapshot,CompetitorSnapshot \</p>
+<p>--retention-days 90</p>
+<p>TimeoutStartSec=1800</p>
+<p>EOF</p>
+<p>```</p>
+<h4>9.4 — Monitoring Stack (Recommended)</h4>
+<p>Deploy Prometheus + Grafana + Loki on the edge VPS (same pattern as MERIDIAN Strasbourg):</p>
+<p>```bash</p>
+<h2>/opt/rankona-monitoring-compose.yml on edge</h2>
+<h2>Prometheus: scrape daemon health endpoints on both nodes</h2>
+<h2>Grafana: fleet-overview + mig-health + Amazon metrics dashboards</h2>
+<h2>Loki + Promtail: centralized log aggregation from both nodes</h2>
+<p>```</p>
+<p>---</p>
+<h3>Phase 10 — Gardener (Memory Maintenance)</h3>
+<p>The Gardener keeps the MIG healthy over time:</p>
+<p style='padding-left:1rem'>&bull; **Decay enforcement** — reduce importance scores on aging memories per importance_rubric.yaml half-lives</p>
+<p style='padding-left:1rem'>&bull; **Orphan cleanup** — remove disconnected nodes with no relationships</p>
+<p style='padding-left:1rem'>&bull; **Concept deduplication** — merge duplicate concept nodes</p>
+<p style='padding-left:1rem'>&bull; **Soft-delete enforcement** — ensure archived memories stay archived</p>
+<h4>10.1 — Gardener on Core</h4>
+<p>Runs on core (near the data):</p>
+<p>```bash</p>
+<h2>Run gardener daily at 03:00 UTC (after archiver)</h2>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-gardener.timer</p>
+<p>[Unit]</p>
+<p>Description=Rankona MIG Gardener Timer</p>
+<p>[Timer]</p>
+<p>OnCalendar=*-*-* 03:00:00 UTC</p>
+<p>Persistent=true</p>
+<p>[Install]</p>
+<p>WantedBy=timers.target</p>
+<p>EOF</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-gardener.service</p>
+<p>[Unit]</p>
+<p>Description=Rankona MIG Gardener</p>
+<p>[Service]</p>
+<p>Type=oneshot</p>
+<p>User=meridian</p>
+<p>EnvironmentFile=/etc/rankona/env</p>
+<p>WorkingDirectory=/opt/rankona</p>
+<p>ExecStart=/opt/rankona/.venv/bin/python -m brain.gardener --workspace rankona</p>
+<p>TimeoutStartSec=600</p>
+<p>EOF</p>
+<p>systemctl daemon-reload</p>
+<p>systemctl enable rankona-gardener.timer</p>
+<p>systemctl start rankona-gardener.timer</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 11 — Operational Tooling</h3>
+<h4>11.1 — Backup (Core → Edge → Offsite)</h4>
+<p>```bash</p>
+<h2>Core: restic backup to edge VPS every 6 hours</h2>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-backup.timer</p>
+<p>[Unit]</p>
+<p>Description=Rankona Backup Timer</p>
+<p>[Timer]</p>
+<p>OnCalendar=*-*-* 00,06,12,18:00:00 UTC</p>
+<p>Persistent=true</p>
+<p>[Install]</p>
+<p>WantedBy=timers.target</p>
+<p>EOF</p>
+<p>cat &lt;&lt;EOF &gt; /etc/systemd/system/rankona-backup.service</p>
+<p>[Unit]</p>
+<p>Description=Rankona Neo4j Backup</p>
+<p>[Service]</p>
+<p>Type=oneshot</p>
+<p>User=meridian</p>
+<p>EnvironmentFile=/etc/rankona/env</p>
+<p>WorkingDirectory=/opt/rankona</p>
+<p>ExecStart=/opt/rankona/scripts/backup.sh</p>
+<p>TimeoutStartSec=3600</p>
+<p>EOF</p>
+<p>```</p>
+<p>Edge receives backups and forwards to offsite (Backblaze B2 or similar). Retention: 7 daily, 4 weekly, 12 monthly.</p>
+<h4>11.2 — Autopull (Both Nodes)</h4>
+<p>```bash</p>
+<h2>Cron job to pull latest code</h2>
+<p>cat &lt;&lt;EOF &gt; /etc/cron.d/rankona-autopull</p>
+<p>*/15 * * * * meridian cd /opt/rankona &amp;&amp; git pull --rebase origin main 2&gt;&amp;1 | logger -t rankona-autopull</p>
+<p>EOF</p>
+<p>```</p>
+<h4>11.3 — Deploy Script</h4>
+<p>Create `/opt/rankona/scripts/deploy.sh`:</p>
+<p>```bash</p>
+<p>#!/usr/bin/env bash</p>
+<p>set -euo pipefail</p>
+<p>NODE_TYPE=&quot;${1:?Usage: deploy.sh &lt;core|edge&gt;}&quot;</p>
+<p>cd /opt/rankona</p>
+<p>git pull --rebase origin main</p>
+<p>pip install -e &quot;.[all]&quot; --quiet</p>
+<p>systemctl daemon-reload</p>
+<p>case &quot;$NODE_TYPE&quot; in</p>
+<p>core)</p>
+<p>for d in forge atlas sensei; do</p>
+<p>systemctl restart rankona-daemon@$d</p>
+<p>sleep 2</p>
+<p>done</p>
+<p>;;</p>
+<p>edge)</p>
+<p>for d in watcher sandman delphi; do</p>
+<p>systemctl restart rankona-daemon@$d</p>
+<p>sleep 2</p>
+<p>done</p>
+<p>;;</p>
+<p>*)</p>
+<p>echo &quot;Unknown node type: $NODE_TYPE&quot; &gt;&amp;2</p>
+<p>exit 1</p>
+<p>;;</p>
+<p>esac</p>
+<p>echo &quot;Deploy ($NODE_TYPE) complete — $(git rev-parse --short HEAD)&quot;</p>
+<p>```</p>
+<h4>11.4 — Rollback</h4>
+<p>```bash</p>
+<h2>Rollback to previous commit</h2>
+<p>cd /opt/rankona</p>
+<p>git log --oneline -5  # find the good commit</p>
+<p>git checkout &lt;commit-sha&gt; -- .</p>
+<h2>Restart daemons on the affected node</h2>
+<p>systemctl restart &#x27;rankona-daemon@*&#x27;</p>
+<p>```</p>
+<h4>11.5 — Cross-Node Deploy</h4>
+<p>```bash</p>
+<p>#!/usr/bin/env bash</p>
+<h2>deploy-both.sh — deploy to core first, then edge</h2>
+<p>set -euo pipefail</p>
+<p>CORE_IP=&quot;&lt;rankona-core-tailscale-ip&gt;&quot;</p>
+<p>EDGE_IP=&quot;&lt;rankona-edge-tailscale-ip&gt;&quot;</p>
+<p>echo &quot;=== Deploying to core ($CORE_IP) ===&quot;</p>
+<p>ssh meridian@$CORE_IP &#x27;bash /opt/rankona/scripts/deploy.sh core&#x27;</p>
+<p>echo &quot;=== Deploying to edge ($EDGE_IP) ===&quot;</p>
+<p>ssh meridian@$EDGE_IP &#x27;bash /opt/rankona/scripts/deploy.sh edge&#x27;</p>
+<p>echo &quot;=== Both nodes deployed ===&quot;</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 12 — Prompt Enrichment &amp; Context</h3>
+<h4>12.1 — Daemon Context Files</h4>
+<p>Each daemon needs a `.md` context file defining identity, capabilities, boot protocol, and operating heuristics. These go in `/opt/rankona/config/daemon-contexts/`:</p>
+<p>| Daemon | Context File | Key Sections |</p>
+<p>|--------|-------------|-------------|</p>
+<p>| Forge | `forge.md` | Batch processing rules, ontology mapping patterns, attribute inference truth hierarchy, listing copy style guide, flat file generation |</p>
+<p>| Atlas | `atlas.md` | Intelligence synthesis, research subway routing, boardroom report cadence, cross-station analytics |</p>
+<p>| Sensei | `sensei.md` | Coherence gate, station quality metrics, session oversight, boot protocol |</p>
+<p>| Watcher | `watcher.md` | Compliance sentinel rules, TOS monitoring geography list, regulatory alert thresholds, health check intervals |</p>
+<p>| Sandman | `sandman.md` | Backup schedules, ops oversight, queue health, performance reporting |</p>
+<p>| Delphi | `delphi.md` | Telegram query routing, retrieval patterns, briefing assembly, client-facing response style |</p>
+<p>Each context file should include:</p>
+<p style='padding-left:1rem'>&bull; Identity and role description</p>
+<p style='padding-left:1rem'>&bull; Station responsibilities (which metro stations this daemon serves)</p>
+<p style='padding-left:1rem'>&bull; Boot protocol (session_register → mig_recall → session_inbox → declare ready)</p>
+<p style='padding-left:1rem'>&bull; Authority boundaries (what the daemon may/must not do)</p>
+<p style='padding-left:1rem'>&bull; MIG query patterns (what to search for, what categories to write)</p>
+<p style='padding-left:1rem'>&bull; Amazon-specific domain knowledge (marketplace IDs, TOS structure, API patterns)</p>
+<p style='padding-left:1rem'>&bull; Proactive work loop (task pickup → execution → completion → next task)</p>
+<p style='padding-left:1rem'>&bull; Calibration tags</p>
+<h4>12.2 — Amazon Domain Knowledge Seeding</h4>
+<p>Each daemon context should reference the knowledge seed corpus:</p>
+<p>| Corpus | Stations | Notes |</p>
+<p>|--------|----------|-------|</p>
+<p>| Amazon Advertising corpus (9 docs) | 7 (Advertising Architecture) | `docs/reference/amazon-advertising/` |</p>
+<p>| Appeal case templates (14 types) | Compliance Sentinel | `seed_knowledge.py` |</p>
+<p>| Amazon TOS (11 geographies) | Watcher, all stations | Manual ingestion at onboarding |</p>
+<p>| Category report format spec | 1A (Backend Attribute Engine) | Jennifer provides format |</p>
+<p>| Keyword research methodology | 1B (Listing Copy Engine), 3 (Market Intelligence) | Internal methodology docs |</p>
+<h4>12.3 — Prompt Enrichment</h4>
+<p>The brain/prompt_enricher.py module injects relevant memories into daemon prompts at task execution time.</p>
+<p>Configuration in `settings.yaml`:</p>
+<p>```yaml</p>
+<p>retrieval:</p>
+<p>reranking_enabled: true</p>
+<p>mmr_enabled: true</p>
+<p>mmr_lambda: 0.7</p>
+<p>```</p>
+<h4>12.4 — Plan Recitation</h4>
+<p>For long-running batch operations (ontology mapping across categories):</p>
+<p>```</p>
+<p>plan_recite(objectives=&quot;Map horse equipment category ontology — saddles sub-tree&quot;,</p>
+<p>current_step=&quot;Step 2: Extract attributes from category report&quot;)</p>
+<p>plan_clear()  # when done</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 13 — Verification Checklist</h3>
+<p>Run this complete verification after all phases are done. Check both nodes.</p>
+<h4>Infrastructure (Core)</h4>
+<p>```bash</p>
+<h2>Neo4j healthy</h2>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD &quot;RETURN 1;&quot;</p>
+<h2>Embedding service healthy</h2>
+<p>curl -s http://localhost:8081/health</p>
+<h2>All indexes online</h2>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD \</p>
+<p>&quot;SHOW INDEXES YIELD name, state WHERE state &lt;&gt; &#x27;ONLINE&#x27; RETURN name, state;&quot;</p>
+<h2>Expected: empty result (all online)</h2>
+<h2>Core daemons running</h2>
+<p>for d in forge atlas sensei; do</p>
+<p>systemctl is-active rankona-daemon@$d</p>
+<p>done</p>
+<p>```</p>
+<h4>Infrastructure (Edge)</h4>
+<p>```bash</p>
+<h2>NATS healthy</h2>
+<p>nats server ping</p>
+<h2>Tailscale link to core</h2>
+<p>ping -c 1 &lt;rankona-core-tailscale-ip&gt;</p>
+<h2>Neo4j reachable from edge</h2>
+<p>cypher-shell -a bolt+ssc://&lt;rankona-core-tailscale-ip&gt;:7687 -u neo4j -p $NEO4J_PASSWORD &quot;RETURN 1;&quot;</p>
+<h2>All streams exist</h2>
+<p>nats stream ls --json | jq &#x27;.[].config.name&#x27;</p>
+<h2>All KV buckets exist</h2>
+<p>nats kv ls</p>
+<h2>Edge daemons running</h2>
+<p>for d in watcher sandman delphi; do</p>
+<p>systemctl is-active rankona-daemon@$d</p>
+<p>done</p>
+<p>```</p>
+<h4>Daemons (Both Nodes)</h4>
+<p>```bash</p>
+<h2>All 6 daemons claiming identity</h2>
+<p>for d in forge atlas sensei watcher sandman delphi; do</p>
+<p>nats kv get DAEMON_CLAIMS $d 2&gt;/dev/null &amp;&amp; echo &quot;$d: claimed&quot; || echo &quot;$d: NO CLAIM&quot;</p>
+<p>done</p>
+<h2>Heartbeats flowing</h2>
+<p>nats sub &#x27;daemon.*.heartbeat&#x27; --timeout=90s</p>
+<h2>Expected: all 6 daemons appear within 90 seconds</h2>
+<p>```</p>
+<h4>MCP Tools</h4>
+<p>```bash</p>
+<h2>From a Claude Code session on either node:</h2>
+<p>mig_health()                              # Neo4j connected, node counts</p>
+<p>mig_search(&quot;amazon category&quot;)             # BM25 search returns results</p>
+<p>mig_recall(importance_min=7)              # High-importance memories</p>
+<p>mesh_status()                              # All 6 daemons online</p>
+<p>mig_tasks()                                # Task list (may be empty)</p>
+<p>session_register()                         # Session joins mesh</p>
+<p>session_inbox()                            # No errors</p>
+<p>mig_convergence()                          # Q1 — convergence query works</p>
+<p>mig_knowledge_fitness(&quot;amazon_seller&quot;)     # Q6+ — fitness report</p>
+<p>```</p>
+<h4>End-to-End</h4>
+<p>```bash</p>
+<h2>Write a memory</h2>
+<p>mig_remember(&quot;Rankona terminal plumbing verification complete&quot;, category=&quot;observation&quot;, importance=5)</p>
+<h2>Search for it</h2>
+<p>mig_search(&quot;plumbing verification&quot;)</p>
+<h2>Expected: returns the memory just written</h2>
+<h2>Create and complete a task</h2>
+<p>mig_task_create(title=&quot;Verify terminal plumbing&quot;, daemon=&quot;forge&quot;, priority=&quot;low&quot;)</p>
+<p>mig_tasks()</p>
+<p>mig_task_complete(task_id=&quot;&lt;from above&gt;&quot;, notes=&quot;All 13 phases verified&quot;)</p>
+<p>```</p>
+<h4>Amazon-Specific Verification</h4>
+<p>```bash</p>
+<h2>Verify Amazon JetStream streams</h2>
+<p>for s in ATTRIBUTE_PIPELINE LISTING_OPS COMPLIANCE COMPETITOR_INTEL INGESTION; do</p>
+<p>nats stream info $s --json | jq &#x27;{name: .config.name, messages: .state.messages}&#x27;</p>
+<p>done</p>
+<h2>Verify Amazon indexes exist</h2>
+<p>cypher-shell -u neo4j -p $NEO4J_PASSWORD \</p>
+<p>&quot;SHOW INDEXES YIELD name WHERE name STARTS WITH &#x27;product_&#x27; OR name STARTS WITH &#x27;category_&#x27; OR name STARTS WITH &#x27;attribute_&#x27; OR name STARTS WITH &#x27;keyword_&#x27; RETURN name ORDER BY name;&quot;</p>
+<h2>Verify compliance sentinel is running</h2>
+<p>systemctl is-active rankona-daemon@watcher</p>
+<p>nats sub &#x27;compliance.signal.*&#x27; --timeout=120s</p>
+<p>```</p>
+<p>---</p>
+<h3>Quick Reference — What Each Phase Enables</h3>
+<p>| Phase | What It Enables | Without It |</p>
+<p>|-------|----------------|------------|</p>
+<p>| 1. Environment &amp; Config | Daemons on both nodes can connect to services | Nothing starts |</p>
+<p>| 2. Neo4j Indexes | mig_search, mig_recall, write validation, Amazon domain queries | Search returns nothing, writes bypass validation |</p>
+<p>| 3. JetStream Streams | Task dispatch, messaging, DLQ, pulse, Amazon pipelines | No inter-daemon communication, no batch processing |</p>
+<p>| 4. MCP Server | All 48 MCP tools on both nodes | Operator has no graph access |</p>
+<p>| 5. Daemon Infrastructure | Systemd units, allowlist per node, memory limits | Daemons crash-loop or start on wrong node |</p>
+<p>| 6. Session Coordination | Cross-node session visibility, handoff, gates | 6 daemons on 2 nodes blind to each other |</p>
+<p>| 7. Task Management | Work queue, CAS locking, station buildout tracking | Manual task assignment, double-claiming |</p>
+<p>| 8. Graph Analytics | Q1-Q7 intelligence queries for Amazon domain | Graph is storage, not intelligence |</p>
+<p>| 9. Monitoring | Self-healing, compliance sentinel, 11-geography TOS monitoring | Silent failures, missed TOS changes |</p>
+<p>| 10. Gardener | Memory decay, orphan cleanup, dedup | Graph grows unbounded, stale Amazon data dominates |</p>
+<p>| 11. Operational Tooling | Backup (core→edge→offsite), deploy both nodes, rollback | Manual ops, no safety net, data loss risk |</p>
+<p>| 12. Prompt Enrichment | Context-aware daemon responses, Amazon domain knowledge | Daemons cold-start every task |</p>
+<p>| 13. Verification | Confidence everything works across both nodes | Hope-based engineering |</p>
+<p>---</p>
+<h3>Appendix A — Scaling Triggers</h3>
+<p>Per `hardware-sizing-75k-skus.md`, monitor these thresholds:</p>
+<p>| Trigger | Current | Action |</p>
+<p>|---------|---------|--------|</p>
+<p>| Neo4j pagecache hit rate &lt; 95% | Monitor via `db.pagecache.hit_ratio` | Increase pagecache allocation |</p>
+<p>| Node count &gt; 20M | Pilot → mid transition | Migrate core to Hetzner AX52 (64GB) |</p>
+<p>| KeywordRankSnapshot &gt; 50M nodes | Target scale reached | Enable cold-tier archiving or split graph |</p>
+<p>| Daily writes &gt; 2M | 3+ marketplaces active | Add second forge-worker |</p>
+<p>| Watcher TOS checks &gt; 100/hr | All 11 geographies active | Split watcher into health + compliance daemons |</p>
+<p>| Embedding latency &gt; 500ms p99 | Graph growth outpacing model | Evaluate GPU-accelerated embedding |</p>
+<h3>Appendix B — 2-Node Failure Modes</h3>
+<p>| Scenario | Impact | Recovery |</p>
+<p>|----------|--------|----------|</p>
+<p>| Core down (power at Bitler) | Heavy ops unavailable, edge keeps running, Telegram responds &quot;engine offline&quot; | Restore power, Tailscale auto-reconnects, NATS drains queued events |</p>
+<p>| Edge down (VPS outage) | Public access lost, core keeps running locally, compliance sentinel offline | Restore VPS (~15 min), zero data loss |</p>
+<p>| Tailscale down between nodes | Edge serves static content, core operates locally | Tailscale auto-heals (minutes), manual fallback: direct IP if needed |</p>
+<p>| Both down | Full outage | Offsite restore, 2-4 hours depending on backup size |</p>
+<h3>Appendix C — Evelyn Integration (Phase 2)</h3>
+<p>Per `amazon-terminal-blueprint.md`, Evelyn Strathmore client support integration is planned for Phase 2:</p>
+<p style='padding-left:1rem'>&bull; Evelyn runs on MERIDIAN mesh (e3b5f73), NOT on Rankona nodes</p>
+<p style='padding-left:1rem'>&bull; Telegram commands: `/support`, `/urgent`, `/status`, `/tickets`</p>
+<p style='padding-left:1rem'>&bull; SLA: urgent = 1hr response, standard = 24hr</p>
+<p style='padding-left:1rem'>&bull; Requires: migration 080 (`Ticket` schema) on Rankona Neo4j</p>
+<p style='padding-left:1rem'>&bull; Carl&#x27;s team gets ticket tracking without Rankona-side daemon overhead</p>
+<p>This is a cross-mesh bridge — Evelyn on MERIDIAN receives support requests and creates tickets in Rankona&#x27;s Neo4j via Tailscale. Data isolation maintained: Evelyn sees only ticket metadata, not the full Rankona graph.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-04-29 01:51</div>
+</body></html>
