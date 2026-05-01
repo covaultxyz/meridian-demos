@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>07 Kaas Api — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>07 Kaas Api</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-05-01</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Runbook for deploying Lex Terminal KaaS FastAPI service behind a Cloudflare Tunnel with zero open ports, serving at lex.speedoftrust.ai.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Use Cloudflare Tunnel for zero open ports architecture</li><li>Deploy placeholder health endpoint in Phase 2.3 before full Phase 4 API is ready</li><li>KaaS API authentication via X-Lex-API-Key header managed by Sterling</li><li>Service runs on localhost:8443 internally, proxied through tunnel</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Phase 0-3 must be complete before Phase 4 work begins</li><li>Phase 4 Tier 1 API endpoints deployment dependent on gateway/caselaw_api.py being built</li><li>Sterling owns API key management for KaaS customers</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>This runbook is Phase 6 of master checklist but KaaS FastAPI itself is Phase 4 work per terminal blueprint</li><li>Deployment is multi-phased with health check placeholder as initial validation before full API implementation</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Operator&#x27;, &#x27;what&#x27;: &#x27;Install cloudflared, authenticate via browser OAuth, and create tunnel named lex-kaas&#x27;}</li><li>{&#x27;who&#x27;: &#x27;DevOps/Operator&#x27;, &#x27;what&#x27;: &#x27;Configure Cloudflare tunnel routing and systemd service units for FastAPI&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Developer&#x27;, &#x27;what&#x27;: &#x27;Build full gateway/caselaw_api.py with Tier 1 endpoints (search, case retrieval, citations, judge profiles, jurisdictions)&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Operator&#x27;, &#x27;what&#x27;: &#x27;Verify health endpoints work internally at localhost:8443 and externally at lex.speedoftrust.ai&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Lex Terminal — KaaS API &amp; Cloudflare Tunnel Runbook</h2>
+<p>**External URL**: `lex.speedoftrust.ai` (or TBD subdomain)</p>
+<p>**Internal service**: FastAPI at `localhost:8443` on big-white</p>
+<p>**Access model**: Zero open ports — Cloudflare Tunnel only</p>
+<p>This runbook covers Phase 6 of the master checklist. The KaaS FastAPI is Phase 4 work per</p>
+<p>the terminal blueprint — Tier 1 API endpoints. Phase 0-3 must be complete first.</p>
+<p>---</p>
+<h3>Phase 1 — Cloudflare Tunnel Setup</h3>
+<h4>1.1 Install cloudflared</h4>
+<p>```bash</p>
+<p>wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb</p>
+<p>dpkg -i cloudflared-linux-amd64.deb</p>
+<p>cloudflared --version</p>
+<p>```</p>
+<h4>1.2 Authenticate (operator must complete this in a browser session)</h4>
+<p>```bash</p>
+<h2>This opens a browser link. Operator must complete OAuth in browser.</h2>
+<p>cloudflared tunnel login</p>
+<h2>Creates /root/.cloudflared/cert.pem on success</h2>
+<p>```</p>
+<h4>1.3 Create tunnel</h4>
+<p>```bash</p>
+<p>cloudflared tunnel create lex-kaas</p>
+<h2>Records the tunnel UUID — note it for step 1.4</h2>
+<h2>Route DNS to tunnel</h2>
+<p>cloudflared tunnel route dns lex-kaas lex.speedoftrust.ai</p>
+<p>```</p>
+<h4>1.4 Configure tunnel</h4>
+<p>```bash</p>
+<p>mkdir -p /etc/cloudflared</p>
+<p>cat &gt; /etc/cloudflared/config.yml &lt;&lt; EOF</p>
+<p>tunnel: &lt;tunnel-uuid-from-step-1.3&gt;</p>
+<p>credentials-file: /root/.cloudflared/&lt;tunnel-uuid&gt;.json</p>
+<p>ingress:</p>
+<p style='padding-left:1rem'>&bull; hostname: lex.speedoftrust.ai</p>
+<p>service: http://localhost:8443</p>
+<p style='padding-left:1rem'>&bull; service: http_status:404</p>
+<p>EOF</p>
+<p>```</p>
+<h4>1.5 Install as system service</h4>
+<p>```bash</p>
+<p>cloudflared service install</p>
+<p>systemctl enable cloudflared</p>
+<p>systemctl start cloudflared</p>
+<p>systemctl status cloudflared</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 2 — KaaS FastAPI Service</h3>
+<h4>2.1 Health endpoint placeholder (deploy now, full API is Phase 4 work)</h4>
+<p>The KaaS FastAPI lives at `gateway/caselaw_api.py` (GH#2613). For initial deploy,</p>
+<p>a health endpoint is sufficient to validate the tunnel.</p>
+<p>```bash</p>
+<h2>Check if the API exists</h2>
+<p>ls /opt/meridian/current/gateway/caselaw_api.py</p>
+<h2>If exists → configure systemd unit (Phase 2.2)</h2>
+<h2>If not → deploy placeholder (Phase 2.3)</h2>
+<p>```</p>
+<h4>2.2 Systemd unit for the API service</h4>
+<p>```bash</p>
+<p>cat &gt; /etc/systemd/system/lex-kaas-api.service &lt;&lt; &#x27;EOF&#x27;</p>
+<p>[Unit]</p>
+<p>Description=Lex KaaS FastAPI</p>
+<p>After=network.target neo4j.service</p>
+<p>Wants=neo4j.service</p>
+<p>[Service]</p>
+<p>Type=simple</p>
+<p>EnvironmentFile=/etc/lex/env</p>
+<p>WorkingDirectory=/opt/meridian/current</p>
+<p>ExecStart=/opt/lex/.venv/bin/uvicorn gateway.caselaw_api:app --host 127.0.0.1 --port 8443</p>
+<p>Restart=on-failure</p>
+<p>RestartSec=10</p>
+<p>User=meridian</p>
+<p>StandardOutput=journal</p>
+<p>StandardError=journal</p>
+<p>SyslogIdentifier=lex-kaas-api</p>
+<p>[Install]</p>
+<p>WantedBy=multi-user.target</p>
+<p>EOF</p>
+<p>systemctl daemon-reload</p>
+<p>systemctl enable lex-kaas-api</p>
+<p>systemctl start lex-kaas-api</p>
+<p>```</p>
+<h4>2.3 Placeholder if caselaw_api.py not yet built</h4>
+<p>```bash</p>
+<p>cat &gt; /opt/lex/placeholder_api.py &lt;&lt; &#x27;EOF&#x27;</p>
+<p>from fastapi import FastAPI</p>
+<p>import os</p>
+<p>app = FastAPI(title=&quot;Lex KaaS API&quot;, version=&quot;0.1.0&quot;)</p>
+<p>@app.get(&quot;/health&quot;)</p>
+<p>async def health():</p>
+<p>return {</p>
+<p>&quot;status&quot;: &quot;ok&quot;,</p>
+<p>&quot;terminal&quot;: &quot;lex&quot;,</p>
+<p>&quot;workspace_id&quot;: os.environ.get(&quot;WORKSPACE_ID&quot;, &quot;lex&quot;),</p>
+<p>&quot;api_version&quot;: &quot;0.1.0-placeholder&quot;</p>
+<p>}</p>
+<p>@app.get(&quot;/&quot;)</p>
+<p>async def root():</p>
+<p>return {&quot;message&quot;: &quot;Lex Legal Intelligence API — Phase 4 endpoints coming&quot;}</p>
+<p>EOF</p>
+<p>```</p>
+<p>Update systemd unit to use placeholder:</p>
+<p>```bash</p>
+<p>sed -i &#x27;s|gateway.caselaw_api:app|lex.placeholder_api:app|&#x27; \</p>
+<p>/etc/systemd/system/lex-kaas-api.service</p>
+<p>systemctl daemon-reload</p>
+<p>systemctl restart lex-kaas-api</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 3 — Verification</h3>
+<p>```bash</p>
+<h2>Internal check (from big-white)</h2>
+<p>curl http://localhost:8443/health</p>
+<h2>Expected: {&quot;status&quot;: &quot;ok&quot;, &quot;terminal&quot;: &quot;lex&quot;, ...}</h2>
+<h2>External check (from anywhere after CF Tunnel confirms)</h2>
+<p>curl https://lex.speedoftrust.ai/health</p>
+<h2>Expected: same JSON</h2>
+<h2>Tunnel status</h2>
+<p>cloudflared tunnel info lex-kaas</p>
+<p>systemctl status cloudflared</p>
+<p>```</p>
+<p>---</p>
+<h3>Phase 4 — Tier 1 API Endpoints (Phase 4 work from blueprint)</h3>
+<p>Once `gateway/caselaw_api.py` is built, these endpoints should be live:</p>
+<p>| Method | Path | Description |</p>
+<p>|--------|------|-------------|</p>
+<p>| GET | `/health` | Service health |</p>
+<p>| POST | `/search` | BM25 case search with jurisdiction filter |</p>
+<p>| GET | `/case/{case_id}` | Full case record by ID |</p>
+<p>| GET | `/citations/{case_id}` | Forward/backward citation graph |</p>
+<p>| GET | `/judge/{name}` | Judge ruling profile |</p>
+<p>| GET | `/jurisdictions` | Available court list |</p>
+<p>Authentication for KaaS customers: API key header (`X-Lex-API-Key`) — managed by Sterling.</p>
+<p>---</p>
+<h3>Common Failures</h3>
+<h4>Tunnel auth expired</h4>
+<p>```bash</p>
+<h2>Check tunnel status</h2>
+<p>cloudflared tunnel info lex-kaas</p>
+<h2>If &quot;not found&quot; or &quot;error&quot;: re-authenticate</h2>
+<p>cloudflared tunnel login  # browser auth required</p>
+<p>systemctl restart cloudflared</p>
+<p>```</p>
+<h4>Port 8443 not listening</h4>
+<p>```bash</p>
+<p>ss -tlnp | grep 8443</p>
+<h2>If empty: the API service isn&#x27;t running</h2>
+<p>systemctl status lex-kaas-api</p>
+<p>journalctl -u lex-kaas-api -n 50</p>
+<p>```</p>
+<h4>DNS not routing to tunnel</h4>
+<p>```bash</p>
+<h2>Check CF Tunnel DNS route</h2>
+<p>cloudflared tunnel route list lex-kaas</p>
+<h2>Should show lex.speedoftrust.ai → lex-kaas</h2>
+<h2>If missing, re-add:</h2>
+<p>cloudflared tunnel route dns lex-kaas lex.speedoftrust.ai</p>
+<p>```</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-05-01 11:51</div>
+</body></html>
