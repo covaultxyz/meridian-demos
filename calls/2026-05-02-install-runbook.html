@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install Runbook — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Install Runbook</h1>
+<div class="meta">
+<span class="badge" style="background:#22c55e20;color:#22c55e;border:1px solid #22c55e50">CLIENT</span>
+<span>2026-05-02</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>No conversation transcript was provided; the input is a technical installation runbook for the RPM Capital Ghost Terminal system.</p></div>
+
+
+
+
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>RPM Capital Ghost Terminal — Installation and Operations Runbook</h2>
+<p><strong>Single-file canonical reference. Last updated: 2026-04-30. Replaces runbooks 01–08.</strong></p>
+<p>This document is a linear installation guide. Execute top-to-bottom. Each Part ends with a</p>
+<p>verification checkpoint — do not advance past a checkpoint until all items pass.</p>
+<p><strong>Companion references (not superseded):</strong></p>
+<p style='padding-left:1rem'>&bull; `terminal-blueprint.md` — architectural overview</p>
+<p style='padding-left:1rem'>&bull; `07-latticefire-application.md` — Latticefire design depth and phase specs</p>
+<p>---</p>
+<h3>Table of Contents</h3>
+<p style='padding-left:1rem'>&bull; [Part 0 — Pre-flight](#part-0--pre-flight)</p>
+<p style='padding-left:1rem'>&bull; [Part 1 — VPS Provisioning](#part-1--vps-provisioning)</p>
+<p style='padding-left:1rem'>&bull; [Part 2 — Infrastructure Layer](#part-2--infrastructure-layer)</p>
+<p style='padding-left:1rem'>&bull; [Part 3 — Claude CLI](#part-3--claude-cli)</p>
+<p style='padding-left:1rem'>&bull; [Part 4 — Repo Deployment and Python Environment](#part-4--repo-deployment-and-python-environment)</p>
+<p style='padding-left:1rem'>&bull; [Part 5 — Environment Configuration](#part-5--environment-configuration)</p>
+<p style='padding-left:1rem'>&bull; [Part 6 — Systemd Unit Installation](#part-6--systemd-unit-installation)</p>
+<p style='padding-left:1rem'>&bull; [Part 7 — Neo4j Indexes and JetStream Streams](#part-7--neo4j-indexes-and-jetstream-streams)</p>
+<p style='padding-left:1rem'>&bull; [Part 8 — MIG Seed Import](#part-8--mig-seed-import)</p>
+<p style='padding-left:1rem'>&bull; [Part 9 — Daemon Startup](#part-9--daemon-startup)</p>
+<p style='padding-left:1rem'>&bull; [Part 10 — Telegram Bot Wiring](#part-10--telegram-bot-wiring)</p>
+<p style='padding-left:1rem'>&bull; [Part 11 — MCP Server and Claude Code Configuration](#part-11--mcp-server-and-claude-code-configuration)</p>
+<p style='padding-left:1rem'>&bull; [Part 12 — Backup Setup](#part-12--backup-setup)</p>
+<p style='padding-left:1rem'>&bull; [Part 13 — Documentation Cortex Seeding](#part-13--documentation-cortex-seeding)</p>
+<p style='padding-left:1rem'>&bull; [Part 14 — Autopull and Deployment Automation](#part-14--autopull-and-deployment-automation)</p>
+<p style='padding-left:1rem'>&bull; [Part 15 — Latticefire Timers](#part-15--latticefire-timers)</p>
+<p style='padding-left:1rem'>&bull; [Part 16 — Final System Verification](#part-16--final-system-verification)</p>
+<p style='padding-left:1rem'>&bull; [Part 17 — Operational Procedures](#part-17--operational-procedures)</p>
+<p style='padding-left:1rem'>&bull; [Part 18 — Quick Reference Tables](#part-18--quick-reference-tables)</p>
+<p>---</p>
+<h3>Part 0 — Pre-flight</h3>
+<p>**Before you touch the VPS.** The original install lost hours to mid-install blocking: waiting</p>
+<p>for a Telegram token, discovering a deploy key was never added to GitHub, needing an interactive</p>
+<p>OAuth session that couldn&#x27;t run in a script. Gather everything in this section before issuing</p>
+<p>your first SSH command.</p>
+<h4>0.1 Credentials Checklist</h4>
+<p>Have each of these available or confirmed before starting:</p>
+<p style='padding-left:1rem'>&bull; [ ] VPS root SSH access confirmed (password or SSH key — you will change this)</p>
+<p style='padding-left:1rem'>&bull; [ ] GitHub account with admin access to `covaultxyz/rpm-capital` (private repo)</p>
+<p style='padding-left:1rem'>&bull; [ ] Telegram account — you will DM @BotFather to create the bot</p>
+<p style='padding-left:1rem'>&bull; [ ] Claude.ai account capable of OAuth (for `claude auth login` — interactive, browser required)</p>
+<p style='padding-left:1rem'>&bull; [ ] Tailscale account with access to the rpm-capital tailnet (separate from any MERIDIAN tailnet)</p>
+<h4>0.2 Generate Secrets Before Starting</h4>
+<p>Generate these now and store them in a local password manager. You will paste them into</p>
+<p>`/etc/rpm-capital/env` in Part 5.</p>
+<p>```bash</p>
+<h2>NATS auth token</h2>
+<p>openssl rand -hex 32   # → NATS_AUTH_TOKEN</p>
+<h2>Neo4j password</h2>
+<p>openssl rand -hex 16   # → NEO4J_PASSWORD</p>
+<h2>Backup encryption password</h2>
+<p>openssl rand -hex 24   # → RESTIC_PASSWORD</p>
+<p>```</p>
+<h4>0.3 Generate the GitHub Deploy Key</h4>
+<p>&gt; **WARNING (Gotcha #10):** The deploy key MUST be added to the GitHub repo before Part 4&#x27;s</p>
+<p>&gt; `git clone` step. You cannot do this mid-install without a separate machine. Do it now while</p>
+<p>&gt; you have your local terminal and browser open.</p>
+<p>```bash</p>
+<h2>On your LOCAL machine (not the VPS):</h2>
+<p>ssh-keygen -t ed25519 -C &quot;rpm-capital-deploy&quot; -f ~/.ssh/rpm_capital_deploy -N &quot;&quot;</p>
+<p>cat ~/.ssh/rpm_capital_deploy.pub   # copy this output</p>
+<p>```</p>
+<p>1. Open `https://github.com/covaultxyz/rpm-capital` → Settings → Deploy keys → Add deploy key</p>
+<p>2. Title: `rpm-capital-master`</p>
+<p>3. Key: paste the `rpm_capital_deploy.pub` content</p>
+<p>4. Allow write access: NO (read-only is correct)</p>
+<p>5. Click &quot;Add key&quot;</p>
+<p>You will transfer the private key (`~/.ssh/rpm_capital_deploy`) to the VPS in Part 4.</p>
+<h4>0.4 Record the VPS IP</h4>
+<p>Note the RackNerd public IP and the Tailscale IP (you&#x27;ll get the latter after Part 1).</p>
+<p>The Tailscale IP becomes the primary access method after SSH is locked to the Tailscale interface.</p>
+<h4>Checkpoint 0</h4>
+<p>```</p>
+<p>[ ] GitHub deploy key added to covaultxyz/rpm-capital (read-only)</p>
+<p>[ ] NATS_AUTH_TOKEN generated and stored</p>
+<p>[ ] NEO4J_PASSWORD generated and stored</p>
+<p>[ ] RESTIC_PASSWORD generated and stored</p>
+<p>[ ] Claude.ai account available for OAuth login</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 1 — VPS Provisioning</h3>
+<p>Starting from a fresh Ubuntu 22.04 VPS. Sources: 01-vps-provisioning.md Phases 0–2.</p>
+<h4>1.1 Initial OS Setup</h4>
+<p>```bash</p>
+<h2>Set hostname</h2>
+<p>hostnamectl set-hostname rpm-capital-master</p>
+<p>echo &quot;127.0.0.1 rpm-capital-master&quot; &gt;&gt; /etc/hosts</p>
+<h2>System update</h2>
+<p>apt update &amp;&amp; apt upgrade -y</p>
+<h2>Required packages</h2>
+<p>apt install -y curl wget git vim htop iotop lsof net-tools ufw \</p>
+<p>build-essential python3-dev python3-venv \</p>
+<p>restic unzip jq ca-certificates gnupg</p>
+<h2>Default firewall posture</h2>
+<p>ufw default deny incoming</p>
+<p>ufw default allow outgoing</p>
+<p>ufw allow ssh   # temporary — will restrict to Tailscale in 1.3</p>
+<p>ufw enable</p>
+<p>```</p>
+<h4>1.2 Tailscale — Join the rpm-capital Tailnet</h4>
+<p>&gt; **WARNING:** This is the rpm-capital tailnet, NOT any MERIDIAN or covault tailnet. Using the</p>
+<p>&gt; wrong tailnet will block Tailscale-restricted SSH access once you close the public SSH port.</p>
+<p>```bash</p>
+<p>curl -fsSL https://tailscale.com/install.sh | sh</p>
+<p>tailscale up --advertise-tags=tag:rpm-capital</p>
+<h2>Complete the OAuth flow in your browser</h2>
+<p>tailscale ip -4   # record this IP — this becomes your primary access address</p>
+<p>```</p>
+<h4>1.3 SSH Hardening</h4>
+<p>After confirming Tailscale is active and you can reach the node via its Tailscale IP:</p>
+<p>```bash</p>
+<h2>Lock SSH to Tailscale interface only</h2>
+<p>ufw delete allow ssh</p>
+<p>ufw allow in on tailscale0 to any port 22</p>
+<p>ufw reload</p>
+<h2>Add operator SSH public key</h2>
+<p>mkdir -p /root/.ssh</p>
+<p>echo &quot;&lt;your-operator-public-key&gt;&quot; &gt;&gt; /root/.ssh/authorized_keys</p>
+<p>chmod 600 /root/.ssh/authorized_keys</p>
+<p>```</p>
+<p>**Test from a second terminal** via the Tailscale IP before closing your original session.</p>
+<h4>1.4 Storage Layout</h4>
+<p>&gt; **WARNING (Gotcha #18):** `/mnt/archive` MUST be mounted before daemons start. The watcher</p>
+<p>&gt; daemon has this path hardcoded in its disk check cycle. If `/mnt/archive` does not exist or</p>
+<p>&gt; is unmounted, watcher will crash on its first disk-check run.</p>
+<p>```bash</p>
+<h2>Identify disks</h2>
+<p>lsblk</p>
+<h2>If a secondary disk is present (e.g. /dev/sdb):</h2>
+<p>mkfs.ext4 /dev/sdb</p>
+<p>mkdir -p /mnt/archive</p>
+<p>echo &quot;/dev/sdb /mnt/archive ext4 defaults 0 2&quot; &gt;&gt; /etc/fstab</p>
+<p>mount /mnt/archive</p>
+<h2>Create required directories</h2>
+<p>mkdir -p /opt/rpm-capital</p>
+<p>mkdir -p /data/rpm-capital</p>
+<p>mkdir -p /etc/rpm-capital</p>
+<p>mkdir -p /mnt/archive/backups</p>
+<p>mkdir -p /mnt/archive/dumps</p>
+<p>mkdir -p /mnt/archive/logs</p>
+<p>mkdir -p /var/log/rpm-capital</p>
+<h2>Permissions</h2>
+<p>chmod 750 /etc/rpm-capital</p>
+<p>```</p>
+<p>If no secondary disk: create `/mnt/archive` as a directory on the primary disk:</p>
+<p>```bash</p>
+<p>mkdir -p /mnt/archive/{backups,dumps,logs}</p>
+<p>```</p>
+<h4>1.5 Docker Installation</h4>
+<p>```bash</p>
+<p>curl -fsSL https://get.docker.com | sh</p>
+<p>systemctl enable docker</p>
+<p>systemctl start docker</p>
+<p>```</p>
+<h4>Checkpoint 1</h4>
+<p>```</p>
+<p>[ ] tailscale status  → shows rpm-capital-master node online</p>
+<p>[ ] ssh root@&lt;tailscale-ip&gt;  → works from second terminal (test before closing original)</p>
+<p>[ ] df -h | grep archive  → /mnt/archive mounted</p>
+<p>[ ] docker info  → succeeds without error</p>
+<p>[ ] ufw status  → port 22 only on tailscale0 interface</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 2 — Infrastructure Layer</h3>
+<p>NATS, Neo4j, and Ollama. Every daemon depends on all three. Do not start any daemon until</p>
+<p>all three are healthy and verified.</p>
+<h4>2.1 NATS Server</h4>
+<p>&gt; **WARNING (Gotcha #11):** The `NATS_URL` for all daemons on this machine must be</p>
+<p>&gt; `nats://localhost:4222`, NOT the Tailscale IP or `127.0.0.1`. Using the Tailscale IP causes</p>
+<p>&gt; intermittent connection failures when the network interface is slow to initialize at boot.</p>
+<p>```bash</p>
+<h2>Download latest NATS server binary</h2>
+<p>NATS_VERSION=$(curl -s https://api.github.com/repos/nats-io/nats-server/releases/latest | jq -r &#x27;.tag_name&#x27;)</p>
+<p>wget &quot;https://github.com/nats-io/nats-server/releases/download/${NATS_VERSION}/nats-server-${NATS_VERSION}-linux-amd64.zip&quot;</p>
+<p>unzip &quot;nats-server-${NATS_VERSION}-linux-amd64.zip&quot;</p>
+<p>mv nats-server /usr/local/bin/nats-server</p>
+<p>chmod +x /usr/local/bin/nats-server</p>
+<h2>Create config — substitute NATS_AUTH_TOKEN from your pre-flight secrets</h2>
+<p>mkdir -p /etc/nats</p>
+<p>cat &gt; /etc/nats/nats.conf &lt;&lt; &#x27;EOF&#x27;</p>
+<p>port: 4222</p>
+<p>jetstream {</p>
+<p>store_dir: /data/nats</p>
+<p>max_memory_store: 2G</p>
+<p>max_file_store: 10G</p>
+<p>}</p>
+<p>authorization {</p>
+<p>token: &quot;REPLACE_WITH_NATS_AUTH_TOKEN&quot;</p>
+<p>}</p>
+<p>EOF</p>
+<p>chmod 600 /etc/nats/nats.conf</p>
+<p>mkdir -p /data/nats</p>
+<h2>systemd unit</h2>
+<p>cat &gt; /etc/systemd/system/nats-server.service &lt;&lt; &#x27;EOF&#x27;</p>
+<p>[Unit]</p>
+<p>Description=NATS Server</p>
+<p>After=network.target</p>
+<p>[Service]</p>
+<p>Type=simple</p>
+<p>ExecStart=/usr/local/bin/nats-server -c /etc/nats/nats.conf</p>
+<p>Restart=on-failure</p>
+<p>RestartSec=5</p>
+<p>[Install]</p>
+<p>WantedBy=multi-user.target</p>
+<p>EOF</p>
+<p>systemctl daemon-reload</p>
+<p>systemctl enable nats-server</p>
+<p>systemctl start nats-server</p>
+<p>```</p>
+<p>Install the NATS CLI for verification:</p>
+<p>```bash</p>
+<p>NATS_CLI_VERSION=$(curl -s https://api.github.com/repos/nats-io/natscli/releases/latest | jq -r &#x27;.tag_name&#x27;)</p>
+<p>wget &quot;https://github.com/nats-io/natscli/releases/download/${NATS_CLI_VERSION}/nats-${NATS_CLI_VERSION}-linux-amd64.zip&quot;</p>
+<p>unzip &quot;nats-${NATS_CLI_VERSION}-linux-amd64.zip&quot; -d nats-cli-tmp</p>
+<p>mv nats-cli-tmp/nats /usr/local/bin/nats</p>
+<p>chmod +x /usr/local/bin/nats</p>
+<p>```</p>
+<h4>2.2 Neo4j</h4>
+<p>&gt; **WARNING (Gotcha #17):** Neo4j ships with default credentials `neo4j/neo4j`. On first start</p>
+<p>&gt; it will prompt for a new password interactively. Set it with `neo4j-admin` BEFORE starting</p>
+<p>&gt; the service — failing to do so causes first-time `cypher-shell` connections to prompt</p>
+<p>&gt; unexpectedly and confuse automation.</p>
+<p>&gt; **WARNING (Gotcha #8):** Documents in this runbook set reference both port 7687 and port</p>
+<p>&gt; 7750. The authoritative port is **7687** (native Neo4j bolt). Port 7750 appeared in</p>
+<p>&gt; Docker-based deployment notes that do NOT apply here. The env var must be</p>
+<p>&gt; `NEO4J_URI=bolt://localhost:7687`. The number 7750 should not appear in your configuration.</p>
+<p>&gt; **WARNING (Gotcha #7):** APOC and GDS plugin JARs MUST be installed before Neo4j starts for</p>
+<p>&gt; the first time. If the JARs are absent, Neo4j starts normally but `mig_pagerank()`,</p>
+<p>&gt; `mig_communities()`, and graph analytics tools silently fail or error.</p>
+<p>```bash</p>
+<h2>Add Neo4j APT repository</h2>
+<p>wget -O - https://debian.neo4j.com/neotechnology.gpg.key | gpg --dearmor -o /usr/share/keyrings/neo4j.gpg</p>
+<p>echo &quot;deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable 5&quot; &gt; /etc/apt/sources.list.d/neo4j.list</p>
+<p>apt update</p>
+<p>apt install -y neo4j</p>
+<h2>Install APOC plugin</h2>
+<p>NEO4J_VERSION=$(neo4j --version | grep -oP &#x27;\d+\.\d+\.\d+&#x27;)</p>
+<p>APOC_VERSION=&quot;5.15.0&quot;  # verify at https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases</p>
+<p>wget -P /var/lib/neo4j/plugins/ \</p>
+<p>&quot;https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${APOC_VERSION}/apoc-${APOC_VERSION}-all.jar&quot;</p>
+<h2>Install GDS plugin</h2>
+<p>GDS_VERSION=&quot;2.6.9&quot;  # verify at https://github.com/neo4j/graph-data-science/releases</p>
+<p>wget -P /var/lib/neo4j/plugins/ \</p>
+<p>&quot;https://github.com/neo4j/graph-data-science/releases/download/${GDS_VERSION}/neo4j-graph-data-science-${GDS_VERSION}.jar&quot;</p>
+<p>chown -R neo4j:neo4j /var/lib/neo4j/plugins/</p>
+<h2>Configure Neo4j</h2>
+<p>cat &gt;&gt; /etc/neo4j/neo4j.conf &lt;&lt; &#x27;EOF&#x27;</p>
+<h2>Memory</h2>
+<p>server.memory.heap.initial_size=2g</p>
+<p>server.memory.heap.max_size=4g</p>
+<p>server.memory.pagecache.size=2g</p>
+<h2>APOC + GDS</h2>
+<p>dbms.security.procedures.unrestricted=gds.*,apoc.*</p>
+<p>dbms.security.procedures.allowlist=gds.*,apoc.*</p>
+<p>server.config.strict_validation.enabled=false</p>
+<p>EOF</p>
+<h2>Set initial password BEFORE first start</h2>
+<p>neo4j-admin dbms set-initial-password &quot;REPLACE_WITH_NEO4J_PASSWORD&quot;</p>
+<p>systemctl enable neo4j</p>
+<p>systemctl start neo4j</p>
+<p>echo &quot;Waiting 30s for Neo4j to initialize...&quot;</p>
+<p>sleep 30</p>
+<p>```</p>
+<h4>2.3 Ollama</h4>
+<p>```bash</p>
+<p>curl -fsSL https://ollama.ai/install.sh | sh</p>
+<p>systemctl enable ollama</p>
+<p>systemctl start ollama</p>
+<p>sleep 10</p>
+<h2>Pull the embedding model</h2>
+<p>ollama pull nomic-embed-text</p>
+<p>```</p>
+<h4>Checkpoint 2</h4>
+<p>```bash</p>
+<h2>NATS — set NATS_AUTH_TOKEN from pre-flight</h2>
+<p>export NATS_AUTH_TOKEN=&quot;your-token-here&quot;</p>
+<p>nats server ping --server nats://localhost:4222 --creds /dev/null 2&gt;/dev/null || \</p>
+<p>nats server ping --server &quot;nats://${NATS_AUTH_TOKEN}@localhost:4222&quot;</p>
+<h2>Neo4j — set NEO4J_PASSWORD</h2>
+<p>export NEO4J_PASSWORD=&quot;your-password-here&quot;</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;RETURN 1 AS ok;&quot;</p>
+<h2>Neo4j plugins</h2>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;SHOW PROCEDURES YIELD name WHERE name STARTS WITH &#x27;apoc&#x27; RETURN count(*) AS apoc_count;&quot;</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;SHOW PROCEDURES YIELD name WHERE name STARTS WITH &#x27;gds&#x27; RETURN count(*) AS gds_count;&quot;</p>
+<h2>Ollama</h2>
+<p>curl -s http://localhost:11434/api/tags | jq &#x27;.models[].name&#x27;</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] NATS ping succeeds</p>
+<p>[ ] Neo4j cypher-shell returns  → 1</p>
+<p>[ ] APOC procedures count  → &gt; 0</p>
+<p>[ ] GDS procedures count  → &gt; 0</p>
+<p>[ ] nomic-embed-text model listed by Ollama</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 3 — Claude CLI</h3>
+<p>Must be installed and authenticated before Part 4, because `deploy.sh` and the Telegram bot</p>
+<p>both exec `claude -p ...` subprocess calls.</p>
+<h4>3.1 Install</h4>
+<p>```bash</p>
+<p>curl -fsSL https://claude.ai/install.sh | sh</p>
+<h2>Verify it&#x27;s on PATH</h2>
+<p>which claude</p>
+<p>claude --version</p>
+<p>```</p>
+<h4>3.2 Authenticate (Interactive — Cannot Be Automated)</h4>
+<p>&gt; **WARNING (Gotcha #14):** Claude CLI authentication is an OAuth browser flow. It cannot be</p>
+<p>&gt; run from a script, a piped command, or a non-interactive terminal. You must be SSH&#x27;d with a</p>
+<p>&gt; real TTY and have a web browser available to complete the OAuth handshake. If you are running</p>
+<p>&gt; this step inside a script or tmux pipe, exit and reconnect interactively first.</p>
+<p>```bash</p>
+<p>claude auth login</p>
+<h2>Follow the URL printed to your terminal, complete the browser OAuth flow</h2>
+<h2>Credentials are stored in CLAUDE_HOME (/root/.claude by default)</h2>
+<p>```</p>
+<h4>Checkpoint 3</h4>
+<p>```</p>
+<p>[ ] claude --version  → prints version string</p>
+<p>[ ] claude -p &quot;reply with the word pong&quot; --output-format text  → pong</p>
+<p>[ ] ls /root/.claude/  → shows auth credential files</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 4 — Repo Deployment and Python Environment</h3>
+<p>The most gotcha-dense section. Read all warnings before issuing commands.</p>
+<h4>4.1 Place the Deploy Key on the VPS</h4>
+<p>Transfer the private key you generated in pre-flight from your local machine:</p>
+<p>```bash</p>
+<h2>On your LOCAL machine — SCP the private key to the VPS</h2>
+<p>scp ~/.ssh/rpm_capital_deploy root@&lt;tailscale-ip&gt;:/root/.ssh/rpm_capital_deploy</p>
+<h2>On the VPS — set permissions and configure SSH</h2>
+<p>chmod 600 /root/.ssh/rpm_capital_deploy</p>
+<p>cat &gt;&gt; /root/.ssh/config &lt;&lt; &#x27;EOF&#x27;</p>
+<p>Host github.com</p>
+<p>IdentityFile /root/.ssh/rpm_capital_deploy</p>
+<p>StrictHostKeyChecking no</p>
+<p>EOF</p>
+<p>chmod 600 /root/.ssh/config</p>
+<h2>Verify GitHub can see the key</h2>
+<p>ssh-keyscan github.com &gt;&gt; /root/.ssh/known_hosts</p>
+<p>ssh -T git@github.com   # expect: &quot;Hi covaultxyz/rpm-capital! You&#x27;ve successfully authenticated...&quot;</p>
+<p>```</p>
+<h4>4.2 Git Clone</h4>
+<p>&gt; **WARNING:** If this step fails with `Permission denied (publickey)`, the deploy key is not</p>
+<p>&gt; registered in GitHub. Return to pre-flight step 0.3. Do NOT attempt an HTTPS clone — the</p>
+<p>&gt; autopull script uses SSH and will break.</p>
+<p>```bash</p>
+<p>git clone git@github.com:covaultxyz/rpm-capital.git /opt/rpm-capital</p>
+<p>cd /opt/rpm-capital</p>
+<p>git log --oneline -3   # verify commits</p>
+<p>```</p>
+<h4>4.3 Python Version Check</h4>
+<p>&gt; **WARNING (Gotcha #15):** The daemon code uses Python 3.11+ type annotations. Ubuntu 22.04</p>
+<p>&gt; ships Python 3.10 by default. Importing any daemon on 3.10 fails with `TypeError` or</p>
+<p>&gt; `SyntaxError`. Check your version and upgrade if needed before creating the virtualenv.</p>
+<p>```bash</p>
+<p>python3 --version   # must be 3.11.x or higher</p>
+<h2>If 3.10 or earlier:</h2>
+<p>add-apt-repository ppa:deadsnakes/ppa</p>
+<p>apt update</p>
+<p>apt install -y python3.11 python3.11-venv python3.11-dev</p>
+<p>update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1</p>
+<p>python3 --version   # re-verify: 3.11.x</p>
+<p>```</p>
+<h4>4.4 Create the Virtualenv</h4>
+<p>&gt; **WARNING:** The virtualenv MUST be at `/opt/rpm-capital/venv/`. This exact path is hardcoded</p>
+<p>&gt; in `scripts/daemon-wrapper.sh` line 11 (`/opt/rpm-capital/venv/bin/python3`) and in</p>
+<p>&gt; `scripts/mcp-server.sh`. Using `.venv/`, `env/`, or any other name will silently break every</p>
+<p>&gt; daemon start with no helpful error message.</p>
+<p>```bash</p>
+<p>cd /opt/rpm-capital</p>
+<p>python3.11 -m venv venv    # or: python3 -m venv venv (if 3.11 is default)</p>
+<p>source venv/bin/activate</p>
+<p>pip install --upgrade pip</p>
+<p>```</p>
+<h4>4.5 Install Dependencies</h4>
+<p>&gt; **WARNING (Gotcha #16):** `structlog` is a required runtime dependency that is NOT in</p>
+<p>&gt; `requirements.txt` but IS in `pyproject.toml`. Using `pip install -r requirements.txt` will</p>
+<p>&gt; result in `ModuleNotFoundError: No module named &#x27;structlog&#x27;` when daemons start. Always use</p>
+<p>&gt; `pip install -e .` to install from pyproject.toml, which includes all dependencies.</p>
+<p>```bash</p>
+<p>pip install -e .</p>
+<h2>Verify critical packages are present</h2>
+<p>python -c &quot;import structlog, nats, neo4j, httpx, mcp; print(&#x27;All core imports OK&#x27;)&quot;</p>
+<p>```</p>
+<h4>4.6 Check the daemons Package Init File</h4>
+<p>&gt; **WARNING (Gotcha #2/#5):** The `daemons/` directory is a Python package and MUST have an</p>
+<p>&gt; `__init__.py` file. Without it, `python -m daemons.las` fails with `ModuleNotFoundError`.</p>
+<p>&gt; The file exists in the repo but can be accidentally absent after a partial clone or a failed</p>
+<p>&gt; merge. Check it explicitly.</p>
+<p>```bash</p>
+<p>ls /opt/rpm-capital/daemons/__init__.py   # must exist</p>
+<p>```</p>
+<p>If missing: `touch /opt/rpm-capital/daemons/__init__.py`</p>
+<h4>4.7 Smoke Test Imports</h4>
+<p>```bash</p>
+<p>cd /opt/rpm-capital</p>
+<p>source venv/bin/activate</p>
+<p>python -m pytest tests/ -x -q</p>
+<p>```</p>
+<p>All tests must pass. This validates that all daemon classes are importable, `brain.validation_core`</p>
+<p>is available, and the MCP server module loads without crashing.</p>
+<h4>Checkpoint 4</h4>
+<p>```</p>
+<p>[ ] git -C /opt/rpm-capital log --oneline -3  → shows commits</p>
+<p>[ ] /opt/rpm-capital/venv/bin/python --version  → 3.11.x</p>
+<p>[ ] ls /opt/rpm-capital/daemons/__init__.py  → exists</p>
+<p>[ ] python -m pytest tests/ -x -q  → all pass</p>
+<p>[ ] python -c &quot;import structlog, nats, neo4j&quot;  → no error</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 5 — Environment Configuration</h3>
+<p>All 14 environment variables in one file. Every daemon, systemd unit, and script sources this</p>
+<p>file. It is the single source of truth for runtime configuration.</p>
+<h4>5.1 Create /etc/rpm-capital/env</h4>
+<p>&gt; **WARNING (NATS_URL):** Must be `nats://localhost:4222`. Not the Tailscale IP. Not</p>
+<p>&gt; `127.0.0.1`. The `localhost` form resolves correctly through all startup orderings.</p>
+<p>&gt; **WARNING (NEO4J_URI):** Must be `bolt://localhost:7687`. The port `7750` that appears in</p>
+<p>&gt; some older documentation was a Docker container port-mapping artifact. It does not apply to</p>
+<p>&gt; this installation. Do not use 7750.</p>
+<p>&gt; **WARNING (PYTHONPATH):** Must include `/opt/rpm-capital` so that `import daemons.las` and</p>
+<p>&gt; `import brain.validation_core` resolve correctly regardless of how the daemon is invoked.</p>
+<p>```bash</p>
+<p>cat &gt; /etc/rpm-capital/env &lt;&lt; &#x27;ENVEOF&#x27;</p>
+<p>NATS_URL=nats://localhost:4222</p>
+<p>NATS_AUTH_TOKEN=REPLACE_WITH_NATS_AUTH_TOKEN</p>
+<p>NEO4J_URI=bolt://localhost:7687</p>
+<p>NEO4J_USER=neo4j</p>
+<p>NEO4J_PASSWORD=REPLACE_WITH_NEO4J_PASSWORD</p>
+<p>OLLAMA_URL=http://localhost:11434</p>
+<p>EMBED_MODEL=nomic-embed-text</p>
+<p>TELEGRAM_BOT_TOKEN=PLACEHOLDER_SET_IN_PART_10</p>
+<p>TELEGRAM_CHAT_ID=PLACEHOLDER_SET_IN_PART_10</p>
+<p>WORKSPACE_ID=rpm-capital</p>
+<p>LOG_LEVEL=INFO</p>
+<p>CLAUDE_HOME=/root/.claude</p>
+<p>GIT_SSH_COMMAND=ssh -i /root/.ssh/rpm_capital_deploy</p>
+<p>PYTHONPATH=/opt/rpm-capital</p>
+<p>ENVEOF</p>
+<p>chmod 600 /etc/rpm-capital/env</p>
+<p>chown root:root /etc/rpm-capital/env</p>
+<h2>Edit the file to replace the REPLACE_WITH_ placeholders</h2>
+<p>vim /etc/rpm-capital/env</p>
+<p>```</p>
+<h4>5.2 Create the Daemon Allow List</h4>
+<p>&gt; **WARNING (Gotcha #6):** `scripts/daemon-wrapper.sh` reads `/etc/rpm-capital/daemons.allow`</p>
+<p>&gt; and exits with an error (&quot;BLOCKED: &lt;name&gt; not in &lt;file&gt;&quot;) if the daemon&#x27;s name is not listed.</p>
+<p>&gt; A missing daemon name produces a confusing log line rather than a missing-file error. List all</p>
+<p>&gt; 9 daemon names explicitly.</p>
+<p>```bash</p>
+<p>cat &gt; /etc/rpm-capital/daemons.allow &lt;&lt; &#x27;EOF&#x27;</p>
+<p>las</p>
+<p>sensei</p>
+<p>delphi</p>
+<p>watcher</p>
+<p>sandman</p>
+<p>atlas</p>
+<p>avery</p>
+<p>sterling</p>
+<p>martin</p>
+<p>EOF</p>
+<p>```</p>
+<h4>Checkpoint 5</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>echo $NATS_URL       # → nats://localhost:4222</p>
+<p>echo $NEO4J_URI      # → bolt://localhost:7687</p>
+<p>echo $PYTHONPATH     # → /opt/rpm-capital</p>
+<p>stat -c &quot;%a %U&quot; /etc/rpm-capital/env   # → 600 root</p>
+<p>wc -l /etc/rpm-capital/daemons.allow   # → 9</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] NATS_URL is nats://localhost:4222 (not Tailscale IP)</p>
+<p>[ ] NEO4J_URI is bolt://localhost:7687 (not 7750)</p>
+<p>[ ] NATS_AUTH_TOKEN and NEO4J_PASSWORD are set (not placeholder)</p>
+<p>[ ] daemons.allow has 9 lines</p>
+<p>[ ] env file permissions: 600 root</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 6 — Systemd Unit Installation</h3>
+<h4>6.1 Service Naming Clarification</h4>
+<p>&gt; **WARNING (Gotcha #1/#3):** The service unit files are named `rpm-las.service`,</p>
+<p>&gt; `rpm-sensei.service`, etc. — individual named units, one per daemon. Some older docs</p>
+<p>&gt; reference a `rpm-daemon@.service` template pattern. That template is NOT what is deployed</p>
+<p>&gt; and NOT what `scripts/deploy.sh` and `scripts/restart-all.sh` use. Those scripts call</p>
+<p>&gt; `systemctl restart rpm-${d}.service`, which requires the individual named units.</p>
+<p>&gt; Never use the template form `rpm-daemon@las.service`.</p>
+<h4>6.2 Create Daemon Service Units</h4>
+<p>Create one unit file per daemon. Replace `&lt;daemon&gt;` with the daemon name each time:</p>
+<p>```bash</p>
+<p>for DAEMON in las sensei delphi watcher sandman atlas avery sterling martin; do</p>
+<p>cat &gt; /etc/systemd/system/rpm-${DAEMON}.service &lt;&lt; UNITEOF</p>
+<p>[Unit]</p>
+<p>Description=RPM Capital ${DAEMON} daemon</p>
+<p>After=network.target nats-server.service neo4j.service</p>
+<p>Wants=nats-server.service neo4j.service</p>
+<p>[Service]</p>
+<p>Type=simple</p>
+<p>EnvironmentFile=/etc/rpm-capital/env</p>
+<p>WorkingDirectory=/opt/rpm-capital</p>
+<p>ExecStart=/opt/rpm-capital/scripts/daemon-wrapper.sh ${DAEMON}</p>
+<p>Restart=on-failure</p>
+<p>RestartSec=30</p>
+<p>StandardOutput=journal</p>
+<p>StandardError=journal</p>
+<p>SyslogIdentifier=rpm-${DAEMON}</p>
+<p>[Install]</p>
+<p>WantedBy=multi-user.target</p>
+<p>UNITEOF</p>
+<p>done</p>
+<p>```</p>
+<h4>6.3 Create the Telegram Bot Unit</h4>
+<p>The Telegram bot is separate because it does not use `daemon-wrapper.sh`:</p>
+<p>```bash</p>
+<p>cat &gt; /etc/systemd/system/rpm-telegram.service &lt;&lt; &#x27;EOF&#x27;</p>
+<p>[Unit]</p>
+<p>Description=RPM Capital Telegram bot</p>
+<p>After=network.target nats-server.service</p>
+<p>Wants=nats-server.service</p>
+<p>[Service]</p>
+<p>Type=simple</p>
+<p>EnvironmentFile=/etc/rpm-capital/env</p>
+<p>WorkingDirectory=/opt/rpm-capital</p>
+<p>ExecStart=/opt/rpm-capital/venv/bin/python3 -m daemons.telegram_bot</p>
+<p>Restart=on-failure</p>
+<p>RestartSec=30</p>
+<p>StandardOutput=journal</p>
+<p>StandardError=journal</p>
+<p>SyslogIdentifier=rpm-telegram</p>
+<p>[Install]</p>
+<p>WantedBy=multi-user.target</p>
+<p>EOF</p>
+<p>```</p>
+<h4>6.4 Enable Units (Do Not Start Yet)</h4>
+<p>```bash</p>
+<p>systemctl daemon-reload</p>
+<p>for DAEMON in las sensei delphi watcher sandman atlas avery sterling martin; do</p>
+<p>systemctl enable rpm-${DAEMON}.service</p>
+<p>done</p>
+<p>systemctl enable rpm-telegram.service</p>
+<p>```</p>
+<h4>6.5 Copy and Enable Timer Units</h4>
+<p>```bash</p>
+<h2>Copy timer units from repo deploy directory</h2>
+<p>cp /opt/rpm-capital/deploy/systemd/*.timer /etc/systemd/system/</p>
+<p>cp /opt/rpm-capital/deploy/systemd/*.service /etc/systemd/system/ 2&gt;/dev/null || true</p>
+<p>systemctl daemon-reload</p>
+<h2>Enable but DO NOT start — timers require a seeded graph (see Part 8)</h2>
+<p>systemctl enable rpm-backup.timer</p>
+<p>systemctl enable rpm-latticefire-propagator.timer</p>
+<p>systemctl enable rpm-latticefire-memory-health.timer</p>
+<p>systemctl enable rpm-latticefire-benchmark.timer</p>
+<p>systemctl enable rpm-orphan-rate-sentinel.timer</p>
+<p>```</p>
+<h4>Checkpoint 6</h4>
+<p>```bash</p>
+<p>systemctl list-unit-files | grep &quot;^rpm-&quot;</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] 10 service files listed (9 daemons + telegram)</p>
+<p>[ ] 5 timer files listed</p>
+<p>[ ] systemctl is-enabled rpm-las  → enabled</p>
+<p>[ ] systemctl is-enabled rpm-telegram  → enabled</p>
+<p>[ ] No units are &quot;active&quot; yet — they should all be &quot;enabled&quot; but not started</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 7 — Neo4j Indexes and JetStream Streams</h3>
+<p><strong>Create all database schema and message bus resources before starting any daemon.</strong></p>
+<h4>7.1 Neo4j Full-Text Indexes (BM25)</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &lt;&lt; &#x27;CYPHER&#x27;</p>
+<p>CREATE FULLTEXT INDEX memory_fulltext IF NOT EXISTS</p>
+<p>FOR (m:Memory) ON EACH [m.content, m.domain, m.category];</p>
+<p>CREATE FULLTEXT INDEX research_memory_fulltext IF NOT EXISTS</p>
+<p>FOR (rm:ResearchMemory) ON EACH [rm.content, rm.title, rm.domain];</p>
+<p>CREATE FULLTEXT INDEX research_document_fulltext IF NOT EXISTS</p>
+<p>FOR (rd:ResearchDocument) ON EACH [rd.content, rd.title, rd.source];</p>
+<p>CREATE FULLTEXT INDEX claim_fulltext IF NOT EXISTS</p>
+<p>FOR (c:Claim) ON EACH [c.content, c.source];</p>
+<p>CYPHER</p>
+<p>```</p>
+<h4>7.2 Neo4j Vector Indexes</h4>
+<p>```bash</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &lt;&lt; &#x27;CYPHER&#x27;</p>
+<p>CREATE VECTOR INDEX memory_embedding IF NOT EXISTS</p>
+<p>FOR (m:Memory) ON (m.embedding)</p>
+<p>OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: &#x27;cosine&#x27;}};</p>
+<p>CREATE VECTOR INDEX research_memory_embedding IF NOT EXISTS</p>
+<p>FOR (rm:ResearchMemory) ON (rm.embedding)</p>
+<p>OPTIONS {indexConfig: {`vector.dimensions`: 768, `vector.similarity_function`: &#x27;cosine&#x27;}};</p>
+<p>CYPHER</p>
+<p>```</p>
+<h4>7.3 Property Indexes and Constraints</h4>
+<p>```bash</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &lt;&lt; &#x27;CYPHER&#x27;</p>
+<p>CREATE CONSTRAINT memory_id_unique IF NOT EXISTS FOR (m:Memory) REQUIRE m.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT concept_name_unique IF NOT EXISTS FOR (c:Concept) REQUIRE c.name IS UNIQUE;</p>
+<p>CREATE CONSTRAINT research_doc_id_unique IF NOT EXISTS FOR (rd:ResearchDocument) REQUIRE rd.id IS UNIQUE;</p>
+<p>CREATE CONSTRAINT session_id_unique IF NOT EXISTS FOR (s:Session) REQUIRE s.session_id IS UNIQUE;</p>
+<p>CREATE INDEX memory_workspace IF NOT EXISTS FOR (m:Memory) ON (m.workspace_id);</p>
+<p>CREATE INDEX memory_category IF NOT EXISTS FOR (m:Memory) ON (m.category);</p>
+<p>CREATE INDEX memory_importance IF NOT EXISTS FOR (m:Memory) ON (m.importance);</p>
+<p>CREATE INDEX memory_created_at IF NOT EXISTS FOR (m:Memory) ON (m.created_at);</p>
+<p>CREATE INDEX memory_domain IF NOT EXISTS FOR (m:Memory) ON (m.domain);</p>
+<p>CREATE INDEX research_memory_workspace IF NOT EXISTS FOR (rm:ResearchMemory) ON (rm.workspace_id);</p>
+<p>CREATE INDEX research_memory_domain IF NOT EXISTS FOR (rm:ResearchMemory) ON (rm.domain);</p>
+<p>CYPHER</p>
+<p>```</p>
+<h4>7.4 Verify All Indexes Are Online</h4>
+<p>```bash</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; \</p>
+<p>&quot;SHOW INDEXES YIELD name, type, state WHERE state &lt;&gt; &#x27;ONLINE&#x27; RETURN name, state;&quot;</p>
+<h2>Expect: 0 rows</h2>
+<p>```</p>
+<h4>7.5 NATS JetStream Streams</h4>
+<p>&gt; **WARNING (Gotcha #4):** JetStream streams do NOT auto-create when daemons start. If a daemon</p>
+<p>&gt; publishes to a stream subject before the stream exists, the publish silently drops — the</p>
+<p>&gt; daemon continues running but tasks, heartbeats, and work items are lost. Create all streams</p>
+<p>&gt; before starting any daemon.</p>
+<p>```bash</p>
+<p>export NATS_AUTH_TOKEN=$(grep NATS_AUTH_TOKEN /etc/rpm-capital/env | cut -d= -f2)</p>
+<p>export NATS_URL=&quot;nats://${NATS_AUTH_TOKEN}@localhost:4222&quot;</p>
+<h2>Work queue stream</h2>
+<p>nats stream add WORK_QUEUE \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;work.&gt;&quot; \</p>
+<p>--storage file \</p>
+<p>--replicas 1 \</p>
+<p>--retention work \</p>
+<p>--max-age 24h \</p>
+<p>--ack</p>
+<h2>Task dispatch</h2>
+<p>nats stream add TASK_DISPATCH \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;task.&gt;&quot; \</p>
+<p>--storage file \</p>
+<p>--replicas 1 \</p>
+<p>--retention work \</p>
+<p>--max-age 48h \</p>
+<p>--ack</p>
+<h2>Pulse (heartbeat/telemetry)</h2>
+<p>nats stream add PULSE \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;pulse.&gt;&quot; \</p>
+<p>--storage memory \</p>
+<p>--replicas 1 \</p>
+<p>--max-age 1h \</p>
+<p>--no-ack</p>
+<h2>Dead letter queue</h2>
+<p>nats stream add MESH_DLQ \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;dlq.&gt;&quot; \</p>
+<p>--storage file \</p>
+<p>--replicas 1 \</p>
+<p>--max-age 168h \</p>
+<p>--no-ack</p>
+<h2>CLI inbox</h2>
+<p>nats stream add CLI_INBOX \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;cli.&gt;&quot; \</p>
+<p>--storage memory \</p>
+<p>--replicas 1 \</p>
+<p>--max-age 1h \</p>
+<p>--no-ack</p>
+<h2>Fact extraction pipeline</h2>
+<p>nats stream add FACT_EXTRACT \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;fact_extract.&gt;&quot; \</p>
+<p>--storage file \</p>
+<p>--replicas 1 \</p>
+<p>--retention work \</p>
+<p>--max-age 72h \</p>
+<p>--ack</p>
+<h2>Research ingestion</h2>
+<p>nats stream add RESEARCH_INGEST \</p>
+<p>--server &quot;$NATS_URL&quot; \</p>
+<p>--subjects &quot;research.&gt;&quot; \</p>
+<p>--storage file \</p>
+<p>--replicas 1 \</p>
+<p>--retention work \</p>
+<p>--max-age 72h \</p>
+<p>--ack</p>
+<p>```</p>
+<h4>7.6 NATS KV Buckets</h4>
+<p>```bash</p>
+<p>nats kv add DAEMON_CLAIMS   --server &quot;$NATS_URL&quot; --ttl 30s</p>
+<p>nats kv add DAEMON_ACTIVITY --server &quot;$NATS_URL&quot; --ttl 5m</p>
+<p>nats kv add TASK_PROGRESS   --server &quot;$NATS_URL&quot;</p>
+<p>nats kv add CLAUDE_SESSIONS --server &quot;$NATS_URL&quot; --ttl 4h</p>
+<p>nats kv add SESSION_LOGS    --server &quot;$NATS_URL&quot;</p>
+<p>```</p>
+<h4>Checkpoint 7</h4>
+<p>```</p>
+<p>[ ] nats stream ls --server $NATS_URL  → 7 streams listed</p>
+<p>[ ] nats kv ls --server $NATS_URL  → 5 buckets listed</p>
+<p>[ ] cypher-shell: SHOW INDEXES ... WHERE state &lt;&gt; &#x27;ONLINE&#x27;  → 0 rows</p>
+<p>[ ] cypher-shell: SHOW CONSTRAINTS  → 4 constraints listed</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 8 — MIG Seed Import</h3>
+<p>Import the graph seed from staging. LAS daemon must NOT be running during import.</p>
+<h4>8.1 Pre-Import Checklist</h4>
+<p>```</p>
+<p>[ ] LAS daemon is not running (systemctl is-active rpm-las  → inactive is correct)</p>
+<p>[ ] Neo4j is running (cypher-shell RETURN 1 succeeds)</p>
+<p>[ ] 50 GB free on /data/rpm-capital</p>
+<p>[ ] Tailscale can reach the seed source node (ping staging-tailscale-ip)</p>
+<p>```</p>
+<h4>8.2 Export Seed from Staging Node</h4>
+<p>```bash</p>
+<h2>On the STAGING node — substitute actual staging Tailscale IP and path</h2>
+<h2>ssh root@&lt;staging-tailscale-ip&gt; \</h2>
+<h2>  &#x27;neo4j-admin database dump neo4j --to-path=/mnt/archive/dumps/&#x27; &amp;&amp; \</h2>
+<h2>  scp root@&lt;staging-tailscale-ip&gt;:/mnt/archive/dumps/neo4j.dump /mnt/archive/dumps/seed.dump</h2>
+<p>```</p>
+<p>If importing from a pre-prepared dump file, place it at `/mnt/archive/dumps/seed.dump`.</p>
+<h4>8.3 Load Dump into Neo4j</h4>
+<p>&gt; **WARNING:** Neo4j Community Edition requires the database to be OFFLINE for a dump load.</p>
+<p>&gt; Stop Neo4j, load, restart, and wait before running any queries.</p>
+<p>```bash</p>
+<h2>Stop Neo4j</h2>
+<p>systemctl stop neo4j</p>
+<p>sleep 5</p>
+<h2>Load the dump</h2>
+<p>neo4j-admin database load neo4j \</p>
+<p>--from-path=/mnt/archive/dumps/ \</p>
+<p>--overwrite-destination=true</p>
+<h2>Restart and wait for availability</h2>
+<p>systemctl start neo4j</p>
+<p>echo &quot;Waiting 30s for Neo4j to come up...&quot;</p>
+<p>sleep 30</p>
+<p>```</p>
+<h4>8.4 Verify Node Counts</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &lt;&lt; &#x27;CYPHER&#x27;</p>
+<p>MATCH (n) RETURN labels(n)[0] AS label, count(n) AS count</p>
+<p>ORDER BY count DESC;</p>
+<p>CYPHER</p>
+<p>```</p>
+<p>Expected totals (may vary slightly by seed version):</p>
+<p style='padding-left:1rem'>&bull; ~104,000 total nodes</p>
+<p style='padding-left:1rem'>&bull; ~750,000 total relationships</p>
+<p>If counts are off by more than 10%, stop and investigate before starting daemons.</p>
+<h4>8.5 Regenerate Embeddings</h4>
+<p>Embedding generation runs for several hours. Start it in a tmux session and let it run</p>
+<p>while you continue the installation.</p>
+<p>```bash</p>
+<p>tmux new -s embeddings</p>
+<p>source /etc/rpm-capital/env</p>
+<p>source /opt/rpm-capital/venv/bin/activate</p>
+<p>python3 /opt/rpm-capital/scripts/reembed.py \</p>
+<p>--model nomic-embed-text \</p>
+<p>--endpoint http://localhost:11434 \</p>
+<p>--batch-size 100</p>
+<h2>Detach: Ctrl+B, D</h2>
+<p>```</p>
+<h4>Checkpoint 8</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;MATCH (n) RETURN count(n) AS total;&quot;</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;MATCH ()-[r]-&gt;() RETURN count(r) AS rels;&quot;</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] Total nodes  → ~104,000+</p>
+<p>[ ] Total relationships  → ~750,000+</p>
+<p>[ ] Embedding job running in tmux (or completed)</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 9 — Daemon Startup</h3>
+<p>Start P0 daemons first, verify their heartbeats, then start P1.</p>
+<h4>9.1 Start P0 Daemons</h4>
+<p>```bash</p>
+<p>systemctl start rpm-las</p>
+<p>sleep 5</p>
+<p>systemctl start rpm-sensei rpm-delphi rpm-watcher</p>
+<p>sleep 10</p>
+<p>```</p>
+<h4>9.2 Start P1 Daemons</h4>
+<p>```bash</p>
+<p>systemctl start rpm-sandman rpm-atlas rpm-avery rpm-sterling rpm-martin</p>
+<p>sleep 10</p>
+<p>```</p>
+<h4>9.3 Start Telegram Bot (Conditional)</h4>
+<p>&gt; If `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are not yet real values in</p>
+<p>&gt; `/etc/rpm-capital/env` (still placeholders), skip this step and return to it after Part 10.</p>
+<p>&gt; The bot exits immediately without valid tokens.</p>
+<p>```bash</p>
+<h2>Only if Telegram tokens are configured:</h2>
+<p>systemctl start rpm-telegram</p>
+<p>```</p>
+<h4>9.4 Watch for Errors</h4>
+<p>```bash</p>
+<h2>Monitor all daemon logs simultaneously for 60 seconds</h2>
+<p>journalctl -u &#x27;rpm-*&#x27; --no-pager -f &amp;</p>
+<p>MONITOR_PID=$!</p>
+<p>sleep 60</p>
+<p>kill $MONITOR_PID</p>
+<h2>Check for errors</h2>
+<p>journalctl -u &#x27;rpm-*&#x27; -p err --since &quot;5 min ago&quot; --no-pager</p>
+<p>```</p>
+<h4>Checkpoint 9</h4>
+<p>```bash</p>
+<p>for d in las sensei delphi watcher sandman atlas avery sterling martin; do</p>
+<p>STATUS=$(systemctl is-active rpm-${d})</p>
+<p>echo &quot;$d: $STATUS&quot;</p>
+<p>done</p>
+<h2>Watch for heartbeats (30s window — all 9 should appear)</h2>
+<p>export NATS_URL=&quot;nats://$(grep NATS_AUTH_TOKEN /etc/rpm-capital/env | cut -d= -f2)@localhost:4222&quot;</p>
+<p>timeout 90 nats sub &#x27;daemon.*.heartbeat&#x27; --server &quot;$NATS_URL&quot;</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] All 9 daemons show &quot;active&quot;</p>
+<p>[ ] All 9 daemon names appear in heartbeat stream within 90s</p>
+<p>[ ] journalctl -u &#x27;rpm-*&#x27; -p err  → no errors in last 5 minutes</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 10 — Telegram Bot Wiring</h3>
+<h4>10.1 Create the Bot via BotFather</h4>
+<p>1. Open Telegram, DM `@BotFather`</p>
+<p>2. Send `/newbot`</p>
+<p>3. Follow prompts: name the bot, give it a username ending in `_bot`</p>
+<p>4. Copy the token shown (`123456:ABCdef...`) → this is `TELEGRAM_BOT_TOKEN`</p>
+<h4>10.2 Get the Chat ID</h4>
+<p>```bash</p>
+<h2>Substitute your bot token</h2>
+<p>TOKEN=&quot;your-bot-token-here&quot;</p>
+<h2>Add the bot to a group or send it a DM, then:</h2>
+<p>curl &quot;https://api.telegram.org/bot${TOKEN}/getUpdates&quot; | jq &#x27;.result[].message.chat.id&#x27;</p>
+<h2>The number returned is TELEGRAM_CHAT_ID (negative for groups, positive for DMs)</h2>
+<p>```</p>
+<h4>10.3 Update the Env File and Restart</h4>
+<p>&gt; **WARNING (Gotcha #13):** Delphi uses long-polling, not webhooks. No webhook URL or</p>
+<p>&gt; certificate setup is needed. The firewall default (`ufw default allow outgoing`) covers</p>
+<p>&gt; outbound port 443 to Telegram&#x27;s servers. Do NOT restrict outbound 443 — the bot will</p>
+<p>&gt; silently fail to connect.</p>
+<p>```bash</p>
+<h2>Edit /etc/rpm-capital/env</h2>
+<h2>Replace PLACEHOLDER_SET_IN_PART_10 for both TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID</h2>
+<p>vim /etc/rpm-capital/env</p>
+<h2>Restart the telegram service to pick up the new tokens</h2>
+<p>systemctl restart rpm-telegram</p>
+<p>sleep 5</p>
+<p>journalctl -u rpm-telegram -n 20 --no-pager</p>
+<h2>Expect: &quot;Bot polling started&quot; or similar</h2>
+<p>```</p>
+<h4>10.4 Functional Verification</h4>
+<p style='padding-left:1rem'>&bull; Send `/ping` to the bot in Telegram → expect a daemon status table within 30s</p>
+<p style='padding-left:1rem'>&bull; Send a plain question → expect a streaming Claude response</p>
+<h4>Checkpoint 10</h4>
+<p>```</p>
+<p>[ ] journalctl -u rpm-telegram  → shows &quot;Bot polling started&quot; (not auth errors)</p>
+<p>[ ] /ping sent to bot  → status table response received</p>
+<p>[ ] TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are no longer placeholder values in env</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 11 — MCP Server and Claude Code Configuration</h3>
+<p>Enables full MIG tool access from Claude Code sessions running on this VPS.</p>
+<h4>11.1 Verify the MCP Server Script</h4>
+<p>```bash</p>
+<p>cat /opt/rpm-capital/scripts/mcp-server.sh</p>
+<h2>Must source /etc/rpm-capital/env and invoke the python mcp server</h2>
+<h2>Test that it can start without crashing</h2>
+<p>source /etc/rpm-capital/env</p>
+<p>/opt/rpm-capital/venv/bin/python -m meridian_mcp.rpm_mcp_server --help 2&gt;&amp;1 | head -5</p>
+<p>```</p>
+<h4>11.2 Create .mcp.json</h4>
+<p>```bash</p>
+<p>cat &gt; /opt/rpm-capital/.mcp.json &lt;&lt; &#x27;EOF&#x27;</p>
+<p>{</p>
+<p>&quot;mcpServers&quot;: {</p>
+<p>&quot;mig&quot;: {</p>
+<p>&quot;command&quot;: &quot;/opt/rpm-capital/scripts/mcp-server.sh&quot;,</p>
+<p>&quot;args&quot;: []</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>EOF</p>
+<p>```</p>
+<h4>11.3 Create Claude Code Settings</h4>
+<p>```bash</p>
+<p>mkdir -p /opt/rpm-capital/.claude</p>
+<p>cat &gt; /opt/rpm-capital/.claude/settings.json &lt;&lt; &#x27;EOF&#x27;</p>
+<p>{</p>
+<p>&quot;allowedTools&quot;: [</p>
+<p>&quot;mcp__mig__mig_health&quot;,</p>
+<p>&quot;mcp__mig__mig_search&quot;,</p>
+<p>&quot;mcp__mig__mig_recall&quot;,</p>
+<p>&quot;mcp__mig__mig_remember&quot;,</p>
+<p>&quot;mcp__mig__mig_archive&quot;,</p>
+<p>&quot;mcp__mig__mesh_status&quot;,</p>
+<p>&quot;mcp__mig__session_register&quot;,</p>
+<p>&quot;mcp__mig__session_inbox&quot;,</p>
+<p>&quot;mcp__mig__session_send&quot;,</p>
+<p>&quot;mcp__mig__mig_tasks&quot;,</p>
+<p>&quot;mcp__mig__mig_entity_landscape&quot;,</p>
+<p>&quot;mcp__mig__mig_graph_neighbors&quot;,</p>
+<p>&quot;mcp__mig__mig_evidence_chain&quot;,</p>
+<p>&quot;mcp__mig__mig_pagerank&quot;,</p>
+<p>&quot;mcp__mig__mig_communities&quot;,</p>
+<p>&quot;mcp__mig__nats_request&quot;</p>
+<p>]</p>
+<p>}</p>
+<p>EOF</p>
+<p>```</p>
+<h4>Checkpoint 11</h4>
+<p>Open a Claude Code session on the VPS and run:</p>
+<p>```</p>
+<p>[ ] mig_health()  → { neo4j: true, node_count &gt; 0 }</p>
+<p>[ ] mig_search(&quot;fund structure&quot;)  → returns results</p>
+<p>[ ] mesh_status()  → shows daemon online status</p>
+<p>[ ] session_register()  → returns session_id without error</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 12 — Backup Setup</h3>
+<p>Install before running timers. Sandman checks for a backup marker file hourly.</p>
+<h4>12.1 Initialize Restic Repository</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>export RESTIC_REPOSITORY=/mnt/archive/backups/rpm-capital</p>
+<p>export RESTIC_PASSWORD=&quot;REPLACE_WITH_RESTIC_PASSWORD&quot;   # from pre-flight</p>
+<p>restic init</p>
+<h2>Add these to /etc/rpm-capital/env:</h2>
+<p>echo &quot;RESTIC_REPOSITORY=/mnt/archive/backups/rpm-capital&quot; &gt;&gt; /etc/rpm-capital/env</p>
+<p>echo &quot;RESTIC_PASSWORD=REPLACE_WITH_RESTIC_PASSWORD&quot; &gt;&gt; /etc/rpm-capital/env</p>
+<p>```</p>
+<h4>12.2 Create the Backup Script</h4>
+<p>```bash</p>
+<p>cat &gt; /opt/rpm-capital/scripts/backup.sh &lt;&lt; &#x27;BACKUPEOF&#x27;</p>
+<p>#!/usr/bin/env bash</p>
+<p>set -euo pipefail</p>
+<p>source /etc/rpm-capital/env</p>
+<p>echo &quot;[backup] Starting at $(date -Iseconds)&quot;</p>
+<h2>Neo4j dump</h2>
+<p>systemctl stop rpm-las || true</p>
+<p>sleep 5</p>
+<p>neo4j-admin database dump neo4j --to-path=/mnt/archive/dumps/ --overwrite-destination=true || \</p>
+<p>echo &quot;[backup] WARNING: neo4j dump failed&quot;</p>
+<p>systemctl start rpm-las || true</p>
+<h2>Restic backup</h2>
+<p>restic backup \</p>
+<p>/opt/rpm-capital \</p>
+<p>/etc/rpm-capital \</p>
+<p>/mnt/archive/dumps/ \</p>
+<p>--exclude /opt/rpm-capital/venv \</p>
+<p>--exclude /opt/rpm-capital/.git</p>
+<h2>Prune old snapshots</h2>
+<p>restic forget --keep-daily 7 --keep-weekly 4 --prune</p>
+<h2>Update marker</h2>
+<p>date -Iseconds &gt; /mnt/archive/backups/last_success</p>
+<p>echo &quot;[backup] Done at $(date -Iseconds)&quot;</p>
+<p>BACKUPEOF</p>
+<p>chmod +x /opt/rpm-capital/scripts/backup.sh</p>
+<p>```</p>
+<h4>12.3 Run Once to Create the Marker</h4>
+<p>&gt; **WARNING:** Sandman checks for `/mnt/archive/backups/last_success` every hour. If this file</p>
+<p>&gt; does not exist, Sandman fires a backup-overdue alert within 60 minutes of startup. Run the</p>
+<p>&gt; backup script once manually immediately after creating it so the marker exists.</p>
+<p>```bash</p>
+<p>bash /opt/rpm-capital/scripts/backup.sh</p>
+<p>ls -la /mnt/archive/backups/last_success   # must exist</p>
+<p>```</p>
+<h4>12.4 Install Backup Timer</h4>
+<p>```bash</p>
+<h2>Create the service unit for the backup script</h2>
+<p>cat &gt; /etc/systemd/system/rpm-backup.service &lt;&lt; &#x27;EOF&#x27;</p>
+<p>[Unit]</p>
+<p>Description=RPM Capital backup</p>
+<p>[Service]</p>
+<p>Type=oneshot</p>
+<p>EnvironmentFile=/etc/rpm-capital/env</p>
+<p>ExecStart=/opt/rpm-capital/scripts/backup.sh</p>
+<p>EOF</p>
+<p>cat &gt; /etc/systemd/system/rpm-backup.timer &lt;&lt; &#x27;EOF&#x27;</p>
+<p>[Unit]</p>
+<p>Description=RPM Capital daily backup</p>
+<p>[Timer]</p>
+<p>OnCalendar=03:00:00</p>
+<p>Persistent=true</p>
+<p>[Install]</p>
+<p>WantedBy=timers.target</p>
+<p>EOF</p>
+<p>systemctl daemon-reload</p>
+<p>systemctl enable rpm-backup.timer</p>
+<p>systemctl start rpm-backup.timer</p>
+<p>```</p>
+<h4>Checkpoint 12</h4>
+<p>```</p>
+<p>[ ] restic snapshots  → at least one snapshot listed</p>
+<p>[ ] ls /mnt/archive/backups/last_success  → exists</p>
+<p>[ ] systemctl is-active rpm-backup.timer  → active</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 13 — Documentation Cortex Seeding</h3>
+<p>Inject architectural context into the graph so daemons have deep knowledge of the system.</p>
+<h4>13.1 Tier 1 — Daemon Context Files</h4>
+<p>These are already in the repo at `config/daemon-contexts/` — no action needed. The files are</p>
+<p>loaded into daemon prompts at runtime. Confirm they exist:</p>
+<p>```bash</p>
+<p>ls /opt/rpm-capital/config/daemon-contexts/</p>
+<h2>Expect: one .md file per daemon</h2>
+<p>```</p>
+<h4>13.2 Tier 2 — Instruction Memory Seeding</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>source /opt/rpm-capital/venv/bin/activate</p>
+<p>cd /opt/rpm-capital</p>
+<p>python3 scripts/seed_rpm_instructions.py</p>
+<h2>Expect: &quot;Created N instruction memories&quot; in output</h2>
+<h2>Verify</h2>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; \</p>
+<p>&quot;MATCH (m:Memory {category: &#x27;instruction&#x27;, workspace_id: &#x27;rpm-capital&#x27;}) RETURN count(m);&quot;</p>
+<h2>Expect: ~15</h2>
+<p>```</p>
+<h4>13.3 Tier 3 — Research Memory Extraction</h4>
+<p>In a Claude Code session on the VPS (not SSH — must have MCP tools available):</p>
+<p>```</p>
+<p>/research-extract</p>
+<p>```</p>
+<p>Run for each of the 5 seed research documents in `config/research/`.</p>
+<p>Verify:</p>
+<p>```</p>
+<p>mig_search(&quot;Martin Gate&quot;)  → returns hits</p>
+<p>mig_search(&quot;signal quality weights&quot;)  → returns hits</p>
+<p>```</p>
+<h4>Checkpoint 13</h4>
+<p>```</p>
+<p>[ ] ls config/daemon-contexts/  → files present for all 9 daemons</p>
+<p>[ ] cypher-shell: instruction memories count  → ~15</p>
+<p>[ ] mig_search(&quot;Martin Gate&quot;)  → results returned</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 14 — Autopull and Deployment Automation</h3>
+<h4>14.1 Create the Autopull Script</h4>
+<p>&gt; **WARNING (Gotcha #12):** A naive `git pull` will NOT restart daemons when new code arrives.</p>
+<p>&gt; The autopull script must detect whether the HEAD commit changed and restart services when it</p>
+<p>&gt; did. A pull without restart means code updates never take effect until manual intervention.</p>
+<p>```bash</p>
+<p>cat &gt; /usr/local/bin/rpm-autopull.sh &lt;&lt; &#x27;PULLEOF&#x27;</p>
+<p>#!/usr/bin/env bash</p>
+<p>set -euo pipefail</p>
+<p>cd /opt/rpm-capital</p>
+<p>PRE_PULL=$(git rev-parse HEAD)</p>
+<p>GIT_SSH_COMMAND=&quot;ssh -i /root/.ssh/rpm_capital_deploy&quot; \</p>
+<p>git pull --rebase origin main 2&gt;&amp;1 | logger -t rpm-autopull</p>
+<p>POST_PULL=$(git rev-parse HEAD)</p>
+<p>if [[ &quot;$PRE_PULL&quot; != &quot;$POST_PULL&quot; ]]; then</p>
+<p>logger -t rpm-autopull &quot;New commit ${POST_PULL} — restarting daemons&quot;</p>
+<p>source /opt/rpm-capital/venv/bin/activate</p>
+<p>pip install -e . --quiet</p>
+<p>systemctl daemon-reload</p>
+<p>bash /opt/rpm-capital/scripts/deploy.sh</p>
+<p>fi</p>
+<p>PULLEOF</p>
+<p>chmod +x /usr/local/bin/rpm-autopull.sh</p>
+<p>```</p>
+<h4>14.2 Create the Cron Entry</h4>
+<p>```bash</p>
+<p>cat &gt; /etc/cron.d/rpm-autopull &lt;&lt; &#x27;EOF&#x27;</p>
+<p>*/15 * * * * root GIT_SSH_COMMAND=&quot;ssh -i /root/.ssh/rpm_capital_deploy&quot; /usr/local/bin/rpm-autopull.sh 2&gt;&amp;1 | logger -t rpm-autopull</p>
+<p>EOF</p>
+<p>```</p>
+<h4>Checkpoint 14</h4>
+<p>```bash</p>
+<h2>Test run</h2>
+<p>/usr/local/bin/rpm-autopull.sh</p>
+<p>journalctl -t rpm-autopull -n 10 --no-pager</p>
+<p>```</p>
+<p>```</p>
+<p>[ ] Autopull script runs without error</p>
+<p>[ ] journalctl shows autopull log entry</p>
+<p>[ ] cron entry exists at /etc/cron.d/rpm-autopull</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 15 — Latticefire Timers</h3>
+<p>&gt; **WARNING:** Start timers only after the graph is seeded (Part 8 complete) and daemons are</p>
+<p>&gt; running (Part 9 complete). Latticefire timers read the graph — running against an empty or</p>
+<p>&gt; partially seeded graph produces bad propagation results.</p>
+<p>&gt; Per Latticefire operations discipline: force-fire each timer manually the same day it&#x27;s</p>
+<p>&gt; installed. Do not wait overnight to discover a config bug. See `07-latticefire-application.md`</p>
+<p>&gt; for full design detail.</p>
+<p>```bash</p>
+<h2>Manual fire — watch each one complete cleanly before enabling the timer</h2>
+<p>for unit in rpm-latticefire-propagator rpm-latticefire-memory-health rpm-latticefire-benchmark rpm-orphan-rate-sentinel; do</p>
+<p>echo &quot;--- Firing $unit ---&quot;</p>
+<p>systemctl start ${unit}.service</p>
+<p>sleep 5</p>
+<p>journalctl -u ${unit}.service -n 15 --no-pager</p>
+<p>echo &quot;&quot;</p>
+<p>done</p>
+<h2>Enable timers</h2>
+<p>systemctl start rpm-latticefire-propagator.timer</p>
+<p>systemctl start rpm-latticefire-memory-health.timer</p>
+<p>systemctl start rpm-latticefire-benchmark.timer</p>
+<p>systemctl start rpm-orphan-rate-sentinel.timer</p>
+<p>```</p>
+<h4>Checkpoint 15</h4>
+<p>```</p>
+<p>[ ] systemctl list-timers | grep rpm-  → 5 timers listed with next trigger times</p>
+<p>[ ] journalctl -u rpm-latticefire-propagator -n 20  → completed without error</p>
+<p>[ ] No &quot;KeyError&quot;, &quot;NoneType&quot;, or import errors in any Latticefire unit log</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 16 — Final System Verification</h3>
+<p>Full end-to-end verification. All items must pass before the installation is declared complete.</p>
+<h4>16.1 Infrastructure Health</h4>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>export NATS_SERVER=&quot;nats://${NATS_AUTH_TOKEN}@localhost:4222&quot;</p>
+<p>nats server ping --server &quot;$NATS_SERVER&quot;</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;RETURN 1;&quot;</p>
+<p>curl -s http://localhost:11434/api/tags | jq &#x27;.models[].name&#x27;</p>
+<p>systemctl status nats-server neo4j ollama --no-pager -l</p>
+<p>```</p>
+<h4>16.2 Daemon Health</h4>
+<p>```bash</p>
+<p>for d in las sensei delphi watcher sandman atlas avery sterling martin; do</p>
+<p>STATUS=$(systemctl is-active rpm-${d})</p>
+<p>[[ &quot;$STATUS&quot; == &quot;active&quot; ]] &amp;&amp; echo &quot;✓ $d&quot; || echo &quot;✗ $d: $STATUS&quot;</p>
+<p>done</p>
+<h2>Heartbeats — all 9 should appear within 90s</h2>
+<p>timeout 90 nats sub &#x27;daemon.*.heartbeat&#x27; --server &quot;$NATS_SERVER&quot;</p>
+<p>```</p>
+<h4>16.3 MIG Round-Trip Test</h4>
+<p>From a Claude Code session on the VPS:</p>
+<p>```python</p>
+<p>mig_health()       # → { neo4j: true, node_count &gt; 100000 }</p>
+<p>mig_search(&quot;fund structure Delaware&quot;)  # → BM25 results</p>
+<p>mig_recall(importance_min=7, limit=5)  # → memories from seed</p>
+<p>mesh_status()      # → all 9 daemons online</p>
+<p>mig_remember(&quot;RPM install final verification passed&quot;, category=&quot;observation&quot;, importance=5)</p>
+<p>mig_search(&quot;install final verification&quot;)  # → finds just-written memory</p>
+<p>```</p>
+<h4>16.4 Backup and Timer Health</h4>
+<p>```bash</p>
+<p>restic snapshots</p>
+<p>ls -la /mnt/archive/backups/last_success</p>
+<p>systemctl list-timers | grep rpm-</p>
+<p>```</p>
+<h4>16.5 Telegram Functional Test</h4>
+<p style='padding-left:1rem'>&bull; Send `/ping` to the bot → daemon status table</p>
+<p style='padding-left:1rem'>&bull; Send a plain question about fund structure → Claude response using MIG context</p>
+<h4>Exit Criteria Checklist</h4>
+<p>```</p>
+<p>[ ] All 9 daemons active and heartbeating</p>
+<p>[ ] NATS: 7 streams + 5 KV buckets confirmed</p>
+<p>[ ] Neo4j: &gt;100,000 nodes, all indexes ONLINE</p>
+<p>[ ] Backup: snapshot exists + last_success file present</p>
+<p>[ ] Telegram: /ping response received</p>
+<p>[ ] MIG write + search round-trip: passes</p>
+<p>[ ] 5 Latticefire timers listed in systemctl list-timers</p>
+<p>```</p>
+<p>---</p>
+<h3>Part 17 — Operational Procedures</h3>
+<p>Day-2 operations. These are not installation steps — they are procedures for managing the</p>
+<p>running system.</p>
+<h4>17.1 Daemon Management</h4>
+<p><strong>Start all daemons (ordered):</strong></p>
+<p>```bash</p>
+<h2>P0 first</h2>
+<p>systemctl start rpm-las rpm-sensei rpm-delphi rpm-watcher</p>
+<p>sleep 10</p>
+<h2>P1</h2>
+<p>systemctl start rpm-sandman rpm-atlas rpm-avery rpm-sterling rpm-martin</p>
+<h2>Bot</h2>
+<p>systemctl start rpm-telegram</p>
+<p>```</p>
+<p><strong>Stop all daemons:</strong></p>
+<p>```bash</p>
+<p>systemctl stop &#x27;rpm-las.service&#x27; &#x27;rpm-sensei.service&#x27; &#x27;rpm-delphi.service&#x27; \</p>
+<p>&#x27;rpm-watcher.service&#x27; &#x27;rpm-sandman.service&#x27; &#x27;rpm-atlas.service&#x27; \</p>
+<p>&#x27;rpm-avery.service&#x27; &#x27;rpm-sterling.service&#x27; &#x27;rpm-martin.service&#x27; \</p>
+<p>&#x27;rpm-telegram.service&#x27;</p>
+<p>```</p>
+<p><strong>Restart a single daemon:</strong></p>
+<p>```bash</p>
+<p>systemctl restart rpm-delphi</p>
+<p>```</p>
+<p><strong>View live logs:</strong></p>
+<p>```bash</p>
+<p>journalctl -u rpm-delphi -f</p>
+<p>journalctl -u &#x27;rpm-*&#x27; -f          # all daemons</p>
+<p>journalctl -u &#x27;rpm-*&#x27; -p err -f   # errors only</p>
+<p>```</p>
+<p><strong>Clear a zombie identity claim:</strong></p>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>export NATS_SERVER=&quot;nats://${NATS_AUTH_TOKEN}@localhost:4222&quot;</p>
+<p>nats kv del DAEMON_CLAIMS delphi --server &quot;$NATS_SERVER&quot;</p>
+<p>```</p>
+<h4>17.2 Common Failure Modes and Fixes</h4>
+<p>| Error / Symptom | Cause | Fix |</p>
+<p>|---|---|---|</p>
+<p>| `nats: connection refused` | NATS not running | `systemctl restart nats-server &amp;&amp; sleep 5 &amp;&amp; systemctl restart rpm-las` |</p>
+<p>| `ServiceUnavailable: Connection refused` (Neo4j) | Neo4j not ready | `systemctl restart neo4j &amp;&amp; sleep 30 &amp;&amp; systemctl restart rpm-las rpm-delphi` |</p>
+<p>| `BLOCKED: &lt;daemon&gt; not in daemons.allow` | Missing from allowlist | Add daemon name to `/etc/rpm-capital/daemons.allow`, restart |</p>
+<p>| `ModuleNotFoundError: No module named &#x27;daemons&#x27;` | PYTHONPATH not set | Verify `PYTHONPATH=/opt/rpm-capital` in `/etc/rpm-capital/env` |</p>
+<p>| `ModuleNotFoundError: No module named &#x27;structlog&#x27;` | Wrong install method | `source venv/bin/activate &amp;&amp; pip install -e .` |</p>
+<p>| `TypeError` on daemon import | Python 3.10 not 3.11 | Install Python 3.11 via deadsnakes PPA, recreate venv |</p>
+<p>| Bot sends no response | Claude CLI not authenticated | SSH to VPS, `claude auth login` |</p>
+<p>| Bot sends &quot;claude exited 1&quot; | Claude OAuth token expired | SSH to VPS, `claude auth login` |</p>
+<p>| Telegram alert storm | Cooldown bypass | Check all `_send_telegram` calls use `_is_cooled_down()` |</p>
+<p>| `backup marker missing` alert from Sandman | Backup script never ran | `bash /opt/rpm-capital/scripts/backup.sh` |</p>
+<p>| JetStream publishes silently dropping | Streams not created | Run all `nats stream add` commands from Part 7 |</p>
+<p>| Daemon claims `no responders available for request` | Target daemon not up yet | Check if target daemon is active, start it, wait 10s |</p>
+<h4>17.3 Deploy a Code Update (Manual)</h4>
+<p>```bash</p>
+<p>cd /opt/rpm-capital</p>
+<p>bash scripts/deploy.sh</p>
+<p>```</p>
+<p>This script: `git pull --rebase`, `pip install -e .`, `systemctl daemon-reload`,</p>
+<p>restarts all 9 daemons + telegram with 2s delay between each.</p>
+<h4>17.4 Rollback to a Prior Commit</h4>
+<p>```bash</p>
+<p>cd /opt/rpm-capital</p>
+<p>git log --oneline -5</p>
+<h2>Roll back to a specific commit</h2>
+<p>git checkout &lt;SHA&gt; -- .</p>
+<p>source venv/bin/activate &amp;&amp; pip install -e . --quiet</p>
+<p>bash scripts/deploy.sh</p>
+<p>```</p>
+<h4>17.5 Neo4j Operations</h4>
+<p>**Safe stop sequence** (always stop LAS first to drain write queue):</p>
+<p>```bash</p>
+<p>systemctl stop rpm-las</p>
+<p>sleep 10</p>
+<p>systemctl stop neo4j</p>
+<p>```</p>
+<p><strong>Safe start sequence:</strong></p>
+<p>```bash</p>
+<p>systemctl start neo4j</p>
+<p>sleep 30</p>
+<p>systemctl start rpm-las rpm-delphi</p>
+<p>```</p>
+<p><strong>Create a database dump:</strong></p>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<p>systemctl stop rpm-las</p>
+<p>sleep 10</p>
+<p>neo4j-admin database dump neo4j --to-path=/mnt/archive/dumps/</p>
+<p>systemctl start rpm-las</p>
+<p>```</p>
+<p><strong>Run a Cypher migration file:</strong></p>
+<p>```bash</p>
+<p>source /etc/rpm-capital/env</p>
+<h2>Always capture counts before and after</h2>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;MATCH (n) RETURN count(n);&quot;</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; -f /path/to/migration.cypher</p>
+<p>cypher-shell -u neo4j -p &quot;$NEO4J_PASSWORD&quot; &quot;MATCH (n) RETURN count(n);&quot;</p>
+<p>```</p>
+<h4>17.6 Restore from Backup (Full Node Recovery)</h4>
+<p>RTO target: &lt; 2 hours from node loss.</p>
+<p>```bash</p>
+<h2>1. Provision a new VPS and complete Parts 0–6 of this runbook</h2>
+<h2>2. Restore /etc/rpm-capital/env from backup (contains all secrets)</h2>
+<p>restic restore latest --target / --include /etc/rpm-capital --repo /mnt/archive/backups/rpm-capital</p>
+<h2>3. Restore Neo4j dump</h2>
+<p>restic restore latest --target /mnt/archive/dumps --include /mnt/archive/dumps --repo /mnt/archive/backups/rpm-capital</p>
+<p>systemctl stop neo4j</p>
+<p>neo4j-admin database load neo4j --from-path=/mnt/archive/dumps/ --overwrite-destination=true</p>
+<p>systemctl start neo4j &amp;&amp; sleep 30</p>
+<h2>4. Restore /opt/rpm-capital (config, scripts — not venv)</h2>
+<p>restic restore latest --target / --include /opt/rpm-capital --exclude /opt/rpm-capital/venv</p>
+<h2>5. Recreate venv (venv is not backed up — must be rebuilt)</h2>
+<p>cd /opt/rpm-capital &amp;&amp; python3.11 -m venv venv &amp;&amp; source venv/bin/activate &amp;&amp; pip install -e .</p>
+<h2>6. Start all daemons (Part 9 procedure)</h2>
+<p>```</p>
+<h4>17.7 Watcher Alert Response</h4>
+<p>Watcher logs alerts to journald (no Telegram). To view:</p>
+<p>```bash</p>
+<p>journalctl -t rpm-watcher -f | grep WATCHER</p>
+<p>```</p>
+<p>Response times:</p>
+<p style='padding-left:1rem'>&bull; **P0 daemon down** (las, sensei, delphi): investigate and restore within 15 minutes</p>
+<p style='padding-left:1rem'>&bull; **P1 daemon down**: investigate and restore within 1 hour</p>
+<p style='padding-left:1rem'>&bull; **Disk &gt; 85%**: clean up `/mnt/archive/` logs/dumps within 4 hours</p>
+<p>---</p>
+<h3>Part 18 — Quick Reference Tables</h3>
+<h4>18.1 All Environment Variables</h4>
+<p>| Variable | Value | Notes |</p>
+<p>|---|---|---|</p>
+<p>| `NATS_URL` | `nats://localhost:4222` | Localhost only — never Tailscale IP |</p>
+<p>| `NATS_AUTH_TOKEN` | `&lt;generated&gt;` | 32-char hex, generated at pre-flight |</p>
+<p>| `NEO4J_URI` | `bolt://localhost:7687` | Port 7687 — NOT 7750 |</p>
+<p>| `NEO4J_USER` | `neo4j` | Default Neo4j user |</p>
+<p>| `NEO4J_PASSWORD` | `&lt;generated&gt;` | 16-char hex, generated at pre-flight |</p>
+<p>| `OLLAMA_URL` | `http://localhost:11434` | Ollama default port |</p>
+<p>| `EMBED_MODEL` | `nomic-embed-text` | 768-dim embedding model |</p>
+<p>| `TELEGRAM_BOT_TOKEN` | `&lt;from BotFather&gt;` | Set in Part 10 |</p>
+<p>| `TELEGRAM_CHAT_ID` | `&lt;from getUpdates&gt;` | Set in Part 10 |</p>
+<p>| `WORKSPACE_ID` | `rpm-capital` | MIG workspace scope |</p>
+<p>| `LOG_LEVEL` | `INFO` | Use `DEBUG` for troubleshooting |</p>
+<p>| `CLAUDE_HOME` | `/root/.claude` | Claude CLI OAuth credentials |</p>
+<p>| `GIT_SSH_COMMAND` | `ssh -i /root/.ssh/rpm_capital_deploy` | Used by git pull in autopull |</p>
+<p>| `PYTHONPATH` | `/opt/rpm-capital` | Required for daemon module resolution |</p>
+<h4>18.2 All Service Names</h4>
+<p>| Service Name | Type | Priority | Description |</p>
+<p>|---|---|---|---|</p>
+<p>| `rpm-las.service` | Daemon | P0 | LAS — sole Neo4j write path |</p>
+<p>| `rpm-sensei.service` | Daemon | P0 | Coherence gate + session orchestration |</p>
+<p>| `rpm-delphi.service` | Daemon | P0 | Retrieval + Telegram inference |</p>
+<p>| `rpm-watcher.service` | Daemon | P0 | Health monitor |</p>
+<p>| `rpm-sandman.service` | Daemon | P1 | COO / ops |</p>
+<p>| `rpm-atlas.service` | Daemon | P1 | CIO / intelligence |</p>
+<p>| `rpm-avery.service` | Daemon | P1 | Deal director |</p>
+<p>| `rpm-sterling.service` | Daemon | P1 | Finance officer |</p>
+<p>| `rpm-martin.service` | Daemon | P1 | Legal counsel |</p>
+<p>| `rpm-telegram.service` | Daemon | P1 | Telegram bot (long-poll) |</p>
+<p>| `rpm-backup.timer` | Timer | — | Daily at 03:00 UTC |</p>
+<p>| `rpm-latticefire-propagator.timer` | Timer | — | Nightly |</p>
+<p>| `rpm-latticefire-memory-health.timer` | Timer | — | Weekly |</p>
+<p>| `rpm-latticefire-benchmark.timer` | Timer | — | Weekly |</p>
+<p>| `rpm-orphan-rate-sentinel.timer` | Timer | — | Daily at 04:30 UTC |</p>
+<p>| `nats-server.service` | Infra | — | NATS message bus |</p>
+<p>| `neo4j.service` | Infra | — | Graph database |</p>
+<p>| `ollama.service` | Infra | — | Ollama embedding server |</p>
+<h4>18.3 Port Map</h4>
+<p>| Port | Protocol | Service | Binds On | External Access |</p>
+<p>|---|---|---|---|---|</p>
+<p>| 22 | TCP (SSH) | sshd | All interfaces (locked to tailscale0 post-hardening) | Tailscale only |</p>
+<p>| 4222 | TCP | NATS | localhost | No |</p>
+<p>| 7687 | Bolt | Neo4j | localhost | No |</p>
+<p>| 11434 | HTTP | Ollama | localhost | No |</p>
+<p>| 443 | HTTPS | Telegram (outbound) | — | Outbound only |</p>
+<h4>18.4 Directory Map</h4>
+<p>| Path | Contents | Notes |</p>
+<p>|---|---|---|</p>
+<p>| `/opt/rpm-capital/` | Git repo root | Clone of `covaultxyz/rpm-capital` |</p>
+<p>| `/opt/rpm-capital/venv/` | Python virtualenv | NOT in git; must be created locally |</p>
+<p>| `/opt/rpm-capital/daemons/` | Daemon Python package | `__init__.py` must exist |</p>
+<p>| `/opt/rpm-capital/brain/` | Brain modules | validation_core, signal_quality, etc. |</p>
+<p>| `/opt/rpm-capital/scripts/` | Operational scripts | deploy.sh, daemon-wrapper.sh, etc. |</p>
+<p>| `/opt/rpm-capital/config/` | YAML configs + daemon contexts | daemon-contexts/ is read at runtime |</p>
+<p>| `/etc/rpm-capital/env` | All 14 env variables | `chmod 600 root:root` |</p>
+<p>| `/etc/rpm-capital/daemons.allow` | Daemon allowlist (9 names) | daemon-wrapper.sh checks this |</p>
+<p>| `/etc/systemd/system/rpm-*.service` | 10 unit files | Named individually, not template |</p>
+<p>| `/mnt/archive/backups/` | Restic backup repo | On secondary disk or directory |</p>
+<p>| `/mnt/archive/dumps/` | Neo4j dumps | For backup + restore |</p>
+<p>| `/root/.ssh/rpm_capital_deploy` | GitHub deploy key | ed25519, read-only access to repo |</p>
+<p>| `/usr/local/bin/rpm-autopull.sh` | Autopull script | Detects new commits, restarts on change |</p>
+<p>| `/etc/cron.d/rpm-autopull` | Autopull cron trigger | Every 15 minutes |</p>
+<p>| `/root/.claude/` | Claude CLI OAuth credentials | Set `CLAUDE_HOME=/root/.claude` |</p>
+<h4>18.5 Common Error Lookup</h4>
+<p>| Error / Symptom | Cause | Fix |</p>
+<p>|---|---|---|</p>
+<p>| `nats: no servers available` | NATS not running | `systemctl restart nats-server` |</p>
+<p>| `nats: connection refused` | NATS down or wrong port | Verify NATS_URL is `nats://localhost:4222` |</p>
+<p>| `nats: no responders available for request` | Target daemon not subscribing | Start target daemon, wait 10s |</p>
+<p>| `ServiceUnavailable: Connection refused` (Neo4j) | Neo4j not ready | `systemctl restart neo4j &amp;&amp; sleep 30` |</p>
+<p>| `BLOCKED: &lt;name&gt; not in daemons.allow` | Daemon not in allowlist | Add name to `/etc/rpm-capital/daemons.allow` |</p>
+<p>| `ModuleNotFoundError: No module named &#x27;daemons&#x27;` | Missing PYTHONPATH | Verify `PYTHONPATH=/opt/rpm-capital` in env |</p>
+<p>| `ModuleNotFoundError: No module named &#x27;structlog&#x27;` | Installed from requirements.txt | `pip install -e .` in venv |</p>
+<p>| `TypeError: X | Y` on import | Python 3.10 union syntax | Install Python 3.11 from deadsnakes |</p>
+<p>| `Permission denied (publickey)` on git | Deploy key not in GitHub | Add key at covaultxyz/rpm-capital &gt; Settings &gt; Deploy keys |</p>
+<p>| Bot silent / no response | Claude CLI not authed | SSH to VPS, `claude auth login` |</p>
+<p>| Bot says &quot;claude exited 1: not authenticated&quot; | OAuth token expired | SSH to VPS, `claude auth login` |</p>
+<p>| Sandman fires backup-overdue alert | Backup never ran | `bash /opt/rpm-capital/scripts/backup.sh` |</p>
+<p>| JetStream publishes silently lost | Streams not created | Run all `nats stream add` commands from Part 7 |</p>
+<p>| Watcher crashes on startup | `/mnt/archive` not mounted | Mount archive disk, `systemctl restart rpm-watcher` |</p>
+<p>| Daemons show &quot;BLOCKED&quot; then inactive | Missing `daemons.allow` file | Create `/etc/rpm-capital/daemons.allow` with 9 names |</p>
+<p>| All daemons fail within 5s of start | PYTHONPATH not in env | Add `PYTHONPATH=/opt/rpm-capital` to `/etc/rpm-capital/env` |</p>
+<p>---</p>
+<p>*End of runbook. For Latticefire design details, see `07-latticefire-application.md`.</p>
+<p>For architectural overview, see `terminal-blueprint.md`.*</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-05-01 21:51</div>
+</body></html>
