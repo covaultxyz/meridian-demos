@@ -518,6 +518,48 @@ body {
 .session-item:last-child { border-bottom: none; }
 .session-daemon { font-weight: 600; color: var(--purple); }
 
+/* ── Trade-off Triangle ── */
+.tradeoff-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.tradeoff-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  padding: 0.25rem 0;
+}
+.tradeoff-daemon {
+  min-width: 70px;
+  color: var(--purple);
+  font-weight: 600;
+  font-size: 0.68rem;
+  text-transform: lowercase;
+}
+.tradeoff-bars {
+  flex: 1;
+  display: flex;
+  gap: 2px;
+  height: 10px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--surface2);
+}
+.tradeoff-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  min-width: 2px;
+}
+.tradeoff-labels {
+  min-width: 110px;
+  color: var(--dim);
+  font-size: 0.6rem;
+  text-align: right;
+}
+
 /* ── Metric Bars ── */
 .metric-row {
   display: flex;
@@ -1276,6 +1318,34 @@ function renderOperations(o) {
     html += '<div class="kpi"><div class="label">Current Phase</div><div class="value" style="color:var(--accent)">Phase ' + o.phase.number + '</div><div class="sub">' + escHtml(o.phase.status) + '</div></div>';
     html += '<div class="kpi"><div class="label">Focus</div><div class="value" style="color:var(--text);font-size:0.85rem;line-height:1.4">' + escHtml(o.phase.focus) + '</div></div>';
     html += '</div>';
+  }
+
+  // Trade-off triangle (cost · speed · performance per daemon)
+  if (o.tradeoff_triangle && o.tradeoff_triangle.daemons && o.tradeoff_triangle.daemons.length > 0) {
+    html += '<div class="card"><div class="card-header">Trade-Off Triangle <span style="font-weight:400;color:var(--dim);font-size:0.65rem">cost · speed · performance</span></div><div class="card-body">';
+    html += '<div class="tradeoff-grid">';
+    o.tradeoff_triangle.daemons.forEach(function(d) {
+      if (!d.online) return;
+      var costW = Math.round(d.cost * 100);
+      var speedW = Math.round(d.speed * 100);
+      var perfW = Math.round(d.performance * 100);
+      var barColor = (d.performance > 0.6 && d.speed > 0.4) ? 'var(--green)' :
+                     (d.performance > 0.3 || d.cost > 0.5) ? 'var(--yellow)' : 'var(--orange)';
+      html += '<div class="tradeoff-row">';
+      html += '<span class="tradeoff-daemon">' + escHtml(d.name) + '</span>';
+      html += '<span class="tradeoff-bars">';
+      html += '<span class="tradeoff-bar" style="width:' + costW + '%;background:var(--cyan);opacity:0.6" title="cost: ' + escHtml(d.cost_label) + '"></span>';
+      html += '<span class="tradeoff-bar" style="width:' + speedW + '%;background:var(--accent);opacity:0.6" title="speed: ' + escHtml(d.speed_label) + '"></span>';
+      html += '<span class="tradeoff-bar" style="width:' + perfW + '%;background:' + barColor + '" title="perf: ' + escHtml(d.perf_label) + '"></span>';
+      html += '</span>';
+      html += '<span class="tradeoff-labels">' + escHtml(d.cost_label) + ' · ' + escHtml(d.speed_label) + ' · ' + escHtml(d.perf_label) + '</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    if (o.tradeoff_triangle.stale) {
+      html += '<div style="color:var(--dim);font-size:0.6rem;margin-top:0.5rem">metrics estimated from session data — wire cost/speed sources for live readings</div>';
+    }
+    html += '</div></div>';
   }
 
   // Server nodes
