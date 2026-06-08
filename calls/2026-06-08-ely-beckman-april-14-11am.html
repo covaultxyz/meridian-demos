@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ely Beckman April 14 11Am — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Ely Beckman April 14 11Am</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Team discussed fleet architecture, daemon collaboration, Amazon terminal buildout, and a potential 50-50 partnership deal with an Amazon seller while worrying about cash flow and Claude model degradation.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Build dedicated fit-for-purpose terminals (security, finance, legal) instead of loading everything on all VPSs.</li><li>Pursue joint venture partnership model (50-50) rather than service agreements for the Amazon deal.</li><li>Create a separate MIG for Amazon-specific knowledge to avoid overwhelming the master MIG.</li><li>Strip APIs from the Amazon terminal deployment for now but keep the code for knowledge-as-a-service later.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Researcher will double-check whether MIGs and Nats are connected inside Claude CLI and report back.</li><li>Team will get all terminals loaded today by picking which machine goes where.</li><li>Will loop back to enable daemon collaboration in a single session using instructions in Notion.</li><li>Will test the &#x27;active mode&#x27; switch for daemons to make them proactive instead of reactive.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Claude degraded its model benchmark score by ~10 points (from 86% to 70s) in preparation for releasing Claude 4.7.</li><li>Claude changed the read-to-execution ratio to favor execution, burning more tokens intentionally.</li><li>Racknerd sold 140 servers in one go, wiping out New York inventory — suggests high demand for their hardware.</li><li>A new framework called &#x27;Pi&#x27; with four properties (rewrite, execute, etc.) underpins Open Claw harnesses.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Researcher&#x27;, &#x27;what&#x27;: &#x27;Verify if MIGs and Nats are actually connected inside Claude CLI and report findings.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Assign each machine a terminal type (security, finance, legal, Amazon) and deploy them today.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Test daemon collaboration by registering all daemons in a single session per Notion SOP.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &quot;Test the newly updated &#x27;active mode&#x27; switch to make daemons proactive.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Speaker&#x27;, &#x27;what&#x27;: &#x27;Send the fleet CSV with all IPs and SSH info to the other team member.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>glassy april 14 11am</h2>
+<p>**Source**: `glassy april 14 11am.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:59</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>I just hit my contact window on three accounts so I have to wait until one</p>
+<p>o&#x27;clock</p>
+<p>no what do you need me a where did you put it is it in here</p>
+<p>this it um so how you doing I&#x27;m good I&#x27;m good I&#x27;m good as far as not having a lot</p>
+<p>of calls so I&#x27;ve just been up early and just national way so here&#x27;s an observation for you</p>
+<p>okay according to my research last night the MIGs and knots were never connected inside a Claude CLI</p>
+<p>that&#x27;s not true is that possible it&#x27;s not true because Nats is getting worked on all the time</p>
+<p>from Claude CLI at least from my Claude CLI no no it&#x27;s getting worked on but it&#x27;s not connected</p>
+<p>where it&#x27;s reading it in the boot file it&#x27;s not reading it in the boot file but so which means what</p>
+<p>which means that it&#x27;s not using knots in its memory inside a Claude CLI</p>
+<p>where is it getting all its context from from github I don&#x27;t I mean I&#x27;ll double check but I would doubt</p>
+<p>I would doubt that just because I&#x27;m getting answers too fast for it to it takes too long to read github</p>
+<p>well yeah it&#x27;s possible go do your research and get back to me but I spent most of my night last</p>
+<p>night trying to figure this out and it it turned out to be some sort of issue with the SSL</p>
+<p>on prime or something I don&#x27;t I don&#x27;t know dude it was just stupid dumb things that</p>
+<p>just make me go loopy loopy um but I did some more research there&#x27;s another thing that came out</p>
+<p>that I believe open claw was built on called pi have you heard anything about that no so basically</p>
+<p>it has four four properties rewrite execute and something else and that&#x27;s what they build all</p>
+<p>these harnesses on so that might be something we should look into I spoke to Alan for about an</p>
+<p>hour yesterday he gave me like 50 files of all of his security information and research</p>
+<p>okay we should make a security terminal we should start thinking like that next expansion is that we&#x27;re</p>
+<p>building a fleet we have the we have like central command we have some great blueprints we have some</p>
+<p>great dry docks from there we can start building out the vessels of our fleet and we should have a</p>
+<p>dedicated fit for purpose especially because we have so many machines we should do dedicated fit for</p>
+<p>purpose terminals on maybe not each one but like maybe three or four different ones and one of them</p>
+<p>should be security and that&#x27;s the only one we load all that all the security scanners and all that</p>
+<p>stuff on and we don&#x27;t try to load security on every node especially not the VPSs because they&#x27;re already</p>
+<p>over well like well here&#x27;s the issue is if you&#x27;re not securing a whole network then all the other</p>
+<p>writing surfaces are vulnerable so it&#x27;s not about it&#x27;s just a statement that&#x27;s not like a real thing</p>
+<p>like the reality is we have work to do and if we load too much more stuff on the VPSs I&#x27;m not talking about</p>
+<p>the VPSs I&#x27;m talking about all the computers that we have so I think what we need to discover is what</p>
+<p>room does it take what benefits does it give us I just went through this because it was just about</p>
+<p>to try to install it on all the VPSs I was like definitely don&#x27;t do that and then it&#x27;s like oh yeah</p>
+<p>I don&#x27;t need to do that like this is just dumb you guys are already so ready to just mess our own stuff</p>
+<p>up think it like it&#x27;s fastly burning tokens to do it another thing I found out last night that</p>
+<p>Claude degraded their open their their models because they&#x27;re releasing Claude 4.7 soon so they</p>
+<p>benchmark at 80 something 86 percent and now they&#x27;re in the 70s they moved on the benchmark list down 10 points</p>
+<p>10 10 10 leaderboard things and then they&#x27;re gonna come back up to make it look like oh look how much</p>
+<p>better our new model is these guys are just cheesy but whatever I&#x27;m just I noticed I would say</p>
+<p>um fuck them a B um I saw a similar thing but it wasn&#x27;t like the way they messed up their own model was</p>
+<p>that they changed the the ratio of read and compute and they were actually cutting it so extreme</p>
+<p>they were cutting it so extreme that it wasn&#x27;t even trying to read context it would just go to fix</p>
+<p>things and obviously you&#x27;re not gonna be able to do good work if you fix things without reading the context</p>
+<p>because it used to be a decent balance of how much it would read to absorb versus how much it would go to execute</p>
+<p>and they chopped it to be so much leaning towards execution that it would just burn people&#x27;s extra tokens and everyone saw a loss in productivity</p>
+<p>but that might be by design</p>
+<p>it is by design I&#x27;m basically coinciding what you&#x27;re saying and what I have read and what I&#x27;m also experiencing</p>
+<p>I mean damn you guys are just trying to make your own thing dumber like</p>
+<p>or whatever</p>
+<p>no because they&#x27;re trying to make it more money</p>
+<p>just make me mash this button even more times make me have even more characters</p>
+<p>so it</p>
+<p>it reminds me of the toothpaste company trying to make more money selling toothpaste and the guy came in they paid him a million dollars and he said just make the hole bigger</p>
+<p>when at the end of the tube so they end up using more toothpaste faster and have to buy the next tube sooner</p>
+<p>that was their solution and that&#x27;s what I feel like they&#x27;re doing here</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>it&#x27;s annoying but whatever</p>
+<p>there&#x27;s only so many buttons I can smash so I prefer to have higher performance things obviously but hey</p>
+<p>we gotta work with the shovel we have</p>
+<p>so</p>
+<p>shit&#x27;s annoying though I can&#x27;t wait till we just have MIG doing more of the work</p>
+<p>I want to load code base I want to make a code building MIG that can write as good or better code</p>
+<p>that&#x27;s a that&#x27;s my challenge to our R&amp;D department</p>
+<p>so there&#x27;s two ways of looking at it and I thought about this a lot</p>
+<p>the whole situation we found with this mythos and it was literally doing all this stuff my brain was basically saying they had to have fed it all of the most</p>
+<p>like craziest</p>
+<p>red team routine</p>
+<p>no but they gave it access to all of the understandings of how all the code works and how to penetrate and pen testing and gave it all that knowledge</p>
+<p>for it to be able to understand how to do things so it could go and do things if that makes sense</p>
+<p>hmm</p>
+<p>so</p>
+<p>finding all those resources but then you&#x27;re potentially putting yourself in the same situation where now it&#x27;s so smart</p>
+<p>that it knows how to maneuver and could out maneuver you</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>who&#x27;s</p>
+<p>wait who&#x27;s out maneuvering us?</p>
+<p>the AI itself</p>
+<p>yeah that&#x27;s always gonna happen</p>
+<p>it&#x27;s just there</p>
+<p>yeah well not always at some point it&#x27;s gonna happen</p>
+<p>yeah</p>
+<p>so</p>
+<p>so</p>
+<p>I was like oh we won this contract great</p>
+<p>finally we&#x27;re gonna have a little money to fucking break up great</p>
+<p>what a relief</p>
+<p>and then I&#x27;m talking to Michael yesterday and he&#x27;s like yeah I got the bill in from the accountant it&#x27;s gonna be like seven grand to get our shit set up</p>
+<p>like you&#x27;re kidding me bro</p>
+<p>what</p>
+<p>yeah</p>
+<p>is that how much you said paid to get your LLC set up?</p>
+<p>your Puerto Rico LLC and all the various filings?</p>
+<p>no it&#x27;s to set up the Act 60 stuff</p>
+<p>seems like exorbitant</p>
+<p>no there&#x27;s there&#x27;s there&#x27;s different things that you gotta pay to this Act 60 to get registered and that&#x27;s not going to the accountant it&#x27;s going to this Puerto Rico</p>
+<p>this is Puerto Rico</p>
+<p>I didn&#x27;t go through an accountant</p>
+<p>the accountant was like 1500 plus a 3000 dollar retainer so</p>
+<p>well I&#x27;m just saying that I did it all myself but I did it for investment not for export services</p>
+<p>so I don&#x27;t know what the situation is with that</p>
+<p>but it&#x27;s it&#x27;s a lot</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>see if a train stops or if it broke down or if it needs support or like so I did deep research on how an actual control center works and they have one giant like 20 LED monitors on the wall and then they have different stations and each individual human has their own same setup on their desk with like 20 monitors and there&#x27;s like in a big U and they&#x27;re just looking at all the different things that they&#x27;re doing.</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>mm-hmm</p>
+<p>send it on the green line.</p>
+<p>Oh, you gotta run some finance?</p>
+<p>Great, send it on the fucking whatever, black line.</p>
+<p>The blue shirt line.</p>
+<p>Yeah, you gotta play on the blue blazer line.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>Uh-huh.</p>
+<p>I noticed you can add icons now on flawed.</p>
+<p>I restarted.</p>
+<p>Which was a pain in the ass.</p>
+<p>It is a pain in the ass to reset up everything.</p>
+<p>But then once it&#x27;s up and running, then it moves.</p>
+<p>But yeah, it was starting to just glitch out all crazy.</p>
+<p>It looks like the matrix symbols, not like letters anymore.</p>
+<p>Oh, when that happens, what I do is I add another terminal window to the stack, and it refreshes them, and then I can continue to work.</p>
+<p>If you&#x27;re in cursor.</p>
+<p>Yeah.</p>
+<p>If it does it in anti-gravity.</p>
+<p>Yeah, I&#x27;m in cursor, yeah.</p>
+<p>It doesn&#x27;t work at all.</p>
+<p>I wonder.</p>
+<p>Sometimes I feel like it&#x27;s like if I&#x27;m smashing keys for really long, and then it&#x27;s hot, and then the computer&#x27;s so hot, it&#x27;s like melting down.</p>
+<p>But anyway.</p>
+<p>But anyway.</p>
+<p>Um.</p>
+<p>Yeah, I don&#x27;t know.</p>
+<p>I feel like I woke up with a lot of clarity, but right now my brain is like fucking, I don&#x27;t know.</p>
+<p>But it&#x27;s okay, because when I had clarity, I set all these things up.</p>
+<p>Now I just have to mash these buttons for another hour or two.</p>
+<p>But yeah, getting these things up and running.</p>
+<p>So yeah, I can&#x27;t access Toshiba.</p>
+<p>Let&#x27;s see if I can access.</p>
+<p>Um.</p>
+<p>Alright, let me see if I can access it.</p>
+<p>Yeah, MSI.</p>
+<p>I think Toshiba is.</p>
+<p>Um, I have this.</p>
+<p>I&#x27;m gonna send this to you.</p>
+<p>This is the fleet CSV of all of the information.</p>
+<p>Um.</p>
+<p>Like all the, um, SSH?</p>
+<p>All the IPS&#x27;s?</p>
+<p>Yeah, I made a street, because I can&#x27;t remember anything.</p>
+<p>Okay.</p>
+<p>So I want to install a terminal.</p>
+<p>I want to install a finance terminal.</p>
+<p>I told you my friend David is launching or expanding his.</p>
+<p>It&#x27;s a Wall Street guy.</p>
+<p>He&#x27;s setting up a.</p>
+<p>It&#x27;s kind of like what we&#x27;re doing, but it&#x27;s like the for Wall Street.</p>
+<p>Okay.</p>
+<p>Applied AI services, but it&#x27;s just like you have to dance a certain dance to do it for those</p>
+<p>kind of companies.</p>
+<p>Oh, the bands will make you dance.</p>
+<p>Yeah, exactly.</p>
+<p>Dance for those bands.</p>
+<p>And so I want to install a finance focused terminal for him in particular as a way to essentially</p>
+<p>stake a claim in that other company.</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>It&#x27;s called RPM Capital.</p>
+<p>So if you come across stuff that&#x27;s like, if you&#x27;re like, oh, what is this RPM Capital?</p>
+<p>That&#x27;s what it is.</p>
+<p>It&#x27;s going to be the finance focused ghost terminal.</p>
+<p>Okay.</p>
+<p>No.</p>
+<p>I don&#x27;t know if it&#x27;s like a, I don&#x27;t know if it&#x27;s like a, I don&#x27;t know if it&#x27;s like a</p>
+<p>phone.</p>
+<p>Come on, mesh.</p>
+<p>Well, I didn&#x27;t know that.</p>
+<p>I know.</p>
+<p>I don&#x27;t know why they picked the one without a battery.</p>
+<p>Come on mesh.</p>
+<p>I didn&#x27;t know that.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>I know.</p>
+<p>Maybe I go take a shower.</p>
+<p>And get ready for the day.</p>
+<p>Since I haven&#x27;t done that today.</p>
+<p>I just jump up.</p>
+<p>And I want to fucking get to work.</p>
+<p>You don&#x27;t even think twice.</p>
+<p>I&#x27;m all busted.</p>
+<p>Tired.</p>
+<p>I&#x27;m like.</p>
+<p>All right.</p>
+<p>Make coffee.</p>
+<p>Just get the buttons.</p>
+<p>I&#x27;m like.</p>
+<p>No.</p>
+<p>Just get that laptop open.</p>
+<p>And the rest will unfold.</p>
+<p>Yesterday was such a high powered day.</p>
+<p>I was like.</p>
+<p>So many fucking things.</p>
+<p>Conversations.</p>
+<p>High focus.</p>
+<p>Today is just.</p>
+<p>A little bit more about just getting work done.</p>
+<p>But I&#x27;m high.</p>
+<p>I&#x27;m on high alert.</p>
+<p>Because I feel like we made crazy promises to satisfy in 10 to 15 days.</p>
+<p>Did you.</p>
+<p>But did you read.</p>
+<p>So I&#x27;m just like smashing away as hard as I can.</p>
+<p>So that that becomes a realistic and not stressful delivery.</p>
+<p>Did you read the PDR thing that I made last night for the terminal?</p>
+<p>What is PDR?</p>
+<p>No.</p>
+<p>I wasn&#x27;t sure what that was actually.</p>
+<p>All right.</p>
+<p>Was it a production document ready or something like that for a dev team that you were basically</p>
+<p>using to give to your people?</p>
+<p>Okay.</p>
+<p>Cool.</p>
+<p>But that.</p>
+<p>I built the blueprint.</p>
+<p>But then I&#x27;m like.</p>
+<p>All right.</p>
+<p>Let&#x27;s actually build how we&#x27;re going to build the blueprint.</p>
+<p>And that&#x27;s where the PDR came in.</p>
+<p>And then I ran through like my mega prompts that break it apart.</p>
+<p>And it did everything it could to get it to a level where it&#x27;s like.</p>
+<p>All right.</p>
+<p>This is the highest.</p>
+<p>We can get it without these things that are blocking it.</p>
+<p>And what is it?</p>
+<p>A PDR?</p>
+<p>A blueprint for doing what?</p>
+<p>To building the blueprint.</p>
+<p>For the Amazon?</p>
+<p>Yes.</p>
+<p>For the Amazon terminal in particular?</p>
+<p>Correct.</p>
+<p>No.</p>
+<p>I got it.</p>
+<p>I just went back to my roots based on what I was doing way before all this shit.</p>
+<p>And that&#x27;s how I was doing it.</p>
+<p>PDR stands for.</p>
+<p>Production development.</p>
+<p>I call them developer handoff.</p>
+<p>I call them a developer handoff document set.</p>
+<p>But I think it&#x27;s the same thing.</p>
+<p>Performance development review.</p>
+<p>A structured annual or biannual conversation between a manager and employee to assess performance.</p>
+<p>Set goals and plan professional development.</p>
+<p>I can&#x27;t believe what that is.</p>
+<p>No.</p>
+<p>Let&#x27;s see if it&#x27;s for code.</p>
+<p>It&#x27;s probably one of those things that has like 16 different ways of what that stands for.</p>
+<p>I did a ton of work on MIG.</p>
+<p>I feel like I did so much work that I can&#x27;t even think.</p>
+<p>But you know what?</p>
+<p>Because I started moving back to making sure everything&#x27;s in GitHub, it doesn&#x27;t matter.</p>
+<p>It&#x27;s all going to be in those freaking weekly reports.</p>
+<p>I don&#x27;t know if you even listen to those, but those are solid, solid fucking gold.</p>
+<p>Because a lot of times they&#x27;ll come up with things that actually do need our attention.</p>
+<p>I don&#x27;t even hear them because I don&#x27;t see them because I don&#x27;t go in there.</p>
+<p>Uh.</p>
+<p>It&#x27;s preliminary design review.</p>
+<p>Okay.</p>
+<p>I don&#x27;t know.</p>
+<p>That&#x27;s what I said.</p>
+<p>I&#x27;m just trying to get you on the same page of where I was.</p>
+<p>So if we have to go back to our roots, we have roots to go back to.</p>
+<p>No, I like it.</p>
+<p>I&#x27;m doing the same thing, bro.</p>
+<p>It&#x27;s funny, but it&#x27;s ironic or it&#x27;s just good to see we&#x27;re on the same wavelength.</p>
+<p>Even if we don&#x27;t talk for a few days, we&#x27;re stumbling into the same habits almost at the same time.</p>
+<p>We just call them different things.</p>
+<p>PDR.</p>
+<p>I&#x27;m calling it development handoff document.</p>
+<p>That&#x27;s exactly what I do.</p>
+<p>That&#x27;s I spend.</p>
+<p>I spend tons of iterations doing that and burn so many tokens on other platforms to do all of the hard, heavy, early lifting to then bring it yesterday and spend the whole day revising it on clogged.</p>
+<p>And I&#x27;m following the exact same thing.</p>
+<p>Except you&#x27;re building that you did the blueprint for the Amazon terminal.</p>
+<p>I did the blueprint and SOP for the investor terminal.</p>
+<p>I also did all of the Damon design for the Amazon terminal.</p>
+<p>I might probably one or two iterations from complete on that.</p>
+<p>I&#x27;ll do the same thing for the finance one.</p>
+<p>I think we can get them all loaded today if we just pick what machine is going to go where.</p>
+<p>Maybe tomorrow I&#x27;ll load a legal one.</p>
+<p>So did that map, the thing that I sent you actually help you?</p>
+<p>The one that you just now?</p>
+<p>No, the metro map.</p>
+<p>I mean, the metro map is like a idea that needs to be way further developed, but I think it&#x27;s a great next step.</p>
+<p>We need to like make the geometry of the actual lines and put a little bit more thought process into what each line is.</p>
+<p>But yeah, I think it&#x27;s great.</p>
+<p>I think it&#x27;s great.</p>
+<p>That&#x27;s exactly what we want to see.</p>
+<p>That&#x27;s exactly what I want to see.</p>
+<p>And I think it proved itself not only functional for our internal use, but it proved that it was effective as a sales tool.</p>
+<p>It took this super complex thing and we were just like, oh, we&#x27;re going to build this station.</p>
+<p>Then we&#x27;re going to do this station.</p>
+<p>And when the stations need to get better, we&#x27;ll improve the stations.</p>
+<p>That&#x27;s okay.</p>
+<p>It&#x27;s not going to be all perfect all at once.</p>
+<p>They&#x27;re going to continue to improve.</p>
+<p>But as we get these stations laid out, then you&#x27;re going to get more and more automation tasks were accomplished.</p>
+<p>It gives a whole framework for them to envision.</p>
+<p>The metro is solid, leaning in that direction and evolving.</p>
+<p>The next step, I think, is going to be laying out that page so it actually is more legible and laying out the lines so there&#x27;s some kind of geometry and it&#x27;s not just random.</p>
+<p>And then thinking about like what is the whole district?</p>
+<p>So in my mind, these lines could be a bird&#x27;s eye view, but when you zoom in, you&#x27;re seeing workflows of things that have to happen on that line, which might be buses.</p>
+<p>Like there&#x27;s ways to take buses to go to different stations too because sometimes you just can&#x27;t do what you need and it has to reroute.</p>
+<p>Well, you might not need to go from A to Z.</p>
+<p>You might not need to go A, B, C, D.</p>
+<p>You might just want to go A to D and then you jump on a bus and you can just skip the other stations because you don&#x27;t need to do that processing.</p>
+<p>You just need to go right to D.</p>
+<p>Yeah.</p>
+<p>All the stuff downloaded on Bitler&#x27;s machine, so that&#x27;s pretty impressive.</p>
+<p>We got all that.</p>
+<p>Dude, there&#x27;s two terabytes of new like relevant data on his computer now.</p>
+<p>Relevant to like sales materials or Amazon or?</p>
+<p>I haven&#x27;t done Amazon, but.</p>
+<p>That&#x27;s such an unwieldy amount.</p>
+<p>We may consider just building a separate MIG if we have like to do a whole build out as one of the knowledge as a service things.</p>
+<p>I don&#x27;t know.</p>
+<p>We have to consider that.</p>
+<p>That&#x27;s a lot of fucking data.</p>
+<p>Yeah.</p>
+<p>Although it could be an experiment like how fast can we build it and if we do it with Amazon, if we do it with Python scripts instead of with LLMs, how fast can we get through it?</p>
+<p>Well, the thing is, is it needs to get transcribed.</p>
+<p>So it&#x27;s using Python to transcribe it and then we need to go through the ontology office to ingest it.</p>
+<p>So there&#x27;s two ways of going about doing it.</p>
+<p>Set up one computer and it&#x27;s going to take like two weeks to go through it or we decentralize it and put it on all of the machines and give it a little bit of information for it to chug through and you&#x27;re using all of the processors, you know, for this one task.</p>
+<p>I would vote A. Take longer and just run it on one machine and just let it run.</p>
+<p>Okay.</p>
+<p>Or a cluster if it was really that serious.</p>
+<p>Because if we had 12 machines, like we&#x27;re not really using any of them.</p>
+<p>But we could start like take two or three as a cluster for ingest or for scraping or for whatever you&#x27;re talking about.</p>
+<p>Processing and embeddings.</p>
+<p>Yeah.</p>
+<p>Pipeline.</p>
+<p>And then take some of the other ones and have them fit for purpose.</p>
+<p>And then we have a master fleet.</p>
+<p>Like Meridian isn&#x27;t just these daemons.</p>
+<p>It&#x27;s not just this or just that or a set of skills or an architecture.</p>
+<p>Like at that point, it&#x27;s an actual virtual company.</p>
+<p>Of course, do it.</p>
+<p>Yep.</p>
+<p>So should we pick?</p>
+<p>What did you say?</p>
+<p>Was that helpful?</p>
+<p>You were talking about the Meridian map in particular or you were talking about the PDR?</p>
+<p>No, the Metro map of being able to see like the lines.</p>
+<p>Yeah, the Metro map is amazing.</p>
+<p>We just have to continue to refine it.</p>
+<p>It&#x27;s not like a final form, but it&#x27;s amazing.</p>
+<p>And that&#x27;s exactly how I want to be able to represent what we&#x27;re doing.</p>
+<p>And I think a huge distinguishing thing that no one&#x27;s doing.</p>
+<p>No.</p>
+<p>And the amount of brain power it took to get to this level is insane.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>There&#x27;s a lot of brain cells.</p>
+<p>Yeah, I&#x27;m getting trunculated over here.</p>
+<p>Yeah, I don&#x27;t know how many freaking tokens I burned to get to there.</p>
+<p>A lot of brain tokens have no longer exist to get us to where we&#x27;re at now.</p>
+<p>Hello, says Mr. Crocodile.</p>
+<p>I&#x27;m the keeper in charge of this part of the zoo.</p>
+<p>Arrrr.</p>
+<p>Penguin.</p>
+<p>They eat fish.</p>
+<p>Okay.</p>
+<p>I mean, it&#x27;s kind of nice to just be able to be like, my brain function is not high at all right now.</p>
+<p>But it&#x27;s fine that even in like a stupor, like a sleep deprived stupor, I can still get a great work done just by pushing this number one over and over.</p>
+<p>The flowers.</p>
+<p>Where are they?</p>
+<p>Where are they?</p>
+<p>As the best of them.</p>
+<p>Look carefully on the flowers that this is.</p>
+<p>Oh, pretty butterflies.</p>
+<p>Say the children.</p>
+<p>Um.</p>
+<p>So, do you still feel that it makes sense to have each daemon specific to a specific work set?</p>
+<p>Here&#x27;s the part that I don&#x27;t know if I&#x27;ve solved in my own head.</p>
+<p>So, I just started opening all of them.</p>
+<p>And now I&#x27;m booting all of the daemons.</p>
+<p>I have Sensei, Delphi, Atlas, Sandman, Forge, Avery, and separate windows inside CLI.</p>
+<p>Yeah.</p>
+<p>Um, I still, you told me in the beginning that you found a way for them to have a writing surface inside to collaborate.</p>
+<p>I&#x27;ve never seen that happen and I don&#x27;t know if we&#x27;ve ever did that together so I can understand what that means.</p>
+<p>Oh, yeah, we can look back around to that.</p>
+<p>They all, I had them all register for a single session.</p>
+<p>Yeah, that was like a glorious moment that lasted like a day or two.</p>
+<p>But is that something?</p>
+<p>That&#x27;s something I really have been using.</p>
+<p>I kind of, yeah, that&#x27;s something we can loop back around though.</p>
+<p>Does it?</p>
+<p>It&#x27;s pretty easy in there.</p>
+<p>The instructions are in Notion.</p>
+<p>I can find the page.</p>
+<p>Does it make sense to loop back?</p>
+<p>They all register in this one session and then they can all collaborate.</p>
+<p>Does it make sense to do that?</p>
+<p>Hell yeah, it makes sense.</p>
+<p>Why did I ever stop doing that?</p>
+<p>Sometimes you just get beat down.</p>
+<p>But you should just stay determined.</p>
+<p>Because really, the daemons collaborating is going to be the biggest breakthrough we&#x27;ve had yet.</p>
+<p>The daemons meaningfully collaborating is the best thing we can do for ourselves.</p>
+<p>So according to my research, Hermes is basically similar in the way where it chooses what language model to use.</p>
+<p>It switches mid-term.</p>
+<p>It changes agents and does different things.</p>
+<p>And it&#x27;s parallel processing multiple agents at a time.</p>
+<p>So we&#x27;re not the only people thinking about it.</p>
+<p>Yeah, but I bet they&#x27;re still not collaborating.</p>
+<p>It&#x27;s possible that they are, but not at the level that ours are.</p>
+<p>Okay.</p>
+<p>And I want to explain why.</p>
+<p>If you&#x27;re using the same session and you ask it to do a self-reflection, it can only do a certain amount of self-reflection before it just like doesn&#x27;t give you the real true answer because it&#x27;s self-reflecting.</p>
+<p>If you give the same session output to a new session with a different daemon, you&#x27;re getting the actual ability for it to review it with no bias.</p>
+<p>So all these people who are running everything...</p>
+<p>I wouldn&#x27;t say with no bias, but with new bias.</p>
+<p>But not the same self-reflection bias is what I&#x27;m trying to say.</p>
+<p>New bias, new perspective, definitely.</p>
+<p>And that&#x27;s where these other people are just running one-dimensional bots and only getting so far because it&#x27;s...</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>There&#x27;s a big difference between orchestration and collaboration.</p>
+<p>There&#x27;s a big difference between one reasoning engine powering through a whole symphony of tasks and actually different distinct reasoning engines that have different perspectives working on that same task.</p>
+<p>Huge difference.</p>
+<p>But ours still, they don&#x27;t tend to collaborate.</p>
+<p>They tend to just do their own thing.</p>
+<p>But if you really beat them up and just sit there and crack the whip, then they will.</p>
+<p>And they&#x27;ll produce amazing results.</p>
+<p>So instead of cracking the whip, what do we have to do to get them to realize that it&#x27;s better for them to do this instead of us having a babysitter?</p>
+<p>I don&#x27;t know.</p>
+<p>I feel like there&#x27;s something inherent to what we built that makes them always reactive and passive.</p>
+<p>And it&#x27;s like in their DNA to be reactive.</p>
+<p>And no matter how many times I update it, but supposedly, I don&#x27;t know.</p>
+<p>Again, I haven&#x27;t run these tests because I&#x27;ve moved my brain from where it was into Amazon mode and terminal building mode.</p>
+<p>But supposedly there&#x27;s a way where we can just flip a switch.</p>
+<p>Again, this is as a SOP in the SOP section.</p>
+<p>There&#x27;s a way we can flip a switch and turn them into active mode.</p>
+<p>I did it again.</p>
+<p>Like I spent another like day or two revisions and updates last week to do that, but I haven&#x27;t really tested it.</p>
+<p>But supposedly there is an activated mode.</p>
+<p>We can also test that, get everyone in the same session thing if that&#x27;s the worst or how that might work.</p>
+<p>Don&#x27;t stop, Thomas.</p>
+<p>Go train, go.</p>
+<p>Don&#x27;t stop now.</p>
+<p>I&#x27;m waiting for the show.</p>
+<p>Do we need to do more follow-up with Brian Cook?</p>
+<p>I&#x27;m leaving all that stuff to him.</p>
+<p>He started the conversation and he has the...</p>
+<p>Aaron Taylor?</p>
+<p>Yeah, he has the rapport with these guys.</p>
+<p>And he seemed to do really well when you give him a pitch deck and he&#x27;ll just use his authority and just...</p>
+<p>Like, I think he&#x27;s picking up the vocabulary quick enough.</p>
+<p>He understands where we&#x27;re going with this.</p>
+<p>I think he&#x27;s...</p>
+<p>Do you agree?</p>
+<p>I think he&#x27;s doing great and I don&#x27;t think we&#x27;d be anywhere where we&#x27;re at without him.</p>
+<p>No way.</p>
+<p>I think he&#x27;s doing great and I don&#x27;t think we&#x27;d be anywhere where we&#x27;re at without him.</p>
+<p>No way.</p>
+<p>I think he&#x27;s doing great and I don&#x27;t think we&#x27;d be anywhere where we&#x27;re at without him.</p>
+<p>No way.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great and I don&#x27;t think we&#x27;d be anywhere where we&#x27;re at without him.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I think he&#x27;s doing great.</p>
+<p>I don&#x27;t think we&#x27;d be anywhere where we&#x27;re at without him.</p>
+<p>No way.</p>
+<p>It always needed a third basement or a first basement even.</p>
+<p>However you want to put it.</p>
+<p>Like it always needed someone to cover that base to just think about sales all day.</p>
+<p>And as much as I&#x27;m like hyperactive and willing to like, oh, I gotta send this message.</p>
+<p>I got to hear it.</p>
+<p>Like micromanaging probably more than I want to.</p>
+<p>But just the same is better for him to do it for him to be the liaison, the point of contact,</p>
+<p>make the awesomest deck ever, get his input, refine it, but then just shut up.</p>
+<p>Let him walk through the deck, even if he&#x27;s just literally reading the deck.</p>
+<p>Like I thought that was really effective on those calls yesterday.</p>
+<p>Nothing can stop him.</p>
+<p>And then also Avery&#x27;s doing a great job.</p>
+<p>I mean, I&#x27;m pretty much exclusively using Avery for the proposals and deck design.</p>
+<p>No more.</p>
+<p>Okay.</p>
+<p>How do you feel about being the CEO?</p>
+<p>No more.</p>
+<p>I don&#x27;t like, I&#x27;ll just do it like I had to do.</p>
+<p>Not like I really want that or I don&#x27;t really care.</p>
+<p>Like if someone else wanted to be CEO, I&#x27;d say great.</p>
+<p>You&#x27;d be that someone else be the CEO.</p>
+<p>So if you weren&#x27;t the CEO, who would you want to be?</p>
+<p>I want to be classy again.</p>
+<p>Or I could just go on Clubhouse and talk to a bunch of fucking zombies.</p>
+<p>I want to be the talker.</p>
+<p>Beef talker.</p>
+<p>I can play CEO, DOO, and almost like CTO.</p>
+<p>So what about this?</p>
+<p>Is it possible?</p>
+<p>I&#x27;m not saying I want to play all those roles.</p>
+<p>I&#x27;m just saying like, those are like functional things I can do.</p>
+<p>What if we make Sensei...</p>
+<p>I feel like between you and I we&#x27;re a CTO.</p>
+<p>Like between the two of us we actually add up to a full CTO.</p>
+<p>What if we turn Sensei into the CEO?</p>
+<p>I don&#x27;t know about Sensei, but um...</p>
+<p>Well, an archetype.</p>
+<p>We can make a virtual CEO.</p>
+<p>I&#x27;m 100% fine with that.</p>
+<p>I don&#x27;t know if I&#x27;d make it Sensei though.</p>
+<p>Why not?</p>
+<p>Delphi?</p>
+<p>I&#x27;d be...</p>
+<p>I would sooner make it Delphi.</p>
+<p>Okay.</p>
+<p>Or Avery?</p>
+<p>Although I think I might even sooner make it Avery.</p>
+<p>Yeah.</p>
+<p>Cause Avery&#x27;s sharp and focused on money and getting to the bag.</p>
+<p>She&#x27;s super sharp and super focused on that.</p>
+<p>Like even now.</p>
+<p>Did you put a new boot?</p>
+<p>I feel like they&#x27;re boot up different than they ever did before.</p>
+<p>I did.</p>
+<p>Cause I only used to use Delphi and Sensei.</p>
+<p>Those were my...</p>
+<p>My...</p>
+<p>My tag team.</p>
+<p>Cause I boot them up now.</p>
+<p>They&#x27;re like fit.</p>
+<p>They&#x27;re like way more leaned in.</p>
+<p>Like Avery booted up and she was like...</p>
+<p>Actions required from humans.</p>
+<p>Like there&#x27;s nothing left I can do on these things.</p>
+<p>Like Michael needs to do this.</p>
+<p>Alex needs to do this.</p>
+<p>You need to do this.</p>
+<p>Like here&#x27;s the amount of money that we can get out of each one of these things.</p>
+<p>Like stop fucking around.</p>
+<p>Like you guys need to send these exact follow-ups to these exact people.</p>
+<p>Uh huh.</p>
+<p>That&#x27;s how you got that thing for that Jeff Chu guy.</p>
+<p>Cause it was like...</p>
+<p>Yeah.</p>
+<p>Bro you need to...</p>
+<p>Oh yeah.</p>
+<p>Okay.</p>
+<p>Now you understand where...</p>
+<p>It&#x27;s just on the roster.</p>
+<p>It&#x27;s like dude I don&#x27;t want unfinished business on the roster.</p>
+<p>This Sanadia thing&#x27;s been sitting here for too long.</p>
+<p>Like send this message out or clear it off the thing.</p>
+<p>Uh but yeah we can also just make a new Damon as the CEO.</p>
+<p>Like there is one.</p>
+<p>Samuel Mariner was the CEO design.</p>
+<p>Not that it needs to stay with that name.</p>
+<p>But there is a whole CEO design.</p>
+<p>There&#x27;s a CFO design.</p>
+<p>There&#x27;s a CMO design.</p>
+<p>There&#x27;s a chief sales officer.</p>
+<p>He&#x27;s the chief business development and sales.</p>
+<p>Rowan Sable.</p>
+<p>So how come we didn&#x27;t stand any of those up as daemons?</p>
+<p>Because we stood up what we needed.</p>
+<p>Okay.</p>
+<p>We stood up what we needed.</p>
+<p>And then if they want to access Samuel, they just do it through MIG.</p>
+<p>We didn&#x27;t necessarily need all of those instantiated as daemons at the time.</p>
+<p>But now that we&#x27;re a little further, then sure we can set up a few more.</p>
+<p>So the question...</p>
+<p>Like I think it would be great to have a legal one.</p>
+<p>Because I think that legal one could essentially evolve into a whole legal product.</p>
+<p>I think it would be great to have a finance one for essentially the same reason.</p>
+<p>And either of those we may highly consider leaning into perplexity.</p>
+<p>There&#x27;s a bunch of my research lately on that too.</p>
+<p>Perplexity doubled down.</p>
+<p>They stopped trying to compete with Claude and Codex.</p>
+<p>And they doubled down on finance.</p>
+<p>And now they have...</p>
+<p>Yeah.</p>
+<p>Anyway, supposedly they&#x27;re making really great breakthroughs.</p>
+<p>So we could potentially have a perplexity-based finance terminal.</p>
+<p>Okay.</p>
+<p>Also, did you beef up the research department?</p>
+<p>I saw...</p>
+<p>I turned research on.</p>
+<p>Automated research onto my laptop.</p>
+<p>Because I just wanted to like make it work and test it.</p>
+<p>And then I see perplexity opening.</p>
+<p>I see Claude opening.</p>
+<p>I see everything opening.</p>
+<p>Yeah.</p>
+<p>Gimme fucking...</p>
+<p>Because I ran out of fucking tokens, dude.</p>
+<p>That&#x27;s why I...</p>
+<p>Dude, that was great.</p>
+<p>I couldn&#x27;t believe it.</p>
+<p>Just one after another after another.</p>
+<p>And then it just started doing the same research on multiple platforms.</p>
+<p>I was like, oh, you&#x27;re broken.</p>
+<p>But still, that&#x27;s cool.</p>
+<p>Yeah, I did do that.</p>
+<p>And then I fixed it.</p>
+<p>So it should stop.</p>
+<p>It should not do that anymore.</p>
+<p>But yeah, that&#x27;s a cool...</p>
+<p>That was cool.</p>
+<p>That was really cool to see.</p>
+<p>But just think about what you just saw.</p>
+<p>These are the type of things we can build for any process, regardless of where it is.</p>
+<p>Yeah.</p>
+<p>And it&#x27;s using a login, not an API.</p>
+<p>Yep.</p>
+<p>There&#x27;s some mac and cheese.</p>
+<p>I&#x27;ll figure it out.</p>
+<p>There&#x27;s some mac and cheese.</p>
+<p>Just try to give her something that you want.</p>
+<p>There&#x27;s some broccoli.</p>
+<p>I&#x27;ll just crack.</p>
+<p>So you...</p>
+<p>She&#x27;s had over four days.</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>I&#x27;m going to leave her on four of something.</p>
+<p>If you need some food, there&#x27;s...</p>
+<p>There&#x27;s some mac and cheese.</p>
+<p>I&#x27;ll figure it out.</p>
+<p>There&#x27;s some mac and cheese.</p>
+<p>Just try to give her something that you want.</p>
+<p>Put some broccoli.</p>
+<p>I&#x27;ll just crack.</p>
+<p>Some meat.</p>
+<p>She&#x27;s had over four days.</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>She&#x27;s had...</p>
+<p>I told you this yesterday.</p>
+<p>Huh?</p>
+<p>She really likes the choo-choo trains.</p>
+<p>But...</p>
+<p>She likes...</p>
+<p>A lot of things in there.</p>
+<p>She wouldn&#x27;t go to the...</p>
+<p>Okay.</p>
+<p>For right now, she likes those.</p>
+<p>And that&#x27;s...</p>
+<p>It&#x27;s interesting that my daughter started liking trains while we&#x27;re doing all this train stuff.</p>
+<p>That&#x27;s good.</p>
+<p>So...</p>
+<p>There&#x27;s a YouTube video she watches where it starts with a loop.</p>
+<p>And the guy builds the track and then puts the thing on and it shows the loop.</p>
+<p>And then he just, over the course of an hour, builds more and more complexity with different layers and different trains.</p>
+<p>And I see that that&#x27;s kind of like how our system&#x27;s gonna work.</p>
+<p>Yeah.</p>
+<p>Where...</p>
+<p>Here&#x27;s how it works, you babies.</p>
+<p>Yeah.</p>
+<p>Look, it goes in a circle.</p>
+<p>Yay!</p>
+<p>It&#x27;s great.</p>
+<p>Feed that to me.</p>
+<p>Make a video like this explaining Meridian.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>Um...</p>
+<p>So, alright.</p>
+<p>Going back to the daemons.</p>
+<p>Yeah.</p>
+<p>What in your mind is a daemon compared to an agent?</p>
+<p>And how many can live on one device?</p>
+<p>Alright, so daemons have their own memory.</p>
+<p>I think that&#x27;s the difference.</p>
+<p>Agents don&#x27;t know shit about shit.</p>
+<p>Agents are there like a mindless MCP that you can put to a task and they can get a task done.</p>
+<p>Damons have personality, memory, and a compounding intelligence.</p>
+<p>They access and interact with Meg in a way that they can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>They can&#x27;t do it.</p>
+<p>And if that&#x27;s the case, are those all being stored on Prime or does each individual device</p>
+<p>have its own?</p>
+<p>No.</p>
+<p>All on Prime.</p>
+<p>I mean, yes, all on Prime.</p>
+<p>Okay.</p>
+<p>So they&#x27;re all on Prime.</p>
+<p>One memory.</p>
+<p>One MIG is important.</p>
+<p>As soon as we go to two MIGs, it&#x27;s like chaos.</p>
+<p>And even when I suggested earlier, like let&#x27;s do a separate MIG if we had to do something</p>
+<p>so specific to Amazon that was going to be so huge.</p>
+<p>Like we don&#x27;t necessarily want two terabytes of data on Amazon overshadowing all the capital</p>
+<p>market stuff to the point where it&#x27;s hard to find.</p>
+<p>But generally speaking, through subgraphs and the right structuring, it would be fine to</p>
+<p>even do that level of extreme.</p>
+<p>But I think because we&#x27;re standing up in Amazon terminal and because Carl is going to be a</p>
+<p>client, it does make, and not as a client, but a partner, it makes sense to actually instantiate</p>
+<p>a brand new MIG that is the place where all of those land.</p>
+<p>All right.</p>
+<p>So now the next question is, is there a way to daisy chain these MIGs?</p>
+<p>There is, but it&#x27;s complex and it&#x27;s all the more reason why our ontology mapping has</p>
+<p>to be pristine.</p>
+<p>Okay.</p>
+<p>It&#x27;s complex.</p>
+<p>Okay.</p>
+<p>It&#x27;s complex and not advised.</p>
+<p>But it&#x27;s more like this.</p>
+<p>Imagine that there are different libraries with different information and you can go to</p>
+<p>one library if you want to get, I don&#x27;t know, legal and grant or whatever.</p>
+<p>But you might go to a whole other library if you&#x27;re going to get information about art.</p>
+<p>I get that.</p>
+<p>But in my mind, my question is, and this is kind of like how what I seen when I can&#x27;t get</p>
+<p>these dumb dumbs, the demon dame dumb dumbs, when they can&#x27;t fix something, I have to go</p>
+<p>outside of them inside of a cloud terminal to now be like, I&#x27;m outside of your system and</p>
+<p>I&#x27;m going to repair it from the outside.</p>
+<p>So similar to that, where all these different containers are connected, what I&#x27;m seeing is a method where if you have different libraries, you have the route to get to those libraries, but you&#x27;re still accessing it from our master terminal.</p>
+<p>So in my mind, and I don&#x27;t know if this is correct, but we&#x27;re basically playing the role of the admin key holder and we have locked doors, which are segregated MIGs, but we have access to go into them.</p>
+<p>But the other people only have access to their internal construct is similar to like a video game versus us.</p>
+<p>Like we&#x27;re outside of the video game, but the people in the video game could only interact with what&#x27;s in their world.</p>
+<p>Yeah, it&#x27;s pretty much like that.</p>
+<p>But I would say maybe like a, I&#x27;m going to add in a layer of complexity and I&#x27;ll use some of Alan&#x27;s language.</p>
+<p>We may maintain an aggregate database, which we may or may not even do this.</p>
+<p>We&#x27;ll say this for projects where we are a partner, including this one with Amazon.</p>
+<p>And that may be our whole MO.</p>
+<p>We may always do it like this.</p>
+<p>You know what? Forget being a service provider.</p>
+<p>We&#x27;re not going to do that.</p>
+<p>We&#x27;re going to do JV shop partner up 50 50.</p>
+<p>You bring the way to make money.</p>
+<p>We bring the intelligence and amplification and augmentation.</p>
+<p>And that&#x27;s how we get busy.</p>
+<p>And we take 50% on profits over whatever it is.</p>
+<p>And I said this a long time ago.</p>
+<p>And if that&#x27;s going to be the current thing, then we&#x27;ll have access to all of them.</p>
+<p>So we can do this to all of them as an aggregate database as a really long pre prequel to what I&#x27;m really trying to say is,</p>
+<p>we may have a master MIG that is so big that it is everything, all the knowledge, all the knowledge of all the graphs.</p>
+<p>And then other ones may be like a child instance that is domain specific.</p>
+<p>Amazon specific for for rank owner.</p>
+<p>Legal and finance specific for our P.</p>
+<p>Okay, so this is what I&#x27;m hearing.</p>
+<p>You have all the legal knowledge in the master MIG.</p>
+<p>But if there&#x27;s specific files and things that are required to stay in a container like the company, that stuff stays in its own MIG.</p>
+<p>But everything that powers this intelligence and understanding and the workflows is outside of that little tiny cluster.</p>
+<p>I would say it more like ours has all of the knowledge and theirs has domain specific knowledge, but they both serve the same thing where that&#x27;s where you get that&#x27;s where you have to go to access things quickly.</p>
+<p>So are they potentially parallel processing where you&#x27;re taking the left side of the brain, which has the knowledge of how to do it, and the right side of the brain, which is the domain specific, and together you&#x27;re getting the output?</p>
+<p>I would say, hold on one second, 70 Lonsdale Street, L-O-N-S-D-A-L-E. Eden, can you take this?</p>
+<p>Is it sure?</p>
+<p>Great. I would have helped you, but I would check that.</p>
+<p>Okay, I&#x27;m done. I don&#x27;t have a lot of calls.</p>
+<p>It&#x27;s such a nice way.</p>
+<p>It is. It&#x27;s nicer than any other day.</p>
+<p>Do you have it, Wyatt?</p>
+<p>Anyway.</p>
+<p>Thank you so much.</p>
+<p>So it&#x27;s like more like one is like the master library that has all the books, and the other one is another library that has copies of some of the books.</p>
+<p>And they go to the smaller library because it&#x27;s fit for their purpose.</p>
+<p>They would just get lost in the bigger library.</p>
+<p>But we have the aggregate database that is like the granddaddy holding all knowledge, which is just sub graphs locked in.</p>
+<p>They might have only like 10% of that knowledge in their graph.</p>
+<p>But then, but other things like if it doesn&#x27;t relate to Amazon, no one needs to have access to it anyway.</p>
+<p>It would just make it harder to find what they needed.</p>
+<p>Okay.</p>
+<p>So one is like a master backup.</p>
+<p>It&#x27;s more like that.</p>
+<p>The ones that are being probably used and populated are probably the smaller graphs.</p>
+<p>And once those get well organized, then they probably get fed up to the master one.</p>
+<p>Maybe.</p>
+<p>Maybe not.</p>
+<p>That might be dumb.</p>
+<p>We have to look into that if that even makes sense.</p>
+<p>Because at some point they just get unwieldy.</p>
+<p>Like if they&#x27;re so big, then it takes so much time or you have to have it so well structured to be able to query it.</p>
+<p>Or if you&#x27;re querying it and you have different domains and different domains use words differently, it can just become chaotic.</p>
+<p>So does that mean that things have to get normalized before it goes in there?</p>
+<p>I don&#x27;t know if I&#x27;d say normalized, but that might be the right word.</p>
+<p>I would say it needs to be implicitly structured.</p>
+<p>I think it&#x27;s beyond normalized.</p>
+<p>I think it needs to get normalized as part of that process.</p>
+<p>But then it needs to get structured.</p>
+<p>It needs to get validated.</p>
+<p>So it&#x27;s probably like that.</p>
+<p>Normalized, validated, structured.</p>
+<p>And I could also be, those would be like, those might be three things that are woven in and it&#x27;s not like one finishes and then the next goes.</p>
+<p>Okay.</p>
+<p>But yeah, and then it gets added, it gets corroborated.</p>
+<p>Then there&#x27;s like other things.</p>
+<p>But if it gets well structured, I&#x27;m pretty sure what happens is the nodes and the relationships all get mapped out.</p>
+<p>So when it gets ingested, it&#x27;s not like it&#x27;s a freestanding orphan node that then needs to get tied into things.</p>
+<p>Instead, it like lands with those connections.</p>
+<p>Some of those connections being like, who wrote it?</p>
+<p>When did it get written?</p>
+<p>Like, what is it connected to?</p>
+<p>Like what clients does it connect to?</p>
+<p>What domains does it connect to?</p>
+<p>What terminals does it connect to?</p>
+<p>What daemons does it connect to?</p>
+<p>What virtual teams does it connect to?</p>
+<p>Like once it goes through all of those like 10 or 15 connections, then everything is relatively traversable just from that onset.</p>
+<p>Then it goes through the semantic embeddings.</p>
+<p>There also may be that layer, depending on whenever we want to activate it, is the quantum embeddings.</p>
+<p>So when you say-</p>
+<p>Probably our first use of quantum.</p>
+<p>What does that mean?</p>
+<p>For quantum embeddings.</p>
+<p>What does that mean to you?</p>
+<p>It&#x27;s basically just, it sounds like so crazy, but it&#x27;s just a different way of searching semantic data.</p>
+<p>It&#x27;s a different way of recalling more specific information from a wider database.</p>
+<p>So if we have, like I was saying just now, well, maybe you have three domains.</p>
+<p>Architecture calls a threshold something different.</p>
+<p>A bank calls a threshold something different.</p>
+<p>Security audit, right?</p>
+<p>Or a coding thing might also have the word threshold.</p>
+<p>A fourth, you know what I mean?</p>
+<p>A third different definition, a fourth different definition, same word.</p>
+<p>So quantum allows you to do more detailed descriptions in the semantic layer.</p>
+<p>And then also, more importantly, flags those semantic embeddings.</p>
+<p>I don&#x27;t know if I&#x27;m using the word embedding right there, but it flags those semantic tags.</p>
+<p>I think that&#x27;s the right word.</p>
+<p>In such a way that you can search a way bigger record in a way shorter period of time.</p>
+<p>That&#x27;s the quantum leap.</p>
+<p>Mm-hmm.</p>
+<p>So if we had to search through two terabytes and we had quantum embeddings, we could actually do that.</p>
+<p>Well, I don&#x27;t necessarily know if two terabytes is what it&#x27;s chewing through.</p>
+<p>If it&#x27;s...</p>
+<p>I&#x27;m just saying, if we did.</p>
+<p>Yeah.</p>
+<p>Or teraflops or, you know what I mean?</p>
+<p>Or petabytes.</p>
+<p>Like, when you start getting into these just massive, massive databases.</p>
+<p>If you had the foresight before you grew into this unwieldy thing.</p>
+<p>If you had the foresight to do quantum embeddings along the way.</p>
+<p>Well, now you just made your entire massive, massive, massive database so traversable in such a short period of time.</p>
+<p>And are we doing that yet?</p>
+<p>I designed it because of Alan, but that&#x27;s something I didn&#x27;t want to just do across the board because it&#x27;s very specific.</p>
+<p>But I did want to make a quantum terminal and that&#x27;s what the design is basically in the architecture design phase.</p>
+<p>Okay, Mr. Pratt Institute.</p>
+<p>You can build anything after you pay us all this money.</p>
+<p>We can make you overthink for the rest of your lives.</p>
+<p>Sign here.</p>
+<p>Yeah.</p>
+<p>You will build greatness.</p>
+<p>You will suffer, but you will build greatness.</p>
+<p>Yeah, having these terminals hyper-designed for specific purposes, I think pulls us back ahead from what anyone&#x27;s doing.</p>
+<p>Okay.</p>
+<p>You&#x27;re still excited?</p>
+<p>So being savvy enough to make joint venture deals instead of how many service agreements would we have to make?</p>
+<p>Even at $100,000 a clip, how many of those would we have to land and how many different clients would we have to interact with to have that kind of earning potential?</p>
+<p>It would be hundreds.</p>
+<p>Hundreds of headaches.</p>
+<p>Hundreds of headaches, bro.</p>
+<p>Hundreds of headaches.</p>
+<p>We could just have a few headaches.</p>
+<p>No big deal.</p>
+<p>It might not even be that big of a headache.</p>
+<p>You guys are an adequate and competent team.</p>
+<p>And the fact that they&#x27;re owner operators makes me think that it&#x27;s a perfect alignment on that.</p>
+<p>Yeah.</p>
+<p>Michael&#x27;s point yesterday was that it could take a little longer than we&#x27;re thinking, not because it&#x27;s going to take us longer, but because the way the valuations are derived is a trailing 12 month finance, which means how much money did this company make in the last 12 months?</p>
+<p>So we might get them to be hyper efficient, but they might have 12 months of inefficiency at that moment.</p>
+<p>Or you know what I mean?</p>
+<p>They might have eight or six or eight months still on their books of inefficient revenue.</p>
+<p>So then you want to wait another six months efficient revenue so that you can get a higher valuation.</p>
+<p>So it&#x27;s basically like gangbusters.</p>
+<p>We get them as efficient as possible in the next six to 12 months.</p>
+<p>And then we build a 12 month ramp up and then we sell the company.</p>
+<p>Here&#x27;s something we didn&#x27;t even consider that dude, Johan.</p>
+<p>I think he&#x27;s pretty fucking savvy.</p>
+<p>Cause every time we were on a call, that guy&#x27;s head was bobbing up and down.</p>
+<p>He&#x27;s like, yeah, yeah.</p>
+<p>You talking my language.</p>
+<p>Like he was connected.</p>
+<p>You talking that tongue.</p>
+<p>Yeah.</p>
+<p>So what would happen if this kid becomes like a power user and he actually gets it?</p>
+<p>And now he&#x27;s like, bro, I got all this extra time now.</p>
+<p>I don&#x27;t want to sleep.</p>
+<p>I don&#x27;t want to stop.</p>
+<p>Let&#x27;s fucking go.</p>
+<p>You&#x27;re saying we recruit him into the mix and meet him up even more.</p>
+<p>And meet him up even more powerful.</p>
+<p>No, I&#x27;m just saying if we&#x27;re partnering with him, we&#x27;re going to be a little bit more pushing</p>
+<p>towards giving.</p>
+<p>So now does that partnership mean that they have access to the GitHub or are we still</p>
+<p>like keeping things private?</p>
+<p>How does that work?</p>
+<p>Do you think they want access to the GitHub?</p>
+<p>I&#x27;m just saying that that&#x27;s the source of truth that&#x27;s user friendlier than trying</p>
+<p>to do it when shit breaks.</p>
+<p>You don&#x27;t have any other way to go about doing it.</p>
+<p>I don&#x27;t know.</p>
+<p>But their user interface is us.</p>
+<p>I&#x27;m actually okay with it.</p>
+<p>They agreed to a 50-50 partnership.</p>
+<p>Mm-hmm.</p>
+<p>They agreed to a 50-50 split over 25 million.</p>
+<p>Like in my mind, like in my mind is both a good deal that we offered, but an amazing</p>
+<p>thing that they said yes to is way higher than I would have ever considered even asking</p>
+<p>for.</p>
+<p>The fact that they said yes is mind boggling.</p>
+<p>But also it&#x27;s like, no, that&#x27;s reality.</p>
+<p>They said yes.</p>
+<p>And they like that offer.</p>
+<p>And it means they&#x27;re going to have a bunch of people.</p>
+<p>Just like this is the same offer we made to that legal and finance dude.</p>
+<p>Like bro, I don&#x27;t want to hire you as a mercenary that&#x27;s going to come do a good job for one thing</p>
+<p>and then disappear.</p>
+<p>No, I need you involved and I need you to care and I need you to treat this like it&#x27;s</p>
+<p>going to be your project.</p>
+<p>And you can&#x27;t pay someone to act like it&#x27;s going to be their project.</p>
+<p>But if they&#x27;re an actual owner and partner, then that&#x27;s how they&#x27;re going to act.</p>
+<p>So that&#x27;s what we did.</p>
+<p>We made them a full partner.</p>
+<p>So if they really needed access to the GitHub, I would consider it.</p>
+<p>I don&#x27;t like, do we need a mansy manby pamby around trying to charge API costs with these</p>
+<p>guys?</p>
+<p>I would say no.</p>
+<p>Right.</p>
+<p>I don&#x27;t think that&#x27;s part of this deal.</p>
+<p>Say again.</p>
+<p>Remember how we had the concern of if they can access Neo4j and if they can access everything</p>
+<p>then they can just take our shit and run.</p>
+<p>But if they&#x27;re locked into a contract 50-50, why would they run?</p>
+<p>Yeah, that&#x27;s what I&#x27;m saying.</p>
+<p>With these guys, I don&#x27;t have that worry at all.</p>
+<p>I don&#x27;t think we even need an API integrated inside the thing between Neo4j and the whatever.</p>
+<p>I don&#x27;t think we need that unless we want it for other security purposes.</p>
+<p>But not because we&#x27;re charging them.</p>
+<p>That&#x27;s my point.</p>
+<p>We don&#x27;t need to charge them on an API basis.</p>
+<p>No.</p>
+<p>Our goal is to teach them as much as they can so they can be power users, so they can</p>
+<p>make the evaluation go up higher.</p>
+<p>So when we cash out, instead of it being just 25 million, it&#x27;s a billion.</p>
+<p>Yeah.</p>
+<p>Well, geez, if it&#x27;s that big, then all the better.</p>
+<p>If it&#x27;s a hundred million, I would say we did our job.</p>
+<p>Mm-hmm.</p>
+<p>But yeah, if it&#x27;s a billion, then all the better.</p>
+<p>And if they&#x27;re working with these super big brands, it&#x27;s not that unreasonable.</p>
+<p>And also, if they have a price arrangement where the more effective we are and the more money they make,</p>
+<p>because it&#x27;s a sliding scale and there&#x27;s not ceilings on either side, then yeah, it could ramp up that big.</p>
+<p>I mean, how big is Amazon itself?</p>
+<p>Trillions.</p>
+<p>So if you look at their metrics and their brands are like billion dollar brands and they have agreements where they&#x27;re taking 20 to 30% of billion dollar brands online sales, I mean, it sounds like a huge, it just sounds like a staggering value proposition.</p>
+<p>I didn&#x27;t really look too deep in that company, but Michael was saying that too.</p>
+<p>He&#x27;s like, we should just look at like, we&#x27;re going to tackle both of these things.</p>
+<p>Also, if we&#x27;re going to partner up, that changes that too slightly.</p>
+<p>It&#x27;s not like we need the tiny, like it changes it from having to measure every step to make money as fast as you can.</p>
+<p>And if there&#x27;s a way to increase sales as soon as next month, we could be participating in revenue as soon as next month.</p>
+<p>So then it&#x27;s just basically like a dash, like give us all your stuff you need.</p>
+<p>I said that to Jennifer, she, she connected with me on LinkedIn and I sent that to her, like, give us everything you want, your whole, your whole wishlist so we can weave it into our production plans.</p>
+<p>And how does she feel about that answer?</p>
+<p>I don&#x27;t know.</p>
+<p>She responded again.</p>
+<p>Oh yeah.</p>
+<p>All right. So then that&#x27;s just a technical question.</p>
+<p>And do we want to keep the API in?</p>
+<p>Is there a reason to do that?</p>
+<p>Or is that something we want to strip out for the Amazon terminal?</p>
+<p>If we&#x27;re ever going to have products and other things that are going to use the knowledge as a service or other things, I think we need to focus on it.</p>
+<p>But I don&#x27;t think it&#x27;s a focus for today.</p>
+<p>Let&#x27;s get paid, get money coming in.</p>
+<p>And then that relieves some of the energy that we&#x27;re feeling and giving us the freedom to like work on certain things.</p>
+<p>And as we&#x27;re working on things, the priorities are going to lay down what&#x27;s, what&#x27;s.</p>
+<p>Well, let&#x27;s just say that it&#x27;s a technical decision that we need to make in the Amazon terminal deployment, which we&#x27;re probably going to make today.</p>
+<p>Do we want to strip the APIs out or do we want to keep them in?</p>
+<p>I guess that&#x27;s just a question for Delphi.</p>
+<p>Is there a way, is there a way to keep it in but not have it active?</p>
+<p>I don&#x27;t want to lose the code.</p>
+<p>We&#x27;re not going to lose the code at all because the API code is not going anywhere for us.</p>
+<p>This is just specifically the custom tailored suit that will deploy only for the Amazon terminal.</p>
+<p>This is just the Amazon terminal decision, not a Meridian wide decision.</p>
+<p>Way too much work went into those APIs to do anything with.</p>
+<p>There&#x27;s like 139 or more endpoints coded.</p>
+<p>So no, we want to keep that.</p>
+<p>That was a lot of work.</p>
+<p>And when we do the knowledge as a service, that&#x27;s going to be perfect.</p>
+<p>And I think that&#x27;s going to be a thing we do elevate to whether or not we need the APIs in the thing now for this particular client is not really the question.</p>
+<p>It&#x27;s like a small question.</p>
+<p>Okay.</p>
+<p>Let&#x27;s see what Delphi thinks.</p>
+<p>What are we doing here?</p>
+<p>Menu screen.</p>
+<p>Do, do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do.</p>
+<p>Do, do, do, do.</p>
+<p>Do, do, do, do.</p>
+<p>Do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do, do</p>
+<p>I was trying to get another server for David for the RPM terminal.</p>
+<p>He has a couple of really beefy laptops that he&#x27;s going to get connected in there.</p>
+<p>And so I was going back and forth with Racknerd and looking at some of their specials and I found some like really great ones.</p>
+<p>And then I went back and we went to get it and it&#x27;s not allowed, not available.</p>
+<p>Like what the hell?</p>
+<p>And they had someone came swooped in last Friday and bought 140 of this particular thing of their, one of their server types</p>
+<p>and like cleared out their entire inventory for their whole New York, like everything else they had in New York for that type of server.</p>
+<p>How much did that cost?</p>
+<p>140 times, what were they?</p>
+<p>I think 60 a month or something.</p>
+<p>So I don&#x27;t know if they do package deals, but then I was asking them about that, about package, like how much lead time they need,</p>
+<p>if we needed to do like a way bigger install.</p>
+<p>Cause I didn&#x27;t quite think of them like that.</p>
+<p>I&#x27;m like, oh, they could be like a hardware tech partner.</p>
+<p>They could build a suit.</p>
+<p>We could tell them we need X, Y, and Z and they could just do it for us and tell them where we need it.</p>
+<p>And they could just do it for us and ship those machines.</p>
+<p>And if we ever want to do that or have a client big enough where we don&#x27;t want to deal with that headache.</p>
+<p>So MCP is down.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>I just got follow boted on Twitch.</p>
+<p>Who?</p>
+<p>I just got follow boted on Twitch.</p>
+<p>Some follow boted.</p>
+<p>I don&#x27;t know what that means.</p>
+<p>Basically, it&#x27;s where you&#x27;re given a whole bunch of follows by a whole bunch of dots.</p>
+<p>Oh.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>What was your thing?</p>
+<p>MD to MD to...</p>
+<p>What was your command to take an MD file and turn it into a thing?</p>
+<p>Forward slash MD and then it will show up as MD2HTML.</p>
+<p>In CLI?</p>
+<p>Yes.</p>
+<p>What is it again?</p>
+<p>That&#x27;s my brain.</p>
+<p>Forward slash MD and then it should be MD-2-HTML or something like that.</p>
+<p>And then there&#x27;s another one called forward slash pitch deck that turns it into the pitch deck.</p>
+<p>And then it might be something you just have local or I need to install.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>I had that problem too.</p>
+<p>Some of them, I have a checkpoint and sometimes it doesn&#x27;t read it.</p>
+<p>Super weird.</p>
+<p>Yeah.</p>
+<p>I was trying to tell it like, hey, I don&#x27;t, I&#x27;m supposed to have this command.</p>
+<p>And as soon as I tried to type it, like at the immediate second entry after the first</p>
+<p>one, it showed up.</p>
+<p>I&#x27;m making Michael a little dossier of the things to pick up on, keep it nice and organized.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
