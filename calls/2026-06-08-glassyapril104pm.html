@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassyapril104Pm — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Glassyapril104Pm</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The team discussed plans to build custom, fit-for-purpose terminals (like Amazon and legal) using existing spare machines, shared tokens and Neo4j instances, with tailored daemons, while troubleshooting remote access setup for one member.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Each new node will use a shared token, not per-node tokens.</li><li>New terminals will initially share the existing MIG, with separate MIGs only when moving to fully federated ghost terminals.</li><li>Custom terminals will have the Delphi daemon plus custom daemons specific to their purpose, with all terminals possibly sharing security and infrastructure daemons.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Levi will get his MacBook set up with Tailscale and remote login so Mike can access it to help customize and build terminals.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Levi&#x27;s Tailscale was turned off, which was why Mike couldn&#x27;t see his device online.</li><li>There are 8 terminals currently online and 2 additional laptops available to be added.</li><li>A dedicated legal terminal could be a whole separate product or company.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Mike&#x27;, &#x27;what&#x27;: &quot;Remotely access Levi&#x27;s MacBook to assist with customizing and building out the terminals.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Levi&#x27;, &#x27;what&#x27;: &#x27;Ensure Tailscale is on and remote login is enabled on his MacBook.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Levi&#x27;, &#x27;what&#x27;: &#x27;Share his SSH username and password with Mike (which was attempted but failed).&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Levi&#x27;, &#x27;what&#x27;: &#x27;Connect the two remaining laptops into the network.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>glassyapril104pm</h2>
+<p>**Source**: `glassyapril104pm.m4a`</p>
+<p>**Transcribed**: 2026-04-28 16:15</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>I like the plan. I just think it&#x27;s hilarious that it&#x27;s like, yeah, we&#x27;re not ready to do four terminals.</p>
+<p>You&#x27;re like, yeah, we have like 12 machines we&#x27;re not using.</p>
+<p>Yeah, we could definitely do four terminals, and they&#x27;re already mostly built,</p>
+<p>so customizing and doing those is what we want to do, Mesh.</p>
+<p>Stop telling me. Don&#x27;t tell me what to do, Mesh. I tell you what to do.</p>
+<p>So what?</p>
+<p>Daddy, I want ice cream.</p>
+<p>Okay, we&#x27;ll go ice cream.</p>
+<p>So did you read what it said as the second response? Did you look at that yet?</p>
+<p>Okay.</p>
+<p>Each new node needs its own token. What token?</p>
+<p>I don&#x27;t know.</p>
+<p>Each new node does definitely not need its own token.</p>
+<p>As soon as we tried to do per node tokens, everything got fucked, so we definitely don&#x27;t want that.</p>
+<p>A shared token is fine.</p>
+<p>The next move is leaf nodes.</p>
+<p>But I don&#x27;t even think we have to do that for this, because at this point, I think we&#x27;re talking about,</p>
+<p>just like when we rolled that out, we did the first federated mesh.</p>
+<p>It was a semi-trusted node.</p>
+<p>We can make all of them semi-trusted nodes.</p>
+<p>I think that&#x27;s fine.</p>
+<p>It could all even be trusted nodes.</p>
+<p>That&#x27;s also fine.</p>
+<p>It&#x27;s just really to test our implementation for which daemons,</p>
+<p>and what processes and what specialty information we include in each terminal.</p>
+<p>We should make an Amazon one, assuming we&#x27;re going to close in on this Carl deal.</p>
+<p>We should make an Amazon one, like one terminal that&#x27;s all the way focused on Amazon.</p>
+<p>All right.</p>
+<p>So maybe what I&#x27;m getting confused is each computer in your mind is a different terminal, right?</p>
+<p>Yeah.</p>
+<p>I mean, it&#x27;s probably over, like we could probably fit more than one terminal on one machine,</p>
+<p>but considering we have so many machines, I feel like that&#x27;s one clean way to do the design.</p>
+<p>Okay, so just because it has its own terminal,</p>
+<p>what does that mean in your mind as far as being able to set it up where you have one giant Neo4j with subgraphs</p>
+<p>that they&#x27;re all accessing that&#x27;s living on one with a backup on a second?</p>
+<p>For the trusted nodes, they&#x27;re all sharing one Neo4j with subgraphs.</p>
+<p>One Neo4j for the trusted nodes and the semi-trusted nodes.</p>
+<p>Or the semi-trusted nodes can have their own Neo4j,</p>
+<p>which I think is what you did for the...</p>
+<p>For Bitcove.</p>
+<p>Yeah, for Bitcove and Codemir.</p>
+<p>No, Codemir I shared with ours because it was writing in one,</p>
+<p>but it wasn&#x27;t updating the both.</p>
+<p>Are they both on Lenovo?</p>
+<p>Are they both on the same machine?</p>
+<p>There&#x27;s two terminals on one ThinkPad.</p>
+<p>Okay, perfect.</p>
+<p>One has its own Neo4j, the other one is sharing it with ours because we wanted it to be on one unit.</p>
+<p>No, I&#x27;m totally good with that.</p>
+<p>So I would say these next terminals, it&#x27;s fine for them to share the same MIG that we already have going.</p>
+<p>Okay.</p>
+<p>The fit-for-purpose ones, and then we&#x27;ll peel off separate MIGs</p>
+<p>when we move those into a fully federated, like, ghost terminal.</p>
+<p>But can they run a ghost terminal and our terminal at the same time?</p>
+<p>No, it&#x27;ll basically be, like, we&#x27;ll have, like, it&#x27;s like, I guess you could say, like, you have your Ford F-150,</p>
+<p>but then maybe you have your Ford F-150 XL.</p>
+<p>Still on the same chassis, still most of the same stuff, but then a little, a few upgrades.</p>
+<p>So in this case, it&#x27;s like all the same stuff, but the one difference is it gets its own MIG when it goes into a client environment.</p>
+<p>We&#x27;ll test it with our MIG because we want our MIG to be strong enough to be able to power all of them.</p>
+<p>Okay.</p>
+<p>I think.</p>
+<p>Unless we run into some situation where the MIG gets too big and it&#x27;s too hard to traverse.</p>
+<p>I don&#x27;t think we&#x27;re going to get there.</p>
+<p>I don&#x27;t think we&#x27;re going to get there because even if it took one second or three seconds or five seconds,</p>
+<p>it would generally be okay.</p>
+<p>If we were down to the fact, like, it needed some millisecond response time,</p>
+<p>then I think that&#x27;s when we have to worry.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Is what I&#x27;m saying making sense?</p>
+<p>Like, does that check out with what, I don&#x27;t know.</p>
+<p>I think it makes sense.</p>
+<p>Why I&#x27;m asking is because I got so many things going on in my head that I can&#x27;t keep track of it.</p>
+<p>That&#x27;s why I wanted you to be on here so we can at least identify what&#x27;s going on.</p>
+<p>I got.</p>
+<p>Yeah, I&#x27;m happy to help with the brain power because I&#x27;m a little bit idle right now.</p>
+<p>Like, I&#x27;m not over multitasking.</p>
+<p>Like, I feel like I got ahead of my shit that I needed to do.</p>
+<p>Like, I don&#x27;t feel behind right now.</p>
+<p>All right.</p>
+<p>Well, I got one, two, three, four, five, six, seven, eight.</p>
+<p>Dude, if we had a legal, a whole fucking terminal dedicated to legal and we got that sucker so beefed out,</p>
+<p>that&#x27;s its own, like, that could easily be its own product and maybe even its own company.</p>
+<p>I got eight terminals currently online right now.</p>
+<p>Or eight.</p>
+<p>That&#x27;s really sick.</p>
+<p>That&#x27;s really sick.</p>
+<p>And I got two laptops.</p>
+<p>The other thing is, like, oh, well, we&#x27;re going to get a client and one&#x27;s going to be for Carl.</p>
+<p>Okay, then that&#x27;s the move once they sign the contract.</p>
+<p>But before that, it&#x27;s our terminals.</p>
+<p>You said that last night.</p>
+<p>You&#x27;re like, no, this is for us.</p>
+<p>Or earlier.</p>
+<p>You&#x27;re like, great.</p>
+<p>This is for us then.</p>
+<p>Let&#x27;s get our terminals going so hardcore.</p>
+<p>We have the legal one.</p>
+<p>We have the Amazon one.</p>
+<p>If we end up going on a medical direction, we get the medical one.</p>
+<p>We&#x27;ll have, like, the PR angel, like, entrepreneur support one.</p>
+<p>Okay.</p>
+<p>And then if we&#x27;re going to review decks all day, then great.</p>
+<p>Then that&#x27;s the deck reviewing terminal.</p>
+<p>Okay, call on the daemons and the deck.</p>
+<p>Like, which might be that we want to do custom daemons and not just the same Delphi daemons on each one of those custom terminals.</p>
+<p>Maybe Delphi is on each one.</p>
+<p>But maybe Delphi is the only common daemon on all of them.</p>
+<p>And the other custom ones are going to have, like, a legal team instead of Avery and Sensei.</p>
+<p>Or maybe they all have a daemon.</p>
+<p>Maybe they all have a daemon.</p>
+<p>Maybe they all have a daemon.</p>
+<p>Maybe they all have a daemon and a sensei.</p>
+<p>So they all have security and they all have infrastructure.</p>
+<p>Okay.</p>
+<p>I can also help sculpt out, like, what goes on which.</p>
+<p>Which features and which daemons and which upgrades and which.</p>
+<p>Why don&#x27;t we get you online, too?</p>
+<p>Go on your MacBook.</p>
+<p>Go on your MacBook and we&#x27;ll get you online, too.</p>
+<p>Okay, great.</p>
+<p>Yeah, because then I can help customize and build out.</p>
+<p>All right, let me get my thing.</p>
+<p>How long do I have here?</p>
+<p>Okay, we&#x27;ve got about 20 minutes.</p>
+<p>Okay.</p>
+<p>What do I need to be able to access these guys?</p>
+<p>Does everyone just have their own tail scale number?</p>
+<p>Like, tail scale, whatever?</p>
+<p>SSH?</p>
+<p>Yeah, for whatever reason, your tail scale doesn&#x27;t show up at all.</p>
+<p>Really?</p>
+<p>Yeah, it&#x27;s not showing that it&#x27;s online.</p>
+<p>So I need to know what your IP address is.</p>
+<p>Okay, I&#x27;m turning it on now.</p>
+<p>Oh, so it wasn&#x27;t even on.</p>
+<p>That&#x27;s why I didn&#x27;t see it.</p>
+<p>Fucko?</p>
+<p>Yeah, it was.</p>
+<p>Yeah, that&#x27;s probably why.</p>
+<p>All right, let&#x27;s see what this says.</p>
+<p>All right, it&#x27;s on now.</p>
+<p>All right, let&#x27;s see if yours is online.</p>
+<p>Levi MacBook connected.</p>
+<p>So yours should be 10094180.32.</p>
+<p>Okay.</p>
+<p>If you go to the tail scale, that&#x27;s what it should show you as your IP address for tail scale.</p>
+<p>Okay.</p>
+<p>Oh, yeah, it says I&#x27;m connected.</p>
+<p>All right, so all this time.</p>
+<p>Collective intelligence.</p>
+<p>Yeah, 32.</p>
+<p>Yep, this device.</p>
+<p>Yep, 180.32.</p>
+<p>Okay, so you&#x27;re live.</p>
+<p>I got two more laptops that I need to connect in, and then I got to figure out what the fuck I&#x27;m doing with this thing.</p>
+<p>Hold on.</p>
+<p>I&#x27;m trying to find one piece of information that I can&#x27;t find in my head.</p>
+<p>One second.</p>
+<p>Fucking thousand browsers open.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>So I&#x27;m going to go into your computer.</p>
+<p>One second.</p>
+<p>Then once I can access this from here, then I can juggle it in between everything else that I&#x27;m doing.</p>
+<p>I told you what the patch.</p>
+<p>What was it?</p>
+<p>100?</p>
+<p>94180.32.</p>
+<p>94.</p>
+<p>94.</p>
+<p>100.94.180.32.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>And then the username and password.</p>
+<p>See, for what?</p>
+<p>Like when I go to log into my computer?</p>
+<p>Yes.</p>
+<p>I don&#x27;t even know.</p>
+<p>I just do it automatically.</p>
+<p>So go into a terminal and go, who am I?</p>
+<p>No spaces.</p>
+<p>But I don&#x27;t know what your password is if you don&#x27;t know your password.</p>
+<p>I know my password.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>The username is Eli Beckman.</p>
+<p>E-L-Y-B-E-C-K-M-A-N.</p>
+<p>Okay.</p>
+<p>And the password is capital M.</p>
+<p>N as in Mary or Nancy?</p>
+<p>Mary.</p>
+<p>Okay.</p>
+<p>Capital Mary.</p>
+<p>The word magazine with a capital M.</p>
+<p>M-A-G-A-Z-I-N-E.</p>
+<p>What a very...</p>
+<p>Magazine.</p>
+<p>And then a number three and an exclamation.</p>
+<p>What the fuck?</p>
+<p>Okay.</p>
+<p>That didn&#x27;t work.</p>
+<p>It&#x27;s Eli Beckman with capital letters?</p>
+<p>All lowercase.</p>
+<p>No spaces.</p>
+<p>B-E-E-L-Y-B-E-C-K-M-A-N.</p>
+<p>Yeah.</p>
+<p>M-A-G-Mag-A-Z-E-N-E.</p>
+<p>Three exclamation.</p>
+<p>Z-I-N-E.</p>
+<p>Then three.</p>
+<p>The number three.</p>
+<p>An exclamation.</p>
+<p>Exclamation.</p>
+<p>It&#x27;s not working.</p>
+<p>But that...</p>
+<p>I don&#x27;t...</p>
+<p>That&#x27;s what that...</p>
+<p>What can I say?</p>
+<p>It&#x27;s...</p>
+<p>Why do you need the username and password to the computer?</p>
+<p>Wouldn&#x27;t you need the username and password to like...</p>
+<p>Like what are you trying to do exactly?</p>
+<p>What I&#x27;m trying to do is have the ability to go in there and use the terminal locally</p>
+<p>if I need to go and do stuff when it asks me to do SSH stuff.</p>
+<p>And then when you have to copy and paste it and I have to explain it to you, it just takes more time.</p>
+<p>So what I do is I literally have every machine on my MacBook Pro and I can just remote into the screen and copy and paste it.</p>
+<p>Do I have to turn on access or something like that? Is that why it&#x27;s not working?</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Go into your system settings and look up the word in search called remote.</p>
+<p>And then you&#x27;re going to access that...</p>
+<p>Remote application?</p>
+<p>Remote management?</p>
+<p>Remote management.</p>
+<p>Remote login.</p>
+<p>I use remote login and remote management as both of those.</p>
+<p>And then it gives me access to that.</p>
+<p>Okay.</p>
+<p>They&#x27;re on.</p>
+<p>Remote login on.</p>
+<p>To login to this computer type SSH Eli Beckman at 192-168-025.</p>
+<p>So it&#x27;s a different IP.</p>
+<p>Okay.</p>
+<p>Let&#x27;s try this one.</p>
+<p>What is it?</p>
+<p>Eli Beckman at 192-168-025.</p>
+<p>Okay.</p>
+<p>And I want you to learn how to do this too because you can access all the computers as if you&#x27;re using it from your screen.</p>
+<p>Okay.</p>
+<p>And then you have no excuse that you&#x27;re not connected.</p>
+<p>Yep.</p>
+<p>Sounds good.</p>
+<p>192-168-025.</p>
+<p>Yep.</p>
+<p>It&#x27;s not going.</p>
+<p>It didn&#x27;t work.</p>
+<p>What was it?</p>
+<p>SSH?</p>
+<p>I did it.</p>
+<p>I did it again.</p>
+<p>I sent it to you on Telegram.</p>
+<p>In case there&#x27;s an issue of reading it wrong or putting it in a period in the wrong place.</p>
+<p>It doesn&#x27;t look like this works either.</p>
+<p>Mike, where do you want to put these laptops that are running Linux right now?</p>
+<p>Or no, I don&#x27;t think so.</p>
+<p>I don&#x27;t know.</p>
+<p>I think they&#x27;re running.</p>
+<p>The ones that I took home and put everything together, where do you want to put those?</p>
+<p>I think we&#x27;re at least around the heat.</p>
+<p>Probably going to be over here.</p>
+<p>They only have another computer.</p>
+<p>Watch this stuff.</p>
+<p>We don&#x27;t have insurance.</p>
+<p>It&#x27;s a little more back here.</p>
+<p>I saw that.</p>
+<p>So we need to find a monitor to switch that out with, right?</p>
+<p>I think I have another monitor.</p>
+<p>Yeah.</p>
+<p>I just need to use this one.</p>
+<p>If we&#x27;re going to leave it there, I just need to access it here that way.</p>
+<p>Okay.</p>
+<p>You say you need another monitor to switch it out with?</p>
+<p>You need to just back forth with that one?</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>So, keyboard and...</p>
+<p>We&#x27;re going to switch out the mouse, too?</p>
+<p>I see it.</p>
+<p>Yeah, I just need...</p>
+<p>I just go bing, bing, bing, bing, bing.</p>
+<p>That&#x27;s it.</p>
+<p>There doesn&#x27;t need to be multiple devices.</p>
+<p>I just need to start it up.</p>
+<p>I can&#x27;t get into this computer, so I don&#x27;t know what...</p>
+<p>What did you do before?</p>
+<p>Because you logged in.</p>
+<p>You were swooped in before, like two seconds, and we&#x27;re controlling the whole thing.</p>
+<p>Actually, no, you did it two different ways.</p>
+<p>Because you did it one way where it locked me out of it, and you had control.</p>
+<p>Yeah.</p>
+<p>If I use the ask permissions, which I&#x27;m doing now, see if this lets me in.</p>
+<p>Okay.</p>
+<p>Yeah, you have it again.</p>
+<p>My screen went blank, so I assume you have...</p>
+<p>I know.</p>
+<p>You have the...</p>
+<p>That&#x27;s stupid.</p>
+<p>You have the helm.</p>
+<p>All right.</p>
+<p>Let&#x27;s see what I can do with this.</p>
+<p>Okay.</p>
+<p>It just is, well, I&#x27;m going to be on the road for like...</p>
+<p>I have to go pick up my daughter&#x27;s friend, so I&#x27;m going to be on the road for like two or three hours or so.</p>
+<p>So feel free to smash buttons while...</p>
+<p>I&#x27;ll just make sure my thing&#x27;s plugged in and...</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
