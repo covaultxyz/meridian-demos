@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jon Cloud Based Solution — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Jon Cloud Based Solution</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Jon and a developer discussed building a cloud-based SaaS product for a PR firm to scan documents for defamatory statements, starting with a basic tier and scaling later.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Build a cloud-based SaaS product instead of a local executable.</li><li>Start with a basic tier scanning for defamatory statements (tier one).</li><li>Use a dedicated server to avoid crashing with scale.</li><li>Compensate developer at $150 per hour for work.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Developer will research hosting solutions compatible with Jon&#x27;s HostGator setup.</li><li>Developer will report back after research before moving forward.</li><li>Jon will purchase a domain name for the tool.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>The PR firm processes about 1,000 articles per week in batches of 30-50 Word docs.</li><li>Uploading to a cloud solution may take a couple minutes for 50 documents, which is acceptable.</li><li>Notion was recommended as a personal knowledge management tool to track project progress.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Developer&#x27;, &#x27;what&#x27;: &#x27;Research hosting packages and a domain name for the cloud-based tool.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Jon&#x27;, &#x27;what&#x27;: &#x27;Decide on a tool name and purchase a domain.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Developer&#x27;, &#x27;what&#x27;: &#x27;Provide a list of publication parameters for future pro tier.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>jon cloud based solution</h2>
+<p>**Source**: `jon cloud based solution.m4a`</p>
+<p>**Transcribed**: 2026-04-28 16:36</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>what I&#x27;m seeing, it sounds like, you know, it&#x27;s getting the output we want is very doable.</p>
+<p>My thought process as far as having an actual product is that would be</p>
+<p>essentially a SaaS product where we would host it. And then, like I said, I&#x27;ve got</p>
+<p>the large PR agency that I work with would essentially be our first customer on the platform</p>
+<p>and they&#x27;re already, they would be already doing like a thousand articles a week on this thing.</p>
+<p>Does that make sense? Yeah. No, I&#x27;m just saying that the process of it working, if it&#x27;s a downloadable,</p>
+<p>executable local file that&#x27;s able to do all the things, it would be way faster than them trying</p>
+<p>to upload and wait for a thousand files to get converted into a Google doc and then do this</p>
+<p>whole thing through that process. How does that work from the monetization piece?</p>
+<p>I mean, we could figure out a way where we basically have a, like a limit of how many files could be</p>
+<p>done. It still would be able to track that through the hosting that you&#x27;re using your thing. But as</p>
+<p>far as the file uploading that process, I think locally would make it fast.</p>
+<p>If you&#x27;re doing a thousand files a week, I mean, that sounds like a lot.</p>
+<p>Well, I mean, they&#x27;d be doing them in batches of like 30 to 50. And I mean,</p>
+<p>like the examples you saw, I mean, they&#x27;re Word docs.</p>
+<p>Yeah.</p>
+<p>They&#x27;re not that big of files.</p>
+<p>I mean, the only other option is that we, um, mandatory make them upload it to a Google drive</p>
+<p>and then they have to just clean that up when they&#x27;re done or whatever they do.</p>
+<p>Well, I guess more of my question would be, I mean, if we&#x27;re going to make this into like a real thing,</p>
+<p>and again, correct me where I&#x27;m wrong, because this isn&#x27;t necessarily my, um, area of expertise would,</p>
+<p>to me, what would make most sense is if we hosted it on a domain like you would with a SAS product.</p>
+<p>Um, and then they&#x27;d upload the documents from there. We&#x27;d be able to do like the word counts,</p>
+<p>um, and, uh, you know, monthly subscription or whatever. Um, and other scan tools like this,</p>
+<p>typically they, the way they work is, is their, uh, like originality is probably a good example of</p>
+<p>they&#x27;re doing something different, but in the same ballpark where you upload the document,</p>
+<p>it scans it for AI, um, cause they&#x27;re just looking for AI writing. So it scans it for AI writing.</p>
+<p>Um, you, you know, buy, uh, you have a monthly subscription that gives you, you know,</p>
+<p>2000 credits a month and a credit is like every a hundred words. And then if you want more credits,</p>
+<p>you buy them in like $30 increments. Yeah.</p>
+<p>So my thought is from a business perspective, having, again, something that&#x27;s very basic like that,</p>
+<p>um, to me is what makes the most sense as opposed to if they, you know, if they have it locally,</p>
+<p>I understand that it&#x27;s faster, but then they have to download something. And then,</p>
+<p>you know, to me again, updating, it seems a little bit trickier and that type of stuff.</p>
+<p>And kind of the expectation, I think might be a little bit different.</p>
+<p>Okay. So you just don&#x27;t want to do anything locally. You want everything to be cloud-based.</p>
+<p>Um, I think so. I mean, and I guess that&#x27;s back to that question of, well, um, one,</p>
+<p>if we&#x27;re talking about like, how do you think that we could make it cloud-based with,</p>
+<p>you know, a very basic, simple user interface where literally it just has an upload button and then,</p>
+<p>you know, um, it&#x27;s bits out the documents. Um, even if for kind of the 1.0 version,</p>
+<p>if it spits out the documents into a Google sheet, like what you have, as far as the results from</p>
+<p>everything, um, I think that would be fine as long as they&#x27;re uploading it to a, uh,</p>
+<p>you know, kind of a, a domain or a cloud hosted, uh, tool.</p>
+<p>Okay. So instead of hosting it in a Google drive, it would be hosted on a server,</p>
+<p>which you&#x27;re basically accessing the files. You&#x27;re converting them in from a doc file to</p>
+<p>some sort of file that that server is able to read and it&#x27;s scanning it, putting a link there.</p>
+<p>So if they need to go back to it, they can click the link to identify which link it is.</p>
+<p>And it&#x27;s just putting the results in a Google sheet that has all the information of the report.</p>
+<p>Yeah, that sounds about correct.</p>
+<p>Okay.</p>
+<p>So do you feel like it would be, um, doable to create something like that?</p>
+<p>I think it&#x27;s doable. It&#x27;s just, it&#x27;s just figuring out how, what the best method is. Like, like it&#x27;s,</p>
+<p>it&#x27;s like there&#x27;s different ways to do a lot of different things and it&#x27;s just trying to find out,</p>
+<p>like from you, what is the actual thing that you want to build?</p>
+<p>Sometimes it doesn&#x27;t come out the first time you build it, you know, like you have things that you have in your head that you didn&#x27;t verbalize.</p>
+<p>So now we&#x27;re going through like an iteration of it and saying, okay, well, I want to be more clear on what it is that I want,</p>
+<p>which is going to force me to move in a different direction to find other solutions to fit the criteria that you&#x27;re giving me currently.</p>
+<p>Right.</p>
+<p>So it&#x27;s just a matter of figuring out what the best method is.</p>
+<p>Okay.</p>
+<p>And you don&#x27;t care how long it takes for these scans to happen.</p>
+<p>Cause like I do sometimes like converting files and it takes forever on a cloud solution when I could just do it in the file directly and do it in like three seconds.</p>
+<p>But I&#x27;m impatient.</p>
+<p>Like to me.</p>
+<p>This is something where, I mean, to them, the difference between 30 seconds and 30 seconds isn&#x27;t really a big deal.</p>
+<p>Yeah.</p>
+<p>So if they upload, you know, 50, 50 documents and it takes a couple of minutes to get the results back on all 50 of those documents, that&#x27;s totally fine.</p>
+<p>Okay.</p>
+<p>So what would, in order to do it on a, on a cloud solution, what would you need from me in order to do that?</p>
+<p>I&#x27;ll have to do a little bit more research.</p>
+<p>We&#x27;ll probably have to buy a hosting package somewhere.</p>
+<p>And a domain name based on the tool name and then basic landing page.</p>
+<p>Yeah.</p>
+<p>And I&#x27;ve got, so I currently, and again, it&#x27;s nothing special.</p>
+<p>It&#x27;s like the most basic version they offer, but I have like a, and I&#x27;m going to use the word server, understand that I am not a technical person.</p>
+<p>And so, but I have like domains that I host on, on HostGator where it has, I think some of the, like you can add a domain name and you know, there&#x27;s some of the functionality.</p>
+<p>So there&#x27;s two things.</p>
+<p>When you, when you buy a URL, you&#x27;re buying just the face of the name to forward it to a computer that&#x27;s on 24 hours, seven days away, which is the server.</p>
+<p>So when you&#x27;re buying either a shared or dedicated server, like I have servers where I have like over 150 websites that are being accessed to that server.</p>
+<p>So you have to, the server that has the space available is what you&#x27;re saying.</p>
+<p>And the name?</p>
+<p>Well, I&#x27;ll have to grab a domain name.</p>
+<p>I haven&#x27;t a hundred percent decided on what I want to do as far as the name, but I do know that I want to have it hosted on kind of its own domain.</p>
+<p>Okay.</p>
+<p>So your criteria is HostGator is who you&#x27;re using.</p>
+<p>That&#x27;s who I am currently using.</p>
+<p>If you&#x27;re telling me, Hey John, HostGator is not going to work and you, and you need a different solution.</p>
+<p>I&#x27;m open to that.</p>
+<p>Okay.</p>
+<p>I just want to make sure that when I&#x27;m doing my research that I want to look for a solution first that fits in with what you&#x27;re already working with.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>So I currently have a share, like the most basic shared plan with HostGator.</p>
+<p>I&#x27;ve got probably 10 different domains that I, that I, um, host there.</p>
+<p>Are you familiar with the term bandwidth?</p>
+<p>Um.</p>
+<p>I want to say, well, I&#x27;d have to look to see, like, I don&#x27;t think I have a limit on, I&#x27;m sure there&#x27;s some sort of limit on the bandwidth.</p>
+<p>Listen, I know these things because I&#x27;ve broken servers before.</p>
+<p>And when you&#x27;re doing a thousand documents, you&#x27;re going through megabytes of data space.</p>
+<p>And if you have multiple users doing this all at the same time, you&#x27;re going to crash your server.</p>
+<p>And then when that server crashes, all the websites that are being hosted go down with it.</p>
+<p>And then you&#x27;re stuck between a rock and a hard place because sometimes they charge anywhere from hundreds to thousands of dollars to get more bandwidth.</p>
+<p>And then you&#x27;re just sitting there going, I created a really big problem.</p>
+<p>Okay.</p>
+<p>Yeah.</p>
+<p>Well, and maybe what we&#x27;ll have to do as a part of that is, you know, start out just kind of creating a separate account.</p>
+<p>That&#x27;s, uh, cause I don&#x27;t think a dedicated server is all that much.</p>
+<p>No, I&#x27;m just sharing with you.</p>
+<p>Like, as you scale, I don&#x27;t know how many users you want to actually have.</p>
+<p>Like, are you looking at like two or three PR firms and you&#x27;re good?</p>
+<p>Or are you looking at like, I think a lot of people are going to use this and I&#x27;m going to have gigs of shit being uploaded on a day.</p>
+<p>Yeah.</p>
+<p>So kind of what I see is, is that in this initial, let&#x27;s call it the first, you know, couple of months,</p>
+<p>it&#x27;s going to be the one PR firm.</p>
+<p>And then from there, when we start expanding the tool at that, you know, there&#x27;ll be a very deliberate process of like, okay,</p>
+<p>now we&#x27;re opening it up to, you know, and adding, um, other PR firms and other customers.</p>
+<p>Um, and at that point, I think we&#x27;ll have to, you know, look at what, again, like you said, what does that look like?</p>
+<p>If instead of doing a thousand a week, now we&#x27;re doing 10,000 or 50,000 a week, um, and making sure that it&#x27;s able to scale a couple months from now,</p>
+<p>once we&#x27;ve kind of proven out, Hey, process works, they&#x27;re paying for it.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>We&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>And then we&#x27;re going to have to do a couple months.</p>
+<p>I&#x27;m thinking of it in language of code.</p>
+<p>So is this going to be a one button solution that&#x27;s doing all these things?</p>
+<p>Or if there&#x27;s going to be different tiers, each tier would rather be its own script.</p>
+<p>And then if they choose multiple, it would just have to run through five different iterations of the same scan and create the extra cells associated to the parameters that were selected in the process.</p>
+<p>So, yeah, good question.</p>
+<p>What I see out of this is a tiered approach where, you know, let&#x27;s call it tier one, is just hip pieces or which in really what we&#x27;re looking for is defamatory statements.</p>
+<p>So that&#x27;s like, like the basic level.</p>
+<p>The pro level is looking at all, you know, all the contents that we&#x27;ll build later on.</p>
+<p>And it just looks at the contents.</p>
+<p>And then, you know, that includes the defamatory statements, but also includes like first person and all this other type of stuff.</p>
+<p>And that gets into also like, hey, what publication is this for?</p>
+<p>Because this PR firm that I work with, I mean, they are rather large.</p>
+<p>So they&#x27;ve got a pretty good or they&#x27;ve got a huge network of publications they work with.</p>
+<p>And so there&#x27;s like 800 publications in there.</p>
+<p>So at that pro level, then we would also have to take into account, you know, there&#x27;s like six major media houses and then a bunch of other odds and ends.</p>
+<p>So you have to have, I think you&#x27;d have to have a way of selecting like, hey, I want this in USA Today.</p>
+<p>So you select USA Today, you upload your, you know, your doc, and then it gives you the results based on what USA Today&#x27;s parameters are.</p>
+<p>And you have access to the list of what the each company&#x27;s parameters are.</p>
+<p>That&#x27;s, we do it manually right now for the PR firm.</p>
+<p>Right.</p>
+<p>But you have a list of the parameters that would be able to be set in the script to be able to identify what each one of those are.</p>
+<p>Because in order to do that, we would need that.</p>
+<p>Right.</p>
+<p>So, yes, I have that.</p>
+<p>Okay.</p>
+<p>I&#x27;m not ready for that next phase yet.</p>
+<p>So I want to start at the basic level and get something where I can get the PR firm using that tool before we take, before we go to that pro level.</p>
+<p>Okay.</p>
+<p>Does that make sense?</p>
+<p>Yeah.</p>
+<p>All right.</p>
+<p>Anything else?</p>
+<p>No, I think that&#x27;s, that&#x27;s it.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>I think that&#x27;s a good question.</p>
+<p>Just move forward from there.</p>
+<p>Okay.</p>
+<p>And then, I mean, I do want to make sure that, you know, you&#x27;re, you&#x27;re compensated for your</p>
+<p>time.</p>
+<p>So, you know, I think once we get those solutions, we look at it and say, okay, you know, what</p>
+<p>time you got into that, and then look at moving forward with that 20 hour block.</p>
+<p>And then if you&#x27;re okay with it, since I&#x27;m, you know, kind of a friend of a friend, if</p>
+<p>we did it, you know, like $200 an hour, does that sound like a plan that works for you?</p>
+<p>I mean, I&#x27;m open to working with you for the 150 an hour.</p>
+<p>That works for you?</p>
+<p>I mean, obviously I&#x27;m totally fine with that.</p>
+<p>Yeah.</p>
+<p>Listen, I&#x27;m not here to like beat people up.</p>
+<p>I want to work with people and do the right thing with the right people.</p>
+<p>I don&#x27;t, I don&#x27;t like working with people I don&#x27;t like, you know what I mean?</p>
+<p>So Mike&#x27;s a good guy.</p>
+<p>Yep.</p>
+<p>You&#x27;re a good guy.</p>
+<p>Yeah.</p>
+<p>I don&#x27;t, I don&#x27;t, I&#x27;d rather work with people I enjoy working with than stressful people who</p>
+<p>are.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>I&#x27;m not going to work with people.</p>
+<p>So, yeah, I&#x27;ll let you do the cloud solution stuff then.</p>
+<p>And then, you know, kind of look at some, or when I say that, do some research into that.</p>
+<p>And then we&#x27;ll just go from there.</p>
+<p>Does that sound good?</p>
+<p>Yeah.</p>
+<p>And have you ever heard of Notion?</p>
+<p>Yes.</p>
+<p>Do you currently use it?</p>
+<p>I do not.</p>
+<p>All right.</p>
+<p>So, do you know what a personal knowledge management tool is?</p>
+<p>I mean, no.</p>
+<p>I&#x27;m going to go with no.</p>
+<p>Okay.</p>
+<p>So, what I discovered in a lot of the things that I do is creating Google Docs and all these</p>
+<p>other things to kind of keep track of everything is so inefficient.</p>
+<p>So, using certain tools, Notion is one of them, you&#x27;re able to document journeys and create</p>
+<p>paths.</p>
+<p>So, you have a reference and a log of all the different things that you&#x27;re doing.</p>
+<p>So, if you need to go back somewhere, at least you don&#x27;t have to go back from scratch.</p>
+<p>You have like a log almost of all the different things.</p>
+<p>So, I keep track of all these different pieces.</p>
+<p>So, I&#x27;m just sharing that with you because this might be helpful for you when you&#x27;re thinking</p>
+<p>about these things.</p>
+<p>It&#x27;s like a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log of a log</p>
+<p>YouTube video out there that you know of that kind of explains how that works in Notion?</p>
+<p>Because I understand the concept.</p>
+<p>I&#x27;ve used Notion a little bit.</p>
+<p>I could just jump on a Zoom call and show you what I do.</p>
+<p>I could just show you real quick.</p>
+<p>It&#x27;s not hard.</p>
+<p>It&#x27;s just learning how to use it and then doing it.</p>
+<p>And I have the tool that Notion was built on is the open source version, which is the one that I&#x27;ve been using.</p>
+<p>But I got like over 300 documents.</p>
+<p>Like each client I start, I start a new tab and all the stuff that I&#x27;m working on is in that tab.</p>
+<p>So I can go back and review it and be like, ah, what was that thing?</p>
+<p>Or like if I watch a YouTube video, I add it to that knowledge base.</p>
+<p>So if I need to go back to that YouTube video, I know it&#x27;s there.</p>
+<p>And that&#x27;s what people don&#x27;t do is they watch things or learn things and then they completely forget and they don&#x27;t even know where they saw it.</p>
+<p>And they can&#x27;t even retrace or recreate the keywords that they use to search it.</p>
+<p>Yeah.</p>
+<p>What I know with Notion, and I think this is where you&#x27;re going with it as well, is there&#x27;s an AI component built in there where you can just kind of query.</p>
+<p>And rather than just trying to point you to a file, it&#x27;ll actually just kind of give it the answer to.</p>
+<p>I don&#x27;t use that part of it.</p>
+<p>I&#x27;m doing it more for the second brain function.</p>
+<p>Like I get so many things that I&#x27;m doing every day and I&#x27;m sure you have a lot of things that I&#x27;m working on.</p>
+<p>So if you&#x27;re just doing this and the Amazon thing, like having two different main tabs and then anything that you&#x27;re doing throughout the day that you think is something that would be important to log, you just copy paste it or add the document right into that folder.</p>
+<p>So it&#x27;s living there and you can access it.</p>
+<p>Gotcha.</p>
+<p>Okay.</p>
+<p>Yeah.</p>
+<p>But I know it&#x27;s easier for me when you&#x27;re explaining these things, I put it in my little doc, but then if you&#x27;re able to identify how to see it like that, then it&#x27;s going to make it easier for you to explain it.</p>
+<p>Because now you&#x27;re going to see like how it...</p>
+<p>Because you said you&#x27;re a process guy.</p>
+<p>Yes.</p>
+<p>So this is like breaking down the processes where here&#x27;s the main thing that we want to do and then each like tab underneath that is a part of the main process.</p>
+<p>So you&#x27;re able to break it down into a smaller bite sizable piece so you can at least see it.</p>
+<p>Okay.</p>
+<p>Yeah.</p>
+<p>Yeah, I&#x27;ll have to take another look at it.</p>
+<p>Yep.</p>
+<p>And I believe Notion&#x27;s multiplayer mode.</p>
+<p>The one that I use is multiplayer mode.</p>
+<p>So we have multiple people that are able to input data into the same document so you&#x27;re able to share information and build together, which is also a benefit.</p>
+<p>Okay.</p>
+<p>Yeah.</p>
+<p>Sounds like I&#x27;ve got some homework.</p>
+<p>I don&#x27;t know, dude.</p>
+<p>It&#x27;s just up to you if you want to do it.</p>
+<p>I&#x27;m just sharing these things because I learned so much stuff so fast.</p>
+<p>No, no, no.</p>
+<p>I very much appreciate that.</p>
+<p>Yeah.</p>
+<p>All right.</p>
+<p>Anything else?</p>
+<p>For right now?</p>
+<p>No, I think that&#x27;s it.</p>
+<p>I&#x27;m going to do my research and gather and collect and then I&#x27;ll report back to you.</p>
+<p>All right.</p>
+<p>Sounds good.</p>
+<p>I appreciate all the help and I look forward to seeing what you find.</p>
+<p>Awesome.</p>
+<p>All right.</p>
+<p>Talk to you later.</p>
+<p>All right.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p>
+<p>Bye.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
