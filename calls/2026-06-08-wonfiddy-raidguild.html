@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wonfiddy Raidguild — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Wonfiddy Raidguild</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The speaker describes his strategy to work with wealthy individuals on building AI tools for old-world industries (like HVAC), using a dynamic equity split model from the book &#x27;Slicing the Pie&#x27; to create SaaS products and roll up service-based businesses for acquisition, and asks the listener to connect him with Raid Guild for their development skills.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>The listener will send more intelligence about Raid Guild to the speaker over SMS.</li><li>The speaker will consider staking at least 5% of the tokens he is bridging to the listener for yield.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>The listener committed to sending Raid Guild website, portfolio, and more information over SMS to the speaker.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Raid Guild is a pseudo-anonymous, global guild of talented developers who build web3 projects for minimal cost, sometimes under $5k, and are motivated by skill challenges rather than just money.</li><li>A past project partner (Milan) suffered a family tragedy, disappeared, and left the speaker holding $150,000 worth of undelivered client work.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;listener&#x27;, &#x27;what&#x27;: &#x27;Send Raid Guild website, portfolio, and contact details to the speaker over SMS.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>wonfiddy raidguild</h2>
+<p>**Source**: `wonfiddy raidguild.m4a`</p>
+<p>**Transcribed**: 2026-04-28 17:22</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>what&#x27;s up buddy so this is all related to dow stuff yeah absolutely spork dow so um spork dow</p>
+<p>puts on e-thenver every single year and quite had a massive booth with like robots and like you know</p>
+<p>led screens and they&#x27;re just like pretty much giving out these paper wallets that had 20</p>
+<p>quai on each of them just to like get people on boarded into the ecosystem</p>
+<p>all right so i want to explain something to you see if you can wrap your mind around it</p>
+<p>do you know anything about equity absolutely all right do you know anything about this book called</p>
+<p>slicing the pie</p>
+<p>no i&#x27;ve never heard of the book all right so basically i got myself into a situation here</p>
+<p>where there&#x27;s a lot of really really really wealthy people around me and they all do all kinds of</p>
+<p>businesses there&#x27;s a guy here who is a business broker and for the last three and a half four</p>
+<p>weeks we&#x27;ve been meeting for two to three hours maybe four hours a week and just going over some</p>
+<p>stuff and in the process of me doing those meetings i&#x27;m starting to see how we can take these old world</p>
+<p>infrastructures and bring them into a dow like community so i&#x27;m going to just try to visually</p>
+<p>picture a mother company which is like the master circle pie like a pizza pie and then you would have</p>
+<p>many silos or many verticals of specific projects that have their own pie and based on the performance</p>
+<p>and the effort that you put into your pie will potentially give the mother company a reason to invest</p>
+<p>and buy you out or give you shares of the master pie that they can then use that data and tool sets and</p>
+<p>research and everything else to fill fill their other children of the mother master node does that make sense</p>
+<p>sort of like liquid shares i i don&#x27;t know how to explain it well it&#x27;s like liquid shares and buyouts</p>
+<p>and acquisitions yeah so basically what i&#x27;m doing is working with these guys and everybody i talk to</p>
+<p>wants me to build them ai tools that they can then turn around and create a product and scale it up and</p>
+<p>sell it to the other people in the industry so if i have a guy that&#x27;s like looking to put in 100 grand</p>
+<p>to build this system that&#x27;s going to work on solving this one pain point then we can then turn that into a</p>
+<p>a a sas product that then also funnels the knowledge and the resources and tools that we can apply to</p>
+<p>all the other verticals that i&#x27;m building</p>
+<p>so um i&#x27;m gonna see if i could find you this book it&#x27;s a pdf i i basically so the way that the guy did</p>
+<p>all the math is if a person comes in as a developer with sweat equity they get a 2x multiplier but if a guy</p>
+<p>comes in with cash they get a 4x multiplier and then they divide the slices based up on performance</p>
+<p>and and effort so instead of trying to do a business agreement and saying yo we&#x27;re 50 50 partners which</p>
+<p>potentially could blow up in your face when one guy decides that he&#x27;s not getting what he was supposed</p>
+<p>to get and then he just doesn&#x27;t do what he&#x27;s doing anymore and now you&#x27;re stuck and then the other</p>
+<p>person has to pick up the slack and they&#x27;re doing work but not getting compensated because they&#x27;re</p>
+<p>50 50 partner so this this system becomes dynamic where it&#x27;s based off of how much money you put in</p>
+<p>how much time and energy and effort you&#x27;re putting in and that&#x27;s all measured in fair market value</p>
+<p>but here&#x27;s the thing there&#x27;s multiple different variables that you need to account for</p>
+<p>such as having an oracle that can calculate the effort of the developer reasonably and make sure</p>
+<p>that that developer isn&#x27;t abusing or metagaming the system which is what me and my team were pretty much</p>
+<p>building at metagame with the meta os back when ether was like 300 200 dollars right that&#x27;s why i wanted</p>
+<p>to bring this up to you to see if you could help me figure out a way to put this in a place that makes</p>
+<p>sense where i can get these other guys that are interested in doing certain things and instead</p>
+<p>of them trying to like pay me and thinking that like the project that i&#x27;m building for them is solving</p>
+<p>their personal problem but when you try to scale it up the infrastructure that&#x27;s required and the tools</p>
+<p>that are going to be needed are going to be way different than if i was just solving one person&#x27;s problem</p>
+<p>so they don&#x27;t realize any of this they just think oh i&#x27;m going to pay you and extort you and then</p>
+<p>turn around and make a lot more money on you but here&#x27;s the thing let&#x27;s just say hbac companies are</p>
+<p>being sought after by all these big family offices and private equity funds because of that industry</p>
+<p>they&#x27;re sought after and there&#x27;s limited of them and their evaluations are going out of the ballpark</p>
+<p>right so instead of me that&#x27;s that&#x27;s pretty much due to rehypothecation right you know what i mean when</p>
+<p>i say that like the distortion of the shares okay but what i&#x27;m trying to say is i have the ability to</p>
+<p>create tools for any industry or anything instead i&#x27;d rather focus on if i&#x27;m going to build something for</p>
+<p>hvac companies i want to build something that i could then go and focus and become the expert and</p>
+<p>the tool provider for that industry and or other service industries that operate and need the same</p>
+<p>type of tool sets right right now if i can go and evaluate these companies and tell them hey listen</p>
+<p>we&#x27;re interested in buying you out because i have buyers who are already vetted and have money put aside</p>
+<p>and the deal that they wanted already went through and there there&#x27;s still a lot more buyers than there</p>
+<p>are sellers so if i can evaluate your company and identify what you&#x27;re at where you are with your</p>
+<p>numbers and everything else we can give you a reasonable offer if you don&#x27;t qualify we can offer</p>
+<p>you these services that we developed to help you create a more profitable outcome so you&#x27;re more</p>
+<p>desirable for these other investors so now you&#x27;re making cash flow and then you&#x27;re also doing something</p>
+<p>where you&#x27;re building an opportunity to sell and make a bigger profit on the back end and then the real</p>
+<p>money&#x27;s made when you actually systemize all the ones that are bought and then you roll them up and 10 or</p>
+<p>20x the the deal because you&#x27;re selling all of them at once but you have to make sure that you have the</p>
+<p>buyers lined up i have more buyers than i do sellers</p>
+<p>right okay but man that&#x27;s one of those situations where like you can get an over bloated evaluation</p>
+<p>and then the buyers stop coming to buy like at scale that&#x27;s what i&#x27;m trying to get at when i say you need</p>
+<p>to make sure you have all the buyers lined up with like an infinite balance sheet which is kind of what the</p>
+<p>fed did last cycle when they did qe infinity</p>
+<p>okay so it&#x27;s like ponzinomics what you&#x27;re describing but theoretically speaking it&#x27;s possible</p>
+<p>it&#x27;s been done before um the thing is is that some people would rather see what you guys are building</p>
+<p>first and then verify that there&#x27;s true value there rather than just you know lining up and buying up</p>
+<p>as many shares as they possibly can and then realizing that the work is probably easily automated</p>
+<p>actually and the developers aren&#x27;t really even needed to a degree at a certain point which</p>
+<p>i&#x27;m not sure if that&#x27;s going to be anytime soon but that&#x27;s also a possibility you know i&#x27;m saying</p>
+<p>that i&#x27;m trying to be the developer and using these ai tools i can get pretty far but i&#x27;m still limited</p>
+<p>with time so i&#x27;m still going to need people in the seat who are next to me who have the knowledge and</p>
+<p>understanding of how to maneuver in this space and we&#x27;re going to build an army of bots that are going</p>
+<p>to do certain things and i&#x27;ve been playing with nann and make and and trying to figure all that stuff</p>
+<p>out so like once we have these processes put in place they become sas products that are creating a</p>
+<p>cash flow and then we&#x27;re adding those to these dinosaur businesses and getting them ready for</p>
+<p>people who are interested in buying that type of business</p>
+<p>huh right that makes sense because i got i got buyers with billions of dollars but they don&#x27;t</p>
+<p>have deals and they can&#x27;t navigate through the space so like the websites are so antiquated that</p>
+<p>it&#x27;s just retarded and they&#x27;re coming to me going i want to rebuild this website and i&#x27;m like is that</p>
+<p>really what you want or is that just what you understand that you think you want and then i spent</p>
+<p>12 hours with them and now it&#x27;s like i don&#x27;t want to be the massive amazon of all of these things</p>
+<p>trying to sell everything i&#x27;d rather independently create a vertical and be the expert in that space</p>
+<p>and then if you want this specific thing i&#x27;m data mining all of the different deals that look exactly</p>
+<p>the same and putting them under one roof so when you come to me you&#x27;re getting only these service-based</p>
+<p>businesses but if you are interested in other ones i have your contact list and now i can send you</p>
+<p>over to my other marketplaces that are going to provide you with the deals that you want</p>
+<p>i do what you mean that&#x27;s like uh business forwarding to a degree like you&#x27;ve got clientele</p>
+<p>and other developers in your network that you can just relay the deal to right but it&#x27;s all about</p>
+<p>market making and having access to both sides buyers and sellers and we&#x27;re the platform that&#x27;s</p>
+<p>taking a piece on each side so it doesn&#x27;t matter we&#x27;re pulling the the up and down volatility to</p>
+<p>a straight line it doesn&#x27;t matter what direction is going we&#x27;re making money</p>
+<p>for sure especially if you&#x27;re leveraged well and positioned in the market</p>
+<p>yeah and some of these deals are going for two three four hundred million dollars</p>
+<p>so like the commissions on those are retarded so the guy that i&#x27;m working with</p>
+<p>what are they selling it sounds like money laundering</p>
+<p>they&#x27;re selling full-blown businesses with cash flow like all these service-based businesses</p>
+<p>they&#x27;re paying stupid money for because they&#x27;re trying to hedge against ai</p>
+<p>listen i&#x27;m definitely not the smartest guy in the room i&#x27;m good at what i know and i&#x27;m smarter at the</p>
+<p>ai game and the different tools that are available on how to use them and how to think way outside of</p>
+<p>the box that they&#x27;re born in but but they know the business sense that i don&#x27;t necessarily have the 40</p>
+<p>years of experience that they have so that&#x27;s why i&#x27;m like they all have needs and wants but they&#x27;re not</p>
+<p>all going to spend all their money on developing all the different tools so if i can isolate them into</p>
+<p>smaller like squads and have them isolate what their needs are and we build those tools for that</p>
+<p>specific vertical i&#x27;m looking at it making short-term cash flow and long-term like commissions so you&#x27;re</p>
+<p>not waiting six to eight months for a deal to close right right hey um have i ever spoke to you about</p>
+<p>raid guild ray field the raid guild raid guild i don&#x27;t know yeah right so they&#x27;re like a group of</p>
+<p>developers that pretty much operate all around the world but the core is based in europe we&#x27;ve got a</p>
+<p>fantastic team of developers and they can build super fast like their turnaround is quick and they&#x27;re</p>
+<p>they charge minimal like they literally charge peanuts dude like and honestly they built some of</p>
+<p>the best tech i&#x27;ve seen in a while but are your peanuts still like 20 30 40k or are we talking like</p>
+<p>bro we&#x27;re talking like less than that bro like they&#x27;ll build out a whole like staking application</p>
+<p>and like a front-end decks and all these different tools for even real world assets for less than 10 grand</p>
+<p>less like dude like less than five grand sometimes depends on like the scope of the job okay yeah</p>
+<p>and mind you they&#x27;re reliable like they&#x27;re actually really good devs</p>
+<p>all right all right all right um i can send you some more intelligence over sms about it</p>
+<p>at least the websites portfolio etc they&#x27;ve been building on web3 for the past like</p>
+<p>yeah i have six years now i googled it i found them i&#x27;m just are they interested in working with</p>
+<p>old world infrastructures that are big money yeah absolutely bro dude these people dude i&#x27;m telling</p>
+<p>you man these people will take a good like really good big project like yo these guys they just like</p>
+<p>can tackle like anything i think for the most part like they can tackle anything like like literally</p>
+<p>they&#x27;re up for a challenge like seriously like if you just talk to them and tell them about the scope</p>
+<p>and who it is they&#x27;re working with bro they&#x27;d be so down like you really it&#x27;s not about the money for</p>
+<p>these guys bro it&#x27;s about the skill so when you say talk to them who am i talking to am i talking to a</p>
+<p>person in a discord am i well yeah discord telegram etc whatever you want them to be slack bro google</p>
+<p>it doesn&#x27;t matter they&#x27;ll show up anywhere anytime anyplace so you&#x27;re telling me these are like the</p>
+<p>anonymous people yeah bro they&#x27;re dude they kind of are sort of pseudo anonymous but whenever you are</p>
+<p>working with a developer he&#x27;ll dot to himself</p>
+<p>but am i working with one person or a group technically it&#x27;s a whole guild of builders</p>
+<p>and they&#x27;re talented builders so how do they vet you to get in there oh man it&#x27;s kind of it&#x27;s it&#x27;s not</p>
+<p>like uh old money tactics where you have to go through the elite code racket you know bro they</p>
+<p>actually sort of like test your prowess and they want to like understand what makes you tick and how fast</p>
+<p>you can push code so they have like a boot camp that they put all their deaths through and they</p>
+<p>really drill into you and then they give you nfts along the way reward you do you think this is</p>
+<p>something that i would be a good dev for or no well i&#x27;m not entirely sure man i&#x27;m i think you&#x27;re pretty</p>
+<p>talented i think i think you got the skill but dude like bro these people are uh they&#x27;re coming from a</p>
+<p>different clock like bro they and i think it&#x27;s just something that you have to be mentally prepared</p>
+<p>for you really want to get involved here all right yeah so this isn&#x27;t just like something that you can</p>
+<p>prompt your way through</p>
+<p>well i can get pretty far with the tools that i have in front of me to at least map out things</p>
+<p>way better than a normal human being could right which i&#x27;m in the process of doing right now</p>
+<p>hmm yeah i can see that for sure especially from the websites that you&#x27;ve shown me over the past like</p>
+<p>two three years and uh speaking of which how&#x27;s that uh project coming along anyway which one</p>
+<p>one the one that had like the gaming console the avatars i don&#x27;t know i don&#x27;t know how much you</p>
+<p>learned or what you heard but that dude milan yeah his mom died he lost his marbles ended up in a psych</p>
+<p>ward and disappeared and i haven&#x27;t heard it from him since oh no what the yeah he left me holding a bag</p>
+<p>with about 150 000 worth of client work that was promised that never got delivered and i would just look</p>
+<p>like a asshole standing just like what the dude that&#x27;s horrible somebody literally killed his mom</p>
+<p>bro just to ruin his life no he didn&#x27;t kill her mom his mom died by herself with cancer or something but</p>
+<p>oh cancer oh a disease yeah he just went loopy right yeah so i i don&#x27;t know i just wow left it dark i</p>
+<p>felt like dude this is not where i need to be right now and i&#x27;ve just been skating around trying to</p>
+<p>figure out things working and like i had a a lot of different setbacks so that&#x27;s why i&#x27;m like just</p>
+<p>trying to get things going but i&#x27;m working on some things that i feel like are getting me closer to</p>
+<p>opportunities that are going to make it make sense for me to like push you know right yeah so that&#x27;s what</p>
+<p>i&#x27;m doing damn that&#x27;s crazy it&#x27;s massive it bro i i believe in you you know i&#x27;m like bro i&#x27;m in your</p>
+<p>corner and uh i really do think what i&#x27;m doing right now with the bitch you sent is definitely going to</p>
+<p>throw you over the top like dude like this is bro this is something massive like all right well i&#x27;m glad to</p>
+<p>be a part of something at the beginning as always because we&#x27;re at the top</p>
+<p>fucking learning about when nobody cares about it and then they want to know about it when it&#x27;s too late</p>
+<p>exactly man like bro once you hear about it in the news and everybody else is talking about it</p>
+<p>all the big money&#x27;s already there like the opportunity the window of opportunity is closed like dude this is</p>
+<p>like wide open yeah and once it breaks into the top 100 it&#x27;s already too late yeah</p>
+<p>yeah this is something that you should consider like staking when the time comes like</p>
+<p>you know i&#x27;m sure you see it on the wallet they&#x27;re advertising like 20 percent like just stick down</p>
+<p>like at least five percent of the stack that i&#x27;m bridging to you right now like you know like dude it</p>
+<p>could really like change everything but why only that little why not do more because then it gets stuck</p>
+<p>and you can&#x27;t sell it and do anything with it yeah exactly yeah well more so no not that it&#x27;s it&#x27;s just like</p>
+<p>like five percent of like you know a few thousand tokens it&#x27;s still quite a bit of like you know yield</p>
+<p>that you&#x27;ll be able to get but i&#x27;m talking about like after the fact you know like once you take profit</p>
+<p>like don&#x27;t sell everything that&#x27;s all i&#x27;m saying yeah yeah i get it and plus uh apparently bitcoin is</p>
+<p>supposed to go to 400k but the end of this cycle after everything is said done yeah so</p>
+<p>but that&#x27;s only a 4x if you&#x27;re buying now right yeah but i&#x27;m talking about this token relative for 400k</p>
+<p>bitcoin because everything is correlated to bitcoin in this ecosystem i know that&#x27;s why it makes sense to</p>
+<p>get into the no-name coins because you&#x27;re gonna have a way bigger return absolutely 100 percent</p>
+<p>this is like riding an elevator and taking you know it from the garage all the way up to</p>
+<p>the lobby you know what i mean like you can you can go from negative to profit in a matter of</p>
+<p>have you have you played with madness yet no haven&#x27;t you know what it is no what is it</p>
+<p>this thing came out a month ago and they they were invite only the thing is like a monster they basically</p>
+<p>i don&#x27;t know what it is but it&#x27;s like a multi-layered agent that you put in one prompt and it literally</p>
+<p>builds out and tests and executes your your request and gives you a production ready outcome</p>
+<p>that&#x27;s pretty cool yeah bro i think i have heard of that yeah one of my friends uh musashi he said to me</p>
+<p>they&#x27;re using bolt.new2 with it i think that&#x27;s what it is i think it&#x27;s way beyond bolt 2 but yeah it&#x27;s</p>
+<p>pretty wild stuff huh yeah you know these whole artificial intelligence prompting experiences that</p>
+<p>people are coming up with are like mvps sure like you know it&#x27;s enough to get you in front of a vc and</p>
+<p>raise money but i don&#x27;t think it&#x27;s something that can actually be used like in production like at scale</p>
+<p>no but that&#x27;s what i&#x27;m trying to say is if we build out these mvps raise money sell these and get more</p>
+<p>money there&#x27;s a lot of opportunity to understand identify the needs of these different people</p>
+<p>in these specific industry lanes and then you&#x27;re taking that data and actually building out assets</p>
+<p>that are generating a residual every month so you put the money up it pays for itself and now you just</p>
+<p>have money machine printing money and then you use that money to develop the next one and you just</p>
+<p>keep doing this serial entrepreneurship i hear you yeah 100 but bro that&#x27;s super stressful like that&#x27;s</p>
+<p>that&#x27;s a lot of work actually finding the vcs and people willing to purchase the startup etc some</p>
+<p>people they&#x27;d rather just hack you know what i mean like they&#x27;d rather just literally just hack it up again</p>
+<p>and with the tools that are already open and available i get it i&#x27;m just saying that this is</p>
+<p>the the crowd that i&#x27;m around and what i&#x27;m trying to do with them while i&#x27;m here right yeah that makes</p>
+<p>a lot of sense bro and those people are uh definitely wealthy people because they&#x27;ve done it before in the past</p>
+<p>you know like living around other blockchain entrepreneurs</p>
+<p>and just serial entrepreneurs and definitely push you into that sort of mindset</p>
+<p>rather than building something for yourself that you&#x27;re really passionate about kind of like what i</p>
+<p>did for with bolt after i took that nfto aces egg you know what i mean yeah like i don&#x27;t ever plan</p>
+<p>on selling bolt ever like that&#x27;s just me though some people they just love to flip it they love to flip</p>
+<p>you know what i mean like that&#x27;s their thing yeah i&#x27;m the type of guy i just get it like once i get</p>
+<p>it i&#x27;m like all right cool now i can do what i really love and what i really want to do and yeah</p>
+<p>i just pretty much stack up from the air i vertically integrate and i stack up from there yeah all right</p>
+<p>let me jump i got uh my wife just finished dinner so i&#x27;ll hit you back later but i just wanted to give</p>
+<p>you a heads up i haven&#x27;t talked to in a few minutes and this is like what&#x27;s been going on bro it&#x27;s</p>
+<p>always blessed to hear from you bro be in touch all right good dinner all right ciao peace</p>
+<p>oh</p>
+<p>there&#x27;s a piece of bread</p>
+<p>um</p>
+<p>wow bread</p>
+<p>bless this food bless this family bless our home</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>hmm</p>
+<p>pretty good</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>! yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
