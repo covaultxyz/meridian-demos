@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brook Call1 — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Brook Call1</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The call explores building a knowledge ecosystem and tools for business brokers and buyers, using AI agents to match buyers and sellers, with broader ideas for gamified networking and conference matchmaking.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>The two participants agree to collaborate and build something together.</li><li>The focus is on building MVPs that generate cash flow now while also creating long-term backend value.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Speaker 1 will share resources like a lifetime access tool and set up a shared Notion board with Speaker 2.</li><li>Speaker 2 will send his email for sharing large files.</li><li>Speaker 2 will show Speaker 1 the Jarvis/WhatsApp integration he has built.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>The doctor&#x27;s office runs its entire business off a single Google Doc with 16 tables, highlighting a massive inefficiency and opportunity.</li><li>Most business brokers and buyers don&#x27;t know what they want or how to use CRMs; they just want leads spoon-fed via phone.</li><li>There are over 26 hidden characters/roles in a business sale deal that most people don&#x27;t see.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Speaker 2&#x27;, &#x27;what&#x27;: &#x27;Share email address for easier transfer of large files.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 1&#x27;, &#x27;what&#x27;: &#x27;Share the lifetime access resource for AI tools with Speaker 2.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 1&#x27;, &#x27;what&#x27;: &#x27;Set up a shared Notion board between him and Speaker 2 using the same Gmail account.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 2&#x27;, &#x27;what&#x27;: &#x27;Show Speaker 1 the Jarvis/WhatsApp integration he has built.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>brook call1</h2>
+<p>**Source**: `brook call1.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:37</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>let&#x27;s build out um let me let me start from the big thing do you know what by biz buy sell is</p>
+<p>yes okay so i have a few people here that are telling me i want to recreate biz buy sell and</p>
+<p>take over that as a dinosaur and with all the agents and everything else it would be amazing</p>
+<p>and i&#x27;m like is that really what you want because you are asking me for things that you think you</p>
+<p>want but you don&#x27;t even know what you want because you don&#x27;t even understand so the one guy i connect</p>
+<p>to here with is a business broker so he buys and sells businesses like people buy and sell real</p>
+<p>estate only difference is is the price tag and the time it takes to do a deal so basically i took the</p>
+<p>arena of the biz buy sell type arena and identified all right here&#x27;s the different players you got the</p>
+<p>the person who&#x27;s selling his company the person who wants to buy it and then you have like 26 other</p>
+<p>characters that are in play that aren&#x27;t really visible to most people when you first look at</p>
+<p>the the scenario but they&#x27;re all people who are integrated into the process of getting the deal</p>
+<p>done so i identify those then i extract it and then i bring it into a job description and put that into</p>
+<p>the agent the job for agent site and then i basically created a csv file of all the different jobs</p>
+<p>that that person is potentially able to do and then from there identifying which ones are the lowest</p>
+<p>hanging fruit and then building a sas product around that and then building out tools that we can use to</p>
+<p>collect the people in the ecosystem to attract to then become the matchmaker in the back end are you</p>
+<p>following yes how do you feel about that so far no i think that&#x27;s a fantastic idea i love that site</p>
+<p>too because it&#x27;ll really tell you something&#x27;s gonna work or not you don&#x27;t have to waste a bunch of time</p>
+<p>to be gearing it up yeah so this is the next thing the biggest problem i found with a lot of these</p>
+<p>different people that i work with is trying to figure out a way that makes sense um to work as a team</p>
+<p>so there&#x27;s a book that this is modeled after and i used ai to basically structure it it&#x27;s called slicing</p>
+<p>pie for equity i don&#x27;t know if you&#x27;re familiar with this thought process if not i could send you</p>
+<p>over documentation so i want you i want you to picture in your head a giant circle the giant circle</p>
+<p>is do you know what a dow is yes okay so imagine a dow meets the old world but we have to come up</p>
+<p>with some sort of infrastructure that&#x27;s going to measure how valuable work is to the grand scheme of</p>
+<p>things so the the first circle the mother circle would be the the hub then you would have the industries</p>
+<p>so let&#x27;s say service-based industries medical um online e-commerce would be smaller circles and then</p>
+<p>inside those smaller circles would be like the job for agents type sas products that live inside the</p>
+<p>smaller sections right so the way i&#x27;m picturing this is if we can create teams of people similar to the</p>
+<p>way school is structured because you have like a group of people who all want to learn about something so</p>
+<p>if you go into school and you search nan there&#x27;s 10 different schools that are teaching automation</p>
+<p>and you have like 10 little cohorts of these people who are interested in specific subject matter but now</p>
+<p>i have another guy who only cares about lead generation so he&#x27;s going into his 10 school groups</p>
+<p>and extracting whatever information he can find about lead generation but the biggest thing is is all these</p>
+<p>businesses need all these different tools and services but they don&#x27;t even know where to look or how to even</p>
+<p>connect the dots so if we can create a global like a knowledge ecosystem that&#x27;s helping people get paid</p>
+<p>for tasks like me and you are always just trying to fucking work our asses off just to make enough money</p>
+<p>to pay our bills but we&#x27;re not making back-end money you know what i&#x27;m saying so if we can build tools</p>
+<p>that feeds the bigger circle which is the industry and then that feeds the mother company we get slices of</p>
+<p>pie that when the business or that company gets sold we&#x27;re getting paid on the back end and getting</p>
+<p>residuals from the value that we&#x27;re adding to like the industry and then if other people in that industry</p>
+<p>are using it from our pie we&#x27;re getting paid for that as well so it&#x27;s like a a fairer way of creating</p>
+<p>opportunities and deals where it&#x27;s not a predefined you know 50 50 partnership it&#x27;s based on like a 4x</p>
+<p>multiplier for people who put money in and then there&#x27;s a 2x multiplier for sweat equity and then</p>
+<p>there&#x27;s like certain things happen and then by you doing a certain amount of time allocates more slices of</p>
+<p>the pie to that party so they&#x27;re compensated for the value that they added to the project which is then</p>
+<p>giving them the slice of pie that equals what their participation was okay i follow and you want to</p>
+<p>do like manually like on a spreadsheet or do you want to do like crypto style like a true gal i want to do</p>
+<p>this whatever makes sense that the regular people can actually follow but i&#x27;m telling you this because</p>
+<p>i see the dow as a potential way of actually monetizing it i don&#x27;t know i&#x27;m just sharing these</p>
+<p>ideas a recent company that&#x27;s doing that with uh like real like silver mine claims not like crypto but</p>
+<p>like real actual like silver and they&#x27;re dividing it out that way and then they&#x27;re they&#x27;re selling um</p>
+<p>almost like an ico it&#x27;s a fractionalized assets yeah but this would be like fractionalizing workloads</p>
+<p>or projects like physical things so the the goal would be like like right now i have access to</p>
+<p>over billions of dollars worth of buyers with capital and venture capital and all this other</p>
+<p>stuff and they have specific wants and needs of different kind of companies that they&#x27;re buying</p>
+<p>so using voice agents to create an opportunity to call these people ask them all the different</p>
+<p>things that they&#x27;re looking for and then be able to customize the dashboard or only provide</p>
+<p>them the information that they&#x27;re actually looking for instead of building this big antiquated website</p>
+<p>of hundreds of thousands of websites that they can&#x27;t even find what they&#x27;re looking for because</p>
+<p>their filtering process sucks so i don&#x27;t want to build what didn&#x27;t work 20 years ago and just think</p>
+<p>that i can apply ai to it make it work better we need to think better and and work smarter than harder</p>
+<p>so you&#x27;re thinking like we get like a lead list an agent calls all these numbers and then strikes up</p>
+<p>a conversation and then they can ask questions and it pulls that knowledge base on the phone and</p>
+<p>gives it the details well the way i understand like i play with retail and vappy so i can build an agent</p>
+<p>that&#x27;s literally replacing what you would have as a website form in a conversation format where you</p>
+<p>literally have them ask questions it turns it into a variable and then puts that variable into an air table</p>
+<p>a google sheet and if it could do that with the list of 60 000 buyers now we know what people want and</p>
+<p>what they&#x27;re looking to buy once we have that information then we can identify all right what&#x27;s</p>
+<p>the best systematical way to go after finding other companies who are ready to buy or ready to sell their</p>
+<p>company so if it&#x27;s an hbac company the problem that these guys are finding is there&#x27;s 50 buyers or 100</p>
+<p>buyers to a company but there&#x27;s only one company once that company&#x27;s sold the rest of the buyers</p>
+<p>are pissed off because they did all the work they had all their money they&#x27;ve been vetted and there&#x27;s</p>
+<p>no business to buy because somebody else got it so the the idea that i see which could potentially make</p>
+<p>us the now money is building out a framework that&#x27;s saying okay let&#x27;s say they&#x27;re going after hbac</p>
+<p>companies you have three paths path one is hey i um when i found you on google i&#x27;m giving you a call</p>
+<p>i know you get a whole bunch of these phone calls but we wanted to let you know that we&#x27;re evaluating</p>
+<p>all the local businesses and what their values are and everything else for an exit and we have all these</p>
+<p>buyers that are exactly the type of business that you had but um we already sold that one and now we&#x27;re</p>
+<p>in the process of finding others that are just like that business to provide them with the information</p>
+<p>that they need so that they can make an offer to buy you out are you interested yes or no and they</p>
+<p>answer that and if it&#x27;s yes great here&#x27;s a bunch of questions that we need you to answer and then that</p>
+<p>information would basically give us an idea of where they&#x27;re at now if they qualify great now they&#x27;re at</p>
+<p>the end of the timeline and we can get them bought out and we&#x27;re making them money on the commission of the</p>
+<p>deal if they&#x27;re not ready then we say well you didn&#x27;t qualify how about we um offer you our suite</p>
+<p>of tools that are going to make you more profitable but it&#x27;s going to make you more attractive to the</p>
+<p>buyers and you&#x27;ll get paid out way better than if i was just selling you these ai tools to help you</p>
+<p>make more money for your business because nobody cares about extra couple hundred dollars a month when</p>
+<p>you could be making a couple million dollars for your cell of the business you know what i mean</p>
+<p>so framing it from that point then the second point is let&#x27;s say we bought amongst the capital</p>
+<p>ventures 25 of the same type of business then we roll them up and then get a multiplier of selling that</p>
+<p>whole unit because we systemized them all just like mcdonald&#x27;s did with a franchise you know so</p>
+<p>most of these businesses are going to operate and need the same tools we&#x27;re just going to build the</p>
+<p>tools provide that business with a a railroad and make it happen okay now are any these scenarios</p>
+<p>i started scenarios like private equity is going to come in and they need like</p>
+<p>10 million dollars in revenue or something yeah there&#x27;s there&#x27;s specific criterias for each yeah for</p>
+<p>each of these different businesses but there&#x27;s specific things that they&#x27;re looking for and</p>
+<p>specific businesses that are hot right now but we don&#x27;t know what they&#x27;re looking for because we</p>
+<p>didn&#x27;t ask and most people can&#x27;t access this information because it&#x27;s not scrapable it&#x27;s in their heads</p>
+<p>and it&#x27;s based on what they&#x27;re voting with with their money</p>
+<p>and then cody sanchez at all on youtube uh no she&#x27;s got this thing called main street millionaire</p>
+<p>it&#x27;s similar i think but i think she&#x27;s i think her company in general is trying to do exactly what</p>
+<p>you&#x27;re talking about you know and then they do like creative financing where they get like the</p>
+<p>owner of the hbac company that&#x27;s stuck in their business and they take it over and then repay them</p>
+<p>over time out of profits and things like that so that&#x27;s called buyers financing or sellers financing</p>
+<p>or something like that yeah that&#x27;s what these guys are interested in doing too on some deals</p>
+<p>um sba loans and different things so like like i have all the intel and all the information the guy</p>
+<p>gave me access to his crms and everything and i scraped over 60 000 ndas and everything else of</p>
+<p>all the users phone numbers emails and everything else so like i&#x27;m starting with a lot of data now it&#x27;s</p>
+<p>just a matter of building out tools that we can start making cash flow and then making bigger money</p>
+<p>on the end got it so that&#x27;s okay that makes that makes full defense that that&#x27;s one project another</p>
+<p>project i got a doctor here i&#x27;m really good friends with him and it was just kind of like yo i&#x27;m gonna</p>
+<p>help you out and it turned into uh two and a half months of doing massive research on how to do all</p>
+<p>this stuff had to set up a hetzner server do a firewall and then load nan locally on that and</p>
+<p>like just to get it set up took me two and a half months and and that was way too much time but now i&#x27;m</p>
+<p>a little bit more familiar and comfortable but now i&#x27;m working with uh their back-end crm which is dr</p>
+<p>chrono i don&#x27;t know if you&#x27;re familiar with any of this stuff but um the goal is to help automate these</p>
+<p>doctors offices and i have other doctors in the area that are like doing they&#x27;re not doctors they&#x27;re</p>
+<p>the people who buy and sell doctors offices so they would fit into the medical like vertical that i</p>
+<p>was just sharing an example one yeah so i&#x27;m not really too good at doing all that back-end stuff yet</p>
+<p>because i don&#x27;t have anybody that&#x27;s like showing me and nobody on youtube is really teaching this</p>
+<p>stuff because nobody wants to go after the non-low hanging fruit they just want to get</p>
+<p>views and likes and show off stuff that looks great as a demo but when you go to really use it it breaks</p>
+<p>and they don&#x27;t tell you that so i need to find and tool up and and partner up with people who are</p>
+<p>like the real deal and are like superheroes in their own field yeah i&#x27;ve got you covered on that um and i was</p>
+<p>just looking at dr chrono they&#x27;ve got a full-on api so that that shouldn&#x27;t be a problem um yeah</p>
+<p>facebook messenger has an api so that that won&#x27;t be a problem so i just don&#x27;t know how to interact</p>
+<p>with them yet so that&#x27;s the thing i&#x27;m like trying to learn how to do and they have other things too but</p>
+<p>they&#x27;re paying obscene amount of money for all these third-party tools and none of them are all</p>
+<p>connected so they have five different applications doing five different things and i&#x27;m like bro what are</p>
+<p>you doing like let me try to help consolidate this and do this so just building out these tools then we have</p>
+<p>the opportunity to sell this to all the medical people and then build this ass product that way</p>
+<p>so like i&#x27;m looking at like let&#x27;s build stuff that&#x27;s going to make us money now and then build</p>
+<p>us a cash flow so we&#x27;re not busting our ass every day for the rest of our lives</p>
+<p>i&#x27;m looking forward to that i run like three startups right now and they all make money ish but i</p>
+<p>haven&#x27;t had an exit and i&#x27;m like doggy&#x27;s out of it like you said you know i&#x27;m just like possibly bustling</p>
+<p>so i would love something like that no and all these don&#x27;t actually have some artistic capitals</p>
+<p>yeah so that&#x27;s that&#x27;s the like that&#x27;s the work then the stuff that i think about that i actually</p>
+<p>want to do instead of like doing this um have you ever watched squid game yeah i imagine squid game</p>
+<p>nobody actually dies but there&#x27;s a million dollar pool of winnings it&#x27;s a knockout thing where</p>
+<p>last person standing gets the prize pool we were designing this for um bitcoin my uh vegas i don&#x27;t</p>
+<p>have enough time to do it now because it&#x27;s only like a month and a half away but the idea was run an</p>
+<p>entire game automated by ai agents where i i have the voice recall i could send it to you but it&#x27;s</p>
+<p>basically the onboarding is a voice agent that you scan a qr code your phone rings and says</p>
+<p>would you like to play a game this explains the rules and then if you say yes then it says you</p>
+<p>have 45 seconds to take a video of you uh saying that you&#x27;re going to play the game tag us on our</p>
+<p>social media and your time starts now and then the phone hangs up and you have to take the video and</p>
+<p>you have 45 seconds to do this and then once you get in then it&#x27;s going to be tracking your gps location</p>
+<p>and providing you with information to continue to play the game and then you can have situations where you</p>
+<p>have multiple players based on the gps location interacting with each other or doing different</p>
+<p>things or um using a token price and they have to push the token price up by using their social</p>
+<p>influence to get people to buy this token to reach a certain threshold to unlock a door stuff like that</p>
+<p>that&#x27;s that&#x27;s cool i like that oh yeah this is the kind of that i love but doesn&#x27;t make sense to the</p>
+<p>rest of the world because they just want black and white um yes and i live in the gray you have to</p>
+<p>live in the gray everyone like you said everyone wants it black and white they want shit handed for</p>
+<p>that so frustrating yeah so then that was inspired by another thing that we could potentially build and</p>
+<p>i build things in my head like like when i say build i&#x27;m like masterminding things that i know</p>
+<p>that the i don&#x27;t mean it that we&#x27;re nerds but the nerds build shit normally for for themselves to use</p>
+<p>not for the end user because they don&#x27;t have a way of interpreting what the end user actually needs or</p>
+<p>wants because they don&#x27;t have the ability to see that world so somehow i&#x27;m like a translator of the</p>
+<p>old world and new world like i know enough about the tech to explain it to them and i can understand</p>
+<p>what their frustrations are so most of the people i work with are street guys and they&#x27;re audio only</p>
+<p>like they just want to talk to the phone and send a few sms&#x27;s and that&#x27;s how they run their whole</p>
+<p>business like today i went to the to meet with the doctor and they run their entire business even</p>
+<p>though they&#x27;re spending thousands of dollars on all software their whole business is run off of a</p>
+<p>google doc that has 16 different tables in it and they&#x27;re making adjustments and it changes all day</p>
+<p>and it&#x27;s like a living document that just molds and shapes as the day goes and i&#x27;m like are you</p>
+<p>kidding me no this is great we love it okay so i don&#x27;t even know spreadsheets but this isn&#x27;t a</p>
+<p>spreadsheet it&#x27;s a google doc with tables and i told them i can do it with google sheets i don&#x27;t</p>
+<p>know if you can do it with a google doc because i never even heard of that right like a google</p>
+<p>i have a full-time person just updating a google document all day and all that&#x27;s just going on right</p>
+<p>yeah and i want to replace that person and so do they but they just want what they know and knew is</p>
+<p>challenging for them so i asked you about go high level and i have other guys here who do real estate</p>
+<p>and buy buy properties for cash and they spend their whole time talking to people and i&#x27;m like bro</p>
+<p>what you need is like i know i saw somewhere you were showing on your screen and you had a jarvis</p>
+<p>n-a-n thing i don&#x27;t know if you have looked into uh schools as hard as i have but there&#x27;s a</p>
+<p>community it&#x27;s 200 a month and i wasn&#x27;t about to pay it unless i had a reason to but they built the</p>
+<p>mini jarvis or jarvis jr are you familiar with this so they mapped out it&#x27;s probably one of those</p>
+<p>that i got it from honestly all right well they built this whole big ass back end thing and the</p>
+<p>reason they&#x27;re using telegram is because you&#x27;re not paying twilio for every fucking transaction</p>
+<p>so building out this tool that lives in telegram and has the ability to do pretty much all these</p>
+<p>nan uh automations and um mcp things where it has all these tools connected to it and you could</p>
+<p>talk to it and ask it for all these informations like this would be like the perfect back end</p>
+<p>for these people who have these go high level accounts and all these other crms that they never</p>
+<p>use and never look at because they don&#x27;t even know what it is because they&#x27;re just too busy just trying to</p>
+<p>be spoon-fed leads and they just call the lead when it comes in their phone and they&#x27;re like all right</p>
+<p>i&#x27;ll take care of it but looking at a large list just overwhelms them and they just never get anything</p>
+<p>done that way yeah that makes a lot of sense i&#x27;m actually working on a deal right now with a</p>
+<p>marketing company that&#x27;s selling exercising services to women to lose weight and they need a bot that&#x27;s</p>
+<p>calling and setting appointments we&#x27;re just like almost done with it actually um so i mean it makes</p>
+<p>a lot of sense and that&#x27;s what i&#x27;ve been using it in for a lot of this for shit like that</p>
+<p>and you don&#x27;t have to just use telegram you can also use whatsapp i&#x27;ve got a full-on whatsapp</p>
+<p>integration i built the jarvis thing out with whatsapp instead of um telegram because not many</p>
+<p>people use telegram at least not enough people yet well i just use telegram because it was free and i</p>
+<p>didn&#x27;t have to worry about it because i don&#x27;t have any other contacts in my telegram so because nobody uses</p>
+<p>it&#x27;s perfect because you&#x27;re not getting notifications i&#x27;ve muted everything else except for my telegram to get</p>
+<p>those notifications to come through and so are you getting actual sms&#x27;s through telegram then</p>
+<p>there&#x27;s voice so the way mine&#x27;s set up is i can either talk to it or i can just send a message</p>
+<p>through text and it will send you a text back or it will write you back yeah yeah got it okay so you&#x27;re</p>
+<p>just using it as the front end to deal with all the back end yeah it&#x27;s your jarvis it&#x27;s your your</p>
+<p>handheld your siri the way it should have been made not the way that they packaged yeah so like</p>
+<p>these are the kind of things that i know if we package these things the right way we can build a</p>
+<p>lot of value and share um amongst multiple industries and then once we start packaging these up</p>
+<p>now we&#x27;re just like all right everything&#x27;s modular and you want this package we&#x27;re going to add these</p>
+<p>five tools because they all work together and then boom done so back to the squid game thing the squid</p>
+<p>game came from this concept and and i know i talk really fast so if i need to slow down just tell me</p>
+<p>but no you&#x27;re good i talk fast you&#x27;re good keep going yeah i race um imagine going to a conference</p>
+<p>200 000 people go through this registration desk they have an option to download an app they open up the</p>
+<p>app it says hey how you doing what&#x27;s going on tell me who you are and what you&#x27;re looking to do and</p>
+<p>then put in your social media accounts then it scrapes all their social media accounts takes their</p>
+<p>goals of what they&#x27;re trying to accomplish over this next four or five days during this conference</p>
+<p>and then a matchmaking happens in the back end where ai is able to sit there and say hey do you know what</p>
+<p>bumble is yes it&#x27;s a dating app right yeah but the the unique selling proposition was that it sends</p>
+<p>you a vibrational note in your pocket when you cross paths with somebody that you have i didn&#x27;t realize</p>
+<p>that yeah so i want to see if there&#x27;s a way to to do something like that where if you&#x27;re in a room full</p>
+<p>of 500 people and you&#x27;re within 50 or 100 feet of somebody who can life change your project because they</p>
+<p>have the missing key but you would never even see them or even know what to do to start a conversation</p>
+<p>with them because you just unless it&#x27;s it&#x27;s fate you&#x27;re not happening so you would get a vibration</p>
+<p>in your pocket you look at it and say hey here&#x27;s a photograph because they took a picture of me when</p>
+<p>i came in this is what he looks like right now because it happened this weekend the photographs live</p>
+<p>not live but like recent enough so you can identify if they had a haircut and then if they got a beard on</p>
+<p>their profile picture on facebook and they shaved and you&#x27;re like i can&#x27;t even see them so you can</p>
+<p>identify who that person is and then it says based on his social media this is how i would approach</p>
+<p>this individual and ask him these questions and then you unlock this whole conversation</p>
+<p>both so so here&#x27;s another thing imagine if every single one of those people 200 000 people instead</p>
+<p>of going to a conference and seeing a list of speakers and there&#x27;s 50 people on the panel every single</p>
+<p>person has an ai agent that&#x27;s basically cloned their identity persona viewpoint on the world and i created</p>
+<p>a model that kind of creates personas of people and creates like a render using 25 different um personality</p>
+<p>tests and proven methods right so now you can have their knowledge base and it&#x27;s conversational where people</p>
+<p>could go to a similar to what a a registration of all the people that are at the event and they can</p>
+<p>start interacting and talking to your agent about certain things and then once that person reaches</p>
+<p>a threshold it&#x27;s going to notify the owner of that and say hey this person just spent two and a half</p>
+<p>hours interacting with your ai by and here&#x27;s some common denominators that i think would make sense for</p>
+<p>you to have a conversation about love that and bluetooth would be perfect for that that&#x27;s exactly</p>
+<p>how that&#x27;ll work a bluetooth so um when they have as long as they have the app running or they let it</p>
+<p>run in the background when when the match occurs and they get near each other they won&#x27;t even need to</p>
+<p>use bluetooth or i&#x27;m sorry it won&#x27;t even use gps as soon as they cross past the bend within a few hundred</p>
+<p>feet of each other that&#x27;s what the notification would kick off yeah it&#x27;s the stuff you had a</p>
+<p>conference and endorse yeah so like these are the type of things that like if you could gamify experiences</p>
+<p>through the ai agent like squid games or creating facilitated relationships during these conferences</p>
+<p>and making it more fun and engaging to meet people and then the last thing i came up with and dude i&#x27;m like</p>
+<p>a super mega networker i can meet every single person that i can i collect two shoe boxes</p>
+<p>worth of credit cards of their business cards and then i&#x27;ll never call any of them because i don&#x27;t</p>
+<p>have the follow-up game right and i&#x27;m pretty sure a lot of people are like this so the idea would be</p>
+<p>when i meet somebody i usually take a selfie with them so it&#x27;s me and them i send them a text with the</p>
+<p>picture and then i have like a little keywords that i save their name under so i can identify them and i</p>
+<p>write in the message where and how i met them so i can remember it and search it in my google</p>
+<p>in my my phone number text messages right but how awesome would it be if you had the ability and this</p>
+<p>is why i was asking you about os um open source intel intelligence gathering os int i don&#x27;t know if you</p>
+<p>explored that at all it did yeah that&#x27;s ethical hacker friend of mine actually introduced me to</p>
+<p>that verb so when i saw that app i was like this is great right so being able to use that kind of</p>
+<p>technique and now you have the ability to like map different people in your networks and do different</p>
+<p>things and create like matchmaking opportunities like these are the type of mechanisms that i&#x27;m picturing</p>
+<p>would make an epic experience even more epic</p>
+<p>yeah that makes a lot of sense um i was just reading yesterday this marketing company that</p>
+<p>they&#x27;re putting out like a they&#x27;re they&#x27;ll be driving like a box truck around town and it has like</p>
+<p>kettle one vodka on it for instance and then it&#x27;s it doesn&#x27;t look like an ad it looks like a delivery</p>
+<p>truck and then when someone&#x27;s preferences match that truck via gps and they immediately push them a</p>
+<p>notification and they&#x27;re getting like really high sales and that&#x27;s what this that&#x27;s what this is</p>
+<p>reminding me of yeah so like having a follow-up thing where i have the ability and and not that</p>
+<p>i don&#x27;t want to be human about it but like i&#x27;m too busy to be human so like if i learned that you&#x27;re</p>
+<p>working on a few projects and i can have the bot identify what we&#x27;ve already spoke about and just say</p>
+<p>hey dude haven&#x27;t heard from you in a minute just curious how you&#x27;re doing with this project and then it</p>
+<p>does that with all my contact lists and just keeps me fresh on their mind and it keeps me</p>
+<p>interacting with people that i normally don&#x27;t have time to be looking at the phone that would be awesome</p>
+<p>yeah um do you think i message is probably the most common way then i don&#x27;t know what it looks like</p>
+<p>on the nerd level but like the front level would just be like a like a you&#x27;re talking like a true</p>
+<p>text of someone&#x27;s phone but i mean so i mean like you know like the apple shit the apple side like</p>
+<p>do you think most people have an iphone these days but at least in the audience you&#x27;re talking about</p>
+<p>i don&#x27;t know i just know that there&#x27;s the people who are against iphones are like</p>
+<p>total opposite everything so if you keep them within the ecosystem</p>
+<p>like i looked at personalities right so you have four different elements earth water air and fire</p>
+<p>now there&#x27;s three categories in the zodiac that fit into each of those four containers if you&#x27;re one</p>
+<p>of those four elements it&#x27;s like you&#x27;re either um mac linux pc or mobile right those are your four</p>
+<p>different main things certain people are able to communicate with other people inside their network</p>
+<p>so if you&#x27;re a mac and you&#x27;re talking to an iphone guy you&#x27;re going to connect because you&#x27;re already</p>
+<p>seeing the world in the same lens but when you start crossing over to a linux guy to a pc guy</p>
+<p>you&#x27;re going to lose translation and like let&#x27;s say 25 to 50 percent of that conversation is lost just</p>
+<p>because you&#x27;re not even using the same language and device is that making sense yes completely yeah so if</p>
+<p>we go after certain things i would isolate it based on same system because you&#x27;re you&#x27;re connecting</p>
+<p>people unless you want to connect with people who are the opposite thinkers of you and then you would</p>
+<p>connect to the bigger ecosystem</p>
+<p>okay i see it but if you have a whatsapp or signal or what like these other people are using</p>
+<p>other methods of communication then you&#x27;re cross pollinating but sms is still sms</p>
+<p>so i don&#x27;t know if it makes sense if you&#x27;re able to do a mask where when you&#x27;re going to a conference</p>
+<p>you&#x27;re giving everybody your your voip phone number that&#x27;s now able to be answered through your cell phone</p>
+<p>through like a regular app that looks like sms but it has the follow-up functionality or if it should be</p>
+<p>built in organically with your regular sms i feel like organically it&#x27;s going to be better yeah people</p>
+<p>love just using the tools they already have access to yeah i don&#x27;t like trying to teach people things</p>
+<p>because it just adds extra complexity so if i could take what you already know download an app and it&#x27;s</p>
+<p>just the whole thing yeah your text would be so much easier but that&#x27;s what&#x27;s that you know and and just</p>
+<p>to just the messages like yo i was just i just came across the conversation your name came up i</p>
+<p>just want to see how you&#x27;re doing that&#x27;s it and then that engages that person to be like hey what&#x27;s</p>
+<p>up man i haven&#x27;t heard from you in a while and then you just have a 10 minute conversation but that 10</p>
+<p>minutes now opens up that person to be thinking about you when something else comes across their</p>
+<p>desk and they&#x27;re like bro i got something for you like organic relationship building</p>
+<p>yeah that&#x27;s a great idea it&#x27;s a really good idea because the hardest part about the conference is</p>
+<p>is following up with people and keeping that connection going and then people like who are</p>
+<p>you guys yeah but just doing that automatically that&#x27;s just good especially if it sends the</p>
+<p>tape to tell selfie along like that you did like yeah yeah i remember this well i just do that for</p>
+<p>myself because i&#x27;ll never remember these people i meet too many people in a short period of time that my</p>
+<p>brain just doesn&#x27;t have the ability to identify everything but um yeah dude these are the things</p>
+<p>that i&#x27;m thinking about like every day i don&#x27;t really have too many people to tell because nobody</p>
+<p>really understands this stuff like the way that i need them to and it seemed like you were like one of</p>
+<p>those guys that just gets it so if this is something that makes sense and you see like the synergy</p>
+<p>i just wanted to throw it out there and see like what you&#x27;re feeling</p>
+<p>let&#x27;s do it i&#x27;m pretty decisive on stuff like this let&#x27;s do it decisive is a good thing</p>
+<p>yeah i mean i i would you know i&#x27;ve always been looking for good ideas and these are fantastic ideas</p>
+<p>so yeah i say let&#x27;s just go let&#x27;s do it figure out the details as we go well i i have very systematic</p>
+<p>ways of doing how i do my brain dumps and stuff i&#x27;ve been using ai so long that it became second</p>
+<p>nature and i conversate with different tools to get different things and like another thing that i have</p>
+<p>i was trying to share with you over to sms or whatsapp i don&#x27;t know if it translated but like just being</p>
+<p>able to have um the the apple shortcuts being able to shortcut certain pieces of a workflow like</p>
+<p>like i i record a phone call and then it&#x27;s like all right what do i do with all this information that</p>
+<p>i just gathered you know like want want it just sits in my phone and it&#x27;s too much work for me to go</p>
+<p>through and do that like i have other people who are using these vo ip services and they got 20 000</p>
+<p>phone calls anywhere from 15 20 seconds to 11 20 minutes and it takes you can&#x27;t you&#x27;re not supposed</p>
+<p>to be able to bulk download but i wrote uh google chrome extensions that&#x27;s able to download um 50 at</p>
+<p>a time because that&#x27;s the threshold before the rate limit happens and then i could do 50 at a time</p>
+<p>which means i could do it 50 times faster than doing it once at a time but if i could automate that or</p>
+<p>somehow come up with a solution that as these phone calls are coming in it&#x27;s able to take that data and</p>
+<p>actually start applying it and building out these nan things that are communicating with different</p>
+<p>things that would be like even cooler absolutely and now you&#x27;re just talking like call logs from cold</p>
+<p>calling right no these are like like so one of the other companies that i&#x27;m working with has um like</p>
+<p>manufacturing and they&#x27;re they&#x27;re doing customer support and service over the phone so like i took 80</p>
+<p>hours of their phone calls and turned it into uh google lm notebook and then start having</p>
+<p>conversations with all right where&#x27;s the inefficiencies in my business how am i able to do this what am i</p>
+<p>not seeing what is this what is that and it starts breaking things down in a way that you&#x27;re like holy</p>
+<p>shit like you&#x27;re gonna learn the truth about your business as supposed to listen to your employees</p>
+<p>that are only going to tell you what you think you need to hear</p>
+<p>that&#x27;s super valuable especially on the especially a customer support side</p>
+<p>but also building the language model knowledge base that&#x27;s required to do what you needed to do</p>
+<p>most of the time it&#x27;s like you don&#x27;t have the information you need to do what you need</p>
+<p>or they&#x27;re super worried about you sticking in an ai and it&#x27;s not private enough so i have a full-on</p>
+<p>tool that&#x27;s like a chat cheap boutique clone basically that you just run locally so you don&#x27;t</p>
+<p>worry about it going anywhere sounds like a perfect marriage no but what i&#x27;m saying is this training</p>
+<p>knowledge like like i ask these people what can we do a mock-up phone call and they&#x27;re like i don&#x27;t</p>
+<p>know what they do on the call so it&#x27;s like unless you have real world calls where you&#x27;re like all right</p>
+<p>these are the type of questions that these people are really asking and this is how it&#x27;s like ordered this</p>
+<p>this this this and that like without that information it&#x27;s hard to build an ai voice</p>
+<p>agent to replace your person at the front desk when you don&#x27;t even know what your front desk is doing</p>
+<p>i can&#x27;t have all the objections and questions handled in the script they don&#x27;t even know they</p>
+<p>just run off the seat of their pants everybody everybody i meet they&#x27;re making lots of money</p>
+<p>and they still don&#x27;t know what the they&#x27;re doing so crazy because they would you know they</p>
+<p>would rather just not deal with it just don&#x27;t have a bunch of little beans sitting at their</p>
+<p>desk at seven every day yeah so this is the kind of stuff i&#x27;m dealing with</p>
+<p>well let&#x27;s do it send me all the here i&#x27;ll shoot me my email address so it might be easier to send large</p>
+<p>stuff um let&#x27;s get going on something what&#x27;s the first thing that you need me to build and i&#x27;ll get</p>
+<p>it done well i don&#x27;t want to have you build anything i just want to share the overview of the big landscape</p>
+<p>and then figure out if you have anything that fits into this puzzle already i&#x27;m working with cursor and windsurf</p>
+<p>um i i also was telling you about this tool that i have access to lifetime accounts with all these blue chip things so</p>
+<p>for um what it would cost to do a month i&#x27;m getting access for lifetime on a shared account now i&#x27;m not using this for sensitive stuff but like</p>
+<p>just exploring how to use different tools and having access to like google research deep research and then having access to</p>
+<p>oh one pro and then claude and like like it just gets to be unattainable when you have everything and you&#x27;re paying monthly so</p>
+<p>oh yeah hundreds of thousands of dollars a month at some point yeah so i i can share that resource with you</p>
+<p>um the the stuff i&#x27;m building with is basically like mvps minimal viable products like that could</p>
+<p>potentially become something so if we could build something that like is just a demo but a little bit</p>
+<p>better than a demo that we can actually start onboarding people and then have upgrades and modules like that would be epic</p>
+<p>um i&#x27;m just trying to figure out how we can get paid asap and and build long-term money in the process of building the short-term money</p>
+<p>okay i see that um i have a ton of different and just modules and things that i&#x27;ve built already</p>
+<p>i think it&#x27;s a perfect platform for mvps and i think it&#x27;s production ready on some level as long as you test it</p>
+<p>um like to scale it up to production i guess is what i mean yeah there won&#x27;t be a ton of like rebuilding stuff</p>
+<p>no i and the other thing too is like just setting the credentials up in nann is like a pain in the balls</p>
+<p>like yeah people don&#x27;t realize oh yeah you could do this you could do that but nobody really wants to do</p>
+<p>it so here&#x27;s another idea i had and and you could probably do this way faster than me but i basically take</p>
+<p>an nann they have the marketplace of 1700 different automations i take the json file put it into um</p>
+<p>usually grok and then i say build a prompt to create a sas product from this prompt and then i build the</p>
+<p>front end and the api connections on the back end where you&#x27;re not even using nann but you&#x27;re building an</p>
+<p>actual sas product just from these simple little things that people will need and they&#x27;ll pay</p>
+<p>10 15 20 a month to access this one simple little stupid thing and they&#x27;re not willing to learn how</p>
+<p>to use nann</p>
+<p>i&#x27;ve been actually considering something like that because it is a pain in the ass to step that stuff</p>
+<p>especially especially google accounts yeah but we can automate a lot of that to make it go faster</p>
+<p>and just set it up for people but like the stuff that i&#x27;m really good at is creating like the visual</p>
+<p>captivating graphics and like user interface to make it want to be usable so like i&#x27;d rather be</p>
+<p>doing front end stuff but like the back end if it doesn&#x27;t have it doesn&#x27;t work and then there&#x27;s no</p>
+<p>money to be made so like that&#x27;s why i started having to learn this stuff but i&#x27;m not like that&#x27;s not my</p>
+<p>forte i don&#x27;t really love yeah i&#x27;m more of a back end person than a front end person so this would be</p>
+<p>like a perfect combo here i think yeah and then anything that you need help with like visually or</p>
+<p>anything like i can do that in my sleep and i usually don&#x27;t sleep so you got plenty of like life hours</p>
+<p>and we&#x27;re the same i mean seriously i just it&#x27;s funny you&#x27;re talking about your getting into your life</p>
+<p>a little bit about not being around or wanting to take a break from family my wife&#x27;s the same way so</p>
+<p>because i don&#x27;t sleep either i&#x27;m always up yeah so i&#x27;m not trying to do this long term i&#x27;m just trying</p>
+<p>to figure out how to make sense of this and having a kid really put things into a different</p>
+<p>perspective as far as being a provider where before i was just a free spirit travel all over</p>
+<p>the world had no worries in the world and could live under a bridge or in a mansion it didn&#x27;t matter</p>
+<p>because i was my own boss and i didn&#x27;t rule the world with money it was about experiences and and</p>
+<p>exposure to exciting things that people would pay millions of dollars for but i had access to it</p>
+<p>because i knew how to get it before like these other people who have the money can&#x27;t even enjoy</p>
+<p>it because they&#x27;re overwhelmed with the responsibility of it</p>
+<p>and then i don&#x27;t know that&#x27;s so true it&#x27;s so true i don&#x27;t know if you know this other dude he called me</p>
+<p>i spoke to him for 20 minutes um i think you&#x27;re working with him david david freeman yeah yeah i</p>
+<p>talked to him yesterday he mentioned he talked to you yeah so i think about something together too</p>
+<p>i think what he has sounds really good i just think that it&#x27;s going to take him way too long to get</p>
+<p>what he thinks is the outcome of where we&#x27;re moving to and where he&#x27;s coming from as far as raising money</p>
+<p>he wants perfect huh he wants like a perfect he&#x27;s not willing to do an mvp he wants like the product</p>
+<p>done before he releases yeah but he wants to get paid all this money up front to develop something</p>
+<p>and nobody that i know is going to spend money on something that&#x27;s not a working product yeah so he</p>
+<p>lives in these dreams and to me it&#x27;s like dude if we took his understanding of how to write really great</p>
+<p>narrative content and pair it with people who are willing to pay for it for storytelling to</p>
+<p>create money for them to come in for the business or i was telling him possibly doing like film</p>
+<p>festivals and winning awards and now you&#x27;re using the awards as the leverage but right now you have an</p>
+<p>idea that doesn&#x27;t really have anything to stand on as far as a list that you built that people are paying</p>
+<p>for like what are they buying a cash flow like you don&#x27;t even have anybody paying you so like in my</p>
+<p>mind i&#x27;m just sitting there going yeah that&#x27;s a hard sell i told him i told him pretty much the exact</p>
+<p>same thing he needed to start building content with his storytelling um getting you know still a</p>
+<p>lot of views on youtube film festivals i mean same shit because even he&#x27;s out trying to raise money</p>
+<p>i&#x27;m like god you&#x27;re gonna have a hard time i don&#x27;t have anything yet i mean he has a good resume but</p>
+<p>that&#x27;s not necessarily people don&#x27;t give a shit about like a 20 year old at stanford yeah nobody cares</p>
+<p>what they care about is how are you gonna make money for me and if you&#x27;re not then there&#x27;s no</p>
+<p>conversation but i understand what he&#x27;s saying and with some of the stuff that i already think about</p>
+<p>it makes a lot of sense i think i think but i think i think he i think what he has in his head</p>
+<p>is actually a technology than the product because he can give some things some dimensions and</p>
+<p>storytelling abilities that people want to deal with which is what i thought was interesting</p>
+<p>about what he has but he needs to build a product first and showcase it and get people to buy it yeah</p>
+<p>um yeah so that&#x27;s where i&#x27;m at with him um i don&#x27;t know how long you&#x27;ve been in that group but i</p>
+<p>basically was introduced to him from somebody that i lived here and we kind of interacted on the phone</p>
+<p>with the the guy&#x27;s name is alan for about an hour yeah um did did david tell you um about uh jim</p>
+<p>jim lives in puerto rico that&#x27;s the guy i was telling you about that lives there so he didn&#x27;t</p>
+<p>tell me where he lives in puerto rico i don&#x27;t know if you know but yeah i don&#x27;t actually yeah puerto</p>
+<p>rico is like the size of new jersey or connecticut it&#x27;s kind of big yeah and then big ass rainforest</p>
+<p>in the middle to get around everywhere too yeah but it&#x27;s all good</p>
+<p>yeah that&#x27;s that&#x27;s really interesting all right so i mean i i&#x27;m the gonna personal let&#x27;s just do it</p>
+<p>and get some things going and figure it out all right and then one one other asset that i have</p>
+<p>that might work for david and for us he&#x27;s like some so we basically it&#x27;s the same how we pretty much have</p>
+<p>the same story like when you were telling me what your pain points are and mine are very similar and</p>
+<p>like we went through and you did magic and i did magic like all that stuff i have another friend that</p>
+<p>i met in california you there yeah sorry just connected for a second so i heard it was very</p>
+<p>similar yeah so i have another friend of mine who i met in california who went in the same life path as</p>
+<p>me and we basically met we split and then we came back and like for the last 10 years we&#x27;ve been</p>
+<p>doing this figure eight where we just come back every certain time but we always are always always</p>
+<p>working on the same exact projects and co like like parallel processing information so like i&#x27;ll</p>
+<p>get into something he&#x27;ll call me up he&#x27;s like yo i&#x27;m stuck on this i&#x27;m like dude i&#x27;m working on the</p>
+<p>same thing oh that&#x27;s crazy and then we help each other through whatever we&#x27;re going and then we kind of</p>
+<p>jump until the next moment where we get stuck and then we just go back and forth like that right</p>
+<p>so his specialty is creating these really epic consistent character videos with like storytelling</p>
+<p>and like visual like like the dude will spend three days no sleep no food just completely full immersed</p>
+<p>and making these videos that are like holy so he he&#x27;s epic content creator and</p>
+<p>he does things because he wants to do them not because you&#x27;re paying him money if that makes sense</p>
+<p>that totally makes sense sounds like a creator yeah so then the other guy i have um so when i was</p>
+<p>running clubhouse we ran a room 24 hours seven days a week for a year and a half and i ran with one</p>
+<p>guy in particular but i had a whole group of people so there&#x27;s a bunch of them but this other kid</p>
+<p>basically he&#x27;s like an architectural mindset he he knows and understands like how to build things and</p>
+<p>he&#x27;s like the the numbers guy and like takes complex things and he&#x27;s able to wrap his mind around it and</p>
+<p>then explain it to like the dum-dums so he&#x27;s just he&#x27;s just a really good guy to have um he&#x27;s been</p>
+<p>spending all his time in bitcoin incubators so he could build on the bitcoin blockchain</p>
+<p>so if we need anybody in that realm i have that covered and then uh i created a concept called</p>
+<p>collective intelligence where i have a bunch of my friends that just as we find data we just add</p>
+<p>it to a notion board and it just keeps growing with data that&#x27;s relevant to what we&#x27;re working on</p>
+<p>so usually like if i&#x27;m going to start working with you i would set up a notion board between me and you</p>
+<p>using the same gmail account and then we build a second brain of all the things that we&#x27;re working on</p>
+<p>so that becomes like our resource to go to when we want to find something instead of trying to go through</p>
+<p>where did i where did i put that so i don&#x27;t know if you use notion or if you created nann workflows to work</p>
+<p>with notion but that would be also another thing that would be epic yeah i do i i do use notion and</p>
+<p>i have a shitload of connections back and forth with it awesome most people don&#x27;t use notion the</p>
+<p>right way so it&#x27;s like well i probably will not use it the way that you&#x27;re supposed to use it i use</p>
+<p>it in very different ways but i yeah me too i everyone&#x27;s trying to copy just like project management</p>
+<p>tools and crap and i just think it&#x27;s just to me it&#x27;s just a knowledge base you know dump everything</p>
+<p>in there and then you can pull something well it&#x27;s searchable yeah but i don&#x27;t know what else you</p>
+<p>could do with it because i didn&#x27;t really explore the the automation aspect of it but even if i could</p>
+<p>do things on other platforms and have it populate inside a notion would be awesome like like to me</p>
+<p>this is what doesn&#x27;t make sense i don&#x27;t know if you&#x27;ve seen the the new open ai sdk that they&#x27;re</p>
+<p>doing with voice that was cheaper than anything else and it sounded pretty pretty good</p>
+<p>yeah i&#x27;ve been playing with it it&#x27;s still my wife&#x27;s calling me can i call you back in like five minutes</p>
+<p>yeah</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
