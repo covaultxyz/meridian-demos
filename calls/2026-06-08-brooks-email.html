@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooks Email — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Brooks Email</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The conversation discussed building an AI service that transcribes meetings and generates actionable outputs like market copy or lead magnets, with a focus on cost-saving by not doing real-time transcription, using email as the primary interface, and potentially integrating with universal messaging apps like WhatsApp or Telegram.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Use a queue system for processing meeting transcripts to limit costs, with an option to pay for priority.</li><li>Initially focus on pre-canned agents for common business workflows to get the system dialed in.</li><li>Use email as the primary interface for the AI assistant to make onboarding seamless.</li><li>Explore integrating with WhatsApp or Telegram as universal messaging solutions for team notifications.</li><li>Offer an on-premise enterprise version as an upsell for security-conscious businesses.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>No specific commitments with deadlines were explicitly stated.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>A 22-year-old intern at NVIDIA is building a Gmail email management tool and has agreed to talk to an older Outlook tool developer, potentially avoiding conflict of interest.</li><li>Google&#x27;s NotebookLM podcast feature produces highly engaging audio summaries that other tools cannot replicate.</li><li>OpenAI models tend to tell users what they want to hear, unlike Grok which is more direct.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Speaker 1&#x27;, &#x27;what&#x27;: &#x27;Identify different meeting tools (Zoom, Google Meet, Phantom) that people are using.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 2&#x27;, &#x27;what&#x27;: &#x27;Look into integrating with WhatsApp or Telegram as a universal messaging platform for the AI assistant.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>brooks email</h2>
+<p>**Source**: `brooks email.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:37</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>I already summarized this stuff into tasks and things,</p>
+<p>so like, it&#x27;d be really even super easy</p>
+<p>to just dump that straight in.</p>
+<p>And of course not every meeting&#x27;s gonna be Zoom,</p>
+<p>but if we happen to get the one that&#x27;s Zoom,</p>
+<p>that one&#x27;s like good to go.</p>
+<p>I think what we need to do is just identify</p>
+<p>the different tools that people are using.</p>
+<p>Phantom, Zoom, Google Meet,</p>
+<p>but Phantom goes in Google Meet, so.</p>
+<p>And Phantom&#x27;s free, so most businesses</p>
+<p>are gonna try to go with something free anyway.</p>
+<p>Yeah, I would think so.</p>
+<p>No, no, no.</p>
+<p>Because the nice thing about that is we don&#x27;t have to waste</p>
+<p>any money on transcribing meetings,</p>
+<p>because that&#x27;s the most expensive part.</p>
+<p>All this other shit&#x27;s not mean, it&#x27;s relative,</p>
+<p>but at the moment that&#x27;s the most expensive part.</p>
+<p>There might be some agent that does some wild shit</p>
+<p>that we didn&#x27;t even think was possible,</p>
+<p>and then it takes, you know, a million tokens or something.</p>
+<p>Yeah.</p>
+<p>Dude, these kids around here, they&#x27;re like fucking 12,</p>
+<p>riding their golf carts around.</p>
+<p>Welcome to the real world.</p>
+<p>Welcome to the real world.</p>
+<p>Not even.</p>
+<p>We go like 10.</p>
+<p>That&#x27;s a good little shit.</p>
+<p>Yeah.</p>
+<p>But that&#x27;s the way that the world should be, man.</p>
+<p>That&#x27;s how it is here.</p>
+<p>They go to a golf court to school.</p>
+<p>Well, this is on like a somewhat major street.</p>
+<p>I guess it&#x27;s still a neighborhood street, but it&#x27;s, you know, it&#x27;s four lanes.</p>
+<p>Oh, so I was in the wrong one.</p>
+<p>It&#x27;s agent.minimax.io.</p>
+<p>Okay, that&#x27;s different.</p>
+<p>Because the chat one, that one&#x27;s been around for a while.</p>
+<p>Agent.minimax.io.</p>
+<p>Yeah.</p>
+<p>Oh.</p>
+<p>They must have released a new model.</p>
+<p>That must be why it&#x27;s so dope.</p>
+<p>Because their stuff wasn&#x27;t, their stuff was okay.</p>
+<p>Nah, it&#x27;s just.</p>
+<p>You know, everyone&#x27;s catching up to 4L right now is what&#x27;s happening, I think.</p>
+<p>Like, Klock just caught up to 4L with their sonnet news, sonnet model, you know, like.</p>
+<p>Yeah.</p>
+<p>But yeah, I don&#x27;t know.</p>
+<p>I&#x27;m just trying to figure out everything.</p>
+<p>But that, I know what&#x27;s going to end up happening is these people in Enterprise Solutions are</p>
+<p>going to have meetings and the information never gets to the person who it needs to get</p>
+<p>to because they weren&#x27;t in that meeting.</p>
+<p>Yeah, well, I just like the idea of it, like, of course, getting it to the right person, but</p>
+<p>it creates actionable shit where you can have an AI do some actionable shit and then respond</p>
+<p>back in an email to everybody.</p>
+<p>Okay, we talked about it in the meeting.</p>
+<p>Here&#x27;s the, based on the meeting, here&#x27;s the, you know, the market copy that we created.</p>
+<p>And here&#x27;s the website we need you to approve, you know, not the website, but like the lead</p>
+<p>magnet, you know, that type of shit.</p>
+<p>Yeah.</p>
+<p>So I think the first thing that every company is going to have to figure out is how do I</p>
+<p>implement AI into my company?</p>
+<p>And if we can help onboard these people and sell that as a service.</p>
+<p>So think about the workflow that we&#x27;re postulating here.</p>
+<p>And that&#x27;s the, they get like a, a what?</p>
+<p>And initially we just have some pre-canned agents that do stuff.</p>
+<p>Right.</p>
+<p>And we find like the top 20 things or 10 things or five things that every company has in common.</p>
+<p>And we focus on those first.</p>
+<p>Cause then, then we, and then, um, we get that super dialed in and make sure that it works.</p>
+<p>And the full like interface for that is email.</p>
+<p>So people get used to it.</p>
+<p>Cause you know, we&#x27;re trying to get people to, um, only interact with people as if they&#x27;re people.</p>
+<p>Right.</p>
+<p>And the AI would just call them people.</p>
+<p>Right.</p>
+<p>So when you need someone to do something, you ask them for it.</p>
+<p>You don&#x27;t like do it.</p>
+<p>And usually you can respond with them via email.</p>
+<p>And I guess if you want to talk to them, you could do that too.</p>
+<p>Call their phone number.</p>
+<p>Right.</p>
+<p>I think everything&#x27;s going to end up in SMS, but SMS costs money.</p>
+<p>So if we could just onboard them into telegram, that&#x27;s free.</p>
+<p>Cause you&#x27;re not paying for.</p>
+<p>What&#x27;s that?</p>
+<p>Okay.</p>
+<p>What&#x27;s that?</p>
+<p>Yeah.</p>
+<p>What&#x27;s that?</p>
+<p>And I don&#x27;t know how long that&#x27;ll be working, but, um, I&#x27;ve got a hack for, uh, using iMessage.</p>
+<p>Yeah, that works, but that only works if you have an iPhone.</p>
+<p>Yeah.</p>
+<p>But most businesses in the U S have iPhones.</p>
+<p>I don&#x27;t know.</p>
+<p>Like most people in the United States have iPhones.</p>
+<p>Yeah, but these CEO people are Android people for some reason.</p>
+<p>Uh, not all of them.</p>
+<p>The ones here.</p>
+<p>It&#x27;s annoying.</p>
+<p>Yeah.</p>
+<p>Because you&#x27;re in this little pocket of all these like tech people and they all think that Android is more secure than iOS.</p>
+<p>And I think they&#x27;re all fucking.</p>
+<p>They think, they think signal&#x27;s secure too.</p>
+<p>Yeah.</p>
+<p>And yeah, it doesn&#x27;t, it doesn&#x27;t matter.</p>
+<p>Yeah.</p>
+<p>So whatever they want to use, but I, um, what&#x27;s apps universal signal?</p>
+<p>I don&#x27;t know if we can integrate with signal.</p>
+<p>I&#x27;ll have to look at that.</p>
+<p>But what&#x27;s apps universal.</p>
+<p>So if you have Android or iPhone, that&#x27;s a win.</p>
+<p>And I think if you could start with a universal solution, that wins.</p>
+<p>Yeah.</p>
+<p>We can integrate with Slack as well, but I don&#x27;t know.</p>
+<p>Unless, unless companies are super used using Slack.</p>
+<p>That&#x27;s, there&#x27;s not too many of them these days.</p>
+<p>No.</p>
+<p>I think it&#x27;s just text.</p>
+<p>That&#x27;s your, your most intimate space is SMS or WhatsApp.</p>
+<p>What&#x27;s WhatsApp?</p>
+<p>Cause you can have a bunch of groups and shit.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>So if you had the ability to just tell your team and if the AI could filter what it can</p>
+<p>do on its own and help facilitate some of it and do lifting.</p>
+<p>Well, that&#x27;s what I&#x27;m saying.</p>
+<p>Imagine like a meeting occurs, you&#x27;re talking about a marketing campaign and you&#x27;re like</p>
+<p>brainstorming about it.</p>
+<p>And then you get to the end of the meeting and then you&#x27;re like, okay, we like this.</p>
+<p>And then the AI, like, you know, an hour later sends you back the campaign.</p>
+<p>Technically.</p>
+<p>But it&#x27;s super dope.</p>
+<p>You know, it&#x27;s everything.</p>
+<p>It technically could be working while they&#x27;re in the call.</p>
+<p>Yeah.</p>
+<p>But you know how people are, they go back and forth and they change their mind.</p>
+<p>The last minute ever, you know how meetings are with people?</p>
+<p>Like.</p>
+<p>Well, it&#x27;s cheaper.</p>
+<p>New ideas brought to the table and it&#x27;s someone that&#x27;s more in charge of something that</p>
+<p>everybody agrees with that person.</p>
+<p>Yeah.</p>
+<p>But it&#x27;s also.</p>
+<p>They might change the direction like five times.</p>
+<p>But also if it&#x27;s, if it&#x27;s the execution and it&#x27;s not transcribing, it&#x27;s cheaper for them</p>
+<p>to have it at the end of the meeting anyway.</p>
+<p>Yeah.</p>
+<p>It&#x27;s being rendered.</p>
+<p>So we&#x27;re not, we&#x27;re not paying for the transcription at all.</p>
+<p>Yeah.</p>
+<p>We&#x27;re waiting until it&#x27;s done.</p>
+<p>They get it.</p>
+<p>Boom.</p>
+<p>Then we got it.</p>
+<p>You know, we&#x27;re still paying for tokens and shit for things and we can self host stuff,</p>
+<p>but that still costs money.</p>
+<p>Right.</p>
+<p>But nonetheless, like it could do a bunch of stuff.</p>
+<p>Like maybe they&#x27;re talking about a competitor and an analysis comes in and then the analysis</p>
+<p>comes in and then the AI bot like looks at how they can improve their existing portfolio</p>
+<p>and it&#x27;s like, okay, based on the new features of this, here&#x27;s what you need to add to yours.</p>
+<p>You know, I think about it.</p>
+<p>So this is the second thing I thought of while I was talking to this dude and I was like zoning</p>
+<p>out.</p>
+<p>Last week on Brain Juice, I was just listening mostly, but they were talking about how the</p>
+<p>AI, especially open AI makes the tool like literally kiss your ass and it tells you everything</p>
+<p>you want to hear.</p>
+<p>Right.</p>
+<p>Do you agree with that?</p>
+<p>Say that one.</p>
+<p>I&#x27;m sorry the girls were making, doing, I had to yell at them.</p>
+<p>Say that one more time.</p>
+<p>That the open AI, especially, but all these AI tools are kissing your ass and telling you</p>
+<p>what you actually want to hear and not what&#x27;s true.</p>
+<p>Do you agree with that?</p>
+<p>Yeah.</p>
+<p>So what I saw in my head was a user interface where you have like the same chat bot, but</p>
+<p>instead of it just kissing your ass, you have one to three extra windows of you&#x27;re talking</p>
+<p>to it, but you&#x27;re getting it from the perspective of the different people on your team.</p>
+<p>So it&#x27;s like you&#x27;re talking to them and you&#x27;re getting their input based on their filter.</p>
+<p>Well, yeah, and it also has to do with the model you&#x27;re using too, because like Grok, that</p>
+<p>Grok does not kiss your ass.</p>
+<p>Yeah.</p>
+<p>Right.</p>
+<p>So like open AI is like the CEO button down, you know, I don&#x27;t even know if that&#x27;s CEO,</p>
+<p>just like, it&#x27;s like the corporate version, right?</p>
+<p>Grok&#x27;s like the street version.</p>
+<p>And then you get like the Chinese perspective from deep seek and, you know, like, and then</p>
+<p>plus the prompt, right?</p>
+<p>But if you, I really think you could get all of the different personalities in the room.</p>
+<p>But if you had a system prompt of, Hey, this is from my marketing department.</p>
+<p>This is from my accounting department.</p>
+<p>This is from this.</p>
+<p>And you&#x27;re talking in the meeting and you also, you also have the perspective of these</p>
+<p>AIs that are like, this is how I&#x27;m interpreting what you&#x27;re saying.</p>
+<p>And that might help you frame where you&#x27;re going with it.</p>
+<p>More so than just hearing somebody kiss your ass all day.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>I agree with that.</p>
+<p>And the thing to think about here though, is again, the media occurs sometime later.</p>
+<p>We don&#x27;t, we don&#x27;t to save money.</p>
+<p>It would be better for us not to do it right away.</p>
+<p>Right.</p>
+<p>It would be better for us to put it in a queue.</p>
+<p>And if the queue is not busy and it shows up right away, great.</p>
+<p>But maybe the queue is busy and it takes a couple hours before we get to it.</p>
+<p>And then they get it.</p>
+<p>But, you know, right now people in meetings don&#x27;t expect shit like right away anyway.</p>
+<p>Okay.</p>
+<p>So then if there&#x27;s a queue, then there&#x27;s a possibility that you want to upgrade to get your shit.</p>
+<p>Now you pay double.</p>
+<p>Yeah, of course.</p>
+<p>Exactly.</p>
+<p>But the reason we do that, we enable the queue is just so that we can limit our, our costs</p>
+<p>as much as possible.</p>
+<p>No, it&#x27;s designed to piss people off to pay more money.</p>
+<p>I know what it is.</p>
+<p>I&#x27;ve seen it.</p>
+<p>Well, no, I get that.</p>
+<p>But what I actually mean is like, we have some servers set up and we only have capacity</p>
+<p>for so many simultaneous requests per second or whatever.</p>
+<p>Right.</p>
+<p>So if it&#x27;s a super busy time, it might take a time before you get it.</p>
+<p>Or if it&#x27;s, if no one&#x27;s in the queue, you get it right away.</p>
+<p>But of course that also puts that friction down where like they want to pay extra and</p>
+<p>we&#x27;re like, okay, cool.</p>
+<p>Yeah.</p>
+<p>If you want to jump in front of the queue, great.</p>
+<p>We&#x27;ll, we&#x27;ll pay.</p>
+<p>We&#x27;ll let you jump in front of the queue.</p>
+<p>I think this is going to be another part of the, you want an on-prem?</p>
+<p>This is a upsell and they want security.</p>
+<p>Yeah, exactly.</p>
+<p>That&#x27;s the enterprise version, you know?</p>
+<p>Like when you, when you go to any website and it&#x27;s like basic pro enterprise and enterprise</p>
+<p>is like, call us and we&#x27;ll give you a price.</p>
+<p>That&#x27;s what that is.</p>
+<p>That&#x27;s the on-premise version.</p>
+<p>Yeah.</p>
+<p>Cause I think more and more businesses are going to have to opt into on-prem solutions</p>
+<p>cause they&#x27;re not going to want to give all their data away for free.</p>
+<p>Cause I really think that this Westworld thing is what it is.</p>
+<p>And if, if we can like, for me, everything I&#x27;ve ever done, it&#x27;s been for like secure shit</p>
+<p>or hospitals or banks and shit.</p>
+<p>Like it always has to be on-prem and it can&#x27;t touch the internet.</p>
+<p>Like it&#x27;s a gift if it can like reach out to the internet just so you can connect to it</p>
+<p>remotely.</p>
+<p>Right.</p>
+<p>So like three months ago, Harvey was like, Hey, I&#x27;ve got this business idea.</p>
+<p>Uh, well you build this.</p>
+<p>I built it, you know, and three months goes by now.</p>
+<p>He&#x27;s finally ready to fucking, uh, talk about it.</p>
+<p>So we&#x27;re Brad&#x27;s going to give us 15 minutes to talk about it, but it&#x27;s basically, uh,</p>
+<p>a coach, an AI coach for conflict and shit.</p>
+<p>And you know, like you&#x27;re fighting with your wife and you need some, you know, some ideas</p>
+<p>or you like got a conflict with someone at work, shit like that.</p>
+<p>Is that even relevant?</p>
+<p>I thought it was kind of stupid, but I had already built it for something else.</p>
+<p>And it was, you know, it took me like a day to be done with it.</p>
+<p>Like I said, it&#x27;s been sitting there.</p>
+<p>Is that even relevant anymore?</p>
+<p>People are so irrelevant.</p>
+<p>I know, right?</p>
+<p>Do you even talk to anybody?</p>
+<p>Maybe I&#x27;ll teach you how to talk to another AF.</p>
+<p>Dude, people are going to be marrying robots soon.</p>
+<p>Yeah, of course.</p>
+<p>Yeah.</p>
+<p>The Hollywood&#x27;s always all over this shit, you know?</p>
+<p>Yeah.</p>
+<p>They&#x27;ve been on that bandwagon for a long time.</p>
+<p>I don&#x27;t know.</p>
+<p>I went to the mall the first time in 10 years and we walked by the cinema and it was just</p>
+<p>like the freaking movies they&#x27;re playing is like crazy.</p>
+<p>What was the craziest one you saw?</p>
+<p>I didn&#x27;t stop to watch it.</p>
+<p>I know.</p>
+<p>I mean, but like you saw like as advertised.</p>
+<p>Something 2.0.</p>
+<p>It was like the robot version of AI and you&#x27;re, I don&#x27;t know.</p>
+<p>I&#x27;ve probably seen a thing for it, but it was just like final destination.</p>
+<p>I haven&#x27;t seen that in years.</p>
+<p>That&#x27;s come back.</p>
+<p>Yeah.</p>
+<p>And it has to do with something probably relevant to what&#x27;s going on right now and it&#x27;s going</p>
+<p>to promote a whole bunch of fear.</p>
+<p>I don&#x27;t know.</p>
+<p>Yeah, for sure.</p>
+<p>But I don&#x27;t know.</p>
+<p>I think this email one is the best one because that&#x27;s just, you know, it&#x27;s like there&#x27;s like</p>
+<p>no onboarding.</p>
+<p>It&#x27;s like, yeah, you&#x27;ve got this AI assistant that listens to the meeting and then it&#x27;s</p>
+<p>useless.</p>
+<p>It sends you those action items and things that it can work on.</p>
+<p>It does work on.</p>
+<p>Yeah.</p>
+<p>Those emails, nobody even opens.</p>
+<p>No, they don&#x27;t know.</p>
+<p>How many meetings have you had trans?</p>
+<p>How many of these meetings have you transcribed and done nothing with?</p>
+<p>Every one.</p>
+<p>Yeah.</p>
+<p>So unfortunately, these to-do lists are overwhelming and nobody wants to read those</p>
+<p>either.</p>
+<p>But if you can have these things working on it in the background and updating you, I think</p>
+<p>that&#x27;s the win that these companies want.</p>
+<p>And it gets even better if everybody has their own flavor of a meeting thing and you get like</p>
+<p>six transcripts.</p>
+<p>Then you just squeeze, squish them all together and fill in the gaps that the other one missed,</p>
+<p>right?</p>
+<p>Well, that&#x27;s what I was doing with these.</p>
+<p>So I had a meeting with somebody and he had a team and I was like, nobody&#x27;s going to listen</p>
+<p>to the shitty audio because we were in a cafe and there was so much noise.</p>
+<p>But I turned it into one of those podcasts from the LM Notebook and it took a three hour</p>
+<p>meeting into 20 minutes.</p>
+<p>And he&#x27;s like, bro, this is insane.</p>
+<p>So like if you could do that for the filter of each one of the different departments and</p>
+<p>you just update them with a 20 minute audio of all the different things that are going</p>
+<p>on in the business, that would be awesome.</p>
+<p>Yeah.</p>
+<p>And I&#x27;ve, so I&#x27;ve been working on creating APIs for websites.</p>
+<p>We talked about this yesterday, just using like, you know, you mentioned puppeteer and</p>
+<p>it&#x27;s basically like puppeteer, but it&#x27;s like the, I want to say it&#x27;s like browser UI or</p>
+<p>some shit like that.</p>
+<p>But anyway.</p>
+<p>Browse.ai or not browse, um, automate.ai.</p>
+<p>No, no, no.</p>
+<p>It&#x27;s the open source thing that Microsoft released where you can connect an MC.</p>
+<p>It&#x27;s what I did with Claude.</p>
+<p>You can connect an MCP to Chrome and then Chrome will go visit a website and return shit to you.</p>
+<p>Right.</p>
+<p>Oh, okay.</p>
+<p>So, but you can control the website that way.</p>
+<p>So you can pass data to the forms, right.</p>
+<p>And if you&#x27;re a user.</p>
+<p>Um, so there&#x27;s no reason why we can&#x27;t create a notebook.</p>
+<p>LM.</p>
+<p>Actually, I take that back.</p>
+<p>I think Gemini&#x27;s, I think Gemini might like to do it too, but it doesn&#x27;t have to be good.</p>
+<p>Anyway, but creating a podcast like that through those, because those voices are so good and</p>
+<p>so spot on.</p>
+<p>Yeah.</p>
+<p>But I don&#x27;t know how they&#x27;re pulling the data to make it interesting and have the</p>
+<p>hooks and everything else that none of these other tools I had that are supposedly podcast</p>
+<p>had the same vibe of that call.</p>
+<p>No, not, not a single one.</p>
+<p>Like Google really spent a lot of time on that.</p>
+<p>Or some engineer just spent his whole summer working on that last year or some shit, you</p>
+<p>know, like, cause that&#x27;s what most of these tools are.</p>
+<p>They just let their, they hire these really smart people.</p>
+<p>And then they&#x27;re like, spend, you know, 60% of your time on a side project and just keep</p>
+<p>us updated on the progress.</p>
+<p>And if we like it, we&#x27;ll promote it.</p>
+<p>That&#x27;s what, that&#x27;s what happened.</p>
+<p>That&#x27;s where Gmail came from.</p>
+<p>Crazy.</p>
+<p>And I think email management tool, like what that kid months off is working on is going</p>
+<p>to be useful.</p>
+<p>I don&#x27;t know what he&#x27;s charged.</p>
+<p>I think his price point.</p>
+<p>His, his rate limiting factor is that most people use Google email and Google requires</p>
+<p>you to get a security assessment.</p>
+<p>If you&#x27;re going to send emails through their platform with someone else, you know?</p>
+<p>Yeah.</p>
+<p>And that&#x27;s like, you know, 20 grand a year at a minimum.</p>
+<p>Well, I have a guy here that I talked to who already has it for Outlook.</p>
+<p>And I was like, are you open into talking to a young kid who&#x27;s going in the same industry,</p>
+<p>but he&#x27;s just focusing on Gmail and he has a internship with NVIDIA.</p>
+<p>And he was like, yeah, I&#x27;m open.</p>
+<p>Like, I&#x27;m like, you sure this isn&#x27;t conflict of interest?</p>
+<p>He goes, nah, I&#x27;m open to talking to him.</p>
+<p>This guy&#x27;s like in his sixties and it&#x27;s from San Francisco or wherever that Silicon Valley</p>
+<p>is.</p>
+<p>Well, it doesn&#x27;t have an internship.</p>
+<p>It&#x27;s NVIDIA inception is what that is.</p>
+<p>Well, it is what it is.</p>
+<p>I have an, I have a, I&#x27;m in that too.</p>
+<p>Like, anyway, it&#x27;s like, it gives you, it gives you early access to stuff and you can</p>
+<p>go to events that a lot of people can&#x27;t go to and you get like better treatment and</p>
+<p>shit when you need stuff.</p>
+<p>Like you can buy stuff sooner than most people.</p>
+<p>Yeah.</p>
+<p>But yeah, I mean, like he showed me the tool.</p>
+<p>I haven&#x27;t tested it, but you know, look just like, like you&#x27;d expect it to.</p>
+<p>So I put your seatbelt.</p>
+<p>Um, and I don&#x27;t know.</p>
+<p>I just, I think I like that dude.</p>
+<p>How old do you think he is?</p>
+<p>Like maybe 30?</p>
+<p>21, 22.</p>
+<p>He&#x27;s 22.</p>
+<p>Yeah.</p>
+<p>He ain&#x27;t no young.</p>
+<p>He, he, he, a young and dude, he, he&#x27;s never been around the block.</p>
+<p>He don&#x27;t know what&#x27;s going on.</p>
+<p>Yeah.</p>
+<p>So you&#x27;re joining later.</p>
+<p>It&#x27;s supposed to.</p>
+<p>I&#x27;m going to jump on now, but I&#x27;m going to present a little bit later.</p>
+<p>All right.</p>
+<p>I&#x27;m just picking up a pizza for the kids and I&#x27;m going to go jump on this.</p>
+<p>All right.</p>
+<p>Well, I&#x27;ll see you in there.</p>
+<p>And then, uh, I got a call after that with somebody.</p>
+<p>Um, but if you want to jump on later or whatever, just let me know when you&#x27;re around.</p>
+<p>Okay.</p>
+<p>I will.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>Jump.</p>
+<p>I&#x27;m good, booby.</p>
+<p>You&#x27;re full, right?</p>
+<p>I&#x27;m not full, but I&#x27;m not really starving either right now.</p>
+<p>And I got to jump on this meeting.</p>
+<p>Do you want me to wear headphones?</p>
+<p>No, I feel like full too.</p>
+<p>I just feel like floored since this morning.</p>
+<p>So I feel yucky.</p>
+<p>Oh, recording in progress.</p>
+<p>What&#x27;s up, everybody?</p>
+<p>Xan, Xander, Harry.</p>
+<p>Thanks for coming in.</p>
+<p>Lisa, Greg, Ian.</p>
+<p>Ian&#x27;s on camera, eh, Ian?</p>
+<p>Craig, Harry.</p>
+<p>Hi there.</p>
+<p>They&#x27;re pouring in.</p>
+<p>Look at this.</p>
+<p>Chris Steely.</p>
+<p>All right.</p>
+<p>Yeah, guys.</p>
+<p>Good to see you.</p>
+<p>It&#x27;s been a while.</p>
+<p>Good to see you.</p>
+<p>Glad you&#x27;re the man, brother.</p>
+<p>Good to have you here.</p>
+<p>You&#x27;re calling live from Florida?</p>
+<p>Yes, sir.</p>
+<p>Florida.</p>
+<p>Right on.</p>
+<p>Good to have you.</p>
+<p>James?</p>
+<p>Can I come to please?</p>
+<p>Look at the people coming in.</p>
+<p>I feel like I&#x27;m just watching these names come in.</p>
+<p>Ira showed up.</p>
+<p>Oh.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p>
+<p>I feel like I&#x27;m just watching these names.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
