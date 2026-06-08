@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brett Scott Thomas App — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Brett Scott Thomas App</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>Two colleagues discuss waiting for Scott Thomas to respond about using his existing code system instead of building a new one from scratch.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Wait for Scott&#x27;s response before deciding on next steps.</li></ul></div>
+
+
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Scott Thomas&#x27;, &#x27;what&#x27;: &#x27;Respond about availability of his code system.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>brett scott thomas app</h2>
+<p>**Source**: `brett scott thomas app.m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:35</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>I am doing okay. How are you doing?</p>
+<p>Good. I don&#x27;t know if Scott&#x27;s going to give us the code, but if he doesn&#x27;t, can you explain to me what you want this code to do and I can see if I can just build it myself?</p>
+<p>Yeah, but like, so remember, his name is Sean, right?</p>
+<p>His name&#x27;s Scott.</p>
+<p>Scott. Scott Thomas. Okay. And he left. He went back to Utah.</p>
+<p>So I was actually getting ready to meet with him because I was thinking if he&#x27;s got an engine that he could run stuff through and have all these personas of their preference, that&#x27;s pretty powerful, right?</p>
+<p>Yeah. I just need you to tell me what you want it actually to do and then I&#x27;ll see if I can build the same type of system just based on your specific criteria.</p>
+<p>You don&#x27;t want to ask him if he wants to use it for this?</p>
+<p>I asked him to see if he&#x27;s able to talk, but he didn&#x27;t answer the phone or text yet. So while he&#x27;s doing that, I just wanted to start proactively finding a solution.</p>
+<p>Yeah. I mean, look, why don&#x27;t we wait for him to respond? I mean, I did have a conversation about it. I mean, I&#x27;d rather we work on other stuff. If he&#x27;s already got that thing built out, it would be really cool to utilize, don&#x27;t you think? Instead of you trying to build it from scratch and he already has it, right?</p>
+<p>All right.</p>
+<p>I mean, tell me if I&#x27;m wrong, but I mean, if he already has a system that he&#x27;s been working on for months and months, it makes sense to ask him if we can use it to see if it works.</p>
+<p>Okay.</p>
+<p>Don&#x27;t you think?</p>
+<p>I think it might need to be customized either way. So that&#x27;s what I was saying. If we just see what this thing comes back with, but we could wait.</p>
+<p>All right. All right. Let&#x27;s see what he comes back with.</p>
+<p>All right.</p>
+<p>All right, buddy. I&#x27;ll touch you. Bye.</p>
+<p>All right.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
