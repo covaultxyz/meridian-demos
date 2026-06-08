@@ -1,0 +1,2600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rollo — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Rollo</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The discussion covers link building strategies using Google accounts for profile and PDF sites, creating fake personas for SEO (E-E-A-T), AI-powered social media engagement, account creation methods, scraping data from paid communities, spiritual topics like the Monroe Institute and biblical prophecy, and OSINT techniques.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Interest in forming an inner circle to collaborate on projects</li><li>Interest in building a service that creates consistent fake personas across platforms</li><li>Interest in using AI to generate organic-looking social media comments</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Speaker offers to show more tools on Zoom if the other person has time during the week</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Feedly is a tool for accessing press releases and information before it goes public, previously called &#x27;Feverish&#x27;</li><li>Using ChatGPT to reverse geolocate photos by uploading an image and specifying a city</li><li>The Monroe Institute&#x27;s Gateway Tapes were used by the CIA for training soldiers in astral projection</li><li>A red heifer was shipped to Israel, considered a sign of biblical prophecy regarding the rapture</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Speaker 2&#x27;, &#x27;what&#x27;: &#x27;Look up a person named Don (D-O-N or D-A-W-N) in the No Coordination directory&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 2&#x27;, &#x27;what&#x27;: &#x27;Check out the Monroe Institute and Gateway Tapes&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Speaker 1&#x27;, &#x27;what&#x27;: &#x27;Check out the OSINT toolkit sent via link for reverse engineering phone numbers&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>rollo</h2>
+<p>**Source**: `rollo.m4a`</p>
+<p>**Transcribed**: 2026-04-28 17:05</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>it&#x27;s a google account per project basically at minimum okay normally multiple google accounts per</p>
+<p>project and that&#x27;s and so these are just like different kinds of like websites you basically</p>
+<p>just like populate you know random information uh like pdf sites are really useful for example</p>
+<p>stuff like that basically just to just build links</p>
+<p>and so like you know you want to mix of like profile links and like you know things for</p>
+<p>the websites these are like free links that you can build rather than like paid editorial links and</p>
+<p>press releases and shit they&#x27;re like kind of foundational entities stacking kind of links</p>
+<p>generally there&#x27;s a bit of a mix in there there&#x27;s also like book parking sites which speeds for like</p>
+<p>it&#x27;s right basically so i i was telling you this that the guys that i was doing all this stuff with</p>
+<p>the black hat back in 20 years ago i would be sending traffic to my link on these high ranking high</p>
+<p>visible monthly traffic views and then ranking my link on those things which is giving me more link</p>
+<p>juice that was sending it to my main site pushing that one up yeah things have already changed</p>
+<p>so what is the tool that you&#x27;re using now to get the views um like ctr manipulation is like you can use</p>
+<p>bots for this kind of thing but you don&#x27;t like it&#x27;s a mix like you you can do stuff like social shares</p>
+<p>you can do like other tiered link building but um basically i i basically need to have like google</p>
+<p>accounts to be able to set up hundreds of accounts hundreds of accounts on these kinds of projects</p>
+<p>the only way that you could do hundreds at a time is using that other method that i was showing you</p>
+<p>um by buying them from that other website like i bought but now they only take bitcoin</p>
+<p>so now it&#x27;s like a bigger pain by the way uh</p>
+<p>the um the cursor thing if you&#x27;ve done that the day before when i suggested it i did it the moment</p>
+<p>that you wrote no it didn&#x27;t because if you were as fast or if i was maybe faster basically they added the</p>
+<p>um the blocks of people abusing it uh like maybe a couple hours after they they created it oh i did it</p>
+<p>the same the moment that you did i went and bought the things and it took me time to go and and all of</p>
+<p>those accounts are also gmail accounts even though they&#x27;re edu so that might be another method for you</p>
+<p>that is yeah interesting that could be really useful</p>
+<p>yeah because like another thing this is the way i worked back in before ai when instagram was a thing</p>
+<p>i would just create influencers in america but i would be scraping people&#x27;s content</p>
+<p>from overseas and moving them into locations based on where they live in their region so if it was like</p>
+<p>the black sea i&#x27;d put them in miami and i would be using their image and likeness and creating</p>
+<p>influencer accounts and managing all these different things do you know what about sms panels</p>
+<p>yeah yeah so i don&#x27;t know how them actually work but i was literally able to build these profiles and</p>
+<p>then there was another tool called instagress which would basically i would create like 50 to 100 blanket</p>
+<p>um that sounds super relatable to any image or video that was being posted and it would just go and and</p>
+<p>interact with specific people that are on a specific either target audience or</p>
+<p>um based off of keywords and hashtags that they were using</p>
+<p>does any of that still running no all that just got shut down especially with all this ai stuff but</p>
+<p>if we&#x27;re able to do this stuff with make.com and and all this other stuff i don&#x27;t i don&#x27;t know how that</p>
+<p>stuff works now but having the ability to literally generate and create profiles that are like</p>
+<p>the problem with the mms uh the the the the panels is that all their accounts are like super obvious that</p>
+<p>they&#x27;re fake and my goal at one point was to have like if you&#x27;re looking to match and find people who</p>
+<p>are specific to a keyword or like a theme and you want that type of person to follow you it would</p>
+<p>literally find real people and by you signing in gives you access oh man huh um this is like you gotta go</p>
+<p>no no no this is a business which like i&#x27;ve i&#x27;ve wanted to to get into or like</p>
+<p>you know it&#x27;s basically a very similar idea and there&#x27;s a concept in seo called eat and it&#x27;s basically</p>
+<p>like looking into what&#x27;s behind your website and behind the author of the person who wrote the</p>
+<p>article and they basically want to show experience expertise trust and authoritative authoritativeness</p>
+<p>and it&#x27;s basically like a collection of signals and just like a concept and seo from like google</p>
+<p>webmaster guidelines but basically we wanted to create a service where we would basically create a</p>
+<p>person for them and so while all these sma panels give you accounts it&#x27;s impossible to get the same</p>
+<p>account on twitter on facebook on instagram on youtube basically with all the same name and like you know</p>
+<p>information so same birthday same you know like email address same like education whatever like all of the</p>
+<p>information about this person this fake person that doesn&#x27;t exist on all of the accounts is the same</p>
+<p>yeah that&#x27;s basically the concept and then sell that service for people who want to you you know</p>
+<p>like create a blog for example and they want to put an author that looks legit on it</p>
+<p>but the the thing i&#x27;m talking about is like let&#x27;s say you&#x27;re doing you&#x27;re making sas products and you</p>
+<p>want people who are going to be in the real estate industry and you&#x27;re trying to attract people who</p>
+<p>are in that world like as a like a real estate agents you would basically get real estate agents</p>
+<p>to sign up for the service and by them signing into the service you&#x27;re allowing them to write on other</p>
+<p>people&#x27;s posts and everything as long as it&#x27;s within the terms and services and you&#x27;re not writing some</p>
+<p>wild crazy but you&#x27;re using their profiles to get people to interact and see that it&#x27;s a real person</p>
+<p>and then the benefit is the people who were selling that um those interactions to just like a a panel site</p>
+<p>so you&#x27;re getting real people writing on your and promoting you and you&#x27;re getting that</p>
+<p>that network effect because you&#x27;re you&#x27;re taking real people you&#x27;re like using their real world</p>
+<p>accounts as proxy</p>
+<p>that&#x27;s also a really good idea that then yeah that that would be a solid idea like but it&#x27;s difficult</p>
+<p>i think it&#x27;s difficult i know it&#x27;s difficult there&#x27;s a service which is claiming to do something like this</p>
+<p>um which is you know</p>
+<p>i&#x27;ll send everybody wants views and likes and shares and comments and all this other</p>
+<p>but they&#x27;re not willing to go out there and harvest it by actually engaging with other people so what</p>
+<p>this is doing is taking a double-sided system where you&#x27;re basically making money on both sides you&#x27;re</p>
+<p>selling the same service as the ssms panels but you&#x27;re also selling it to the people who are going</p>
+<p>to get engagement and views and likes and shares from being the engager</p>
+<p>because all this this wasn&#x27;t possible back in the day with ai you know now ai is available so it could</p>
+<p>actually read and analyze and write a response that&#x27;s relevant and to a tone so if you&#x27;re toning out</p>
+<p>people and figuring out who they are as an identity it&#x27;s going to keep on that theme</p>
+<p>it would just be a tool that they would be using to be relevant but at the same time you&#x27;re selling</p>
+<p>it to the second side of the coin as i&#x27;m going to get you a lot of views likes and comments of people</p>
+<p>who are actually in your industry</p>
+<p>yeah no that that&#x27;s that&#x27;s solid with ai though ai comments really suck generally like i can spot them</p>
+<p>from a mile away basically all of them are just like people paraphrasing what the tweet actually said</p>
+<p>yeah but we don&#x27;t do it that way i&#x27;d make like the stuff that i was doing was like</p>
+<p>this was just a canned response was like wow you know i looked at that image and</p>
+<p>it just i i you did an amazing job just creating i feel like i&#x27;m there and then people would be like</p>
+<p>oh thanks man and then they tell you a whole story about how they made the picture i don&#x27;t give a</p>
+<p>shit that&#x27;s funny that&#x27;s funny yeah there is ways of doing it well and then the other option would be</p>
+<p>using like a reddit scraper to see how other people are responding with organic real comments</p>
+<p>and then matching and mirroring those formulas to apply to your theme</p>
+<p>yeah no reddit&#x27;s untapped it&#x27;s just so difficult to like</p>
+<p>to yeah like accounts get banned so easily no but you would use it as an aggregate you&#x27;re using it as</p>
+<p>an aggregate to find out how real people talk not to like not to post on yeah</p>
+<p>but reddit&#x27;s reddit&#x27;s a great one if you can post to it it&#x27;s a solid untapped marketing channel</p>
+<p>yeah i agree i just always get hit with all these fucking limits and like i get blocked on everything</p>
+<p>yeah me too</p>
+<p>me too it&#x27;s kind of why i find it insane that you&#x27;re able to make google one google account every day</p>
+<p>is it like attached to your main google account it&#x27;s attached to a a dot me dot account because</p>
+<p>if my google runs out of storage then i can&#x27;t answer the email so i just leave it on my email dot me</p>
+<p>so it&#x27;s a phone attached to one email</p>
+<p>usually yeah okay but you usually get asked to do the email before the phone number</p>
+<p>i don&#x27;t know i just had luck with being able to create multiple accounts and then when i have</p>
+<p>another person working on a notion board instead of me having two different usernames and paying for</p>
+<p>it i just literally give the username a password to the other person and i create a separate notion</p>
+<p>board and then all this stuff that we communicate with lives in that board and then we just use the</p>
+<p>same credentials to access it so we&#x27;re not spending all this money on all these stupid things</p>
+<p>because i agree with you all these subscriptions just rape you and take all your money and then</p>
+<p>you&#x27;re sitting there like ah like if you had a team of people who would just go and pay the 60</p>
+<p>dollars to extract all the data from all these other things and you basically pulled 500 to all</p>
+<p>these other school you know resources and one person is paying for it but then pulling all that data and</p>
+<p>giving it to a private inner circle then you&#x27;d have access to all the knowledge while it&#x27;s coming out</p>
+<p>and everybody&#x27;s just paying a small membership fee to access all of them</p>
+<p>yeah no that&#x27;s small that&#x27;s all it&#x27;s small but like you need your data to be fresh</p>
+<p>like data gets bad so quickly that&#x27;s why when you&#x27;re in these schools this</p>
+<p>shit&#x27;s happening now there&#x27;s certain people who have their</p>
+<p>shit dialed in and other people are just like their schools are just static</p>
+<p>yeah i&#x27;m not in too many schools i jumped into hundreds of them and i go in and out in and out and</p>
+<p>i just find what works and what doesn&#x27;t and like the that these guys that i&#x27;m talking to they&#x27;re</p>
+<p>spending a thousand dollars there&#x27;s only 20 people in their group but a thousand dollars that&#x27;s 20k</p>
+<p>just to manage 20 people</p>
+<p>because of the content subject matter is about financing money and getting big things going on</p>
+<p>with the company stuff and they&#x27;re okay paying that money because of the knowledge and the access</p>
+<p>and the relationship building that&#x27;s happening so you pay for school communities you just go in and</p>
+<p>pay for them i pay for them and then i extract as much as i can if it makes sense i&#x27;ll stay in if not</p>
+<p>i leave with the data and that&#x27;s why what kevin was saying is these people are trying to you know take</p>
+<p>the time to keep you in there long enough so you don&#x27;t just go and do what i do because there&#x27;s other</p>
+<p>people who are doing the same thing that i&#x27;m doing 100 percent but i i see yeah like uh i&#x27;m locking off</p>
+<p>the month yeah but that&#x27;s while you&#x27;re paying so you have to pay the 40 a month for five six months</p>
+<p>to access everything but once you get it all then you&#x27;re like all right i&#x27;m moving on</p>
+<p>unless the community but see people don&#x27;t have the ability to really tap into the</p>
+<p>the other school communities so just like how like you&#x27;re probably one of the top five people who</p>
+<p>comment inside the no code school what i would do is i would go in and write messages to all of the</p>
+<p>top leaders who are like the super active people and make friends with them and then regardless of</p>
+<p>whether i stay in that school i&#x27;ve already done that i think mostly i don&#x27;t know about the school</p>
+<p>like how no coordination is now but like when it was new it was like oh okay cool i&#x27;m just gonna</p>
+<p>contribute a lot put a load of in and then i don&#x27;t know it&#x27;s kind of worked out yeah but when you go</p>
+<p>into other schools you&#x27;re building relationships with people who are just like who you are and now</p>
+<p>you&#x27;re getting access to like the real movers and shakers of all these different containers</p>
+<p>where are you going yeah i guess it&#x27;s because i already go into two minutes yeah but when you&#x27;re</p>
+<p>looking for specific subject matter like the the stuff i was looking for with the um</p>
+<p>hipaa compliance stuff that was something that i didn&#x27;t have a network to talk to</p>
+<p>anybody about so i had to go figure that out because those um have you thought have you got a</p>
+<p>good place to get phone numbers actually uh just twilio</p>
+<p>yeah that&#x27;s right guys um i so i this was probably 20 years ago again there was a a cell phone company</p>
+<p>that was doing a prepaid sim card so i bought the sim card and every certain amount of days i could</p>
+<p>change the number</p>
+<p>yeah so i was using real phones with real phone numbers with real sims to get those activation codes</p>
+<p>and things and at one point i had over a hundred iphones on it like a like what you would see on these</p>
+<p>chinese sites that are doing the social media blasting stuff where they&#x27;re all wired in so i would use</p>
+<p>certain apps to get tokens so i could use the tokens to add followers and do all this other stuff and i was just</p>
+<p>racking in all these different things just having all these different if i go to pawn stores and buy them either really cheap</p>
+<p>another idea i had was to set up donation for old cell phones to put in a donation bin</p>
+<p>and put them in front of churches and get like hundreds of phones that way</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>!!</p>
+<p>!</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>!</p>
+<p>yeah</p>
+<p>i agree with that</p>
+<p>i i think you&#x27;re you&#x27;re absolutely onto something with creating loads of accounts</p>
+<p>well here&#x27;s the other thing</p>
+<p>every day</p>
+<p>i had a hacker in india</p>
+<p>he was in a college system and the guy came in talking about how this specific company was so</p>
+<p>secure that nobody was able to hack it and they were so proud he goes give me 24 hours i&#x27;ll get into</p>
+<p>your system so they&#x27;re like yeah okay so they they told him if you can get into our system we&#x27;ll hire you for security</p>
+<p>what he did was he got a uniform went in the front door told him that he&#x27;s there to replace</p>
+<p>somebody that was on vacation went in with a thumb drive put it into the machine and literally</p>
+<p>copied their entire server and everything else and brought it back the next day he&#x27;s like your</p>
+<p>shit&#x27;s not fucking secure at all because humans are the problem not your technology</p>
+<p>yeah no i i most most hacking and pen testing is social manipulation</p>
+<p>it&#x27;s all the same shit yeah how can i get you to click this link</p>
+<p>yeah generally it&#x27;s that um but there is also weak points in just old technology a lot of it&#x27;s like</p>
+<p>like most of it&#x27;s social engineering in terms of the seo stuff it&#x27;s like how you just find a 10 year</p>
+<p>old plug-in by doing unlike the no government websites and then the other stuff is like people</p>
+<p>are just stupid and they leave like uh an old subdomain c name record pointing to like a shopify</p>
+<p>site that&#x27;s now like disappeared and you just create a shopify site on that domain and then it</p>
+<p>automatically comes up it&#x27;s fucking great yeah not that i do that kind of stuff but uh you know that&#x27;s</p>
+<p>generally how these like they&#x27;re really easy</p>
+<p>yeah i have a friend of mine that used to run hackathons for the pentagon and he would find these crazy</p>
+<p>hacker dudes and he would drop them in my apartment he goes yo this guy has nowhere to go</p>
+<p>i&#x27;m gonna leave him here for a couple days and i&#x27;m like what and then this guy&#x27;s using my ip</p>
+<p>address to do some crazy shit and i&#x27;m like dude you can&#x27;t stay here anymore you gotta go</p>
+<p>that fbi knocked on my door 24 hours later like nah get out of here</p>
+<p>that is</p>
+<p>that is not fun</p>
+<p>no we were watching like i had a bunch of interns one of them was like laying on the couch and i had</p>
+<p>a big screen tv that we would plug our computer in and just all of a sudden the mouse started moving</p>
+<p>and the the mouse bought a 20 000 drone with my dude the intern&#x27;s credit card and i&#x27;m like bro</p>
+<p>look at this and he&#x27;s like what happened i&#x27;m like yo you got hacked kid</p>
+<p>they just remoted it to his computer through the wi-fi network and took his</p>
+<p>shit</p>
+<p>um yeah i can move people sound well</p>
+<p>all right let me i gotta go feed the child um but yeah i i like you guys you guys are awesome it&#x27;s just</p>
+<p>sometimes 30 minutes isn&#x27;t really enough to go over the real cool cool cool stuff a lot of those</p>
+<p>guys are like still asking questions if we come up with like an inner circle we could we could do</p>
+<p>some damage i i agree with that i like that idea um i like don you ever spoken with don d-o-n or d-a-w-n</p>
+<p>don landed no i don&#x27;t think so oh he he crashes in in like pinterest okay</p>
+<p>pinterest and like you know that&#x27;s his big channel</p>
+<p>been doing internet stuff for a long time you know but cool guy you should speak with him</p>
+<p>is he in the the directory on the no code thing yeah yeah he&#x27;s in no coordination and he&#x27;s in like uh</p>
+<p>like what&#x27;s that first i&#x27;ll look him up but like i like i like how nato asks a lot of questions that are</p>
+<p>like he&#x27;s like the perfect normie</p>
+<p>hey nato i i don&#x27;t like how all these guys are still like heavy on go high level like</p>
+<p>i always get recommended things which just bankrupt me</p>
+<p>yeah when i first met kevin i&#x27;m like dude i&#x27;d rather build my own go high level i&#x27;m not gonna buy</p>
+<p>into some multi-level marketing thing to just do this he&#x27;s like nah dude it&#x27;s really good and i&#x27;m like</p>
+<p>like it&#x27;s too expensive yeah and it&#x27;s like it&#x27;s half bill as well yeah like it&#x27;s just not built properly</p>
+<p>that&#x27;s one of the big issues all right you want soup yeah</p>
+<p>i think there&#x27;s a lot of brain power right there there&#x27;s another group that i belong to that makes</p>
+<p>monday nights for two and a half hours and like there&#x27;s three or four guys that are super smart in</p>
+<p>there that when you hear the ship is coming out of their mouth they&#x27;re like i feel like an idiot</p>
+<p>yeah</p>
+<p>uh</p>
+<p>yeah it&#x27;s monday night at 8 pm i don&#x27;t know what time that is for you here</p>
+<p>i don&#x27;t even know where you are man i&#x27;m in puerto rico</p>
+<p>i don&#x27;t know what time is for the gumball</p>
+<p>when we went from monday to the camp</p>
+<p>yeah that sounds awesome</p>
+<p>it&#x27;s not good</p>
+<p>yeah</p>
+<p>yeah i think it&#x27;s just it&#x27;s there&#x27;s nothing to do</p>
+<p>pretty boring</p>
+<p>and why why are you still there because you have contacts or you just don&#x27;t have a better place to go</p>
+<p>uh</p>
+<p>i was in danger</p>
+<p>and i didn&#x27;t want to stay in danger but i feel the actual dude like</p>
+<p>shit oh my god like i don&#x27;t want to say that like full time</p>
+<p>i don&#x27;t want to stay in danger</p>
+<p>and then yeah i don&#x27;t want to stay in danger</p>
+<p>and i just had to collaborate with my desk</p>
+<p>and i probably i&#x27;m going to leave soon</p>
+<p>i got friends a friend of mine died like a couple months ago</p>
+<p>and so i had to have a funeral shit like that</p>
+<p>go look at the palmistal mosque</p>
+<p>like 200 acre property with 20 gated communities pickleball</p>
+<p>equestrian centers golf courses tennis courts um there&#x27;s a school for the kids</p>
+<p>pretty much everything you could ever want and the community is just like</p>
+<p>super dialed in and everybody&#x27;s like an entrepreneur super smart had a major major exit</p>
+<p>and they came here for the tax purposes so like they understand finance</p>
+<p>um yeah i i don&#x27;t even know like what the situation is like moving to the lower</p>
+<p>borderline to the u.s but it&#x27;s just difficult to find the europeans i don&#x27;t know this place is uh</p>
+<p>this place was founded or taken over by the spaniards first</p>
+<p>so there is a lot of european spaniard people they go back and forth from here to spain</p>
+<p>but it&#x27;s a territory it&#x27;s not a state so they have their own rules</p>
+<p>and then all that changes in terms of like what their innovation looks like</p>
+<p>oh it&#x27;s just like the wild wild west here that&#x27;s nice that that that sounds like fun yeah you go</p>
+<p>outside the gates you can do anything i haven&#x27;t seen a cop since i&#x27;ve been here i&#x27;ve been here like four years</p>
+<p>yeah</p>
+<p>yeah i mean don&#x27;t do anything stupid but like</p>
+<p>just doing like</p>
+<p>like there&#x27;s horses on the road there&#x27;s like crazy like you&#x27;re like bro it&#x27;s like a halfway third world</p>
+<p>country huh</p>
+<p>can you have guns</p>
+<p>mm-hmm</p>
+<p>no i think you need to get a license but i don&#x27;t think it&#x27;s as strict as in america</p>
+<p>you</p>
+<p>it&#x27;s cheap there right</p>
+<p>yeah</p>
+<p>that&#x27;s what&#x27;s like</p>
+<p>i mean money goes high</p>
+<p>i need to get good internet</p>
+<p>man i need to get like american clients like american clients pay so much better</p>
+<p>yep</p>
+<p>i need to follow the keys</p>
+<p>i don&#x27;t know how often you talk to these guys outside of that one</p>
+<p>once a week meeting but if you&#x27;re open to it i&#x27;m around most of the days</p>
+<p>i&#x27;m always working on wild</p>
+<p>shit</p>
+<p>yeah</p>
+<p>i&#x27;m down to work with some cool</p>
+<p>shit together</p>
+<p>all right</p>
+<p>i just didn&#x27;t bother you because you were doing that casino job and i know that&#x27;s going to take a lot of time</p>
+<p>it does it takes time but like it&#x27;s kind of less time i feel like</p>
+<p>like i&#x27;m not doing enough</p>
+<p>like this is kind of what i thought of that month the new like headless project</p>
+<p>i was like i feel like i wasn&#x27;t doing enough</p>
+<p>and so now i kind of want to start building some pre-games</p>
+<p>yeah</p>
+<p>as i said to the new site like all you make the new site seem like a really nice</p>
+<p>nice</p>
+<p>you know like i i built one and it didn&#x27;t do so well</p>
+<p>that doesn&#x27;t mean that it can&#x27;t be expanded or i didn&#x27;t even know</p>
+<p>more</p>
+<p>i just remember i remember the name i couldn&#x27;t i&#x27;ve been sitting here for like</p>
+<p>the last two and a half hours it&#x27;s called feedly</p>
+<p>f-e-e-d-l-y feedly</p>
+<p>that&#x27;s the website that you get the press releases and access to all the information before</p>
+<p>it becomes like this is how the influencers are possibly there before it becomes</p>
+<p>on youtube</p>
+<p>you find it</p>
+<p>i think it&#x27;s feedly.io but let me let me see if i can find it</p>
+<p>feedly.com here i&#x27;ll send you the link</p>
+<p>like this</p>
+<p>yeah that&#x27;s like the secret weapon right there</p>
+<p>oh</p>
+<p>i thought it was fetch and i was looking all my notes looking for fetch but it was</p>
+<p>feverish</p>
+<p>and it&#x27;s free there&#x27;s free tears but if you have enough gmail accounts anything&#x27;s free</p>
+<p>i didn&#x27;t sure</p>
+<p>and you said there&#x27;s a mental health</p>
+<p>i don&#x27;t use maker all those little</p>
+<p>shit i don&#x27;t know how any of that stuff works it&#x27;s basically it has the ai</p>
+<p>functionality and it&#x27;s putting your keywords if it&#x27;s medical and ai or or or doesn&#x27;t have like you</p>
+<p>program it and then it just feeds you all the links and articles every day as it&#x27;s coming in and another tool that you can use is google trends</p>
+<p>and as things are like becoming more and more popular you&#x27;re going to get access to the background</p>
+<p>information that way too</p>
+<p>yeah i don&#x27;t know how to automate the google trends it&#x27;s probably not that complicated</p>
+<p>i don&#x27;t think it&#x27;s even an automation thing it&#x27;s just you setting it up and</p>
+<p>and telling it what it does on the dashboard of the actual</p>
+<p>website itself</p>
+<p>yeah but i i want to connect this kind of thing to like um</p>
+<p>um</p>
+<p>uh</p>
+<p>uh</p>
+<p>uh</p>
+<p>yeah mark market analysis</p>
+<p>uh</p>
+<p>it&#x27;s a</p>
+<p>feed me threat intelligence</p>
+<p>yeah look at the one that says newsreader</p>
+<p>oh yeah okay</p>
+<p>oh yeah i see now</p>
+<p>you know who matt wolf is</p>
+<p>uh</p>
+<p>yeah</p>
+<p>he&#x27;s the one that shared this about two years ago</p>
+<p>interesting</p>
+<p>um</p>
+<p>um</p>
+<p>oh nice yeah you can connect with</p>
+<p>a lot of good things</p>
+<p>um</p>
+<p>um</p>
+<p>um</p>
+<p>what is it</p>
+<p>my kids</p>
+<p>turn into next week</p>
+<p>basically</p>
+<p>everything in my life</p>
+<p>being 150 percent productive</p>
+<p>down by negative</p>
+<p>50</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>but the idea is i just want to work on stuff that i actually enjoy doing</p>
+<p>i don&#x27;t want to just take a job just for money so i&#x27;m always looking for things that like</p>
+<p>actually interesting</p>
+<p>you&#x27;re going to keep my answer</p>
+<p>i never really did things for the money</p>
+<p>i was always looking at</p>
+<p>like just being around the right people</p>
+<p>access to me is more valuable than money</p>
+<p>so everybody that i was around were like</p>
+<p>mega elites and they have all the toys and all the stuff</p>
+<p>and they had nobody to hang out and do anything with</p>
+<p>so i just came with that</p>
+<p>and they had all the toys and all the stuff</p>
+<p>and they had nobody to hang out and do anything with</p>
+<p>so i just came with that</p>
+<p>and hang out and do cool shit</p>
+<p>and play them in and make movies and what</p>
+<p>and what</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>i basically</p>
+<p>probably seven or eight years ago</p>
+<p>i shut down the George Washington Bridge</p>
+<p>and had 150 supercars</p>
+<p>two helicopters</p>
+<p>and we shot everything in 8k</p>
+<p>and i just mastermind these like</p>
+<p>crazy ass experiences</p>
+<p>and then convince everybody that</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>i don&#x27;t know</p>
+<p>the thing i i so i my wife&#x27;s from bulgaria so when we would go on vacations we would usually go to bulgaria and or several other countries because there&#x27;s a mandatory labor so we would spend three four weeks and i would go to these hotels that are like five star hotels but instead of the american price it would be like 50 to 100 bucks to rent a room and i&#x27;m like bro how much would it cost to rent a whole hotel so like my idea was to create these games where you get people to fly in</p>
+<p>into a city and then you rent out multiple different places and you have these games where you have like developers marketing seo all these different like-minded people and they take over a whole floor of an entire hotel so now you have these people who are basically getting accelerated and incubated where they come in have this adventure and then they&#x27;re having conversations that are facilitated based on the floors that you&#x27;re on and then you co-mingle the audiences so they can build teams</p>
+<p>and then you get sponsors and everything else to pay for all the shit so then it&#x27;s just like you handpicking and selecting the right people to do this way and have an amazing experience</p>
+<p>so as soon as soon as you try and add a keyword um it basically has said you know you have to upgrade</p>
+<p>oh they must have changed it oh they must have changed it i was using this</p>
+<p>fucking two years ago</p>
+<p>let me see yeah and it&#x27;s built annually as well that&#x27;s kind of annoying</p>
+<p>but it&#x27;s the thought process how do you find what this is doing and and make this work with what you&#x27;re</p>
+<p>trying to do like this is the the tool that you use like similar web or something and find something that</p>
+<p>does the same thing that has the api calls</p>
+<p>yeah that&#x27;s probably a good strategy we&#x27;ll just rss feeds build a custom rss feed</p>
+<p>but it&#x27;s the concept</p>
+<p>it&#x27;s amazing you guys have much junk</p>
+<p>google news create an ai feed so go to next next and then create an i feed we&#x27;ll put it as ai</p>
+<p>and you&#x27;re doing it with keyword right tools well how about we do nan</p>
+<p>i&#x27;m thinking best online casino caliber</p>
+<p>so read articles from nan blog or track articles that mention it so i&#x27;m going to track it</p>
+<p>and then i already got 123 articles</p>
+<p>oh but now is this just clicking follow on the google news thing because it just takes me directly</p>
+<p>no i i got to the it shows me there&#x27;s 123 articles per week but it&#x27;s an upgraded feature so i guess that</p>
+<p>it&#x27;s no longer free that&#x27;s odd but if we can identify what they&#x27;re doing and recreate this so here&#x27;s</p>
+<p>another shortcut that i was using um do you have any ai tools that have deep research</p>
+<p>do you have any ai tools that you&#x27;re currently paying for that have deep research</p>
+<p>all right so i have a few of them and what i do is i&#x27;ll put in like um create me the perfect prompt to</p>
+<p>build a site that does exactly what feed me does and then it will go in and do all this research and</p>
+<p>scrape 700 websites and then build me the pressure prompt that i make my pdr from and then i basically</p>
+<p>from that turn it into six other documents and then a tax list and that&#x27;s how i&#x27;m able to move it back to</p>
+<p>the</p>
+<p>the only one that&#x27;s close to fully functioning is the solana vibe and we&#x27;re going on that for the last four or five days</p>
+<p>everything else is um the the the front end&#x27;s done and all of this stuff works when you click on it</p>
+<p>but it doesn&#x27;t have anything back and to connect to with it but i always started this stuff like a week and a half ago i have another tool i don&#x27;t know if you&#x27;re spiritual but like</p>
+<p>i&#x27;ve been doing a lot of stuff like a week and a half ago</p>
+<p>i have another tool i don&#x27;t know if you&#x27;re spiritual but like</p>
+<p>i&#x27;ve been doing a lot of stuff like a week and a half ago</p>
+<p>i have another tool i don&#x27;t know if you&#x27;re spiritual but like</p>
+<p>i&#x27;ve been doing a lot of research on um are you aware of the guy who was the actual developer of open ai not sam altman but the other guy</p>
+<p>alien or something</p>
+<p>yeah so nobody really knows what happened to him he basically found something that he was able to use that leverage to get sam</p>
+<p>and then he was able to use that leverage to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get</p>
+<p>so one of the tools i built was managing uh prophetic words like when you&#x27;re talking to people who are prophetic and they&#x27;re giving you a word you would have the translation and the transcription of it being referenced and graded as what it is in the bible so there&#x27;s an actual hard proof whether or not it&#x27;s just coming from god the source or a third party entity that&#x27;s using you as a tool to manipulate you to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get</p>
+<p>get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him to get him</p>
+<p>I&#x27;m just sharing with you</p>
+<p>I&#x27;m just kidding</p>
+<p>check out Monroe Institute have you ever heard of Monroe Institute?</p>
+<p>yeah so there&#x27;s a thing called the gateway tapes that the CIA basically took over the Monroe Institute and they trained all of these soldiers to operate in the spiritual realm so they have physical soldiers that guard a physical location and then they have spiritual entities that are guarding the same spiritual location so if you go in and try to interact with that</p>
+<p>they can follow you back and talk with you</p>
+<p>so yeah you should check that out</p>
+<p>I&#x27;d like to</p>
+<p>I&#x27;d like to</p>
+<p>yeah the gateway kids were just</p>
+<p>I have a series of</p>
+<p>there&#x27;s basically this whole meditation</p>
+<p>a guy named Roderick Monroe</p>
+<p>and in the 80&#x27;s</p>
+<p>he was sitting in his bed</p>
+<p>and all of a sudden he opened his eyes</p>
+<p>he&#x27;s looking down</p>
+<p>and he sees some dude laying in bed with his wife</p>
+<p>and then he realized that he was that dude</p>
+<p>and he was actually out of his body</p>
+<p>and he touched the chandelier</p>
+<p>and spoke to him</p>
+<p>he went back into the body</p>
+<p>he woke up</p>
+<p>scared from the apartment with his doctors</p>
+<p>they did a whole physical</p>
+<p>and then he went to a psychiatrist</p>
+<p>so there was nothing really wrong with you</p>
+<p>and then he got curious</p>
+<p>and then he basically spent the rest of the flight building</p>
+<p>like a school class</p>
+<p>to teach people how to interact with the school</p>
+<p>and then he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>he was like</p>
+<p>they can&#x27;t see past 20-30s</p>
+<p>like</p>
+<p>psychically</p>
+<p>they did just see a white wall</p>
+<p>so whatever we&#x27;re looking for</p>
+<p>there&#x27;s gonna be a massive shift</p>
+<p>and that shift</p>
+<p>is going to</p>
+<p>potentially also line up with what&#x27;s going on in the Bible</p>
+<p>so</p>
+<p>if the timeline is correct</p>
+<p>whatever is gonna happen</p>
+<p>we&#x27;re gonna be here to see it</p>
+<p>I don&#x27;t know where it is</p>
+<p>but</p>
+<p>I&#x27;m curious</p>
+<p>I think Israel</p>
+<p>is the original people that</p>
+<p>had a specific</p>
+<p>mission</p>
+<p>and their goal is to manage the timelines</p>
+<p>and traditions</p>
+<p>to keep their</p>
+<p>thought processes and everything aligned</p>
+<p>and anybody have questions?</p>
+<p>I&#x27;m really good to</p>
+<p>follow up</p>
+<p>for example</p>
+<p>the red heifer</p>
+<p>the red heifer is a</p>
+<p>spotless cow that was just shipped there</p>
+<p>that when they&#x27;re gonna kill it</p>
+<p>that&#x27;s gonna be a sign</p>
+<p>that they&#x27;re gonna use</p>
+<p>so</p>
+<p>inside the Bible</p>
+<p>there&#x27;s certain prophetic things</p>
+<p>that have to happen</p>
+<p>before</p>
+<p>the rapture happens</p>
+<p>but because in the Bible</p>
+<p>it says that no man knows what time</p>
+<p>or whatever</p>
+<p>but</p>
+<p>they said one generation</p>
+<p>would be able to see all these prophetic things happening</p>
+<p>so once you start seeing these things lining up and clicking</p>
+<p>it&#x27;s just a signal for you to get ready</p>
+<p>like</p>
+<p>not that it&#x27;s gonna happen</p>
+<p>because if something</p>
+<p>shifts</p>
+<p>then that</p>
+<p>that energetic</p>
+<p>field</p>
+<p>is changing</p>
+<p>and that clock gets reset</p>
+<p>and so</p>
+<p>another thing happens</p>
+<p>like</p>
+<p>is your</p>
+<p>is your relationship with God</p>
+<p>you know</p>
+<p>how many of these people</p>
+<p>like</p>
+<p>I was asking this question</p>
+<p>because I go to these Bible studies</p>
+<p>and</p>
+<p>I&#x27;m like</p>
+<p>how many people want to go to heaven</p>
+<p>and are so concerned about going to hell</p>
+<p>but while they&#x27;re here on this planet</p>
+<p>they have no desire to learn God</p>
+<p>or have a relationship with God</p>
+<p>and they just do all these crazy things</p>
+<p>and they&#x27;re putting all their attention in all the wrong places</p>
+<p>but yet</p>
+<p>when they go to heaven</p>
+<p>they expect to go and be next to God</p>
+<p>and live in that world</p>
+<p>but if you&#x27;re detached from God</p>
+<p>that&#x27;s the definition of hell</p>
+<p>is like</p>
+<p>you don&#x27;t have a relationship with God</p>
+<p>so</p>
+<p>how are you not living on hell</p>
+<p>while you&#x27;re here on earth</p>
+<p>because you don&#x27;t have any time for God</p>
+<p>yeah but if you learn about the Bible</p>
+<p>and you learn about</p>
+<p>like</p>
+<p>how to interact with the Holy Spirit</p>
+<p>and the Holy Spirit comes into you</p>
+<p>when you&#x27;re hosting it</p>
+<p>and now you have access to the same</p>
+<p>energy</p>
+<p>and</p>
+<p>access to the stuff that Jesus was doing</p>
+<p>and healing people</p>
+<p>and doing miracles</p>
+<p>in the Bible it says</p>
+<p>he will prove things</p>
+<p>more</p>
+<p>than what he currently did</p>
+<p>while he was on earth</p>
+<p>the problem is</p>
+<p>as humans</p>
+<p>are so concerned with God</p>
+<p>getting permission from God</p>
+<p>they don&#x27;t realize that they have the authority</p>
+<p>while they&#x27;re on this planet</p>
+<p>to do things</p>
+<p>yeah</p>
+<p>yeah</p>
+<p>yeah like</p>
+<p>sorry</p>
+<p>it&#x27;s pretty interesting</p>
+<p>like</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>!</p>
+<p>the</p>
+<p>!</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>the</p>
+<p>of the</p>
+<p>the</p>
+<p>don&#x27;t</p>
+<p>to understand</p>
+<p>technical details of it but once they have a person like you who can make those decisions for them then it&#x27;s just like I go now we can run but to get to that part where you can run takes time and research</p>
+<p>!</p>
+<p>Yeah, no, 100%</p>
+<p>100%</p>
+<p>like</p>
+<p>they don&#x27;t know what they don&#x27;t know</p>
+<p>and we don&#x27;t know either because this shit changes every fucking day so if we can get in here and at least learn what the research is showing at this current time and you have your aggregate data that you have in your head you can make a way better educated decision than just letting lovable create you some bullshit thing that you think looks great but then when it goes to production breaks</p>
+<p>yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah</p>
+<p>yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah</p>
+<p>yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah</p>
+<p>so, I mean, unless you&#x27;re paying for traffic, how are you going to be seen? That&#x27;s pretty much what you&#x27;re telling me.</p>
+<p>Yeah, you could, like, I don&#x27;t even think paid ads will work well with bite sites, but, you know, like, you can do it with Facebook and social traffic, I guess, but search engines can&#x27;t see it.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>Like,</p>
+<p>Here&#x27;s a,</p>
+<p>Yeah, here&#x27;s a tool.</p>
+<p>So, like, any, like, bite site that you want to see how, like, you know, how Google sees it, just go and, like, paste a URL, and then you can go and see if there&#x27;s, like, if it fully renders your page.</p>
+<p>Yeah.</p>
+<p>That&#x27;s cool.</p>
+<p>That&#x27;s like having access to the, but this is a Google product?</p>
+<p>Yeah.</p>
+<p>Oh, it must be, like, a super down the rabbit hole tool.</p>
+<p>Yeah, exactly, mate.</p>
+<p>Are you using dorks?</p>
+<p>Because you can use this indexing backlinks as well.</p>
+<p>Are you using dorks?</p>
+<p>Yeah, of course.</p>
+<p>I, I, um, uh, like a cyber security professional.</p>
+<p>Nice.</p>
+<p>You can&#x27;t hide information from me.</p>
+<p>I can find anything.</p>
+<p>Are you familiar with OSINT?</p>
+<p>Uh, I&#x27;m not.</p>
+<p>Which is OSINT?</p>
+<p>It&#x27;s, it&#x27;s basically short for open source intelligence.</p>
+<p>And it has all these different toolkits to find data points.</p>
+<p>If you have a phone number, if you have a name, if you have an address, if you have this, you can literally create a profile on that individual by using all these different tool sets.</p>
+<p>Interesting.</p>
+<p>Interesting.</p>
+<p>Um, uh, what&#x27;s it called?</p>
+<p>Uh, I can&#x27;t remember the name of it.</p>
+<p>Uh, it&#x27;s the one where you can reverse engineer, um, like any phone to on the internet.</p>
+<p>Uh, I just sent you a link.</p>
+<p>Oh, nice.</p>
+<p>Well, yeah.</p>
+<p>Now, have you ever tried using ChatGPT to find places?</p>
+<p>I, I&#x27;ve used all kinds of stuff.</p>
+<p>My, my go-to is Perplexity and, um, Gemini for deep research.</p>
+<p>You can take an image and then find out where it was taken in, like, a city for example on ChatGPT.</p>
+<p>On the regular one or the paid one?</p>
+<p>Uh, I, I think the regular one.</p>
+<p>I&#x27;ll try.</p>
+<p>Like, uh, I&#x27;ve only, I haven&#x27;t got the pro.</p>
+<p>I&#x27;ve got, like, premium, the $20 one.</p>
+<p>I don&#x27;t know if you can go with the regular one.</p>
+<p>But basically, just upload a photo and give it some, like, general direction.</p>
+<p>Be like, this is in, like, if you know the city, for example, then you can find out the, the hotel that it was taken at from the city, for example.</p>
+<p>That&#x27;s crazy.</p>
+<p>Yeah, it&#x27;s ridiculous.</p>
+<p>Like, that fucking, um, ex-girlfriend fucking lines me.</p>
+<p>Like, I just said where, uh, asked her where she was and she just gave me some, like, bullshit line.</p>
+<p>And, uh, as I asked ChatGPT, I was like, no, this is, like, oh, this is the exact place.</p>
+<p>I&#x27;m like, oh, thanks.</p>
+<p>Great.</p>
+<p>Didn&#x27;t know it was that easy.</p>
+<p>Well, yeah.</p>
+<p>Well, yeah.</p>
+<p>Well, you, like, uh, the, the veil of technology is just becoming, what&#x27;s the word, uh, almost open source.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>I&#x27;ll check it out.</p>
+<p>I, I&#x27;ve used it for other things, but not for this.</p>
+<p>All right, I gotta jump on another call, but it was good catching up with you, dude.</p>
+<p>Yeah, you too, man.</p>
+<p>Nice speaking with you.</p>
+<p>All right, we&#x27;ll catch up again.</p>
+<p>Let me know if you have time, like, during the weeks or whatever, and we&#x27;ll jump on a thing, and I&#x27;ll show you some other stuff on, uh, Zoom, or.</p>
+<p>No, I, no, I would love to do that.</p>
+<p>Yeah, just let me know.</p>
+<p>Yeah, just keep it up.</p>
+<p>All right, buddy.</p>
+<p>All right, catch you in a bit.</p>
+<p>All right, buddy.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p>
+<p>All right.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
