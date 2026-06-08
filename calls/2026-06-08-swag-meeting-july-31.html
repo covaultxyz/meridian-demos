@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swag Meeting July 31 — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Swag Meeting July 31</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The team discussed and defined the swag order fulfillment processes for stock, non-stock, and drop-ship orders, including warehouse workflows, SKU creation, unit conversions, and system configurations in D365 and BigCommerce.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Swag outbound location will be changed from bulk storage to a shipping location ID.</li><li>Stock orders will use a pick-to-ship workflow instead of a pack station, eliminating the need for manager intervention.</li><li>Non-stock orders will be received into warehouse one, moved to a production tent for QC and photos, and then to swag outbound for shipping.</li><li>The accounting location will be phased out and eventually removed.</li><li>Unit conversions (e.g., per brick, case quantities) need to be built for BIC and Clipper products.</li><li>New stock and non-stock orders will be processed using the new workflow immediately.</li><li>Legacy orders will continue to be handled individually until converted.</li><li>Sales order status will be set to &#x27;Awaiting Payment&#x27; by default, then moved to &#x27;Awaiting Fulfillment&#x27; with a note specifying drop-ship, in-house, or overseas.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Andrea will help coordinate and create missing SKUs with SS designations, picking up where Baca left off.</li><li>Jose and Danny will implement the new stock order workflow, with Danny toggling the swag outbound location and setting up the workflow.</li><li>Participants will update notes on BigCommerce to indicate when non-stock items are received and ready.</li><li>The meeting audio will be sent to Alex for AI overview extraction.</li><li>The meeting organizer will update the meeting email with action items.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Many SKUs needed for swag products (especially BIC and Clipper colors) are not yet created; the previous effort by Baca was extensive but incomplete.</li><li>The color-matching fee for Clippers is a $30 service SKU that can be added as a line item.</li><li>Unit conversions (e.g., per brick vs. per case) do not yet exist in D365, requiring manual setup.</li><li>The dropship module eliminates the need for a warehouse location for those transactions, as they are 100% digital.</li><li>There is no formal system to track labor and materials costs per order; it is currently expensed manually.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Danny&#x27;, &#x27;what&#x27;: &#x27;Change swag outbound location from bulk storage to a shipping location ID.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Danny&#x27;, &#x27;what&#x27;: &#x27;Set up a new pick-to-ship workflow for swag stock orders.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Andrea&#x27;, &#x27;what&#x27;: &#x27;Assist with creating missing SKUs that need SS designation, starting with known gaps.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Jose&#x27;, &#x27;what&#x27;: &#x27;Update the status of swag orders to available after receiving and QC.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Meeting organizer&#x27;, &#x27;what&#x27;: &#x27;Send the meeting audio recording to Alex for AI overview extraction.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Meeting organizer&#x27;, &#x27;what&#x27;: &#x27;Update the meeting email with action items.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Team&#x27;, &#x27;what&#x27;: &#x27;Build unit conversions for BIC and Clipper products (e.g., per brick, case quantities) in D365.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Sales team&#x27;, &#x27;what&#x27;: &quot;On new sales orders, set default status to &#x27;Awaiting Payment&#x27; and add a note specifying drop-ship, in-house, or overseas when moving to &#x27;Awaiting Fulfillment&#x27;.&quot;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>swag meeting july 31</h2>
+<p>**Source**: `swag meeting july 31.m4a`</p>
+<p>**Transcribed**: 2026-04-28 17:17</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>Can we manage to split the tracking to go to swag supply lovebugs?</p>
+<p>It should already be doing that.</p>
+<p>To big commerce?</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>That was my only question.</p>
+<p>Okay.</p>
+<p>Well, whatever argument is better, I think it&#x27;s...</p>
+<p>I would say that at least for now, we can still run through warehouse one</p>
+<p>because I still need to set up the work templates.</p>
+<p>But maybe somewhere down the line, we can do a full swap</p>
+<p>and then have swag inventory, swag processes, transactions</p>
+<p>all fall under the swag warehouse.</p>
+<p>I just feel like at the SKU level, we&#x27;re already categorizing them as swag</p>
+<p>so we can differentiate the inventory</p>
+<p>and the sales and revenue gets recorded based on the setup of the SKU.</p>
+<p>So that kind of eliminates the need for us to have the warehouse.</p>
+<p>But I don&#x27;t know what else it would be beneficial to have it.</p>
+<p>All items should, you know, be specific</p>
+<p>and it will have an SS designation at the end.</p>
+<p>So that would be, you know, what is recommended.</p>
+<p>Where are we in that though?</p>
+<p>How far along in the process of that?</p>
+<p>Are all the SKUs we need created?</p>
+<p>We still have to do...</p>
+<p>Because I know that Baca and Lugan were working on a large spreadsheet that had many, many, many conversions</p>
+<p>between SKUs and SSUs.</p>
+<p>They&#x27;re not all created.</p>
+<p>I&#x27;ve been...</p>
+<p>I actually came across this situation with the hookers.</p>
+<p>It&#x27;s 2070s.</p>
+<p>There&#x27;s seven variants.</p>
+<p>We only was using one for the white, black, blue.</p>
+<p>So I know there&#x27;s no...</p>
+<p>Yeah, there&#x27;s probably...</p>
+<p>Because talking about it like it&#x27;s done, it&#x27;s not done,</p>
+<p>and it&#x27;s a tedious process that is...</p>
+<p>I mean, it took Baca days to get as far as they got.</p>
+<p>So it&#x27;s like, we can&#x27;t just kind of talk about it and be like,</p>
+<p>well, it&#x27;ll be done.</p>
+<p>Because, like, someone&#x27;s going to need to sit down and do all of it.</p>
+<p>We&#x27;ll have to do it if it&#x27;s going to be a serious thing.</p>
+<p>Yeah.</p>
+<p>So Andrea, I mean, she has a set of tomorrow off that she can help you with that</p>
+<p>if there are SKUs that need that.</p>
+<p>I mean, so the main things on BIC and Clipper, you know,</p>
+<p>they&#x27;re all going to have the original BIC and Clipper, you know, names,</p>
+<p>but differentiator is the color, you know.</p>
+<p>So it&#x27;s going to be, you know, black, white, green, whatever it may be.</p>
+<p>And then those Clippers, you have the two Jetplane SKUs.</p>
+<p>So those are a little bit different.</p>
+<p>I think those are built out.</p>
+<p>But there&#x27;s also a color-matching fee that occurs on occasion</p>
+<p>that we have to add in.</p>
+<p>So I&#x27;m not sure how that gets plugged in.</p>
+<p>It&#x27;s a SKU all by itself.</p>
+<p>I think that was $25 or something like that.</p>
+<p>Yeah, I mean, I think it&#x27;s $30.</p>
+<p>Yeah, it&#x27;s currently in the system as a service SKU.</p>
+<p>Yeah.</p>
+<p>So you just add it as a line item?</p>
+<p>Yeah.</p>
+<p>Just like anything else?</p>
+<p>But I think those are really the only ones that are designated by color.</p>
+<p>I think maybe, I mean, grinders and some other things may have that designation as well,</p>
+<p>but I mean, I&#x27;d have to know.</p>
+<p>So you guys know what&#x27;s missing so we can coordinate?</p>
+<p>I don&#x27;t think so.</p>
+<p>I don&#x27;t think Andrea knows.</p>
+<p>But we&#x27;ll find out.</p>
+<p>No, no, no.</p>
+<p>I know she doesn&#x27;t know.</p>
+<p>But do you guys know what&#x27;s missing?</p>
+<p>Nobody knows what&#x27;s missing.</p>
+<p>You know, and I think it&#x27;s going to be kind of a one-off basis, you know?</p>
+<p>Okay.</p>
+<p>And when it comes through and it&#x27;s not built in,</p>
+<p>then it&#x27;ll have to be built as the process goes away.</p>
+<p>Why can&#x27;t you guys build it?</p>
+<p>I mean, when, as her requested, as a new...</p>
+<p>That&#x27;s what I&#x27;m saying.</p>
+<p>Like, as he needs it.</p>
+<p>Yeah.</p>
+<p>Like, in a process versus...</p>
+<p>Yeah.</p>
+<p>That&#x27;s how it&#x27;s been done to this point.</p>
+<p>So why does Andrea have to be in the middle?</p>
+<p>Just in case there is, you know, some SKUs that haven&#x27;t received that SS designation,</p>
+<p>she can maybe pick up where Baca left off.</p>
+<p>But I think everything is done.</p>
+<p>But as I continue to sell, there&#x27;s going to be new products that we&#x27;ve never sold before.</p>
+<p>I mean, years ago, I sold yoga pants.</p>
+<p>You know, like, you know, those don&#x27;t exist anywhere, you know?</p>
+<p>So we&#x27;ll have to create SKUs on occasion.</p>
+<p>Okay.</p>
+<p>And you guys do coordinate.</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>All right.</p>
+<p>What&#x27;s next?</p>
+<p>All right.</p>
+<p>So just to recap over what we just talked about, we were talking about the swag rock process,</p>
+<p>swag deceiving process, how we&#x27;re going to do the rock, take the movement, etc.</p>
+<p>Okay.</p>
+<p>Now, I have a question pertaining to operations, just in, like, the process of general.</p>
+<p>Who&#x27;s creating the purchase orders?</p>
+<p>The seller.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Who&#x27;s creating the seller?</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>10-4.</p>
+<p>Question in that process.</p>
+<p>Um, are you still communicating with the vendor and negotiating pricing?</p>
+<p>Yes.</p>
+<p>Okay.</p>
+<p>So by the time you send it to him, you&#x27;re going to...</p>
+<p>By the time I send it to him, I&#x27;m going to send him the sales order and the vendor invoice</p>
+<p>so everything matches.</p>
+<p>Okay.</p>
+<p>All right.</p>
+<p>So that answers...</p>
+<p>Yes, the parties provide new shipping charges, new costs, so as long as I match that and create</p>
+<p>the PAs.</p>
+<p>Yeah, because if it&#x27;s not a BIC-related PO, then it&#x27;s going to come from an outside vendor</p>
+<p>who&#x27;s going to give me exact shipping costs and per unit pricing.</p>
+<p>Problem with BIC is it&#x27;s also drop ship and they don&#x27;t invoice us until afterward.</p>
+<p>So they quote me on freight, you know, for that day.</p>
+<p>And as long as we submit the PO with that price, that&#x27;s the price that&#x27;s going to come</p>
+<p>on the invoice when it ships.</p>
+<p>Okay.</p>
+<p>How we figured out the issue of cases versus items and what...</p>
+<p>How POs are created versus how we&#x27;re...</p>
+<p>So far on Flipper, we have switched any new orders to the per brick pricing.</p>
+<p>So it&#x27;s going to be, you know, each unit cost is going to be a 48-count brick.</p>
+<p>But, and I understand on pop-backs, we&#x27;re doing case counts for those now.</p>
+<p>Or is that going to use to me?</p>
+<p>Someone told me that we need...</p>
+<p>No, eventually...</p>
+<p>No, eventually...</p>
+<p>Right now, pop-back is a whole other disaster on its own.</p>
+<p>So we&#x27;ll cross that bridge when we get there.</p>
+<p>So I have a question about the legacy orders that I&#x27;m working on right now.</p>
+<p>Considering that we have been using those as individuals,</p>
+<p>am I going to be continuing to input, make movements as individuals for the meantime?</p>
+<p>If you can still edit the sales orders, do what needs to be done to make them right,</p>
+<p>to make them...</p>
+<p>Yes, and if you need help editing...</p>
+<p>Because I know it&#x27;s the end of month and we need to get this stuff done.</p>
+<p>If you need to edit any sales orders, I&#x27;ll do those today just so we can get these end voices out.</p>
+<p>And I gave you access to Monday so you can reference the PO and see how it was ordered.</p>
+<p>Okay.</p>
+<p>And just to be clear...</p>
+<p>Papers, individual...</p>
+<p>You have to look at the PO.</p>
+<p>Yeah, obviously.</p>
+<p>But we&#x27;re converting the clipper lighters and all of the lighters to use to case quantity.</p>
+<p>Well, so BIC we haven&#x27;t done that.</p>
+<p>Okay.</p>
+<p>Are we labeling it correctly in Dynamics as far as like the...</p>
+<p>Well, right now, the SKUs are only set to individually, like each is in unit quantities.</p>
+<p>Is the option...</p>
+<p>There is an option for case quantity.</p>
+<p>So we can start labeling.</p>
+<p>Yeah, we can start labeling.</p>
+<p>Okay.</p>
+<p>I think...</p>
+<p>Does that begin at the field?</p>
+<p>...to decide whether we&#x27;re going to be selling things the way we buy them</p>
+<p>or if we&#x27;re going to be making conversions.</p>
+<p>We&#x27;ve got to pick one or the other.</p>
+<p>So the difference...</p>
+<p>I mean, because Clipper is a different animal than BIC.</p>
+<p>I don&#x27;t know how BIC is purchased when we buy blanks.</p>
+<p>I mean, technically, we&#x27;re not going to be storing BIC here.</p>
+<p>Yeah.</p>
+<p>So we&#x27;re not going to be putting hands-on to dropships or anything in-house.</p>
+<p>So the way we store...</p>
+<p>The way we receive it is the way we would like to ship it.</p>
+<p>And that can be in voice sales.</p>
+<p>Yeah.</p>
+<p>Whatever you guys need me to do with it.</p>
+<p>We just need a calming sheet that you&#x27;re in agreement of how it&#x27;s stored,</p>
+<p>you&#x27;re in agreement of how it&#x27;s sold,</p>
+<p>and that&#x27;s how we&#x27;re creating POs and sales.</p>
+<p>I think that just by doing car plans conversion to case quantities</p>
+<p>would probably be better.</p>
+<p>Because at the BIC commerce level,</p>
+<p>you can just quantify it as you&#x27;re buying one block of figs</p>
+<p>or one block of clippers, right?</p>
+<p>Yeah, and those are bricks, not cases.</p>
+<p>So case quantities are different altogether.</p>
+<p>Okay, so, I mean, we can still have it as, you know, like,</p>
+<p>you know, one case is X bricks and X units.</p>
+<p>Like, we can set unit conversions as granular as we want it.</p>
+<p>And on the inventory side, it would probably be easier to read</p>
+<p>and, like, saying we have X cases for swag, XYZ,</p>
+<p>instead of we have 28,000 units of that case.</p>
+<p>Now, with the legacy orders that I&#x27;m working right now,</p>
+<p>would you be able to help me convert those</p>
+<p>into what we need them to get done to build the matches?</p>
+<p>We can, but the unit conversions don&#x27;t exist.</p>
+<p>So I would have to start building those up.</p>
+<p>What is that called?</p>
+<p>Unit.</p>
+<p>But, and that&#x27;s the temporary fix.</p>
+<p>So if you need me to change the sales order</p>
+<p>to match whatever you need it to be, I&#x27;ll do that.</p>
+<p>So the BIC commerce side,</p>
+<p>we are capable of making the changes we need.</p>
+<p>However, I need it to be able to reflect the dynamics as well.</p>
+<p>So he has to build that out before I could actually proceed with it.</p>
+<p>If you guys wanted to match how you guys are talking with the same quantity,</p>
+<p>then he has to build that out.</p>
+<p>Yeah, I think it would fix this issue.</p>
+<p>You know?</p>
+<p>Because I don&#x27;t really work in dynamics as much as you can.</p>
+<p>No, no, it&#x27;s okay.</p>
+<p>And this is coming together.</p>
+<p>It&#x27;s just called a unit conversion in BIC.</p>
+<p>I&#x27;m presenting on the flyers in these.</p>
+<p>So these are printed light.</p>
+<p>Everything that I do and everything we&#x27;re talking about today</p>
+<p>is all going to be custom.</p>
+<p>But not everything that is custom is printed here.</p>
+<p>So we do have some in-house capabilities.</p>
+<p>All the flippers we print here</p>
+<p>and some small batch of orders of other things like batteries,</p>
+<p>drivers, shit like that is printed here.</p>
+<p>BICs are printed at a BIC facility,</p>
+<p>drop shipped from the BIC facility straight to the clients.</p>
+<p>Otherwise, I&#x27;m going to source other vendors,</p>
+<p>some are overseas, that they print and ship them here completely customized.</p>
+<p>So each track, labor materials, different products, dynamics?</p>
+<p>Manually?</p>
+<p>We expense it, actually.</p>
+<p>Yeah, so we need to work on that process.</p>
+<p>I mean, that was a task that was supposed to be done by Baca when he was here</p>
+<p>and it just hasn&#x27;t been done for months.</p>
+<p>Who&#x27;s Baca?</p>
+<p>So he&#x27;s a former employee, but he was our operations manager for SWAT.</p>
+<p>So between Jose, Rich, and Andrea, we&#x27;re going to come up with a better formula.</p>
+<p>So we understand that.</p>
+<p>But it would be better if the system could track that.</p>
+<p>But if the system tracked it, it automatically would be a lot better than manually inputting</p>
+<p>every order because, you know, let&#x27;s say, you know, one case order of clippers is going to cost a bunch of labor</p>
+<p>or material as a 10 case order.</p>
+<p>So there has to be some sort of formula involved that counts for cost of material and labor costs.</p>
+<p>So it&#x27;s like, you know, when we&#x27;re doing permission to take the shipping costs out of that formula.</p>
+<p>Okay.</p>
+<p>Speaking of drop shipping, I think that&#x27;s the next item, right?</p>
+<p>We&#x27;re going to get to it.</p>
+<p>Okay.</p>
+<p>What&#x27;s the next item?</p>
+<p>All right.</p>
+<p>Question two.</p>
+<p>Help me understand what is the issue with billing for non-stock locations</p>
+<p>and using shipping ones for SWAT orders moving forward?</p>
+<p>Will we still be using the accounting location for anything?</p>
+<p>What is our objective during this workflow update?</p>
+<p>In my opinion, I just want the warehouse to take it in its full cycle as you guys see fit.</p>
+<p>I don&#x27;t see a need for the accounting location unless we have to do manual adjustments</p>
+<p>or any digital locations, especially if we&#x27;re activating the drop shipping module,</p>
+<p>which eliminates the warehouse entirely.</p>
+<p>I think for the legacy orders, we still have to push those drop shipments through the warehouse</p>
+<p>and pick out of the digital location, but that should go away.</p>
+<p>I think the accounting location should go away.</p>
+<p>That&#x27;s fine.</p>
+<p>You can see on that page.</p>
+<p>So you guys can go against it, but if it&#x27;s a problem and we don&#x27;t want to use it.</p>
+<p>If it ever we have to need it, I&#x27;ll go to you and tell you I have to add something for some reason</p>
+<p>and you tell me what location, not just follow your instructions.</p>
+<p>So you can remove it.</p>
+<p>I mean, the whole point of the accounting location was so that you could bill swag orders previously, right?</p>
+<p>It was for a few things.</p>
+<p>Like if it wasn&#x27;t stock, they needed to bill against it.</p>
+<p>They would add batch of inventory just to bill against it using that location.</p>
+<p>I don&#x27;t like the word fandom inventory.</p>
+<p>Sort of.</p>
+<p>How did I say phase it out?</p>
+<p>But yeah, I don&#x27;t see.</p>
+<p>I haven&#x27;t had to use it since everything&#x27;s wrong correctly.</p>
+<p>After we&#x27;re done working and completing all these legacy orders out, I&#x27;d like to get rid of the Jesus desk as well.</p>
+<p>Yeah, we can figure out.</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>Yeah.</p>
+<p>Sorry.</p>
+<p>Okay.</p>
+<p>We&#x27;ve got a solid process for three types of sales orders used by swag supply.</p>
+<p>So you&#x27;ve got stock orders, non-stock orders, and drop shipping.</p>
+<p>Let&#x27;s define them.</p>
+<p>A stock order is also known as an in-house order.</p>
+<p>A sales order containing lines that use stock.</p>
+<p>Stock is defined as products we keep on shelves available for sale while stuck in the warehouses.</p>
+<p>That is stock.</p>
+<p>A non-stock order is a sales order containing lines that use non-stock items.</p>
+<p>These items define as purchased by us with a customer&#x27;s logo printed by our vendors.</p>
+<p>These items get received and they get shipped, but they do not get stocked, hence the term.</p>
+<p>Drop shipments are an extension.</p>
+<p>It shows what can be custom products that never cross an attack.</p>
+<p>These parts are often big lighters, custom printed directly at the vendor facility with swag supplies custom and logo,</p>
+<p>and then shipped directly to swag supplies customers.</p>
+<p>These are 100% digital transactions with physical inventory that shipped directly from the manufacturer to the customer.</p>
+<p>Is everyone clear on our definitions?</p>
+<p>Yes.</p>
+<p>Yes.</p>
+<p>Okay.</p>
+<p>We should discuss all three methods at this meeting, though as an inventory manager and primarily concerned with stock orders.</p>
+<p>The non-stock order process is working fine, but it can be improved to use the fulfillment process as we&#x27;ve been doing the past week.</p>
+<p>Janie&#x27;s created a well-written process for drop shipments to be instructed to follow us.</p>
+<p>The purpose of this meeting is to get everyone on the same page and understand the roles and responsibilities throughout the entire process.</p>
+<p>Inbound dock to outbound dock.</p>
+<p>I have actually created a workflow.</p>
+<p>Are you still going?</p>
+<p>Yeah.</p>
+<p>Okay, sorry.</p>
+<p>Please.</p>
+<p>I&#x27;m fine.</p>
+<p>So let&#x27;s review the process.</p>
+<p>Fulfillment process of stock order.</p>
+<p>Refer to the attachment load parts.</p>
+<p>So for the original process, starting off, we&#x27;re going to take for ourselves granted the parts have already been received and exist in stock locations, both physically and digitally.</p>
+<p>And this example will reference Jose as the person doing the inventory move there.</p>
+<p>Once the sales order has been initiated, as in it&#x27;s been created in D65 for parts that need printing using stock titles.</p>
+<p>Jose will pick the physical and slots the digital units from stock location to the production tent.</p>
+<p>Stock locations are these aisles.</p>
+<p>Production tent is the tent in the back.</p>
+<p>When work&#x27;s completed, the units are repackaged and ready for shipment.</p>
+<p>Jose will slot the digital units and bring physical packages to swag outbound.</p>
+<p>That&#x27;s the little spot between the duvet doors.</p>
+<p>There&#x27;s a barcode on the floor.</p>
+<p>At this point, the inventory is no longer in stock as it has been used for an order and it&#x27;s in a dock location ready for building.</p>
+<p>This is, again, the original plan, simple and clean with timestamps.</p>
+<p>We&#x27;ve been directed to use fulfillment functions in D365.</p>
+<p>This is no problem as long as the swag outbound location is updated from bulk storage to a picking location.</p>
+<p>That&#x27;s something I can do, just a simple toggle.</p>
+<p>In order we go through normal fulfillment, picking parts from swag outbound,</p>
+<p>digitally moving to a user ID, then to a pack station, ES09, for example,</p>
+<p>and then finally shipping one for billing.</p>
+<p>We can create a new pack station ID for swag orders if necessary,</p>
+<p>something like ESS or pack station swag.</p>
+<p>Quick question.</p>
+<p>Yeah.</p>
+<p>Is the packing part of the workflow, is that going to be necessary?</p>
+<p>Because I can&#x27;t adjust the workflow to be just picked to ship.</p>
+<p>That&#x27;s cool too.</p>
+<p>That saves us a step.</p>
+<p>Yeah, because the whole point of the packing station for LoveBuds was for managers to go over the order and check,</p>
+<p>but the way that I see swag&#x27;s workflow right now, Jose already knows what inventory he has,</p>
+<p>how many cases he had to make, how many units he had to stamp, how many he had to pack in each box.</p>
+<p>So there&#x27;s not necessarily a need for manager intervention.</p>
+<p>I agree.</p>
+<p>So I agree that pick to ship process instead.</p>
+<p>Jose is manager.</p>
+<p>Yeah.</p>
+<p>Yeah, because there would be no middleman or no stock after that.</p>
+<p>I will say this.</p>
+<p>I mean, obviously he&#x27;s doing the production, but you wouldn&#x27;t want any additional QC on top of that.</p>
+<p>And that&#x27;s up to them.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>That&#x27;s you guys.</p>
+<p>I can see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can&#x27;t see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>I can see him.</p>
+<p>You want to make sure I got a shipping profile ID?</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>I&#x27;ll toggle that back.</p>
+<p>Is this so now is that still going to report through Meta?</p>
+<p>It might because it&#x27;s still Meta is just recording transactions from the scanner.</p>
+<p>From my understanding from what the direction of this is anything in house, anything that we put our hands on that you guys are touching need to be reported through Meta.</p>
+<p>So as long as it can report that data through Meta.</p>
+<p>As long as it goes through the scanner, which this process would do, then it&#x27;ll do that.</p>
+<p>Awesome.</p>
+<p>All right.</p>
+<p>Well, I would say, does anyone see a problem with this workflow?</p>
+<p>What would we need to change and accommodate these concerns?</p>
+<p>If there&#x27;s no objections and everyone understands the process, we should implement it immediately and consistently.</p>
+<p>Yeah, the sooner the better.</p>
+<p>I already have a one that we can try and a week&#x27;s move.</p>
+<p>All right.</p>
+<p>Cool.</p>
+<p>So I&#x27;ll change that swag outbound from a bulk storage location to a shipping location ID.</p>
+<p>And then I&#x27;ll get with you, Danny.</p>
+<p>I&#x27;ll set up that workflow.</p>
+<p>Sounds good.</p>
+<p>All right.</p>
+<p>Okay.</p>
+<p>So next.</p>
+<p>Does anyone have any more questions with stock loaders?</p>
+<p>So just to confirm when you change the shipping to it, swag outbound to a shipping ID, it&#x27;ll</p>
+<p>be instead of shipping one, they&#x27;re going to bill against swag outbound.</p>
+<p>Is that what you&#x27;re doing?</p>
+<p>Yeah.</p>
+<p>Presumably.</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>So they would never have to take it over there or if they just got to take it over there</p>
+<p>to get the shipping?</p>
+<p>Yeah.</p>
+<p>I mean, physically, if there&#x27;s like lighters that have to go UPS, they have to go to</p>
+<p>Nikki to put the labels on and get it fast.</p>
+<p>I ship from over here.</p>
+<p>I just take it over there to put on the pallets for like a shirt.</p>
+<p>Yeah.</p>
+<p>Gotcha.</p>
+<p>That&#x27;s awesome.</p>
+<p>All right.</p>
+<p>Anything else on stock orders?</p>
+<p>Going once, going twice.</p>
+<p>Cool.</p>
+<p>All right.</p>
+<p>So original workflow for non-stock orders is as follows.</p>
+<p>Parts arrive at the warehouse.</p>
+<p>Receiving team begins the process of checking in the parts, identifying and labeling cases</p>
+<p>for confirmation.</p>
+<p>Inventory team comes to confirm what was physically received.</p>
+<p>Same thing as what was digitally received.</p>
+<p>Just a quality check.</p>
+<p>At this point, a member of swag comes by and inspects the parts to ensure they are</p>
+<p>what the customer wanted.</p>
+<p>Once checked by swag, parts are repacked for shipment.</p>
+<p>Digitally, the PO was being received to warehouse swag, location swag receiving, and</p>
+<p>everything, and it was built from this location.</p>
+<p>Physically, the boxes were brought to the ship station.</p>
+<p>To improve this process, we could ship directly to warehouse fire card.</p>
+<p>Received directly to warehouse one, receiving four, same as everything else.</p>
+<p>Parts would move digitally to warehouse one, location swag outbound, where the fulfillment</p>
+<p>process would pick parts and bring them to shipping one for bill.</p>
+<p>This is kind of negated by our conversation we just had.</p>
+<p>So how would that work for non-stop orders?</p>
+<p>We could have received them into warehouse one, and then location swag outbound?</p>
+<p>Then they would just get billed directly from there?</p>
+<p>I think that would be the way it would work.</p>
+<p>Awesome.</p>
+<p>Yeah, it&#x27;s...</p>
+<p>So there&#x27;s a couple steps that we need for those non-stop orders when they land.</p>
+<p>With Steven, Steven&#x27;s been great on letting us know that they&#x27;re here.</p>
+<p>One, we&#x27;ve got to get a photo of those items, and we&#x27;ve got to make sure that the quantity count is accurate and the quality is there.</p>
+<p>So if we want to make sure Jose gets his eyes on it or Rich to have that process done.</p>
+<p>Once we approve that, then they can go out.</p>
+<p>Because, you know, everything Jose brings, I mean, he does bring me the tracking and everything.</p>
+<p>The ones that I didn&#x27;t get tracking for are stuff that went out this week, you know, through Blake.</p>
+<p>So I&#x27;m just trying to get the tracking and make sure that, you know, the process doesn&#x27;t, you know, get messed up, you know, in the short term, you know, on specific orders.</p>
+<p>Okay, we have a few, I think I have three POs of non-stop orders right now.</p>
+<p>I was waiting on them until after this meeting, so we don&#x27;t have to undo any work we have.</p>
+<p>Sure.</p>
+<p>So let&#x27;s see, we&#x27;re going to be receiving into the flags for now.</p>
+<p>Okay, so I&#x27;m switching to just warehouse one location swag outbound for receiving.</p>
+<p>Yes.</p>
+<p>Okay.</p>
+<p>I&#x27;m going to go to the wrong parts of my notes.</p>
+<p>Yeah.</p>
+<p>So we&#x27;re going to be receiving to warehouse one, then the shipping location for swag is swag outbound.</p>
+<p>Okay.</p>
+<p>So we&#x27;re just going to put it directly there.</p>
+<p>And then there.</p>
+<p>I&#x27;ll still continue to, for swag orders, I&#x27;ll update the status to available.</p>
+<p>Oh yeah.</p>
+<p>And toggle it from the web processing.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>I&#x27;ll update that to available instead of just leaving it to come in as in-mail processing.</p>
+<p>Yeah.</p>
+<p>I don&#x27;t think that&#x27;s going to get the best.</p>
+<p>Yeah.</p>
+<p>It&#x27;s going to put some issues for Diana.</p>
+<p>So I&#x27;ll make sure to continue to switch that.</p>
+<p>Perfect.</p>
+<p>That&#x27;s all for non-stock orders.</p>
+<p>Yeah.</p>
+<p>The only other thing for that is like Giles was saying, as soon as you&#x27;ve done your check</p>
+<p>on it, I&#x27;ve received it before I, before I tell them it&#x27;s good to go out, I physically take</p>
+<p>units over here to get some photos done.</p>
+<p>Yeah.</p>
+<p>I mean, it&#x27;s like, as long as it&#x27;s like, I just don&#x27;t like grabbing units from it until</p>
+<p>it&#x27;s been physically received into the system.</p>
+<p>Uh, because if you grab some units and then, then Joe comes over to check it and those units</p>
+<p>aren&#x27;t there and the counts are off.</p>
+<p>So that&#x27;s why I do it a certain way.</p>
+<p>Oh yeah.</p>
+<p>You got to use that process.</p>
+<p>We could also intercede that process instead of going like, uh, receiving straight to outbound,</p>
+<p>we can set up like a staging location.</p>
+<p>So that way you can fully receive it.</p>
+<p>You can do your QC and then once it&#x27;s ready, you can just go back to outbound.</p>
+<p>You want to use the production for that?</p>
+<p>You can use production for that.</p>
+<p>Yeah.</p>
+<p>Okay.</p>
+<p>I like production a lot.</p>
+<p>What&#x27;s your list?</p>
+<p>So, E-8-T-E-O.</p>
+<p>E-8-T-E-O.</p>
+<p>And then I&#x27;ll see you back at that.</p>
+<p>So you guys know, it&#x27;s ready to go.</p>
+<p>Okay.</p>
+<p>So instead of receiving it, uh, to Swag Outbound, we&#x27;ll receive it through receiving point.</p>
+<p>Okay.</p>
+<p>And then we&#x27;ll move it to production, one of those quality tags and photos.</p>
+<p>Okay.</p>
+<p>And then we&#x27;ll move it to Swag Outbound.</p>
+<p>Okay.</p>
+<p>Uh, alright.</p>
+<p>So just any other order except for, uh, I&#x27;ll toggle it to available, uh, so that we don&#x27;t</p>
+<p>have to be purchased for the laser.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>That&#x27;s fine.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Right now, all of us are updating notes on BigCommerce on the staff notes and it just goes</p>
+<p>on a logical depending where it goes at what stage, but that&#x27;s where we&#x27;re going to</p>
+<p>update that we received it and it&#x27;s good to go so that the warehouse notes.</p>
+<p>But after that we received the payment and we would just let you guys know that it&#x27;s good</p>
+<p>to go and then it just goes into a delivered status and we invoice it and we&#x27;re good to go.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>Okay.</p>
+<p>So, I&#x27;ll get what you have to do to discuss unit conversions for the legacy orders to get</p>
+<p>done today.</p>
+<p>But is everybody in a clear understanding on how the swag orders are going to be processed</p>
+<p>from start to finish?</p>
+<p>I have a question.</p>
+<p>Yeah.</p>
+<p>So, are we altering the inventory to be customized before we get the first payment?</p>
+<p>Is that happening?</p>
+<p>No, we get the deposit and then it starts in the process.</p>
+<p>Okay.</p>
+<p>So, awaiting fulfillment.</p>
+<p>It&#x27;s not in production and awaiting fulfillment.</p>
+<p>It is.</p>
+<p>It is.</p>
+<p>It&#x27;s either in production, it&#x27;s awaiting to be drop shipped or it&#x27;s awaiting to get production.</p>
+<p>Yeah.</p>
+<p>So, the default setting I believe is awaiting payment, right?</p>
+<p>When you create it, yes.</p>
+<p>It always that default goes into awaiting fulfillment, correct?</p>
+<p>Payment.</p>
+<p>Oh, I guess payment.</p>
+<p>So, that&#x27;s even better.</p>
+<p>If it does default to fulfillment, I&#x27;ll change it to awaiting payment.</p>
+<p>Is that the only time am I going to be changing that?</p>
+<p>Yeah, that should be the only time.</p>
+<p>We&#x27;ll move it from the other stage.</p>
+<p>Now, once it is in awaiting fulfillment, would it be helpful for you for him to put a note</p>
+<p>to specify what stage of production it is in, in the note sections?</p>
+<p>I think so, yeah.</p>
+<p>It wouldn&#x27;t hurt.</p>
+<p>I don&#x27;t know if you need to, I&#x27;m fine with that.</p>
+<p>I mean, at the creation of it, when you&#x27;re doing awaiting, when it goes into awaiting</p>
+<p>payment, just specifying if it&#x27;s drop shipped in line or overseas would be helpful.</p>
+<p>One of these three designations?</p>
+<p>Yes, one of those three.</p>
+<p>And staff notes.</p>
+<p>Yeah.</p>
+<p>We all on the same page.</p>
+<p>Yeah.</p>
+<p>This is great.</p>
+<p>You&#x27;re on the same page.</p>
+<p>And you guys have limited some work from my plate.</p>
+<p>This is awesome.</p>
+<p>Well, the good news is that we&#x27;re not dealing with the sheer volume of orders on that side</p>
+<p>as the other side, so it shouldn&#x27;t be as cumbersome.</p>
+<p>But obviously there&#x27;s been some hiccups.</p>
+<p>And at the end of the day, I want to thank everyone for their patience and their help,</p>
+<p>And obviously, it takes a team to get a win.</p>
+<p>So thank you guys for your help.</p>
+<p>I just wanted to let you guys know I had Alex on the phone call this whole time.</p>
+<p>I also recorded this whole meeting.</p>
+<p>So I&#x27;m going to send this whole audio recording to Alex to do an overview, put it in his AI,</p>
+<p>do an overview, and I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>And I&#x27;ll send you guys a comment.</p>
+<p>Okay.</p>
+<p>Cool.</p>
+<p>Sounds good.</p>
+<p>Other than the overview, is there anything else that you would like to extract from this?</p>
+<p>Possibly, like, any updates on SOPs or anything like that?</p>
+<p>Like, other than just-</p>
+<p>If you&#x27;re able to break down key points per department, that would be really helpful.</p>
+<p>Okay.</p>
+<p>Anything else?</p>
+<p>Anybody?</p>
+<p>No.</p>
+<p>I&#x27;ll update the meeting email with my action items.</p>
+<p>And I&#x27;ll let you know as I go along.</p>
+<p>Yeah.</p>
+<p>Next week, I&#x27;ll work on the prepayment part of it.</p>
+<p>So you have an estimate invoice every time.</p>
+<p>And you don&#x27;t have an open credit.</p>
+<p>Yeah.</p>
+<p>Just a question for you.</p>
+<p>Did you need help making purchase orders?</p>
+<p>No.</p>
+<p>No.</p>
+<p>Would it be?</p>
+<p>The process is easy enough.</p>
+<p>Yeah.</p>
+<p>Yeah.</p>
+<p>And I will.</p>
+<p>Whatever you speak.</p>
+<p>Yeah.</p>
+<p>And then so obviously, if Keo goes out to the vendor, as long as I&#x27;m copied on the chain,</p>
+<p>I&#x27;m good to go.</p>
+<p>I can update it on RM.</p>
+<p>Okay.</p>
+<p>All right, guys.</p>
+<p>I&#x27;ll take you to any of the locations.</p>
+<p>Just keep on.</p>
+<p>Awesome.</p>
+<p>Thank you, guys.</p>
+<p>Thank you, Ali.</p>
+<p>Thanks, everybody.</p>
+<p>Thank you.</p>
+<p>Thank you.</p>
+<p>Thank you.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
