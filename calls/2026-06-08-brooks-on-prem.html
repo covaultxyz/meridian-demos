@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brooks On Prem — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Brooks On Prem</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The team discussed making their LLM chatbot HIPAA compliant using on-premise or cloud solutions, solving API keys for third-party insurance verification services, and using a partner&#x27;s existing Google Cloud account for HIPAA compliance.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>Use the partner&#x27;s existing Google Cloud account for HIPAA compliance with Gemini models due to larger context windows.</li><li>Start integrating with the Availity API (availability.com) for insurance verification as it is the most used and has a good API.</li><li>Implement a multi-account strategy with Deepgram for transcription by rotating API keys to avoid costs.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>The speaker will spend the day getting the Availity API figured out.</li><li>The other person will call to get backend information and access to the partner&#x27;s Google Cloud account.</li><li>They will catch up later in the afternoon.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Deepgram offers $200 in credits per new account, which can be rotated to avoid transcription costs.</li><li>Meritan Health uses NaviNet and has a SOAP API, but it&#x27;s the least used insurance provider.</li><li>Pair Provider has no API and only a web interface.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Speaker&#x27;, &#x27;what&#x27;: &#x27;Work on integrating with the Availity API for insurance verification.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Other person&#x27;, &#x27;what&#x27;: &#x27;Call the partner to get backend information and access to their Google Cloud account.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>brooks on prem</h2>
+<p>**Source**: `brooks on prem .m4a`</p>
+<p>**Transcribed**: 2026-04-28 15:39</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>a lot of the cloud services will let us set up private shit where they&#x27;ll sign a contract with</p>
+<p>us and then we just use their gpu by the hour we&#x27;re renting it um and it&#x27;s probably like two</p>
+<p>or three bucks an hour depending on how much we&#x27;re using so basically a recap you have</p>
+<p>the situation that the llms are not hipaa compliant so we need to find a solution to</p>
+<p>identify how to be able to have the person who&#x27;s talking to the chat bot be hipaa compliant which</p>
+<p>would be either on prime solution which would be the more expensive version or the cloud version on</p>
+<p>a secure server that is running local llms then we need to solve what was the next thing we need to</p>
+<p>solve um okay so the next thing we need to solve is the api keys and access to those third-party</p>
+<p>insurance verification services yeah and since they won&#x27;t talk to us we need to like do a three-way</p>
+<p>call with the practice in that or like your doctor friend okay um so here&#x27;s one i haven&#x27;t heard of</p>
+<p>before but really the the three would be microsoft azure yeah aws they call it health scribe and then uh</p>
+<p>google cloud ivm has one but that one&#x27;s probably too expensive but i have a feeling that google</p>
+<p>one is probably the cheapest out of all of them all right so he signed an agreement with google</p>
+<p>to do that hipaa compliant thing so is that possible that we would use that account to get access to this</p>
+<p>backend stuff yeah yeah if he already did that with google then yes because then all we need to do is</p>
+<p>add um you know some services within their google cloud to handle it okay and that would use and that</p>
+<p>would be the better i think that would be the better llm to use personally because um the gemini models</p>
+<p>have like bigger windows than open ai okay so what was the situation with those graphic cards that you</p>
+<p>were saying the stack and all that other stuff or is that something that i need to worry about or is</p>
+<p>that something that was just a solution for on-prem solutions that&#x27;s on-prem stuff okay</p>
+<p>all right so once we identify how to get in to the back end of those two that have the apis the soup one</p>
+<p>is possible as well we would also need the information to communicate or do some sort of</p>
+<p>communication with that platform as well yeah we&#x27;ll need the api keys you know the self access will be</p>
+<p>great it&#x27;s pretty well documented so we can let me just look at those again real fast i can give you</p>
+<p>the exact answer</p>
+<p>meritan health was the one that was the most used right or is that the least used um no i think it&#x27;s</p>
+<p>the one that sounds like affinity or something is the number one that&#x27;s blue cross and um etna okay</p>
+<p>and then the second one was pair portal or pair provider which had nothing the next one was uh</p>
+<p>if meritan was the etna one that one was the least used and that was on navi something navnet</p>
+<p>okay okay so the meritan health is the one that has the soap api so that one was the least the least</p>
+<p>used i believe okay and then pair provider doesn&#x27;t have anything and then availability is the one you</p>
+<p>said is the most correct and that one does have it yeah so i would start with the one that has the api</p>
+<p>that&#x27;s the most jews which is the a v a i l i t y dot com</p>
+<p>which was the one that you called and there were just dicks about it the pair one okay pair</p>
+<p>provider.com they don&#x27;t have anything other than the thing so then i was like well can i just scrape</p>
+<p>the whole website i don&#x27;t know how that stuff works so then my next brain was like what if we create a</p>
+<p>google um see i don&#x27;t know if this is hipaa compliant either a google chrome extension</p>
+<p>as long as it&#x27;s not leaving the device we can get around it the user would just need to agree that</p>
+<p>they&#x27;re going to keep things private which would be us and we would say yes yes all right so then the</p>
+<p>next thing i thought of um they use this service i don&#x27;t remember what it&#x27;s called maybe axios and</p>
+<p>they&#x27;re paying a lot of money to record all their calls i have another guy that&#x27;s using something very</p>
+<p>similar and it looks like it was just white labeled and they slap a logo on the top left hand corner and</p>
+<p>these guys charge 20 bucks a month but the problem was the same you can only download one audio clip at a</p>
+<p>time so is there a method that we can use their existing platform where it records the calls and transcribes</p>
+<p>them and breaks it down automatically the way i was showing you with like uh the value and like summary and</p>
+<p>to-do lists or anything like that so you can have all this information stored in a way that the</p>
+<p>the the app that i have built out will handle call recording and call transcribing um and that we can</p>
+<p>host ourselves and we can call it hipaa compliant that&#x27;s the one that&#x27;s going out to deepgram right</p>
+<p>now to do the transcription um and the cool thing about deepgram is every time you set up a new account</p>
+<p>you get 200 bucks in credits so in theory we could never have to pay for it correct just rotate the api key</p>
+<p>yeah and it couldn&#x27;t automatically do that like can you set an ai agent to just be like monitor this</p>
+<p>when it&#x27;s done create a new account do this do that you could do that right yeah well what we would do is</p>
+<p>just set up you know 50 gmail accounts sign up for it and then have all the keys associated and then when</p>
+<p>it gets an error that you&#x27;re out of credits it rotates to the next key good i like that</p>
+<p>um yeah so the ability one does have a good api um</p>
+<p>i wonder how let&#x27;s see the getting started again i&#x27;m just wondering how you get in the</p>
+<p>okay there we go partner</p>
+<p>it&#x27;s free to join i i think it was 20 a month for api calls i think that i sent you that last night</p>
+<p>or yesterday</p>
+<p>yeah okay yeah this this one we can get going quick</p>
+<p>so that will reduce quite a few of the ones that they currently have</p>
+<p>yeah let me see which insurance providers these are i think he says at that right it&#x27;s aetna and blue</p>
+<p>cross blue shield or something like that horizon maybe i don&#x27;t let me see my screen record</p>
+<p>so</p>
+<p>so aetna and horizon blue cross blue shield</p>
+<p>okay</p>
+<p>okay all right so i&#x27;ll um i&#x27;ll get something working against with api</p>
+<p>um</p>
+<p>all right so i&#x27;ll spend the day getting this api figured out um</p>
+<p>i mean my contribution for the day and we can catch back up this afternoon do you want me to call</p>
+<p>these guys and get the information for the back end that&#x27;s going to be important and if we can get</p>
+<p>their google cloud back in that would be helpful too all right i&#x27;ll give them a call and see what we can do</p>
+<p>all right</p>
+<p>okay that sounds good did you hear back from those dudes that you were supposed to have a meeting with</p>
+<p>um friday okay that&#x27;s tomorrow yeah tomorrow i think uh five central is when i talked to him he&#x27;s at california</p>
+<p>all right cool</p>
+<p>what do you need</p>
+<p>all right so i&#x27;ll look back with you in a little bit when when i get more</p>
+<p>okay yeah i&#x27;m gonna start working on this api awesome all right all right</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
