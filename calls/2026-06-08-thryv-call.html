@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thryv Call — MERIDIAN Call Detail</title>
+<style>
+:root { --bg:#0a0e17; --s1:#111827; --s2:#1a2234; --bd:#1e2d4a; --tx:#e2e8f0; --dim:#8899aa; --ac:#38bdf8; --gn:#22c55e; --yl:#eab308; --or:#f97316; --rd:#ef4444; --pr:#a78bfa; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:var(--tx); line-height:1.7; min-height:100vh; }
+.header { background:linear-gradient(135deg,#0f172a,#1e293b); border-bottom:1px solid var(--bd); padding:1.5rem 2rem; }
+.header a { color:var(--ac); text-decoration:none; font-size:.75rem; }
+.header a:hover { text-decoration:underline; }
+.header h1 { font-size:1.3rem; color:var(--tx); margin:.5rem 0 .25rem; }
+.meta { font-size:.8rem; color:var(--dim); display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.badge { display:inline-block; padding:.1rem .5rem; border-radius:8px; font-size:.6rem; font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+.wrap { max-width:900px; margin:0 auto; padding:1.5rem; }
+.section { background:var(--s1); border:1px solid var(--bd); border-radius:8px; padding:1.25rem; margin-bottom:1rem; }
+.section h2 { font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ac); margin-bottom:.75rem; }
+.section h3 { font-size:.8rem; color:var(--pr); margin:1rem 0 .5rem; }
+.section p { font-size:.85rem; margin-bottom:.5rem; }
+.list { list-style:none; }
+.list li { padding:.3rem 0; font-size:.85rem; display:flex; align-items:flex-start; gap:.5rem; }
+.list li::before { flex-shrink:0; margin-top:2px; }
+.decisions li::before { content:'\2713'; color:var(--gn); }
+.commitments li::before { content:'\2022'; color:var(--ac); }
+.discoveries li::before { content:'\2022'; color:var(--pr); }
+.actions li::before { content:'\25CB'; color:var(--yl); }
+.commitment-who { color:var(--ac); font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:.75rem; }
+.stat { background:var(--s2); border-radius:6px; padding:.75rem; text-align:center; }
+.stat .label { font-size:.6rem; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); display:block; margin-bottom:.25rem; }
+.stat .value { font-size:1.1rem; font-weight:700; color:var(--tx); }
+.transcript { background:var(--s2); border:1px solid var(--bd); border-radius:8px; padding:1.5rem; margin-top:1rem; max-height:600px; overflow-y:auto; }
+.transcript p { font-size:.8rem; color:var(--dim); margin-bottom:.75rem; line-height:1.8; }
+.transcript h2 { font-size:.9rem; color:var(--tx); margin:1rem 0 .5rem; }
+.transcript h3 { font-size:.85rem; color:var(--ac); margin:1rem 0 .5rem; }
+.transcript h4 { font-size:.8rem; color:var(--pr); margin:.75rem 0 .4rem; }
+.quote { background:var(--s2); border-left:3px solid var(--or); padding:.5rem .75rem; margin-bottom:.5rem; font-size:.8rem; color:var(--dim); font-style:italic; border-radius:0 6px 6px 0; }
+.quote.positive { border-left-color:var(--gn); }
+.footer { text-align:center; padding:1.5rem; color:var(--dim); font-size:.65rem; border-top:1px solid var(--bd); margin-top:2rem; }
+</style>
+</head>
+<body>
+<div class="header">
+<a href="../command-center-v2.html#calls">&larr; Back to Dashboard</a>
+<h1>Thryv Call</h1>
+<div class="meta">
+<span class="badge" style="background:#a78bfa20;color:#a78bfa;border:1px solid #a78bfa50">INTERNAL</span>
+<span>2026-06-08</span>
+<span>alex</span>
+
+
+</div>
+</div>
+<div class="wrap">
+<div class="section"><h2>Summary</h2><p>The call focused on refining the pitch and visual presentation for a startup creating adaptive apparel for spinal cord and brain injury patients, with the advisor providing feedback on targeting investors and structuring the business.</p></div>
+<div class="section"><h2>Decisions Made</h2><ul class="list decisions"><li>The advisor will help refine the visual presentation to better tell the story and target investors.</li><li>The founder will explore using the BMAD method to structure the business for faster market dominance.</li></ul></div>
+<div class="section"><h2>Commitments</h2><ul class="list commitments"><li>Advisor will find and send a link to a copy-paste prompt for the BMAD method.</li><li>Founder will review the PDF the advisor sent last night.</li></ul></div>
+<div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>Investors view &#x27;no competition&#x27; as a red flag; they prefer to see an established market with competitors.</li><li>The founder&#x27;s personal story of a miraculous spinal cord recovery could be a powerful emotional hook for investors.</li><li>The startup could potentially use a nonprofit structure to receive donations for outfitting patients while remaining a for-profit vendor.</li></ul></div>
+<div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Advisor&#x27;, &#x27;what&#x27;: &#x27;Find and send the link to the BMAD method prompt for easier copy-paste.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Founder&#x27;, &#x27;what&#x27;: &#x27;Review the PDF that the advisor sent last night.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Founder&#x27;, &#x27;what&#x27;: &#x27;Research the BMAD method and consider using AI Studio or Claude Code for business structuring.&#x27;}</li></ul></div>
+
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>thryv call</h2>
+<p>**Source**: `thryv call.m4a`</p>
+<p>**Transcribed**: 2026-04-28 17:18</p>
+<p>**Model**: mlx-community/whisper-large-v3-turbo</p>
+<p>---</p>
+<p>It could use some improvement.</p>
+<p>It&#x27;s not that it&#x27;s not good.</p>
+<p>I appreciate all your help.</p>
+<p>And then I say you have a Thrive website just so you could get kind of a look and a feel.</p>
+<p>It will change over time.</p>
+<p>But based on just kind of getting things started and talking about who we are, what we do, why we do it,</p>
+<p>I figured that would be a good location for you to have too.</p>
+<p>Yeah, so I&#x27;m not really looking at just the presentation that you sent.</p>
+<p>My brain just looked at it and goes, I don&#x27;t even know what this guy is trying to raise money for.</p>
+<p>Like it took a while for me to like sit there and get it.</p>
+<p>So I tried to do something a little bit more visual and a little bit more like in your face and stuff.</p>
+<p>The website almost is as good as the presentation.</p>
+<p>So here&#x27;s the problem I don&#x27;t understand.</p>
+<p>Who, like the first thing I saw, like as a person who sees a lot of like different presentations</p>
+<p>because I&#x27;m building stuff for everybody, the first thing I saw was you have no competition</p>
+<p>and no investor wants to invest in something when the industry hasn&#x27;t been like at least established</p>
+<p>and there&#x27;s no, like no competition is actually bad.</p>
+<p>They want competition.</p>
+<p>So it&#x27;s a framing it in a way where it&#x27;s like, I understand that there&#x27;s people who are going through this problem.</p>
+<p>These are the options that they currently have.</p>
+<p>Here&#x27;s the solution kind of thing.</p>
+<p>That&#x27;s how I see it.</p>
+<p>I can tell you what people currently do.</p>
+<p>Yeah.</p>
+<p>So like if you&#x27;re, if you&#x27;re putting, if you&#x27;re putting like logos, like Nike, Lululemon and everything else on the site,</p>
+<p>and then you&#x27;re telling them that there&#x27;s no competition, it&#x27;s kind of like a, it&#x27;s kind of like a canceling each other out, you know?</p>
+<p>So I ran the presentation through an AI to just identify like what different things could potentially be used to help make it a little bit more stronger</p>
+<p>when you go past the friends and family situation.</p>
+<p>So I don&#x27;t know if you read any of that stuff, but like I didn&#x27;t add any of that to the new, the thing I worked on last night.</p>
+<p>I just was trying to get a good feeling vibe for what it is that you were trying to do.</p>
+<p>Gotcha.</p>
+<p>What people do is three things.</p>
+<p>They&#x27;re either going to go to some kind of athletic brand.</p>
+<p>They&#x27;re going to go to either Walmart and Amazon and kind of just get a random choice of whatever sort of comes up or three, they do nothing.</p>
+<p>That&#x27;s what, that&#x27;s what people do.</p>
+<p>So there are certain hospitals that have a recommendation of what you should wear and what these patients need and certain hospitals that don&#x27;t even have that yet.</p>
+<p>But the ones that make that recommendation, there&#x27;s a pretty big list that goes, you need, you know, five to seven pieces, you know, I guess new outfits.</p>
+<p>You need shoes that are going to be one to two sizes bigger.</p>
+<p>I&#x27;m not even to that stage yet because I&#x27;m just dealing with the pants and the shirts that people are dealing with rehab.</p>
+<p>And so there&#x27;s a lot of problems that fashion athletic wear brings that&#x27;s too thin, it&#x27;s too tight, and you don&#x27;t want any constriction points because it leads to bed sores or open wounds of skin breakdown, and that can kill a patient.</p>
+<p>As well as a whole bunch of other things.</p>
+<p>But as of right now, what people do is they either are going to go to one of the athletic fashion brands, Nike, Under Armour, Lulu, something of that nature, or they&#x27;re just going to get on Amazon and try to figure something out at random, having no idea what they&#x27;re looking for.</p>
+<p>And, or they&#x27;re going to do the same thing at Walmart.</p>
+<p>Right, so I know, or I would assume whoever did your website was using AI to generate some of the stuff, and some of the faces and stuff were a little distorted on some of these pictures.</p>
+<p>But regardless, the idea that I don&#x27;t see, which I was reading in the thing, except on this one thing where it has a zipper on the side, is there any zippers or any ports on the shirt, or is that just on the pants?</p>
+<p>There&#x27;s a zipper on the shirt that is in the, you know, it&#x27;s a quarter zip, but it&#x27;s an extended length quarter zip, so that you can take any size cervical collar that you need to have, including a tracheostomy tube.</p>
+<p>So, so it is a slightly longer zip, but nothing you could patent.</p>
+<p>The only thing different about the zipper on the shirt is that it has a ring on it.</p>
+<p>So, a lot of people who either get a brain injury or get spinal cord injury, they can&#x27;t use their hands the way that they used to be able to.</p>
+<p>So, if you think about your hands kind of being frozen and sort of like a, kind of a claw almost, you can still loop your finger through that ring and move the zipper up or down.</p>
+<p>So, it still allows you to have the ability to do that.</p>
+<p>So, so I guess the thing that, in my mind, as a person who needs to tell a story with just images, because I&#x27;m not going to sit there and read 400 pages of a deck, you know what I mean?</p>
+<p>Like, I want to make it super easy for you to just instantly get it.</p>
+<p>Yep.</p>
+<p>Understanding who your actual target audience is for this.</p>
+<p>So, like, the picture that you just showed me in my head was a dude that, like, was in a motorcycle accident and he can&#x27;t even use his hands.</p>
+<p>And he was a young guy, but now he&#x27;s, like, completely crippled and he&#x27;s limited with his motion.</p>
+<p>Like, that&#x27;s who&#x27;s going to be wearing his shirt, not some supermodel.</p>
+<p>You know what I mean?</p>
+<p>Like.</p>
+<p>So, let me tell you, I, number one, yes.</p>
+<p>Number one is you&#x27;re right.</p>
+<p>So, this, everything that I&#x27;ve made at Thrive is for spinal cord injury and for brain injury patients.</p>
+<p>That&#x27;s who this is made for.</p>
+<p>So, so, at the end of the day, these patients all need to have a new wardrobe and, and honestly, this stuff is perfect for them.</p>
+<p>Way better than anything else they could ever get.</p>
+<p>Now, I, I, what is happening is that my, in, in, in a perfect world, the hospital says, yes, we agree.</p>
+<p>We already know this is awesome, which Craig Hospital is, I don&#x27;t know, number one, uh, arguably that&#x27;s here in Denver that I made all the clothes with.</p>
+<p>So, basically, I, I worked with them over the last year once I found the material, uh, to create, uh, and I even put a patent on the pants.</p>
+<p>So, uh, it&#x27;s pending, but I, when I&#x27;m working on a utility patent, because nothing else exists out there like them.</p>
+<p>So, this is needed for a lot of brain and spine patients, um, because you need to get therapy.</p>
+<p>Shorts don&#x27;t work.</p>
+<p>There&#x27;s a whole lot of reasons to have the, the pants.</p>
+<p>Um, and then the shirts do different things.</p>
+<p>Like I said, you can accept cervical collars.</p>
+<p>You can still move the, you can still move the, the zipper even if you have claw hands.</p>
+<p>But there&#x27;s a lot more that this shirt goes into.</p>
+<p>So, it should be four years to find the material.</p>
+<p>It is a soft to stand material that, and it&#x27;s weighted perfectly and breathes perfectly.</p>
+<p>So, it allows patients to, A, get fewer, uh, skin irritation or skin wounds.</p>
+<p>It&#x27;s also a much warmer shirt and hospitals are freaking cold.</p>
+<p>And it&#x27;s also a sensitivity barrier.</p>
+<p>So, like, I still have a lot of, uh, strains, mostly pins and needles on my entire left side.</p>
+<p>And this actually acts not only as a, a, a barrier for, against too much cold, um, because I can&#x27;t regulate my own temperature on my left hand as well.</p>
+<p>But it&#x27;s also a sensitivity barrier for nerves.</p>
+<p>And a ton of brain patients have nerve sensitivity all over.</p>
+<p>This also, I, you know, we didn&#x27;t discuss it, but I bought the website shingle shirt.</p>
+<p>So, if you have a nerve condition against, like, shingles or something like that, that&#x27;s really bugging you, this shirt is a barrier that protects you from pain, from anything else.</p>
+<p>So, it&#x27;s, uh, it&#x27;s been double brushed on the inside.</p>
+<p>So, it&#x27;s almost like a micro fleece.</p>
+<p>So, here&#x27;s, I tell you all that for a very specific reason.</p>
+<p>Is it made for brain and spine and cord injury patients as rehab apparel?</p>
+<p>Yes.</p>
+<p>Once people start wearing it, they&#x27;re going to start wearing this as lifestyle.</p>
+<p>I had, I can&#x27;t tell you how many people I get in these shirts to.</p>
+<p>There&#x27;s one girl who&#x27;s in a wheelchair who works at Craig Hospital who I kept giving her.</p>
+<p>I&#x27;ve given her two shirts.</p>
+<p>Her mom has stolen every shirt I&#x27;ve given her and won&#x27;t give them back because she loves them so much.</p>
+<p>This will eventually begin to adopt because everything that&#x27;s happening in fashion for athletic wear and apparel wear, it&#x27;s all made for a certain look.</p>
+<p>Go on Nike, go on Under Armour, go on Lulu.</p>
+<p>It&#x27;s all tight.</p>
+<p>It&#x27;s got choke points on it.</p>
+<p>It&#x27;s to make, to show your figure.</p>
+<p>That&#x27;s the exact opposite of what these patients need.</p>
+<p>You need to have something that&#x27;s looser fitting, that&#x27;s really comfortable, and helps you in your journey.</p>
+<p>And I think what will happen is older people going through rehab or just older people that, sure, they&#x27;ve lived in their, you know, super tight Lulu or Nike gear.</p>
+<p>This stuff is 10 times more comfortable to wear.</p>
+<p>I think we&#x27;ll start seeing adoption on that side.</p>
+<p>But before we get there, I want to own the niche of rehab, and I think we can do that.</p>
+<p>And yes, there are people who are buying it, but right now it&#x27;s not an established thing.</p>
+<p>Athletic rehab apparel is not an established market, right, wrong, bad, or indifferent.</p>
+<p>So here&#x27;s what I hear.</p>
+<p>You have a distribution model where you&#x27;re penetrating hospitals through the rehab situation,</p>
+<p>and once you get a user using it, they&#x27;re a user for life, and they&#x27;re going to migrate to using this as a lifestyle brand.</p>
+<p>Well, yes.</p>
+<p>And the bigger deal is that if I was able to just get the top 90 hospitals, right,</p>
+<p>if each hospital goes, you know what, this is better for our patients, and that&#x27;s what I&#x27;m going to try to prove,</p>
+<p>I&#x27;m going to let them do pilots with the shirts, pilots with the pants.</p>
+<p>Because the biggest issue with hospitals, they have a vendor policy.</p>
+<p>So they can&#x27;t just go out and go, you need to buy Thrive because it&#x27;s the greatest thing.</p>
+<p>They sort of have this weird medical legal issue where they can&#x27;t do it off the bat.</p>
+<p>But once I start working with them, there&#x27;s other ways for that to begin to happen.</p>
+<p>That market alone at the top 90 hospitals is $450 million a year annually</p>
+<p>just on new patients going through and getting discharged.</p>
+<p>Every year, just shirts and pants.</p>
+<p>So what if you pivot?</p>
+<p>What if in trying to sell it to them out the gate,</p>
+<p>you give it to them by finding somebody else who wants to pay for it.</p>
+<p>And then once they get using it,</p>
+<p>they&#x27;re going to only use it because it&#x27;s the best option.</p>
+<p>How would I do that?</p>
+<p>How do you recommend that?</p>
+<p>I don&#x27;t know.</p>
+<p>I just deal with a lot of gray areas.</p>
+<p>So like you can&#x27;t sell alcohol.</p>
+<p>So I thought about this.</p>
+<p>So I thought about this because number one is I could have started as a nonprofit.</p>
+<p>If I was a nonprofit, I could have already raised a ton of money.</p>
+<p>That a wealthy individual could say,</p>
+<p>I want to give any new patient that goes to Craig Hospital,</p>
+<p>I want them completely outfitted in your gear.</p>
+<p>I could have done that.</p>
+<p>And I did because I chose to go for a for-profit route.</p>
+<p>I actually, so if you look on my website,</p>
+<p>my chief medical or so,</p>
+<p>one of my advisors is the chief medical ambassador</p>
+<p>for the Christopher and Dana Reese Foundation.</p>
+<p>Yeah, I saw that.</p>
+<p>That was the closest thing to like a name drop.</p>
+<p>And he put me in touch with them to help fund it.</p>
+<p>And they said,</p>
+<p>well, we can&#x27;t fund you since you&#x27;re a for-profit.</p>
+<p>But we would fund something like that to do that.</p>
+<p>So how do you...</p>
+<p>But they love what we do and who we&#x27;re doing and what we&#x27;re doing.</p>
+<p>So you need to talk to somebody who can help you figure out the system.</p>
+<p>Because you could be the third-party vendor that sells to the nonprofit</p>
+<p>and the nonprofit is the one that&#x27;s providing the service that&#x27;s giving it.</p>
+<p>There&#x27;s a way.</p>
+<p>It&#x27;s just going to be figuring...</p>
+<p>It&#x27;s all about it, man.</p>
+<p>Huh?</p>
+<p>I&#x27;m all about it.</p>
+<p>Yeah.</p>
+<p>There&#x27;s a way to do everything.</p>
+<p>And it&#x27;s just,</p>
+<p>if there&#x27;s black tape,</p>
+<p>how do you get around the black tape so you&#x27;re not being pushed?</p>
+<p>And you can control the narrative.</p>
+<p>That&#x27;s always how I look at things.</p>
+<p>I think you&#x27;re looking at it dead on.</p>
+<p>I love it.</p>
+<p>Yeah, because if they keep telling you no,</p>
+<p>then you&#x27;re just going to have to find a way for them to say yes.</p>
+<p>And if you&#x27;re giving it to everybody,</p>
+<p>and especially these people who went through a situation,</p>
+<p>because I used to do stuff in hospitals for kids stuff.</p>
+<p>They had a lot of Shriners and different big organizations</p>
+<p>that would get behind things.</p>
+<p>Once they went through a situation and they got better,</p>
+<p>they have a heart to help other people through situations.</p>
+<p>And this could just be a way for them to feel comfortable.</p>
+<p>And it could be like a legacy for them.</p>
+<p>You know what I mean?</p>
+<p>Yeah.</p>
+<p>No, I&#x27;ve got one big donor who says,</p>
+<p>look, here&#x27;s $5 million.</p>
+<p>Every patient who orders at any one of these hospitals,</p>
+<p>now you can get as much.</p>
+<p>I&#x27;ve thought about that.</p>
+<p>I just haven&#x27;t gone to a donor for that purpose yet.</p>
+<p>Are you using any AI yourself personally?</p>
+<p>So I use ChatGBT5.</p>
+<p>I use it through my company.</p>
+<p>And I basically will use it for very specific issues within business.</p>
+<p>But no, compared to where I know a lot of people with AI.</p>
+<p>As a matter of fact, Sam Altman,</p>
+<p>when he said that newer kids are using it as an operating system now,</p>
+<p>I didn&#x27;t even know what that meant.</p>
+<p>I was still trying to figure out,</p>
+<p>how do you use AI as an operating system for your life?</p>
+<p>So I am better than, I would say, the majority of the public,</p>
+<p>but that&#x27;s still not that great.</p>
+<p>All right.</p>
+<p>So I don&#x27;t know how much time you have</p>
+<p>or if this is even of interest to you.</p>
+<p>There&#x27;s a system that I use.</p>
+<p>It&#x27;s called B-M-A-D, B-M-A-D, method.</p>
+<p>And what I use to communicate with it is usually either,</p>
+<p>you can use ChatGTP, Claude.</p>
+<p>I use Claude code for everything I do.</p>
+<p>But you basically...</p>
+<p>Why?</p>
+<p>Because it&#x27;s the best coder that you can have access to at the moment.</p>
+<p>Oh, gotcha.</p>
+<p>Okay, and it&#x27;s called...</p>
+<p>Well, I&#x27;m actually typing this out right now.</p>
+<p>What&#x27;s it called?</p>
+<p>Claude code.</p>
+<p>So basically it&#x27;s...</p>
+<p>Oh, no, the first thing, the M-CAD or something like that?</p>
+<p>Oh, M-M...</p>
+<p>Sorry, B-M-A-D, B-M-A-D, method.</p>
+<p>I&#x27;ll find the link and send it to you.</p>
+<p>It&#x27;s super nerdy.</p>
+<p>It&#x27;s on GitHub.</p>
+<p>But it&#x27;s a...</p>
+<p>Think of it as a brainstorming practice.</p>
+<p>Or like a mega consultant that&#x27;s coming in.</p>
+<p>And instead of the AI doing everything for you,</p>
+<p>it&#x27;s extracting the data from your head</p>
+<p>and guiding the conversation to help you facilitate</p>
+<p>the outcome that you&#x27;re trying to do.</p>
+<p>So before I work on any project,</p>
+<p>I usually spend two or three hours,</p>
+<p>and I just sit there and it starts asking me questions,</p>
+<p>and I do the best.</p>
+<p>And I use a Mac.</p>
+<p>So I have a tool called Super Whisper,</p>
+<p>but they make them for PCs too.</p>
+<p>But it&#x27;s basically...</p>
+<p>I can just talk to my computer.</p>
+<p>I don&#x27;t have to sit there and type it.</p>
+<p>And then I&#x27;m just...</p>
+<p>Just whatever&#x27;s in my head.</p>
+<p>I&#x27;m just...</p>
+<p>Because you have all the data in your head.</p>
+<p>Nobody else could really do this</p>
+<p>because you understand all the stuff</p>
+<p>that needs to happen, right?</p>
+<p>But the AI is going to facilitate the conversation</p>
+<p>and then help you build a business plan</p>
+<p>that&#x27;s going to actually help you solidify</p>
+<p>the outcome of how you go about doing this.</p>
+<p>If you want to do the nonprofit thing,</p>
+<p>you can say,</p>
+<p>hey, I&#x27;m trying to figure out</p>
+<p>what&#x27;s the best method.</p>
+<p>These are my options.</p>
+<p>If you&#x27;re going to be doing it as an Act 60,</p>
+<p>so you&#x27;re not going to pay taxes.</p>
+<p>Do I have to move to Puerto Rico for half a year?</p>
+<p>Like, there&#x27;s all different things.</p>
+<p>But the neighborhood that we live in,</p>
+<p>there&#x27;s so many people who understand</p>
+<p>all these, like, little loopholes</p>
+<p>that they figured out ways to just, like,</p>
+<p>set up structures to protect their assets</p>
+<p>and their wealth.</p>
+<p>So these are the...</p>
+<p>I know, Brett has been evangelizing about it.</p>
+<p>It&#x27;s amazing.</p>
+<p>It&#x27;s wild.</p>
+<p>I didn&#x27;t even know that whole lifestyle existed down there.</p>
+<p>Yeah.</p>
+<p>So I like more so now that I understand</p>
+<p>what it is that you&#x27;re trying to do,</p>
+<p>I don&#x27;t necessarily think you&#x27;re conveying that</p>
+<p>with your visual representation</p>
+<p>of how you&#x27;re presenting your message or your story.</p>
+<p>it&#x27;s not connecting the dots</p>
+<p>because it&#x27;s not clear.</p>
+<p>Like, I can help you facilitate,</p>
+<p>but I still recommend using that BMAD method</p>
+<p>to really harness what it is</p>
+<p>that you&#x27;re actually trying to do</p>
+<p>and just get there faster</p>
+<p>by really having clarity.</p>
+<p>I appreciate it.</p>
+<p>I actually typed it in</p>
+<p>and I&#x27;m at github.com</p>
+<p>for the bmatcode.org,</p>
+<p>but it&#x27;s got a list of just little folders</p>
+<p>that I&#x27;m...</p>
+<p>and I don&#x27;t know what to do</p>
+<p>now that I&#x27;m here.</p>
+<p>So I cheat in everything I do.</p>
+<p>I basically go into the AI</p>
+<p>and I just tell it,</p>
+<p>install this for me,</p>
+<p>but that&#x27;s because I have a...</p>
+<p>I&#x27;m doing stuff that&#x27;s, like,</p>
+<p>developer-style stuff.</p>
+<p>This is, like, a developer&#x27;s tool,</p>
+<p>but I&#x27;m sharing it with you</p>
+<p>because there&#x27;s a prompt</p>
+<p>that you might be able to do.</p>
+<p>I&#x27;ll find you the prompt</p>
+<p>that you can just copy and paste it</p>
+<p>in your traditional web user interface.</p>
+<p>Oh, man, I appreciate that.</p>
+<p>Yeah, that would help you</p>
+<p>just get closer to where you want to go.</p>
+<p>But, yeah, it&#x27;s...</p>
+<p>There&#x27;s a bunch of videos.</p>
+<p>If you go to the video,</p>
+<p>the creator just created a bunch of stuff</p>
+<p>and he&#x27;s on version 6.</p>
+<p>So there&#x27;s...</p>
+<p>But, like, this is where</p>
+<p>we&#x27;re moving towards AI</p>
+<p>where you&#x27;re basically interfacing with it</p>
+<p>and it&#x27;s basically communicating with you</p>
+<p>to get you closer to</p>
+<p>just building all the things that you need</p>
+<p>to make your business leaner and meaner.</p>
+<p>I love it.</p>
+<p>Thank you.</p>
+<p>Yeah.</p>
+<p>From understanding who we are</p>
+<p>or what we do,</p>
+<p>is there any other questions</p>
+<p>that I can help you with?</p>
+<p>Like, in my mind, I just...</p>
+<p>Like, the pictures that you got are, like,</p>
+<p>what are the age demographics?</p>
+<p>Are you working with seniors?</p>
+<p>Are you working with...</p>
+<p>Like, you think a rehabilitation...</p>
+<p>No, so it strikes all people, right?</p>
+<p>So brain injury can either be</p>
+<p>or an accident for the most part.</p>
+<p>If you&#x27;re elderly, it might be a stroke.</p>
+<p>But usually it&#x27;s going to be an accident</p>
+<p>of some form.</p>
+<p>Usually it&#x27;s an accident or a stroke.</p>
+<p>I would say those are the two primary.</p>
+<p>Spinal cord injury,</p>
+<p>again, that can be...</p>
+<p>That can be sort of all over the board.</p>
+<p>If it&#x27;s a car accident,</p>
+<p>you&#x27;re more 50-50 male and female.</p>
+<p>If it&#x27;s non-car accident,</p>
+<p>then that means it&#x27;s typically a...</p>
+<p>something from a sports injury,</p>
+<p>and then it moves to 75% male,</p>
+<p>25% female.</p>
+<p>And then it&#x27;s sort of all ages,</p>
+<p>but you would kind of start bulking it</p>
+<p>around 40...</p>
+<p>You know, 40-year-old person</p>
+<p>that&#x27;s going to go in.</p>
+<p>You know, 30 to...</p>
+<p>35 to 45, maybe.</p>
+<p>Something like that.</p>
+<p>But a 30, 45-year-old</p>
+<p>that can&#x27;t stand up anymore</p>
+<p>on his own kind of person.</p>
+<p>Well, maybe not in the beginning,</p>
+<p>but sometimes...</p>
+<p>I mean, I had an absolute miracle, Alex.</p>
+<p>So I have an injury</p>
+<p>that over 100 spine surgeons</p>
+<p>have looked at,</p>
+<p>and it was so catastrophic</p>
+<p>that they just...</p>
+<p>Everybody always just says,</p>
+<p>holy shit.</p>
+<p>They go, how are you even moving?</p>
+<p>I&#x27;ve seen hundreds of images like yours.</p>
+<p>None of them have moved again.</p>
+<p>I&#x27;ve been given a miracle.</p>
+<p>I had surgery immediately,</p>
+<p>but it&#x27;s well beyond that.</p>
+<p>Like, I shouldn&#x27;t have a spinal cord</p>
+<p>that&#x27;s even intact</p>
+<p>based on the type of injury</p>
+<p>that I have.</p>
+<p>But still, people might come in</p>
+<p>from a brain injury</p>
+<p>or a spinal cord injury,</p>
+<p>and yes, they might be...</p>
+<p>When I came in,</p>
+<p>I was full quad.</p>
+<p>I couldn&#x27;t do anything.</p>
+<p>But I left</p>
+<p>because, A, the miracle,</p>
+<p>but I left walking.</p>
+<p>Now, not...</p>
+<p>Most people don&#x27;t do that,</p>
+<p>but they may not be able</p>
+<p>to move at all,</p>
+<p>and then they may be able</p>
+<p>to slightly walk</p>
+<p>and ambulate before they get out.</p>
+<p>They may never walk again.</p>
+<p>It&#x27;s kind of all gambit.</p>
+<p>And brain can be the same thing.</p>
+<p>Bigger issue with brain</p>
+<p>is you may have physical function,</p>
+<p>but you&#x27;re not the same person</p>
+<p>that anybody knew</p>
+<p>before your accident.</p>
+<p>That&#x27;s the harder...</p>
+<p>But onboarding,</p>
+<p>onboarding,</p>
+<p>you&#x27;re giving these clothes</p>
+<p>to people who are pretty messed up.</p>
+<p>Hands down, yes.</p>
+<p>So the goal is to show</p>
+<p>maybe in some sort of format</p>
+<p>where you can show</p>
+<p>that the treatment speeds up</p>
+<p>because that they&#x27;re able</p>
+<p>to overcome the cold</p>
+<p>in the hospital,</p>
+<p>the movement,</p>
+<p>less bed sores</p>
+<p>and everything else,</p>
+<p>and you show, like,</p>
+<p>here&#x27;s a timeline</p>
+<p>of what it would be like</p>
+<p>if you were to just buy stuff</p>
+<p>off the shelf</p>
+<p>versus this specific clothing</p>
+<p>that was designed</p>
+<p>to get you better faster.</p>
+<p>And I agree.</p>
+<p>That&#x27;s a great statement.</p>
+<p>The reality...</p>
+<p>So pants, yes,</p>
+<p>because they allow you</p>
+<p>to get therapy.</p>
+<p>They allow you to wear them 24-7</p>
+<p>so you don&#x27;t have to</p>
+<p>keep doing your clothes changes</p>
+<p>because you&#x27;re not the one</p>
+<p>changing your clothes</p>
+<p>your nursing staff is.</p>
+<p>Right?</p>
+<p>So the fact that they don&#x27;t</p>
+<p>have to do any</p>
+<p>many clothing changes,</p>
+<p>but they can still do</p>
+<p>therapy access to the porch,</p>
+<p>stuff like that,</p>
+<p>that really helps</p>
+<p>for the nursing staff.</p>
+<p>You may not get any better,</p>
+<p>but it will help you</p>
+<p>as best as you possibly can</p>
+<p>and be a load off</p>
+<p>your nursing staff,</p>
+<p>which actually is significant.</p>
+<p>And then, two,</p>
+<p>the shirts,</p>
+<p>I&#x27;d say the shirts</p>
+<p>are more along the line</p>
+<p>of they will buy,</p>
+<p>not by massive increments,</p>
+<p>and you&#x27;d have to do</p>
+<p>a huge study</p>
+<p>over a period of time</p>
+<p>in order to really validate</p>
+<p>these shirts are better</p>
+<p>than anything else.</p>
+<p>That&#x27;s a big ticket item.</p>
+<p>It costs millions of dollars</p>
+<p>to really do that the right way.</p>
+<p>But, yes,</p>
+<p>they are going to be</p>
+<p>more resistant</p>
+<p>to skin breakdown</p>
+<p>versus anything else,</p>
+<p>especially like,</p>
+<p>a lot of hospitals</p>
+<p>don&#x27;t even know,</p>
+<p>dude, you can&#x27;t wear cotton.</p>
+<p>Cotton absorbs moisture</p>
+<p>and holds it.</p>
+<p>It doesn&#x27;t wick it.</p>
+<p>And then if you have moisture</p>
+<p>against the skin</p>
+<p>for very long,</p>
+<p>your skin&#x27;s now weakened</p>
+<p>and has a higher propensity</p>
+<p>to break down.</p>
+<p>And if you get a skin wound,</p>
+<p>again, it can kill you</p>
+<p>or significantly reduce.</p>
+<p>Like, the biggest issue</p>
+<p>of skin wounds</p>
+<p>is that once a skin wound</p>
+<p>shows up,</p>
+<p>your therapy&#x27;s over.</p>
+<p>You are no longer</p>
+<p>getting therapy,</p>
+<p>and they have to put</p>
+<p>all 24-7</p>
+<p>into patching you up,</p>
+<p>and you&#x27;re just burning</p>
+<p>rehab days</p>
+<p>that you&#x27;ll never,</p>
+<p>ever get paid for again</p>
+<p>by insurance.</p>
+<p>So it&#x27;s massive.</p>
+<p>What we do,</p>
+<p>it&#x27;s just a little bit</p>
+<p>more intricate</p>
+<p>to discuss.</p>
+<p>Does that make sense, though?</p>
+<p>Yeah, but these are</p>
+<p>the type of things</p>
+<p>that a person</p>
+<p>who&#x27;s going to invest,</p>
+<p>they&#x27;re going to see,</p>
+<p>oh, he&#x27;s selling shirts.</p>
+<p>You know what I mean?</p>
+<p>Like, there&#x27;s more</p>
+<p>meat and potatoes behind it.</p>
+<p>Like, I always say,</p>
+<p>sell the sizzle,</p>
+<p>not the steak.</p>
+<p>The shirt&#x27;s the steak,</p>
+<p>but you&#x27;re selling the story.</p>
+<p>Like, the fact that you,</p>
+<p>like, all right,</p>
+<p>you just got hit by a car</p>
+<p>and you were driving</p>
+<p>a motorcycle</p>
+<p>and you can potentially</p>
+<p>never walk again</p>
+<p>and you go into a hospital</p>
+<p>and you use traditional</p>
+<p>regular sports</p>
+<p>off the shelf.</p>
+<p>Now you&#x27;ve got to get changed</p>
+<p>and that change</p>
+<p>becomes challenging</p>
+<p>and painful for you</p>
+<p>as a person</p>
+<p>to deal with it.</p>
+<p>The nursing people</p>
+<p>get, like,</p>
+<p>attitude about it</p>
+<p>because, oh,</p>
+<p>this is another person</p>
+<p>I&#x27;ve got to do.</p>
+<p>But when you have this close,</p>
+<p>you&#x27;re reducing the tension</p>
+<p>on your own body,</p>
+<p>you&#x27;re reducing friction</p>
+<p>on the staff</p>
+<p>that&#x27;s going to go</p>
+<p>and help you get healed,</p>
+<p>and you&#x27;re making</p>
+<p>your environment better</p>
+<p>just because of the decision</p>
+<p>that you made</p>
+<p>because somebody else</p>
+<p>did all the research</p>
+<p>and is just helping you</p>
+<p>facilitate it.</p>
+<p>Alex, you just nailed it.</p>
+<p>But this is what</p>
+<p>is the story</p>
+<p>that people are going to go,</p>
+<p>oh, I get it now.</p>
+<p>I could use your help.</p>
+<p>And I realize the website</p>
+<p>is not selling that either.</p>
+<p>And I need somebody</p>
+<p>to help me do that.</p>
+<p>Yeah, but these guys</p>
+<p>who do it,</p>
+<p>they just know how to make</p>
+<p>pictures and text</p>
+<p>go on a screen.</p>
+<p>But it&#x27;s not about that.</p>
+<p>It&#x27;s about understanding</p>
+<p>why people are going to</p>
+<p>give you millions of dollars.</p>
+<p>Why do I want to invest in you?</p>
+<p>Why would I believe in you?</p>
+<p>Who are you</p>
+<p>that&#x27;s going to make me</p>
+<p>feel comfortable</p>
+<p>that if I give you</p>
+<p>a million dollars,</p>
+<p>I&#x27;m getting my cut</p>
+<p>in six months or a year.</p>
+<p>What&#x27;s the expectation?</p>
+<p>You know what I mean?</p>
+<p>Like, yeah, I could.</p>
+<p>Yeah.</p>
+<p>And that&#x27;s the question.</p>
+<p>And there&#x27;s a thing</p>
+<p>over here called</p>
+<p>Gentleman&#x27;s Bosses</p>
+<p>where like all the guys</p>
+<p>that own companies,</p>
+<p>they meet once or twice a week</p>
+<p>or a month,</p>
+<p>twice a month.</p>
+<p>And I get to sit</p>
+<p>on these meetings</p>
+<p>and listen to all these people.</p>
+<p>And one of them</p>
+<p>was just about</p>
+<p>how many of these guys</p>
+<p>do investments</p>
+<p>and they get thousands</p>
+<p>of these people</p>
+<p>trying to pitch them.</p>
+<p>And they&#x27;re just like,</p>
+<p>yeah, how do you know</p>
+<p>when somebody&#x27;s giving you</p>
+<p>a good deal?</p>
+<p>Like, how do you know</p>
+<p>when it&#x27;s time</p>
+<p>to put money into it?</p>
+<p>So the sooner</p>
+<p>we could find a way</p>
+<p>to get into that mind</p>
+<p>of a person</p>
+<p>who has money</p>
+<p>and wants to sit it somewhere</p>
+<p>and get a return</p>
+<p>on his investment,</p>
+<p>he needs to feel</p>
+<p>comfortable and confident</p>
+<p>that you&#x27;re the guy.</p>
+<p>You&#x27;re the horse</p>
+<p>that&#x27;s going to win the race.</p>
+<p>Gotcha.</p>
+<p>I mean,</p>
+<p>there&#x27;s no question</p>
+<p>that I know my business.</p>
+<p>I&#x27;ve lived through it.</p>
+<p>I know it better</p>
+<p>than anybody.</p>
+<p>And I know</p>
+<p>how to get it done.</p>
+<p>It&#x27;s just going to,</p>
+<p>like you said,</p>
+<p>I&#x27;ve got to have</p>
+<p>the right help.</p>
+<p>You just got to tell</p>
+<p>the right story.</p>
+<p>And to the website</p>
+<p>and to pitch investors</p>
+<p>with it</p>
+<p>so that they understand</p>
+<p>the story</p>
+<p>as quickly as you could.</p>
+<p>So I&#x27;m pitching</p>
+<p>that story</p>
+<p>in a manner</p>
+<p>and in a method</p>
+<p>in which they get</p>
+<p>if they understand it</p>
+<p>and they feel comfortable</p>
+<p>and confident</p>
+<p>just like you said.</p>
+<p>Yeah,</p>
+<p>they don&#x27;t have time</p>
+<p>to be sitting there</p>
+<p>trying to look through</p>
+<p>15, 20 pages of text</p>
+<p>and going,</p>
+<p>what are you asking?</p>
+<p>They just want to see</p>
+<p>something and go,</p>
+<p>yo,</p>
+<p>that&#x27;s a fucking good idea,</p>
+<p>man.</p>
+<p>Yo,</p>
+<p>when can I give you</p>
+<p>this check?</p>
+<p>That&#x27;s the move.</p>
+<p>Well,</p>
+<p>help me get there</p>
+<p>because I know</p>
+<p>I&#x27;ve got it.</p>
+<p>I know it&#x27;s there</p>
+<p>and I know this thing</p>
+<p>over time</p>
+<p>will become</p>
+<p>the Nike of rehab</p>
+<p>and rehab</p>
+<p>is a massive market</p>
+<p>once I start dominating it.</p>
+<p>All right.</p>
+<p>Well,</p>
+<p>I think I got</p>
+<p>a little bit more information</p>
+<p>so I could help you</p>
+<p>do stuff.</p>
+<p>I see that there&#x27;s</p>
+<p>an about</p>
+<p>which probably</p>
+<p>has a little bit</p>
+<p>more information</p>
+<p>about what you went through</p>
+<p>and</p>
+<p>it&#x27;s just</p>
+<p>if you&#x27;re going</p>
+<p>to be the face</p>
+<p>you got to be the guy</p>
+<p>that&#x27;s going to get up</p>
+<p>on a stage</p>
+<p>and tell the story</p>
+<p>and make people&#x27;s</p>
+<p>emotional</p>
+<p>being</p>
+<p>actively.</p>
+<p>I already do.</p>
+<p>Yeah.</p>
+<p>I already do.</p>
+<p>So,</p>
+<p>I can see the value</p>
+<p>now that I understand</p>
+<p>what it is</p>
+<p>that you&#x27;re trying to do.</p>
+<p>Did you have a look</p>
+<p>at the PDF</p>
+<p>that I sent</p>
+<p>last night</p>
+<p>to see if that&#x27;s</p>
+<p>getting closer to</p>
+<p>Oh,</p>
+<p>I have not even</p>
+<p>I&#x27;ve been so busy</p>
+<p>I had to do</p>
+<p>medical stuff</p>
+<p>and then my day job</p>
+<p>I got slammed</p>
+<p>with that today.</p>
+<p>So,</p>
+<p>no,</p>
+<p>I&#x27;ve not had a chance</p>
+<p>to look at that.</p>
+<p>All right.</p>
+<p>So,</p>
+<p>why don&#x27;t you</p>
+<p>take a look at that?</p>
+<p>I spent</p>
+<p>I don&#x27;t know</p>
+<p>a couple hours</p>
+<p>last night</p>
+<p>just deconstructing</p>
+<p>and rebuilding it</p>
+<p>and I got something</p>
+<p>that is definitely</p>
+<p>more visual</p>
+<p>but now that I have</p>
+<p>a little bit</p>
+<p>understanding</p>
+<p>of what the story is</p>
+<p>we can tile it</p>
+<p>in a little bit more.</p>
+<p>Okay.</p>
+<p>All right.</p>
+<p>I&#x27;ll take a look</p>
+<p>at this</p>
+<p>and then you want me</p>
+<p>to wait for you</p>
+<p>or what do you</p>
+<p>want me to do?</p>
+<p>Honestly,</p>
+<p>I just needed</p>
+<p>to talk to you</p>
+<p>so I can understand</p>
+<p>what it is</p>
+<p>that you&#x27;re trying</p>
+<p>to get at.</p>
+<p>Now that I have</p>
+<p>an understanding</p>
+<p>I can kind of</p>
+<p>just build it out</p>
+<p>but I think</p>
+<p>the next step</p>
+<p>for you</p>
+<p>is to really</p>
+<p>seriously think</p>
+<p>about using</p>
+<p>that be mad</p>
+<p>method</p>
+<p>to find a way</p>
+<p>to structure</p>
+<p>this in a way</p>
+<p>that&#x27;s going to</p>
+<p>get you to market</p>
+<p>and dominate</p>
+<p>the fastest</p>
+<p>with the least</p>
+<p>amount of resistance.</p>
+<p>I love it.</p>
+<p>I&#x27;m going to look</p>
+<p>in.</p>
+<p>If you have a link</p>
+<p>that can make it</p>
+<p>easier for me</p>
+<p>to just pull that</p>
+<p>thing down</p>
+<p>and install it</p>
+<p>on my computer</p>
+<p>I will take it.</p>
+<p>It&#x27;s just a text</p>
+<p>document that you</p>
+<p>copy and paste</p>
+<p>into.</p>
+<p>So do you know</p>
+<p>what Gemini is?</p>
+<p>Yeah.</p>
+<p>I use Gemini</p>
+<p>all the time.</p>
+<p>So when I go here</p>
+<p>the first thing</p>
+<p>it types in</p>
+<p>is it sends me</p>
+<p>to GitHub</p>
+<p>and I go to GitHub</p>
+<p>and then there&#x27;s</p>
+<p>a little file folder</p>
+<p>here that just</p>
+<p>has a little</p>
+<p>.github thing</p>
+<p>that looks like</p>
+<p>I can click on it.</p>
+<p>This folder</p>
+<p>is the whole</p>
+<p>back end of it.</p>
+<p>I&#x27;m looking</p>
+<p>at the same thing</p>
+<p>you&#x27;re looking at.</p>
+<p>I just don&#x27;t know</p>
+<p>where they hide it.</p>
+<p>I have to go find it.</p>
+<p>It might be in the docs.</p>
+<p>I&#x27;ll find the actual</p>
+<p>thing to get you</p>
+<p>to where you need</p>
+<p>to just copy</p>
+<p>and paste it.</p>
+<p>This might be it here.</p>
+<p>No.</p>
+<p>I&#x27;ll find it.</p>
+<p>But basically</p>
+<p>you&#x27;re just going to</p>
+<p>copy and paste this</p>
+<p>and it&#x27;s going to</p>
+<p>turn your AI agent</p>
+<p>into</p>
+<p>a consultant</p>
+<p>that&#x27;s going to</p>
+<p>help you facilitate</p>
+<p>this.</p>
+<p>So I&#x27;ll just</p>
+<p>still use Google?</p>
+<p>Well,</p>
+<p>there&#x27;s a tool</p>
+<p>called AI Studio.</p>
+<p>But Gemini,</p>
+<p>I don&#x27;t know</p>
+<p>if you&#x27;re paying</p>
+<p>for any of these</p>
+<p>things,</p>
+<p>but AI Studio</p>
+<p>is free</p>
+<p>and it has</p>
+<p>a million</p>
+<p>token context</p>
+<p>window,</p>
+<p>which means</p>
+<p>you can put in</p>
+<p>the entire</p>
+<p>Harry Potter</p>
+<p>series book</p>
+<p>in one prompt</p>
+<p>and you&#x27;re not</p>
+<p>going to jam it up.</p>
+<p>it has</p>
+<p>the ability</p>
+<p>to render</p>
+<p>out a massive</p>
+<p>amount of data</p>
+<p>where everybody</p>
+<p>else&#x27;s context</p>
+<p>window is like</p>
+<p>100 to 200,000</p>
+<p>and then it just</p>
+<p>has to reset</p>
+<p>or it stops.</p>
+<p>It doesn&#x27;t do</p>
+<p>any more than that.</p>
+<p>So when you&#x27;re</p>
+<p>doing something</p>
+<p>that&#x27;s a little bit</p>
+<p>longer,</p>
+<p>I always either</p>
+<p>use Cloud Code</p>
+<p>because there&#x27;s a</p>
+<p>way that it</p>
+<p>basically summarizes</p>
+<p>your context window</p>
+<p>and just keeps you</p>
+<p>going,</p>
+<p>or Gemini</p>
+<p>within AI Studio.</p>
+<p>I&#x27;ll send you a link</p>
+<p>and then you can</p>
+<p>try either one,</p>
+<p>but maybe watch</p>
+<p>the video so you</p>
+<p>can understand</p>
+<p>what it is that</p>
+<p>it&#x27;s actually doing</p>
+<p>and that will wrap</p>
+<p>your mind around,</p>
+<p>oh, okay,</p>
+<p>this is cool.</p>
+<p>But it&#x27;s just a way</p>
+<p>of just extracting</p>
+<p>data that you have</p>
+<p>in your head</p>
+<p>and then helping</p>
+<p>it create documents</p>
+<p>that you would use</p>
+<p>to hand off</p>
+<p>to a development</p>
+<p>team to say,</p>
+<p>hey,</p>
+<p>I want to build</p>
+<p>this as a web</p>
+<p>app or as a website</p>
+<p>or as a business</p>
+<p>plan,</p>
+<p>and you&#x27;re giving</p>
+<p>the people</p>
+<p>who are analytical</p>
+<p>and need data points</p>
+<p>because you took</p>
+<p>the time</p>
+<p>and you facilitated</p>
+<p>building out</p>
+<p>your parameters</p>
+<p>and you&#x27;re showing</p>
+<p>them,</p>
+<p>this is what I see</p>
+<p>in my head,</p>
+<p>they&#x27;re able to now</p>
+<p>deliver something</p>
+<p>way closer than</p>
+<p>if you&#x27;re just like,</p>
+<p>yo,</p>
+<p>just make me a website</p>
+<p>and they&#x27;re like,</p>
+<p>well,</p>
+<p>what do you want</p>
+<p>it to do?</p>
+<p>I don&#x27;t know,</p>
+<p>just figure it out</p>
+<p>and that&#x27;s usually</p>
+<p>what I get thrown</p>
+<p>is people have no</p>
+<p>idea what they&#x27;re</p>
+<p>trying to do</p>
+<p>and I got to spend</p>
+<p>all this time</p>
+<p>figuring it out.</p>
+<p>Man,</p>
+<p>this is really</p>
+<p>helpful,</p>
+<p>really helpful,</p>
+<p>I can&#x27;t thank you</p>
+<p>enough.</p>
+<p>Well,</p>
+<p>I pray that you</p>
+<p>guys get yourself</p>
+<p>to a situation</p>
+<p>where you&#x27;re winning</p>
+<p>and living life</p>
+<p>and helping people</p>
+<p>and something else</p>
+<p>I learned last week,</p>
+<p>you know,</p>
+<p>you can start a</p>
+<p>business because</p>
+<p>you want to make</p>
+<p>money or you can</p>
+<p>start a business</p>
+<p>because you&#x27;re</p>
+<p>going to help</p>
+<p>people and the</p>
+<p>money is a</p>
+<p>byproduct of</p>
+<p>helping people.</p>
+<p>So if your</p>
+<p>heart&#x27;s in the</p>
+<p>right place,</p>
+<p>you&#x27;re going to do</p>
+<p>the right thing</p>
+<p>and you&#x27;re</p>
+<p>going to make</p>
+<p>a difference</p>
+<p>and you&#x27;re</p>
+<p>going to change</p>
+<p>people&#x27;s lives</p>
+<p>and add value</p>
+<p>because you&#x27;re</p>
+<p>a human being</p>
+<p>who cares.</p>
+<p>There&#x27;s not even</p>
+<p>a question that</p>
+<p>it took me</p>
+<p>four years to</p>
+<p>find the material,</p>
+<p>man.</p>
+<p>Four years.</p>
+<p>I&#x27;m all about it</p>
+<p>for doing the</p>
+<p>right thing</p>
+<p>for people who</p>
+<p>need it</p>
+<p>because I&#x27;ve</p>
+<p>been there</p>
+<p>and I know.</p>
+<p>so it&#x27;s just</p>
+<p>a part of your</p>
+<p>story.</p>
+<p>Like another guy</p>
+<p>I work with,</p>
+<p>I don&#x27;t know if</p>
+<p>there&#x27;s any synergy</p>
+<p>here,</p>
+<p>but he&#x27;s like</p>
+<p>got seven or</p>
+<p>eight companies,</p>
+<p>made millions</p>
+<p>and millions</p>
+<p>of dollars</p>
+<p>and he wanted</p>
+<p>to create a</p>
+<p>legacy and then</p>
+<p>he got diagnosed</p>
+<p>with prostate</p>
+<p>cancer.</p>
+<p>So he basically</p>
+<p>built a man cave</p>
+<p>inside Mount</p>
+<p>Sinai in New</p>
+<p>York City</p>
+<p>and partnered</p>
+<p>with the doctor</p>
+<p>who did the</p>
+<p>surgery on him</p>
+<p>and now his</p>
+<p>mission is to</p>
+<p>help men</p>
+<p>check to make</p>
+<p>sure that they</p>
+<p>don&#x27;t have</p>
+<p>prostate cancer</p>
+<p>earlier.</p>
+<p>So if they do,</p>
+<p>they catch it</p>
+<p>and they can</p>
+<p>maintain it</p>
+<p>instead of</p>
+<p>almost dying,</p>
+<p>you know,</p>
+<p>and too many</p>
+<p>people are dying</p>
+<p>from it.</p>
+<p>So he made</p>
+<p>it look like</p>
+<p>like a locker</p>
+<p>room that is</p>
+<p>cool with sports</p>
+<p>paraphernalia</p>
+<p>where guys could</p>
+<p>go and feel</p>
+<p>like a guy</p>
+<p>and not in a</p>
+<p>doctor&#x27;s office</p>
+<p>where they&#x27;re</p>
+<p>going to get</p>
+<p>probed,</p>
+<p>you know.</p>
+<p>That&#x27;s awesome.</p>
+<p>That&#x27;s awesome.</p>
+<p>So there&#x27;s</p>
+<p>definitely some</p>
+<p>opportunities.</p>
+<p>It&#x27;s just</p>
+<p>figuring out</p>
+<p>how to tell</p>
+<p>your story</p>
+<p>and get to</p>
+<p>the right</p>
+<p>person who&#x27;s</p>
+<p>able to make</p>
+<p>that difference.</p>
+<p>Cool, man.</p>
+<p>Well, I&#x27;ll go</p>
+<p>ahead and I&#x27;ll</p>
+<p>do these,</p>
+<p>I&#x27;ll research</p>
+<p>these.</p>
+<p>Yeah, when you</p>
+<p>do get a chance,</p>
+<p>if you can send</p>
+<p>over any of those</p>
+<p>links, I&#x27;ll be</p>
+<p>all over them.</p>
+<p>And I&#x27;ll take a</p>
+<p>look at what you</p>
+<p>sent before.</p>
+<p>And then if you</p>
+<p>have any further</p>
+<p>questions, just</p>
+<p>please let me know.</p>
+<p>I&#x27;m happy to</p>
+<p>answer anything</p>
+<p>you got.</p>
+<p>All right.</p>
+<p>Perfect.</p>
+<p>Great.</p>
+<p>Thank you so</p>
+<p>much for your</p>
+<p>time, Alex.</p>
+<p>All right.</p>
+<p>Really appreciate</p>
+<p>it.</p>
+<p>I&#x27;ll talk to</p>
+<p>you soon.</p>
+<p>Okay.</p>
+<p>Cheers.</p>
+<p>All right,</p>
+<p>ciao.</p>
+<p>Cheers.</p>
+<p>Cheers.</p>
+<p>Cheers.</p>
+<p>Cheers.</p>
+<p>!</p>
+<p>Cheers.</p>
+<p>Cheers.</p>
+<p>!</p>
+<p>Cheers.</p></div></div>
+</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-06-08 04:14</div>
+</body></html>
