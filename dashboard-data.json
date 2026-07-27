@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T15:18:35.311337+00:00",
+  "generated_at": "2026-07-27T21:13:45.473708+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-07-27T15:18:32.002658+00:00",
+      "updated_at": "2026-07-27T21:13:41.848526+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -6607,7 +6607,7 @@
           "node": "gateway8",
           "release": "2026-06-26",
           "commit": "n/a",
-          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. ACTION: re-home borg backups for racknerd-9165277 + racknerd-e3b5f73 to big-white (already prime's borg target, 2TB /data) or bitler-mini-1 (live M1 mini); prime's Neo4j already covered by big-white. Deploy/parity scripts self-skip on unreachability. Archive assets retained, not deleted."
+          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. RE-HOME COMPLETE - no action outstanding (witnessed live 2026-07-27, delphi): 9165277 + e3b5f73 back up daily to **bitler-mini-1** via `meridian-borg-bitler@<node>.timer`, both `Result=success` (9165277 03:38 EDT, e3b5f73 04:16 UTC, 48MB captured: /etc/meridian + /var/backups/meridian incl. TwentyCRM, Cal.com and agentvox dumps). Prime backs up to big-white. The prior \"ACTION: re-home ...\" text here was STALE and sent two sessions chasing a month-unbacked risk that did not exist - do not reinstate it without witnessing `systemctl list-timers"
         },
         {
           "node": "thinkpadgen9",
@@ -7105,7 +7105,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2643 hours old"
+        "_stale_warning": "Data is 2649 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7240,24 +7240,25 @@
             "online": true
           }
         ],
-        "generated_at": "2026-07-27T15:18:32.022434+00:00",
+        "generated_at": "2026-07-27T21:13:41.873246+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-07-27T15:18:34.215168+00:00",
+      "updated_at": "2026-07-27T21:13:44.347751+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "ops": 2,
+          "auto-created": 2,
+          "legal": 1,
           "daemon/forge": 1,
-          "dependencies": 29,
+          "dependencies": 27,
           "javascript": 17,
-          "python": 4,
+          "python": 3,
           "enhancement": 2,
-          "python:uv": 8,
+          "python:uv": 7,
           "bug": 3,
-          "ops": 1,
-          "auto-created": 1,
           "ontology": 1,
           "security": 1,
           "architecture": 1,
@@ -7265,6 +7266,55 @@
         }
       },
       "recent_issues": [
+        {
+          "number": 3787,
+          "title": "Commit drift detected across mesh nodes",
+          "state": "open",
+          "created_at": "2026-07-27T20:57:23Z",
+          "updated_at": "2026-07-27T20:57:23Z",
+          "labels": [
+            "ops",
+            "auto-created"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3787",
+          "project_slug": null
+        },
+        {
+          "number": 3786,
+          "title": "lattice Stage 1 can pass its gate on README-level reading: add clone + understand depth escalation",
+          "state": "open",
+          "created_at": "2026-07-27T20:36:24Z",
+          "updated_at": "2026-07-27T20:57:49Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3786",
+          "project_slug": null
+        },
+        {
+          "number": 3785,
+          "title": "rankona-master: Neo4j MIG absent from backups, and the restic repo lived on the disk it protects",
+          "state": "open",
+          "created_at": "2026-07-27T16:48:34Z",
+          "updated_at": "2026-07-27T16:48:34Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3785",
+          "project_slug": null
+        },
+        {
+          "number": 3784,
+          "title": "Liberty Capital memo: accuracy remediation before circulation (v3 -> v4)",
+          "state": "open",
+          "created_at": "2026-07-27T16:45:29Z",
+          "updated_at": "2026-07-27T19:22:25Z",
+          "labels": [
+            "legal"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3784",
+          "project_slug": null
+        },
         {
           "number": 3781,
           "title": "Localization workbench: parent-child variation accordion (left column is parents-only; Mr Bear publishes children-only)",
@@ -7281,7 +7331,7 @@
           "title": "Mr Bear/LMF composed EU content: paren shells, title-repeat highlights, ingredient loss, ungrounded copy pass QA onto client-visible board",
           "state": "open",
           "created_at": "2026-07-27T13:35:27Z",
-          "updated_at": "2026-07-27T13:41:16Z",
+          "updated_at": "2026-07-27T15:38:21Z",
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/3780",
@@ -7871,60 +7921,59 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/pull/3698",
           "project_slug": null
-        },
-        {
-          "number": 3697,
-          "title": "LuvBuddy: pull 1,397 chatbot.com transcripts (blocked on operator session) + better-help gateway (built, pending deploy)",
-          "state": "open",
-          "created_at": "2026-07-13T23:24:01Z",
-          "updated_at": "2026-07-13T23:24:01Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3697",
-          "project_slug": null
-        },
-        {
-          "number": 3696,
-          "title": "Mesh indicator v1.3 \"Trust\" \u2014 rotation, freshness proof, ack/snooze, node-aware recover, tests+registry+push",
-          "state": "open",
-          "created_at": "2026-07-13T21:09:24Z",
-          "updated_at": "2026-07-13T21:09:24Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3696",
-          "project_slug": null
-        },
-        {
-          "number": 3695,
-          "title": "chore(deps): bump transformers from 5.2.0 to 5.5.0",
-          "state": "open",
-          "created_at": "2026-07-13T20:54:36Z",
-          "updated_at": "2026-07-14T19:45:30Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3695",
-          "project_slug": null
-        },
-        {
-          "number": 3690,
-          "title": "chore(deps): bump transformers from 4.39.2 to 5.5.0 in /forge/musetalk",
-          "state": "open",
-          "created_at": "2026-07-13T18:48:06Z",
-          "updated_at": "2026-07-14T19:45:30Z",
-          "labels": [
-            "dependencies",
-            "python"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3690",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 3787,
+            "title": "Commit drift detected across mesh nodes",
+            "state": "open",
+            "created_at": "2026-07-27T20:57:23Z",
+            "updated_at": "2026-07-27T20:57:23Z",
+            "labels": [
+              "ops",
+              "auto-created"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3787",
+            "project_slug": null
+          },
+          {
+            "number": 3786,
+            "title": "lattice Stage 1 can pass its gate on README-level reading: add clone + understand depth escalation",
+            "state": "open",
+            "created_at": "2026-07-27T20:36:24Z",
+            "updated_at": "2026-07-27T20:57:49Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3786",
+            "project_slug": null
+          },
+          {
+            "number": 3785,
+            "title": "rankona-master: Neo4j MIG absent from backups, and the restic repo lived on the disk it protects",
+            "state": "open",
+            "created_at": "2026-07-27T16:48:34Z",
+            "updated_at": "2026-07-27T16:48:34Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3785",
+            "project_slug": null
+          },
+          {
+            "number": 3784,
+            "title": "Liberty Capital memo: accuracy remediation before circulation (v3 -> v4)",
+            "state": "open",
+            "created_at": "2026-07-27T16:45:29Z",
+            "updated_at": "2026-07-27T19:22:25Z",
+            "labels": [
+              "legal"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3784",
+            "project_slug": null
+          },
           {
             "number": 3781,
             "title": "Localization workbench: parent-child variation accordion (left column is parents-only; Mr Bear publishes children-only)",
@@ -7941,7 +7990,7 @@
             "title": "Mr Bear/LMF composed EU content: paren shells, title-repeat highlights, ingredient loss, ungrounded copy pass QA onto client-visible board",
             "state": "open",
             "created_at": "2026-07-27T13:35:27Z",
-            "updated_at": "2026-07-27T13:41:16Z",
+            "updated_at": "2026-07-27T15:38:21Z",
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/3780",
@@ -8515,56 +8564,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/pull/3698",
             "project_slug": null
-          },
-          {
-            "number": 3697,
-            "title": "LuvBuddy: pull 1,397 chatbot.com transcripts (blocked on operator session) + better-help gateway (built, pending deploy)",
-            "state": "open",
-            "created_at": "2026-07-13T23:24:01Z",
-            "updated_at": "2026-07-13T23:24:01Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3697",
-            "project_slug": null
-          },
-          {
-            "number": 3696,
-            "title": "Mesh indicator v1.3 \"Trust\" \u2014 rotation, freshness proof, ack/snooze, node-aware recover, tests+registry+push",
-            "state": "open",
-            "created_at": "2026-07-13T21:09:24Z",
-            "updated_at": "2026-07-13T21:09:24Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3696",
-            "project_slug": null
-          },
-          {
-            "number": 3695,
-            "title": "chore(deps): bump transformers from 5.2.0 to 5.5.0",
-            "state": "open",
-            "created_at": "2026-07-13T20:54:36Z",
-            "updated_at": "2026-07-14T19:45:30Z",
-            "labels": [
-              "dependencies",
-              "python:uv"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3695",
-            "project_slug": null
-          },
-          {
-            "number": 3690,
-            "title": "chore(deps): bump transformers from 4.39.2 to 5.5.0 in /forge/musetalk",
-            "state": "open",
-            "created_at": "2026-07-13T18:48:06Z",
-            "updated_at": "2026-07-14T19:45:30Z",
-            "labels": [
-              "dependencies",
-              "python"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3690",
-            "project_slug": null
           }
         ],
         "agent-vox": [
@@ -8589,136 +8588,136 @@
       "ci": {
         "status": "queued",
         "conclusion": null,
-        "name": "Regenerate Compass Data",
-        "created_at": "2026-07-27T15:09:02Z",
-        "head_sha": "256b1f8d"
+        "name": "CI Full",
+        "created_at": "2026-07-27T21:07:07Z",
+        "head_sha": "c3b3621b"
       },
       "ci_recent_runs": [
         {
-          "id": 30278588004,
-          "name": "Regenerate Compass Data",
+          "id": 30305493008,
+          "name": "CI Full",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-07-27T15:09:02Z",
-          "updated_at": "2026-07-27T15:09:02Z",
-          "head_sha": "256b1f8d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30278588004"
+          "created_at": "2026-07-27T21:07:07Z",
+          "updated_at": "2026-07-27T21:07:07Z",
+          "head_sha": "c3b3621b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30305493008"
         },
         {
-          "id": 30278588114,
-          "name": "Generate Unified Dashboard",
-          "status": "in_progress",
-          "conclusion": null,
-          "created_at": "2026-07-27T15:09:02Z",
-          "updated_at": "2026-07-27T15:17:36Z",
-          "head_sha": "256b1f8d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30278588114"
-        },
-        {
-          "id": 30278586354,
+          "id": 30305168020,
           "name": ".github/workflows/security-alert-bridge.yml",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-07-27T15:09:00Z",
-          "updated_at": "2026-07-27T15:09:00Z",
-          "head_sha": "256b1f8d",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30278586354"
+          "created_at": "2026-07-27T21:02:38Z",
+          "updated_at": "2026-07-27T21:02:38Z",
+          "head_sha": "c3b3621b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30305168020"
         },
         {
-          "id": 30278395111,
+          "id": 30305085571,
+          "name": "CI",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-07-27T21:01:27Z",
+          "updated_at": "2026-07-27T21:01:29Z",
+          "head_sha": "ead759c7",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30305085571"
+        },
+        {
+          "id": 30305085570,
           "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-27T15:06:43Z",
-          "updated_at": "2026-07-27T15:17:35Z",
-          "head_sha": "30daec80",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30278395111"
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-07-27T21:01:27Z",
+          "updated_at": "2026-07-27T21:01:27Z",
+          "head_sha": "ead759c7",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30305085570"
         },
         {
-          "id": 30278390932,
-          "name": "Regenerate Compass Data",
+          "id": 30305084515,
+          "name": ".github/workflows/security-alert-bridge.yml",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-07-27T15:06:40Z",
-          "updated_at": "2026-07-27T15:14:50Z",
-          "head_sha": "30daec80",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30278390932"
+          "created_at": "2026-07-27T21:01:26Z",
+          "updated_at": "2026-07-27T21:01:26Z",
+          "head_sha": "ead759c7",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30305084515"
         }
       ],
       "recent_commits": [
         {
-          "sha": "256b1f8d",
-          "message": "fix(git): GH#3779 temp-index-land refreshes shared index for landed paths + regression suite + SOP (Closes #3779)",
+          "sha": "c3b3621b",
+          "message": "micki re-split live: 13 titles differentiated via patch_feed_titles (a1e tool, 175 independent gate PASS), dupe rows 252->237, stale flags cleared - md5 036187f5. Part of #3777",
           "author": "Glasshaus",
-          "date": "2026-07-27T15:08:55Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/256b1f8d2e8616f24e2108e8a698ad566c6e5821"
+          "date": "2026-07-27T21:02:31Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c3b3621bdeafda51ab3cb6f3af21f78c617d1ecd"
         },
         {
-          "sha": "30daec80",
-          "message": "Pin the content-guard discriminator in both directions - Closes #3782, STAGE 0 of arc-c31f61adadc6",
+          "sha": "ead759c7",
+          "message": "fix(rankona): questions doc arithmetic did not close - headers said 210, total said 196",
           "author": "Glasshaus",
-          "date": "2026-07-27T15:06:30Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/30daec80bb0ced1124dc0e20444dba1e306f3df3"
+          "date": "2026-07-27T21:01:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ead759c7fd938dfc10025a45fb007ce800afedf3"
         },
         {
-          "sha": "7bac7370",
-          "message": "docs(rankona): per-client market-coverage matrix - Stage 1C re-pull checklist, with equinavia feed-writer bounds",
+          "sha": "2a732012",
+          "message": "rankona: duplicate-title questions for the client, as plain text",
           "author": "Glasshaus",
-          "date": "2026-07-27T14:59:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7bac737056f7d85a39ce5a93bd50d44baa35d51a"
+          "date": "2026-07-27T20:59:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2a732012e4c027848637bc33c849b4314413892e"
         },
         {
-          "sha": "33559f96",
-          "message": "Fix content-regression guard false positive that blocked ALL localization deploys - Part of #3777",
+          "sha": "7c87d631",
+          "message": "rankona: land the micki re-split as a row-level patch over the shipped feed",
           "author": "Glasshaus",
-          "date": "2026-07-27T14:44:45Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/33559f96dbb47bf62c417ac0383614a0641f8903"
+          "date": "2026-07-27T20:54:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7c87d63165663777fed938537a02b92f6bb59a65"
         },
         {
-          "sha": "ecfd4066",
-          "message": "docs(rankona): listed-field blast radius audit - 8 hardcoded write sites, no measured status, inverse error live on client board",
+          "sha": "41cbbc57",
+          "message": "localization station: selectable children with census child cards",
           "author": "Glasshaus",
-          "date": "2026-07-27T14:35:03Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ecfd40661b548236856845b8663d31255807a8b1"
+          "date": "2026-07-27T20:49:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/41cbbc5796d216e094897fa4133e7fac80780d5b"
         },
         {
-          "sha": "f70b082e",
-          "message": "rankona localization: capture operator-approved shape (model vs acceptable) + parent-child accordion",
+          "sha": "07797299",
+          "message": "portal: drop legacy mr-bear client block (197 rows all subsumed by mr-bear-family, 0 keyword loss, passthrough proven) per operator one-brand ruling - md5 976e5120",
           "author": "Glasshaus",
-          "date": "2026-07-27T14:24:10Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f70b082e53ed35140ac8f0a712726a62021cde06"
+          "date": "2026-07-27T20:04:35Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/07797299788da0251763e4cae028641f4dfaeceb"
         },
         {
-          "sha": "6a7643d8",
-          "message": "Carry seller SKU into :Product, unblocking the internal-SKU to own-ASIN join - Part of #3777",
+          "sha": "84347a5d",
+          "message": "localization station: true child nesting + operator wording fix",
           "author": "Glasshaus",
-          "date": "2026-07-27T14:09:02Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/6a7643d8d5f66835239b89a1874b4f2adf91b298"
+          "date": "2026-07-27T19:57:49Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/84347a5d4fd09aa500e8cb1b9eee572066b69730"
         },
         {
-          "sha": "3ed885a6",
-          "message": "fix(rankona): GH#3780 collapse paren shells, block title-repeat/grounding-loss/ungrounded copy",
-          "author": "covaultxyz",
-          "date": "2026-07-27T14:07:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3ed885a6f00b9529ce0a5b88e23bfdbb1f43aacc"
+          "sha": "285405b4",
+          "message": "micki live on localization portal: overlay v2 vs live feed (roster-safe), 77 rows qa-flagged (68 dupe-title + 9 identity) - md5 7831d774",
+          "author": "Glasshaus",
+          "date": "2026-07-27T19:43:29Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/285405b407a4b942fc78d82345e906af2f18efef"
         },
         {
-          "sha": "c1276edf",
-          "message": "Client identity becomes config: client_profiles.yaml + client_profile.py loader - Part of #3777",
+          "sha": "c87856b5",
+          "message": "Liberty memo v4.3: two-stage multi-product revenue narrative",
           "author": "Glasshaus",
-          "date": "2026-07-27T13:54:27Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c1276edfa3c0751933d63f145b5ac786b7a52a85"
+          "date": "2026-07-27T19:21:10Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c87856b5d58bef958b8944175f12e8b4591c2f93"
         },
         {
-          "sha": "b72efb30",
-          "message": "Amazon SP-API response v2: drop OAuth claim, real reason for public status (>10 refresh tokens), strip all finance/VAT scope (rankona)",
+          "sha": "880d9001",
+          "message": "Liberty memo v4.2: visual layer, drop the v4.1 text restoration",
           "author": "Glasshaus",
-          "date": "2026-07-27T13:38:31Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/b72efb30be5f6dff0cceb2a436c16021f0dba008"
+          "date": "2026-07-27T17:24:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/880d9001e34695271e6e6dbd57e4bfd927320606"
         }
       ],
       "github_project": {
-        "updated_at": "2026-07-27T15:18:32.839640+00:00",
+        "updated_at": "2026-07-27T21:13:42.731352+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8920,7 +8919,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "members": [
         {
           "id": "alex",
@@ -8993,7 +8992,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "projects": [
         {
           "project": {
@@ -9423,7 +9422,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9490,7 +9489,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9587,7 +9586,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -11489,7 +11488,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -11515,7 +11514,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -11852,7 +11851,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -11945,7 +11944,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -12008,7 +12007,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -12105,7 +12104,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -12167,7 +12166,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -12227,7 +12226,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12282,7 +12281,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12377,7 +12376,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12419,7 +12418,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -12546,7 +12545,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -12689,7 +12688,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -12862,7 +12861,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -13379,7 +13378,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-07-27T15:18:34.742511+00:00",
+      "updated_at": "2026-07-27T21:13:45.105406+00:00",
       "sops": [
         {
           "name": "Local Research Ingestion",
@@ -13440,13 +13439,19 @@
         {
           "name": "Git Shared Tree Sop",
           "file": "docs/runbooks/git-shared-tree-sop.md",
-          "size": 16956,
+          "size": 18587,
           "modified": "2026-07-27"
         },
         {
           "name": "Latticefire Deployment Playbook",
           "file": "docs/runbooks/latticefire-deployment-playbook.md",
           "size": 49888,
+          "modified": "2026-07-27"
+        },
+        {
+          "name": "Mig Crystallization",
+          "file": "docs/runbooks/mig-crystallization.md",
+          "size": 23575,
           "modified": "2026-07-27"
         },
         {
@@ -13563,13 +13568,13 @@
         }
       ],
       "total_sops": 2,
-      "total_runbooks": 12,
+      "total_runbooks": 13,
       "total_plans": 13,
       "total_protocols": 2,
-      "total_docs": 29
+      "total_docs": 30
     },
     "deals": {
-      "updated_at": "2026-07-27T15:18:34.742748+00:00",
+      "updated_at": "2026-07-27T21:13:45.105645+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -13811,7 +13816,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-07-27T15:18:34.215229+00:00",
+      "updated_at": "2026-07-27T21:13:44.347791+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -86919,7 +86924,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-07-27T15:18:35.227162+00:00",
+      "updated_at": "2026-07-27T21:13:45.383976+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -94561,7 +94566,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-07-27T15:18:35.311161+00:00",
+      "updated_at": "2026-07-27T21:13:45.473551+00:00",
       "items": [
         {
           "type": "blocked",
@@ -94756,67 +94761,91 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-07-27T15:18:35.311303+00:00",
+      "updated_at": "2026-07-27T21:13:45.473675+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-07-27T15:08:55Z",
-          "title": "fix(git): GH#3779 temp-index-land refreshes shared index for landed paths + regr",
+          "date": "2026-07-27T21:02:31Z",
+          "title": "micki re-split live: 13 titles differentiated via patch_feed_titles (a1e tool, 1",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T15:06:30Z",
-          "title": "Pin the content-guard discriminator in both directions - Closes #3782, STAGE 0 o",
+          "date": "2026-07-27T21:01:19Z",
+          "title": "fix(rankona): questions doc arithmetic did not close - headers said 210, total s",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:59:48Z",
-          "title": "docs(rankona): per-client market-coverage matrix - Stage 1C re-pull checklist, w",
+          "date": "2026-07-27T20:59:32Z",
+          "title": "rankona: duplicate-title questions for the client, as plain text",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:44:45Z",
-          "title": "Fix content-regression guard false positive that blocked ALL localization deploy",
+          "date": "2026-07-27T20:54:53Z",
+          "title": "rankona: land the micki re-split as a row-level patch over the shipped feed",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:35:03Z",
-          "title": "docs(rankona): listed-field blast radius audit - 8 hardcoded write sites, no mea",
+          "date": "2026-07-27T20:49:49Z",
+          "title": "localization station: selectable children with census child cards",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:24:10Z",
-          "title": "rankona localization: capture operator-approved shape (model vs acceptable) + pa",
+          "date": "2026-07-27T20:04:35Z",
+          "title": "portal: drop legacy mr-bear client block (197 rows all subsumed by mr-bear-famil",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:09:02Z",
-          "title": "Carry seller SKU into :Product, unblocking the internal-SKU to own-ASIN join - P",
+          "date": "2026-07-27T19:57:49Z",
+          "title": "localization station: true child nesting + operator wording fix",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T14:07:48Z",
-          "title": "fix(rankona): GH#3780 collapse paren shells, block title-repeat/grounding-loss/u",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-27T13:54:27Z",
-          "title": "Client identity becomes config: client_profiles.yaml + client_profile.py loader ",
+          "date": "2026-07-27T19:43:29Z",
+          "title": "micki live on localization portal: overlay v2 vs live feed (roster-safe), 77 row",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-27T13:38:31Z",
-          "title": "Amazon SP-API response v2: drop OAuth claim, real reason for public status (>10 ",
+          "date": "2026-07-27T19:21:10Z",
+          "title": "Liberty memo v4.3: two-stage multi-product revenue narrative",
           "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-27T17:24:23Z",
+          "title": "Liberty memo v4.2: visual layer, drop the v4.1 text restoration",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "issue",
+          "date": "2026-07-27",
+          "title": "#3787 Commit drift detected across mesh nodes",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-07-27",
+          "title": "#3786 lattice Stage 1 can pass its gate on README-level reading: a",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-07-27",
+          "title": "#3785 rankona-master: Neo4j MIG absent from backups, and the resti",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-07-27",
+          "title": "#3784 Liberty Capital memo: accuracy remediation before circulatio",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -94852,30 +94881,6 @@
           "type": "issue",
           "date": "2026-07-26",
           "title": "#3771 chore(deps): bump uuid and @azure/msal-node in /extensions/m",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-26",
-          "title": "#3770 chore(deps-dev): bump qs from 6.15.0 to 6.15.3 in /extension",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-26",
-          "title": "#3769 chore(deps): bump qs and express in /voice-demo",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-26",
-          "title": "#3767 chore(deps): bump vite from 6.4.2 to 8.1.5 in /alan/amazon/a",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-26",
-          "title": "#3766 chore(deps): bump tensorflow from 2.12.0 to 2.12.1 in /forge",
           "detail": "open"
         }
       ],
