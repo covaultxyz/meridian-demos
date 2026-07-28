@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T09:18:25.229462+00:00",
+  "generated_at": "2026-07-28T09:30:09.636380+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-07-28T09:18:22.162896+00:00",
+      "updated_at": "2026-07-28T09:30:05.750476+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -6607,7 +6607,7 @@
           "node": "gateway8",
           "release": "2026-06-26",
           "commit": "n/a",
-          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. ACTION: re-home borg backups for racknerd-9165277 + racknerd-e3b5f73 to big-white (already prime's borg target, 2TB /data) or bitler-mini-1 (live M1 mini); prime's Neo4j already covered by big-white. Deploy/parity scripts self-skip on unreachability. Archive assets retained, not deleted."
+          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. RE-HOME COMPLETE - no action outstanding (witnessed live 2026-07-27, delphi): 9165277 + e3b5f73 back up daily to **bitler-mini-1** via `meridian-borg-bitler@<node>.timer`, both `Result=success` (9165277 03:38 EDT, e3b5f73 04:16 UTC, 48MB captured: /etc/meridian + /var/backups/meridian incl. TwentyCRM, Cal.com and agentvox dumps). Prime backs up to big-white. The prior \"ACTION: re-home ...\" text here was STALE and sent two sessions chasing a month-unbacked risk that did not exist - do not reinstate it without witnessing `systemctl list-timers"
         },
         {
           "node": "thinkpadgen9",
@@ -7062,7 +7062,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2661 hours old"
+        "_stale_warning": "Data is 2662 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7197,12 +7197,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-07-28T09:18:22.171600+00:00",
+        "generated_at": "2026-07-28T09:30:05.782758+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-07-28T09:18:24.925996+00:00",
+      "updated_at": "2026-07-28T09:30:09.269744+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8547,10 +8547,50 @@
         "status": "completed",
         "conclusion": "skipped",
         "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-07-28T08:52:59Z",
-        "head_sha": "7b91d387"
+        "created_at": "2026-07-28T09:18:23Z",
+        "head_sha": "af4703f3"
       },
       "ci_recent_runs": [
+        {
+          "id": 30346026116,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-07-28T09:18:23Z",
+          "updated_at": "2026-07-28T09:18:24Z",
+          "head_sha": "af4703f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026116"
+        },
+        {
+          "id": 30346025976,
+          "name": "Generate Unified Dashboard",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-07-28T09:18:23Z",
+          "updated_at": "2026-07-28T09:21:16Z",
+          "head_sha": "af4703f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346025976"
+        },
+        {
+          "id": 30346026161,
+          "name": "Regenerate Compass Data",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-07-28T09:18:23Z",
+          "updated_at": "2026-07-28T09:24:16Z",
+          "head_sha": "af4703f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026161"
+        },
+        {
+          "id": 30346026140,
+          "name": "Generate Unified Dashboard",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-07-28T09:18:23Z",
+          "updated_at": "2026-07-28T09:27:07Z",
+          "head_sha": "af4703f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026140"
+        },
         {
           "id": 30344202557,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
@@ -8560,49 +8600,16 @@
           "updated_at": "2026-07-28T08:53:08Z",
           "head_sha": "7b91d387",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/30344202557"
-        },
-        {
-          "id": 30344200217,
-          "name": "Regenerate Compass Data",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T08:52:57Z",
-          "updated_at": "2026-07-28T09:02:20Z",
-          "head_sha": "7b91d387",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30344200217"
-        },
-        {
-          "id": 30344200207,
-          "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T08:52:57Z",
-          "updated_at": "2026-07-28T08:59:20Z",
-          "head_sha": "7b91d387",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30344200207"
-        },
-        {
-          "id": 30344195200,
-          "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T08:52:53Z",
-          "updated_at": "2026-07-28T08:56:35Z",
-          "head_sha": "7b91d387",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30344195200"
-        },
-        {
-          "id": 30343329269,
-          "name": "Regenerate Compass Data",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T08:40:22Z",
-          "updated_at": "2026-07-28T08:51:01Z",
-          "head_sha": "79da0c45",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30343329269"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "c8a7adeb",
+          "message": "chore: regenerate compass data [2026-07-28T09:24:09Z]",
+          "author": "meridian-bot",
+          "date": "2026-07-28T09:24:09Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c8a7adeb1f4f1cdedcc0fb8b68cb733cd5253738"
+        },
         {
           "sha": "af4703f3",
           "message": "chore: regenerate compass data [2026-07-28T09:02:14Z]",
@@ -8665,17 +8672,10 @@
           "author": "Glasshaus",
           "date": "2026-07-28T01:46:48Z",
           "url": "https://github.com/covaultxyz/meridian/commit/043eae9f3df2e8bad06cfb9f356e294ed5c6bd3d"
-        },
-        {
-          "sha": "0ea3eecc",
-          "message": "rankona: the 93 agency families measured against the AGENCY DOCUMENTS, all five fields",
-          "author": "Glasshaus",
-          "date": "2026-07-28T01:46:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0ea3eecc834814ab1736eb6dd6fb789fde1684d3"
         }
       ],
       "github_project": {
-        "updated_at": "2026-07-28T09:18:23.062448+00:00",
+        "updated_at": "2026-07-28T09:30:07.146855+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8877,7 +8877,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "members": [
         {
           "id": "alex",
@@ -8950,7 +8950,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "projects": [
         {
           "project": {
@@ -9380,7 +9380,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9447,7 +9447,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9544,7 +9544,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13336,7 +13336,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-07-28T09:18:25.095649+00:00",
+      "updated_at": "2026-07-28T09:30:09.475654+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -13651,24 +13651,6 @@
           "file": "docs/runbooks/2026-07-21-thinkpadgen9-dual-tailnet-TODO.md",
           "size": 13387,
           "modified": "2026-07-22"
-        },
-        {
-          "name": "2026 07 27 Delphi Howto Guide",
-          "file": "docs/runbooks/2026-07-27-delphi-howto-guide.md",
-          "size": 8329,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "2026 07 27 Delphi Remaining Work",
-          "file": "docs/runbooks/2026-07-27-delphi-remaining-work.md",
-          "size": 10698,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "2026 07 27 Delphi Session Completed",
-          "file": "docs/runbooks/2026-07-27-delphi-session-completed.md",
-          "size": 11578,
-          "modified": "2026-07-28"
         },
         {
           "name": "7311420 Broken Current Telegram Crash",
@@ -14291,7 +14273,7 @@
         {
           "name": "Git Shared Tree Sop",
           "file": "docs/runbooks/git-shared-tree-sop.md",
-          "size": 13989,
+          "size": 18587,
           "modified": "2026-07-28"
         },
         {
@@ -16550,13 +16532,13 @@
         }
       ],
       "total_sops": 17,
-      "total_runbooks": 298,
+      "total_runbooks": 295,
       "total_plans": 212,
       "total_protocols": 7,
-      "total_docs": 534
+      "total_docs": 531
     },
     "deals": {
-      "updated_at": "2026-07-28T09:18:25.095799+00:00",
+      "updated_at": "2026-07-28T09:30:09.475854+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -16798,7 +16780,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-07-28T09:18:24.926013+00:00",
+      "updated_at": "2026-07-28T09:30:09.269770+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -89906,7 +89888,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-07-28T09:18:25.205731+00:00",
+      "updated_at": "2026-07-28T09:30:09.609834+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -97548,7 +97530,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-07-28T09:18:25.229404+00:00",
+      "updated_at": "2026-07-28T09:30:09.636308+00:00",
       "items": [
         {
           "type": "blocked",
@@ -97743,8 +97725,14 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-07-28T09:18:25.229445+00:00",
+      "updated_at": "2026-07-28T09:30:09.636360+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-07-28T09:24:09Z",
+          "title": "chore: regenerate compass data [2026-07-28T09:24:09Z]",
+          "detail": "meridian-bot"
+        },
         {
           "type": "commit",
           "date": "2026-07-28T09:02:14Z",
@@ -97791,12 +97779,6 @@
           "type": "commit",
           "date": "2026-07-28T01:46:48Z",
           "title": "Jawad reply v4 - the accurate one, built from the live two-field readback - Part",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T01:46:18Z",
-          "title": "rankona: the 93 agency families measured against the AGENCY DOCUMENTS, all five ",
           "detail": "Glasshaus"
         },
         {
