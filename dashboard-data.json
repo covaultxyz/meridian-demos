@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T16:49:50.898777+00:00",
+  "generated_at": "2026-07-28T20:28:53.543486+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-07-28T16:49:47.231795+00:00",
+      "updated_at": "2026-07-28T20:28:48.643535+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -6566,8 +6566,8 @@
       ]
     },
     "operations": {
-      "updated_at": "2026-07-09 \u2014 VoiceBox v0.5.0 deployed to bitler-mini-1 (Tailscale 100.77.86.23):17493. jamiepine/voicebox, Docker + LaunchDaemon, CPU-only, MCP not yet wired. Node entry added.",
-      "source": "boot-state.md",
+      "updated_at": "2026-07-28 07:41:20 -0400",
+      "source": "boot-state-stable.md",
       "current_phase": {
         "number": 2,
         "status": "ACTIVE"
@@ -6577,7 +6577,7 @@
           "node": "racknerd-9165277",
           "release": "2026-07-20-210555",
           "commit": "06d17bbf6",
-          "status": "\u2705 active \u2014 sandman + martin (active) + atlas (parked/masked) + pulse-consumer + telegram bots + TwentyCRM + Cal.com + remote-mcp + shepherd-bot + voice-gateway (Kokoro-82M TTS live), replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
+          "status": "\u2705 active \u2014 **sandman + martin + elite-thinker** (active daemons; C3 call GH#3545) + pulse-consumer + telegram bots + TwentyCRM + Cal.com + remote-mcp + shepherd-bot + voice-gateway (Kokoro-82M TTS live), replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
         },
         {
           "node": "racknerd-e3b5f73",
@@ -6607,7 +6607,7 @@
           "node": "gateway8",
           "release": "2026-06-26",
           "commit": "n/a",
-          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. ACTION: re-home borg backups for racknerd-9165277 + racknerd-e3b5f73 to big-white (already prime's borg target, 2TB /data) or bitler-mini-1 (live M1 mini); prime's Neo4j already covered by big-white. Deploy/parity scripts self-skip on unreachability. Archive assets retained, not deleted."
+          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. RE-HOME COMPLETE - no action outstanding (witnessed live 2026-07-27, delphi): 9165277 + e3b5f73 back up daily to **bitler-mini-1** via `meridian-borg-bitler@<node>.timer`, both `Result=success` (9165277 03:38 EDT, e3b5f73 04:16 UTC, 48MB captured: /etc/meridian + /var/backups/meridian incl. TwentyCRM, Cal.com and agentvox dumps). Prime backs up to big-white. The prior \"ACTION: re-home ...\" text here was STALE and sent two sessions chasing a month-unbacked risk that did not exist - do not reinstate it without witnessing `systemctl list-timers"
         },
         {
           "node": "thinkpadgen9",
@@ -6619,7 +6619,7 @@
           "node": "racknerd-e583987",
           "release": "2026-07-21-010436",
           "commit": "06d17bbf6",
-          "status": "\u2705 active \u2014 **sensei + talon + evelyn + sterling + atlas + hanratty** enabled+active (2026-06-07 masking REVERSED per C1 GH#3545; witnessed 2026-07-05, re-witnessed by sandman 2026-07-07 \u2014 matches canonical boot-state-stable.md); avery + martin + elite-thinker masked; deakins parked. Monitoring stack (Prometheus/Grafana/Loki) + gateways (alert-bridge, compass-ask, custom-gpt-gateway, ws, voice, workplan-consumer) active. Strasbourg 8GB KVM, Ubuntu 24.04, Tailscale 100.88.179.96"
+          "status": "\u2705 active \u2014 **sensei + talon + evelyn + sterling + atlas + hanratty** (2026-06-07 masking reversed; witnessed enabled+running+heartbeating 2026-07-05, C1 call GH#3545); avery + martin masked (martin active on 9165277); elite-thinker masked here (home: 9165277); monitoring stack (Prometheus/Grafana/Loki) + gateways (alert-bridge, compass-ask, custom-gpt-gateway, ws, voice, workplan-consumer) active; Strasbourg 8GB KVM, Ubuntu 24.04, Tailscale 100.88.179.96"
         },
         {
           "node": "bacherman-caselaw",
@@ -6635,9 +6635,15 @@
         },
         {
           "node": "bitler-mini-1",
-          "release": "2026-07-09",
+          "release": "n/a",
           "commit": "n/a",
-          "status": "\u2705 active \u2014 M1 Mac Mini at Bitler residence, 16GB RAM, 249Gi free disk, macOS 14.4.1, Docker 29.3.1, Tailscale 100.77.86.23. Services: forge-worker, Hermes dashboard (:9119), VoiceBox v0.5.0 (:17493), Postiz, Temporal stack, Firecrawl"
+          "status": "\u2705 active \u2014 M1 Mac Mini at Bitler residence, 16GB RAM, 249Gi free disk, macOS 14.4.1, Docker 29.3.1, Python 3.14.6, Tailscale 100.77.86.23. Services: forge-worker, Hermes dashboard, VoiceBox v0.5.0 (:17493), Postiz, Firecrawl"
+        },
+        {
+          "node": "gothamfilm",
+          "release": "n/a",
+          "commit": "n/a",
+          "status": "\u2705 active \u2014 RTX 4070 12GB GPU node for ComfyUI (systemd comfyui.service, ComfyUI 0.27.0, :8188); ex-Windows box remote-converted to Ubuntu 24.04 on 2026-07-14; i7-9700K 8c/8t, 16GB RAM (FLUX.2-Klein-9b 18GB is RAM-bound \u2014 needs RAM upgrade; SDXL + FLUX.1-dev-fp8 OK), 916GB disk; nvidia-driver-595.71.05 + torch 2.6.0+cu124 (cuda verified); ~285GB models + custom_nodes synced from MSI via rclone-sftp; Tailscale 100.82.211.114 (tailnet gothamfilm-1, collectiveintelligencedao@), Tailscale SSH (backgrounded procs die on session close \u2192 use systemd)"
         }
       ],
       "active_sessions": [],
@@ -6703,7 +6709,7 @@
         {
           "node": "racknerd-e583987",
           "daemon": "sensei",
-          "systemd_unit": "meridian-daemon@sensei (MASKED 2026-06-07)"
+          "systemd_unit": "meridian-daemon@sensei"
         },
         {
           "node": "audreys-imac",
@@ -6718,17 +6724,12 @@
         {
           "node": "racknerd-e583987",
           "daemon": "avery",
-          "systemd_unit": "meridian-daemon@avery (MASKED 2026-06-07)"
+          "systemd_unit": "meridian-daemon@avery (masked 2026-06-07, still masked \u2014 C1 GH#3545)"
         },
         {
           "node": "racknerd-e583987",
           "daemon": "evelyn",
-          "systemd_unit": "meridian-daemon@evelyn (MASKED 2026-06-07)"
-        },
-        {
-          "node": "racknerd-e583987",
-          "daemon": "talon",
-          "systemd_unit": "meridian-daemon@talon (MASKED 2026-06-07)"
+          "systemd_unit": "meridian-daemon@evelyn"
         },
         {
           "node": "racknerd-9165277",
@@ -6738,12 +6739,22 @@
         {
           "node": "racknerd-9165277",
           "daemon": "martin",
-          "systemd_unit": "meridian-daemon@martin (migrated from e583987 2026-06-07)"
+          "systemd_unit": "meridian-daemon@martin (relocated from e583987, 2026-06-07)"
         },
         {
           "node": "racknerd-9165277",
+          "daemon": "elite-thinker",
+          "systemd_unit": "meridian-daemon@elite-thinker (declared 2026-07-05, C3 GH#3545)"
+        },
+        {
+          "node": "racknerd-e583987",
           "daemon": "atlas",
-          "systemd_unit": "meridian-daemon@atlas (MASKED 2026-06-07 \u2014 parked, support svcs on e583987 ready for on-demand reactivation)"
+          "systemd_unit": "meridian-daemon@atlas (relocated from 9165277, 2026-06-07)"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "talon",
+          "systemd_unit": "meridian-daemon@talon"
         },
         {
           "node": "racknerd-9165277",
@@ -6757,23 +6768,13 @@
         },
         {
           "node": "racknerd-9165277",
-          "daemon": "telegram-martin",
-          "systemd_unit": "meridian-telegram@martin (systemd, active 2026-06-07)"
+          "daemon": "telegram-atlas",
+          "systemd_unit": "meridian-telegram@atlas (systemd)"
         },
         {
           "node": "racknerd-9165277",
           "daemon": "telegram-sandman",
           "systemd_unit": "meridian-telegram@sandman (systemd)"
-        },
-        {
-          "node": "racknerd-e583987",
-          "daemon": "telegram-atlas",
-          "systemd_unit": "meridian-telegram@atlas (systemd, active \u2014 kept on e583987 for on-demand atlas reactivation)"
-        },
-        {
-          "node": "racknerd-e583987",
-          "daemon": "req-consumer-atlas",
-          "systemd_unit": "meridian-req-consumer@atlas (systemd, active \u2014 kept on e583987 for on-demand atlas reactivation)"
         },
         {
           "node": "racknerd-9165277",
@@ -7062,7 +7063,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2669 hours old"
+        "_stale_warning": "Data is 2672 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7197,15 +7198,16 @@
             "online": true
           }
         ],
-        "generated_at": "2026-07-28T16:49:47.239308+00:00",
+        "generated_at": "2026-07-28T20:28:49.344751+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-07-28T16:49:50.475535+00:00",
+      "updated_at": "2026-07-28T20:28:53.174900+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "legal": 1,
           "bug": 5,
           "infrastructure": 4,
           "enhancement": 3,
@@ -7213,19 +7215,32 @@
           "ops": 1,
           "auto-created": 1,
           "daemon/forge": 1,
-          "dependencies": 23,
-          "javascript": 17,
+          "dependencies": 22,
+          "javascript": 16,
           "python": 1,
           "python:uv": 5
         }
       },
       "recent_issues": [
         {
+          "number": 3808,
+          "title": "Innov8 lender diligence response: bank items 61-88 (Arizona Program 2)",
+          "state": "open",
+          "created_at": "2026-07-28T17:12:11Z",
+          "updated_at": "2026-07-28T17:12:11Z",
+          "labels": [
+            "legal"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3808",
+          "project_slug": null
+        },
+        {
           "number": 3807,
           "title": "Tracking instruments: stall alert is edge-triggered at 2h; ops board renders archived Feb-2026 OKRs as current",
           "state": "open",
           "created_at": "2026-07-28T16:47:11Z",
-          "updated_at": "2026-07-28T16:47:11Z",
+          "updated_at": "2026-07-28T18:29:33Z",
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/3807",
@@ -7854,30 +7869,29 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/3735",
           "project_slug": null
-        },
-        {
-          "number": 3734,
-          "title": "chore(deps): bump body-parser from 1.20.4 to 1.20.6 in /voice-demo",
-          "state": "open",
-          "created_at": "2026-07-21T14:19:41Z",
-          "updated_at": "2026-07-21T14:19:42Z",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3734",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
           {
+            "number": 3808,
+            "title": "Innov8 lender diligence response: bank items 61-88 (Arizona Program 2)",
+            "state": "open",
+            "created_at": "2026-07-28T17:12:11Z",
+            "updated_at": "2026-07-28T17:12:11Z",
+            "labels": [
+              "legal"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3808",
+            "project_slug": null
+          },
+          {
             "number": 3807,
             "title": "Tracking instruments: stall alert is edge-triggered at 2h; ops board renders archived Feb-2026 OKRs as current",
             "state": "open",
             "created_at": "2026-07-28T16:47:11Z",
-            "updated_at": "2026-07-28T16:47:11Z",
+            "updated_at": "2026-07-28T18:29:33Z",
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/3807",
@@ -8453,20 +8467,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/3735",
             "project_slug": null
-          },
-          {
-            "number": 3734,
-            "title": "chore(deps): bump body-parser from 1.20.4 to 1.20.6 in /voice-demo",
-            "state": "open",
-            "created_at": "2026-07-21T14:19:41Z",
-            "updated_at": "2026-07-21T14:19:42Z",
-            "labels": [
-              "dependencies",
-              "javascript"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3734",
-            "project_slug": null
           }
         ],
         "openclaw": [
@@ -8528,136 +8528,136 @@
       "ci": {
         "status": "queued",
         "conclusion": null,
-        "name": "CI",
-        "created_at": "2026-07-28T16:49:15Z",
-        "head_sha": "82b48bc4"
+        "name": "CI Full",
+        "created_at": "2026-07-28T20:14:11Z",
+        "head_sha": "d1aa226b"
       },
       "ci_recent_runs": [
         {
-          "id": 30380035727,
-          "name": "CI",
+          "id": 30395445291,
+          "name": "CI Full",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-07-28T16:49:15Z",
-          "updated_at": "2026-07-28T16:49:15Z",
-          "head_sha": "82b48bc4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30380035727"
+          "created_at": "2026-07-28T20:14:11Z",
+          "updated_at": "2026-07-28T20:14:11Z",
+          "head_sha": "d1aa226b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30395445291"
         },
         {
-          "id": 30380034557,
-          "name": ".github/workflows/security-alert-bridge.yml",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T16:49:14Z",
-          "updated_at": "2026-07-28T16:49:14Z",
-          "head_sha": "82b48bc4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30380034557"
-        },
-        {
-          "id": 30379973555,
+          "id": 30392746682,
           "name": "Generate Unified Dashboard",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-07-28T16:48:26Z",
-          "updated_at": "2026-07-28T16:48:26Z",
-          "head_sha": "ae40f80a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30379973555"
+          "created_at": "2026-07-28T19:37:26Z",
+          "updated_at": "2026-07-28T19:37:26Z",
+          "head_sha": "d1aa226b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30392746682"
         },
         {
-          "id": 30379971829,
+          "id": 30392710111,
           "name": ".github/workflows/security-alert-bridge.yml",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-07-28T16:48:25Z",
-          "updated_at": "2026-07-28T16:48:25Z",
-          "head_sha": "ae40f80a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30379971829"
+          "created_at": "2026-07-28T19:36:55Z",
+          "updated_at": "2026-07-28T19:36:55Z",
+          "head_sha": "d1aa226b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30392710111"
         },
         {
-          "id": 30379914701,
-          "name": ".github/workflows/security-alert-bridge.yml",
+          "id": 30392095722,
+          "name": "Generate Unified Dashboard",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-07-28T19:28:32Z",
+          "updated_at": "2026-07-28T19:28:32Z",
+          "head_sha": "1d6d35d8",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30392095722"
+        },
+        {
+          "id": 30392095851,
+          "name": "CI",
           "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T16:47:40Z",
-          "updated_at": "2026-07-28T16:47:40Z",
-          "head_sha": "a71a9d95",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30379914701"
+          "conclusion": "success",
+          "created_at": "2026-07-28T19:28:32Z",
+          "updated_at": "2026-07-28T19:35:46Z",
+          "head_sha": "1d6d35d8",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30392095851"
         }
       ],
       "recent_commits": [
         {
-          "sha": "82b48bc4",
-          "message": "Tracking instruments: level-trigger the stall alert, filter archived OKRs",
+          "sha": "d1aa226b",
+          "message": "fix(rankona): move localization search to top of list column, flatfiles-parity",
+          "author": "Glasshaus",
+          "date": "2026-07-28T19:36:26Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/d1aa226b587900bd440855b1306b83490446898f"
+        },
+        {
+          "sha": "1d6d35d8",
+          "message": "rankona micki: keyword TABLES for all 7 launched products (research_exports built from client docx Search-Volume tables) + builder carry-forward so rebuilds never drop them; Part of #667",
+          "author": "Glasshaus",
+          "date": "2026-07-28T19:28:25Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/1d6d35d87418db24cdbed8a7ab40438718001933"
+        },
+        {
+          "sha": "48ad9dfe",
+          "message": "universal docx keyword extractor (in-doc ASIN join, legend-skip, multi-section) + lmf 582 kws incl 6 doc-target market rows for census-gap families - Part of #667",
+          "author": "Glasshaus",
+          "date": "2026-07-28T19:06:59Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/48ad9dfebace65df084549dc793c81696886137b"
+        },
+        {
+          "sha": "f492f3c3",
+          "message": "light-my-fire docx keywords: spork stainless/titanium/cocoacream pools + backend terms token-joined to live titles - Part of #667",
+          "author": "Glasshaus",
+          "date": "2026-07-28T18:49:25Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f492f3c3bf4d205ebc980a2a0184269d31c44a21"
+        },
+        {
+          "sha": "681fdd58",
+          "message": "equinavia RM docx keywords live: 79 filled + 6 enriched from 89 client-final docs incl B095FMDF9C top revenue target - Part of #667",
+          "author": "Glasshaus",
+          "date": "2026-07-28T18:42:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/681fdd588bfec4cb00a29c1e7baa61701182d1f4"
+        },
+        {
+          "sha": "19657eaf",
+          "message": "per-item research: exports attach to their listing card, unlisted products get one bundle each, mega research list removed - Part of #667",
+          "author": "Glasshaus",
+          "date": "2026-07-28T18:31:59Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/19657eafaa501a1a2c36166adea603e1e267c928"
+        },
+        {
+          "sha": "9590fae4",
+          "message": "wifimap/bg: honesty note in header + tracked harvester script (66->completeness pass)",
           "author": "covaultxyz",
-          "date": "2026-07-28T16:47:28Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/82b48bc400b07e616b9f9a7332efee3fc8c616b0"
+          "date": "2026-07-28T18:24:07Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/9590fae4ae513eb131f287739587757dc170c4ec"
         },
         {
-          "sha": "ae40f80a",
-          "message": "Restore 5 portal-concept files deleted by an unrelated commit",
-          "author": "covaultxyz",
-          "date": "2026-07-28T16:47:59Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ae40f80a5c3e0c10dcc245f1c242b9fc4247d3c6"
-        },
-        {
-          "sha": "a71a9d95",
-          "message": "wifimap/bg: re-land enriched atlas dropped from origin/main tree by cross-session churn (3rd add-sweep casualty today; live CF page was unbacked)",
-          "author": "covaultxyz",
-          "date": "2026-07-28T16:47:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a71a9d952be374c87c16f35eb3b29230374266c8"
-        },
-        {
-          "sha": "cde1dc99",
-          "message": "Drop resurrected legacy mr-bear block from live feed again - graph canon migration #668 is now urgent (Part of #668)",
+          "sha": "5e984bb8",
+          "message": "micki docx keyword tables + backend terms parsed from all 21 client copy docs, joined by seller SKU to 7 live families, 7 unlisted to research box - Part of #667",
           "author": "Glasshaus",
-          "date": "2026-07-28T16:37:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cde1dc993b5e08c7964e9d7fea6cba5667a8c3c9"
+          "date": "2026-07-28T18:15:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5e984bb82569f3e6d17771bd5f64976763f2a28d"
         },
         {
-          "sha": "7e7634bf",
-          "message": "Keyword list always visible: open-by-default pool table + explicit no-pool state (Part of #623 #667)",
+          "sha": "bfdf0257",
+          "message": "localization: research box always-visible set names + empty cards point to it + Hello Kitty brand KW file parsed (missed by both passes) - Part of #667",
           "author": "Glasshaus",
-          "date": "2026-07-28T16:30:15Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7e7634bf1e14d157d1f23ecfee08060a9901ee51"
+          "date": "2026-07-28T18:06:32Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/bfdf025703f3fdf07ebf10f859ad4865b45343ef"
         },
         {
-          "sha": "72442720",
-          "message": "fix(config): repair sp_api_clients.yaml - my micki seller_id insert split a marketplace list",
+          "sha": "c16c977b",
+          "message": "localization: surface ALL parsed client keyword research - 42 held pools (35 cerebro exports + 7 SELECTION holds) render on portal for manual triangulation - Part of #667",
           "author": "Glasshaus",
-          "date": "2026-07-28T16:21:52Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/72442720694d88703b53cf6bb0a934623811c3d4"
-        },
-        {
-          "sha": "1125f82c",
-          "message": "Keyword chips: distinguish pool-exists-unused from no-pool (operator confusion fix, Part of #623 #667)",
-          "author": "Glasshaus",
-          "date": "2026-07-28T16:18:35Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/1125f82cfab5e1d8f1267bf8832874f5ab78129f"
-        },
-        {
-          "sha": "ff9a21b1",
-          "message": "Fawad reply: agency93 reconciliation, all 4 points verified live",
-          "author": "Glasshaus",
-          "date": "2026-07-28T16:04:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ff9a21b198f9cc32bf8ca5e5ecf2662fd3887aec"
-        },
-        {
-          "sha": "d8f44f20",
-          "message": "Micki client-doc keywords: 14 board rows live + 10 KeywordSet graph nodes + 7 unlisted-product pools held (Part of #667)",
-          "author": "Glasshaus",
-          "date": "2026-07-28T15:58:33Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d8f44f20997c3b9e1d5b95e549ab721f452a7d59"
-        },
-        {
-          "sha": "2c3d47a5",
-          "message": "Cinematic cut of the FULL B2B tab, all 21 cards",
-          "author": "covaultxyz",
-          "date": "2026-07-28T15:54:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/2c3d47a53c793223a3e6173c44da6875886726d3"
+          "date": "2026-07-28T17:49:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c16c977be52044c8ed32c754bee8227b4a503948"
         }
       ],
       "github_project": {
-        "updated_at": "2026-07-28T16:49:48.161832+00:00",
+        "updated_at": "2026-07-28T20:28:51.075147+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8859,7 +8859,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "members": [
         {
           "id": "alex",
@@ -8932,7 +8932,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "projects": [
         {
           "project": {
@@ -9362,7 +9362,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9429,7 +9429,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9526,7 +9526,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13318,7 +13318,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-07-28T16:49:50.691027+00:00",
+      "updated_at": "2026-07-28T20:28:53.332960+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -14238,7 +14238,7 @@
           "name": "Free Claude Routing Usage",
           "file": "docs/runbooks/free-claude-routing-usage.md",
           "size": 8829,
-          "modified": "2026-07-27"
+          "modified": "2026-07-28"
         },
         {
           "name": "Frozen Gates",
@@ -15308,25 +15308,25 @@
           "name": "2026 07 16 Cockpit Prevail Done",
           "file": "docs/plans/2026-07-16-cockpit-prevail-done.md",
           "size": 7201,
-          "modified": "2026-07-27"
+          "modified": "2026-07-28"
         },
         {
           "name": "2026 07 16 Cockpit Prevail Howto",
           "file": "docs/plans/2026-07-16-cockpit-prevail-howto.md",
           "size": 7691,
-          "modified": "2026-07-27"
+          "modified": "2026-07-28"
         },
         {
           "name": "2026 07 16 Cockpit Prevail Todo",
           "file": "docs/plans/2026-07-16-cockpit-prevail-todo.md",
           "size": 3221,
-          "modified": "2026-07-27"
+          "modified": "2026-07-28"
         },
         {
           "name": "2026 07 16 Cockpit Prevail Ux Solutions",
           "file": "docs/plans/2026-07-16-cockpit-prevail-ux-solutions.md",
           "size": 5630,
-          "modified": "2026-07-27"
+          "modified": "2026-07-28"
         },
         {
           "name": "2026 07 17 Agentic Misalignment What Was Done",
@@ -16538,7 +16538,7 @@
       "total_docs": 534
     },
     "deals": {
-      "updated_at": "2026-07-28T16:49:50.691308+00:00",
+      "updated_at": "2026-07-28T20:28:53.333106+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -16780,7 +16780,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-07-28T16:49:50.475557+00:00",
+      "updated_at": "2026-07-28T20:28:53.174916+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -89888,7 +89888,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-07-28T16:49:50.868687+00:00",
+      "updated_at": "2026-07-28T20:28:53.520625+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -97530,7 +97530,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-07-28T16:49:50.898689+00:00",
+      "updated_at": "2026-07-28T20:28:53.543428+00:00",
       "items": [
         {
           "type": "blocked",
@@ -97725,67 +97725,73 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-07-28T16:49:50.898755+00:00",
+      "updated_at": "2026-07-28T20:28:53.543473+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-07-28T16:47:59Z",
-          "title": "Restore 5 portal-concept files deleted by an unrelated commit",
+          "date": "2026-07-28T19:36:26Z",
+          "title": "fix(rankona): move localization search to top of list column, flatfiles-parity",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T19:28:25Z",
+          "title": "rankona micki: keyword TABLES for all 7 launched products (research_exports buil",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T19:06:59Z",
+          "title": "universal docx keyword extractor (in-doc ASIN join, legend-skip, multi-section) ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T18:49:25Z",
+          "title": "light-my-fire docx keywords: spork stainless/titanium/cocoacream pools + backend",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T18:42:48Z",
+          "title": "equinavia RM docx keywords live: 79 filled + 6 enriched from 89 client-final doc",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T18:31:59Z",
+          "title": "per-item research: exports attach to their listing card, unlisted products get o",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T18:24:07Z",
+          "title": "wifimap/bg: honesty note in header + tracked harvester script (66->completeness ",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-07-28T16:47:34Z",
-          "title": "wifimap/bg: re-land enriched atlas dropped from origin/main tree by cross-sessio",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T16:47:28Z",
-          "title": "Tracking instruments: level-trigger the stall alert, filter archived OKRs",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T16:37:16Z",
-          "title": "Drop resurrected legacy mr-bear block from live feed again - graph canon migrati",
+          "date": "2026-07-28T18:15:15Z",
+          "title": "micki docx keyword tables + backend terms parsed from all 21 client copy docs, j",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-28T16:30:15Z",
-          "title": "Keyword list always visible: open-by-default pool table + explicit no-pool state",
+          "date": "2026-07-28T18:06:32Z",
+          "title": "localization: research box always-visible set names + empty cards point to it + ",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-28T16:21:52Z",
-          "title": "fix(config): repair sp_api_clients.yaml - my micki seller_id insert split a mark",
+          "date": "2026-07-28T17:49:19Z",
+          "title": "localization: surface ALL parsed client keyword research - 42 held pools (35 cer",
           "detail": "Glasshaus"
         },
         {
-          "type": "commit",
-          "date": "2026-07-28T16:18:35Z",
-          "title": "Keyword chips: distinguish pool-exists-unused from no-pool (operator confusion f",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T16:04:21Z",
-          "title": "Fawad reply: agency93 reconciliation, all 4 points verified live",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T15:58:33Z",
-          "title": "Micki client-doc keywords: 14 board rows live + 10 KeywordSet graph nodes + 7 un",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T15:54:14Z",
-          "title": "Cinematic cut of the FULL B2B tab, all 21 cards",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-07-28",
+          "title": "#3808 Innov8 lender diligence response: bank items 61-88 (Arizona ",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -97839,12 +97845,6 @@
           "type": "issue",
           "date": "2026-07-28",
           "title": "#3793 Chronic fleet swap pressure: prime/e3b5f73/9165277/strasbour",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-28",
-          "title": "#3790 inbox-watcher hung 11h17m: no outer timeout + 4 untimed JetS",
           "detail": "open"
         }
       ],
