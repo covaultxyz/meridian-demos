@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T09:30:09.636380+00:00",
+  "generated_at": "2026-07-28T12:31:17.232281+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-07-28T09:30:05.750476+00:00",
+      "updated_at": "2026-07-28T12:31:13.606581+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -6607,7 +6607,7 @@
           "node": "gateway8",
           "release": "2026-06-26",
           "commit": "n/a",
-          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. RE-HOME COMPLETE - no action outstanding (witnessed live 2026-07-27, delphi): 9165277 + e3b5f73 back up daily to **bitler-mini-1** via `meridian-borg-bitler@<node>.timer`, both `Result=success` (9165277 03:38 EDT, e3b5f73 04:16 UTC, 48MB captured: /etc/meridian + /var/backups/meridian incl. TwentyCRM, Cal.com and agentvox dumps). Prime backs up to big-white. The prior \"ACTION: re-home ...\" text here was STALE and sent two sessions chasing a month-unbacked risk that did not exist - do not reinstate it without witnessing `systemctl list-timers"
+          "status": "\u274c DECOMMISSIONED 2026-06-26 \u2014 powered off permanently per operator (NOT returning; supersedes the GH#3381 \"restore at HQ\" action). Tailscale 100.73.1.114 unreachable; borg-target role RETIRED. ACTION: re-home borg backups for racknerd-9165277 + racknerd-e3b5f73 to big-white (already prime's borg target, 2TB /data) or bitler-mini-1 (live M1 mini); prime's Neo4j already covered by big-white. Deploy/parity scripts self-skip on unreachability. Archive assets retained, not deleted."
         },
         {
           "node": "thinkpadgen9",
@@ -7062,7 +7062,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2662 hours old"
+        "_stale_warning": "Data is 2665 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7197,26 +7197,26 @@
             "online": true
           }
         ],
-        "generated_at": "2026-07-28T09:30:05.782758+00:00",
+        "generated_at": "2026-07-28T12:31:13.616874+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-07-28T09:30:09.269744+00:00",
+      "updated_at": "2026-07-28T12:31:16.882501+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
-          "infrastructure": 3,
+          "enhancement": 3,
+          "infrastructure": 2,
           "bug": 4,
           "rankona": 1,
           "ops": 2,
           "auto-created": 2,
           "daemon/forge": 1,
-          "dependencies": 24,
+          "dependencies": 23,
           "javascript": 17,
           "python": 1,
-          "enhancement": 2,
-          "python:uv": 6,
+          "python:uv": 5,
           "ontology": 1,
           "security": 1,
           "architecture": 1,
@@ -7225,29 +7225,40 @@
       },
       "recent_issues": [
         {
-          "number": 3796,
-          "title": "Two orphaned research workers: relationship_backfill unscheduled, research_linker idle-spinning on status=unknown",
+          "number": 3799,
+          "title": "Reverse-engineer LuvBuds Metabase B2B dashboard (id 58) and recreate it in local Docker Metabase",
           "state": "open",
-          "created_at": "2026-07-28T09:18:20Z",
-          "updated_at": "2026-07-28T09:18:20Z",
+          "created_at": "2026-07-28T12:29:19Z",
+          "updated_at": "2026-07-28T12:29:19Z",
           "labels": [
-            "infrastructure"
+            "enhancement"
           ],
           "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3796",
-          "project_slug": "openclaw"
+          "url": "https://github.com/covaultxyz/meridian/issues/3799",
+          "project_slug": null
         },
         {
-          "number": 3795,
-          "title": "DensityGate measures the wrong population: 73% of its denominator is code nodes and a work queue, blocking research ingest for 3 weeks",
+          "number": 3798,
+          "title": "LuvBuds: Focus Crafts predictive reorder engine V1 (Justin Pryor)",
           "state": "open",
-          "created_at": "2026-07-28T08:52:49Z",
-          "updated_at": "2026-07-28T09:15:54Z",
+          "created_at": "2026-07-28T12:25:29Z",
+          "updated_at": "2026-07-28T12:25:29Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3798",
+          "project_slug": null
+        },
+        {
+          "number": 3797,
+          "title": "git-worktree-sync dropped a commit while reporting ahead=0; the two obvious verification checks both pass for a dropped commit",
+          "state": "open",
+          "created_at": "2026-07-28T09:42:43Z",
+          "updated_at": "2026-07-28T09:42:43Z",
           "labels": [
             "infrastructure"
           ],
           "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3795",
+          "url": "https://github.com/covaultxyz/meridian/issues/3797",
           "project_slug": "openclaw"
         },
         {
@@ -7864,65 +7875,34 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/3720",
           "project_slug": "agent-vox"
-        },
-        {
-          "number": 3718,
-          "title": "chore(deps): bump torch from 2.10.0 to 2.13.0",
-          "state": "open",
-          "created_at": "2026-07-17T19:59:47Z",
-          "updated_at": "2026-07-17T19:59:48Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3718",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
-        "openclaw": [
-          {
-            "number": 3796,
-            "title": "Two orphaned research workers: relationship_backfill unscheduled, research_linker idle-spinning on status=unknown",
-            "state": "open",
-            "created_at": "2026-07-28T09:18:20Z",
-            "updated_at": "2026-07-28T09:18:20Z",
-            "labels": [
-              "infrastructure"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3796",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 3795,
-            "title": "DensityGate measures the wrong population: 73% of its denominator is code nodes and a work queue, blocking research ingest for 3 weeks",
-            "state": "open",
-            "created_at": "2026-07-28T08:52:49Z",
-            "updated_at": "2026-07-28T09:15:54Z",
-            "labels": [
-              "infrastructure"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3795",
-            "project_slug": "openclaw"
-          },
-          {
-            "number": 3793,
-            "title": "Chronic fleet swap pressure: prime/e3b5f73/9165277/strasbourg all >60%, prime+e3b5f73 critical",
-            "state": "open",
-            "created_at": "2026-07-28T07:55:36Z",
-            "updated_at": "2026-07-28T07:55:36Z",
-            "labels": [
-              "infrastructure"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3793",
-            "project_slug": "openclaw"
-          }
-        ],
         "unassigned": [
+          {
+            "number": 3799,
+            "title": "Reverse-engineer LuvBuds Metabase B2B dashboard (id 58) and recreate it in local Docker Metabase",
+            "state": "open",
+            "created_at": "2026-07-28T12:29:19Z",
+            "updated_at": "2026-07-28T12:29:19Z",
+            "labels": [
+              "enhancement"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3799",
+            "project_slug": null
+          },
+          {
+            "number": 3798,
+            "title": "LuvBuds: Focus Crafts predictive reorder engine V1 (Justin Pryor)",
+            "state": "open",
+            "created_at": "2026-07-28T12:25:29Z",
+            "updated_at": "2026-07-28T12:25:29Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3798",
+            "project_slug": null
+          },
           {
             "number": 3790,
             "title": "inbox-watcher hung 11h17m: no outer timeout + 4 untimed JetStream awaits; hang-blind failure alarm",
@@ -8508,20 +8488,34 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/3722",
             "project_slug": null
-          },
+          }
+        ],
+        "openclaw": [
           {
-            "number": 3718,
-            "title": "chore(deps): bump torch from 2.10.0 to 2.13.0",
+            "number": 3797,
+            "title": "git-worktree-sync dropped a commit while reporting ahead=0; the two obvious verification checks both pass for a dropped commit",
             "state": "open",
-            "created_at": "2026-07-17T19:59:47Z",
-            "updated_at": "2026-07-17T19:59:48Z",
+            "created_at": "2026-07-28T09:42:43Z",
+            "updated_at": "2026-07-28T09:42:43Z",
             "labels": [
-              "dependencies",
-              "python:uv"
+              "infrastructure"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3718",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/3797",
+            "project_slug": "openclaw"
+          },
+          {
+            "number": 3793,
+            "title": "Chronic fleet swap pressure: prime/e3b5f73/9165277/strasbourg all >60%, prime+e3b5f73 critical",
+            "state": "open",
+            "created_at": "2026-07-28T07:55:36Z",
+            "updated_at": "2026-07-28T07:55:36Z",
+            "labels": [
+              "infrastructure"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3793",
+            "project_slug": "openclaw"
           }
         ],
         "agent-vox": [
@@ -8544,138 +8538,138 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "skipped",
-        "name": "Agent HQ \u2192 MERIDIAN Bridge",
-        "created_at": "2026-07-28T09:18:23Z",
-        "head_sha": "af4703f3"
+        "status": "queued",
+        "conclusion": null,
+        "name": "CI",
+        "created_at": "2026-07-28T12:30:35Z",
+        "head_sha": "5d8ea829"
       },
       "ci_recent_runs": [
         {
-          "id": 30346026116,
+          "id": 30359256458,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-07-28T12:30:35Z",
+          "updated_at": "2026-07-28T12:30:36Z",
+          "head_sha": "5d8ea829",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30359256458"
+        },
+        {
+          "id": 30359255410,
+          "name": ".github/workflows/security-alert-bridge.yml",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-07-28T12:30:34Z",
+          "updated_at": "2026-07-28T12:30:34Z",
+          "head_sha": "5d8ea829",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30359255410"
+        },
+        {
+          "id": 30359167827,
+          "name": "Generate Unified Dashboard",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-07-28T12:29:24Z",
+          "updated_at": "2026-07-28T12:29:24Z",
+          "head_sha": "7ed9075b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30359167827"
+        },
+        {
+          "id": 30359165675,
           "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
           "conclusion": "skipped",
-          "created_at": "2026-07-28T09:18:23Z",
-          "updated_at": "2026-07-28T09:18:24Z",
-          "head_sha": "af4703f3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026116"
+          "created_at": "2026-07-28T12:29:23Z",
+          "updated_at": "2026-07-28T12:29:24Z",
+          "head_sha": "7ed9075b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30359165675"
         },
         {
-          "id": 30346025976,
+          "id": 30359165930,
           "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T09:18:23Z",
-          "updated_at": "2026-07-28T09:21:16Z",
-          "head_sha": "af4703f3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346025976"
-        },
-        {
-          "id": 30346026161,
-          "name": "Regenerate Compass Data",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T09:18:23Z",
-          "updated_at": "2026-07-28T09:24:16Z",
-          "head_sha": "af4703f3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026161"
-        },
-        {
-          "id": 30346026140,
-          "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-07-28T09:18:23Z",
-          "updated_at": "2026-07-28T09:27:07Z",
-          "head_sha": "af4703f3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30346026140"
-        },
-        {
-          "id": 30344202557,
-          "name": "Agent HQ \u2192 MERIDIAN Bridge",
-          "status": "completed",
-          "conclusion": "skipped",
-          "created_at": "2026-07-28T08:52:59Z",
-          "updated_at": "2026-07-28T08:53:08Z",
-          "head_sha": "7b91d387",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30344202557"
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-07-28T12:29:23Z",
+          "updated_at": "2026-07-28T12:29:23Z",
+          "head_sha": "7ed9075b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30359165930"
         }
       ],
       "recent_commits": [
         {
-          "sha": "c8a7adeb",
-          "message": "chore: regenerate compass data [2026-07-28T09:24:09Z]",
-          "author": "meridian-bot",
-          "date": "2026-07-28T09:24:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c8a7adeb1f4f1cdedcc0fb8b68cb733cd5253738"
-        },
-        {
-          "sha": "af4703f3",
-          "message": "chore: regenerate compass data [2026-07-28T09:02:14Z]",
-          "author": "meridian-bot",
-          "date": "2026-07-28T09:02:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/af4703f34b5aac1a2d1960874f59d4e4cea04bda"
-        },
-        {
-          "sha": "7b91d387",
-          "message": "chore: regenerate compass data [2026-07-28T08:48:01Z]",
-          "author": "meridian-bot",
-          "date": "2026-07-28T08:48:01Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7b91d387ba900f56c2b9f3f745100a0238afa9f3"
-        },
-        {
-          "sha": "79da0c45",
-          "message": "infra(observability): re-baseline NATSConnectionsHigh threshold (Closes #3794)",
+          "sha": "5d8ea829",
+          "message": "Add Metabase dashboard extractor for LuvBuds B2B reverse-engineering",
           "author": "covaultxyz",
-          "date": "2026-07-28T08:37:39Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/79da0c45b7b84c72b0689355db1bf9aa6863c70f"
+          "date": "2026-07-28T12:29:46Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5d8ea82955d052e1d8f5a53a7a0353318449ce4f"
         },
         {
-          "sha": "ff8845f9",
-          "message": "infra(observability): route alerts by actionability, add owner labels and meta-alert (Closes #3792)",
-          "author": "covaultxyz",
-          "date": "2026-07-28T08:04:46Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ff8845f9f726684868c907a999f703e569f9e21d"
-        },
-        {
-          "sha": "8648752d",
-          "message": "chore: regenerate compass data [2026-07-28T08:09:25Z]",
-          "author": "meridian-bot",
-          "date": "2026-07-28T08:09:25Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8648752d5bf24669f647f5d90762a0e360394721"
-        },
-        {
-          "sha": "3b00a62f",
-          "message": "chore: regenerate compass data [2026-07-28T07:44:50Z]",
-          "author": "meridian-bot",
-          "date": "2026-07-28T07:44:51Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/3b00a62f6aecef0d35225742f8d4bb6fddd245c3"
-        },
-        {
-          "sha": "4c180271",
-          "message": "fix(glasses): guard the trapping Wearables.shared getter, not just its simulator symptom (Part of #3720)",
-          "author": "covaultxyz",
-          "date": "2026-07-27T22:53:31Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/4c18027182a5f710a6cd22ad7db5e6aa423f043c"
-        },
-        {
-          "sha": "d483fd3b",
-          "message": "rankona: three-surface list for the 93 - agency doc, Seller Central, and what a shopper sees",
+          "sha": "7ed9075b",
+          "message": "Agency-93 inspection report v2: 83/89 four-field verified vs docx authority, post-wave6 (Part of #686)",
           "author": "Glasshaus",
-          "date": "2026-07-28T02:01:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d483fd3b3bc41a4bb1fc16a15441e634d0eb7160"
+          "date": "2026-07-28T12:23:52Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7ed9075b399631a60d778170ae142d95d3948cb1"
         },
         {
-          "sha": "043eae9f",
-          "message": "Jawad reply v4 - the accurate one, built from the live two-field readback - Part of #3780",
+          "sha": "74a9a78a",
+          "message": "rankona: harden the agency docx parser - it was silently deleting a whole family",
           "author": "Glasshaus",
-          "date": "2026-07-28T01:46:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/043eae9f3df2e8bad06cfb9f356e294ed5c6bd3d"
+          "date": "2026-07-28T12:17:40Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/74a9a78a1352ba1d75e0f357e4bd58ba5f100402"
+        },
+        {
+          "sha": "087176e7",
+          "message": "Product.client is not a usable client filter: 56% of tagged ASINs vanish on a join",
+          "author": "Glasshaus",
+          "date": "2026-07-28T12:04:52Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/087176e7d8616a6e752d0ca5c0277e029dbbe990"
+        },
+        {
+          "sha": "566e7d40",
+          "message": "agency93 doc: retract my own frame, and mark what the flock closed",
+          "author": "Glasshaus",
+          "date": "2026-07-28T12:03:28Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/566e7d4042a2f6c890d78fc19f5350a2823a6d70"
+        },
+        {
+          "sha": "406f142f",
+          "message": "S6 COMPLETE: parity-hash mode (conflict-fields excluded by helm ruling, explicit count) + PARITY WITNESSED post-leg1: feed_hash==graph_hash 089b1657d9bc over 5206 fields, 698 conflict fields excluded, CREATE_NEW/FILL all zero (2952 assets = full coverage). Promotion queue v2 vs post-apply graph: 366 cells, 161 PASS zero-LLM, 205 to recompose. Part of #3780",
+          "author": "Glasshaus",
+          "date": "2026-07-28T12:02:39Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/406f142f46b80df7cd3fbd5a956140a683f8291c"
+        },
+        {
+          "sha": "e79c7968",
+          "message": "agency93-cohort-flags: land atlas f5f's blocked correction (field-mixup + ledger-exists)",
+          "author": "Glasshaus",
+          "date": "2026-07-28T11:59:34Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/e79c79686b75a8a2bbb085dd58ea26271544f1e9"
+        },
+        {
+          "sha": "55fa73a4",
+          "message": "Jawad v4: tighten the 59 section to a position, drop an internal artifact - Part of #3780",
+          "author": "Glasshaus",
+          "date": "2026-07-28T11:42:02Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/55fa73a422b9c43dcac35829beca7996540f1e87"
+        },
+        {
+          "sha": "98680e70",
+          "message": "Jawad v4 amended per helm gate: side-by-side judgment, no dated promises - Part of #3780",
+          "author": "Glasshaus",
+          "date": "2026-07-28T11:41:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/98680e70a0ad40b46a82307d4526f0e2e8bcf9db"
+        },
+        {
+          "sha": "5defcca9",
+          "message": "Agency-93 inspection-ready report (64 verified live vs agency truth) + Jawad note - Part of #686",
+          "author": "Glasshaus",
+          "date": "2026-07-28T11:24:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5defcca97c5f25a74568216468a846ea9056dc5b"
         }
       ],
       "github_project": {
-        "updated_at": "2026-07-28T09:30:07.146855+00:00",
+        "updated_at": "2026-07-28T12:31:14.739781+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8877,7 +8871,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "members": [
         {
           "id": "alex",
@@ -8950,7 +8944,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "projects": [
         {
           "project": {
@@ -9380,7 +9374,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9447,7 +9441,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9544,7 +9538,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13336,7 +13330,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-07-28T09:30:09.475654+00:00",
+      "updated_at": "2026-07-28T12:31:17.071313+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -13651,6 +13645,24 @@
           "file": "docs/runbooks/2026-07-21-thinkpadgen9-dual-tailnet-TODO.md",
           "size": 13387,
           "modified": "2026-07-22"
+        },
+        {
+          "name": "2026 07 27 Delphi Howto Guide",
+          "file": "docs/runbooks/2026-07-27-delphi-howto-guide.md",
+          "size": 8329,
+          "modified": "2026-07-28"
+        },
+        {
+          "name": "2026 07 27 Delphi Remaining Work",
+          "file": "docs/runbooks/2026-07-27-delphi-remaining-work.md",
+          "size": 10698,
+          "modified": "2026-07-28"
+        },
+        {
+          "name": "2026 07 27 Delphi Session Completed",
+          "file": "docs/runbooks/2026-07-27-delphi-session-completed.md",
+          "size": 11578,
+          "modified": "2026-07-28"
         },
         {
           "name": "7311420 Broken Current Telegram Crash",
@@ -14273,7 +14285,7 @@
         {
           "name": "Git Shared Tree Sop",
           "file": "docs/runbooks/git-shared-tree-sop.md",
-          "size": 18587,
+          "size": 13989,
           "modified": "2026-07-28"
         },
         {
@@ -16532,13 +16544,13 @@
         }
       ],
       "total_sops": 17,
-      "total_runbooks": 295,
+      "total_runbooks": 298,
       "total_plans": 212,
       "total_protocols": 7,
-      "total_docs": 531
+      "total_docs": 534
     },
     "deals": {
-      "updated_at": "2026-07-28T09:30:09.475854+00:00",
+      "updated_at": "2026-07-28T12:31:17.071465+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -16780,7 +16792,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-07-28T09:30:09.269770+00:00",
+      "updated_at": "2026-07-28T12:31:16.882518+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -89888,7 +89900,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-07-28T09:30:09.609834+00:00",
+      "updated_at": "2026-07-28T12:31:17.206665+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -97530,7 +97542,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-07-28T09:30:09.636308+00:00",
+      "updated_at": "2026-07-28T12:31:17.232216+00:00",
       "items": [
         {
           "type": "blocked",
@@ -97725,72 +97737,84 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-07-28T09:30:09.636360+00:00",
+      "updated_at": "2026-07-28T12:31:17.232263+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-07-28T09:24:09Z",
-          "title": "chore: regenerate compass data [2026-07-28T09:24:09Z]",
-          "detail": "meridian-bot"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T09:02:14Z",
-          "title": "chore: regenerate compass data [2026-07-28T09:02:14Z]",
-          "detail": "meridian-bot"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T08:48:01Z",
-          "title": "chore: regenerate compass data [2026-07-28T08:48:01Z]",
-          "detail": "meridian-bot"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T08:37:39Z",
-          "title": "infra(observability): re-baseline NATSConnectionsHigh threshold (Closes #3794)",
+          "date": "2026-07-28T12:29:46Z",
+          "title": "Add Metabase dashboard extractor for LuvBuds B2B reverse-engineering",
           "detail": "covaultxyz"
         },
         {
           "type": "commit",
-          "date": "2026-07-28T08:09:25Z",
-          "title": "chore: regenerate compass data [2026-07-28T08:09:25Z]",
-          "detail": "meridian-bot"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T08:04:46Z",
-          "title": "infra(observability): route alerts by actionability, add owner labels and meta-a",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T07:44:51Z",
-          "title": "chore: regenerate compass data [2026-07-28T07:44:50Z]",
-          "detail": "meridian-bot"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-28T02:01:04Z",
-          "title": "rankona: three-surface list for the 93 - agency doc, Seller Central, and what a ",
+          "date": "2026-07-28T12:23:52Z",
+          "title": "Agency-93 inspection report v2: 83/89 four-field verified vs docx authority, pos",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-28T01:46:48Z",
-          "title": "Jawad reply v4 - the accurate one, built from the live two-field readback - Part",
+          "date": "2026-07-28T12:17:40Z",
+          "title": "rankona: harden the agency docx parser - it was silently deleting a whole family",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T12:04:52Z",
+          "title": "Product.client is not a usable client filter: 56% of tagged ASINs vanish on a jo",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T12:03:28Z",
+          "title": "agency93 doc: retract my own frame, and mark what the flock closed",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T12:02:39Z",
+          "title": "S6 COMPLETE: parity-hash mode (conflict-fields excluded by helm ruling, explicit",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T11:59:34Z",
+          "title": "agency93-cohort-flags: land atlas f5f's blocked correction (field-mixup + ledger",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T11:42:02Z",
+          "title": "Jawad v4: tighten the 59 section to a position, drop an internal artifact - Part",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T11:41:20Z",
+          "title": "Jawad v4 amended per helm gate: side-by-side judgment, no dated promises - Part ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-28T11:24:53Z",
+          "title": "Agency-93 inspection-ready report (64 verified live vs agency truth) + Jawad not",
           "detail": "Glasshaus"
         },
         {
           "type": "issue",
           "date": "2026-07-28",
-          "title": "#3796 Two orphaned research workers: relationship_backfill unsched",
+          "title": "#3799 Reverse-engineer LuvBuds Metabase B2B dashboard (id 58) and ",
           "detail": "open"
         },
         {
           "type": "issue",
           "date": "2026-07-28",
-          "title": "#3795 DensityGate measures the wrong population: 73% of its denomi",
+          "title": "#3798 LuvBuds: Focus Crafts predictive reorder engine V1 (Justin P",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-07-28",
+          "title": "#3797 git-worktree-sync dropped a commit while reporting ahead=0; ",
           "detail": "open"
         },
         {
@@ -97804,12 +97828,6 @@
           "date": "2026-07-28",
           "title": "#3790 inbox-watcher hung 11h17m: no outer timeout + 4 untimed JetS",
           "detail": "open"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-27T22:53:31Z",
-          "title": "fix(glasses): guard the trapping Wearables.shared getter, not just its simulator",
-          "detail": "covaultxyz"
         },
         {
           "type": "issue",
@@ -97839,12 +97857,6 @@
           "type": "issue",
           "date": "2026-07-27",
           "title": "#3785 rankona-master: Neo4j MIG absent from backups, and the resti",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-07-27",
-          "title": "#3781 Localization workbench: parent-child variation accordion (le",
           "detail": "open"
         }
       ],
