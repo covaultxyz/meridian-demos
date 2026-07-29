@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-29T19:45:06.946361+00:00",
+  "generated_at": "2026-07-29T21:13:48.971050+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-07-29T19:45:03.066235+00:00",
+      "updated_at": "2026-07-29T21:13:45.921414+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -6566,8 +6566,8 @@
       ]
     },
     "operations": {
-      "updated_at": "2026-07-28 07:41:20 -0400",
-      "source": "boot-state-stable.md",
+      "updated_at": "2026-07-09 \u2014 VoiceBox v0.5.0 deployed to bitler-mini-1 (Tailscale 100.77.86.23):17493. jamiepine/voicebox, Docker + LaunchDaemon, CPU-only, MCP not yet wired. Node entry added.",
+      "source": "boot-state.md",
       "current_phase": {
         "number": 2,
         "status": "ACTIVE"
@@ -6577,7 +6577,7 @@
           "node": "racknerd-9165277",
           "release": "2026-07-20-210555",
           "commit": "06d17bbf6",
-          "status": "\u2705 active \u2014 **sandman + martin + elite-thinker** (active daemons; C3 call GH#3545) + pulse-consumer + telegram bots + TwentyCRM + Cal.com + remote-mcp + shepherd-bot + voice-gateway (Kokoro-82M TTS live), replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
+          "status": "\u2705 active \u2014 sandman + martin (active) + atlas (parked/masked) + pulse-consumer + telegram bots + TwentyCRM + Cal.com + remote-mcp + shepherd-bot + voice-gateway (Kokoro-82M TTS live), replaced 7311420 (GH#2442), Tailscale 100.95.16.63"
         },
         {
           "node": "racknerd-e3b5f73",
@@ -6619,7 +6619,7 @@
           "node": "racknerd-e583987",
           "release": "2026-07-21-010436",
           "commit": "06d17bbf6",
-          "status": "\u2705 active \u2014 **sensei + talon + evelyn + sterling + atlas + hanratty** (2026-06-07 masking reversed; witnessed enabled+running+heartbeating 2026-07-05, C1 call GH#3545); avery + martin masked (martin active on 9165277); elite-thinker masked here (home: 9165277); monitoring stack (Prometheus/Grafana/Loki) + gateways (alert-bridge, compass-ask, custom-gpt-gateway, ws, voice, workplan-consumer) active; Strasbourg 8GB KVM, Ubuntu 24.04, Tailscale 100.88.179.96"
+          "status": "\u2705 active \u2014 **sensei + talon + evelyn + sterling + atlas + hanratty** enabled+active (2026-06-07 masking REVERSED per C1 GH#3545; witnessed 2026-07-05, re-witnessed by sandman 2026-07-07 \u2014 matches canonical boot-state-stable.md); avery + martin + elite-thinker masked; deakins parked. Monitoring stack (Prometheus/Grafana/Loki) + gateways (alert-bridge, compass-ask, custom-gpt-gateway, ws, voice, workplan-consumer) active. Strasbourg 8GB KVM, Ubuntu 24.04, Tailscale 100.88.179.96"
         },
         {
           "node": "bacherman-caselaw",
@@ -6635,18 +6635,55 @@
         },
         {
           "node": "bitler-mini-1",
-          "release": "n/a",
+          "release": "2026-07-09",
           "commit": "n/a",
-          "status": "\u2705 active \u2014 M1 Mac Mini at Bitler residence, 16GB RAM, 249Gi free disk, macOS 14.4.1, Docker 29.3.1, Python 3.14.6, Tailscale 100.77.86.23. Services: forge-worker, Hermes dashboard, VoiceBox v0.5.0 (:17493), Postiz, Firecrawl"
-        },
-        {
-          "node": "gothamfilm",
-          "release": "n/a",
-          "commit": "n/a",
-          "status": "\u2705 active \u2014 RTX 4070 12GB GPU node for ComfyUI (systemd comfyui.service, ComfyUI 0.27.0, :8188); ex-Windows box remote-converted to Ubuntu 24.04 on 2026-07-14; i7-9700K 8c/8t, 16GB RAM (FLUX.2-Klein-9b 18GB is RAM-bound \u2014 needs RAM upgrade; SDXL + FLUX.1-dev-fp8 OK), 916GB disk; nvidia-driver-595.71.05 + torch 2.6.0+cu124 (cuda verified); ~285GB models + custom_nodes synced from MSI via rclone-sftp; Tailscale 100.82.211.114 (tailnet gothamfilm-1, collectiveintelligencedao@), Tailscale SSH (backgrounded procs die on session close \u2192 use systemd)"
+          "status": "\u2705 active \u2014 M1 Mac Mini at Bitler residence, 16GB RAM, 249Gi free disk, macOS 14.4.1, Docker 29.3.1, Tailscale 100.77.86.23. Services: forge-worker, Hermes dashboard (:9119), VoiceBox v0.5.0 (:17493), Postiz, Temporal stack, Firecrawl"
         }
       ],
-      "active_sessions": [],
+      "active_sessions": [
+        {
+          "daemon": "delphi",
+          "pid": "2491393",
+          "terminal": "pts/3",
+          "launched": "2026-05-03T21:58",
+          "worktree": "/opt/meridian/current"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "2527715",
+          "terminal": "pts/3",
+          "launched": "2026-05-03T22:02",
+          "worktree": "/opt/meridian/releases/2026-05-03-203719"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "2538945",
+          "terminal": "not a tty",
+          "launched": "2026-05-03T22:09",
+          "worktree": "/opt/meridian/current"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "2540971",
+          "terminal": "not a tty",
+          "launched": "2026-05-03T22:11",
+          "worktree": "/opt/meridian/current"
+        },
+        {
+          "daemon": "delphi",
+          "pid": "2549831",
+          "terminal": "pts/3",
+          "launched": "2026-05-03T22:13",
+          "worktree": "/opt/meridian/current"
+        },
+        {
+          "daemon": "avery",
+          "pid": "2922269",
+          "terminal": "not a tty",
+          "launched": "2026-07-05T12:34",
+          "worktree": "/opt/meridian"
+        }
+      ],
       "daemon_tasks": [
         {
           "daemon": "sandman",
@@ -6709,7 +6746,7 @@
         {
           "node": "racknerd-e583987",
           "daemon": "sensei",
-          "systemd_unit": "meridian-daemon@sensei"
+          "systemd_unit": "meridian-daemon@sensei (MASKED 2026-06-07)"
         },
         {
           "node": "audreys-imac",
@@ -6724,12 +6761,17 @@
         {
           "node": "racknerd-e583987",
           "daemon": "avery",
-          "systemd_unit": "meridian-daemon@avery (masked 2026-06-07, still masked \u2014 C1 GH#3545)"
+          "systemd_unit": "meridian-daemon@avery (MASKED 2026-06-07)"
         },
         {
           "node": "racknerd-e583987",
           "daemon": "evelyn",
-          "systemd_unit": "meridian-daemon@evelyn"
+          "systemd_unit": "meridian-daemon@evelyn (MASKED 2026-06-07)"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "talon",
+          "systemd_unit": "meridian-daemon@talon (MASKED 2026-06-07)"
         },
         {
           "node": "racknerd-9165277",
@@ -6739,22 +6781,12 @@
         {
           "node": "racknerd-9165277",
           "daemon": "martin",
-          "systemd_unit": "meridian-daemon@martin (relocated from e583987, 2026-06-07)"
+          "systemd_unit": "meridian-daemon@martin (migrated from e583987 2026-06-07)"
         },
         {
           "node": "racknerd-9165277",
-          "daemon": "elite-thinker",
-          "systemd_unit": "meridian-daemon@elite-thinker (declared 2026-07-05, C3 GH#3545)"
-        },
-        {
-          "node": "racknerd-e583987",
           "daemon": "atlas",
-          "systemd_unit": "meridian-daemon@atlas (relocated from 9165277, 2026-06-07)"
-        },
-        {
-          "node": "racknerd-e583987",
-          "daemon": "talon",
-          "systemd_unit": "meridian-daemon@talon"
+          "systemd_unit": "meridian-daemon@atlas (MASKED 2026-06-07 \u2014 parked, support svcs on e583987 ready for on-demand reactivation)"
         },
         {
           "node": "racknerd-9165277",
@@ -6768,13 +6800,23 @@
         },
         {
           "node": "racknerd-9165277",
-          "daemon": "telegram-atlas",
-          "systemd_unit": "meridian-telegram@atlas (systemd)"
+          "daemon": "telegram-martin",
+          "systemd_unit": "meridian-telegram@martin (systemd, active 2026-06-07)"
         },
         {
           "node": "racknerd-9165277",
           "daemon": "telegram-sandman",
           "systemd_unit": "meridian-telegram@sandman (systemd)"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "telegram-atlas",
+          "systemd_unit": "meridian-telegram@atlas (systemd, active \u2014 kept on e583987 for on-demand atlas reactivation)"
+        },
+        {
+          "node": "racknerd-e583987",
+          "daemon": "req-consumer-atlas",
+          "systemd_unit": "meridian-req-consumer@atlas (systemd, active \u2014 kept on e583987 for on-demand atlas reactivation)"
         },
         {
           "node": "racknerd-9165277",
@@ -7063,7 +7105,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2696 hours old"
+        "_stale_warning": "Data is 2697 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7198,12 +7240,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-07-29T19:45:03.185597+00:00",
+        "generated_at": "2026-07-29T21:13:45.950211+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-07-29T19:45:06.622235+00:00",
+      "updated_at": "2026-07-29T21:13:48.072475+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8528,136 +8570,136 @@
       "ci": {
         "status": "queued",
         "conclusion": null,
-        "name": "Generate Unified Dashboard",
-        "created_at": "2026-07-29T19:36:20Z",
-        "head_sha": "e854cfbb"
+        "name": "CI",
+        "created_at": "2026-07-29T20:48:46Z",
+        "head_sha": "b7028dc3"
       },
       "ci_recent_runs": [
         {
-          "id": 30485146582,
-          "name": "Generate Unified Dashboard",
+          "id": 30489909744,
+          "name": "CI",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-07-29T19:36:20Z",
-          "updated_at": "2026-07-29T19:36:20Z",
-          "head_sha": "e854cfbb",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30485146582"
+          "created_at": "2026-07-29T20:48:46Z",
+          "updated_at": "2026-07-29T20:48:48Z",
+          "head_sha": "b7028dc3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30489909744"
         },
         {
-          "id": 30485145410,
+          "id": 30489909070,
           "name": ".github/workflows/security-alert-bridge.yml",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-07-29T19:36:19Z",
-          "updated_at": "2026-07-29T19:36:19Z",
-          "head_sha": "e854cfbb",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30485145410"
+          "created_at": "2026-07-29T20:48:46Z",
+          "updated_at": "2026-07-29T20:48:46Z",
+          "head_sha": "b7028dc3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30489909070"
         },
         {
-          "id": 30484834162,
+          "id": 30489671906,
           "name": "CI",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-07-29T19:32:09Z",
-          "updated_at": "2026-07-29T19:36:36Z",
-          "head_sha": "e7815eb8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30484834162"
+          "conclusion": "cancelled",
+          "created_at": "2026-07-29T20:45:06Z",
+          "updated_at": "2026-07-29T20:48:48Z",
+          "head_sha": "be0e46ed",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30489671906"
         },
         {
-          "id": 30484828652,
+          "id": 30489668510,
           "name": ".github/workflows/security-alert-bridge.yml",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-07-29T19:32:04Z",
-          "updated_at": "2026-07-29T19:32:04Z",
-          "head_sha": "e7815eb8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30484828652"
+          "created_at": "2026-07-29T20:45:03Z",
+          "updated_at": "2026-07-29T20:45:03Z",
+          "head_sha": "be0e46ed",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30489668510"
         },
         {
-          "id": 30484044834,
+          "id": 30489330734,
           "name": "Generate Unified Dashboard",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-07-29T19:21:29Z",
-          "updated_at": "2026-07-29T19:21:29Z",
-          "head_sha": "fa287d52",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/30484044834"
+          "created_at": "2026-07-29T20:39:54Z",
+          "updated_at": "2026-07-29T20:39:54Z",
+          "head_sha": "740f5194",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/30489330734"
         }
       ],
       "recent_commits": [
         {
-          "sha": "e854cfbb",
-          "message": "mbf: publish holds placed - step 3 is now mechanical (arc rankona#40)",
+          "sha": "b7028dc3",
+          "message": "glasses: match the ephemeral token's locked tools to the native bridge",
+          "author": "covaultxyz",
+          "date": "2026-07-29T20:48:17Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b7028dc36890d4d4ad3d9fac7ccae7416381f9f6"
+        },
+        {
+          "sha": "be0e46ed",
+          "message": "Confirm creates against Suno's workspace, not our own click or the credit chip",
+          "author": "covaultxyz",
+          "date": "2026-07-29T20:44:55Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/be0e46ed524e5a5301f7a3a2dc3ad8a897f573e4"
+        },
+        {
+          "sha": "740f5194",
+          "message": "rankona#40: two write lanes were blind to asin_list commitments",
           "author": "Glasshaus",
-          "date": "2026-07-29T19:34:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e854cfbb9a09bdfac4258051f1ed6eac43cea8e5"
+          "date": "2026-07-29T20:34:25Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/740f5194e6d144c9507031aa3aebf1bc6454ef69"
         },
         {
-          "sha": "e7815eb8",
-          "message": "Add the Suno automation layer for the Scripture prayer-song corpus",
-          "author": "covaultxyz",
-          "date": "2026-07-29T19:31:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e7815eb832510efadd3b35f971f6397107f12232"
-        },
-        {
-          "sha": "fa287d52",
-          "message": "glasses: supervise the :8101 tool lane under launchd, off /tmp",
-          "author": "covaultxyz",
-          "date": "2026-07-29T19:19:14Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/fa287d520a27b11efd0e0288120dfcba9d84ca99"
-        },
-        {
-          "sha": "a735eece",
-          "message": "Add the 1,189-song Scripture prayer corpus (Genesis 1 to Revelation 22)",
-          "author": "covaultxyz",
-          "date": "2026-07-29T18:49:41Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a735eecefb1233ab3fadf3417c5701416f77aa4e"
-        },
-        {
-          "sha": "54ea4127",
-          "message": "glasses forward plan: haq-e2f08e37 is a plist bug, not a TCC denial",
-          "author": "covaultxyz",
-          "date": "2026-07-29T18:54:57Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/54ea4127ac72ea4f0f4d572ffb811e950a4b63d9"
-        },
-        {
-          "sha": "0b8f129a",
-          "message": "docs(luvbuds): Metabase findings + Jay handoff, real lead times from PO history",
-          "author": "covaultxyz",
-          "date": "2026-07-29T18:46:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/0b8f129af503ba5c7b366f2e523d0f9fd4a86ba8"
-        },
-        {
-          "sha": "7bc9b344",
-          "message": "feat(luvbuds): record why every SKU was dropped, not just how many",
-          "author": "covaultxyz",
-          "date": "2026-07-29T18:32:20Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7bc9b344bd7cf7edbf7608df69349f764de2ee04"
-        },
-        {
-          "sha": "225ee1f1",
-          "message": "mbf ledger: SE T1 verification + two step-2/6 risks (arc rankona#40)",
+          "sha": "f1c8d52f",
+          "message": "mbf ledger: sku-271 closed by live SP-API + name the variant-confusion class (rankona#40)",
           "author": "Glasshaus",
-          "date": "2026-07-29T18:16:51Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/225ee1f1cb18fda0bbfc5c8f362fd1385a2a19a8"
+          "date": "2026-07-29T20:38:10Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f1c8d52f5c718c6bacf8852a219380a07a016214"
         },
         {
-          "sha": "f0392fc4",
-          "message": "MBF T1: SE client-keyword load applied (17 ASINs, 617 phrases, 268 with client SV)",
+          "sha": "ca8365c2",
+          "message": "mbf: localization render witness + step-3 precondition + 9da findings (rankona#40)",
           "author": "Glasshaus",
-          "date": "2026-07-29T18:13:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f0392fc4fe1d1f98f7da7a29471d18cb5c908398"
+          "date": "2026-07-29T20:35:00Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ca8365c2616e015e416391351cd3015bb084b5df"
         },
         {
-          "sha": "080e99e3",
-          "message": "mbf ledger: helm rulings + steps 4-6 tooling state (arc rankona#40)",
+          "sha": "3242d493",
+          "message": "Confirm Suno creates by the credit balance, and run the batch operator-assisted",
+          "author": "covaultxyz",
+          "date": "2026-07-29T20:34:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/3242d4937658a272429a309a4f888e6efd680a0c"
+        },
+        {
+          "sha": "b915ebdd",
+          "message": "LuvBuds full-catalog distributor deck: 258 SKUs, PDF + web deploy",
+          "author": "covaultxyz",
+          "date": "2026-07-29T20:29:52Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b915ebdd91abd83229fbe51c007bb200bc2fd599"
+        },
+        {
+          "sha": "5628fc67",
+          "message": "mbf SE re-witness: titles PASS, two new findings, seat-coverage + stale-box flags (rankona#40)",
           "author": "Glasshaus",
-          "date": "2026-07-29T18:13:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/080e99e369f5224584200de2069e4361b59d2bb6"
+          "date": "2026-07-29T20:28:33Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5628fc676289a3a9d5c2ae24a5c385a092bc82c5"
+        },
+        {
+          "sha": "16725f2a",
+          "message": "mbf: client verbatim titles WIN the suggested field - 158 rows flip from composed, composed preserved as alt (e60 stop-the-line fix). Part of rankona#40",
+          "author": "Glasshaus",
+          "date": "2026-07-29T20:21:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/16725f2afff95b4a63a39b08e835a34d5ce4ae30"
+        },
+        {
+          "sha": "63933d9a",
+          "message": "mbf SE step-2 witness: keyword plane PASS, native-copy plane FAIL (arc rankona#40)",
+          "author": "Glasshaus",
+          "date": "2026-07-29T20:18:22Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/63933d9a0a41ff123005c910b15bfda5b69b402e"
         }
       ],
       "github_project": {
-        "updated_at": "2026-07-29T19:45:04.210386+00:00",
+        "updated_at": "2026-07-29T21:13:46.534133+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8859,7 +8901,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "members": [
         {
           "id": "alex",
@@ -8932,7 +8974,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "projects": [
         {
           "project": {
@@ -9362,7 +9404,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9429,7 +9471,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9526,7 +9568,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -11428,7 +11470,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -11454,7 +11496,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -11791,7 +11833,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -11884,7 +11926,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -11947,7 +11989,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -12044,7 +12086,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -12106,7 +12148,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -12166,7 +12208,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12221,7 +12263,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12316,7 +12358,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12358,7 +12400,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -12485,7 +12527,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -12628,7 +12670,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -12801,7 +12843,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -13318,74 +13360,8 @@
       }
     },
     "docs": {
-      "updated_at": "2026-07-29T19:45:06.785261+00:00",
+      "updated_at": "2026-07-29T21:13:48.687122+00:00",
       "sops": [
-        {
-          "name": "Automated Node Provisioning",
-          "file": "docs/sops/SOP-automated-node-provisioning.md",
-          "size": 10864,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Autonomous Website Generation",
-          "file": "docs/sops/SOP-autonomous-website-generation.md",
-          "size": 12730,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "Claude Code Mesh Integration",
-          "file": "docs/sops/SOP-claude-code-mesh-integration.md",
-          "size": 26458,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Client Call Pipeline",
-          "file": "docs/sops/SOP-client-call-pipeline.md",
-          "size": 4872,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Composer Operator Setup",
-          "file": "docs/sops/SOP-composer-operator-setup.md",
-          "size": 11312,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Composer Operator Windows Setup",
-          "file": "docs/sops/SOP-composer-operator-windows-setup.md",
-          "size": 11457,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Customer Dashboard",
-          "file": "docs/sops/SOP-customer-dashboard.md",
-          "size": 4107,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dashboard Client Onboarding",
-          "file": "docs/sops/SOP-dashboard-client-onboarding.md",
-          "size": 4420,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Edge To Federation Promotion",
-          "file": "docs/sops/SOP-edge-to-federation-promotion.md",
-          "size": 35152,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Email Funnel",
-          "file": "docs/sops/SOP-email-funnel.md",
-          "size": 5458,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Linux Node Provisioning",
-          "file": "docs/sops/SOP-linux-node-provisioning.md",
-          "size": 11796,
-          "modified": "2026-06-02"
-        },
         {
           "name": "Local Research Ingestion",
           "file": "docs/sops/SOP-local-research-ingestion.md",
@@ -13393,246 +13369,24 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Mig Graph Hygiene",
-          "file": "docs/sops/SOP-mig-graph-hygiene.md",
-          "size": 22463,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Noise Cleanup Pipeline",
-          "file": "docs/sops/SOP-noise-cleanup-pipeline.md",
-          "size": 3851,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Test Poisoning Defense",
-          "file": "docs/sops/SOP-test-poisoning-defense.md",
-          "size": 9709,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Thinkpad Federation Deployment",
           "file": "docs/sops/SOP-thinkpad-federation-deployment.md",
           "size": 15942,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Youtube Channel Extraction",
-          "file": "docs/sops/SOP-youtube-channel-extraction.md",
-          "size": 9900,
-          "modified": "2026-06-02"
         }
       ],
       "runbooks": [
         {
-          "name": "2026 04 01 Delphi Health Sweep Completed",
-          "file": "docs/runbooks/2026-04-01-delphi-health-sweep-completed.md",
-          "size": 18967,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 01 Delphi Remaining Work",
-          "file": "docs/runbooks/2026-04-01-delphi-remaining-work.md",
-          "size": 11168,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 01 Meridian Plugin Completed",
-          "file": "docs/runbooks/2026-04-01-meridian-plugin-completed.md",
-          "size": 9965,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 01 Meridian Plugin Remaining",
-          "file": "docs/runbooks/2026-04-01-meridian-plugin-remaining.md",
-          "size": 11145,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 04 Sandman Remaining Work",
-          "file": "docs/runbooks/2026-04-04-sandman-remaining-work.md",
-          "size": 5653,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 04 Sandman Session Completed",
-          "file": "docs/runbooks/2026-04-04-sandman-session-completed.md",
-          "size": 3498,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 10 Delphi Howto Guide",
-          "file": "docs/runbooks/2026-04-10-delphi-howto-guide.md",
-          "size": 13111,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 10 Delphi Remaining Work",
-          "file": "docs/runbooks/2026-04-10-delphi-remaining-work.md",
-          "size": 7609,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 10 Delphi Session Completed",
-          "file": "docs/runbooks/2026-04-10-delphi-session-completed.md",
-          "size": 12032,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 15 Gateway8 Completed",
-          "file": "docs/runbooks/2026-04-15-gateway8-completed.md",
-          "size": 8613,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 15 Gateway8 Howto",
-          "file": "docs/runbooks/2026-04-15-gateway8-howto.md",
-          "size": 7542,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 15 Gateway8 Remaining",
-          "file": "docs/runbooks/2026-04-15-gateway8-remaining.md",
-          "size": 16896,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 15 Gateway8 Split",
-          "file": "docs/runbooks/2026-04-15-gateway8-split.md",
-          "size": 6368,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 16 Fleet Extension Completed",
-          "file": "docs/runbooks/2026-04-16-fleet-extension-completed.md",
-          "size": 5096,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 16 Fleet Extension Remaining",
-          "file": "docs/runbooks/2026-04-16-fleet-extension-remaining.md",
-          "size": 11612,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 20 Fleet Convergence Completed",
-          "file": "docs/runbooks/2026-04-20-fleet-convergence-completed.md",
-          "size": 3546,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 20 Fleet Convergence Remaining",
-          "file": "docs/runbooks/2026-04-20-fleet-convergence-remaining.md",
-          "size": 5526,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 20 Parallel Work Arcs",
-          "file": "docs/runbooks/2026-04-20-parallel-work-arcs.md",
-          "size": 4918,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Spawn Watchdog Allowlist Audit",
-          "file": "docs/runbooks/2026-05-03-spawn-watchdog-allowlist-audit.md",
-          "size": 7316,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Tier 2B Daemon Collab Completed",
-          "file": "docs/runbooks/2026-05-03-tier-2b-daemon-collab-completed.md",
-          "size": 9044,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Tier 2B Daemon Collab Howto",
-          "file": "docs/runbooks/2026-05-03-tier-2b-daemon-collab-howto.md",
-          "size": 9240,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Tier 2B Daemon Collab Remaining",
-          "file": "docs/runbooks/2026-05-03-tier-2b-daemon-collab-remaining.md",
-          "size": 13902,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Tier 2B Final Pass",
-          "file": "docs/runbooks/2026-05-03-tier-2b-final-pass.md",
-          "size": 6090,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 03 Tier 2B Third Pass",
-          "file": "docs/runbooks/2026-05-03-tier-2b-third-pass.md",
-          "size": 9291,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 06 19 Compaction Work Done",
-          "file": "docs/runbooks/2026-06-19-compaction-work-DONE.md",
-          "size": 6148,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "2026 06 19 Compaction Work Howto",
-          "file": "docs/runbooks/2026-06-19-compaction-work-HOWTO.md",
-          "size": 5097,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "2026 06 19 Compaction Work Todo",
-          "file": "docs/runbooks/2026-06-19-compaction-work-TODO.md",
-          "size": 5041,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "2026 06 21 Fleet Hardening Done",
-          "file": "docs/runbooks/2026-06-21-fleet-hardening-DONE.md",
-          "size": 5394,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "2026 06 21 Fleet Hardening Howto",
-          "file": "docs/runbooks/2026-06-21-fleet-hardening-HOWTO.md",
-          "size": 6816,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "2026 06 21 Fleet Hardening Todo",
-          "file": "docs/runbooks/2026-06-21-fleet-hardening-TODO.md",
-          "size": 7711,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "2026 07 19 Fed01 Lessons",
-          "file": "docs/runbooks/2026-07-19-fed01-lessons.md",
-          "size": 7375,
-          "modified": "2026-07-19"
-        },
-        {
-          "name": "2026 07 19 Fed01 Restore Howto",
-          "file": "docs/runbooks/2026-07-19-fed01-restore-howto.md",
-          "size": 14575,
-          "modified": "2026-07-19"
-        },
-        {
-          "name": "2026 07 19 Fed01 Shutdown Completed",
-          "file": "docs/runbooks/2026-07-19-fed01-shutdown-completed.md",
-          "size": 10185,
-          "modified": "2026-07-19"
-        },
-        {
           "name": "2026 07 21 Thinkpadgen9 Dual Tailnet Done",
           "file": "docs/runbooks/2026-07-21-thinkpadgen9-dual-tailnet-DONE.md",
           "size": 5726,
-          "modified": "2026-07-22"
+          "modified": "2026-07-24"
         },
         {
           "name": "2026 07 21 Thinkpadgen9 Dual Tailnet Todo",
           "file": "docs/runbooks/2026-07-21-thinkpadgen9-dual-tailnet-TODO.md",
           "size": 13387,
-          "modified": "2026-07-22"
+          "modified": "2026-07-24"
         },
         {
           "name": "2026 07 27 Delphi Howto Guide",
@@ -13653,76 +13407,10 @@
           "modified": "2026-07-28"
         },
         {
-          "name": "7311420 Broken Current Telegram Crash",
-          "file": "docs/runbooks/7311420-broken-current-telegram-crash.md",
-          "size": 4971,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "_Template",
-          "file": "docs/runbooks/_template.md",
-          "size": 1324,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Abliterate Supergemma4 Plan",
-          "file": "docs/runbooks/abliterate-supergemma4-plan.md",
-          "size": 12823,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Accounting Terminal Deploy",
-          "file": "docs/runbooks/accounting-terminal-deploy.md",
-          "size": 63521,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Activate Conductor",
-          "file": "docs/runbooks/activate-conductor.md",
-          "size": 2412,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Adding A New Daemon",
-          "file": "docs/runbooks/adding-a-new-daemon.md",
-          "size": 13340,
-          "modified": "2026-06-08"
-        },
-        {
-          "name": "Affiliate Reply Loop",
-          "file": "docs/runbooks/affiliate-reply-loop.md",
-          "size": 9544,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "Agent Subagent Dispatch",
-          "file": "docs/runbooks/agent-subagent-dispatch.md",
-          "size": 17304,
-          "modified": "2026-07-09"
-        },
-        {
           "name": "Agentic Misalignment Gates",
           "file": "docs/runbooks/agentic-misalignment-gates.md",
           "size": 8489,
-          "modified": "2026-07-21"
-        },
-        {
-          "name": "Aggregator Sentinel",
-          "file": "docs/runbooks/aggregator-sentinel.md",
-          "size": 4884,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Api Key Rotation",
-          "file": "docs/runbooks/api-key-rotation.md",
-          "size": 3014,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Approval Policy",
-          "file": "docs/runbooks/approval-policy.md",
-          "size": 9666,
-          "modified": "2026-06-02"
+          "modified": "2026-07-24"
         },
         {
           "name": "Asset Arming Audit",
@@ -13731,406 +13419,10 @@
           "modified": "2026-07-26"
         },
         {
-          "name": "Atlas Weekly Signal",
-          "file": "docs/runbooks/atlas-weekly-signal.md",
-          "size": 4165,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Atpo Idle Dispatch Consumer",
-          "file": "docs/runbooks/atpo-idle-dispatch-consumer.md",
-          "size": 4306,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Auto Mode Usage",
-          "file": "docs/runbooks/auto-mode-usage.md",
-          "size": 7922,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Autonomous Lockdown",
-          "file": "docs/runbooks/autonomous-lockdown.md",
-          "size": 4361,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Avery Velocity Map Cadence",
-          "file": "docs/runbooks/avery-velocity-map-cadence.md",
-          "size": 8635,
-          "modified": "2026-07-02"
-        },
-        {
-          "name": "Backup Encryption",
-          "file": "docs/runbooks/backup-encryption.md",
-          "size": 9034,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Backup Replication",
-          "file": "docs/runbooks/backup-replication.md",
-          "size": 7462,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Bolt Overwatch Coordination",
-          "file": "docs/runbooks/bolt-overwatch-coordination.md",
-          "size": 4185,
-          "modified": "2026-07-16"
-        },
-        {
-          "name": "Borg Big White Setup",
-          "file": "docs/runbooks/borg-big-white-setup.md",
-          "size": 3998,
-          "modified": "2026-06-25"
-        },
-        {
-          "name": "Borg Retention",
-          "file": "docs/runbooks/borg-retention.md",
-          "size": 9024,
-          "modified": "2026-06-26"
-        },
-        {
-          "name": "Calcom Backup Restore",
-          "file": "docs/runbooks/calcom-backup-restore.md",
-          "size": 19886,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Calcom Webhook Secret Rotation",
-          "file": "docs/runbooks/calcom-webhook-secret-rotation.md",
-          "size": 12044,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Call Pipeline Completed",
-          "file": "docs/runbooks/call-pipeline-completed.md",
-          "size": 7608,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Call Pipeline Remaining",
-          "file": "docs/runbooks/call-pipeline-remaining.md",
-          "size": 6019,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Call Pipeline Usage",
-          "file": "docs/runbooks/call-pipeline-usage.md",
-          "size": 7696,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Caselaw Api Deploy",
-          "file": "docs/runbooks/caselaw-api-deploy.md",
-          "size": 7509,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Caselaw Backup Restore",
-          "file": "docs/runbooks/caselaw-backup-restore.md",
-          "size": 8447,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Caselaw Coverage Map",
-          "file": "docs/runbooks/caselaw-coverage-map.md",
-          "size": 5374,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Caselaw Ingestion Sop",
-          "file": "docs/runbooks/caselaw-ingestion-sop.md",
-          "size": 21542,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Caselaw Kaas Go Live",
-          "file": "docs/runbooks/caselaw-kaas-go-live.md",
-          "size": 13002,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "Caselaw Prod Vps Cutover",
-          "file": "docs/runbooks/caselaw-prod-vps-cutover.md",
-          "size": 7381,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "Ci Infrastructure Overhaul 2026 03 23",
-          "file": "docs/runbooks/ci-infrastructure-overhaul-2026-03-23.md",
-          "size": 5186,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Operations Guide",
-          "file": "docs/runbooks/ci-operations-guide.md",
-          "size": 6261,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Remaining Failures",
-          "file": "docs/runbooks/ci-remaining-failures.md",
-          "size": 7144,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Remaining Work",
-          "file": "docs/runbooks/ci-remaining-work.md",
-          "size": 5100,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Runner Restart",
-          "file": "docs/runbooks/ci-runner-restart.md",
-          "size": 5438,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Test Fixes 2026 03 23",
-          "file": "docs/runbooks/ci-test-fixes-2026-03-23.md",
-          "size": 4820,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Claude Oauth Credential Rotation",
-          "file": "docs/runbooks/claude-oauth-credential-rotation.md",
-          "size": 23862,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cli Render Feature Gap",
-          "file": "docs/runbooks/cli-render-feature-gap.md",
-          "size": 5698,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Client Offboarding",
-          "file": "docs/runbooks/client-offboarding.md",
-          "size": 5133,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cloudflare Tunnel Intelligence Gateway",
-          "file": "docs/runbooks/cloudflare-tunnel-intelligence-gateway.md",
-          "size": 5758,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Coding Mig Operator Runbook",
-          "file": "docs/runbooks/coding-mig-operator-runbook.md",
-          "size": 5403,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Coherence Gate Down",
-          "file": "docs/runbooks/coherence-gate-down.md",
-          "size": 3651,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Collab Comms Sentinel",
-          "file": "docs/runbooks/collab-comms-sentinel.md",
-          "size": 2350,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Compass Ask Deploy",
-          "file": "docs/runbooks/compass-ask-deploy.md",
-          "size": 4341,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Conductor Operations",
-          "file": "docs/runbooks/conductor-operations.md",
-          "size": 6471,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Context Laundering Prevention",
-          "file": "docs/runbooks/context-laundering-prevention.md",
-          "size": 11004,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cortex Creation Sop",
-          "file": "docs/runbooks/cortex-creation-sop.md",
-          "size": 11106,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Crash Recovery Runbook",
-          "file": "docs/runbooks/crash-recovery-runbook.md",
-          "size": 6719,
-          "modified": "2026-07-09"
-        },
-        {
-          "name": "Credential Architecture Roadmap",
-          "file": "docs/runbooks/credential-architecture-roadmap.md",
-          "size": 15342,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Credential Architecture What Was Done",
-          "file": "docs/runbooks/credential-architecture-what-was-done.md",
-          "size": 5840,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Credential Relay Not Running",
-          "file": "docs/runbooks/credential-relay-not-running.md",
-          "size": 3033,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Credential Rotation Audit Log",
-          "file": "docs/runbooks/credential-rotation-audit-log.md",
-          "size": 5397,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Credential Rotation Neo4J",
-          "file": "docs/runbooks/credential-rotation-neo4j.md",
-          "size": 3835,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Credential Rotation Schedule",
-          "file": "docs/runbooks/credential-rotation-schedule.md",
-          "size": 3069,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Credential Vault Sop",
-          "file": "docs/runbooks/credential-vault-sop.md",
-          "size": 6550,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cross Daemon Transport Patterns",
-          "file": "docs/runbooks/cross-daemon-transport-patterns.md",
-          "size": 3984,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cursor Dispatch",
-          "file": "docs/runbooks/cursor-dispatch.md",
-          "size": 4380,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Custom Gpt Actions Gateway",
-          "file": "docs/runbooks/custom-gpt-actions-gateway.md",
-          "size": 7497,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Custom Gpt Gateway Stability",
-          "file": "docs/runbooks/custom-gpt-gateway-stability.md",
-          "size": 4422,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Daemon Autonomous Spawn",
-          "file": "docs/runbooks/daemon-autonomous-spawn.md",
-          "size": 8383,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Daemon Autonomy Tuning",
-          "file": "docs/runbooks/daemon-autonomy-tuning.md",
-          "size": 12546,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Daemon Collab Session Sop",
           "file": "docs/runbooks/daemon-collab-session-SOP.md",
           "size": 5413,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Daemon Native Resume Rollout",
-          "file": "docs/runbooks/daemon-native-resume-rollout.md",
-          "size": 7000,
-          "modified": "2026-07-14"
-        },
-        {
-          "name": "Daemon Shell Persistent",
-          "file": "docs/runbooks/daemon-shell-persistent.md",
-          "size": 7320,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dawn Patrol Completed",
-          "file": "docs/runbooks/dawn-patrol-completed.md",
-          "size": 6391,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dawn Patrol Remaining",
-          "file": "docs/runbooks/dawn-patrol-remaining.md",
-          "size": 5391,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dawn Patrol Usage",
-          "file": "docs/runbooks/dawn-patrol-usage.md",
-          "size": 7277,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Deep Research Worker",
-          "file": "docs/runbooks/deep-research-worker.md",
-          "size": 14309,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Delegation Protocol",
-          "file": "docs/runbooks/delegation-protocol.md",
-          "size": 4706,
-          "modified": "2026-07-09"
-        },
-        {
-          "name": "Delphi Infrastructure Guide",
-          "file": "docs/runbooks/delphi-infrastructure-guide.md",
-          "size": 7977,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Delphi Session 2026 04 01 Completed",
-          "file": "docs/runbooks/delphi-session-2026-04-01-completed.md",
-          "size": 3948,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Delphi Session 2026 04 01 Remaining",
-          "file": "docs/runbooks/delphi-session-2026-04-01-remaining.md",
-          "size": 6308,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Density Sprint Plan",
-          "file": "docs/runbooks/density-sprint-plan.md",
-          "size": 6891,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dependency Cve Management",
-          "file": "docs/runbooks/dependency-cve-management.md",
-          "size": 2284,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Disaster Recovery Drill",
-          "file": "docs/runbooks/disaster-recovery-drill.md",
-          "size": 3665,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Disk Encryption Policy",
-          "file": "docs/runbooks/disk-encryption-policy.md",
-          "size": 6386,
-          "modified": "2026-06-02"
         },
         {
           "name": "Docs Reference Validation",
@@ -14139,268 +13431,16 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Domain Backfill Usage",
-          "file": "docs/runbooks/domain-backfill-usage.md",
-          "size": 5214,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Domain Governance Rollback",
-          "file": "docs/runbooks/domain-governance-rollback.md",
-          "size": 14241,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Dry Dock Imac Setup",
-          "file": "docs/runbooks/dry-dock-imac-setup.md",
-          "size": 4958,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Dual Tailnet Macos",
           "file": "docs/runbooks/dual-tailnet-macos.md",
           "size": 6171,
-          "modified": "2026-07-22"
-        },
-        {
-          "name": "Enterprise Hardening Rollback",
-          "file": "docs/runbooks/enterprise-hardening-rollback.md",
-          "size": 3482,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "External Monitoring Setup",
-          "file": "docs/runbooks/external-monitoring-setup.md",
-          "size": 8341,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fact Extraction Consumer",
-          "file": "docs/runbooks/fact-extraction-consumer.md",
-          "size": 2516,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fact Registry",
-          "file": "docs/runbooks/fact-registry.md",
-          "size": 12348,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Federated Node Provisioning",
-          "file": "docs/runbooks/federated-node-provisioning.md",
-          "size": 2883,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fiverr Order Fulfillment",
-          "file": "docs/runbooks/fiverr-order-fulfillment.md",
-          "size": 7337,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fleet Drift Remediation",
-          "file": "docs/runbooks/fleet-drift-remediation.md",
-          "size": 3836,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fleet Observability Completion",
-          "file": "docs/runbooks/fleet-observability-completion.md",
-          "size": 4956,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Fleet Observability Guide",
-          "file": "docs/runbooks/fleet-observability-guide.md",
-          "size": 11884,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Forge Retrieval Eval",
-          "file": "docs/runbooks/forge-retrieval-eval.md",
-          "size": 3926,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Free Claude Routing Done",
-          "file": "docs/runbooks/free-claude-routing-done.md",
-          "size": 7880,
-          "modified": "2026-06-04"
-        },
-        {
-          "name": "Free Claude Routing Todo",
-          "file": "docs/runbooks/free-claude-routing-todo.md",
-          "size": 4000,
-          "modified": "2026-06-04"
-        },
-        {
-          "name": "Free Claude Routing Usage",
-          "file": "docs/runbooks/free-claude-routing-usage.md",
-          "size": 8829,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "Frozen Gates",
-          "file": "docs/runbooks/frozen-gates.md",
-          "size": 3347,
-          "modified": "2026-06-16"
-        },
-        {
-          "name": "Gcp Voice Setup",
-          "file": "docs/runbooks/gcp-voice-setup.md",
-          "size": 9688,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Gh Webhook Tunnel Setup",
-          "file": "docs/runbooks/gh-webhook-tunnel-setup.md",
-          "size": 7871,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Git Hygiene Todo And Usage",
-          "file": "docs/runbooks/git-hygiene-todo-and-usage.md",
-          "size": 12774,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Git Hygiene What Was Done",
-          "file": "docs/runbooks/git-hygiene-what-was-done.md",
-          "size": 8114,
-          "modified": "2026-06-02"
+          "modified": "2026-07-24"
         },
         {
           "name": "Git Shared Tree Sop",
           "file": "docs/runbooks/git-shared-tree-sop.md",
-          "size": 13989,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "Git Swept Edits Recovery",
-          "file": "docs/runbooks/git-swept-edits-recovery.md",
-          "size": 5092,
-          "modified": "2026-07-14"
-        },
-        {
-          "name": "Goal Compaction Recovery",
-          "file": "docs/runbooks/goal-compaction-recovery.md",
-          "size": 8385,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Harness Pruning",
-          "file": "docs/runbooks/harness-pruning.md",
-          "size": 3407,
-          "modified": "2026-06-16"
-        },
-        {
-          "name": "Hook Chain Architecture",
-          "file": "docs/runbooks/hook-chain-architecture.md",
-          "size": 10753,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Hook Cwd Resolution Done",
-          "file": "docs/runbooks/hook-cwd-resolution-DONE.md",
-          "size": 9147,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Hook Cwd Resolution Howtouse",
-          "file": "docs/runbooks/hook-cwd-resolution-HOWTOUSE.md",
-          "size": 16065,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Hook Cwd Resolution Todo",
-          "file": "docs/runbooks/hook-cwd-resolution-TODO.md",
-          "size": 4984,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Hotline Production Checklist",
-          "file": "docs/runbooks/hotline-production-checklist.md",
-          "size": 12524,
-          "modified": "2026-06-04"
-        },
-        {
-          "name": "Housekeeping Procedures",
-          "file": "docs/runbooks/housekeeping-procedures.md",
-          "size": 5276,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident 2026 04 10 7311420 Memory Pressure",
-          "file": "docs/runbooks/incident-2026-04-10-7311420-memory-pressure.md",
-          "size": 3772,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident 2026 04 11 Research Mig Writer Oom",
-          "file": "docs/runbooks/incident-2026-04-11-research-mig-writer-oom.md",
-          "size": 3947,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident 2026 04 16 M1 Meltdown",
-          "file": "docs/runbooks/incident-2026-04-16-m1-meltdown.md",
-          "size": 4983,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident Rca Via Snapshots",
-          "file": "docs/runbooks/incident-rca-via-snapshots.md",
-          "size": 7005,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident Response Plan",
-          "file": "docs/runbooks/incident-response-plan.md",
-          "size": 8684,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident Response Playbook",
-          "file": "docs/runbooks/incident-response-playbook.md",
-          "size": 8984,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Incident Response",
-          "file": "docs/runbooks/incident-response.md",
-          "size": 8248,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Instance Ab Operations",
-          "file": "docs/runbooks/instance-ab-operations.md",
-          "size": 3807,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Instance Disaster Recovery",
-          "file": "docs/runbooks/instance-disaster-recovery.md",
-          "size": 4348,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Instance Provisioning",
-          "file": "docs/runbooks/instance-provisioning.md",
-          "size": 7322,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Kaas Api Deployment",
-          "file": "docs/runbooks/kaas-api-deployment.md",
-          "size": 6650,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Last30Days Skill Contained Install",
-          "file": "docs/runbooks/last30days-skill-contained-install.md",
-          "size": 6531,
-          "modified": "2026-07-14"
+          "size": 18587,
+          "modified": "2026-07-27"
         },
         {
           "name": "Latticefire Deployment Playbook",
@@ -14409,310 +13449,10 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Latticefire Reflection Protocol",
-          "file": "docs/runbooks/latticefire-reflection-protocol.md",
-          "size": 4099,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Legal Document Set Protocol",
-          "file": "docs/runbooks/legal-document-set-protocol.md",
-          "size": 5246,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Lex Trial Email Sequence",
-          "file": "docs/runbooks/lex-trial-email-sequence.md",
-          "size": 12094,
-          "modified": "2026-06-12"
-        },
-        {
-          "name": "Lex Trial To Paid Conversion",
-          "file": "docs/runbooks/lex-trial-to-paid-conversion.md",
-          "size": 10021,
-          "modified": "2026-06-12"
-        },
-        {
-          "name": "Listmonk Outreach Next Steps And Usage",
-          "file": "docs/runbooks/listmonk-outreach-next-steps-and-usage.md",
-          "size": 7182,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Loki Log Watcher",
-          "file": "docs/runbooks/loki-log-watcher.md",
-          "size": 5703,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "M1 Services Registry",
-          "file": "docs/runbooks/m1-services-registry.md",
-          "size": 19607,
-          "modified": "2026-07-03"
-        },
-        {
-          "name": "Marathon Task Boundary",
-          "file": "docs/runbooks/marathon-task-boundary.md",
-          "size": 6250,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Marlow Channel Ops",
-          "file": "docs/runbooks/marlow-channel-ops.md",
-          "size": 8332,
-          "modified": "2026-07-12"
-        },
-        {
-          "name": "Marlow New Channel Playbook",
-          "file": "docs/runbooks/marlow-new-channel-playbook.md",
-          "size": 6730,
-          "modified": "2026-07-01"
-        },
-        {
-          "name": "Marlow Watermark Remover",
-          "file": "docs/runbooks/marlow-watermark-remover.md",
-          "size": 5156,
-          "modified": "2026-07-02"
-        },
-        {
-          "name": "Marlow Youtube Metadata Checklist",
-          "file": "docs/runbooks/marlow-youtube-metadata-checklist.md",
-          "size": 4488,
-          "modified": "2026-07-05"
-        },
-        {
-          "name": "Mas Alla Failover",
-          "file": "docs/runbooks/mas-alla-failover.md",
-          "size": 5387,
-          "modified": "2026-06-16"
-        },
-        {
-          "name": "Mcp Config Drift",
-          "file": "docs/runbooks/mcp-config-drift.md",
-          "size": 3997,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mcp Server Boot Troubleshooting",
-          "file": "docs/runbooks/mcp-server-boot-troubleshooting.md",
-          "size": 3356,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Memory Health Audit",
-          "file": "docs/runbooks/memory-health-audit.md",
-          "size": 6917,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Meridian One Custom Gpt Sop",
-          "file": "docs/runbooks/meridian-one-custom-gpt-sop.md",
-          "size": 7511,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Meridian One Gpt State",
-          "file": "docs/runbooks/meridian-one-gpt-state.md",
-          "size": 5792,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mesh Emergency Stop",
-          "file": "docs/runbooks/mesh-emergency-stop.md",
-          "size": 4122,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Metro Gh Token Fine Grained Pat",
-          "file": "docs/runbooks/metro-gh-token-fine-grained-pat.md",
-          "size": 2681,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Michael Echo Setup",
-          "file": "docs/runbooks/michael-echo-setup.md",
-          "size": 3650,
-          "modified": "2026-06-09"
-        },
-        {
           "name": "Mig Crystallization",
           "file": "docs/runbooks/mig-crystallization.md",
           "size": 23575,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Mig Investigation",
-          "file": "docs/runbooks/mig-investigation.md",
-          "size": 6580,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mig Operations Safety Protocol",
-          "file": "docs/runbooks/mig-operations-safety-protocol.md",
-          "size": 11114,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mig Orphan Remediation",
-          "file": "docs/runbooks/mig-orphan-remediation.md",
-          "size": 5540,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mig Performance Usability Manual",
-          "file": "docs/runbooks/mig-performance-usability-manual.md",
-          "size": 11598,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Migration 053 054 Safety",
-          "file": "docs/runbooks/migration-053-054-safety.md",
-          "size": 5597,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Migration 060 Trading Debate Safety",
-          "file": "docs/runbooks/migration-060-trading-debate-safety.md",
-          "size": 5211,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mobile Access Setup",
-          "file": "docs/runbooks/mobile-access-setup.md",
-          "size": 15485,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Mobile Session Access",
-          "file": "docs/runbooks/mobile-session-access.md",
-          "size": 10778,
-          "modified": "2026-07-12"
-        },
-        {
-          "name": "Multi Terminal Sop",
-          "file": "docs/runbooks/multi-terminal-sop.md",
-          "size": 2239,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Nats Cluster Formation",
-          "file": "docs/runbooks/nats-cluster-formation.md",
-          "size": 25569,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Nats Token Rotation Sop",
-          "file": "docs/runbooks/nats-token-rotation-sop.md",
-          "size": 12105,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Nats Token Rotation",
-          "file": "docs/runbooks/nats-token-rotation.md",
-          "size": 6192,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Neo4J Migration To Local",
-          "file": "docs/runbooks/neo4j-migration-to-local.md",
-          "size": 34457,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Neo4J Production Guide",
-          "file": "docs/runbooks/neo4j-production-guide.md",
-          "size": 7628,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "New Daemon Checklist",
-          "file": "docs/runbooks/new-daemon-checklist.md",
-          "size": 2788,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Node Bootstrap From Scratch",
-          "file": "docs/runbooks/node-bootstrap-from-scratch.md",
-          "size": 7859,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Notebooklm Research Synthesis Workflow",
-          "file": "docs/runbooks/notebooklm-research-synthesis-workflow.md",
-          "size": 7758,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Oauth Credential Relay Sop",
-          "file": "docs/runbooks/oauth-credential-relay-sop.md",
-          "size": 8637,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Oauth Rotation Howto",
-          "file": "docs/runbooks/oauth-rotation-howto.md",
-          "size": 14243,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Oauth Rotation Session Log 2026 05 05",
-          "file": "docs/runbooks/oauth-rotation-session-log-2026-05-05.md",
-          "size": 3605,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Observability Recovery",
-          "file": "docs/runbooks/observability-recovery.md",
-          "size": 6549,
-          "modified": "2026-07-03"
-        },
-        {
-          "name": "Office Of Ontology",
-          "file": "docs/runbooks/office-of-ontology.md",
-          "size": 16727,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ontology Expansion Sop",
-          "file": "docs/runbooks/ontology-expansion-sop.md",
-          "size": 13861,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ontology First Protocol",
-          "file": "docs/runbooks/ontology-first-protocol.md",
-          "size": 6361,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ontology Preflight Check",
-          "file": "docs/runbooks/ontology-preflight-check.md",
-          "size": 9343,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Operator Escalation",
-          "file": "docs/runbooks/operator-escalation.md",
-          "size": 6866,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ops Issue Closure Verification",
-          "file": "docs/runbooks/ops-issue-closure-verification.md",
-          "size": 1763,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Phase0 Deployment Log",
-          "file": "docs/runbooks/phase0-deployment-log.md",
-          "size": 20461,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Phase0 Observability",
-          "file": "docs/runbooks/phase0-observability.md",
-          "size": 10084,
-          "modified": "2026-06-02"
         },
         {
           "name": "Post Deploy Verify",
@@ -14721,523 +13461,19 @@
           "modified": "2026-07-21"
         },
         {
-          "name": "Postiz Providers Env Keys",
-          "file": "docs/runbooks/postiz-providers-env-keys.md",
-          "size": 14001,
-          "modified": "2026-07-03"
-        },
-        {
-          "name": "Prime Critical Audit And Swap",
-          "file": "docs/runbooks/prime-critical-audit-and-swap.md",
-          "size": 4405,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Prime Unreachable And Stability",
-          "file": "docs/runbooks/prime-unreachable-and-stability.md",
-          "size": 14323,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Promote Standby",
-          "file": "docs/runbooks/promote-standby.md",
-          "size": 2812,
-          "modified": "2026-07-04"
-        },
-        {
-          "name": "Pulse Scheduler Architecture",
-          "file": "docs/runbooks/pulse-scheduler-architecture.md",
-          "size": 2400,
-          "modified": "2026-06-21"
-        },
-        {
-          "name": "Quality Rubric Prompt Experiments",
-          "file": "docs/runbooks/quality-rubric-prompt-experiments.md",
-          "size": 3788,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Quarantine Convention",
-          "file": "docs/runbooks/quarantine-convention.md",
-          "size": 2675,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Queue Pollution Fix Completed",
-          "file": "docs/runbooks/queue-pollution-fix-completed.md",
-          "size": 3829,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Queue Pollution Fix Remaining",
-          "file": "docs/runbooks/queue-pollution-fix-remaining.md",
-          "size": 4154,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Queue Pollution Fix Usage",
-          "file": "docs/runbooks/queue-pollution-fix-usage.md",
-          "size": 4848,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Rankona Catalog Api Key Issuance",
-          "file": "docs/runbooks/rankona-catalog-api-key-issuance.md",
-          "size": 18957,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Rankona Custom Gpt Sop",
-          "file": "docs/runbooks/rankona-custom-gpt-sop.md",
-          "size": 11916,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Rankona Master Access",
-          "file": "docs/runbooks/rankona-master-access.md",
-          "size": 3052,
-          "modified": "2026-07-09"
-        },
-        {
-          "name": "Rankonaterminal Cf Tunnel Setup",
-          "file": "docs/runbooks/rankonaterminal-cf-tunnel-setup.md",
-          "size": 11182,
-          "modified": "2026-06-04"
-        },
-        {
-          "name": "Reflection Consumer Deploy",
-          "file": "docs/runbooks/reflection-consumer-deploy.md",
-          "size": 1626,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Remediation Sentinel",
-          "file": "docs/runbooks/remediation-sentinel.md",
-          "size": 5325,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Remote Access Sop",
-          "file": "docs/runbooks/remote-access-sop.md",
-          "size": 8918,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Research Ingestion Sop",
-          "file": "docs/runbooks/research-ingestion-sop.md",
-          "size": 17718,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Research Pipeline E2E Sop",
-          "file": "docs/runbooks/research-pipeline-e2e-sop.md",
-          "size": 17880,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Research Pipeline Operations",
-          "file": "docs/runbooks/research-pipeline-operations.md",
-          "size": 8402,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Research Review Dashboard",
-          "file": "docs/runbooks/research-review-dashboard.md",
-          "size": 7747,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Seed Mig Refresh",
-          "file": "docs/runbooks/seed-mig-refresh.md",
-          "size": 5650,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Coordinator Usage",
-          "file": "docs/runbooks/sensei-coordinator-usage.md",
-          "size": 8509,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Gate Sop",
-          "file": "docs/runbooks/sensei-gate-sop.md",
-          "size": 1552,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Headless Supervisor",
-          "file": "docs/runbooks/sensei-headless-supervisor.md",
-          "size": 6314,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Mobile Access",
-          "file": "docs/runbooks/sensei-mobile-access.md",
-          "size": 6465,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Taskmaster Activation",
-          "file": "docs/runbooks/sensei-taskmaster-activation.md",
-          "size": 12706,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Watchdog Done",
-          "file": "docs/runbooks/sensei-watchdog-done.md",
-          "size": 7938,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Watchdog Todo",
-          "file": "docs/runbooks/sensei-watchdog-todo.md",
-          "size": 10677,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Watchdog Usage",
-          "file": "docs/runbooks/sensei-watchdog-usage.md",
-          "size": 8082,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensor Pyramid",
-          "file": "docs/runbooks/sensor-pyramid.md",
-          "size": 11380,
-          "modified": "2026-07-02"
-        },
-        {
-          "name": "Sentinel Inventory",
-          "file": "docs/runbooks/sentinel-inventory.md",
-          "size": 8838,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Session Ops Todo",
-          "file": "docs/runbooks/session-ops-todo.md",
-          "size": 7882,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Session Transcript Preservation",
-          "file": "docs/runbooks/session-transcript-preservation.md",
-          "size": 8265,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Shell Recipes",
           "file": "docs/runbooks/shell-recipes.md",
           "size": 2989,
           "modified": "2026-07-22"
         },
         {
-          "name": "Sierra Chat History 2026 06 03",
-          "file": "docs/runbooks/sierra-chat-history-2026-06-03.md",
-          "size": 2378,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Sierra Deploy",
-          "file": "docs/runbooks/sierra-deploy.md",
-          "size": 2551,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Sierra Production Runbook",
-          "file": "docs/runbooks/sierra-production-runbook.md",
-          "size": 28625,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "Sierra Sdxl Faceid M1",
-          "file": "docs/runbooks/sierra-sdxl-faceid-m1.md",
-          "size": 7582,
-          "modified": "2026-06-29"
-        },
-        {
-          "name": "Sop Creating A Domain Cortex",
-          "file": "docs/runbooks/sop-creating-a-domain-cortex.md",
-          "size": 7058,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Source Immutability",
-          "file": "docs/runbooks/source-immutability.md",
-          "size": 12743,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sp Api Oauth Authorization Flow",
-          "file": "docs/runbooks/sp-api-oauth-authorization-flow.md",
-          "size": 11458,
-          "modified": "2026-06-17"
-        },
-        {
-          "name": "Speedoftrust Subdomain Policy",
-          "file": "docs/runbooks/speedoftrust-subdomain-policy.md",
-          "size": 3876,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Ssh Hardening Runbook",
           "file": "docs/runbooks/ssh-hardening-runbook.md",
           "size": 19308,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Sterling Audit 2026 06 03 Done",
-          "file": "docs/runbooks/sterling-audit-2026-06-03-done.md",
-          "size": 7006,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Sterling Audit 2026 06 03 Todo",
-          "file": "docs/runbooks/sterling-audit-2026-06-03-todo.md",
-          "size": 12225,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Sterling Audit 2026 06 03 V2 Done",
-          "file": "docs/runbooks/sterling-audit-2026-06-03-v2-done.md",
-          "size": 5213,
-          "modified": "2026-06-03"
-        },
-        {
-          "name": "Sterling Audit 2026 06 03 V2 Todo",
-          "file": "docs/runbooks/sterling-audit-2026-06-03-v2-todo.md",
-          "size": 16008,
-          "modified": "2026-06-04"
-        },
-        {
-          "name": "Striker Squad Ops",
-          "file": "docs/runbooks/striker-squad-ops.md",
-          "size": 15727,
-          "modified": "2026-07-20"
-        },
-        {
-          "name": "Sutter Daily Operations",
-          "file": "docs/runbooks/sutter-daily-operations.md",
-          "size": 7159,
-          "modified": "2026-06-16"
-        },
-        {
-          "name": "Swiftbar Mesh Menubar",
-          "file": "docs/runbooks/swiftbar-mesh-menubar.md",
-          "size": 4062,
-          "modified": "2026-07-14"
-        },
-        {
-          "name": "Telegram Authorization",
-          "file": "docs/runbooks/telegram-authorization.md",
-          "size": 4289,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Telegram Bot Credential Troubleshooting",
-          "file": "docs/runbooks/telegram-bot-credential-troubleshooting.md",
-          "size": 6564,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Telegram E2E Checklist",
-          "file": "docs/runbooks/telegram-e2e-checklist.md",
-          "size": 2090,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Telegram Image Analysis",
-          "file": "docs/runbooks/telegram-image-analysis.md",
-          "size": 5373,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Terminal Key Rotation",
-          "file": "docs/runbooks/terminal-key-rotation.md",
-          "size": 1507,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Thinkific Webhook Haq Resolution",
-          "file": "docs/runbooks/thinkific-webhook-haq-resolution.md",
-          "size": 6557,
-          "modified": "2026-06-23"
-        },
-        {
-          "name": "Tier1 Remediation Diagnostics",
-          "file": "docs/runbooks/tier1-remediation-diagnostics.md",
-          "size": 6090,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Tiktok Direct Post Submission",
-          "file": "docs/runbooks/tiktok-direct-post-submission.md",
-          "size": 8928,
-          "modified": "2026-06-15"
-        },
-        {
-          "name": "Tiktok Operator Walkthrough",
-          "file": "docs/runbooks/tiktok-operator-walkthrough.md",
-          "size": 6054,
-          "modified": "2026-06-15"
-        },
-        {
-          "name": "Trader Auto Heal",
-          "file": "docs/runbooks/trader-auto-heal.md",
-          "size": 16822,
-          "modified": "2026-06-17"
-        },
-        {
-          "name": "Trader Go Live Roadmap",
-          "file": "docs/runbooks/trader-go-live-roadmap.md",
-          "size": 15954,
-          "modified": "2026-06-07"
-        },
-        {
-          "name": "Trader Live Readiness Audit 2026 06 05",
-          "file": "docs/runbooks/trader-live-readiness-audit-2026-06-05.md",
-          "size": 18874,
-          "modified": "2026-06-05"
-        },
-        {
-          "name": "Trader Operations",
-          "file": "docs/runbooks/trader-operations.md",
-          "size": 3634,
-          "modified": "2026-06-07"
-        },
-        {
-          "name": "Trader Tuning Protocol",
-          "file": "docs/runbooks/trader-tuning-protocol.md",
-          "size": 1676,
-          "modified": "2026-06-12"
-        },
-        {
-          "name": "Transcript Ingestion Sop",
-          "file": "docs/runbooks/transcript-ingestion-sop.md",
-          "size": 22261,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Vast Comfyui Ideogram Rig",
-          "file": "docs/runbooks/vast-comfyui-ideogram-rig.md",
-          "size": 3346,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Voice Cloning Onboarding",
-          "file": "docs/runbooks/voice-cloning-onboarding.md",
-          "size": 11986,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Gateway Credentials Rotation",
-          "file": "docs/runbooks/voice-gateway-credentials-rotation.md",
-          "size": 6247,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Vps Memory Management",
-          "file": "docs/runbooks/vps-memory-management.md",
-          "size": 3964,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Web Ship Qa Gate",
-          "file": "docs/runbooks/web-ship-qa-gate.md",
-          "size": 4745,
-          "modified": "2026-07-14"
-        },
-        {
-          "name": "Windows Pc Mesh Onboarding",
-          "file": "docs/runbooks/windows-pc-mesh-onboarding.md",
-          "size": 11213,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Windows To Linux Dual Boot",
-          "file": "docs/runbooks/windows-to-linux-dual-boot.md",
-          "size": 9510,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Work Arc Exit Protocol",
-          "file": "docs/runbooks/work-arc-exit-protocol.md",
-          "size": 5799,
-          "modified": "2026-07-14"
-        },
-        {
-          "name": "Workplan Consumer",
-          "file": "docs/runbooks/workplan-consumer.md",
-          "size": 1429,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Worktree Hygiene Completed",
-          "file": "docs/runbooks/worktree-hygiene-completed.md",
-          "size": 5139,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Worktree Hygiene Remaining",
-          "file": "docs/runbooks/worktree-hygiene-remaining.md",
-          "size": 8883,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Worktree Hygiene Usage",
-          "file": "docs/runbooks/worktree-hygiene-usage.md",
-          "size": 6060,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ws11 Graduation Seed And Deploy",
-          "file": "docs/runbooks/ws11-graduation-seed-and-deploy.md",
-          "size": 6957,
-          "modified": "2026-07-05"
-        },
-        {
-          "name": "Xplatform Recovery Wiring",
-          "file": "docs/runbooks/xplatform-recovery-wiring.md",
-          "size": 9924,
-          "modified": "2026-06-29"
-        },
-        {
-          "name": "Yt Full Loop Operations",
-          "file": "docs/runbooks/yt-full-loop-operations.md",
-          "size": 12709,
-          "modified": "2026-07-11"
-        },
-        {
-          "name": "Yt Tactics Demint",
-          "file": "docs/runbooks/yt-tactics-demint.md",
-          "size": 2757,
-          "modified": "2026-07-06"
         }
       ],
       "plans": [
-        {
-          "name": "2026 03 27 Observer Api First Parallel Plan",
-          "file": "docs/plans/2026-03-27-observer-api-first-parallel-plan.md",
-          "size": 33062,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 03 27 Parallel Build Plan",
-          "file": "docs/plans/2026-03-27-parallel-build-plan.md",
-          "size": 28914,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 03 28 Api First Parallel V2",
-          "file": "docs/plans/2026-03-28-api-first-parallel-plan-v2.md",
-          "size": 28580,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 03 29 Api First Parallel V3",
-          "file": "docs/plans/2026-03-29-api-first-parallel-plan-v3.md",
-          "size": 21360,
-          "modified": "2026-06-02"
-        },
         {
           "name": "2026 03 29 Deployed Path Protection V2",
           "file": "docs/plans/2026-03-29-deployed-path-protection-v2.md",
@@ -15245,178 +13481,28 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "2026 03 29 Deployed Path Protection",
-          "file": "docs/plans/2026-03-29-deployed-path-protection.md",
-          "size": 11148,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 11 Dashboard Enterprise Master Plan",
-          "file": "docs/plans/2026-04-11-dashboard-enterprise-master-plan.md",
-          "size": 7800,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 04 12 Course Ingest Worker 100 100 203 106",
-          "file": "docs/plans/2026-04-12-course-ingest-worker-100-100-203-106.md",
-          "size": 26329,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 05 06 Knowledge Architecture Audit",
-          "file": "docs/plans/2026-05-06-knowledge-architecture-audit.md",
-          "size": 18902,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "2026 07 05 Meridian Becoming Plan",
-          "file": "docs/plans/2026-07-05-meridian-becoming-plan.md",
-          "size": 15964,
-          "modified": "2026-07-05"
-        },
-        {
-          "name": "2026 07 07 Execution Report Done",
-          "file": "docs/plans/2026-07-07-execution-report-done.md",
-          "size": 8874,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "2026 07 07 Execution Report Todo",
-          "file": "docs/plans/2026-07-07-execution-report-todo.md",
-          "size": 13777,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "2026 07 07 Meridian Improvement Execution Plan",
-          "file": "docs/plans/2026-07-07-meridian-improvement-execution-plan.md",
-          "size": 21776,
-          "modified": "2026-07-07"
-        },
-        {
-          "name": "2026 07 09 Gitignored Durability Plan",
-          "file": "docs/plans/2026-07-09-gitignored-durability-plan.md",
-          "size": 14939,
-          "modified": "2026-07-09"
-        },
-        {
-          "name": "2026 07 10 Audit Principles Integration",
-          "file": "docs/plans/2026-07-10-audit-principles-integration.md",
-          "size": 19137,
-          "modified": "2026-07-11"
-        },
-        {
-          "name": "2026 07 16 Cockpit Prevail Done",
-          "file": "docs/plans/2026-07-16-cockpit-prevail-done.md",
-          "size": 7201,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "2026 07 16 Cockpit Prevail Howto",
-          "file": "docs/plans/2026-07-16-cockpit-prevail-howto.md",
-          "size": 7691,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "2026 07 16 Cockpit Prevail Todo",
-          "file": "docs/plans/2026-07-16-cockpit-prevail-todo.md",
-          "size": 3221,
-          "modified": "2026-07-28"
-        },
-        {
-          "name": "2026 07 16 Cockpit Prevail Ux Solutions",
-          "file": "docs/plans/2026-07-16-cockpit-prevail-ux-solutions.md",
-          "size": 5630,
-          "modified": "2026-07-28"
-        },
-        {
           "name": "2026 07 17 Agentic Misalignment What Was Done",
           "file": "docs/plans/2026-07-17-agentic-misalignment-what-was-done.md",
           "size": 5999,
-          "modified": "2026-07-21"
+          "modified": "2026-07-24"
         },
         {
           "name": "2026 07 17 Witness Oracle Done",
           "file": "docs/plans/2026-07-17-witness-oracle-done.md",
           "size": 5294,
-          "modified": "2026-07-21"
+          "modified": "2026-07-24"
         },
         {
           "name": "2026 07 17 Witness Oracle Howto",
           "file": "docs/plans/2026-07-17-witness-oracle-howto.md",
           "size": 6295,
-          "modified": "2026-07-21"
+          "modified": "2026-07-24"
         },
         {
           "name": "2026 07 17 Witness Oracle Todo",
           "file": "docs/plans/2026-07-17-witness-oracle-todo.md",
           "size": 6435,
-          "modified": "2026-07-21"
-        },
-        {
-          "name": "Api First Complete Briefing",
-          "file": "docs/plans/API-FIRST-COMPLETE-BRIEFING.md",
-          "size": 9068,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "A2 Workspace Isolation Gap Analysis",
-          "file": "docs/plans/a2-workspace-isolation-gap-analysis.md",
-          "size": 4915,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "A3 Extraction At Scale Implementation Plan",
-          "file": "docs/plans/a3-extraction-at-scale-implementation-plan.md",
-          "size": 3963,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Api First How To Use",
-          "file": "docs/plans/api-first-how-to-use.md",
-          "size": 7676,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Api First What Needs Doing",
-          "file": "docs/plans/api-first-what-needs-doing.md",
-          "size": 11261,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Api First What Was Done",
-          "file": "docs/plans/api-first-what-was-done.md",
-          "size": 8064,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Atonement Lens Implementation",
-          "file": "docs/plans/atonement-lens-implementation.md",
-          "size": 9256,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Auto Mode Completed",
-          "file": "docs/plans/auto-mode-completed.md",
-          "size": 5321,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Auto Mode Remaining",
-          "file": "docs/plans/auto-mode-remaining.md",
-          "size": 6894,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Automation Agency Intelligence Spec",
-          "file": "docs/plans/automation-agency-intelligence-spec.md",
-          "size": 7437,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Autonomous Daemon Remediation Plan",
-          "file": "docs/plans/autonomous-daemon-remediation-plan.md",
-          "size": 32413,
-          "modified": "2026-06-02"
+          "modified": "2026-07-24"
         },
         {
           "name": "Beta Sprint Parallel Work Plans",
@@ -15425,292 +13511,10 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Boardroom Team Manager And Buyer Sim",
-          "file": "docs/plans/boardroom-team-manager-and-buyer-sim.md",
-          "size": 11206,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Circuit Breaker Epidemic Remediation Plan",
-          "file": "docs/plans/circuit-breaker-epidemic-remediation-plan.md",
-          "size": 11100,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Coach Activation Plan",
-          "file": "docs/plans/coach-activation-plan.md",
-          "size": 20398,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Coach Intelligence Spec",
-          "file": "docs/plans/coach-intelligence-spec.md",
-          "size": 13596,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Cohort Features Rfc",
-          "file": "docs/plans/cohort-features-rfc.md",
-          "size": 19773,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Context Gate 1666 Tandem Informed",
-          "file": "docs/plans/context-gate-1666-tandem-informed.md",
-          "size": 6950,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Daemon Arcs 2026 04 24",
-          "file": "docs/plans/daemon-arcs-2026-04-24.md",
-          "size": 8623,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Deployed Path Protection How To Use",
-          "file": "docs/plans/deployed-path-protection-how-to-use.md",
-          "size": 4518,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Deployed Path Protection What Needs To Be Done",
-          "file": "docs/plans/deployed-path-protection-what-needs-to-be-done.md",
-          "size": 3354,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Drydock Promotion Checklist",
-          "file": "docs/plans/drydock-promotion-checklist.md",
-          "size": 4333,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Duediligence Intelligence Spec",
-          "file": "docs/plans/duediligence-intelligence-spec.md",
-          "size": 8250,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Email Infra Checklist",
-          "file": "docs/plans/email-infra-checklist.md",
-          "size": 7523,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Funnel Pitch Intelligence Spec",
-          "file": "docs/plans/funnel-pitch-intelligence-spec.md",
-          "size": 9655,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Github Agent 1 Custom Reviewer",
-          "file": "docs/plans/github-agent-plan-1-custom-reviewer.md",
-          "size": 5207,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Github Agent 2 Copilot Coding Agent",
-          "file": "docs/plans/github-agent-plan-2-copilot-coding-agent.md",
-          "size": 9124,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Github Agent 3 Agentic Code Review",
-          "file": "docs/plans/github-agent-plan-3-agentic-code-review.md",
-          "size": 10026,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Github Agent 4 Agent Hq Monitoring",
-          "file": "docs/plans/github-agent-plan-4-agent-hq-monitoring.md",
-          "size": 10501,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Github Agent 5 Autofix Security",
-          "file": "docs/plans/github-agent-plan-5-autofix-security.md",
-          "size": 13640,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Google Workspace Bridge Plan",
-          "file": "docs/plans/google-workspace-bridge-plan.md",
-          "size": 22862,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Gws Cli Integration Plan",
-          "file": "docs/plans/gws-cli-integration-plan.md",
-          "size": 16187,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Hybrid Routing Deep Audit Plan",
-          "file": "docs/plans/hybrid-routing-deep-audit-plan.md",
-          "size": 19944,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Hybrid Routing Gate Compliance Audit",
-          "file": "docs/plans/hybrid-routing-gate-compliance-audit.md",
-          "size": 30034,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Hybrid Routing Lattice",
-          "file": "docs/plans/hybrid-routing-lattice.md",
-          "size": 16343,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Hybrid Routing Stages 2 4",
-          "file": "docs/plans/hybrid-routing-stages-2-4.md",
-          "size": 30682,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Karpathy Wiki Parallel Execution Plan",
-          "file": "docs/plans/karpathy-wiki-parallel-execution-plan.md",
-          "size": 10712,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Kernel Panic Recovery Plan",
-          "file": "docs/plans/kernel-panic-recovery-plan.md",
-          "size": 31687,
-          "modified": "2026-06-06"
-        },
-        {
-          "name": "Leadgen Intelligence Spec",
-          "file": "docs/plans/leadgen-intelligence-spec.md",
-          "size": 9975,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Metro Cinematic Design Pass",
-          "file": "docs/plans/metro-cinematic-design-pass.md",
-          "size": 6571,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Metro Operations System",
-          "file": "docs/plans/metro-operations-system.md",
-          "size": 15542,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Observer Api First How To Use",
-          "file": "docs/plans/observer-api-first-how-to-use.md",
-          "size": 5790,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Observer Api First What Needs To Be Done",
-          "file": "docs/plans/observer-api-first-what-needs-to-be-done.md",
-          "size": 12980,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Observer Api First What Was Done",
-          "file": "docs/plans/observer-api-first-what-was-done.md",
-          "size": 8505,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Openclaw Rl Feedback Loop Design",
-          "file": "docs/plans/openclaw-rl-feedback-loop-design.md",
-          "size": 23638,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Operator Bridge Audit Summary",
-          "file": "docs/plans/operator-bridge-audit-summary.md",
-          "size": 7513,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Operator Bridge Build Plan.Audit",
-          "file": "docs/plans/operator-bridge-build-plan.audit.md",
-          "size": 34097,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Operator Bridge Build Plan",
-          "file": "docs/plans/operator-bridge-build-plan.md",
-          "size": 40615,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Operator Bridge Remediation Plan",
-          "file": "docs/plans/operator-bridge-remediation-plan.md",
-          "size": 17290,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Option A Enhance Buddy",
-          "file": "docs/plans/option-a-enhance-buddy.md",
-          "size": 12943,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Option B Meridian Plugin",
-          "file": "docs/plans/option-b-meridian-plugin.md",
-          "size": 23264,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Agentvox Mig Subgraph Production",
-          "file": "docs/plans/plan-agentvox-mig-subgraph-production.md",
-          "size": 28369,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Agentvox Multi Tenant",
-          "file": "docs/plans/plan-agentvox-multi-tenant.md",
-          "size": 10360,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Call Intelligence Engine",
-          "file": "docs/plans/plan-call-intelligence-engine.md",
-          "size": 9858,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ci Pass Rate",
-          "file": "docs/plans/plan-ci-pass-rate.md",
-          "size": 6338,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Claude Feature Adoption",
-          "file": "docs/plans/plan-claude-feature-adoption.md",
-          "size": 18456,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Command Center V2",
           "file": "docs/plans/plan-command-center-v2.md",
           "size": 25104,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Command Center V3 Gap Analysis",
-          "file": "docs/plans/plan-command-center-v3-gap-analysis.md",
-          "size": 24837,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Full Visibility Gap Analysis",
-          "file": "docs/plans/plan-full-visibility-gap-analysis.md",
-          "size": 20064,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Luvbuds Voice Production",
-          "file": "docs/plans/plan-luvbuds-voice-production.md",
-          "size": 25644,
-          "modified": "2026-06-02"
         },
         {
           "name": "Mesh Customer Pipeline Wiring V2",
@@ -15725,166 +13529,10 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Nemoclaw High Priority Parallel",
-          "file": "docs/plans/plan-nemoclaw-high-priority-parallel.md",
-          "size": 15248,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Open Pr Review",
-          "file": "docs/plans/plan-open-pr-review.md",
-          "size": 5143,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Osint Enrichment Platform",
-          "file": "docs/plans/plan-osint-enrichment-platform.md",
-          "size": 20099,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Post Quantum Cryptography Readiness",
-          "file": "docs/plans/plan-post-quantum-cryptography-readiness.md",
-          "size": 21277,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Prime Memory Relief",
-          "file": "docs/plans/plan-prime-memory-relief.md",
-          "size": 7642,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Redispatch Wave3 Agents",
-          "file": "docs/plans/plan-redispatch-wave3-agents.md",
-          "size": 6636,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Ssh Phase4 Deploy Migration",
-          "file": "docs/plans/plan-ssh-phase4-deploy-migration.md",
-          "size": 4923,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Task Project Hierarchy",
-          "file": "docs/plans/plan-task-project-hierarchy.md",
-          "size": 6474,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Thinkpad Federation Remaining",
-          "file": "docs/plans/plan-thinkpad-federation-remaining.md",
-          "size": 9922,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Unified Dashboard",
-          "file": "docs/plans/plan-unified-dashboard.md",
-          "size": 10729,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Platform Intel Monitor Prebuild Spikes",
-          "file": "docs/plans/platform-intel-monitor-prebuild-spikes.md",
-          "size": 10140,
-          "modified": "2026-07-09"
-        },
-        {
-          "name": "Plugin Monetization",
-          "file": "docs/plans/plugin-monetization.md",
-          "size": 10568,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Precall Intelligence Pipeline Audit",
-          "file": "docs/plans/precall-intelligence-pipeline-audit.md",
-          "size": 29862,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Precall Intelligence Pipeline",
-          "file": "docs/plans/precall-intelligence-pipeline.md",
-          "size": 8873,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Grade Roadmap",
-          "file": "docs/plans/production-grade-roadmap.md",
-          "size": 15695,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Hardening Completed",
-          "file": "docs/plans/production-hardening-COMPLETED.md",
-          "size": 12477,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Hardening Todo",
-          "file": "docs/plans/production-hardening-TODO.md",
-          "size": 11077,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Hardening Usage",
-          "file": "docs/plans/production-hardening-USAGE.md",
-          "size": 11918,
-          "modified": "2026-06-26"
-        },
-        {
-          "name": "Production Hardening Briefing",
-          "file": "docs/plans/production-hardening-briefing.md",
-          "size": 11826,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Readiness Done",
-          "file": "docs/plans/production-readiness-DONE.md",
-          "size": 8678,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Readiness Guide",
-          "file": "docs/plans/production-readiness-GUIDE.md",
-          "size": 6089,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Readiness Todo",
-          "file": "docs/plans/production-readiness-TODO.md",
-          "size": 4112,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Production Readiness Plan",
-          "file": "docs/plans/production-readiness-plan.md",
-          "size": 20705,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Re Audit Mesh Customer Pipeline Wiring V2 Audit",
-          "file": "docs/plans/re-audit-mesh-customer-pipeline-wiring-v2-audit.md",
-          "size": 23848,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Re Audit Mesh Customer Pipeline Wiring V2",
-          "file": "docs/plans/re-audit-mesh-customer-pipeline-wiring-v2.md",
-          "size": 17435,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Remaining Work Final",
           "file": "docs/plans/remaining-work-final.md",
           "size": 15640,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Remaining Work Research Swarm Audit",
-          "file": "docs/plans/remaining-work-research-swarm-audit.md",
-          "size": 12422,
-          "modified": "2026-06-02"
         },
         {
           "name": "Remaining Work Research Swarm",
@@ -15893,598 +13541,16 @@
           "modified": "2026-07-27"
         },
         {
-          "name": "Sensei Gate V2 Design",
-          "file": "docs/plans/sensei-gate-v2-design.md",
-          "size": 4785,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sensei Taskmaster Auto Mode",
-          "file": "docs/plans/sensei-taskmaster-auto-mode.md",
-          "size": 24776,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Service Redistribution Plan",
-          "file": "docs/plans/service-redistribution-plan.md",
-          "size": 9550,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Session Arc Sentinel",
-          "file": "docs/plans/session-arc-sentinel.md",
-          "size": 7820,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sierra Knox Execution Plan",
-          "file": "docs/plans/sierra-knox-execution-plan.md",
-          "size": 30983,
-          "modified": "2026-06-24"
-        },
-        {
-          "name": "Sierra Narrative Arc Implementation Plan",
-          "file": "docs/plans/sierra-narrative-arc-implementation-plan.md",
-          "size": 50645,
-          "modified": "2026-06-22"
-        },
-        {
-          "name": "Sierra Pipeline Comprehensive Build Plan",
-          "file": "docs/plans/sierra-pipeline-comprehensive-build-plan.md",
-          "size": 15259,
-          "modified": "2026-06-20"
-        },
-        {
-          "name": "Slt Boardroom Team Plan",
-          "file": "docs/plans/slt-boardroom-team-plan.md",
-          "size": 19059,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Slt Live Demo Plan",
-          "file": "docs/plans/slt-live-demo-plan.md",
-          "size": 18068,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Speedoftrust Complete Domain Plan",
-          "file": "docs/plans/speedoftrust-complete-domain-plan.md",
-          "size": 23234,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Speedoftrust Domain V3",
-          "file": "docs/plans/speedoftrust-domain-plan-v3.md",
-          "size": 16820,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Speedoftrust Domain Strategy",
-          "file": "docs/plans/speedoftrust-domain-strategy.md",
-          "size": 15169,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Speedoftrust Missing Products Plan",
-          "file": "docs/plans/speedoftrust-missing-products-plan.md",
-          "size": 19548,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Swarm Fan In Coordination Audit",
-          "file": "docs/plans/swarm-fan-in-coordination-plan-audit.md",
-          "size": 29635,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Swarm Fan In Coordination Plan",
-          "file": "docs/plans/swarm-fan-in-coordination-plan.md",
-          "size": 48127,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Swarm Fan In Coordination V2",
-          "file": "docs/plans/swarm-fan-in-coordination-v2.md",
-          "size": 44501,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Synadia Mock Conversation",
-          "file": "docs/plans/synadia-mock-conversation.md",
-          "size": 9558,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Synadia Partnership Brief",
-          "file": "docs/plans/synadia-partnership-brief.md",
-          "size": 8057,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Task Pipeline Production Plan",
-          "file": "docs/plans/task-pipeline-production-plan.md",
-          "size": 9352,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Terminal Platform Todo And Usage",
-          "file": "docs/plans/terminal-platform-todo-and-usage.md",
-          "size": 18610,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Terminal Platform What Was Done",
-          "file": "docs/plans/terminal-platform-what-was-done.md",
-          "size": 14436,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Thinkpad Gateway Api Spec",
-          "file": "docs/plans/thinkpad-gateway-api-spec.md",
-          "size": 40312,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Truth Engine Mesh Integration",
-          "file": "docs/plans/truth-engine-mesh-integration.md",
-          "size": 12527,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Unified Terminal Platform",
-          "file": "docs/plans/unified-terminal-platform.md",
-          "size": 29806,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Unified Voice Intelligence Plan",
-          "file": "docs/plans/unified-voice-intelligence-plan.md",
-          "size": 27869,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice P0 How To Use",
-          "file": "docs/plans/voice-p0-how-to-use.md",
-          "size": 6130,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice P0 What Needs Doing",
-          "file": "docs/plans/voice-p0-what-needs-doing.md",
-          "size": 4669,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice P0 What Was Done",
-          "file": "docs/plans/voice-p0-what-was-done.md",
-          "size": 6079,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Phase1 How To Use",
-          "file": "docs/plans/voice-phase1-how-to-use.md",
-          "size": 8386,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Phase1 What Needs Doing",
-          "file": "docs/plans/voice-phase1-what-needs-doing.md",
-          "size": 6256,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Phase1 What Was Done",
-          "file": "docs/plans/voice-phase1-what-was-done.md",
-          "size": 5855,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism And Fixes Plan",
-          "file": "docs/plans/voice-realism-and-fixes-plan.md",
-          "size": 15569,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism Baseline",
-          "file": "docs/plans/voice-realism-baseline.md",
-          "size": 4452,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism How To Use",
-          "file": "docs/plans/voice-realism-how-to-use.md",
-          "size": 7532,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism Plan",
-          "file": "docs/plans/voice-realism-plan.md",
-          "size": 26392,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism What Needs Doing",
-          "file": "docs/plans/voice-realism-what-needs-doing.md",
-          "size": 11290,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Voice Realism What Was Done",
-          "file": "docs/plans/voice-realism-what-was-done.md",
-          "size": 4801,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Whats Next",
-          "file": "docs/plans/whats-next.md",
-          "size": 5284,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Workspace Isolation Assessment",
-          "file": "docs/plans/workspace-isolation-assessment.md",
-          "size": 3416,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Yt Knowledge Value Plan",
-          "file": "docs/plans/yt-knowledge-value-plan.md",
-          "size": 8697,
-          "modified": "2026-07-06"
-        },
-        {
-          "name": "Yt Niche Dossier",
-          "file": "docs/plans/yt-niche-dossier.md",
-          "size": 6015,
-          "modified": "2026-07-06"
-        },
-        {
-          "name": "act60formerididan / Act60 Attorney Brief",
-          "file": "docs/plans/act60formerididan/act60-attorney-brief.md",
-          "size": 7312,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Audit Binder Template",
-          "file": "docs/plans/act60formerididan/act60-audit-binder-template.md",
-          "size": 41778,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Compliance Calendar",
-          "file": "docs/plans/act60formerididan/act60-compliance-calendar.md",
-          "size": 28453,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Ely Evaluation",
-          "file": "docs/plans/act60formerididan/act60-ely-evaluation.md",
-          "size": 21849,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Entity Formation Checklist",
-          "file": "docs/plans/act60formerididan/act60-entity-formation-checklist.md",
-          "size": 18672,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Remote Work Policy",
-          "file": "docs/plans/act60formerididan/act60-remote-work-policy.md",
-          "size": 28615,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Salary Analysis",
-          "file": "docs/plans/act60formerididan/act60-salary-analysis.md",
-          "size": 27030,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Tax Research Findings",
-          "file": "docs/plans/act60formerididan/act60-tax-research-findings.md",
-          "size": 29480,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Act60 Tax Structure Summary",
-          "file": "docs/plans/act60formerididan/act60-tax-structure-summary.md",
-          "size": 4056,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Audit Act60 Business Structure",
-          "file": "docs/plans/act60formerididan/audit-act60-business-structure.md",
-          "size": 35566,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Audit Act60 Full Package Delphi",
-          "file": "docs/plans/act60formerididan/audit-act60-full-package-delphi.md",
-          "size": 42746,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "act60formerididan / Audit Mesh Customer Pipeline Wiring",
           "file": "docs/plans/act60formerididan/audit-mesh-customer-pipeline-wiring.md",
           "size": 26242,
           "modified": "2026-07-27"
         },
         {
-          "name": "act60formerididan / Plan Act60 Business Structure V2",
-          "file": "docs/plans/act60formerididan/plan-act60-business-structure-v2.md",
-          "size": 42303,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "act60formerididan / Plan Act60 Business Structure",
-          "file": "docs/plans/act60formerididan/plan-act60-business-structure.md",
-          "size": 67143,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "audit-principles-3665 / 01 Done",
-          "file": "docs/plans/audit-principles-3665/01-DONE.md",
-          "size": 7000,
-          "modified": "2026-07-11"
-        },
-        {
-          "name": "audit-principles-3665 / 02 Todo",
-          "file": "docs/plans/audit-principles-3665/02-TODO.md",
-          "size": 7497,
-          "modified": "2026-07-11"
-        },
-        {
-          "name": "audit-principles-3665 / 03 How To Use",
-          "file": "docs/plans/audit-principles-3665/03-HOW-TO-USE.md",
-          "size": 4424,
-          "modified": "2026-07-11"
-        },
-        {
-          "name": "march-20 / Automate Plans",
-          "file": "docs/plans/march-20/automate plans.md",
-          "size": 137163,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Orchestration How To Use",
-          "file": "docs/plans/march-20/orchestration-how-to-use.md",
-          "size": 8869,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Orchestration What Needs Doing",
-          "file": "docs/plans/march-20/orchestration-what-needs-doing.md",
-          "size": 5242,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Orchestration What Was Done",
-          "file": "docs/plans/march-20/orchestration-what-was-done.md",
-          "size": 8459,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase0 Delphi Audit Prompt",
-          "file": "docs/plans/march-20/phase0-delphi-audit-prompt.md",
-          "size": 1646,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase0 Delphi Output",
-          "file": "docs/plans/march-20/phase0-delphi-output.md",
-          "size": 25968,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase0 Scoring Results",
-          "file": "docs/plans/march-20/phase0-scoring-results.md",
-          "size": 14469,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase0 Sensei Audit Prompt",
-          "file": "docs/plans/march-20/phase0-sensei-audit-prompt.md",
-          "size": 1592,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase0 Sensei Output",
-          "file": "docs/plans/march-20/phase0-sensei-output.md",
-          "size": 41966,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Phase1 Delphi Infra Audit",
-          "file": "docs/plans/march-20/phase1-delphi-infra-audit.md",
-          "size": 19388,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Amazon Review Tool",
-          "file": "docs/plans/march-20/plan-amazon-review-tool.md",
-          "size": 6239,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Api Product Architecture",
-          "file": "docs/plans/march-20/plan-api-product-architecture.md",
-          "size": 10154,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Business Development Pipeline",
-          "file": "docs/plans/march-20/plan-business-development-pipeline.md",
-          "size": 6585,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "march-20 / Plan Call To Action Pipeline",
           "file": "docs/plans/march-20/plan-call-to-action-pipeline.md",
           "size": 53656,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "march-20 / Plan Daemon Health Recovery",
-          "file": "docs/plans/march-20/plan-daemon-health-recovery.md",
-          "size": 7650,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan District Visualization",
-          "file": "docs/plans/march-20/plan-district-visualization.md",
-          "size": 5860,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Federated Instance Sizing",
-          "file": "docs/plans/march-20/plan-federated-instance-sizing.md",
-          "size": 7448,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Index Glassy Mar20",
-          "file": "docs/plans/march-20/plan-index-glassy-mar20.md",
-          "size": 6747,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Morning Diagnostic Sentinel",
-          "file": "docs/plans/march-20/plan-morning-diagnostic-sentinel.md",
-          "size": 5668,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Multi Cli Dispatch",
-          "file": "docs/plans/march-20/plan-multi-cli-dispatch.md",
-          "size": 7265,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Nats Reliability Forge Connectivity",
-          "file": "docs/plans/march-20/plan-nats-reliability-forge-connectivity.md",
-          "size": 6681,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Persona Geometry Framework",
-          "file": "docs/plans/march-20/plan-persona-geometry-framework.md",
-          "size": 6664,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Python Graph Ops",
-          "file": "docs/plans/march-20/plan-python-graph-ops.md",
-          "size": 8261,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Titan Cursor Daemon",
-          "file": "docs/plans/march-20/plan-titan-cursor-daemon.md",
-          "size": 7204,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Plan Whatsapp Integration",
-          "file": "docs/plans/march-20/plan-whatsapp-integration.md",
-          "size": 8862,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Session How To Use",
-          "file": "docs/plans/march-20/session-how-to-use.md",
-          "size": 11066,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Session What Needs Doing",
-          "file": "docs/plans/march-20/session-what-needs-doing.md",
-          "size": 11274,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Session What Was Done",
-          "file": "docs/plans/march-20/session-what-was-done.md",
-          "size": 12108,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "march-20 / Tier0 Parallel Execution",
-          "file": "docs/plans/march-20/tier0-parallel-execution.md",
-          "size": 20380,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 00 Session Handoff",
-          "file": "docs/plans/next-session/00-session-handoff.md",
-          "size": 3196,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 01 Activate Auto Ingest",
-          "file": "docs/plans/next-session/01-activate-auto-ingest.md",
-          "size": 1651,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 02 Wire Csuite Into Dashboard",
-          "file": "docs/plans/next-session/02-wire-csuite-into-dashboard.md",
-          "size": 3810,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 03 Dashboard Fragility",
-          "file": "docs/plans/next-session/03-dashboard-fragility.md",
-          "size": 3527,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 04 Dailyscore Activation",
-          "file": "docs/plans/next-session/04-dailyscore-activation.md",
-          "size": 2011,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 05 Enrich Remaining Calls",
-          "file": "docs/plans/next-session/05-enrich-remaining-calls.md",
-          "size": 2564,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 06 Data Freshness",
-          "file": "docs/plans/next-session/06-data-freshness.md",
-          "size": 1816,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 07 Mobile Testing",
-          "file": "docs/plans/next-session/07-mobile-testing.md",
-          "size": 1589,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "next-session / 08 Process Ai Transcripts",
-          "file": "docs/plans/next-session/08-process-ai-transcripts.md",
-          "size": 2132,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "unified-dashboard / Done",
-          "file": "docs/plans/unified-dashboard/DONE.md",
-          "size": 9101,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "unified-dashboard / Todo",
-          "file": "docs/plans/unified-dashboard/TODO.md",
-          "size": 6384,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "unified-dashboard / Usage",
-          "file": "docs/plans/unified-dashboard/USAGE.md",
-          "size": 9963,
-          "modified": "2026-06-02"
         }
       ],
       "protocols": [
@@ -16495,50 +13561,20 @@
           "modified": "2026-07-26"
         },
         {
-          "name": "Agent Protocol",
-          "file": "AGENT_PROTOCOL.md",
-          "size": 33090,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Checklist",
-          "file": "CHECKLIST.md",
-          "size": 15930,
-          "modified": "2026-06-02"
-        },
-        {
           "name": "Team State",
           "file": "docs/TEAM_STATE.md",
           "size": 66461,
           "modified": "2026-07-27"
-        },
-        {
-          "name": "Source Of Truth",
-          "file": "docs/SOURCE_OF_TRUTH.md",
-          "size": 10640,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Development Workflow",
-          "file": "docs/DEVELOPMENT_WORKFLOW.md",
-          "size": 20033,
-          "modified": "2026-06-02"
-        },
-        {
-          "name": "Sentinel Registry",
-          "file": "docs/sentinel-registry.md",
-          "size": 17979,
-          "modified": "2026-06-02"
         }
       ],
-      "total_sops": 17,
-      "total_runbooks": 298,
-      "total_plans": 212,
-      "total_protocols": 7,
-      "total_docs": 534
+      "total_sops": 2,
+      "total_runbooks": 16,
+      "total_plans": 13,
+      "total_protocols": 2,
+      "total_docs": 33
     },
     "deals": {
-      "updated_at": "2026-07-29T19:45:06.785415+00:00",
+      "updated_at": "2026-07-29T21:13:48.687401+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -16780,7 +13816,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-07-29T19:45:06.622254+00:00",
+      "updated_at": "2026-07-29T21:13:48.072535+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -89888,7 +86924,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-07-29T19:45:06.921312+00:00",
+      "updated_at": "2026-07-29T21:13:48.869372+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -97530,7 +94566,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-07-29T19:45:06.946304+00:00",
+      "updated_at": "2026-07-29T21:13:48.970909+00:00",
       "items": [
         {
           "type": "blocked",
@@ -97725,66 +94761,66 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-07-29T19:45:06.946347+00:00",
+      "updated_at": "2026-07-29T21:13:48.971018+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-07-29T19:34:48Z",
-          "title": "mbf: publish holds placed - step 3 is now mechanical (arc rankona#40)",
+          "date": "2026-07-29T20:48:17Z",
+          "title": "glasses: match the ephemeral token's locked tools to the native bridge",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:44:55Z",
+          "title": "Confirm creates against Suno's workspace, not our own click or the credit chip",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:38:10Z",
+          "title": "mbf ledger: sku-271 closed by live SP-API + name the variant-confusion class (ra",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-29T19:31:48Z",
-          "title": "Add the Suno automation layer for the Scripture prayer-song corpus",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T19:19:14Z",
-          "title": "glasses: supervise the :8101 tool lane under launchd, off /tmp",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T18:54:57Z",
-          "title": "glasses forward plan: haq-e2f08e37 is a plist bug, not a TCC denial",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T18:49:41Z",
-          "title": "Add the 1,189-song Scripture prayer corpus (Genesis 1 to Revelation 22)",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T18:46:40Z",
-          "title": "docs(luvbuds): Metabase findings + Jay handoff, real lead times from PO history",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T18:32:20Z",
-          "title": "feat(luvbuds): record why every SKU was dropped, not just how many",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-07-29T18:16:51Z",
-          "title": "mbf ledger: SE T1 verification + two step-2/6 risks (arc rankona#40)",
+          "date": "2026-07-29T20:35:00Z",
+          "title": "mbf: localization render witness + step-3 precondition + 9da findings (rankona#4",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-29T18:13:47Z",
-          "title": "MBF T1: SE client-keyword load applied (17 ASINs, 617 phrases, 268 with client S",
+          "date": "2026-07-29T20:34:25Z",
+          "title": "rankona#40: two write lanes were blind to asin_list commitments",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-07-29T18:13:18Z",
-          "title": "mbf ledger: helm rulings + steps 4-6 tooling state (arc rankona#40)",
+          "date": "2026-07-29T20:34:23Z",
+          "title": "Confirm Suno creates by the credit balance, and run the batch operator-assisted",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:29:52Z",
+          "title": "LuvBuds full-catalog distributor deck: 258 SKUs, PDF + web deploy",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:28:33Z",
+          "title": "mbf SE re-witness: titles PASS, two new findings, seat-coverage + stale-box flag",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:21:48Z",
+          "title": "mbf: client verbatim titles WIN the suggested field - 158 rows flip from compose",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-07-29T20:18:22Z",
+          "title": "mbf SE step-2 witness: keyword plane PASS, native-copy plane FAIL (arc rankona#4",
           "detail": "Glasshaus"
         },
         {
