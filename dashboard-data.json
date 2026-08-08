@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T18:09:22.963257+00:00",
+  "generated_at": "2026-08-08T20:46:38.736738+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-08-08T18:09:17.561658+00:00",
+      "updated_at": "2026-08-08T20:46:35.369266+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7062,7 +7062,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 2934 hours old"
+        "_stale_warning": "Data is 2937 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7197,23 +7197,499 @@
             "online": true
           }
         ],
-        "generated_at": "2026-08-08T18:09:17.576654+00:00",
+        "generated_at": "2026-08-08T20:46:35.404503+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-08-08T18:09:21.358461+00:00",
+      "updated_at": "2026-08-08T20:46:38.194231+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "flock-audit-2026-08-08": 32,
+          "sev-medium": 10,
+          "sev-high": 17,
+          "sev-critical": 4,
+          "auto-created": 2,
           "security": 1,
-          "dependencies": 7,
-          "javascript": 5,
-          "enhancement": 1,
-          "python:uv": 2
+          "dependencies": 1,
+          "javascript": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 4013,
+          "title": "[audit R31] inbox-pending file overwrites (count:1); identity lock has no fencing token",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:33Z",
+          "updated_at": "2026-08-08T19:35:33Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4013",
+          "project_slug": null
+        },
+        {
+          "number": 4012,
+          "title": "[audit R30] Silent embedding gaps in customer workspaces; mig_health under-reports",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:30Z",
+          "updated_at": "2026-08-08T19:35:30Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4012",
+          "project_slug": null
+        },
+        {
+          "number": 4011,
+          "title": "[audit R29] Dead-daemon task reclamation single-homed on pulse_consumer (silent-death history)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:28Z",
+          "updated_at": "2026-08-08T19:35:28Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4011",
+          "project_slug": null
+        },
+        {
+          "number": 4010,
+          "title": "[audit R28] Flat all-or-nothing authz; no durable audit trail of phone actions",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:26Z",
+          "updated_at": "2026-08-08T19:35:26Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4010",
+          "project_slug": null
+        },
+        {
+          "number": 4009,
+          "title": "[audit R27] ttyd passwordless gate trusts an untracked file's mtime; 30-day auto-revert is a silent outage trap",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:24Z",
+          "updated_at": "2026-08-08T19:35:24Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4009",
+          "project_slug": null
+        },
+        {
+          "number": 4008,
+          "title": "[audit R26] nats-tunnel-intel KeepAlive dead-loops on a stale IP (3379 fails, no alert)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:22Z",
+          "updated_at": "2026-08-08T19:35:22Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4008",
+          "project_slug": null
+        },
+        {
+          "number": 4007,
+          "title": "[audit R25] No liveness truth for the actual cc-*/cu-* flock (only 16 hardcoded daemons checked)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:18Z",
+          "updated_at": "2026-08-08T19:35:18Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4007",
+          "project_slug": null
+        },
+        {
+          "number": 4006,
+          "title": "[audit R24] Truth sentinels silent (no consumer); down-detection defaults new daemon online",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:16Z",
+          "updated_at": "2026-08-08T19:35:16Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4006",
+          "project_slug": null
+        },
+        {
+          "number": 4005,
+          "title": "[audit R23] Neo4j warm-standby refresh unwitnessed, >=24h RPO, manual promotion",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:14Z",
+          "updated_at": "2026-08-08T19:35:14Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4005",
+          "project_slug": null
+        },
+        {
+          "number": 4004,
+          "title": "[audit R22] Helm actuation trusts an unauthenticated from_session field (forgeable standing order)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:12Z",
+          "updated_at": "2026-08-08T19:35:12Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-medium"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4004",
+          "project_slug": null
+        },
+        {
+          "number": 4003,
+          "title": "[audit R21] AskUserQuestion deadlock in autonomous loops has zero mechanical enforcement",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:10Z",
+          "updated_at": "2026-08-08T19:35:10Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4003",
+          "project_slug": null
+        },
+        {
+          "number": 4002,
+          "title": "[audit R20] Dedup MERGE off for ~half the graph; uniqueness constraint mismatches MERGE key",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:08Z",
+          "updated_at": "2026-08-08T19:35:08Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4002",
+          "project_slug": null
+        },
+        {
+          "number": 4001,
+          "title": "[audit R19] Prime JetStream replicas=1, no stream backup (DLQ/work-queue/locks/session KV single-copy)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:06Z",
+          "updated_at": "2026-08-08T19:35:06Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4001",
+          "project_slug": null
+        },
+        {
+          "number": 4000,
+          "title": "[audit R18] Alerts fire-and-forget, no store-and-forward; Telegram send failures swallowed",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:03Z",
+          "updated_at": "2026-08-08T19:35:03Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4000",
+          "project_slug": null
+        },
+        {
+          "number": 3999,
+          "title": "[audit R17] security-alert-bridge.yml startup_failure 20/20 (GitHub->mesh security bridge never ran)",
+          "state": "open",
+          "created_at": "2026-08-08T19:35:01Z",
+          "updated_at": "2026-08-08T19:35:01Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3999",
+          "project_slug": null
+        },
+        {
+          "number": 3998,
+          "title": "[audit R16] Human queue view-only from phone; no /cancel or /kill of a running task",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:59Z",
+          "updated_at": "2026-08-08T19:34:59Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3998",
+          "project_slug": null
+        },
+        {
+          "number": 3997,
+          "title": "[audit R15] Divergence sentinel misses 1736 untracked mikebitler/ files (zero backup)",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:57Z",
+          "updated_at": "2026-08-08T19:34:57Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3997",
+          "project_slug": null
+        },
+        {
+          "number": 3996,
+          "title": "[audit R14] Shared-tree drift alarm has no owner (93 behind, 19 stashes, 1812 untracked)",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:55Z",
+          "updated_at": "2026-08-08T19:34:55Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3996",
+          "project_slug": null
+        },
+        {
+          "number": 3995,
+          "title": "[audit R13] Outbound NATS spool never drained for the Claude Code (Model B) flock",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:53Z",
+          "updated_at": "2026-08-08T19:34:53Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3995",
+          "project_slug": null
+        },
+        {
+          "number": 3994,
+          "title": "[audit R12] CI is effectively non-gating on shared main (fast CI cancelled 7/8, full CI never green)",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:51Z",
+          "updated_at": "2026-08-08T19:34:51Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3994",
+          "project_slug": null
+        },
+        {
+          "number": 3993,
+          "title": "[audit R11] Single self-hosted CI runner is a SPOF for CI/deploy/dashboard/compass",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:49Z",
+          "updated_at": "2026-08-08T19:34:49Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3993",
+          "project_slug": null
+        },
+        {
+          "number": 3992,
+          "title": "[audit R10] Escalations land in the dashboard queue and never buzz the phone under normal ops",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:47Z",
+          "updated_at": "2026-08-08T19:34:47Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3992",
+          "project_slug": null
+        },
+        {
+          "number": 3991,
+          "title": "[audit R9] session_send returns delivered:true but never writes the durable JetStream inbox",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:45Z",
+          "updated_at": "2026-08-08T19:34:45Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3991",
+          "project_slug": null
+        },
+        {
+          "number": 3990,
+          "title": "[audit R8] Daemon-to-daemon inbox only warn-mode sanitized; blocking guard only at gateway",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:43Z",
+          "updated_at": "2026-08-08T19:34:43Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3990",
+          "project_slug": null
+        },
+        {
+          "number": 3989,
+          "title": "[audit R7] Shared NATS token passed as --password on argv, no per-node revocation",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:39Z",
+          "updated_at": "2026-08-08T19:34:39Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3989",
+          "project_slug": null
+        },
+        {
+          "number": 3988,
+          "title": "[audit R6] Cross-tenant read leak via OR workspace_id IS NULL (220 NULL nodes, 65 workspaces)",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:36Z",
+          "updated_at": "2026-08-08T19:34:36Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3988",
+          "project_slug": null
+        },
+        {
+          "number": 3987,
+          "title": "[audit R5] Whole monitoring plane runs only on M1; M1 death is unmonitored",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:34Z",
+          "updated_at": "2026-08-08T19:34:34Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3987",
+          "project_slug": null
+        },
+        {
+          "number": 3986,
+          "title": "[audit R4] NOTIFY funnel is effectively unbuilt (zero decision_needed emitters)",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:31Z",
+          "updated_at": "2026-08-08T19:34:31Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-critical"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3986",
+          "project_slug": null
+        },
+        {
+          "number": 3985,
+          "title": "[audit R3] Alert bridge is the delivery SPOF with no end-to-end canary or external watchdog",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:29Z",
+          "updated_at": "2026-08-08T19:34:29Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-critical"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3985",
+          "project_slug": null
+        },
+        {
+          "number": 3984,
+          "title": "[audit R2] operator_question inbox message impersonates the operator with zero sanitization",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:27Z",
+          "updated_at": "2026-08-08T19:34:27Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-critical"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3984",
+          "project_slug": null
+        },
+        {
+          "number": 3983,
+          "title": "[audit R1] Prime NATS/Neo4j death is silent + un-alertable",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:25Z",
+          "updated_at": "2026-08-08T19:34:25Z",
+          "labels": [
+            "flock-audit-2026-08-08",
+            "sev-critical"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3983",
+          "project_slug": null
+        },
+        {
+          "number": 3982,
+          "title": "[EPIC] Flock system-wide audit remediation 2026-08-08",
+          "state": "open",
+          "created_at": "2026-08-08T19:34:23Z",
+          "updated_at": "2026-08-08T19:34:23Z",
+          "labels": [
+            "flock-audit-2026-08-08"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3982",
+          "project_slug": null
+        },
+        {
+          "number": 3981,
+          "title": "Metric below target: Research Ingestion Rate (7d) (0.0)",
+          "state": "open",
+          "created_at": "2026-08-08T18:17:58Z",
+          "updated_at": "2026-08-08T18:17:58Z",
+          "labels": [
+            "auto-created"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3981",
+          "project_slug": null
+        },
+        {
+          "number": 3980,
+          "title": "Metric below target: Task Resolution Rate (0.38)",
+          "state": "open",
+          "created_at": "2026-08-08T18:17:56Z",
+          "updated_at": "2026-08-08T18:17:56Z",
+          "labels": [
+            "auto-created"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/3980",
+          "project_slug": null
+        },
         {
           "number": 3979,
           "title": "security: CF Pages authed-response public-cache leak across gated rankona stations (revenue-data.js class)",
@@ -7394,419 +7870,483 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/3959",
           "project_slug": null
-        },
-        {
-          "number": 3958,
-          "title": "lane-clear-foreign-overlap.sh: mapfile needs bash 4+; macOS system bash 3.2 silently breaks the auto-clear path",
-          "state": "open",
-          "created_at": "2026-08-07T08:03:13Z",
-          "updated_at": "2026-08-07T08:03:13Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3958",
-          "project_slug": null
-        },
-        {
-          "number": 3956,
-          "title": "Nightly Consolidation: daemon recall-path weaving practice (research nodes -> work-context edges)",
-          "state": "open",
-          "created_at": "2026-08-06T22:14:31Z",
-          "updated_at": "2026-08-06T22:56:43Z",
-          "labels": [
-            "enhancement"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3956",
-          "project_slug": null
-        },
-        {
-          "number": 3955,
-          "title": "OVERNIGHT COMPLETION DRIVE Aug 6-7: master plan, owners, clocks, crossings (operator order)",
-          "state": "open",
-          "created_at": "2026-08-06T21:02:47Z",
-          "updated_at": "2026-08-06T21:22:27Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3955",
-          "project_slug": null
-        },
-        {
-          "number": 3954,
-          "title": "MIG knowledge-fitness: research auto-ingest is flooding the high-importance recall surface uncorroborated - evidence pack for sandman's investigation",
-          "state": "open",
-          "created_at": "2026-08-06T20:56:22Z",
-          "updated_at": "2026-08-07T09:26:02Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3954",
-          "project_slug": null
-        },
-        {
-          "number": 3953,
-          "title": "flatfiles workbook discoverability drift: 504 in-repo workbooks vs 2 live manifest flags - client hit it tonight",
-          "state": "open",
-          "created_at": "2026-08-06T20:53:29Z",
-          "updated_at": "2026-08-06T20:53:29Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3953",
-          "project_slug": null
-        },
-        {
-          "number": 3952,
-          "title": "Revenue pull plane has NO scheduled refresh - 10-day staleness witnessed + coverage gaps (HELM P1 gap)",
-          "state": "open",
-          "created_at": "2026-08-06T19:25:55Z",
-          "updated_at": "2026-08-06T19:25:55Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3952",
-          "project_slug": null
-        },
-        {
-          "number": 3951,
-          "title": "Fathom transcript auto-processing: bring receiver live + wire transcript -> client-brief -> per-request GH issues",
-          "state": "open",
-          "created_at": "2026-08-06T15:54:01Z",
-          "updated_at": "2026-08-06T15:54:01Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3951",
-          "project_slug": null
-        },
-        {
-          "number": 3950,
-          "title": "Backend/content family-coupling with staggered publish: one prep, two lanes, mechanical sequencing gate",
-          "state": "open",
-          "created_at": "2026-08-06T15:32:56Z",
-          "updated_at": "2026-08-06T21:22:28Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3950",
-          "project_slug": null
-        },
-        {
-          "number": 3949,
-          "title": "Content punctuation + volume-position rules: pipe ban all authored lanes, volume/quantity terminal in title+highlight (operator catch)",
-          "state": "open",
-          "created_at": "2026-08-06T14:52:35Z",
-          "updated_at": "2026-08-06T14:52:35Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3949",
-          "project_slug": null
-        },
-        {
-          "number": 3948,
-          "title": "OKR board lifecycle layer: priorities, WIP caps, done/retired states, enforced at publish (rankona lane)",
-          "state": "open",
-          "created_at": "2026-08-06T14:39:03Z",
-          "updated_at": "2026-08-07T21:10:09Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3948",
-          "project_slug": null
-        },
-        {
-          "number": 3947,
-          "title": "Revenue portal: per-family attribution drill-down + expanded treated view (Rankona meeting 2026-08-07)",
-          "state": "open",
-          "created_at": "2026-08-06T14:04:42Z",
-          "updated_at": "2026-08-06T19:07:56Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3947",
-          "project_slug": null
-        },
-        {
-          "number": 3946,
-          "title": "productops.rankonaterminal.com - Product Optimization Terminal (client-spec command center, GH arc)",
-          "state": "open",
-          "created_at": "2026-08-06T12:58:41Z",
-          "updated_at": "2026-08-07T12:44:29Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3946",
-          "project_slug": null
-        },
-        {
-          "number": 3945,
-          "title": "False-LIVE verdict class: readbacks witness only the pushed SKU, never the FBA-featured contribution or rendered PDP",
-          "state": "open",
-          "created_at": "2026-08-06T11:37:59Z",
-          "updated_at": "2026-08-06T11:37:59Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3945",
-          "project_slug": null
-        },
-        {
-          "number": 3943,
-          "title": "Flock-mode boot: daemon-shell.sh --flock + flock-boot context module + FLOCK_STATE KV (seats boot flock-aware, beat armed, report to helm)",
-          "state": "open",
-          "created_at": "2026-08-06T02:14:07Z",
-          "updated_at": "2026-08-06T02:25:10Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3943",
-          "project_slug": null
-        },
-        {
-          "number": 3942,
-          "title": "Equinavia full-catalog keyword supply: $0 niche-bridge + DataDive/SQP queue in revenue order (operator green-light 2026-08-06)",
-          "state": "open",
-          "created_at": "2026-08-06T01:59:25Z",
-          "updated_at": "2026-08-06T15:55:56Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3942",
-          "project_slug": null
-        },
-        {
-          "number": 3941,
-          "title": "item_type_keyword accepted-values ranking: real fix still open (GH#3939 closed but quarantine, not fix, is what shipped)",
-          "state": "open",
-          "created_at": "2026-08-05T20:05:38Z",
-          "updated_at": "2026-08-07T08:44:42Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3941",
-          "project_slug": null
-        },
-        {
-          "number": 3940,
-          "title": "Portal Approve and Publish: client portal approval fires the Amazon submit (remove the human relay)",
-          "state": "open",
-          "created_at": "2026-08-05T19:54:31Z",
-          "updated_at": "2026-08-05T19:54:31Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3940",
-          "project_slug": null
-        },
-        {
-          "number": 3938,
-          "title": "A12 cross-family SKU leak in protected-11 read-only audit path: P_39093 SKUs bled into P_39013 workbook",
-          "state": "open",
-          "created_at": "2026-08-05T16:20:21Z",
-          "updated_at": "2026-08-05T16:37:39Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3938",
-          "project_slug": null
-        },
-        {
-          "number": 3937,
-          "title": "product_manifest.yaml builder is unreliable: 0/7 trustworthy clr_xlsm mappings on GH#3933 roster - root-cause before #694 train scale-up",
-          "state": "open",
-          "created_at": "2026-08-05T15:03:45Z",
-          "updated_at": "2026-08-05T15:03:45Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3937",
-          "project_slug": null
-        },
-        {
-          "number": 3936,
-          "title": "Re-audit priority families whose browse node changed by accepted Amazon case (Amara + FlyMask now; Karina + Rover Tall as cases land)",
-          "state": "open",
-          "created_at": "2026-08-05T15:03:44Z",
-          "updated_at": "2026-08-05T15:20:20Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3936",
-          "project_slug": null
-        },
-        {
-          "number": 3935,
-          "title": "marlow video-08: voiceover narrates the shotlist aloud (content defect)",
-          "state": "open",
-          "created_at": "2026-08-05T14:41:23Z",
-          "updated_at": "2026-08-05T14:41:23Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3935",
-          "project_slug": null
-        },
-        {
-          "number": 3934,
-          "title": "marlow: render the 24 no-wav voice dirs (real TTS path, follow-up to #3930)",
-          "state": "open",
-          "created_at": "2026-08-05T14:41:22Z",
-          "updated_at": "2026-08-05T14:41:22Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3934",
-          "project_slug": null
-        },
-        {
-          "number": 3933,
-          "title": "MISS-RECOVERY: 7 top-50 fix-grade audits for Jawad (outside priority families) - pinned roster, same-day RED line",
-          "state": "open",
-          "created_at": "2026-08-05T14:20:33Z",
-          "updated_at": "2026-08-05T20:04:02Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3933",
-          "project_slug": null
-        },
-        {
-          "number": 3931,
-          "title": "Localization all-clients MBF-parity program (composed_alt_title gold standard)",
-          "state": "open",
-          "created_at": "2026-08-05T12:24:53Z",
-          "updated_at": "2026-08-05T12:24:53Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3931",
-          "project_slug": null
-        },
-        {
-          "number": 3927,
-          "title": "Revenue portal: 3 client commitments from the 2026-08-04 revenue report (cost ranking, keyword-revenue tracking, scheduled refresh)",
-          "state": "open",
-          "created_at": "2026-08-04T22:43:55Z",
-          "updated_at": "2026-08-04T23:36:42Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3927",
-          "project_slug": null
-        },
-        {
-          "number": 3921,
-          "title": "Jawad seven-item trace response (2026-08-04): instrument provenance of 29-Jul figures + six verified answers",
-          "state": "open",
-          "created_at": "2026-08-04T14:48:04Z",
-          "updated_at": "2026-08-04T14:48:04Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3921",
-          "project_slug": null
-        },
-        {
-          "number": 3920,
-          "title": "Pre-push deletion guard: mechanize git-workflow rule 11 (show --stat abort-on-unintended-deletions) as a hook",
-          "state": "open",
-          "created_at": "2026-08-04T12:52:10Z",
-          "updated_at": "2026-08-04T12:52:10Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3920",
-          "project_slug": null
-        },
-        {
-          "number": 3919,
-          "title": "Bump cryptography from 46.0.7 to 50.0.0",
-          "state": "open",
-          "created_at": "2026-08-04T12:34:39Z",
-          "updated_at": "2026-08-04T12:34:39Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3919",
-          "project_slug": null
-        },
-        {
-          "number": 3918,
-          "title": "Bump aiohttp from 3.13.5 to 3.14.3",
-          "state": "open",
-          "created_at": "2026-08-04T12:34:20Z",
-          "updated_at": "2026-08-04T12:34:20Z",
-          "labels": [
-            "dependencies",
-            "python:uv"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3918",
-          "project_slug": null
-        },
-        {
-          "number": 3917,
-          "title": "Bump postcss and next in /dashboard",
-          "state": "open",
-          "created_at": "2026-08-04T12:34:09Z",
-          "updated_at": "2026-08-04T12:34:10Z",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3917",
-          "project_slug": null
-        },
-        {
-          "number": 3916,
-          "title": "Bump fast-uri from 3.1.0 to 3.1.5 in /dashboard",
-          "state": "open",
-          "created_at": "2026-08-04T12:33:57Z",
-          "updated_at": "2026-08-04T12:33:58Z",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3916",
-          "project_slug": null
-        },
-        {
-          "number": 3915,
-          "title": "Bump brace-expansion from 1.1.13 to 1.1.18 in /extensions/meridian-status",
-          "state": "open",
-          "created_at": "2026-08-04T12:33:50Z",
-          "updated_at": "2026-08-04T12:33:50Z",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3915",
-          "project_slug": null
-        },
-        {
-          "number": 3914,
-          "title": "Bump ip-address and express-rate-limit in /dashboard",
-          "state": "open",
-          "created_at": "2026-08-04T12:33:42Z",
-          "updated_at": "2026-08-04T12:33:43Z",
-          "labels": [
-            "dependencies",
-            "javascript"
-          ],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/pull/3914",
-          "project_slug": null
-        },
-        {
-          "number": 3913,
-          "title": "URGENT: Amara live Material wrong/divergent per size - support pack for Jawad's manual fix + trigger-theory witness",
-          "state": "open",
-          "created_at": "2026-08-04T10:19:23Z",
-          "updated_at": "2026-08-04T10:19:23Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/3913",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
-        "openclaw": [
+        "unassigned": [
           {
-            "number": 3979,
-            "title": "security: CF Pages authed-response public-cache leak across gated rankona stations (revenue-data.js class)",
+            "number": 4013,
+            "title": "[audit R31] inbox-pending file overwrites (count:1); identity lock has no fencing token",
             "state": "open",
-            "created_at": "2026-08-08T15:33:16Z",
-            "updated_at": "2026-08-08T15:33:16Z",
+            "created_at": "2026-08-08T19:35:33Z",
+            "updated_at": "2026-08-08T19:35:33Z",
             "labels": [
-              "security"
+              "flock-audit-2026-08-08",
+              "sev-medium"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3979",
-            "project_slug": "openclaw"
-          }
-        ],
-        "unassigned": [
+            "url": "https://github.com/covaultxyz/meridian/issues/4013",
+            "project_slug": null
+          },
+          {
+            "number": 4012,
+            "title": "[audit R30] Silent embedding gaps in customer workspaces; mig_health under-reports",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:30Z",
+            "updated_at": "2026-08-08T19:35:30Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4012",
+            "project_slug": null
+          },
+          {
+            "number": 4011,
+            "title": "[audit R29] Dead-daemon task reclamation single-homed on pulse_consumer (silent-death history)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:28Z",
+            "updated_at": "2026-08-08T19:35:28Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4011",
+            "project_slug": null
+          },
+          {
+            "number": 4010,
+            "title": "[audit R28] Flat all-or-nothing authz; no durable audit trail of phone actions",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:26Z",
+            "updated_at": "2026-08-08T19:35:26Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4010",
+            "project_slug": null
+          },
+          {
+            "number": 4009,
+            "title": "[audit R27] ttyd passwordless gate trusts an untracked file's mtime; 30-day auto-revert is a silent outage trap",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:24Z",
+            "updated_at": "2026-08-08T19:35:24Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4009",
+            "project_slug": null
+          },
+          {
+            "number": 4008,
+            "title": "[audit R26] nats-tunnel-intel KeepAlive dead-loops on a stale IP (3379 fails, no alert)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:22Z",
+            "updated_at": "2026-08-08T19:35:22Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4008",
+            "project_slug": null
+          },
+          {
+            "number": 4007,
+            "title": "[audit R25] No liveness truth for the actual cc-*/cu-* flock (only 16 hardcoded daemons checked)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:18Z",
+            "updated_at": "2026-08-08T19:35:18Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4007",
+            "project_slug": null
+          },
+          {
+            "number": 4006,
+            "title": "[audit R24] Truth sentinels silent (no consumer); down-detection defaults new daemon online",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:16Z",
+            "updated_at": "2026-08-08T19:35:16Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4006",
+            "project_slug": null
+          },
+          {
+            "number": 4005,
+            "title": "[audit R23] Neo4j warm-standby refresh unwitnessed, >=24h RPO, manual promotion",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:14Z",
+            "updated_at": "2026-08-08T19:35:14Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4005",
+            "project_slug": null
+          },
+          {
+            "number": 4004,
+            "title": "[audit R22] Helm actuation trusts an unauthenticated from_session field (forgeable standing order)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:12Z",
+            "updated_at": "2026-08-08T19:35:12Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-medium"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4004",
+            "project_slug": null
+          },
+          {
+            "number": 4003,
+            "title": "[audit R21] AskUserQuestion deadlock in autonomous loops has zero mechanical enforcement",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:10Z",
+            "updated_at": "2026-08-08T19:35:10Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4003",
+            "project_slug": null
+          },
+          {
+            "number": 4002,
+            "title": "[audit R20] Dedup MERGE off for ~half the graph; uniqueness constraint mismatches MERGE key",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:08Z",
+            "updated_at": "2026-08-08T19:35:08Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4002",
+            "project_slug": null
+          },
+          {
+            "number": 4001,
+            "title": "[audit R19] Prime JetStream replicas=1, no stream backup (DLQ/work-queue/locks/session KV single-copy)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:06Z",
+            "updated_at": "2026-08-08T19:35:06Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4001",
+            "project_slug": null
+          },
+          {
+            "number": 4000,
+            "title": "[audit R18] Alerts fire-and-forget, no store-and-forward; Telegram send failures swallowed",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:03Z",
+            "updated_at": "2026-08-08T19:35:03Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4000",
+            "project_slug": null
+          },
+          {
+            "number": 3999,
+            "title": "[audit R17] security-alert-bridge.yml startup_failure 20/20 (GitHub->mesh security bridge never ran)",
+            "state": "open",
+            "created_at": "2026-08-08T19:35:01Z",
+            "updated_at": "2026-08-08T19:35:01Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3999",
+            "project_slug": null
+          },
+          {
+            "number": 3998,
+            "title": "[audit R16] Human queue view-only from phone; no /cancel or /kill of a running task",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:59Z",
+            "updated_at": "2026-08-08T19:34:59Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3998",
+            "project_slug": null
+          },
+          {
+            "number": 3997,
+            "title": "[audit R15] Divergence sentinel misses 1736 untracked mikebitler/ files (zero backup)",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:57Z",
+            "updated_at": "2026-08-08T19:34:57Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3997",
+            "project_slug": null
+          },
+          {
+            "number": 3996,
+            "title": "[audit R14] Shared-tree drift alarm has no owner (93 behind, 19 stashes, 1812 untracked)",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:55Z",
+            "updated_at": "2026-08-08T19:34:55Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3996",
+            "project_slug": null
+          },
+          {
+            "number": 3995,
+            "title": "[audit R13] Outbound NATS spool never drained for the Claude Code (Model B) flock",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:53Z",
+            "updated_at": "2026-08-08T19:34:53Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3995",
+            "project_slug": null
+          },
+          {
+            "number": 3994,
+            "title": "[audit R12] CI is effectively non-gating on shared main (fast CI cancelled 7/8, full CI never green)",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:51Z",
+            "updated_at": "2026-08-08T19:34:51Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3994",
+            "project_slug": null
+          },
+          {
+            "number": 3993,
+            "title": "[audit R11] Single self-hosted CI runner is a SPOF for CI/deploy/dashboard/compass",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:49Z",
+            "updated_at": "2026-08-08T19:34:49Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3993",
+            "project_slug": null
+          },
+          {
+            "number": 3992,
+            "title": "[audit R10] Escalations land in the dashboard queue and never buzz the phone under normal ops",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:47Z",
+            "updated_at": "2026-08-08T19:34:47Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3992",
+            "project_slug": null
+          },
+          {
+            "number": 3991,
+            "title": "[audit R9] session_send returns delivered:true but never writes the durable JetStream inbox",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:45Z",
+            "updated_at": "2026-08-08T19:34:45Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3991",
+            "project_slug": null
+          },
+          {
+            "number": 3990,
+            "title": "[audit R8] Daemon-to-daemon inbox only warn-mode sanitized; blocking guard only at gateway",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:43Z",
+            "updated_at": "2026-08-08T19:34:43Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3990",
+            "project_slug": null
+          },
+          {
+            "number": 3989,
+            "title": "[audit R7] Shared NATS token passed as --password on argv, no per-node revocation",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:39Z",
+            "updated_at": "2026-08-08T19:34:39Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3989",
+            "project_slug": null
+          },
+          {
+            "number": 3988,
+            "title": "[audit R6] Cross-tenant read leak via OR workspace_id IS NULL (220 NULL nodes, 65 workspaces)",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:36Z",
+            "updated_at": "2026-08-08T19:34:36Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3988",
+            "project_slug": null
+          },
+          {
+            "number": 3987,
+            "title": "[audit R5] Whole monitoring plane runs only on M1; M1 death is unmonitored",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:34Z",
+            "updated_at": "2026-08-08T19:34:34Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3987",
+            "project_slug": null
+          },
+          {
+            "number": 3986,
+            "title": "[audit R4] NOTIFY funnel is effectively unbuilt (zero decision_needed emitters)",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:31Z",
+            "updated_at": "2026-08-08T19:34:31Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-critical"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3986",
+            "project_slug": null
+          },
+          {
+            "number": 3985,
+            "title": "[audit R3] Alert bridge is the delivery SPOF with no end-to-end canary or external watchdog",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:29Z",
+            "updated_at": "2026-08-08T19:34:29Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-critical"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3985",
+            "project_slug": null
+          },
+          {
+            "number": 3984,
+            "title": "[audit R2] operator_question inbox message impersonates the operator with zero sanitization",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:27Z",
+            "updated_at": "2026-08-08T19:34:27Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-critical"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3984",
+            "project_slug": null
+          },
+          {
+            "number": 3983,
+            "title": "[audit R1] Prime NATS/Neo4j death is silent + un-alertable",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:25Z",
+            "updated_at": "2026-08-08T19:34:25Z",
+            "labels": [
+              "flock-audit-2026-08-08",
+              "sev-critical"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3983",
+            "project_slug": null
+          },
+          {
+            "number": 3982,
+            "title": "[EPIC] Flock system-wide audit remediation 2026-08-08",
+            "state": "open",
+            "created_at": "2026-08-08T19:34:23Z",
+            "updated_at": "2026-08-08T19:34:23Z",
+            "labels": [
+              "flock-audit-2026-08-08"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3982",
+            "project_slug": null
+          },
+          {
+            "number": 3981,
+            "title": "Metric below target: Research Ingestion Rate (7d) (0.0)",
+            "state": "open",
+            "created_at": "2026-08-08T18:17:58Z",
+            "updated_at": "2026-08-08T18:17:58Z",
+            "labels": [
+              "auto-created"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3981",
+            "project_slug": null
+          },
+          {
+            "number": 3980,
+            "title": "Metric below target: Task Resolution Rate (0.38)",
+            "state": "open",
+            "created_at": "2026-08-08T18:17:56Z",
+            "updated_at": "2026-08-08T18:17:56Z",
+            "labels": [
+              "auto-created"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/3980",
+            "project_slug": null
+          },
           {
             "number": 3978,
             "title": "Mobile flock-terminal UX: unify ttyd auth behind relay token + add relogin button (fix embedded-browser hit-return loop)",
@@ -7974,536 +8514,157 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/3959",
             "project_slug": null
-          },
+          }
+        ],
+        "openclaw": [
           {
-            "number": 3958,
-            "title": "lane-clear-foreign-overlap.sh: mapfile needs bash 4+; macOS system bash 3.2 silently breaks the auto-clear path",
+            "number": 3979,
+            "title": "security: CF Pages authed-response public-cache leak across gated rankona stations (revenue-data.js class)",
             "state": "open",
-            "created_at": "2026-08-07T08:03:13Z",
-            "updated_at": "2026-08-07T08:03:13Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3958",
-            "project_slug": null
-          },
-          {
-            "number": 3956,
-            "title": "Nightly Consolidation: daemon recall-path weaving practice (research nodes -> work-context edges)",
-            "state": "open",
-            "created_at": "2026-08-06T22:14:31Z",
-            "updated_at": "2026-08-06T22:56:43Z",
+            "created_at": "2026-08-08T15:33:16Z",
+            "updated_at": "2026-08-08T15:33:16Z",
             "labels": [
-              "enhancement"
+              "security"
             ],
             "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3956",
-            "project_slug": null
-          },
-          {
-            "number": 3955,
-            "title": "OVERNIGHT COMPLETION DRIVE Aug 6-7: master plan, owners, clocks, crossings (operator order)",
-            "state": "open",
-            "created_at": "2026-08-06T21:02:47Z",
-            "updated_at": "2026-08-06T21:22:27Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3955",
-            "project_slug": null
-          },
-          {
-            "number": 3954,
-            "title": "MIG knowledge-fitness: research auto-ingest is flooding the high-importance recall surface uncorroborated - evidence pack for sandman's investigation",
-            "state": "open",
-            "created_at": "2026-08-06T20:56:22Z",
-            "updated_at": "2026-08-07T09:26:02Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3954",
-            "project_slug": null
-          },
-          {
-            "number": 3953,
-            "title": "flatfiles workbook discoverability drift: 504 in-repo workbooks vs 2 live manifest flags - client hit it tonight",
-            "state": "open",
-            "created_at": "2026-08-06T20:53:29Z",
-            "updated_at": "2026-08-06T20:53:29Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3953",
-            "project_slug": null
-          },
-          {
-            "number": 3952,
-            "title": "Revenue pull plane has NO scheduled refresh - 10-day staleness witnessed + coverage gaps (HELM P1 gap)",
-            "state": "open",
-            "created_at": "2026-08-06T19:25:55Z",
-            "updated_at": "2026-08-06T19:25:55Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3952",
-            "project_slug": null
-          },
-          {
-            "number": 3951,
-            "title": "Fathom transcript auto-processing: bring receiver live + wire transcript -> client-brief -> per-request GH issues",
-            "state": "open",
-            "created_at": "2026-08-06T15:54:01Z",
-            "updated_at": "2026-08-06T15:54:01Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3951",
-            "project_slug": null
-          },
-          {
-            "number": 3950,
-            "title": "Backend/content family-coupling with staggered publish: one prep, two lanes, mechanical sequencing gate",
-            "state": "open",
-            "created_at": "2026-08-06T15:32:56Z",
-            "updated_at": "2026-08-06T21:22:28Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3950",
-            "project_slug": null
-          },
-          {
-            "number": 3949,
-            "title": "Content punctuation + volume-position rules: pipe ban all authored lanes, volume/quantity terminal in title+highlight (operator catch)",
-            "state": "open",
-            "created_at": "2026-08-06T14:52:35Z",
-            "updated_at": "2026-08-06T14:52:35Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3949",
-            "project_slug": null
-          },
-          {
-            "number": 3948,
-            "title": "OKR board lifecycle layer: priorities, WIP caps, done/retired states, enforced at publish (rankona lane)",
-            "state": "open",
-            "created_at": "2026-08-06T14:39:03Z",
-            "updated_at": "2026-08-07T21:10:09Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3948",
-            "project_slug": null
-          },
-          {
-            "number": 3947,
-            "title": "Revenue portal: per-family attribution drill-down + expanded treated view (Rankona meeting 2026-08-07)",
-            "state": "open",
-            "created_at": "2026-08-06T14:04:42Z",
-            "updated_at": "2026-08-06T19:07:56Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3947",
-            "project_slug": null
-          },
-          {
-            "number": 3946,
-            "title": "productops.rankonaterminal.com - Product Optimization Terminal (client-spec command center, GH arc)",
-            "state": "open",
-            "created_at": "2026-08-06T12:58:41Z",
-            "updated_at": "2026-08-07T12:44:29Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3946",
-            "project_slug": null
-          },
-          {
-            "number": 3945,
-            "title": "False-LIVE verdict class: readbacks witness only the pushed SKU, never the FBA-featured contribution or rendered PDP",
-            "state": "open",
-            "created_at": "2026-08-06T11:37:59Z",
-            "updated_at": "2026-08-06T11:37:59Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3945",
-            "project_slug": null
-          },
-          {
-            "number": 3943,
-            "title": "Flock-mode boot: daemon-shell.sh --flock + flock-boot context module + FLOCK_STATE KV (seats boot flock-aware, beat armed, report to helm)",
-            "state": "open",
-            "created_at": "2026-08-06T02:14:07Z",
-            "updated_at": "2026-08-06T02:25:10Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3943",
-            "project_slug": null
-          },
-          {
-            "number": 3942,
-            "title": "Equinavia full-catalog keyword supply: $0 niche-bridge + DataDive/SQP queue in revenue order (operator green-light 2026-08-06)",
-            "state": "open",
-            "created_at": "2026-08-06T01:59:25Z",
-            "updated_at": "2026-08-06T15:55:56Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3942",
-            "project_slug": null
-          },
-          {
-            "number": 3941,
-            "title": "item_type_keyword accepted-values ranking: real fix still open (GH#3939 closed but quarantine, not fix, is what shipped)",
-            "state": "open",
-            "created_at": "2026-08-05T20:05:38Z",
-            "updated_at": "2026-08-07T08:44:42Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3941",
-            "project_slug": null
-          },
-          {
-            "number": 3940,
-            "title": "Portal Approve and Publish: client portal approval fires the Amazon submit (remove the human relay)",
-            "state": "open",
-            "created_at": "2026-08-05T19:54:31Z",
-            "updated_at": "2026-08-05T19:54:31Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3940",
-            "project_slug": null
-          },
-          {
-            "number": 3938,
-            "title": "A12 cross-family SKU leak in protected-11 read-only audit path: P_39093 SKUs bled into P_39013 workbook",
-            "state": "open",
-            "created_at": "2026-08-05T16:20:21Z",
-            "updated_at": "2026-08-05T16:37:39Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3938",
-            "project_slug": null
-          },
-          {
-            "number": 3937,
-            "title": "product_manifest.yaml builder is unreliable: 0/7 trustworthy clr_xlsm mappings on GH#3933 roster - root-cause before #694 train scale-up",
-            "state": "open",
-            "created_at": "2026-08-05T15:03:45Z",
-            "updated_at": "2026-08-05T15:03:45Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3937",
-            "project_slug": null
-          },
-          {
-            "number": 3936,
-            "title": "Re-audit priority families whose browse node changed by accepted Amazon case (Amara + FlyMask now; Karina + Rover Tall as cases land)",
-            "state": "open",
-            "created_at": "2026-08-05T15:03:44Z",
-            "updated_at": "2026-08-05T15:20:20Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3936",
-            "project_slug": null
-          },
-          {
-            "number": 3935,
-            "title": "marlow video-08: voiceover narrates the shotlist aloud (content defect)",
-            "state": "open",
-            "created_at": "2026-08-05T14:41:23Z",
-            "updated_at": "2026-08-05T14:41:23Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3935",
-            "project_slug": null
-          },
-          {
-            "number": 3934,
-            "title": "marlow: render the 24 no-wav voice dirs (real TTS path, follow-up to #3930)",
-            "state": "open",
-            "created_at": "2026-08-05T14:41:22Z",
-            "updated_at": "2026-08-05T14:41:22Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3934",
-            "project_slug": null
-          },
-          {
-            "number": 3933,
-            "title": "MISS-RECOVERY: 7 top-50 fix-grade audits for Jawad (outside priority families) - pinned roster, same-day RED line",
-            "state": "open",
-            "created_at": "2026-08-05T14:20:33Z",
-            "updated_at": "2026-08-05T20:04:02Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3933",
-            "project_slug": null
-          },
-          {
-            "number": 3931,
-            "title": "Localization all-clients MBF-parity program (composed_alt_title gold standard)",
-            "state": "open",
-            "created_at": "2026-08-05T12:24:53Z",
-            "updated_at": "2026-08-05T12:24:53Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3931",
-            "project_slug": null
-          },
-          {
-            "number": 3927,
-            "title": "Revenue portal: 3 client commitments from the 2026-08-04 revenue report (cost ranking, keyword-revenue tracking, scheduled refresh)",
-            "state": "open",
-            "created_at": "2026-08-04T22:43:55Z",
-            "updated_at": "2026-08-04T23:36:42Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3927",
-            "project_slug": null
-          },
-          {
-            "number": 3921,
-            "title": "Jawad seven-item trace response (2026-08-04): instrument provenance of 29-Jul figures + six verified answers",
-            "state": "open",
-            "created_at": "2026-08-04T14:48:04Z",
-            "updated_at": "2026-08-04T14:48:04Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3921",
-            "project_slug": null
-          },
-          {
-            "number": 3920,
-            "title": "Pre-push deletion guard: mechanize git-workflow rule 11 (show --stat abort-on-unintended-deletions) as a hook",
-            "state": "open",
-            "created_at": "2026-08-04T12:52:10Z",
-            "updated_at": "2026-08-04T12:52:10Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3920",
-            "project_slug": null
-          },
-          {
-            "number": 3919,
-            "title": "Bump cryptography from 46.0.7 to 50.0.0",
-            "state": "open",
-            "created_at": "2026-08-04T12:34:39Z",
-            "updated_at": "2026-08-04T12:34:39Z",
-            "labels": [
-              "dependencies",
-              "python:uv"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3919",
-            "project_slug": null
-          },
-          {
-            "number": 3918,
-            "title": "Bump aiohttp from 3.13.5 to 3.14.3",
-            "state": "open",
-            "created_at": "2026-08-04T12:34:20Z",
-            "updated_at": "2026-08-04T12:34:20Z",
-            "labels": [
-              "dependencies",
-              "python:uv"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3918",
-            "project_slug": null
-          },
-          {
-            "number": 3917,
-            "title": "Bump postcss and next in /dashboard",
-            "state": "open",
-            "created_at": "2026-08-04T12:34:09Z",
-            "updated_at": "2026-08-04T12:34:10Z",
-            "labels": [
-              "dependencies",
-              "javascript"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3917",
-            "project_slug": null
-          },
-          {
-            "number": 3916,
-            "title": "Bump fast-uri from 3.1.0 to 3.1.5 in /dashboard",
-            "state": "open",
-            "created_at": "2026-08-04T12:33:57Z",
-            "updated_at": "2026-08-04T12:33:58Z",
-            "labels": [
-              "dependencies",
-              "javascript"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3916",
-            "project_slug": null
-          },
-          {
-            "number": 3915,
-            "title": "Bump brace-expansion from 1.1.13 to 1.1.18 in /extensions/meridian-status",
-            "state": "open",
-            "created_at": "2026-08-04T12:33:50Z",
-            "updated_at": "2026-08-04T12:33:50Z",
-            "labels": [
-              "dependencies",
-              "javascript"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3915",
-            "project_slug": null
-          },
-          {
-            "number": 3914,
-            "title": "Bump ip-address and express-rate-limit in /dashboard",
-            "state": "open",
-            "created_at": "2026-08-04T12:33:42Z",
-            "updated_at": "2026-08-04T12:33:43Z",
-            "labels": [
-              "dependencies",
-              "javascript"
-            ],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/pull/3914",
-            "project_slug": null
-          },
-          {
-            "number": 3913,
-            "title": "URGENT: Amara live Material wrong/divergent per size - support pack for Jawad's manual fix + trigger-theory witness",
-            "state": "open",
-            "created_at": "2026-08-04T10:19:23Z",
-            "updated_at": "2026-08-04T10:19:23Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/3913",
-            "project_slug": null
+            "url": "https://github.com/covaultxyz/meridian/issues/3979",
+            "project_slug": "openclaw"
           }
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "failure",
-        "name": ".github/workflows/security-alert-bridge.yml",
-        "created_at": "2026-08-08T18:05:49Z",
-        "head_sha": "cad146b4"
+        "status": "queued",
+        "conclusion": null,
+        "name": "Generate Unified Dashboard",
+        "created_at": "2026-08-08T20:46:04Z",
+        "head_sha": "30bc4455"
       },
       "ci_recent_runs": [
         {
-          "id": 31271077431,
-          "name": ".github/workflows/security-alert-bridge.yml",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-08T18:05:49Z",
-          "updated_at": "2026-08-08T18:05:49Z",
-          "head_sha": "cad146b4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/31271077431"
-        },
-        {
-          "id": 31270757811,
-          "name": ".github/workflows/security-alert-bridge.yml",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-08T17:58:28Z",
-          "updated_at": "2026-08-08T17:58:28Z",
-          "head_sha": "16385489",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/31270757811"
-        },
-        {
-          "id": 31269875575,
-          "name": ".github/workflows/security-alert-bridge.yml",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-08T17:37:15Z",
-          "updated_at": "2026-08-08T17:37:15Z",
-          "head_sha": "c180ed3e",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/31269875575"
-        },
-        {
-          "id": 31269723718,
-          "name": ".github/workflows/security-alert-bridge.yml",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-08T17:33:35Z",
-          "updated_at": "2026-08-08T17:33:35Z",
-          "head_sha": "ee6c246a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/31269723718"
-        },
-        {
-          "id": 31269614112,
+          "id": 31277689888,
           "name": "Generate Unified Dashboard",
           "status": "queued",
           "conclusion": null,
-          "created_at": "2026-08-08T17:30:57Z",
-          "updated_at": "2026-08-08T17:30:57Z",
-          "head_sha": "528a3d2c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/31269614112"
+          "created_at": "2026-08-08T20:46:04Z",
+          "updated_at": "2026-08-08T20:46:04Z",
+          "head_sha": "30bc4455",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/31277689888"
+        },
+        {
+          "id": 31277689891,
+          "name": "CI",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-08-08T20:46:04Z",
+          "updated_at": "2026-08-08T20:46:05Z",
+          "head_sha": "30bc4455",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/31277689891"
+        },
+        {
+          "id": 31277689482,
+          "name": ".github/workflows/security-alert-bridge.yml",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-08-08T20:46:03Z",
+          "updated_at": "2026-08-08T20:46:03Z",
+          "head_sha": "30bc4455",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/31277689482"
+        },
+        {
+          "id": 31277073765,
+          "name": ".github/workflows/security-alert-bridge.yml",
+          "status": "completed",
+          "conclusion": "failure",
+          "created_at": "2026-08-08T20:30:34Z",
+          "updated_at": "2026-08-08T20:30:34Z",
+          "head_sha": "20b657f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/31277073765"
+        },
+        {
+          "id": 31277074244,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-08-08T20:30:34Z",
+          "updated_at": "2026-08-08T20:46:10Z",
+          "head_sha": "20b657f3",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/31277074244"
         }
       ],
       "recent_commits": [
         {
-          "sha": "cad146b4",
-          "message": "Part of #809 Phase 1: rankona edge-gate canonicalization design (inventory + diff matrix + canonical pattern)",
+          "sha": "30bc4455",
+          "message": "Lane A A1 gated writer: 1208 uniform restricted_chars pure-leading strips across 248 plans, 6-req shape, DRY-RUN clean (before-fp 0, 12 divergent excluded per helm #689 ruling). Part of Lane A remediation #817",
           "author": "Glasshaus",
-          "date": "2026-08-08T18:05:35Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cad146b47918dc18c506e3aa6c15c5e81bd3de4c"
+          "date": "2026-08-08T20:45:20Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/30bc4455cab455f2d5ff79be6708c7a08a8d3c95"
         },
         {
-          "sha": "16385489",
-          "message": "flock-onboarding section 3: direct-upload committed-vs-served rung + two-field witness recipe (generated_at + cf-cache-status) - minted by the Aug-8 triple conflation on the micki feed",
+          "sha": "20b657f3",
+          "message": "feat(flock): board-drain production detach \u2014 LA-owned, helm disarmed (Part of #3969)",
+          "author": "covaultxyz",
+          "date": "2026-08-08T20:30:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/20b657f33503f66cb34fbae5e6874e286c5609d9"
+        },
+        {
+          "sha": "4fef17fd",
+          "message": "GH#811: anchor UPDATE-row writes to graph current_value, not a hardcoded literal",
           "author": "Glasshaus",
-          "date": "2026-08-08T17:58:23Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/163854896aa08044a0b5870e851f7b11b8196fb7"
+          "date": "2026-08-08T20:18:42Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4fef17fd82724f9aab95153210ee3d363dbf8d84"
         },
         {
-          "sha": "c180ed3e",
-          "message": "docs(cockpit): add NOTIFY funnel (Deliverable D) to Ely handoff (Part of #3977, #3978)",
-          "author": "covaultxyz",
-          "date": "2026-08-08T17:37:03Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c180ed3ed71a33b3a9e0ba2f17febfbf7db748d3"
-        },
-        {
-          "sha": "ee6c246a",
-          "message": "docs(cockpit): Ely handoff for flock-cockpit view + execute (Part of #3977, #3978)",
-          "author": "covaultxyz",
-          "date": "2026-08-08T17:33:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ee6c246ab7f8dcd26169e924ce0e7157c614dfde"
-        },
-        {
-          "sha": "528a3d2c",
-          "message": "gh805 Phase 2 APPLIED: 182 flat KeywordSets normalized to {text} + 31 vitargo backfill, binding close True, 1c3-gated - doc close section (Part of #805)",
+          "sha": "b05d3ec9",
+          "message": "Part of #809 Phase 2: canonical gate module + salesmap canary wrapper + deploy-time injection (fail-loud)",
           "author": "Glasshaus",
-          "date": "2026-08-08T17:30:22Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/528a3d2c6f1b6d353b8b01efddffbd75c86bc936"
+          "date": "2026-08-08T20:08:34Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/b05d3ec9737fe537e99bb8e1b535aefdb7ae0fef"
         },
         {
-          "sha": "91e9e984",
-          "message": "chore(cockpit): record ttyd passwordless accepted-risk authorization (Part of #3978)",
-          "author": "covaultxyz",
-          "date": "2026-08-08T17:25:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/91e9e984a3b1d448b330f561c64f4259e6d9a023"
-        },
-        {
-          "sha": "bacf2efb",
-          "message": "fix(cockpit): ttyd bind floor uses /sbin/ifconfig (launchd PATH omits /sbin) (Part of #3978)",
-          "author": "covaultxyz",
-          "date": "2026-08-08T17:23:58Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/bacf2efb1276b930f44b8ad1efea9df32b46c085"
-        },
-        {
-          "sha": "ccd66631",
-          "message": "test_sentiment_consumer: guard trader_analyst_agent import with importorskip (rankona-flock #812)",
+          "sha": "ce83e9cf",
+          "message": "stage4 restricted_chars: map smart punct to ASCII, not drop it (fixes apostrophe/inch-mark/dash deletion in title + bullet paths) + 5 tests. Interior-31 precondition-1 per helm A1/A2 ruling",
           "author": "Glasshaus",
-          "date": "2026-08-08T17:19:40Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ccd66631fc8f43bdae50c3d1ff02fe1b25f82a7f"
+          "date": "2026-08-08T20:06:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ce83e9cffebc396ac39d387ff63bf4696a2b38aa"
         },
         {
-          "sha": "07ea859e",
-          "message": "fix(flock): protect live drains + quiet-pulse heal + Neo4j stamp reset",
+          "sha": "7b721c5a",
+          "message": "okr(meridian): add content_engine arc okr-ce-01/02 + register QD restart arc",
           "author": "covaultxyz",
-          "date": "2026-08-08T17:14:35Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/07ea859e1f6380614cce2f2ac93bde3920581d90"
+          "date": "2026-08-08T18:09:14Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/7b721c5ac54284a3a99890d8fd8024fe23708f30"
         },
         {
-          "sha": "9390c986",
-          "message": "gh805 Phase 2 normalizer writer: {text}-wrap flat KeywordSets + vitargo client backfill, validator-routed + per-set drift-guard, gated dry-run default (Part of #805)",
+          "sha": "ff4f1eb8",
+          "message": "Lane A batch-0 writer req-6 sharpening: assert proposed_changes non-target slice survives semantically (adds pc_nontarget_same, keeps len_ok) per 1c3 19:45 conditional-pass. Part of Lane A remediation",
           "author": "Glasshaus",
-          "date": "2026-08-08T16:57:42Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9390c9867b59e3e96f95eb24f8c66b6516506ddf"
+          "date": "2026-08-08T19:51:31Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ff4f1eb8b1302422257642a73d7170498602b850"
+        },
+        {
+          "sha": "5b068615",
+          "message": "Lane A worklist: correct restricted_chars transform (7320 leading-strip + 31 interior), flag interior-31 for 100pct-gate split before A1",
+          "author": "Glasshaus",
+          "date": "2026-08-08T19:45:47Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/5b068615bef8d0b66711a9a9131defbde6f5d3cf"
+        },
+        {
+          "sha": "55bb842c",
+          "message": "rankona Lane A batch-0 writer: 15 material trailing-period corrections into :OptimizationPlan (gated, DRY-RUN default)",
+          "author": "Glasshaus",
+          "date": "2026-08-08T19:33:01Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/55bb842c44c737d06682affdf93fc021512c0bd5"
+        },
+        {
+          "sha": "ae6c8d64",
+          "message": "GH#811: validator-routed write script for micki title populate (preview-only)",
+          "author": "Glasshaus",
+          "date": "2026-08-08T19:30:11Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ae6c8d6431f143dc7fa2d580917620d0adf65521"
         }
       ],
       "github_project": {
-        "updated_at": "2026-08-08T18:09:18.906248+00:00",
+        "updated_at": "2026-08-08T20:46:36.138402+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8705,7 +8866,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "members": [
         {
           "id": "alex",
@@ -8778,7 +8939,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "projects": [
         {
           "project": {
@@ -9208,7 +9369,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9275,7 +9436,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9372,7 +9533,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13164,7 +13325,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-08-08T18:09:22.579907+00:00",
+      "updated_at": "2026-08-08T20:46:38.458390+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -15073,8 +15234,8 @@
         {
           "name": "Vast Comfyui Ideogram Rig",
           "file": "docs/runbooks/vast-comfyui-ideogram-rig.md",
-          "size": 3358,
-          "modified": "2026-08-07"
+          "size": 3346,
+          "modified": "2026-08-08"
         },
         {
           "name": "Voice Cloning Onboarding",
@@ -16660,7 +16821,7 @@
       "total_docs": 580
     },
     "deals": {
-      "updated_at": "2026-08-08T18:09:22.580065+00:00",
+      "updated_at": "2026-08-08T20:46:38.458935+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -16902,7 +17063,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-08-08T18:09:21.358479+00:00",
+      "updated_at": "2026-08-08T20:46:38.194274+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90010,7 +90171,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-08-08T18:09:22.902563+00:00",
+      "updated_at": "2026-08-08T20:46:38.704013+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 350,
@@ -97652,7 +97813,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-08-08T18:09:22.963188+00:00",
+      "updated_at": "2026-08-08T20:46:38.736657+00:00",
       "items": [
         {
           "type": "blocked",
@@ -97847,126 +98008,126 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-08-08T18:09:22.963235+00:00",
+      "updated_at": "2026-08-08T20:46:38.736719+00:00",
       "events": [
         {
           "type": "commit",
-          "date": "2026-08-08T18:05:35Z",
-          "title": "Part of #809 Phase 1: rankona edge-gate canonicalization design (inventory + dif",
+          "date": "2026-08-08T20:45:20Z",
+          "title": "Lane A A1 gated writer: 1208 uniform restricted_chars pure-leading strips across",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-08-08T17:58:23Z",
-          "title": "flock-onboarding section 3: direct-upload committed-vs-served rung + two-field w",
+          "date": "2026-08-08T20:30:23Z",
+          "title": "feat(flock): board-drain production detach \u2014 LA-owned, helm disarmed (Part of #3",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-08-08T20:18:42Z",
+          "title": "GH#811: anchor UPDATE-row writes to graph current_value, not a hardcoded literal",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-08-08T17:37:03Z",
-          "title": "docs(cockpit): add NOTIFY funnel (Deliverable D) to Ely handoff (Part of #3977, ",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-08-08T17:33:19Z",
-          "title": "docs(cockpit): Ely handoff for flock-cockpit view + execute (Part of #3977, #397",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-08-08T17:30:22Z",
-          "title": "gh805 Phase 2 APPLIED: 182 flat KeywordSets normalized to {text} + 31 vitargo ba",
+          "date": "2026-08-08T20:08:34Z",
+          "title": "Part of #809 Phase 2: canonical gate module + salesmap canary wrapper + deploy-t",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-08-08T17:25:16Z",
-          "title": "chore(cockpit): record ttyd passwordless accepted-risk authorization (Part of #3",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-08-08T17:23:58Z",
-          "title": "fix(cockpit): ttyd bind floor uses /sbin/ifconfig (launchd PATH omits /sbin) (Pa",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-08-08T17:19:40Z",
-          "title": "test_sentiment_consumer: guard trader_analyst_agent import with importorskip (ra",
+          "date": "2026-08-08T20:06:44Z",
+          "title": "stage4 restricted_chars: map smart punct to ASCII, not drop it (fixes apostrophe",
           "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-08-08T17:14:35Z",
-          "title": "fix(flock): protect live drains + quiet-pulse heal + Neo4j stamp reset",
-          "detail": "covaultxyz"
+          "date": "2026-08-08T19:51:31Z",
+          "title": "Lane A batch-0 writer req-6 sharpening: assert proposed_changes non-target slice",
+          "detail": "Glasshaus"
         },
         {
           "type": "commit",
-          "date": "2026-08-08T16:57:42Z",
-          "title": "gh805 Phase 2 normalizer writer: {text}-wrap flat KeywordSets + vitargo client b",
+          "date": "2026-08-08T19:45:47Z",
+          "title": "Lane A worklist: correct restricted_chars transform (7320 leading-strip + 31 int",
           "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-08-08T19:33:01Z",
+          "title": "rankona Lane A batch-0 writer: 15 material trailing-period corrections into :Opt",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-08-08T19:30:11Z",
+          "title": "GH#811: validator-routed write script for micki title populate (preview-only)",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-08-08T18:09:14Z",
+          "title": "okr(meridian): add content_engine arc okr-ce-01/02 + register QD restart arc",
+          "detail": "covaultxyz"
         },
         {
           "type": "issue",
           "date": "2026-08-08",
-          "title": "#3979 security: CF Pages authed-response public-cache leak across ",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-08-08",
-          "title": "#3978 Mobile flock-terminal UX: unify ttyd auth behind relay token",
+          "title": "#4013 [audit R31] inbox-pending file overwrites (count:1); identit",
           "detail": "open"
         },
         {
           "type": "issue",
           "date": "2026-08-08",
-          "title": "#3977 Telegram operator channel: delphi replies are text-only, too",
+          "title": "#4012 [audit R30] Silent embedding gaps in customer workspaces; mi",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3976 work-plan.md generator emits em dashes into client-facing se",
+          "date": "2026-08-08",
+          "title": "#4011 [audit R29] Dead-daemon task reclamation single-homed on pul",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3974 SECURITY: VPS autopull deploy keys are READ-WRITE against do",
+          "date": "2026-08-08",
+          "title": "#4010 [audit R28] Flat all-or-nothing authz; no durable audit trai",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3973 telegram: full bot tokens written to journald logs (17k line",
+          "date": "2026-08-08",
+          "title": "#4009 [audit R27] ttyd passwordless gate trusts an untracked file'",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3971 lane-clear-foreign-overlap.sh uses mapfile (bash4+); breaks ",
+          "date": "2026-08-08",
+          "title": "#4008 [audit R26] nats-tunnel-intel KeepAlive dead-loops on a stal",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3970 run_v5_audit.sh assumes venv-on-PATH; bare python3 lacks ope",
+          "date": "2026-08-08",
+          "title": "#4007 [audit R25] No liveness truth for the actual cc-*/cu-* flock",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3969 Flock board-drain + daily value + Clip prompt equip",
+          "date": "2026-08-08",
+          "title": "#4006 [audit R24] Truth sentinels silent (no consumer); down-detec",
           "detail": "open"
         },
         {
           "type": "issue",
-          "date": "2026-08-07",
-          "title": "#3968 voice: 3 raw nats.connect() sites fail prime mTLS (same clas",
+          "date": "2026-08-08",
+          "title": "#4005 [audit R23] Neo4j warm-standby refresh unwitnessed, >=24h RP",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-08-08",
+          "title": "#4004 [audit R22] Helm actuation trusts an unauthenticated from_se",
           "detail": "open"
         }
       ],
