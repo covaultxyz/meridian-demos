@@ -60,7 +60,205 @@ body { font-family:'SF Mono','Fira Code',monospace; background:var(--bg); color:
 <div class="section"><h2>Key Discoveries</h2><ul class="list discoveries"><li>SP-API registration requires 2-14 days for Amazon approval and is on the critical path, making immediate action by Carl essential.</li><li>14 evidence claims are currently unverified because they reference call transcripts rather than a signed legal agreement.</li><li>Delphi utilization allocation dramatically affects delivery timeline: 100% = ~55 days, 50% = ~5.5 months, 30% = ~9 months.</li><li>Cursor agent offload of mechanical tasks is projected to net ~100 hours of savings after estimated 25% coordination overhead.</li><li>Shareholder approval (Gate G2) is required before any revenue can be activated, but no timeline or date was established.</li></ul></div>
 <div class="section"><h2>Action Items</h2><ul class="list actions"><li>{&#x27;who&#x27;: &#x27;Alexander&#x27;, &#x27;what&#x27;: &#x27;Sign contract with Carl defining scope boundary, exclusivity terms, profit share mechanics, and maintenance billing.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Alexander&#x27;, &#x27;what&#x27;: &quot;Decide what percentage of Delphi&#x27;s time is allocated to Rankona vs the #1850 Knowledge Extraction Marathon and communicate timeline to Carl.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Alexander&#x27;, &#x27;what&#x27;: &#x27;Verify deal terms against a term sheet or signed agreement to unblock 14 unverified evidence claims.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl&#x27;, &#x27;what&#x27;: &#x27;Register Amazon Developer account and submit SP-API app for approval immediately.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl&#x27;, &#x27;what&#x27;: &#x27;Drive shareholder approval of Option B (JV/partnership) terms to unblock invoicing.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Carl&#x27;, &#x27;what&#x27;: &#x27;Confirm whether Humble Group acquisition intent is active and provide estimated timeline.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Jennifer&#x27;, &#x27;what&#x27;: &#x27;Log into Seller Central, check for active performance notifications, ASIN suppressions, and open policy cases, and report findings.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Jennifer&#x27;, &#x27;what&#x27;: &#x27;Export the 43K SKU category report for Delphi ingestion task 1A-2.&#x27;}</li><li>{&#x27;who&#x27;: &#x27;Operator&#x27;, &#x27;what&#x27;: &quot;Provision SSH key to 100.97.248.107 and verify with ssh root@100.97.248.107 &#x27;hostname&#x27;.&quot;}</li><li>{&#x27;who&#x27;: &#x27;Delphi&#x27;, &#x27;what&#x27;: &#x27;Design Neo4j category ontology schema (T1) and begin all other Tier 2 pre-work tasks T1–T7.&#x27;}</li></ul></div>
 
-<div class="section"><h2>Transcript Preview</h2><p style="font-style:italic;color:var(--dim)">“Rankona Mazon terminal buildout punch list identifying 9 human-gated blockers, 7 Delphi pre-work tasks, and a 438.5-hour execution plan needed to raise project coherence from 0.79 to 0.95.”</p></div>
+<div class="section"><h2>Full Transcript</h2><div class="transcript"><h2>Rankona Mazon PDR: Remaining Work</h2>
+<p>**Date:** 2026-04-14</p>
+<p>**Author:** Delphi (infra-architect)</p>
+<p>**Current coherence score:** 0.79 (projected) | **Target:** 0.95+</p>
+<p>**PDR location:** `clients/rankona-mazon/pdr-terminal-buildout.md`</p>
+<p>---</p>
+<h3>How to Use This Document</h3>
+<p>This is the punch list for getting the Rankona Mazon terminal from &quot;planned&quot; to &quot;executing.&quot; Work is organized into three tiers:</p>
+<p>1. **Tier 1 — Human Actions (blocks 0.95)** — Things only humans can do. No code, no Delphi. These are the gap between 0.79 and 0.95.</p>
+<p>2. **Tier 2 — Technical Pre-Work (blocks Phase 0)** — Delphi work that can start before SSH access. Local development, cursor agent specs, schema design.</p>
+<p>3. **Tier 3 — Execution (the PDR itself)** — The 438.5 hours of build work in the PDR. Starts when Tier 1 blockers clear.</p>
+<p>**Read the PDR first.** This document is a navigation layer, not a replacement. The PDR at `pdr-terminal-buildout.md` has every task, acceptance criteria, dependency, and estimate.</p>
+<p>---</p>
+<h3>Tier 1: Human Actions Required</h3>
+<p>These items cannot be completed by Delphi. Each one blocks a specific coherence dimension. Without all 6, the PDR cannot reach 0.95.</p>
+<h4>H1. Signed Contract with Scope Boundary</h4>
+<p>**Owner:** Alexander + Carl</p>
+<p>**Blocks:** Evidence grounding (+0.08), Completeness (+0.05)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Written agreement defining what $4,500/month covers (Stations 1A+1B? All 8? Maintenance?)</p>
+<p style='padding-left:1rem'>&bull; Scope boundary: Jennifer&#x27;s wish list (PPC, account health, image QA) is either in or out</p>
+<p style='padding-left:1rem'>&bull; Profit share mechanics locked: baseline definition, measurement window, calculation method</p>
+<p style='padding-left:1rem'>&bull; Whether $4,500/mo includes post-launch maintenance (8-14 hrs/month) or is billed separately</p>
+<p>**PDR reference:** Gap Analysis row 2, Decision Gate G6, Post-Launch Maintenance Budget section</p>
+<h4>H2. Exclusivity Definition (Gate G0.1)</h4>
+<p>**Owner:** Alexander + Carl</p>
+<p>**Blocks:** Internal consistency (+0.04, resolves dissonance D4)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Written definition: what is exclusive to Rankona vs. available to JV channel clients</p>
+<p style='padding-left:1rem'>&bull; Suggested boundary: ontology mappings, knowledge graph content, and competitive intel derived from Rankona&#x27;s data = exclusive. Code, framework, patterns = shared.</p>
+<p style='padding-left:1rem'>&bull; Must be in contract before first JV channel client onboards in same category</p>
+<p>**PDR reference:** Decision Gate G0.1, Perspective 5 (Adversarial), Blind Spot 4</p>
+<h4>H3. Amazon Account Health Check (P0-15a)</h4>
+<p>**Owner:** Jennifer</p>
+<p>**Blocks:** Completeness (+0.03)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Log into Seller Central for the 43K SKU horse equipment account</p>
+<p style='padding-left:1rem'>&bull; Check: active performance notifications, ASIN suppressions, open policy cases</p>
+<p style='padding-left:1rem'>&bull; Report findings to Delphi</p>
+<p style='padding-left:1rem'>&bull; If active warnings exist: halt bulk upload plans until resolved</p>
+<p>**PDR reference:** Task P0-15a, Gap Analysis row 3</p>
+<h4>H4. Humble Group Acquisition Confirmation</h4>
+<p>**Owner:** Carl</p>
+<p>**Blocks:** Evidence grounding (+0.03)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Confirm acquisition intent is active (not speculative)</p>
+<p style='padding-left:1rem'>&bull; Provide estimated timeline if available</p>
+<p style='padding-left:1rem'>&bull; This affects Perspective 8 (Acquirer/Transferability) grounding</p>
+<p>**PDR reference:** Claim 36, Perspective 8</p>
+<h4>H5. Delphi Utilization Allocation</h4>
+<p>**Owner:** Operator (Alexander)</p>
+<p>**Blocks:** Reality match (+0.03)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Decision: what percentage of Delphi&#x27;s time is allocated to Rankona vs #1850 Knowledge Extraction Marathon?</p>
+<p style='padding-left:1rem'>&bull; At 100%: ~55 working days (aspirational)</p>
+<p style='padding-left:1rem'>&bull; At 50%: ~110 working days (~5.5 months)</p>
+<p style='padding-left:1rem'>&bull; At 30%: ~183 working days (~9 months)</p>
+<p style='padding-left:1rem'>&bull; This number must be communicated to Carl as the delivery timeline</p>
+<p>**PDR reference:** Perspective 6 (Operator/Executability), utilization reality model</p>
+<h4>H6. Revenue Term Verification</h4>
+<p>**Owner:** Alexander</p>
+<p>**Blocks:** Evidence grounding (+0.05)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Verify deal terms ($4,500/mo, 20% profit share, 50/50 above $25M exit) against a term sheet or signed agreement</p>
+<p style='padding-left:1rem'>&bull; Currently these are referenced from call transcript — not a legal document</p>
+<p style='padding-left:1rem'>&bull; 14 claims in the evidence audit are UNVERIFIED because they depend on unsigned terms</p>
+<p>**PDR reference:** Claims 13, 14, 29, Evidence Audit</p>
+<h4>H7. SSH Key Provisioning (Gate G0)</h4>
+<p>**Owner:** Operator</p>
+<p>**Blocks:** Everything — all technical work on target machine</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Provision SSH key access to 100.107.76.119 (Bitler location)</p>
+<p style='padding-left:1rem'>&bull; Test: `ssh root@100.107.76.119 &#x27;hostname&#x27;` succeeds</p>
+<p style='padding-left:1rem'>&bull; This is the single hardest blocker in the entire project</p>
+<p>**PDR reference:** Task P0-1, Decision Gate G0, Blockers table</p>
+<h4>H8. SP-API Credentials (Gate G0.5)</h4>
+<p>**Owner:** Carl</p>
+<p>**Blocks:** Bulk upload engine (1A-6 through 1A-8), localization uploads</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Register Amazon Developer account (if not already done)</p>
+<p style='padding-left:1rem'>&bull; Register an app for SP-API access</p>
+<p style='padding-left:1rem'>&bull; Submit for Amazon approval (2-14 day wait)</p>
+<p style='padding-left:1rem'>&bull; Obtain refresh token</p>
+<p style='padding-left:1rem'>&bull; **Start this immediately** — it runs in parallel with SSH provisioning</p>
+<p>**PDR reference:** Task P0-13, Decision Gate G0.5, &quot;Missing From v1&quot; section</p>
+<h4>H9. Shareholder Approval (Gate G2)</h4>
+<p>**Owner:** Carl + Sander + other shareholders</p>
+<p>**Blocks:** Revenue activation (invoicing setup fee)</p>
+<p><strong>What&#x27;s needed:</strong></p>
+<p style='padding-left:1rem'>&bull; Shareholders approve Option B (JV/partnership) terms</p>
+<p style='padding-left:1rem'>&bull; No timeline given on call — status unknown</p>
+<p>**PDR reference:** Decision Gate G2, Blockers table</p>
+<p>---</p>
+<h3>Tier 2: Technical Pre-Work (Before SSH Access)</h3>
+<p>Work Delphi can do locally while waiting for Tier 1 blockers to clear. None of this requires 100.107.76.119 access.</p>
+<h4>T1. Category Ontology Schema Design (1A-1 prep)</h4>
+<p>**Hours:** 4 (from PDR)</p>
+<p>**What:** Design Neo4j node types and relationships for Amazon category taxonomy. This is the intellectual foundation — every downstream station depends on this schema.</p>
+<p>**Can start when:** Immediately</p>
+<p>**Deliverable:** Schema document with `CREATE CONSTRAINT` statements, reviewed against Amazon Browse Tree Guide</p>
+<h4>T2. COSMO/Rufus Attribute Priority List (1A-3)</h4>
+<p>**Hours:** 2</p>
+<p>**What:** Document the 15 critical backend attributes Jennifer identified for Amazon&#x27;s COSMO engine (which feeds Rufus AI). Field names, acceptable values, why each matters.</p>
+<p>**Can start when:** Immediately (research task, no dependencies)</p>
+<h4>T3. Cursor Agent Specifications</h4>
+<p>**Hours:** ~8 (Delphi writes specs for mechanical tasks)</p>
+<p>**What:** Write detailed cursor agent prompts for all M-classified tasks:</p>
+<p style='padding-left:1rem'>&bull; 1A-2: Category report parser (CSV/TSV ingestion)</p>
+<p style='padding-left:1rem'>&bull; 1A-7: Flat file fallback generator</p>
+<p style='padding-left:1rem'>&bull; 1B-3: Review/Q&amp;A scraper</p>
+<p style='padding-left:1rem'>&bull; 1B-5: Approval workflow tracker</p>
+<p style='padding-left:1rem'>&bull; 1B-6: Product sheet ingestion</p>
+<p style='padding-left:1rem'>&bull; 3-4: Market intelligence dashboard</p>
+<p style='padding-left:1rem'>&bull; 4-3: Competitive shift alert system</p>
+<p style='padding-left:1rem'>&bull; 5-1: Competitor review scraper extension</p>
+<p style='padding-left:1rem'>&bull; 8-1: Multi-client performance dashboard</p>
+<p style='padding-left:1rem'>&bull; 8-2: Client-facing report generator</p>
+<p style='padding-left:1rem'>&bull; CS-4: Alert pipeline (NATS → Telegram)</p>
+<p>**Can start when:** After T1 (schema design informs specs)</p>
+<p>**Note:** Each spec must be detailed enough to dispatch without follow-up. Net savings: ~100 hours after coordination overhead.</p>
+<h4>T4. Instance Config Template (P0-5)</h4>
+<p>**Hours:** 0.5</p>
+<p>**What:** Create `config/rankona-mazon-01.yaml` — clone from existing Bitkove instance config, customize for Rankona.</p>
+<p>**Can start when:** Immediately</p>
+<p>**Deliverable:** YAML validates against schema; `instance_id: rankona` set</p>
+<h4>T5. Telegram Bot Command Vocabulary Design (P0-8 prep)</h4>
+<p>**Hours:** 2</p>
+<p>**What:** Define command vocabulary for @RankonaBot — what queries Carl, Jennifer, and Johan can run, role-based access rules, response formats.</p>
+<p>**Can start when:** Immediately</p>
+<h4>T6. TOS Compliance Pre-Check (P0-16)</h4>
+<p>**Hours:** 2</p>
+<p>**What:** Review current Amazon Seller Central TOS for automated attribute updates, bulk upload policies, API usage terms. Document compliance posture.</p>
+<p>**Can start when:** Immediately (research task)</p>
+<h4>T7. Customer Update Mechanism Design (P0-17 prep)</h4>
+<p>**Hours:** 1 (design only, build needs SSH)</p>
+<p>**What:** Design the CI/CD pipeline for post-launch terminal updates. Blue-green deploy pattern, rollback capability, systemd timer for pulling MERIDIAN improvements.</p>
+<p>**Can start when:** Immediately</p>
+<p>---</p>
+<h3>Tier 3: Execution (The PDR Task List)</h3>
+<p>Once Tier 1 blockers clear (SSH + SP-API at minimum), execute the PDR phases in order. Full task list with acceptance criteria is in `pdr-terminal-buildout.md`.</p>
+<h4>Phase Summary</h4>
+<p>| Phase | Build Hours | Test Hours | Total | Days | Depends On |</p>
+<p>|-------|------------|------------|-------|------|-----------|</p>
+<p>| 0 — Platform | 21.5 | 4 | 25.5 | 3 | SSH access (G0) |</p>
+<p>| 1A — Attributes | 64 | 12 | 76 | 10 | P0 complete + SP-API (G0.5) for 1A-6+ |</p>
+<p>| 1B — Copy (parallel) | 53 | 10 | 63 | 8 | P0 complete |</p>
+<p>| 2 — Localization | 50 | 9 | 59 | 7 | 1A+1B stable + native proofers (G4) |</p>
+<p>| 3 — Intelligence | 72 | 13 | 85 | 11 | Phase 2 has multi-market data |</p>
+<p>| 4 — Growth Ops | 78 | 14 | 92 | 12 | Intelligence layer operational |</p>
+<p>| Sentinel | 32 | 6 | 38 | 5 | Anytime after P0 |</p>
+<p>| **Total** | **370.5** | **68** | **438.5** | **~55 days** | |</p>
+<h4>Decision Gates (in order)</h4>
+<p>| Gate | Question | When | Status |</p>
+<p>|------|----------|------|--------|</p>
+<p>| G0 | SSH access? | Before anything | BLOCKED |</p>
+<p>| G0.1 | Exclusivity defined? | Before contract | NOT STARTED |</p>
+<p>| G0.5 | SP-API credentials? | Before 1A-6 | NOT STARTED |</p>
+<p>| G1 | Machine specs adequate? | After P0-2 | BLOCKED on G0 |</p>
+<p>| G2 | Shareholder approval? | Before invoicing | PENDING |</p>
+<p>| G3 | First batch shows lift? | After 1A-12 | Future |</p>
+<p>| G3.5 | Jennifer validates workflow? | After 1B-9 | Future |</p>
+<p>| G4 | Native proofers identified? | Before 2-6 | NOT STARTED |</p>
+<p>| G5 | Fjallraven POC greenlit? | After pilot proves out | Future |</p>
+<p>| G6 | $4,500/mo covers scope? | After wish list received | NOT STARTED |</p>
+<p>| G7 | JV channel viable? | After terminal proven | Future |</p>
+<h4>Critical Path to First Revenue</h4>
+<p>```</p>
+<p>SSH Access ──┬── P0: Platform (3 days) ──── 1A: Attributes (10 days) ──── Batch + Review</p>
+<p>│                                        │</p>
+<p>SP-API ──────┴── (2-14 day parallel wait) ────────────┘ (blocks 1A-6+)</p>
+<p>Best case:  16 working days (SSH + SP-API both fast, clean reviews)</p>
+<p>Expected:   22 working days (SP-API 7 days, one review round, one rejection iteration)</p>
+<p>Worst case: 28 working days (SP-API 14 days, two review rounds, &gt;10% rejection)</p>
+<p>```</p>
+<p><strong>&quot;Measurable sales lift&quot; = &gt;=5% increase in sessions or units ordered per optimized ASIN over rolling 14-day window vs baseline (P0-15).</strong></p>
+<p>---</p>
+<h3>Unresolved Dissonances (Require Human Action)</h3>
+<p>| # | Dissonance | Owner | What Resolves It |</p>
+<p>|---|-----------|-------|-----------------|</p>
+<p>| D4 | Carl&#x27;s &quot;tailor-made&quot; exclusivity vs JV channel replication | Alexander + Carl | Define in contract: exclusive = ontology/data, shared = code/patterns (H2 above) |</p>
+<p>| D5 | Month 1 retainer assumes shareholder approval but no date | Carl + Sander | Get approval date or anchor revenue projections to &quot;Month 1 = approval date + 30&quot; |</p>
+<p>---</p>
+<h3>Remaining Blind Spots (from audit)</h3>
+<p>These are known unknowns that can only be resolved during execution:</p>
+<p>1. **Amazon as adversarial platform** — SP-API will change. Rejection diagnostics parser (1A-8) will need continuous updates. Maintenance budget (8-14 hrs/month) is estimated, not proven.</p>
+<p>2. **Cursor offload coordination overhead** — Estimated at 25%. Actual overhead only knowable after dispatching first batch of cursor agent specs.</p>
+<p>3. **Groq throughput at scale** — 100 calls/min is documented. Actual throughput with Amazon-domain prompts may differ. Only provable during 1A-4 build.</p>
+<p>4. **Category ontology amortization** — &quot;Once mapped, every client in that category benefits&quot; is architecturally true but unproven in practice. First proof point: 1A-9 through 1A-11 (saddles → saddle protection → earbuds).</p>
+<p>---</p>
+<h3>Quick Reference: Who Does What Next</h3>
+<p>| Person | Next Action | Urgency |</p>
+<p>|--------|-------------|---------|</p>
+<p>| **Alexander** | Sign contract with scope boundary; define exclusivity; decide Delphi utilization % | HIGH — blocks 0.95 |</p>
+<p>| **Carl** | Start SP-API registration NOW; get shareholder approval; confirm acquisition intent | HIGH — SP-API is on critical path |</p>
+<p>| **Jennifer** | Run account health check in Seller Central; export 43K SKU category report | HIGH — blocks P0-15a and 1A-2 |</p>
+<p>| **Operator** | Provision SSH key to 100.107.76.119 | CRITICAL — blocks everything |</p>
+<p>| **Delphi** | Start Tier 2 pre-work (T1-T7, ~19.5 hours) while waiting for blockers | READY — no dependencies |</p>
+<p>---</p>
+<p>*This document is a navigation layer for the PDR at `pdr-terminal-buildout.md`. All task details, acceptance criteria, data contracts, and estimates live in the PDR. This document tells you what to do next and who needs to do it.*</p></div></div>
 </div>
-<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-08-11 16:39</div>
+<div class="footer">MERIDIAN &middot; Call Detail &middot; Generated 2026-08-11 21:18</div>
 </body></html>
