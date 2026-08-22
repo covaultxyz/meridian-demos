@@ -1,7 +1,13 @@
 {
-  "generated_at": "2026-08-22T15:14:29.319407+00:00",
+  "generated_at": "2026-08-22T21:14:29.564528+00:00",
   "categories": {
     "static_sites": [
+      {
+        "name": "cheatsheets",
+        "dir": "deploy/static-sot-cheatsheets",
+        "has_index": false,
+        "file_count": 1
+      },
       {
         "name": "clients",
         "dir": "deploy/static-sot-clients",
@@ -24,7 +30,7 @@
         "name": "root",
         "dir": "deploy/static-sot-root",
         "has_index": false,
-        "file_count": 33
+        "file_count": 34
       }
     ],
     "calls": [
@@ -506,6 +512,16 @@
         "date": ""
       },
       {
+        "title": "Client Persistence Bridge Sop",
+        "file": "docs/runbooks/client-persistence-bridge-sop.md",
+        "date": ""
+      },
+      {
+        "title": "C0F7231 Checkout Refresh",
+        "file": "docs/runbooks/c0f7231-checkout-refresh.md",
+        "date": ""
+      },
+      {
         "title": "Codex Flock Fixes For Codex Daemons",
         "file": "docs/runbooks/2026-08-20-codex-flock-fixes-for-codex-daemons.md",
         "date": "2026-08-20"
@@ -756,18 +772,23 @@
         "systemd",
         "tests"
       ],
-      "file_count": 10,
+      "file_count": 15,
       "files": [
+        "clients/endeur/README-mig-bridge.md",
         "clients/endeur/README.md",
         "clients/endeur/runbooks/flock-discipline-charter-2026-07-28.md",
         "clients/endeur/runbooks/flock-mode.md",
         "clients/endeur/runbooks/flock-onboarding.md",
         "clients/endeur/runbooks/helm-ops-sop.md",
         "clients/endeur/scripts/endeur-daemon-wrapper.sh",
+        "clients/endeur/scripts/endeur_ingest_producer.py",
+        "clients/endeur/scripts/endeur_mig_writer.py",
         "clients/endeur/scripts/seed_endeur_instructions.py",
         "clients/endeur/scripts/smoke_test.sh",
         "clients/endeur/systemd/endeur-daemon@.service",
-        "clients/endeur/systemd/endeur-embedding.service"
+        "clients/endeur/systemd/endeur-embedding.service",
+        "clients/endeur/systemd/endeur-ingest-producer.service",
+        "clients/endeur/systemd/endeur-mig-writer.service"
       ]
     },
     "fitciag": {
@@ -1020,7 +1041,7 @@
         "forge",
         "signals"
       ],
-      "file_count": 247,
+      "file_count": 248,
       "files": [
         "clients/meridian-internal/audits/csuite-audit-01-call-grade-report.json",
         "clients/meridian-internal/audits/csuite-audit-01-garrett-call-grade-report.json",
@@ -1170,6 +1191,7 @@
         "overlays",
         "pim",
         "playbooks",
+        "recovered",
         "reports",
         "research",
         "research_deck",
@@ -1188,7 +1210,7 @@
         "v5_audit",
         "workers"
       ],
-      "file_count": 1510,
+      "file_count": 1514,
       "files": [
         "clients/rankona-mazon/.github/ISSUE_TEMPLATE/advertising-adjustment.md",
         "clients/rankona-mazon/.github/ISSUE_TEMPLATE/compliance-flag.md",
@@ -1459,5 +1481,5 @@
       ]
     }
   },
-  "total_items": 2739
+  "total_items": 2752
 }
