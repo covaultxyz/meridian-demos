@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T21:14:43.825611+00:00",
+  "generated_at": "2026-08-28T21:19:40.030992+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-08-28T21:14:40.958723+00:00",
+      "updated_at": "2026-08-28T21:19:37.315403+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7274,12 +7274,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-08-28T21:14:40.990676+00:00",
+        "generated_at": "2026-08-28T21:19:37.328859+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-08-28T21:14:42.876844+00:00",
+      "updated_at": "2026-08-28T21:19:39.275991+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8484,13 +8484,33 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "failure",
+        "status": "in_progress",
+        "conclusion": null,
         "name": "CI",
-        "created_at": "2026-08-28T20:52:22Z",
-        "head_sha": "422d351b"
+        "created_at": "2026-08-28T21:17:25Z",
+        "head_sha": "ed7c9823"
       },
       "ci_recent_runs": [
+        {
+          "id": 33211902548,
+          "name": "CI",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-08-28T21:17:25Z",
+          "updated_at": "2026-08-28T21:17:27Z",
+          "head_sha": "ed7c9823",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33211902548"
+        },
+        {
+          "id": 33211902491,
+          "name": "Generate Unified Dashboard",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-08-28T21:17:24Z",
+          "updated_at": "2026-08-28T21:17:24Z",
+          "head_sha": "ed7c9823",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33211902491"
+        },
         {
           "id": 33210082329,
           "name": "CI",
@@ -8520,29 +8540,16 @@
           "updated_at": "2026-08-28T20:58:55Z",
           "head_sha": "25c21a41",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/33209692986"
-        },
-        {
-          "id": 33209397744,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-28T20:42:45Z",
-          "updated_at": "2026-08-28T20:45:11Z",
-          "head_sha": "25c21a41",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33209397744"
-        },
-        {
-          "id": 33209175168,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "failure",
-          "created_at": "2026-08-28T20:39:37Z",
-          "updated_at": "2026-08-28T20:42:12Z",
-          "head_sha": "6923fdd3",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33209175168"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "ed7c9823",
+          "message": "rankona SHARD-PIPELINE tail migration: 4 remaining consumers of the retired single, found by thanos full-count probe. brain/parity_snapshot (DEFAULT_FEED load_feed) + split_standard_census/split_gap_worklist/split_quality_census (FEEDS localization tuple) now read via resolve_local_feed. split_gap resolves shards BEFORE its exists() check so a present-shards feed is not misreported MISSING. Consumer ledger closed to zero. Verified: py_compile clean, all 4 run rc=0 on the shards branch with the single absent locally, split_gap 0 false MISSING, tests/brain 2417 passed 0 failed. Part of #124 refs RankonaTerminal/rankona 134",
+          "author": "Glasshaus",
+          "date": "2026-08-28T21:17:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ed7c98234738fc34315345638ef5d0d760466948"
+        },
         {
           "sha": "422d351b",
           "message": "rankona SHARD-PIPELINE Leg-2 completion + L3 hardening (HELM scope-approved). Migrate ALL 10 remaining consumers of the retired single workbench-data.js: overlay_client_into_feed -> fetch_served_feed (shard reassembly), and 9 local-default readers (gen_wb_promote, load_datadive_keywords, prove_se_overspill, write_overspill_content, load_gold_keywords_to_graph, johan_v2_compose, derive_rd09_eligible, verify_localization_workbench, resolve_lmf_doc_parents) -> resolve_local_feed. L3 hardening in refresh-localization-workbench.sh: portable mkdir single-instance lock (Darwin-safe, not flock, per HELM) + shard2 size guard. Minor: index comment 20 to 24MiB, retire dead rd09 FEED_URL, drop dangling _headers single rule. All py_compile + bash -n clean. Part of #124 refs RankonaTerminal/rankona 134",
@@ -8605,13 +8612,6 @@
           "author": "Glasshaus",
           "date": "2026-08-28T19:47:30Z",
           "url": "https://github.com/covaultxyz/meridian/commit/6bc01d90c273c8ac89eaf09e02b918831b051b90"
-        },
-        {
-          "sha": "f5a46988",
-          "message": "chore: regenerate compass data [2026-08-28T19:37:06Z]",
-          "author": "meridian-bot",
-          "date": "2026-08-28T19:37:06Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/f5a4698805fdd274ca98ad04de781e86e12d2c84"
         }
       ],
       "github_project": {
@@ -8620,7 +8620,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "members": [
         {
           "id": "alex",
@@ -8693,7 +8693,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "projects": [
         {
           "project": {
@@ -9123,7 +9123,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9190,7 +9190,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9287,7 +9287,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -11189,7 +11189,7 @@
             "Audit David's architecture \u2014 identify what broke",
             "Build text message coaching agent MVP"
           ],
-          "detail_page": "calls/2026-03-21-at-bitlers-house--denver-review.html",
+          "detail_page": "calls/2026-03-21-at-mike-bitlers-house--denver-review.html",
           "preview": "In-person meeting with Denver Griffin at Mike Bitler's house. Denver agreed to $2K retainer for text coaching AI agent. He had an 'almost perfect' AI that broke 4 months ago. Solo operator with zero employees. Wants to own all infrastructure. MPMC vision: clone coaching brains into 1,000 AI businesses."
         },
         {
@@ -11215,7 +11215,7 @@
             "Mike Bitler"
           ],
           "summary": "Mike Bitler team member profile",
-          "detail_page": "calls/2026-03-18-bitler-profile.html",
+          "detail_page": "calls/2026-03-18-mike-bitler-profile.html",
           "preview": "Mike Bitler team member profile"
         },
         {
@@ -11552,7 +11552,7 @@
               "what": "Research arc.dev for contract opportunities and scrape to identify market demand patterns"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely-1pm-sync.html",
+          "detail_page": "calls/2026-03-16-ely-beckman-1pm-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -11645,7 +11645,7 @@
               "what": "Consider consulting role leveraging neuroscience/brain expertise to help other organizations understand agentic framework design"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-discussion.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-discussion.html",
           "preview": "Discussion about Omar opportunity with Ely Beckman"
         },
         {
@@ -11708,7 +11708,7 @@
               "what": "Call Steve and Diane tomorrow about terminal contracts"
             }
           ],
-          "detail_page": "calls/2026-03-16-ely--omar-followup-with-alex.html",
+          "detail_page": "calls/2026-03-16-ely-beckman--omar-followup-with-alex.html",
           "preview": "Follow-up discussion on Omar opportunity"
         },
         {
@@ -11805,7 +11805,7 @@
               "what": "Connect with potential AI/infrastructure partner to discuss partnership alignment and value exchange"
             }
           ],
-          "detail_page": "calls/2026-03-10-ely-6pm-call.html",
+          "detail_page": "calls/2026-03-10-ely-beckman-6pm-call.html",
           "preview": "Evening call with Ely Beckman"
         },
         {
@@ -11867,7 +11867,7 @@
               "what": "Redesign Atlas 2.0 and Sandman 2.0 daemon identities with clearer role definitions"
             }
           ],
-          "detail_page": "calls/2026-03-05-ely-midnight-sync-march-6.html",
+          "detail_page": "calls/2026-03-05-ely-beckman-midnight-sync-march-6.html",
           "preview": "Late night sync with Ely Beckman"
         },
         {
@@ -11927,7 +11927,7 @@
               "what": "Add Forge daemon back to Meridian V2 Telegram group chat"
             }
           ],
-          "detail_page": "calls/2026-03-04-ely-10am-sync.html",
+          "detail_page": "calls/2026-03-04-ely-beckman-10am-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -11982,7 +11982,7 @@
               "what": "Research how other teams implement admin-level AI agent control with accessibility tools"
             }
           ],
-          "detail_page": "calls/2026-03-03-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-03-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12077,7 +12077,7 @@
               "what": "Add 'enterprise-grade production-ready' requirement to master prompts to prevent bandaid solutions"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-morning-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-morning-sync.html",
           "preview": "Morning sync with Ely Beckman"
         },
         {
@@ -12119,7 +12119,7 @@
               "what": "Implement two-source methodology: analyze virtual team memory connections and identify low-relationship MIG nodes for research prioritization"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-afternoon-sync.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-afternoon-sync.html",
           "preview": "Afternoon sync with Ely Beckman"
         },
         {
@@ -12246,7 +12246,7 @@
               "what": "Research Claude Code plan mode truncation and context optimization best practices"
             }
           ],
-          "detail_page": "calls/2026-03-02-ely-9am--research-prompts.html",
+          "detail_page": "calls/2026-03-02-ely-beckman-9am--research-prompts.html",
           "preview": "Research prompt development with Ely Beckman"
         },
         {
@@ -12389,7 +12389,7 @@
               "what": "research Sonnet vs Opus capabilities and define task delegation rules"
             }
           ],
-          "detail_page": "calls/2026-02-19-full-team--alan--ely.html",
+          "detail_page": "calls/2026-02-19-full-team--alan--ely-beckman.html",
           "preview": "Full team meeting with Alan and Ely Beckman"
         },
         {
@@ -12562,7 +12562,7 @@
               "what": "Lead client-facing website sales and business development"
             }
           ],
-          "detail_page": "calls/2026-02-19-ely-call-feb-19.html",
+          "detail_page": "calls/2026-02-19-ely-beckman-call-feb-19.html",
           "preview": "Call with Ely Beckman"
         },
         {
@@ -13079,7 +13079,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-08-28T21:14:43.494416+00:00",
+      "updated_at": "2026-08-28T21:19:39.828276+00:00",
       "sops": [
         {
           "name": "Dashboard Client Onboarding",
@@ -13551,7 +13551,7 @@
       "total_docs": 76
     },
     "deals": {
-      "updated_at": "2026-08-28T21:14:43.494698+00:00",
+      "updated_at": "2026-08-28T21:19:39.828732+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -13793,7 +13793,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-08-28T21:14:42.876881+00:00",
+      "updated_at": "2026-08-28T21:19:39.276042+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -86824,7 +86824,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-08-28T21:14:43.728611+00:00",
+      "updated_at": "2026-08-28T21:19:39.942280+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -94471,7 +94471,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-08-28T21:14:43.825366+00:00",
+      "updated_at": "2026-08-28T21:19:40.030713+00:00",
       "items": [
         {
           "type": "blocked",
@@ -94666,8 +94666,14 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-08-28T21:14:43.825546+00:00",
+      "updated_at": "2026-08-28T21:19:40.030944+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-08-28T21:17:19Z",
+          "title": "rankona SHARD-PIPELINE tail migration: 4 remaining consumers of the retired sing",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-08-28T20:52:16Z",
@@ -94715,12 +94721,6 @@
           "date": "2026-08-28T19:47:30Z",
           "title": "rankona Prop65 P2 authorized-brands roster for Equinavia seller A9LITVPQCSOE6: r",
           "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-08-28T19:37:06Z",
-          "title": "chore: regenerate compass data [2026-08-28T19:37:06Z]",
-          "detail": "meridian-bot"
         },
         {
           "type": "commit",
