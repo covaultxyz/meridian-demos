@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T00:42:34.502532+00:00",
+  "generated_at": "2026-09-04T00:58:47.240758+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-09-04T00:42:31.691432+00:00",
+      "updated_at": "2026-09-04T00:58:44.672035+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,12 +7225,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-09-04T00:42:31.702703+00:00",
+        "generated_at": "2026-09-04T00:58:44.685457+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-09-04T00:42:34.017699+00:00",
+      "updated_at": "2026-09-04T00:58:46.800108+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8455,65 +8455,114 @@
         ]
       },
       "ci": {
-        "status": "in_progress",
+        "status": "queued",
         "conclusion": null,
-        "name": "Generate Unified Dashboard",
-        "created_at": "2026-09-04T00:42:14Z",
-        "head_sha": "f86d4278"
+        "name": "CI",
+        "created_at": "2026-09-04T00:58:36Z",
+        "head_sha": "f3088006"
       },
       "ci_recent_runs": [
         {
-          "id": 33822854430,
+          "id": 33823933252,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-09-04T00:58:36Z",
+          "updated_at": "2026-09-04T00:58:36Z",
+          "head_sha": "f3088006",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33823933252"
+        },
+        {
+          "id": 33823933261,
           "name": "Generate Unified Dashboard",
           "status": "in_progress",
           "conclusion": null,
-          "created_at": "2026-09-04T00:42:14Z",
-          "updated_at": "2026-09-04T00:42:27Z",
-          "head_sha": "f86d4278",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33822854430"
+          "created_at": "2026-09-04T00:58:36Z",
+          "updated_at": "2026-09-04T00:58:38Z",
+          "head_sha": "f3088006",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33823933261"
         },
         {
-          "id": 33822854429,
+          "id": 33823713208,
           "name": "CI",
           "status": "completed",
           "conclusion": "failure",
-          "created_at": "2026-09-04T00:42:14Z",
-          "updated_at": "2026-09-04T00:42:26Z",
-          "head_sha": "f86d4278",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33822854429"
+          "created_at": "2026-09-04T00:55:09Z",
+          "updated_at": "2026-09-04T00:55:21Z",
+          "head_sha": "ea4d3447",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33823713208"
         },
         {
-          "id": 33822813148,
+          "id": 33823503352,
           "name": "CI",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-04T00:41:36Z",
-          "updated_at": "2026-09-04T00:41:51Z",
-          "head_sha": "d621c8b8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33822813148"
+          "conclusion": "failure",
+          "created_at": "2026-09-04T00:51:58Z",
+          "updated_at": "2026-09-04T00:52:11Z",
+          "head_sha": "4c1ce9f4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33823503352"
         },
         {
-          "id": 33822800695,
+          "id": 33823368211,
           "name": "CI",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-04T00:41:24Z",
-          "updated_at": "2026-09-04T00:41:38Z",
-          "head_sha": "52067b2c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33822800695"
-        },
-        {
-          "id": 33822420499,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-04T00:35:38Z",
-          "updated_at": "2026-09-04T00:35:51Z",
-          "head_sha": "c3714aa8",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/33822420499"
+          "conclusion": "failure",
+          "created_at": "2026-09-04T00:49:57Z",
+          "updated_at": "2026-09-04T00:50:10Z",
+          "head_sha": "8363305e",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/33823368211"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "f3088006",
+          "message": "fix(rankona): DataDive dive->niche join - union the seed join with a market-gated label join so materialized niches whose seed is absent from the competitor set no longer read failed; 7 tests on the Pandy niches (delphi; G1-B + thanos PASS on db4b48d92f) Part of rankona#102 rankona#197",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:58:30Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/f3088006efc9a04792c796ccc2bd802b4bebf688"
+        },
+        {
+          "sha": "ea4d3447",
+          "message": "queue: Z66 - rankona#198 ratifications relayed and recorded, HELM roster audit answer, v0.1 build started under the key-priority word",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:55:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ea4d34478a1e00ff3bad772df471706e73c11165"
+        },
+        {
+          "sha": "4c1ce9f4",
+          "message": "chore(flock): ledger 00:5xZ - roster audit on operator word, 7 seats re-tasked, dashboard build started under the key-priority word",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:51:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/4c1ce9f41f8e6668774c70be78af700ea83b61a7"
+        },
+        {
+          "sha": "8363305e",
+          "message": "queue: ANSWERED v12 - rankona#198 ratification sheet: dollars shown on HELM word after the gate, date-only freshness, ranker cap 25, scoreboard all six with dates; defaults stand on the rest",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:49:52Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/8363305e2788e3850d8f5554ce501eb0d8390a9d"
+        },
+        {
+          "sha": "affb36dc",
+          "message": "queue: Z65 - progress + reporting surface packet delivered (rankona#198, arc-02a60727736e, plan c436f0b9d8b220a4 with the one-board constraint + HELM recon bound, seating proposal), operator host ruling under stations tonight, ratification sheet to the operator; #197 lane S2 + quota snapshot + OP22 v3 landed",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:47:03Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/affb36dc2d8703a3af7f0a4306c2b8384353041d"
+        },
+        {
+          "sha": "75a86463",
+          "message": "chore(flock): ledger 00:4xZ - DataDive join fix ferried db4b48d92f to gates (rankona#102 / #197 phase 1)",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:46:14Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/75a864637b0a37db6a696361f636b2da696194ae"
+        },
+        {
+          "sha": "a4ed1fa1",
+          "message": "chore(flock): ledger 00:4xZ - OP22 v3 landed f86d427864, row 2 fail-loud re-ferry ruled, OKR denominators ruled under the operator ratification, KV provisioned, dashboard recon delivered",
+          "author": "Glasshaus",
+          "date": "2026-09-04T00:43:10Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a4ed1fa14dfd760096a5ade81f8dd6a16276e8c6"
+        },
         {
           "sha": "f86d4278",
           "message": "fix(rankona): OP22 need-photography re-witness v3 - Salsify stem-join, color scope official with fall-to-family + scope_used, dual-pinned manifest, 9 tests (forge-D; G1-B + thanos PASS on 91800131b4) Part of rankona#196",
@@ -8534,261 +8583,15 @@
           "author": "covaultxyz",
           "date": "2026-09-04T00:41:19Z",
           "url": "https://github.com/covaultxyz/meridian/commit/52067b2ccc71d48d376007e66626bdbef9d93c16"
-        },
-        {
-          "sha": "c3714aa8",
-          "message": "chore(flock): ledger 00:3xZ - S2 landed 868e32f8ee, row 2 G1-B PASS with env-file precondition, forge-A diagnostics, S4 + row 5 rulings",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:35:32Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c3714aa80b1d2a2e01b7a70f130252563bbacbe3"
-        },
-        {
-          "sha": "cc9ffbc9",
-          "message": "feat(world): one attention beacon walks the operator to the longest-waiting item; stalled task classes become beacon sources (PRD PR-WRLD-1)",
-          "author": "covaultxyz",
-          "date": "2026-09-04T00:34:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/cc9ffbc90d38c63980b75609672c3cc86373e854"
-        },
-        {
-          "sha": "868e32f8",
-          "message": "feat(rankona): S2 daily keyword lane - Equinavia top-20 child-grain artifact + producer + 7-case test, dive_needed fail-closed (delphi; G1-B + thanos PASS on bafe3df543) Part of rankona#197",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:33:34Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/868e32f8ee43790dbc8bc525dcc63c20ccca4666"
-        },
-        {
-          "sha": "d367c525",
-          "message": "chore(flock): ledger 00:3xZ - dashboard = key priority of the night (seats pre-positioned, recon running), OP22 v3 at G2, rankona#197 standing order intaken, #102 detector finding, dataroom exposure closed, delphi stall named",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:30:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d367c52513187c6e4af7f32d242fa9672fe44241"
-        },
-        {
-          "sha": "8e4bcc9f",
-          "message": "rankona#102: read-only DataDive quota snapshot 2026-09-04 (DIVED_ASINS 230 of 4000, no quota wall; no-materialize root cause is niche resolution not capacity)",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:27:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8e4bcc9fb70f61fc0b374f04c0940a41993e8f76"
-        },
-        {
-          "sha": "c91fb37c",
-          "message": "queue: Z64 - operator priority word: the progress + reporting surface is the key priority of the night; arc in committee (scouts + draft done, lenses scoring), not yet dispatched by file-before-work, HELM asked to pre-position seats, target-path decision asked",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:26:53Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c91fb37c2c93bd0e280bea93386991a186242d34"
-        },
-        {
-          "sha": "a0ccdd8f",
-          "message": "queue: Z63 - #197 lane no movement (S2 + unit fixes at the gates, first Equinavia fire tonight after the reads), committee lenses running with the one-board-system constraint to be added, dataroom deploy-script fix landed (now 503 fail-closed) with the exposure-window question to HELM, roster corrected (forge-A + forge-P1B alive)",
-          "author": "Glasshaus",
-          "date": "2026-09-04T00:25:29Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a0ccdd8f09e76e67958fe121c7e04d887b02f62a"
         }
       ],
       "github_project": {
-        "updated_at": "2026-09-04T00:42:32.349070+00:00",
-        "source": "github_project_13",
-        "deals": [
-          {
-            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-            "number": 1675,
-            "url": "https://github.com/covaultxyz/meridian/issues/1675",
-            "state": "CLOSED",
-            "created_at": "2026-03-22T03:44:34Z",
-            "labels": [
-              "grade/B",
-              "verified",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
-              "Status": "In Progress",
-              "Stage": "Engaged",
-              "Revenue": "$5K/mo ($60K/yr) \u2014 75% probability",
-              "Next Action": "Confirm $2K retainer payment; finalize scope doc; P1 phone tests",
-              "Deadline": "2026-04-14",
-              "Owner": "Joint",
-              "Risk": "Data handoff delayed; scope doc still not written",
-              "Velocity": "Advancing",
-              "Last Activity": "2026-04-03",
-              "Client": "Denver Griffin"
-            }
-          },
-          {
-            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-            "number": 1676,
-            "url": "https://github.com/covaultxyz/meridian/issues/1676",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:50Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
-              "Status": "Todo",
-              "Stage": "Lead",
-              "Next Action": "Deep research EHR needs; re-engage when Gordon returns",
-              "Deadline": "2026-04-18",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-10",
-              "Revenue": "TBD \u2014 Lead stage, not yet qualified",
-              "Risk": "No activity since March; lead may be cold",
-              "Client": "Gordon (GCC)"
-            }
-          },
-          {
-            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-            "number": 1677,
-            "url": "https://github.com/covaultxyz/meridian/issues/1677",
-            "state": "OPEN",
-            "created_at": "2026-03-22T03:44:56Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
-              "Status": "In Progress",
-              "Stage": "Proposal",
-              "Next Action": "Bitler re-engage Brian Cook or declare cold by Apr 14",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$5K/mo ($60K/yr) \u2014 60% probability",
-              "Risk": "No response to decision prompt \u2014 23 days since last activity",
-              "Deadline": "2026-04-14",
-              "Client": "Brian Cook"
-            }
-          },
-          {
-            "title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
-            "number": 2001,
-            "url": "https://github.com/covaultxyz/meridian/issues/2001",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:50:52Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
-              "Status": "In Progress",
-              "Stage": "Discovery",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-31",
-              "Revenue": "$3K/mo ($36K/yr) \u2014 35% probability",
-              "Next Action": "Confirm meeting happened; get outcome from Bitler",
-              "Deadline": "2026-04-14",
-              "Risk": "Meeting scheduled but no outcome reported in 11+ days",
-              "Client": "Luis Lamba"
-            }
-          },
-          {
-            "title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
-            "number": 2002,
-            "url": "https://github.com/covaultxyz/meridian/issues/2002",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:51:01Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
-              "Status": "In Progress",
-              "Stage": "Discovery",
-              "Owner": "Bitler",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$10K/mo ($120K/yr) \u2014 25% probability",
-              "Next Action": "Bitler to confirm status or declare cold",
-              "Deadline": "2026-04-14",
-              "Risk": "No activity in 23+ days \u2014 may be cold",
-              "Client": "Nate"
-            }
-          },
-          {
-            "title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
-            "number": 2003,
-            "url": "https://github.com/covaultxyz/meridian/issues/2003",
-            "state": "CLOSED",
-            "created_at": "2026-04-11T18:51:09Z",
-            "labels": [
-              "grade/D",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
-              "Status": "Done",
-              "Stage": "Qualified",
-              "Owner": "Joint",
-              "Velocity": "Stalled",
-              "Last Activity": "2026-03-19",
-              "Revenue": "$10.5K/mo ($126K/yr) \u2014 20% probability",
-              "Next Action": "Confirm if pilot ran; get results from Ely/Bitler",
-              "Deadline": "2026-04-14",
-              "Risk": "Review classifier pilot deadline (April 1) passed with no results",
-              "Client": "Amazon Sellers"
-            }
-          },
-          {
-            "title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
-            "number": 2004,
-            "url": "https://github.com/covaultxyz/meridian/issues/2004",
-            "state": "OPEN",
-            "created_at": "2026-04-11T18:51:17Z",
-            "labels": [
-              "grade/C",
-              "client"
-            ],
-            "fields": {
-              "Title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
-              "Status": "Todo",
-              "Stage": "Discovery",
-              "Owner": "Joint",
-              "Velocity": "New",
-              "Last Activity": "2026-04-03",
-              "Revenue": "$3K/mo ($36K/yr) \u2014 30% probability",
-              "Next Action": "Build KaaS prototype demo; schedule 30-min follow-up call",
-              "Deadline": "2026-04-18",
-              "Risk": "Downsizing agency work, focused on Zestify food brand \u2014 unclear fit",
-              "Client": "Garrett Taylor"
-            }
-          },
-          {
-            "title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
-            "number": 474,
-            "url": "https://github.com/covaultxyz/meridian/issues/474",
-            "state": "CLOSED",
-            "created_at": "2026-02-16T21:53:01Z",
-            "labels": [
-              "enhancement",
-              "phase/2",
-              "grade/B",
-              "source/human"
-            ],
-            "fields": {
-              "Title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
-              "Status": "In Progress",
-              "Stage": "Active",
-              "Owner": "Alex",
-              "Velocity": "Active",
-              "Last Activity": "2026-04-11",
-              "Revenue": "Internal \u2014 no direct revenue (infrastructure)",
-              "Next Action": "Complete confidence calibration; wire ACH workflow",
-              "Risk": "MDB + ACH workflow + OSINT Watchtower all pending",
-              "Client": "Cassian"
-            }
-          }
-        ],
-        "total_items": 8
+        "error": "GitHub Project #13 query failed or gh CLI unavailable",
+        "updated_at": null
       }
     },
     "team": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "members": [
         {
           "id": "alex",
@@ -8861,7 +8664,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "projects": [
         {
           "project": {
@@ -9291,7 +9094,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9358,7 +9161,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9455,7 +9258,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13247,7 +13050,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-09-04T00:42:34.358415+00:00",
+      "updated_at": "2026-09-04T00:58:47.079783+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17337,7 +17140,7 @@
       "total_docs": 679
     },
     "deals": {
-      "updated_at": "2026-09-04T00:42:34.358716+00:00",
+      "updated_at": "2026-09-04T00:58:47.079951+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17579,7 +17382,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-09-04T00:42:34.017719+00:00",
+      "updated_at": "2026-09-04T00:58:46.800124+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90610,7 +90413,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-09-04T00:42:34.426062+00:00",
+      "updated_at": "2026-09-04T00:58:47.179513+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98257,7 +98060,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-09-04T00:42:34.502351+00:00",
+      "updated_at": "2026-09-04T00:58:47.240574+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98452,8 +98255,50 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-09-04T00:42:34.502492+00:00",
+      "updated_at": "2026-09-04T00:58:47.240729+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:58:30Z",
+          "title": "fix(rankona): DataDive dive->niche join - union the seed join with a market-gate",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:55:03Z",
+          "title": "queue: Z66 - rankona#198 ratifications relayed and recorded, HELM roster audit a",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:51:53Z",
+          "title": "chore(flock): ledger 00:5xZ - roster audit on operator word, 7 seats re-tasked, ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:49:52Z",
+          "title": "queue: ANSWERED v12 - rankona#198 ratification sheet: dollars shown on HELM word",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:47:03Z",
+          "title": "queue: Z65 - progress + reporting surface packet delivered (rankona#198, arc-02a",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:46:14Z",
+          "title": "chore(flock): ledger 00:4xZ - DataDive join fix ferried db4b48d92f to gates (ran",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T00:43:10Z",
+          "title": "chore(flock): ledger 00:4xZ - OP22 v3 landed f86d427864, row 2 fail-loud re-ferr",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-09-04T00:42:08Z",
@@ -98471,48 +98316,6 @@
           "date": "2026-09-04T00:41:19Z",
           "title": "chore(verify,cockpit): operator visual-verify list for the M1 surfaces; Knowledg",
           "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:35:32Z",
-          "title": "chore(flock): ledger 00:3xZ - S2 landed 868e32f8ee, row 2 G1-B PASS with env-fil",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:34:49Z",
-          "title": "feat(world): one attention beacon walks the operator to the longest-waiting item",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:33:34Z",
-          "title": "feat(rankona): S2 daily keyword lane - Equinavia top-20 child-grain artifact + p",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:30:21Z",
-          "title": "chore(flock): ledger 00:3xZ - dashboard = key priority of the night (seats pre-p",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:27:48Z",
-          "title": "rankona#102: read-only DataDive quota snapshot 2026-09-04 (DIVED_ASINS 230 of 40",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:26:53Z",
-          "title": "queue: Z64 - operator priority word: the progress + reporting surface is the key",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T00:25:29Z",
-          "title": "queue: Z63 - #197 lane no movement (S2 + unit fixes at the gates, first Equinavi",
-          "detail": "Glasshaus"
         },
         {
           "type": "issue",
