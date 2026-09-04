@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T16:09:36.294406+00:00",
+  "generated_at": "2026-09-04T16:14:07.325602+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-09-04T16:09:33.300142+00:00",
+      "updated_at": "2026-09-04T16:14:04.546896+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,12 +7225,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-09-04T16:09:33.313921+00:00",
+        "generated_at": "2026-09-04T16:14:04.563766+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-09-04T16:09:35.738935+00:00",
+      "updated_at": "2026-09-04T16:14:06.771981+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8510,6 +8510,34 @@
       ],
       "recent_commits": [
         {
+          "sha": "ccda5e83",
+          "message": "rankona#211 Mr Bear Family composer phase 2: after-census + per-family delta appended to the census doc, 111 of 115 composed rows as a preview candidate under clients/rankona-mazon/data/preview/ (delphi 8297c9f2d1; G1-A PASS, thanos caps PASS with 4 reading-quality flags for iteration 2b, HELM verify parity; preview only, zero Amazon writes)",
+          "author": "Glasshaus",
+          "date": "2026-09-04T16:13:47Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ccda5e8354d4992c52b8b6c2977c3d9e69ca973f"
+        },
+        {
+          "sha": "c10b13dc",
+          "message": "rankona#197 SQP puller Path B: download leg wired, RESULT census row per report (DONE/EMPTY/FATAL) unsticks a FATAL'd ASIN, non-zero exit on FATAL/0 rows, --raw-dump-dir, --seed-from; 8 tests (forge-P1B ec48ace61b, script + test only; thanos G2 PASS on these 2 paths, HELM verify 8 passed; the 2 duplicate unit copies HELD, changes go into the canonical deploy/systemd units)",
+          "author": "Glasshaus",
+          "date": "2026-09-04T16:13:37Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/c10b13dc7d2fbd77789d31162f9d57f73e01e784"
+        },
+        {
+          "sha": "0664e92c",
+          "message": "flock(ely): ledger 16:1xZ - decouple v2 f35ba6245d + #208 6cccfe65a3 landed, G1-B stall named + ruling, deploy word forge-D, Path B at thanos, #211 phase 2 at gates",
+          "author": "Glasshaus",
+          "date": "2026-09-04T16:11:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0664e92cf1dc28387d8427e2d395cf3aebeb3dda"
+        },
+        {
+          "sha": "6cccfe65",
+          "message": "rankona#208 Enkela board v0.2: card 1 carries the Sep 2 file's own Status split with its full phrases (825 confirmed / 24 unchanged / 8 accepted but suppressed, being worked / 6 submitted, re-queued = 863), card 2 no numbers, board.js unchanged (avery a042d1732b; G1-A PASS, thanos G2 on the a3ca282a17 base + CSV Status evidence, HELM verify node OK + ASCII 0)",
+          "author": "Glasshaus",
+          "date": "2026-09-04T16:10:19Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/6cccfe65a33490f8b6e0fea76bc13556aa5fd3b3"
+        },
+        {
           "sha": "f35ba624",
           "message": "rankona#197 DataDive seed decouple v2: census fired-parents never capped, graph tail fills the budget with ORDER BY asin (deterministic named trim), DATADIVE_GRAPH_SEED_LIMIT; red/green test (forge-D f26100f463; thanos G2 PASS, HELM verify 6 passed + parity + ASCII 0; G1-B silent, HELM ruling)",
           "author": "Glasshaus",
@@ -8550,34 +8578,6 @@
           "author": "Glasshaus",
           "date": "2026-09-04T15:37:43Z",
           "url": "https://github.com/covaultxyz/meridian/commit/cb28b9f492d2fa0ac15a49f6873bce6edb65948f"
-        },
-        {
-          "sha": "354b2c17",
-          "message": "docs(innov8): Payton FINAL legal-cleared language (title + reserves)",
-          "author": "Glasshaus",
-          "date": "2026-09-04T15:36:08Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/354b2c17877fe2840b6305a9b29c879bb0968976"
-        },
-        {
-          "sha": "340dba30",
-          "message": "chore(site): meridianmemory data refresh",
-          "author": "covaultxyz",
-          "date": "2026-09-04T15:32:32Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/340dba30d73d89aa1e9bb3a8ce4a60ce7ad8dc8f"
-        },
-        {
-          "sha": "a37b104b",
-          "message": "flock(ledger): 15:2xZ #211 census 61c01d67ab + Addendum AF ff512f39c3 landed; #208 clock named; decouple ferry shape confirmed (Part of rankona#211 #197 #208)",
-          "author": "Glasshaus",
-          "date": "2026-09-04T15:29:01Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a37b104b80aada0acc99eccbfb20ca9cb3b200ce"
-        },
-        {
-          "sha": "ff512f39",
-          "message": "rankona#197 plan v0.1: Addendum AF (atlas, sha 691364fa93cda8fc, additive on AE: SQP deliverable met + Path B, S3-ingest-2 decoupling, #212 backfill, burn line)",
-          "author": "Glasshaus",
-          "date": "2026-09-04T15:27:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ff512f39c3be1fb42e0a1b9222f164c1908ec289"
         }
       ],
       "github_project": {
@@ -8586,7 +8586,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "members": [
         {
           "id": "alex",
@@ -8659,7 +8659,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "projects": [
         {
           "project": {
@@ -9089,7 +9089,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9156,7 +9156,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9253,7 +9253,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13045,7 +13045,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-09-04T16:09:36.156280+00:00",
+      "updated_at": "2026-09-04T16:14:07.169407+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17147,7 +17147,7 @@
       "total_docs": 681
     },
     "deals": {
-      "updated_at": "2026-09-04T16:09:36.156581+00:00",
+      "updated_at": "2026-09-04T16:14:07.169694+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17389,7 +17389,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-09-04T16:09:35.738974+00:00",
+      "updated_at": "2026-09-04T16:14:06.772017+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90420,7 +90420,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-09-04T16:09:36.234938+00:00",
+      "updated_at": "2026-09-04T16:14:07.255782+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98067,7 +98067,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-09-04T16:09:36.294239+00:00",
+      "updated_at": "2026-09-04T16:14:07.325387+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98262,8 +98262,32 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-09-04T16:09:36.294373+00:00",
+      "updated_at": "2026-09-04T16:14:07.325542+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-09-04T16:13:47Z",
+          "title": "rankona#211 Mr Bear Family composer phase 2: after-census + per-family delta app",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T16:13:37Z",
+          "title": "rankona#197 SQP puller Path B: download leg wired, RESULT census row per report ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T16:11:48Z",
+          "title": "flock(ely): ledger 16:1xZ - decouple v2 f35ba6245d + #208 6cccfe65a3 landed, G1-",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-04T16:10:19Z",
+          "title": "rankona#208 Enkela board v0.2: card 1 carries the Sep 2 file's own Status split ",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-09-04T16:09:18Z",
@@ -98298,30 +98322,6 @@
           "type": "commit",
           "date": "2026-09-04T15:37:43Z",
           "title": "docs(innov8): title language updated - controlled-group + executed assignments (",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T15:36:08Z",
-          "title": "docs(innov8): Payton FINAL legal-cleared language (title + reserves)",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T15:32:32Z",
-          "title": "chore(site): meridianmemory data refresh",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T15:29:01Z",
-          "title": "flock(ledger): 15:2xZ #211 census 61c01d67ab + Addendum AF ff512f39c3 landed; #2",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-04T15:27:49Z",
-          "title": "rankona#197 plan v0.1: Addendum AF (atlas, sha 691364fa93cda8fc, additive on AE:",
           "detail": "Glasshaus"
         },
         {
