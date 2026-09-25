@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-25T11:27:57.802752+00:00",
+  "generated_at": "2026-09-25T12:00:32.817744+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-09-25T11:27:55.244163+00:00",
+      "updated_at": "2026-09-25T12:00:29.236273+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7090,7 +7090,7 @@
           }
         ],
         "collected_at": "2026-04-08T12:00:04.470105+00:00",
-        "_stale_warning": "Data is 4079 hours old"
+        "_stale_warning": "Data is 4080 hours old"
       },
       "tradeoff_triangle": {
         "daemons": [
@@ -7225,15 +7225,17 @@
             "online": true
           }
         ],
-        "generated_at": "2026-09-25T11:27:55.260910+00:00",
+        "generated_at": "2026-09-25T12:00:29.251302+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-09-25T11:27:57.207797+00:00",
+      "updated_at": "2026-09-25T12:00:32.174441+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "ops": 3,
+          "auto-created": 5,
           "dependencies": 8,
           "python:uv": 2,
           "bug": 2,
@@ -7244,13 +7246,25 @@
           "reliability": 1,
           "dashboard": 1,
           "javascript": 6,
-          "ops": 2,
-          "auto-created": 4,
           "enhancement": 1,
           "infrastructure": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 4375,
+          "title": "Commit drift detected across mesh nodes",
+          "state": "open",
+          "created_at": "2026-09-25T12:00:16Z",
+          "updated_at": "2026-09-25T12:00:16Z",
+          "labels": [
+            "ops",
+            "auto-created"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4375",
+          "project_slug": null
+        },
         {
           "number": 4374,
           "title": "Implement Evolution PDR A0/A1 provenance diagnostics",
@@ -7267,7 +7281,7 @@
           "title": "prime neo4j-mig saturated: sustained CPU and GC pauses slowing MIG and JetStream mesh-wide (2026-09-25 01:32Z)",
           "state": "open",
           "created_at": "2026-09-25T01:39:33Z",
-          "updated_at": "2026-09-25T11:14:03Z",
+          "updated_at": "2026-09-25T11:46:25Z",
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/4373",
@@ -7838,21 +7852,24 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/4313",
           "project_slug": null
-        },
-        {
-          "number": 4312,
-          "title": "offload_llm: pin model id + temperature + seed on the mechanical tier and record the pinned triple in the run fingerprint (rankona#232 S1 / H4; delphi seat, G1-B, clock 18:00Z Sep 7)",
-          "state": "open",
-          "created_at": "2026-09-07T14:56:31Z",
-          "updated_at": "2026-09-07T19:25:26Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/4312",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 4375,
+            "title": "Commit drift detected across mesh nodes",
+            "state": "open",
+            "created_at": "2026-09-25T12:00:16Z",
+            "updated_at": "2026-09-25T12:00:16Z",
+            "labels": [
+              "ops",
+              "auto-created"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4375",
+            "project_slug": null
+          },
           {
             "number": 4374,
             "title": "Implement Evolution PDR A0/A1 provenance diagnostics",
@@ -7869,7 +7886,7 @@
             "title": "prime neo4j-mig saturated: sustained CPU and GC pauses slowing MIG and JetStream mesh-wide (2026-09-25 01:32Z)",
             "state": "open",
             "created_at": "2026-09-25T01:39:33Z",
-            "updated_at": "2026-09-25T11:14:03Z",
+            "updated_at": "2026-09-25T11:46:25Z",
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/4373",
@@ -8427,17 +8444,6 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/4313",
             "project_slug": null
-          },
-          {
-            "number": 4312,
-            "title": "offload_llm: pin model id + temperature + seed on the mechanical tier and record the pinned triple in the run fingerprint (rankona#232 S1 / H4; delphi seat, G1-B, clock 18:00Z Sep 7)",
-            "state": "open",
-            "created_at": "2026-09-07T14:56:31Z",
-            "updated_at": "2026-09-07T19:25:26Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/4312",
-            "project_slug": null
           }
         ],
         "openclaw": [
@@ -8457,65 +8463,114 @@
         ]
       },
       "ci": {
-        "status": "in_progress",
-        "conclusion": null,
-        "name": "Generate Unified Dashboard",
-        "created_at": "2026-09-25T11:27:45Z",
-        "head_sha": "abf6f942"
+        "status": "completed",
+        "conclusion": "skipped",
+        "name": "Agent HQ \u2192 MERIDIAN Bridge",
+        "created_at": "2026-09-25T12:00:20Z",
+        "head_sha": "db2522c5"
       },
       "ci_recent_runs": [
         {
-          "id": 36129513442,
+          "id": 36132476637,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
+          "status": "completed",
+          "conclusion": "skipped",
+          "created_at": "2026-09-25T12:00:20Z",
+          "updated_at": "2026-09-25T12:00:21Z",
+          "head_sha": "db2522c5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36132476637"
+        },
+        {
+          "id": 36132476613,
+          "name": "Regenerate Compass Data",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-09-25T12:00:20Z",
+          "updated_at": "2026-09-25T12:00:21Z",
+          "head_sha": "db2522c5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36132476613"
+        },
+        {
+          "id": 36132476497,
+          "name": "Generate Unified Dashboard",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "created_at": "2026-09-25T12:00:20Z",
+          "updated_at": "2026-09-25T12:00:21Z",
+          "head_sha": "db2522c5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36132476497"
+        },
+        {
+          "id": 36132476467,
           "name": "Generate Unified Dashboard",
           "status": "in_progress",
           "conclusion": null,
-          "created_at": "2026-09-25T11:27:45Z",
-          "updated_at": "2026-09-25T11:27:48Z",
-          "head_sha": "abf6f942",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36129513442"
+          "created_at": "2026-09-25T12:00:20Z",
+          "updated_at": "2026-09-25T12:00:22Z",
+          "head_sha": "db2522c5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36132476467"
         },
         {
-          "id": 36128302770,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-25T11:14:26Z",
-          "updated_at": "2026-09-25T11:14:46Z",
-          "head_sha": "abf6f942",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36128302770"
-        },
-        {
-          "id": 36128089601,
-          "name": "Security Alert -> MERIDIAN",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-25T11:12:04Z",
-          "updated_at": "2026-09-25T11:12:25Z",
-          "head_sha": "4c9c3c45",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36128089601"
-        },
-        {
-          "id": 36126938677,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-25T10:59:28Z",
-          "updated_at": "2026-09-25T10:59:46Z",
-          "head_sha": "4c9c3c45",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36126938677"
-        },
-        {
-          "id": 36125620982,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-25T10:44:38Z",
-          "updated_at": "2026-09-25T10:44:56Z",
-          "head_sha": "5883bab1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36125620982"
+          "id": 36132476710,
+          "name": "Regenerate Compass Data",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-09-25T12:00:20Z",
+          "updated_at": "2026-09-25T12:00:20Z",
+          "head_sha": "db2522c5",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36132476710"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "db2522c5",
+          "message": "card: cut 138 - sprint v1.1: families leg feasible from the served localization feed tables (pin 06122b9f5b), batch F1 five families, F2 stretch, SEO leg on the zero-credit re-pull path, no operator choice required",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:57:17Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/db2522c5b54938850ea18af918c75153d31586bc"
+        },
+        {
+          "sha": "80302f3d",
+          "message": "Innov8 Program 2 Catalyst disclosure skeleton v0.3: resolve operator economics (two-level waterfall, 8pct pref at Holdco not LLC, Sec 1504 80pct retention), Sukuk likely dropped removes Rule 152 risk, Avery on dataroom",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:55:04Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/80302f3dcc96da243848c6dd0087fcfaf357ad14"
+        },
+        {
+          "sha": "59581fa2",
+          "message": "card: cut 137 - sprint plan v1 on rankona#264: line data-blocked on the dark box, one operator choice (Astra extracts or state as reported), gate order per G2 refute",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:52:09Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/59581fa24dfc55b16150f992ba7dedb6d54dde5c"
+        },
+        {
+          "sha": "dbbac660",
+          "message": "card: cut 136 - SPRINT leads the card: operator 11:30Z word dispatched, committee open, plan v0 on rankona#264, clocks; tally 11:42Z GUARD PASS; rankona-master dark 11:40Z",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:47:06Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/dbbac66005024d58a416ee42160b4ccd5307bc69"
+        },
+        {
+          "sha": "a7423703",
+          "message": "flock: ledger 2026-09-25 11:33Z - pre-meeting sprint on the operator word: 5 to 10 more Equinavia families loaded or many more SEO tables, committee under atlas, gates before serve, Astra joins as executor, sit rep 12:30Z",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:34:48Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/a74237038780b1a1d87b92201f6d5000d8a4e2db"
+        },
+        {
+          "sha": "59f66ec5",
+          "message": "chore(site): meridianmemory data refresh",
+          "author": "covaultxyz",
+          "date": "2026-09-25T11:32:53Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/59f66ec58e6a740f0e04e64123a847f57a45200e"
+        },
+        {
+          "sha": "566015c2",
+          "message": "card: cut 135 - quiet beat, tally 11:27Z GUARD PASS, rankona-master dark 11:25Z 25 Sep",
+          "author": "Glasshaus",
+          "date": "2026-09-25T11:29:14Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/566015c22d1a1db50c0ae3125b6af907c5ab799f"
+        },
         {
           "sha": "abf6f942",
           "message": "card: cut 134 - quiet beat, tally 11:12Z GUARD PASS, rankona-master dark 11:10Z 25 Sep",
@@ -8536,64 +8591,212 @@
           "author": "Glasshaus",
           "date": "2026-09-25T10:44:23Z",
           "url": "https://github.com/covaultxyz/meridian/commit/5883bab1c1d52742e3890f8113ff1de024a924ca"
-        },
-        {
-          "sha": "8db9b444",
-          "message": "card: cut 131 - quiet beat, tally 10:29Z GUARD PASS, rankona-master dark 10:25Z 25 Sep",
-          "author": "Glasshaus",
-          "date": "2026-09-25T10:31:11Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/8db9b4440c9ce275ef86c70078155c62be638273"
-        },
-        {
-          "sha": "71bd8478",
-          "message": "chore(site): meridianmemory data refresh",
-          "author": "covaultxyz",
-          "date": "2026-09-25T10:29:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/71bd847804322874d940240425fe47b1cac43120"
-        },
-        {
-          "sha": "d69d226a",
-          "message": "card: cut 130 - quiet beat, tally 10:12Z GUARD PASS, rankona-master dark 10:10Z 25 Sep",
-          "author": "Glasshaus",
-          "date": "2026-09-25T10:14:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/d69d226ae5e3df895d83aae450ad305005e8b3d2"
-        },
-        {
-          "sha": "c8a53cc8",
-          "message": "card: cut 129 - quiet beat, tally 09:57Z GUARD PASS, rankona-master dark 09:55Z 25 Sep",
-          "author": "Glasshaus",
-          "date": "2026-09-25T09:59:18Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c8a53cc8c47d2d8fc6aae69a6484d0a868ab4815"
-        },
-        {
-          "sha": "42433f60",
-          "message": "card: cut 128 - quiet beat, tally 09:42Z GUARD PASS, rankona-master dark 09:40Z 25 Sep",
-          "author": "Glasshaus",
-          "date": "2026-09-25T09:44:15Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/42433f607f7af93b59a68529d0dc35b9dbe59a0f"
-        },
-        {
-          "sha": "7f51dfdd",
-          "message": "card: cut 127 - quiet beat, tally 09:27Z GUARD PASS, rankona-master dark 09:25Z 25 Sep",
-          "author": "Glasshaus",
-          "date": "2026-09-25T09:29:21Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/7f51dfdd951541c0050cf8a2e4850cb1182293b4"
-        },
-        {
-          "sha": "a767bba4",
-          "message": "chore(site): meridianmemory data refresh",
-          "author": "covaultxyz",
-          "date": "2026-09-25T09:27:13Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/a767bba46939e40dfc80e6fdc6184f1068114aee"
         }
       ],
       "github_project": {
-        "error": "GitHub Project #13 query failed or gh CLI unavailable",
-        "updated_at": null
+        "updated_at": "2026-09-25T12:00:30.337432+00:00",
+        "source": "github_project_13",
+        "deals": [
+          {
+            "title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
+            "number": 1675,
+            "url": "https://github.com/covaultxyz/meridian/issues/1675",
+            "state": "CLOSED",
+            "created_at": "2026-03-22T03:44:34Z",
+            "labels": [
+              "grade/B",
+              "verified",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Denver Griffin \u2014 AI Coaching System Phase 0",
+              "Status": "In Progress",
+              "Stage": "Engaged",
+              "Revenue": "$5K/mo ($60K/yr) \u2014 75% probability",
+              "Next Action": "Confirm $2K retainer payment; finalize scope doc; P1 phone tests",
+              "Deadline": "2026-04-14",
+              "Owner": "Joint",
+              "Risk": "Data handoff delayed; scope doc still not written",
+              "Velocity": "Advancing",
+              "Last Activity": "2026-04-03",
+              "Client": "Denver Griffin"
+            }
+          },
+          {
+            "title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
+            "number": 1676,
+            "url": "https://github.com/covaultxyz/meridian/issues/1676",
+            "state": "OPEN",
+            "created_at": "2026-03-22T03:44:50Z",
+            "labels": [
+              "grade/D",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Gordon (GCC) \u2014 EHR System + Family Offices",
+              "Status": "Todo",
+              "Stage": "Lead",
+              "Next Action": "Deep research EHR needs; re-engage when Gordon returns",
+              "Deadline": "2026-04-18",
+              "Owner": "Bitler",
+              "Velocity": "Stalled",
+              "Last Activity": "2026-03-10",
+              "Revenue": "TBD \u2014 Lead stage, not yet qualified",
+              "Risk": "No activity since March; lead may be cold",
+              "Client": "Gordon (GCC)"
+            }
+          },
+          {
+            "title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
+            "number": 1677,
+            "url": "https://github.com/covaultxyz/meridian/issues/1677",
+            "state": "OPEN",
+            "created_at": "2026-03-22T03:44:56Z",
+            "labels": [
+              "grade/C",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Brian Cook (StretchMed) \u2014 Prior Contact",
+              "Status": "In Progress",
+              "Stage": "Proposal",
+              "Next Action": "Bitler re-engage Brian Cook or declare cold by Apr 14",
+              "Owner": "Bitler",
+              "Velocity": "Stalled",
+              "Last Activity": "2026-03-19",
+              "Revenue": "$5K/mo ($60K/yr) \u2014 60% probability",
+              "Risk": "No response to decision prompt \u2014 23 days since last activity",
+              "Deadline": "2026-04-14",
+              "Client": "Brian Cook"
+            }
+          },
+          {
+            "title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
+            "number": 2001,
+            "url": "https://github.com/covaultxyz/meridian/issues/2001",
+            "state": "OPEN",
+            "created_at": "2026-04-11T18:50:52Z",
+            "labels": [
+              "grade/C",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Luis Lamba CPA \u2014 IRC Tax Demo + Act 60 Specialist",
+              "Status": "In Progress",
+              "Stage": "Discovery",
+              "Owner": "Bitler",
+              "Velocity": "Stalled",
+              "Last Activity": "2026-03-31",
+              "Revenue": "$3K/mo ($36K/yr) \u2014 35% probability",
+              "Next Action": "Confirm meeting happened; get outcome from Bitler",
+              "Deadline": "2026-04-14",
+              "Risk": "Meeting scheduled but no outcome reported in 11+ days",
+              "Client": "Luis Lamba"
+            }
+          },
+          {
+            "title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
+            "number": 2002,
+            "url": "https://github.com/covaultxyz/meridian/issues/2002",
+            "state": "OPEN",
+            "created_at": "2026-04-11T18:51:01Z",
+            "labels": [
+              "grade/D",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Nate \u2014 Business Broker Pre-Acquisition SOP",
+              "Status": "In Progress",
+              "Stage": "Discovery",
+              "Owner": "Bitler",
+              "Velocity": "Stalled",
+              "Last Activity": "2026-03-19",
+              "Revenue": "$10K/mo ($120K/yr) \u2014 25% probability",
+              "Next Action": "Bitler to confirm status or declare cold",
+              "Deadline": "2026-04-14",
+              "Risk": "No activity in 23+ days \u2014 may be cold",
+              "Client": "Nate"
+            }
+          },
+          {
+            "title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
+            "number": 2003,
+            "url": "https://github.com/covaultxyz/meridian/issues/2003",
+            "state": "CLOSED",
+            "created_at": "2026-04-11T18:51:09Z",
+            "labels": [
+              "grade/D",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Amazon Seller Community \u2014 Review Classifier + Removal Service",
+              "Status": "Done",
+              "Stage": "Qualified",
+              "Owner": "Joint",
+              "Velocity": "Stalled",
+              "Last Activity": "2026-03-19",
+              "Revenue": "$10.5K/mo ($126K/yr) \u2014 20% probability",
+              "Next Action": "Confirm if pilot ran; get results from Ely/Bitler",
+              "Deadline": "2026-04-14",
+              "Risk": "Review classifier pilot deadline (April 1) passed with no results",
+              "Client": "Amazon Sellers"
+            }
+          },
+          {
+            "title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
+            "number": 2004,
+            "url": "https://github.com/covaultxyz/meridian/issues/2004",
+            "state": "OPEN",
+            "created_at": "2026-04-11T18:51:17Z",
+            "labels": [
+              "grade/C",
+              "client"
+            ],
+            "fields": {
+              "Title": "[Client] Garrett Taylor \u2014 KaaS API Monetization",
+              "Status": "Todo",
+              "Stage": "Discovery",
+              "Owner": "Joint",
+              "Velocity": "New",
+              "Last Activity": "2026-04-03",
+              "Revenue": "$3K/mo ($36K/yr) \u2014 30% probability",
+              "Next Action": "Build KaaS prototype demo; schedule 30-min follow-up call",
+              "Deadline": "2026-04-18",
+              "Risk": "Downsizing agency work, focused on Zestify food brand \u2014 unclear fit",
+              "Client": "Garrett Taylor"
+            }
+          },
+          {
+            "title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
+            "number": 474,
+            "url": "https://github.com/covaultxyz/meridian/issues/474",
+            "state": "CLOSED",
+            "created_at": "2026-02-16T21:53:01Z",
+            "labels": [
+              "enhancement",
+              "phase/2",
+              "grade/B",
+              "source/human"
+            ],
+            "fields": {
+              "Title": "Intelligence analysis framework \u2014 Cassian SATs, PDB-style daily brief, OSINT watchtower",
+              "Status": "In Progress",
+              "Stage": "Active",
+              "Owner": "Alex",
+              "Velocity": "Active",
+              "Last Activity": "2026-04-11",
+              "Revenue": "Internal \u2014 no direct revenue (infrastructure)",
+              "Next Action": "Complete confidence calibration; wire ACH workflow",
+              "Risk": "MDB + ACH workflow + OSINT Watchtower all pending",
+              "Client": "Cassian"
+            }
+          }
+        ],
+        "total_items": 8
       }
     },
     "team": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "members": [
         {
           "id": "alex",
@@ -8666,7 +8869,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "projects": [
         {
           "project": {
@@ -9096,7 +9299,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9163,7 +9366,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9260,7 +9463,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13052,7 +13255,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-09-25T11:27:57.607671+00:00",
+      "updated_at": "2026-09-25T12:00:32.652847+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17292,7 +17495,7 @@
       "total_docs": 704
     },
     "deals": {
-      "updated_at": "2026-09-25T11:27:57.607912+00:00",
+      "updated_at": "2026-09-25T12:00:32.653159+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17534,7 +17737,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-09-25T11:27:57.207830+00:00",
+      "updated_at": "2026-09-25T12:00:32.174470+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90565,7 +90768,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-09-25T11:27:57.745348+00:00",
+      "updated_at": "2026-09-25T12:00:32.746709+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98212,7 +98415,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-09-25T11:27:57.802599+00:00",
+      "updated_at": "2026-09-25T12:00:32.817538+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98407,8 +98610,50 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-09-25T11:27:57.802721+00:00",
+      "updated_at": "2026-09-25T12:00:32.817693+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:57:17Z",
+          "title": "card: cut 138 - sprint v1.1: families leg feasible from the served localization ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:55:04Z",
+          "title": "Innov8 Program 2 Catalyst disclosure skeleton v0.3: resolve operator economics (",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:52:09Z",
+          "title": "card: cut 137 - sprint plan v1 on rankona#264: line data-blocked on the dark box",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:47:06Z",
+          "title": "card: cut 136 - SPRINT leads the card: operator 11:30Z word dispatched, committe",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:34:48Z",
+          "title": "flock: ledger 2026-09-25 11:33Z - pre-meeting sprint on the operator word: 5 to ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:32:53Z",
+          "title": "chore(site): meridianmemory data refresh",
+          "detail": "covaultxyz"
+        },
+        {
+          "type": "commit",
+          "date": "2026-09-25T11:29:14Z",
+          "title": "card: cut 135 - quiet beat, tally 11:27Z GUARD PASS, rankona-master dark 11:25Z ",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-09-25T11:14:17Z",
@@ -98428,46 +98673,10 @@
           "detail": "Glasshaus"
         },
         {
-          "type": "commit",
-          "date": "2026-09-25T10:31:11Z",
-          "title": "card: cut 131 - quiet beat, tally 10:29Z GUARD PASS, rankona-master dark 10:25Z ",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T10:29:48Z",
-          "title": "chore(site): meridianmemory data refresh",
-          "detail": "covaultxyz"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T10:14:16Z",
-          "title": "card: cut 130 - quiet beat, tally 10:12Z GUARD PASS, rankona-master dark 10:10Z ",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T09:59:18Z",
-          "title": "card: cut 129 - quiet beat, tally 09:57Z GUARD PASS, rankona-master dark 09:55Z ",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T09:44:15Z",
-          "title": "card: cut 128 - quiet beat, tally 09:42Z GUARD PASS, rankona-master dark 09:40Z ",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T09:29:21Z",
-          "title": "card: cut 127 - quiet beat, tally 09:27Z GUARD PASS, rankona-master dark 09:25Z ",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-09-25T09:27:13Z",
-          "title": "chore(site): meridianmemory data refresh",
-          "detail": "covaultxyz"
+          "type": "issue",
+          "date": "2026-09-25",
+          "title": "#4375 Commit drift detected across mesh nodes",
+          "detail": "open"
         },
         {
           "type": "issue",
@@ -98521,12 +98730,6 @@
           "type": "issue",
           "date": "2026-09-24",
           "title": "#4364 ENDEUR CRM: Google Workspace email correspondence on each pr",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-09-24",
-          "title": "#4363 ENDEUR: GoHighLevel research brief - interface and key featu",
           "detail": "open"
         }
       ],
