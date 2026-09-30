@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-30T05:52:44.822146+00:00",
+  "generated_at": "2026-09-30T05:58:24.250196+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-09-30T05:52:38.079304+00:00",
+      "updated_at": "2026-09-30T05:58:16.864022+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,21 +7225,48 @@
             "online": true
           }
         ],
-        "generated_at": "2026-09-30T05:52:38.096736+00:00",
+        "generated_at": "2026-09-30T05:58:16.883947+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-09-30T05:52:44.269227+00:00",
+      "updated_at": "2026-09-30T05:58:23.671406+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
+          "phase/1": 1,
+          "priority/high": 1,
           "dependencies": 5,
           "javascript": 4,
           "python:uv": 1
         }
       },
       "recent_issues": [
+        {
+          "number": 4532,
+          "title": "Fix concurrent Codex startup and failed-launch audit attribution",
+          "state": "open",
+          "created_at": "2026-09-30T05:58:02Z",
+          "updated_at": "2026-09-30T05:58:02Z",
+          "labels": [
+            "phase/1",
+            "priority/high"
+          ],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/issues/4532",
+          "project_slug": null
+        },
+        {
+          "number": 4531,
+          "title": "fix(backup): keep 3 days of Neo4j dumps on prime (Closes #4530)",
+          "state": "open",
+          "created_at": "2026-09-30T05:57:40Z",
+          "updated_at": "2026-09-30T05:57:40Z",
+          "labels": [],
+          "assignee": null,
+          "url": "https://github.com/covaultxyz/meridian/pull/4531",
+          "project_slug": null
+        },
         {
           "number": 4530,
           "title": "prime: keep 3 days of Neo4j dumps locally (7 x 2.5 GB pushes prime under the deploy disk floor)",
@@ -7782,32 +7809,35 @@
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/4419",
           "project_slug": null
-        },
-        {
-          "number": 4416,
-          "title": "Operator escalation: decision relay publishes to rpm.telegram.alert, which nothing on the prime NATS subscribes to",
-          "state": "open",
-          "created_at": "2026-09-27T04:32:36Z",
-          "updated_at": "2026-09-27T04:32:36Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/4416",
-          "project_slug": null
-        },
-        {
-          "number": 4414,
-          "title": "Pulse sentinels import a second pulse_consumer module: janitor cadence gates never engage, _publish is a silent no-op",
-          "state": "open",
-          "created_at": "2026-09-27T03:42:55Z",
-          "updated_at": "2026-09-27T04:16:43Z",
-          "labels": [],
-          "assignee": null,
-          "url": "https://github.com/covaultxyz/meridian/issues/4414",
-          "project_slug": null
         }
       ],
       "issues_by_project": {
         "unassigned": [
+          {
+            "number": 4532,
+            "title": "Fix concurrent Codex startup and failed-launch audit attribution",
+            "state": "open",
+            "created_at": "2026-09-30T05:58:02Z",
+            "updated_at": "2026-09-30T05:58:02Z",
+            "labels": [
+              "phase/1",
+              "priority/high"
+            ],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/issues/4532",
+            "project_slug": null
+          },
+          {
+            "number": 4531,
+            "title": "fix(backup): keep 3 days of Neo4j dumps on prime (Closes #4530)",
+            "state": "open",
+            "created_at": "2026-09-30T05:57:40Z",
+            "updated_at": "2026-09-30T05:57:40Z",
+            "labels": [],
+            "assignee": null,
+            "url": "https://github.com/covaultxyz/meridian/pull/4531",
+            "project_slug": null
+          },
           {
             "number": 4530,
             "title": "prime: keep 3 days of Neo4j dumps locally (7 x 2.5 GB pushes prime under the deploy disk floor)",
@@ -8350,88 +8380,66 @@
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/4419",
             "project_slug": null
-          },
-          {
-            "number": 4416,
-            "title": "Operator escalation: decision relay publishes to rpm.telegram.alert, which nothing on the prime NATS subscribes to",
-            "state": "open",
-            "created_at": "2026-09-27T04:32:36Z",
-            "updated_at": "2026-09-27T04:32:36Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/4416",
-            "project_slug": null
-          },
-          {
-            "number": 4414,
-            "title": "Pulse sentinels import a second pulse_consumer module: janitor cadence gates never engage, _publish is a silent no-op",
-            "state": "open",
-            "created_at": "2026-09-27T03:42:55Z",
-            "updated_at": "2026-09-27T04:16:43Z",
-            "labels": [],
-            "assignee": null,
-            "url": "https://github.com/covaultxyz/meridian/issues/4414",
-            "project_slug": null
           }
         ]
       },
       "ci": {
-        "status": "in_progress",
+        "status": "queued",
         "conclusion": null,
-        "name": "Generate Unified Dashboard",
-        "created_at": "2026-09-30T05:52:21Z",
+        "name": "Regenerate Compass Data",
+        "created_at": "2026-09-30T05:58:06Z",
         "head_sha": "9d69091b"
       },
       "ci_recent_runs": [
         {
-          "id": 36675415399,
-          "name": "Generate Unified Dashboard",
-          "status": "in_progress",
+          "id": 36675869358,
+          "name": "Regenerate Compass Data",
+          "status": "queued",
           "conclusion": null,
-          "created_at": "2026-09-30T05:52:21Z",
-          "updated_at": "2026-09-30T05:52:32Z",
+          "created_at": "2026-09-30T05:58:06Z",
+          "updated_at": "2026-09-30T05:58:06Z",
           "head_sha": "9d69091b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675415399"
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675869358"
         },
         {
-          "id": 36675402155,
-          "name": "CI",
+          "id": 36675869726,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-30T05:52:11Z",
-          "updated_at": "2026-09-30T05:52:31Z",
+          "conclusion": "skipped",
+          "created_at": "2026-09-30T05:58:06Z",
+          "updated_at": "2026-09-30T05:58:07Z",
           "head_sha": "9d69091b",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675402155"
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675869726"
         },
         {
-          "id": 36674866443,
-          "name": "CI",
+          "id": 36675869565,
+          "name": "Agent HQ \u2192 MERIDIAN Bridge",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-30T05:45:19Z",
-          "updated_at": "2026-09-30T05:45:37Z",
-          "head_sha": "501d86ca",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36674866443"
+          "conclusion": "skipped",
+          "created_at": "2026-09-30T05:58:06Z",
+          "updated_at": "2026-09-30T05:58:07Z",
+          "head_sha": "9d69091b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675869565"
         },
         {
-          "id": 36674632850,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-30T05:42:21Z",
-          "updated_at": "2026-09-30T05:42:38Z",
-          "head_sha": "3885a7a5",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36674632850"
+          "id": 36675869748,
+          "name": "Generate Unified Dashboard",
+          "status": "pending",
+          "conclusion": null,
+          "created_at": "2026-09-30T05:58:06Z",
+          "updated_at": "2026-09-30T05:58:07Z",
+          "head_sha": "9d69091b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675869748"
         },
         {
-          "id": 36674382348,
-          "name": "CI",
+          "id": 36675869416,
+          "name": "Generate Unified Dashboard",
           "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-09-30T05:39:03Z",
-          "updated_at": "2026-09-30T05:39:20Z",
-          "head_sha": "84548ef4",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/36674382348"
+          "conclusion": "cancelled",
+          "created_at": "2026-09-30T05:58:06Z",
+          "updated_at": "2026-09-30T05:58:08Z",
+          "head_sha": "9d69091b",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/36675869416"
         }
       ],
       "recent_commits": [
@@ -8507,7 +8515,7 @@
         }
       ],
       "github_project": {
-        "updated_at": "2026-09-30T05:52:42.291014+00:00",
+        "updated_at": "2026-09-30T05:58:21.435373+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8709,7 +8717,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "members": [
         {
           "id": "alex",
@@ -8782,7 +8790,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "projects": [
         {
           "project": {
@@ -9212,7 +9220,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9279,7 +9287,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9376,7 +9384,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13168,7 +13176,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-09-30T05:52:44.671406+00:00",
+      "updated_at": "2026-09-30T05:58:24.104406+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17468,7 +17476,7 @@
       "total_docs": 714
     },
     "deals": {
-      "updated_at": "2026-09-30T05:52:44.671772+00:00",
+      "updated_at": "2026-09-30T05:58:24.104671+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17710,7 +17718,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-09-30T05:52:44.269257+00:00",
+      "updated_at": "2026-09-30T05:58:23.671432+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90741,7 +90749,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-09-30T05:52:44.761933+00:00",
+      "updated_at": "2026-09-30T05:58:24.184400+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98388,7 +98396,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-09-30T05:52:44.821959+00:00",
+      "updated_at": "2026-09-30T05:58:24.249984+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98583,7 +98591,7 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-09-30T05:52:44.822110+00:00",
+      "updated_at": "2026-09-30T05:58:24.250134+00:00",
       "events": [
         {
           "type": "commit",
@@ -98648,6 +98656,18 @@
         {
           "type": "issue",
           "date": "2026-09-30",
+          "title": "#4532 Fix concurrent Codex startup and failed-launch audit attribu",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-09-30",
+          "title": "#4531 fix(backup): keep 3 days of Neo4j dumps on prime (Closes #45",
+          "detail": "open"
+        },
+        {
+          "type": "issue",
+          "date": "2026-09-30",
           "title": "#4530 prime: keep 3 days of Neo4j dumps locally (7 x 2.5 GB pushes",
           "detail": "open"
         },
@@ -98691,18 +98711,6 @@
           "type": "issue",
           "date": "2026-09-30",
           "title": "#4517 prime: NATS binds 0.0.0.0 (4222/8222, leafnode 7422) and SSH",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-09-30",
-          "title": "#4514 oauth_saturation_gauge.py count_claude() always reads 0 on M",
-          "detail": "open"
-        },
-        {
-          "type": "issue",
-          "date": "2026-09-30",
-          "title": "#4510 token-probe false alarm on proxy-routed daemons; credential-",
           "detail": "open"
         }
       ],
