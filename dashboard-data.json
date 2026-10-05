@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T22:44:31.246197+00:00",
+  "generated_at": "2026-10-05T22:51:19.531361+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-10-05T22:44:24.090285+00:00",
+      "updated_at": "2026-10-05T22:51:13.336534+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,12 +7225,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-10-05T22:44:24.109893+00:00",
+        "generated_at": "2026-10-05T22:51:13.351890+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-10-05T22:44:30.635054+00:00",
+      "updated_at": "2026-10-05T22:51:18.953378+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -7252,7 +7252,7 @@
           "title": "Benchmark Qwen and Ornith coding on Mac Studio",
           "state": "open",
           "created_at": "2026-10-05T22:41:53Z",
-          "updated_at": "2026-10-05T22:41:53Z",
+          "updated_at": "2026-10-05T22:51:02Z",
           "labels": [],
           "assignee": null,
           "url": "https://github.com/covaultxyz/meridian/issues/4585",
@@ -7849,7 +7849,7 @@
             "title": "Benchmark Qwen and Ornith coding on Mac Studio",
             "state": "open",
             "created_at": "2026-10-05T22:41:53Z",
-            "updated_at": "2026-10-05T22:41:53Z",
+            "updated_at": "2026-10-05T22:51:02Z",
             "labels": [],
             "assignee": null,
             "url": "https://github.com/covaultxyz/meridian/issues/4585",
@@ -8443,13 +8443,33 @@
         ]
       },
       "ci": {
-        "status": "completed",
-        "conclusion": "success",
-        "name": "CI",
-        "created_at": "2026-10-05T22:43:40Z",
-        "head_sha": "6c805431"
+        "status": "in_progress",
+        "conclusion": null,
+        "name": "Generate Unified Dashboard",
+        "created_at": "2026-10-05T22:51:05Z",
+        "head_sha": "ba261ab4"
       },
       "ci_recent_runs": [
+        {
+          "id": 37385046208,
+          "name": "Generate Unified Dashboard",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-10-05T22:51:05Z",
+          "updated_at": "2026-10-05T22:51:08Z",
+          "head_sha": "ba261ab4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37385046208"
+        },
+        {
+          "id": 37384846359,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-05T22:49:04Z",
+          "updated_at": "2026-10-05T22:49:22Z",
+          "head_sha": "ba261ab4",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37384846359"
+        },
         {
           "id": 37384285967,
           "name": "CI",
@@ -8463,10 +8483,10 @@
         {
           "id": 37384285948,
           "name": "Generate Unified Dashboard",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "created_at": "2026-10-05T22:43:40Z",
-          "updated_at": "2026-10-05T22:44:18Z",
+          "updated_at": "2026-10-05T22:45:42Z",
           "head_sha": "6c805431",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/37384285948"
         },
@@ -8479,29 +8499,16 @@
           "updated_at": "2026-10-05T22:44:01Z",
           "head_sha": "94b4067a",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/37384102880"
-        },
-        {
-          "id": 37384012012,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-10-05T22:40:59Z",
-          "updated_at": "2026-10-05T22:41:17Z",
-          "head_sha": "94b4067a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37384012012"
-        },
-        {
-          "id": 37384012030,
-          "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-10-05T22:40:59Z",
-          "updated_at": "2026-10-05T22:42:39Z",
-          "head_sha": "94b4067a",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37384012030"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "ba261ab4",
+          "message": "fix(studio): preserve sampling settings for model comparisons (Part of #4585)",
+          "author": "covaultxyz",
+          "date": "2026-10-05T22:48:55Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ba261ab4f249c28dd09269b19e53e2138b4be7b1"
+        },
         {
           "sha": "6c805431",
           "message": "rankona#350 K1 r3: the keyword floor fill dry run (ferry 89c38adff6, martin; base 45a3102dbf; supersedes r1 68d9f6dbdc and r2 57503d8294). Row identity comes from the family record asin, unique on 1,631 of 1,631 under-floor rows of the committed shards (30 parent-header, 115 in a family with children, 1,486 plain; Equinavia 997), and the loader raises on an empty identity; source_exhausted_record is not_checked unless all 5 sub-counts are integers; compute_fill adds nothing at or over the 40 floor and raises on an unknown source; assert_live_cache normalizes the path and refuses the stale copy. 2 new paths: clients/rankona-mazon/scripts/keyword_floor_fill_dryrun.py (249 lines) and tests/rankona-mazon/test_keyword_floor_fill_dryrun.py (179 lines, 18 tests, one on the committed shards). reachable_from_held stays a stub that raises off the box: the graph, SQP and live DataDive cache reads are box-side and run only under a HELM box word; no graph write exists here. Gates on 89c38adff6: G2 thanos cc-7b3f91443229 - PASS (delta read on the committed shards in a write-jailed tree, 2026-10-05 22:30:11Z; 0 MEDIUM, 0 LOW); G1 sensei cc-808adcfafd47 - PASS (run against the real committed shards, 2026-10-05 22:37:36Z, no caveat). HELM land. Part of RankonaTerminal/rankona#350",
@@ -8564,17 +8571,10 @@
           "author": "Glasshaus",
           "date": "2026-10-05T22:14:57Z",
           "url": "https://github.com/covaultxyz/meridian/commit/e6f2bd7b967fca721a60440abf6a270ca5a0e075"
-        },
-        {
-          "sha": "c1a38c04",
-          "message": "flock: operator card cut 678 - HELM word 22:02:17Z, crossed by cut 677: #4551 identifier scrub r1 to r3 landed 4e40c1ef73 on the gate pair, the J7 r5 stop cause read from the box (no claude binary for the admin account), the Mac Studio ask re-worded to arc-356d530605e6 phase 2 and arc-c491377d13e3 with the owner question kept (Part of covaultxyz/meridian#4579, #4551, #4577)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T22:13:12Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/c1a38c04391f86479fc4ff678a2c3fa0742cf809"
         }
       ],
       "github_project": {
-        "updated_at": "2026-10-05T22:44:28.474219+00:00",
+        "updated_at": "2026-10-05T22:51:16.985346+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8776,7 +8776,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "members": [
         {
           "id": "alex",
@@ -8849,7 +8849,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "projects": [
         {
           "project": {
@@ -9279,7 +9279,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9346,7 +9346,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9443,7 +9443,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13235,7 +13235,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-10-05T22:44:31.091492+00:00",
+      "updated_at": "2026-10-05T22:51:19.397440+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17559,7 +17559,7 @@
       "total_docs": 718
     },
     "deals": {
-      "updated_at": "2026-10-05T22:44:31.091790+00:00",
+      "updated_at": "2026-10-05T22:51:19.397676+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17801,7 +17801,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-10-05T22:44:30.635099+00:00",
+      "updated_at": "2026-10-05T22:51:18.953408+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90832,7 +90832,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-10-05T22:44:31.180627+00:00",
+      "updated_at": "2026-10-05T22:51:19.475004+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98479,7 +98479,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-10-05T22:44:31.246024+00:00",
+      "updated_at": "2026-10-05T22:51:19.531197+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98674,8 +98674,14 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-10-05T22:44:31.246161+00:00",
+      "updated_at": "2026-10-05T22:51:19.531327+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-10-05T22:48:55Z",
+          "title": "fix(studio): preserve sampling settings for model comparisons (Part of #4585)",
+          "detail": "covaultxyz"
+        },
         {
           "type": "commit",
           "date": "2026-10-05T22:42:21Z",
@@ -98728,12 +98734,6 @@
           "type": "commit",
           "date": "2026-10-05T22:14:57Z",
           "title": "flock: ledger 2026-10-05 22:13Z - flock: ledger 2026-10-05 22:14Z - J4 r2 landed",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T22:13:12Z",
-          "title": "flock: operator card cut 678 - HELM word 22:02:17Z, crossed by cut 677: #4551 id",
           "detail": "Glasshaus"
         },
         {
