@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T22:31:24.630435+00:00",
+  "generated_at": "2026-10-05T22:41:29.447051+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-10-05T22:31:18.543047+00:00",
+      "updated_at": "2026-10-05T22:41:23.325492+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,12 +7225,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-10-05T22:31:18.556135+00:00",
+        "generated_at": "2026-10-05T22:41:23.339227+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-10-05T22:31:24.106175+00:00",
+      "updated_at": "2026-10-05T22:41:28.922493+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8446,10 +8446,40 @@
         "status": "completed",
         "conclusion": "success",
         "name": "CI",
-        "created_at": "2026-10-05T22:29:01Z",
-        "head_sha": "2d879b6a"
+        "created_at": "2026-10-05T22:40:59Z",
+        "head_sha": "94b4067a"
       },
       "ci_recent_runs": [
+        {
+          "id": 37384012012,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-05T22:40:59Z",
+          "updated_at": "2026-10-05T22:41:17Z",
+          "head_sha": "94b4067a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37384012012"
+        },
+        {
+          "id": 37384012030,
+          "name": "Generate Unified Dashboard",
+          "status": "in_progress",
+          "conclusion": null,
+          "created_at": "2026-10-05T22:40:59Z",
+          "updated_at": "2026-10-05T22:41:18Z",
+          "head_sha": "94b4067a",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37384012030"
+        },
+        {
+          "id": 37383221074,
+          "name": "CI",
+          "status": "completed",
+          "conclusion": "success",
+          "created_at": "2026-10-05T22:33:24Z",
+          "updated_at": "2026-10-05T22:33:43Z",
+          "head_sha": "9cb01257",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37383221074"
+        },
         {
           "id": 37382754228,
           "name": "CI",
@@ -8461,16 +8491,6 @@
           "url": "https://github.com/covaultxyz/meridian/actions/runs/37382754228"
         },
         {
-          "id": 37382613164,
-          "name": "Generate Unified Dashboard",
-          "status": "in_progress",
-          "conclusion": null,
-          "created_at": "2026-10-05T22:27:41Z",
-          "updated_at": "2026-10-05T22:31:13Z",
-          "head_sha": "3e7170fa",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37382613164"
-        },
-        {
           "id": 37382613384,
           "name": "Regenerate Compass Data",
           "status": "completed",
@@ -8479,29 +8499,23 @@
           "updated_at": "2026-10-05T22:30:56Z",
           "head_sha": "3e7170fa",
           "url": "https://github.com/covaultxyz/meridian/actions/runs/37382613384"
-        },
-        {
-          "id": 37382606685,
-          "name": "Generate Unified Dashboard",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-10-05T22:27:38Z",
-          "updated_at": "2026-10-05T22:29:08Z",
-          "head_sha": "3e7170fa",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37382606685"
-        },
-        {
-          "id": 37382425645,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-10-05T22:25:56Z",
-          "updated_at": "2026-10-05T22:26:15Z",
-          "head_sha": "3e7170fa",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37382425645"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "94b4067a",
+          "message": "covaultxyz/meridian#4551 DeepSeek seat sign-in header scheme pinned to Bearer only (ferry b61a211367, martin; base f9e1efa8b1): the deepseek wrapper unsets ANTHROPIC_API_KEY in its exec-prep, after the env file is sourced and before the exports and the single exec, so no inherited or env-file Anthropic key can reach the vendor host as x-api-key; ANTHROPIC_AUTH_TOKEN carries the DeepSeek key to the pinned base URL. 2 paths: the wrapper (+8 -2, mode 100755 kept) and the dry-start test (+42, 14 tests, 2 new: an end-to-end env dump with the key planted in the env file and the parent environ, and a static guard). Gates on b61a211367: G1 sensei cc-808adcfafd47 - PASS (security read, 2026-10-05 22:20:07Z, 14 of 14 executed, no caveat); G1-B sensei cc-320c9c69caeb - PASS (security read, 2026-10-05 22:30:42Z, mutant check on the parent wrapper); G2 thanos cc-7b3f91443229 - PASS (security read, 2026-10-05 22:33:31Z; 0 MEDIUM, 1 LOW on settings-file key sources for a later cut, 2 notes). HELM land. Wrapper code and test only: no box run, no seat start; the DeepSeek seat stays held for client content. Part of #4551",
+          "author": "Glasshaus",
+          "date": "2026-10-05T22:40:44Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/94b4067a2b0a39e18e8bb87b9a2d7ce144391696"
+        },
+        {
+          "sha": "9cb01257",
+          "message": "flock: operator card cut 681 - HELM word 22:24:27Z, crossed by cut 680: K1 r3 in at 22:11Z with both gates (22:50Z, 00:15Z), header scheme r1 first read PASS 22:20Z second by 23:05Z, martin key-scrub seat fix in 22:20Z (reads 23:35Z, 23:55Z), rankona#344 A1 r2 re-timed to 2026-10-06T00:45Z sandbox first, the Studio download started 21:36Z under jewel@ with the session placed on Alexander's MacBook by thanos (Part of covaultxyz/meridian#4579, #4551; RankonaTerminal/rankona#344, #350)",
+          "author": "Glasshaus",
+          "date": "2026-10-05T22:33:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/9cb01257b8c5ec37135a1a86130f3cd22f6924cb"
+        },
         {
           "sha": "2d879b6a",
           "message": "flock: operator card cut 680 - HELM correction 22:16:08Z (GH#1184 unit file sets BACKFILL_MEMORY=1, pass ON where installed, MERIDIAN overwatch objection window 23:15Z) and the Mac Studio records: #4584 (21:53:57Z, operator-approved in its own words, operator unnamed) and fbd7d80c3d landed direct to main 22:23:48Z touching brain/llm_registry.py and brain/offload_llm.py with no Ely gate read; ask (i) widened (Part of covaultxyz/meridian#4579, #1184, #4584)",
@@ -8557,24 +8571,10 @@
           "author": "Glasshaus",
           "date": "2026-10-05T22:11:05Z",
           "url": "https://github.com/covaultxyz/meridian/commit/b9c2d739ce900959a0a2b0fd31bcc401d8de2778"
-        },
-        {
-          "sha": "45a3102d",
-          "message": "flock: operator card cut 677 - HELM word 21:53:44Z, crossed by cut 676: the Jewel J7 r5 run stopped at its first safety check at 21:52Z before anything went on the box (no existing claude binary found from the plain admin shell; nothing changed, 1 empty marker file in tmp), corrected runbook owed through both gates, no new time until the cause is read (Part of covaultxyz/meridian#4579, #4551, #4577)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T22:07:57Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/45a3102dbf292b75f04bf1f7cd43b27bad3ff378"
-        },
-        {
-          "sha": "ddd3dde1",
-          "message": "flock: ledger 2026-10-05 22:02Z - flock: ledger 2026-10-05 22:03Z - scrub r3 landed 4e40c1ef73; DIAG-1 facts (no claude for root on the Jewel box); DIAG-2 proposed; header scheme r1 in; Mac Studio arcs surfaced",
-          "author": "Glasshaus",
-          "date": "2026-10-05T22:05:04Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ddd3dde1fd332d9e9184bdacb090655f59ab3202"
         }
       ],
       "github_project": {
-        "updated_at": "2026-10-05T22:31:22.187444+00:00",
+        "updated_at": "2026-10-05T22:41:27.024357+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8776,7 +8776,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "members": [
         {
           "id": "alex",
@@ -8849,7 +8849,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "projects": [
         {
           "project": {
@@ -9279,7 +9279,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9346,7 +9346,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9443,7 +9443,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13235,7 +13235,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-10-05T22:31:24.511045+00:00",
+      "updated_at": "2026-10-05T22:41:29.306044+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17559,7 +17559,7 @@
       "total_docs": 718
     },
     "deals": {
-      "updated_at": "2026-10-05T22:31:24.511251+00:00",
+      "updated_at": "2026-10-05T22:41:29.306284+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17801,7 +17801,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-10-05T22:31:24.106200+00:00",
+      "updated_at": "2026-10-05T22:41:28.922515+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90832,7 +90832,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-10-05T22:31:24.585195+00:00",
+      "updated_at": "2026-10-05T22:41:29.387001+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98479,7 +98479,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-10-05T22:31:24.630303+00:00",
+      "updated_at": "2026-10-05T22:41:29.446900+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98674,8 +98674,20 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-10-05T22:31:24.630407+00:00",
+      "updated_at": "2026-10-05T22:41:29.447018+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-10-05T22:40:44Z",
+          "title": "covaultxyz/meridian#4551 DeepSeek seat sign-in header scheme pinned to Bearer on",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-05T22:33:15Z",
+          "title": "flock: operator card cut 681 - HELM word 22:24:27Z, crossed by cut 680: K1 r3 in",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-10-05T22:28:43Z",
@@ -98722,18 +98734,6 @@
           "type": "commit",
           "date": "2026-10-05T22:11:05Z",
           "title": "Jewel J4 structure-and-loader runbook r2 with the loader scaffolding (ferry 8474",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T22:07:57Z",
-          "title": "flock: operator card cut 677 - HELM word 21:53:44Z, crossed by cut 676: the Jewe",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T22:05:04Z",
-          "title": "flock: ledger 2026-10-05 22:02Z - flock: ledger 2026-10-05 22:03Z - scrub r3 lan",
           "detail": "Glasshaus"
         },
         {
