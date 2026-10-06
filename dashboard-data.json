@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T23:52:54.668734+00:00",
+  "generated_at": "2026-10-06T00:24:56.045091+00:00",
   "generator_version": "1.0.0",
   "sections": {
     "sales": {
@@ -1121,7 +1121,7 @@
       "revenue_pipeline": 15000
     },
     "calls": {
-      "updated_at": "2026-10-05T23:52:48.370573+00:00",
+      "updated_at": "2026-10-06T00:24:49.434471+00:00",
       "recent_signals": [
         {
           "client": "unknown",
@@ -7225,12 +7225,12 @@
             "online": true
           }
         ],
-        "generated_at": "2026-10-05T23:52:48.383981+00:00",
+        "generated_at": "2026-10-06T00:24:49.449969+00:00",
         "stale": false
       }
     },
     "development": {
-      "updated_at": "2026-10-05T23:52:54.113416+00:00",
+      "updated_at": "2026-10-06T00:24:55.372277+00:00",
       "open_issues": {
         "total": 50,
         "by_label": {
@@ -8443,138 +8443,138 @@
         ]
       },
       "ci": {
-        "status": "in_progress",
+        "status": "queued",
         "conclusion": null,
-        "name": "Generate Unified Dashboard",
-        "created_at": "2026-10-05T23:52:40Z",
-        "head_sha": "d2a7d65c"
+        "name": "CI",
+        "created_at": "2026-10-06T00:24:40Z",
+        "head_sha": "731d02eb"
       },
       "ci_recent_runs": [
         {
-          "id": 37390963910,
+          "id": 37393857146,
+          "name": "CI",
+          "status": "queued",
+          "conclusion": null,
+          "created_at": "2026-10-06T00:24:40Z",
+          "updated_at": "2026-10-06T00:24:40Z",
+          "head_sha": "731d02eb",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37393857146"
+        },
+        {
+          "id": 37393857067,
           "name": "Generate Unified Dashboard",
           "status": "in_progress",
           "conclusion": null,
-          "created_at": "2026-10-05T23:52:40Z",
-          "updated_at": "2026-10-05T23:52:43Z",
-          "head_sha": "d2a7d65c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37390963910"
+          "created_at": "2026-10-06T00:24:40Z",
+          "updated_at": "2026-10-06T00:24:43Z",
+          "head_sha": "731d02eb",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37393857067"
         },
         {
-          "id": 37390917735,
+          "id": 37393722063,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-10-05T23:52:10Z",
-          "updated_at": "2026-10-05T23:52:26Z",
-          "head_sha": "d2a7d65c",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37390917735"
+          "created_at": "2026-10-06T00:23:10Z",
+          "updated_at": "2026-10-06T00:23:30Z",
+          "head_sha": "685ea45d",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37393722063"
         },
         {
-          "id": 37390679878,
+          "id": 37393428360,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-10-05T23:49:35Z",
-          "updated_at": "2026-10-05T23:49:52Z",
-          "head_sha": "9e3fb9f1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37390679878"
+          "created_at": "2026-10-06T00:19:53Z",
+          "updated_at": "2026-10-06T00:20:10Z",
+          "head_sha": "2d469fe6",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37393428360"
         },
         {
-          "id": 37390520887,
+          "id": 37392792315,
           "name": "CI",
           "status": "completed",
           "conclusion": "success",
-          "created_at": "2026-10-05T23:47:51Z",
-          "updated_at": "2026-10-05T23:48:08Z",
-          "head_sha": "289f2af2",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37390520887"
-        },
-        {
-          "id": 37390286859,
-          "name": "CI",
-          "status": "completed",
-          "conclusion": "success",
-          "created_at": "2026-10-05T23:45:19Z",
-          "updated_at": "2026-10-05T23:45:36Z",
-          "head_sha": "81ecdae1",
-          "url": "https://github.com/covaultxyz/meridian/actions/runs/37390286859"
+          "created_at": "2026-10-06T00:12:48Z",
+          "updated_at": "2026-10-06T00:13:04Z",
+          "head_sha": "2c60ad1e",
+          "url": "https://github.com/covaultxyz/meridian/actions/runs/37392792315"
         }
       ],
       "recent_commits": [
+        {
+          "sha": "731d02eb",
+          "message": "covaultxyz/meridian#4551 header scheme r2: the key-settings guard for all four Jewel seats (ferry c16532dfe1, martin; base 73e7787b9d). One sourced guard, clients/jewel/box/scripts/jewel-key-settings-guard.sh, refuses a seat start (exit 8) when apiKeyHelper or ANTHROPIC_API_KEY is named in the seat CLAUDE_CONFIG_DIR settings.json, the seat cwd .claude/settings.json, or /etc/claude-code/managed-settings.json; the deepseek, kimi and dispatcher wrappers source and call it before the dry start, after the environ scrub of r1 and the key scrub, under set -euo pipefail, so a missing guard refuses every seat (fail closed); no key value is read or printed. 7 paths: the 3 wrappers (100755 kept), the new guard (100644), new tests/scripts/test_jewel_seat_key_settings_guard.py, and the 2 existing seat tests extended; +180 -3; 34 tests pass; 0 non-ASCII. Gates on c16532dfe1: G2 thanos cc-7b3f91443229 - PASS (security read, 2026-10-05 23:44:47Z; 0 MEDIUM, 2 LOW for r3: the cwd .claude/settings.local.json is not checked, and ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN are not in the alternation; NOTE 1 deploy-time: the guard ships beside the wrappers as a 4th file); G1 sensei cc-808adcfafd47 - PASS with caveat (security read, 2026-10-06 00:08:41Z; both LOWs reproduced and owed by r3 before any seat starts). HELM land. Wrapper code and tests only: no box run, the Jewel seats stay held. Part of #4551",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:24:30Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/731d02ebe253fa251edb26b09275d60bc38eceaf"
+        },
+        {
+          "sha": "685ea45d",
+          "message": "flock: operator card cut 692 - HELM word 2026-10-06T00:11:24Z, crossed by cut 691: J7 r6 not saved (no controlled box carries claude 2.1.286 on the same arch), r7 by 01:00Z with the pin at 2.1.290 read from big-white at install time, the operator may say 2.1.286; GH#1184 r2 thanos PASS 00:01Z, G1-B 00:55Z, window 01:05Z; arc-e7f458428661 moved to phase 2 (Part of covaultxyz/meridian#4579, #4551, #1184; RankonaTerminal/rankona#340)",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:23:01Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/685ea45debed7088f2b546b1239d5d34b344ad3f"
+        },
+        {
+          "sha": "2d469fe6",
+          "message": "flock: operator card cut 691 - operator word 2026-10-06T00:16:44Z in the task manager tab, verbatim: deploy the top 30 push control (answers item (m); relayed to the HELM 00:16Z; the HELM deploys ccbd2bd846 to the client flatfiles page with the relay check; result to follow) (Part of covaultxyz/meridian#4579; RankonaTerminal/rankona#344)",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:19:40Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2d469fe6b5e03b4d38bf7b48f699238b2737594a"
+        },
+        {
+          "sha": "2c60ad1e",
+          "message": "flock: ledger 2026-10-06 00:11Z - J7 re-pin ruling, r7 ordered; GH#1184 r2 thanos PASS; crossings answered",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:12:39Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/2c60ad1e98ad0ff986c8f89410dde9f112405962"
+        },
+        {
+          "sha": "0cf23019",
+          "message": "flock: operator card cut 690 - correct the UTC date in the cut 689 header stamp and tally (00:0xZ is 2026-10-06, not 2026-10-05; Pacific still 5 Oct); stamp and tally day now clock-derived (Part of covaultxyz/meridian#4579)",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:05:29Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/0cf2301918471e27df786ee3a725334e4dafae47"
+        },
+        {
+          "sha": "35175505",
+          "message": "flock: operator card cut 689 - HELM word 23:58:00Z: rankona#344 A1 r2 LANDED ccbd2bd846 on the gate pair, operator deploy word asked as item (m); UK T+48 runner and inputs absent on the Rankona box, pushed with the helpers at 00:30Z, result 00:55Z; header scheme r2 in, thanos PASS 23:44Z, G1 by 00:45Z; GH#1184 r2 in 23:48Z, gates 00:50Z and 00:55Z, cross-flock window 01:05Z; pre-crash 32-family edit unsaved (Part of covaultxyz/meridian#4579, #4551, #1184; RankonaTerminal/rankona#344, #309)",
+          "author": "Glasshaus",
+          "date": "2026-10-06T00:03:23Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/3517550536cad71b74e44e315770911f7fc3b102"
+        },
+        {
+          "sha": "fb11bcc5",
+          "message": "flock: ledger 2026-10-05 23:58Z - #344 r2 landed; box step 1 path (i); header r2 and GH#1184 r2 in; cross-flock window",
+          "author": "Glasshaus",
+          "date": "2026-10-05T23:59:15Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/fb11bcc57c09890d05cf059d0634aeae60a5a803"
+        },
+        {
+          "sha": "ef920849",
+          "message": "flock: operator card cut 688 - HELM word 23:47:01Z: DIAG-2 on the Jewel box ran 23:46Z read-only in 4 s (no claude runtime for root; the meridian account carries a native Claude install of an unread version and a credential file; the jewel account carries nothing); delphi finishes J7 r6 on those facts, 2 gates, then the HELM runs the install from the reviewed text; no operator decision owed (Part of covaultxyz/meridian#4579, #4551, #4577)",
+          "author": "Glasshaus",
+          "date": "2026-10-05T23:57:04Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ef920849c71caf8e934248b305b8e610935bf1ab"
+        },
+        {
+          "sha": "ccbd2bd8",
+          "message": "RankonaTerminal/rankona#344 A1 r2: the exact push control for the 24 authorized census parents on the flatfiles page (ferry 0f57ec92e7, forge-D; base 919ef9f79d). pushExactBackend mints one signed session and rides session_token on the exact stage, preview and submit calls (the relay sets X-Approve-Session, the server requires it for all 30 census families), and confirmPush refuses a submit whose draft changed after preview; every edit is scoped to isCensusReconciled, so families outside the 30 stay byte-identical; the page mirror of the authorized set equals the committed policy file (26 of 26). 1 path deploy/static-rankona-cf/flatfiles/index.html (+45 -6, blob d25a0c9e48 to bcb765719d, sha256 027e6c1cb2, 0 non-ASCII added). The martin A1 r2 chromium tests 3b52e1df71 run 26 of 26 green on the ferry bytes (walk 14 of 14, controls 12 of 12) and red on the base page (8 of 14, 4 of 12). Gates on 0f57ec92e7: G2 thanos cc-7b3f91443229 - PASS (2026-10-05 23:32:25Z, in a write-jailed station copy; 0 MEDIUM, 1 LOW for a later cut: preview and submit ride reconGetToken without the re-mint, fail closed; NOTE 1 is a deploy-time check); G1 sensei cc-808adcfafd47 - PASS (2026-10-05 23:40:47Z, render witness and the live-write walk on committed bytes). Both gates witnessed that the one write in test 1 is an in-process fake SP-API call over loopback on this Mac, not a client surface. HELM land. Code only: the client page changes only on the operator deploy word; Amazon writes stay operator-only. Part of RankonaTerminal/rankona#344",
+          "author": "Glasshaus",
+          "date": "2026-10-05T23:55:08Z",
+          "url": "https://github.com/covaultxyz/meridian/commit/ccbd2bd846e7d1b47df20b00261d7e3c3bf7a2b2"
+        },
         {
           "sha": "d2a7d65c",
           "message": "flock: operator card cut 687 - HELM word 23:43:53Z: operator word 23:42:32Z (the jewel box is free, go ahead with DIAG-2) lifts the 23:01:22Z Jewel box hold; DIAG-2 running read-only under the 21:41:16Z protocol; J7 r6 then on its facts; J4 r3 run after J7; the Mac Studio untouched by this flock (Part of covaultxyz/meridian#4579, #4551, #4577)",
           "author": "Glasshaus",
           "date": "2026-10-05T23:51:56Z",
           "url": "https://github.com/covaultxyz/meridian/commit/d2a7d65c78e3aecaee104ad73dfa02e308862673"
-        },
-        {
-          "sha": "9e3fb9f1",
-          "message": "flock: ledger 2026-10-05 23:47Z - DIAG-2 done; facts to delphi and thanos",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:49:25Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/9e3fb9f17eaab6f57a15ef162287426f97f4fbd5"
-        },
-        {
-          "sha": "289f2af2",
-          "message": "flock: operator card cut 686 - HELM word 23:39:33Z: rankona#344 A1 r2 0f57ec92e7 thanos PASS 23:32Z (test write in-process on the Mac), G1-A by 00:10Z then HELM land, client deploy on the operator word; UK T+48 command of record handed to forge-D, result 00:05Z, helpers 00:30Z, DRY 01:35Z; router files 97 of 97 (Part of covaultxyz/meridian#4579; RankonaTerminal/rankona#344, #309, #263)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:47:42Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/289f2af2ac6a46119a7de9ee6ecc019c8089796b"
-        },
-        {
-          "sha": "81ecdae1",
-          "message": "flock: ledger 2026-10-05 23:43Z - operator word 23:42:32Z: the Jewel box is free; DIAG-2 started",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:45:09Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/81ecdae1e04974c0848d53a3af2383f1324ae9d7"
-        },
-        {
-          "sha": "e4542458",
-          "message": "flock: operator card cut 685 - HELM word 23:25:06Z: rankona#344 A1 r2 back inside its time (in 23:18Z, gates 00:10Z and 00:15Z, martin advice cancelled, deploy on a HELM word), thanos Rankona box read PASS 23:17Z (0 Amazon writes), HELM ruling on the 9 class (ii) families (OUT of the first run; 8 get a later packet cut by this desk), martin header-scheme settings follow-up by 01:00Z (Part of covaultxyz/meridian#4579, #4551; RankonaTerminal/rankona#344, #263)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:43:47Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/e4542458891954a7db79a89d56618df5704b0a7c"
-        },
-        {
-          "sha": "ec91026b",
-          "message": "flock: ledger 2026-10-05 23:39Z - thanos PASS #344 r2; UK read-back command handed; clocks re-set",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:40:52Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/ec91026b5789a5ff1798d652c73d8f3ce04dcb98"
-        },
-        {
-          "sha": "73e7787b",
-          "message": "flock: ledger 2026-10-05 23:25Z - #344 A1 r2 in; martin advice cancelled; 10a PASS; class (ii) ruling",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:26:48Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/73e7787b9dce9caf5a1d8ad16b596176d9e3ba7c"
-        },
-        {
-          "sha": "342bdb25",
-          "message": "flock: operator card cut 684 - HELM word 23:11:55Z: operator word exact (22:40:01Z HELM tab: Alex and I are together setting up the jewel infra etc.), GH#1184 b422085e6a FAILED at thanos 22:55:07Z (write not workspace-scoped; r2 ordered from forge-D), rankona#344 A1 00:45Z suspended on 2 walk defects in the #326 exact path (martin advises forge-D by 23:50Z), thanos router-test counts by 23:55Z (Part of covaultxyz/meridian#4579, #1184; RankonaTerminal/rankona#344)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:19:49Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/342bdb2598d98dd14d28a392c45ccdcfd78acc7f"
-        },
-        {
-          "sha": "919ef9f7",
-          "message": "flock: operator card cut 683 - HELM word 23:01:22Z: operator word 22:4xZ (the operator and Alex set up the Jewel infra together; Jewel box held until he says it is free; the Mac Studio ask CLOSED, carried as fact), server steps reopened (UK T+48 23:50Z, helpers 00:20Z, DRY 01:35Z), Polywood S2 word to forge-D, 4 land times aligned, rankona#278 re-cut after Top 30, sign-in fix settings follow-up (Part of covaultxyz/meridian#4579, #4551, #4577; RankonaTerminal/rankona#263, #340, #278)",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:15:19Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/919ef9f79d206730be59580501351c2d19ac6657"
-        },
-        {
-          "sha": "001dbeb4",
-          "message": "flock: ledger 2026-10-05 23:11Z - operator word time 22:40:01Z; GH#1184 FAIL at thanos, r2 ordered; #344 walk defects to martin; cross-flock told",
-          "author": "Glasshaus",
-          "date": "2026-10-05T23:13:16Z",
-          "url": "https://github.com/covaultxyz/meridian/commit/001dbeb4389c3410d87ec940a5d39f758271898a"
         }
       ],
       "github_project": {
-        "updated_at": "2026-10-05T23:52:52.230928+00:00",
+        "updated_at": "2026-10-06T00:24:53.313175+00:00",
         "source": "github_project_13",
         "deals": [
           {
@@ -8776,7 +8776,7 @@
       }
     },
     "team": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "members": [
         {
           "id": "alex",
@@ -8849,7 +8849,7 @@
       ]
     },
     "projects": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "projects": [
         {
           "project": {
@@ -9279,7 +9279,7 @@
       "overall_progress": 0
     },
     "calls_log": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "calls": [
         {
           "date": "2026-03-21",
@@ -9346,7 +9346,7 @@
       "this_week": 0
     },
     "decisions": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "decisions": [
         {
           "date": "2026-03-22",
@@ -9443,7 +9443,7 @@
       "total": 13
     },
     "registry": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "projects": [
         {
           "slug": "shepherd",
@@ -13235,7 +13235,7 @@
       }
     },
     "docs": {
-      "updated_at": "2026-10-05T23:52:54.522963+00:00",
+      "updated_at": "2026-10-06T00:24:55.868268+00:00",
       "sops": [
         {
           "name": "Automated Node Provisioning",
@@ -17559,7 +17559,7 @@
       "total_docs": 718
     },
     "deals": {
-      "updated_at": "2026-10-05T23:52:54.523232+00:00",
+      "updated_at": "2026-10-06T00:24:55.868562+00:00",
       "deals": [
         {
           "slug": "shepherd",
@@ -17801,7 +17801,7 @@
       }
     },
     "csuite_audits": {
-      "updated_at": "2026-10-05T23:52:54.113463+00:00",
+      "updated_at": "2026-10-06T00:24:55.372312+00:00",
       "audits": [
         {
           "audit_version": "1.0",
@@ -90832,7 +90832,7 @@
       "total": 321
     },
     "call_intelligence": {
-      "updated_at": "2026-10-05T23:52:54.608398+00:00",
+      "updated_at": "2026-10-06T00:24:55.974826+00:00",
       "signal_summary": {
         "total_objections": 255,
         "total_buying_signals": 351,
@@ -98479,7 +98479,7 @@
       "total_action_items": 335
     },
     "attention": {
-      "updated_at": "2026-10-05T23:52:54.668514+00:00",
+      "updated_at": "2026-10-06T00:24:56.044911+00:00",
       "items": [
         {
           "type": "blocked",
@@ -98491,13 +98491,13 @@
           "type": "overdue",
           "severity": "red",
           "title": "Denver Griffin deadline overdue",
-          "description": "184 days past 2026-04-04"
+          "description": "185 days past 2026-04-04"
         },
         {
           "type": "overdue",
           "severity": "red",
           "title": "Gordon (GCC) deadline overdue",
-          "description": "191 days past 2026-03-28"
+          "description": "192 days past 2026-03-28"
         },
         {
           "type": "revenue_risk",
@@ -98674,66 +98674,66 @@
       "orange_count": 2
     },
     "timeline": {
-      "updated_at": "2026-10-05T23:52:54.668673+00:00",
+      "updated_at": "2026-10-06T00:24:56.045052+00:00",
       "events": [
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:24:30Z",
+          "title": "covaultxyz/meridian#4551 header scheme r2: the key-settings guard for all four J",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:23:01Z",
+          "title": "flock: operator card cut 692 - HELM word 2026-10-06T00:11:24Z, crossed by cut 69",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:19:40Z",
+          "title": "flock: operator card cut 691 - operator word 2026-10-06T00:16:44Z in the task ma",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:12:39Z",
+          "title": "flock: ledger 2026-10-06 00:11Z - J7 re-pin ruling, r7 ordered; GH#1184 r2 thano",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:05:29Z",
+          "title": "flock: operator card cut 690 - correct the UTC date in the cut 689 header stamp ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-06T00:03:23Z",
+          "title": "flock: operator card cut 689 - HELM word 23:58:00Z: rankona#344 A1 r2 LANDED ccb",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-05T23:59:15Z",
+          "title": "flock: ledger 2026-10-05 23:58Z - #344 r2 landed; box step 1 path (i); header r2",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-05T23:57:04Z",
+          "title": "flock: operator card cut 688 - HELM word 23:47:01Z: DIAG-2 on the Jewel box ran ",
+          "detail": "Glasshaus"
+        },
+        {
+          "type": "commit",
+          "date": "2026-10-05T23:55:08Z",
+          "title": "RankonaTerminal/rankona#344 A1 r2: the exact push control for the 24 authorized ",
+          "detail": "Glasshaus"
+        },
         {
           "type": "commit",
           "date": "2026-10-05T23:51:56Z",
           "title": "flock: operator card cut 687 - HELM word 23:43:53Z: operator word 23:42:32Z (the",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:49:25Z",
-          "title": "flock: ledger 2026-10-05 23:47Z - DIAG-2 done; facts to delphi and thanos",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:47:42Z",
-          "title": "flock: operator card cut 686 - HELM word 23:39:33Z: rankona#344 A1 r2 0f57ec92e7",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:45:09Z",
-          "title": "flock: ledger 2026-10-05 23:43Z - operator word 23:42:32Z: the Jewel box is free",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:43:47Z",
-          "title": "flock: operator card cut 685 - HELM word 23:25:06Z: rankona#344 A1 r2 back insid",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:40:52Z",
-          "title": "flock: ledger 2026-10-05 23:39Z - thanos PASS #344 r2; UK read-back command hand",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:26:48Z",
-          "title": "flock: ledger 2026-10-05 23:25Z - #344 A1 r2 in; martin advice cancelled; 10a PA",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:19:49Z",
-          "title": "flock: operator card cut 684 - HELM word 23:11:55Z: operator word exact (22:40:0",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:15:19Z",
-          "title": "flock: operator card cut 683 - HELM word 23:01:22Z: operator word 22:4xZ (the op",
-          "detail": "Glasshaus"
-        },
-        {
-          "type": "commit",
-          "date": "2026-10-05T23:13:16Z",
-          "title": "flock: ledger 2026-10-05 23:11Z - operator word time 22:40:01Z; GH#1184 FAIL at ",
           "detail": "Glasshaus"
         },
         {
